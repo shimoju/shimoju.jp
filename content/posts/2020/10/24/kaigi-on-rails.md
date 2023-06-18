@@ -1,6 +1,6 @@
 ---
 title: Kaigi on Railsでリモートワークについて発表しました
-date: 2020-10-24 17:47:48
+date: 2020-10-24T17:47:48+09:00
 categories:
   - 技術
 tags:

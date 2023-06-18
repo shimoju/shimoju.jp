@@ -1,6 +1,6 @@
 ---
 title: HerokuのRelease PhaseでDBマイグレーション忘れを防ぐ
-date: 2018-07-29 21:46:04
+date: 2018-07-29T21:46:04+09:00
 categories:
   - 技術
 tags:

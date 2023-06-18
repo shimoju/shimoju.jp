@@ -1,6 +1,6 @@
 ---
 title: ブログをHexoで作り直してNetlifyにデプロイした
-date: 2017-09-26 23:59:59
+date: 2017-09-26T23:59:59+09:00
 categories:
   - 技術
 tags:

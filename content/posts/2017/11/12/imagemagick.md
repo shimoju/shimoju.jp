@@ -1,6 +1,6 @@
 ---
 title: ImageMagickで画像処理に入門する
-date: 2017-11-12 13:56:10
+date: 2017-11-12T13:56:10+09:00
 categories:
   - 技術
 tags:

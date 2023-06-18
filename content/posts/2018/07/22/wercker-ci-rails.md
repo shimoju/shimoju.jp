@@ -1,6 +1,6 @@
 ---
 title: WerckerでRailsアプリをCIしてSlack通知する
-date: 2018-07-22 22:07:55
+date: 2018-07-22T22:07:55+09:00
 categories:
   - 技術
 tags:

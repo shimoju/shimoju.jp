@@ -1,6 +1,6 @@
 ---
 title: Herokuでzip_code_jp gemの郵便番号データを定期更新したい
-date: 2018-09-17 22:50:34
+date: 2018-09-17T22:50:34+09:00
 categories:
   - 技術
 tags:

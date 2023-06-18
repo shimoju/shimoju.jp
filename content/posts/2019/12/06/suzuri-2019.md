@@ -1,6 +1,6 @@
 ---
 title: 2019年、SUZURIの怪事件
-date: 2019-12-06 02:01:08
+date: 2019-12-06T02:01:08+09:00
 categories:
   - 技術
 tags:

@@ -1,6 +1,6 @@
 ---
 title: テレビのある生活〜ついでにChromecastとFire TV
-date: 2016-07-29 22:45:49
+date: 2016-07-29T22:45:49+09:00
 categories:
   - 日記
 tags:

@@ -1,6 +1,6 @@
 ---
 title: アニメ『Lostorage incited WIXOSS』発表会
-date: 2016-08-07 22:07:56
+date: 2016-08-07T22:07:56+09:00
 categories:
   - アニメ
 tags:

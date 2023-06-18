@@ -1,6 +1,6 @@
 ---
 title: better_errorsがやたら遅いときは最新版にアップデートするとよい
-date: 2018-07-14 19:18:49
+date: 2018-07-14T19:18:49+09:00
 categories:
   - 技術
 tags:

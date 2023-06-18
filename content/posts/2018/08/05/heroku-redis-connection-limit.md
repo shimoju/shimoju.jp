@@ -1,6 +1,6 @@
 ---
 title: 'Sidekiq + Heroku RedisでERROR: ERR max number of clients reachedと言われたら'
-date: 2018-08-05 23:41:33
+date: 2018-08-05T23:41:33+09:00
 categories:
   - 技術
 tags:
