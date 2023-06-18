@@ -43,4 +43,4 @@ tags:
 最後に、Kaigi on RailsのグッズはSUZURIにてまだ販売しているのでぜひよろしくお願いします！！
 https://suzuri.jp/kaigionrails
 
-{% asset_img suzuri-kaigionrails.png SUZURIのKaigi on Railsショップ %}
+![SUZURIのKaigi on Railsショップ](suzuri-kaigionrails.png)

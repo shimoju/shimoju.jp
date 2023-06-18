@@ -66,4 +66,4 @@ build:
 
 環境変数はWeb画面上で設定し、`wercker.yml`内では`$変数名`で参照します。「Protected」にすると設定値が見えなくなるので、秘匿情報を設定するときに便利です。
 
-{% asset_img wercker-environment-variables.png Werckerの環境変数設定 %}
+![Werckerの環境変数設定](wercker-environment-variables.png)
