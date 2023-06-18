@@ -4,3 +4,4 @@ title: shimoju.diary
 theme: PaperMod
 permalinks:
   posts: /:year/:month/:day/:slugorfilename/
+enableRobotsTXT: true
