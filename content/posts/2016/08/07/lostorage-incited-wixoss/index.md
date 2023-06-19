@@ -18,7 +18,7 @@ tags:
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 {% endraw %}
 
-{% youtube WK0KjP10b5A %}
+{{< youtube id="WK0KjP10b5A" title="TVアニメ『Lostorage incited WIXOSS』ティザーPV" >}}
 
 - [発表会ニコ生](http://live.nicovideo.jp/watch/lv271961001)
 - [イベントレポート記事](http://tocage.jp/pages/1470554062.html)
@@ -38,11 +38,11 @@ tags:
 
 ちなみにselector1期・2期・劇場版のPVはこちら。今見ると1期のPVが一番ホラー演出強めで、カードゲームの販促アニメでよくこんなん通したなと……。
 
-{% youtube _3nMqPA6nmc %}
+{{< youtube id="_3nMqPA6nmc" title="オリジナルTVアニメ『selector infected WIXOSS』 プロモーションムービー" >}}
 
-{% youtube xpy8joNsPcg %}
+{{< youtube id="xpy8joNsPcg" title="オリジナルTVアニメ『selector spread WIXOSS』コミックマーケット86公開PV" >}}
 
-{% youtube mWKqrgiyQOo %}
+{{< youtube id="mWKqrgiyQOo" title="『劇場版selector destructed WIXOSS』本予告PV" >}}
 
 どうやら今回も色々おもしろくなりそうなので、期待してます。
 

@@ -28,7 +28,7 @@ tags:
 
 ここから先は説明するより動画を見てもらったほうが早いのと、一人称小説みたいな文体に飽きてきたので以下の動画をどうぞ。
 
-{% youtube BdQVd1uybCg %}
+{{< youtube id="BdQVd1uybCg" title="GMOペパボ『採用目的』 / PEPABO HEADZ with 上鈴木兄弟(P.O.P)" >}}
 
 ミュージックビデオに出演しました。仕事で。
 もはやわけがわからない。
