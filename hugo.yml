@@ -5,3 +5,17 @@ theme: PaperMod
 permalinks:
   posts: /:year/:month/:day/:slugorfilename/
 enableRobotsTXT: true
+
+params:
+  homeInfoParams:
+    title: Hiroshi Shimoju
+    content: GMOペパボ株式会社 SUZURI事業部 シニアエンジニア。Ruby on Railsを用いたプロダクト開発に携わりつつ、現在はSREとして、SLI/SLOの策定・運用、パフォーマンス改善やインフラの構築、セキュリティ対策などを担当しています。その他、Kaigi on RailsのオーガナイザーやRails Girlsのコーチといった活動も行っています。
+  socialIcons:
+    - name: twitter
+      url: https://twitter.com/shimoju_
+    - name: github
+      url: https://github.com/shimoju
+    - name: facebook
+      url: https://www.facebook.com/hiroshi.shimoju
+    - name: scrapbox
+      url: https://scrapbox.io/shimoju/
