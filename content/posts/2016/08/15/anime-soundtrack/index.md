@@ -9,22 +9,13 @@ tags:
 アニメを見るようになってからテレビを見ていると、アニメ劇伴が結構BGMとして使われていることに気がつく。
 今日は日テレのオリンピック番組で、選手紹介VTRのBGMにselectorとマジェプリの劇伴が使われていた。
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">いま日テレオリンピック番組のBGMにselectorの劇伴使われてたな<br>アニメ劇伴は結構BGMとして使われてるけどウィクロス聞いたのは初めてだ</p>&mdash; Hiroshi Shimoju (@shimoju_) <a href="https://twitter.com/shimoju_/status/765141839364157440">2016年8月15日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="shimoju_" id="765141839364157440" >}}
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">お、今度はマジェプリの劇伴だ</p>&mdash; Hiroshi Shimoju (@shimoju_) <a href="https://twitter.com/shimoju_/status/765142300804517889">2016年8月15日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="shimoju_" id="765142300804517889" >}}
 
 全然詳しくない自分が知ってる範囲でも結構気付くので、実はテレビ番組では結構な割合で使われているのかもしれない。
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">アニメサントラを聞くようになってからテレビを見ると、結構BGMとして使われてるんだなーと思った<br>なぜかモーレツ宇宙海賊のBGMはよく聞くし、この前はマジェプリもあったし、いまのふしぎ発見では凪あすが流れてた<br>自分が気付いた（知ってる）範囲でこれだから、かなりの割合で使われてそう</p>&mdash; Hiroshi Shimoju (@shimoju_) <a href="https://twitter.com/shimoju_/status/713704194201374720">2016年3月26日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="shimoju_" id="713704194201374720" >}}
 
 この前のNHK「超絶 凄ワザ！」では、クライマックスシーンでガンダム鉄血のオルフェンズが流れて爆笑したことがある。
 検索したら言及してた人がいた。どうやらUC→鉄血→カバネリというアニメ劇伴連続だったらしい。この回に限らず凄ワザではアニメ劇伴を多用しているようだ。

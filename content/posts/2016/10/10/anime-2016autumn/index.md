@@ -9,15 +9,9 @@ tags:
 [7月までに急いで録画体勢を構築した](https://shimoju.jp/2016/07/29/tv-life/)のはよいのだけど、結局マジェプリ再放送しか見ていなかった夏アニメ。
 秋はいっぱい見ようということでブルーレイレコーダーとソファを調達しました。ソファに寝っ転がりながらひたすらアニメを見る連休は最高だった。
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">テレビの録画機能はやっぱり簡易的なもので使いにくかったので、10月始まる前にレコーダー買ったけど今期は見るもの多そうで何より</p>&mdash; Hiroshi Shimoju (@shimoju_) <a href="https://twitter.com/shimoju_/status/782398466416713728">2016年10月2日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="shimoju_" id="782398466416713728" >}}
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">新しくデプロイされたソファに最高と言いながらひたすらアニメを見る連休を送っている</p>&mdash; Hiroshi Shimoju (@shimoju_) <a href="https://twitter.com/shimoju_/status/785374703527440384">2016年10月10日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="shimoju_" id="785374703527440384" >}}
 
 というわけで、1話がほとんど出揃ったのでざっと感想を書いていこうと思います。
 オリジナル作品も多いし、先が気になる1話が多くてレコーダー大活躍で何より。
@@ -107,10 +101,7 @@ tags:
 
 ### 月曜日のたわわ
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">ED編曲・劇伴が凪あすの出羽良彰さんで爽やかないい雰囲気。ただ、Twitterの一枚絵なら目立たなかったけどアニメになると按配間違えば色々と炎上しそうな気が / 月曜日のたわわ　その１ <a href="https://t.co/GJ0ACGPv6i">https://t.co/GJ0ACGPv6i</a></p>&mdash; Hiroshi Shimoju (@shimoju_) <a href="https://twitter.com/shimoju_/status/785375242776485888">2016年10月10日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="shimoju_" id="785375242776485888" >}}
 
 →炎上する以前にYouTubeガイドライン違反で消されてて笑った
 
@@ -133,10 +124,7 @@ tags:
 - 本編は再放送だけど、今度の映画に続く新作25話が放送された
 - メカアクションはもとより特に音響がめちゃくちゃパワーアップしていたし、映画予告も予想以上だったし期待。
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">11月4 日（金）より2週間限定上映『劇場版マジェスティックプリンス 覚醒の遺伝子』予告編が解禁となりました！！昆夏美さんによる主題歌「消えない宙（そら）」も音源初公開です！<a href="https://t.co/AH8sYr6Hgk">https://t.co/AH8sYr6Hgk</a> <a href="https://twitter.com/hashtag/MJPR?src=hash">#MJPR</a></p>&mdash; 「マジェスティックプリンス」アニメ公式 (@MJP_anime) <a href="https://twitter.com/MJP_anime/status/781494211040256001">2016年9月29日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="MJP_anime" id="781494211040256001" >}}
 
 ### 進撃の巨人(オリジナルマスター版)
 
@@ -144,7 +132,4 @@ tags:
 
 ### 涼宮ハルヒの憂鬱
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">BS11でなぜかハルヒ再放送をやっている<br>見たことないから内容には懐かしさはないけど、ハレ晴レユカイがとても懐かしいぞ…</p>&mdash; Hiroshi Shimoju (@shimoju_) <a href="https://twitter.com/shimoju_/status/783674184169697280">2016年10月5日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="shimoju_" id="783674184169697280" >}}

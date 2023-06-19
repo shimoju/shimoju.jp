@@ -10,10 +10,7 @@ tags:
 
 今日で1箱食べてしまったよ……
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">棒アイス、あれば食べちゃうからよくない</p>&mdash; Hiroshi Shimoju (@shimoju_) <a href="https://twitter.com/shimoju_/status/759635807082651648">2016年7月31日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="shimoju_" id="759635807082651648" >}}
 
 …で終わるとさすがに短すぎるので、最近おいしかったアイスとよく食べるアイスをどうぞ。
 

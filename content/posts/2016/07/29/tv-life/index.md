@@ -22,16 +22,10 @@ tags:
 
 (こんなツイートをしたらドコモ公式からリプライが来てびっくりした図)
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr"> こんにちは。ドコモ公式サポート斎藤です。お気づきのとおり、dアニメストアはChromecastに対応しております。dアニメストアの使い方→ <a href="https://t.co/4hH5YrgUNr">https://t.co/4hH5YrgUNr</a> テレビの大画面で、さまざまな作品をお楽しみいただければ幸いです。</p>&mdash; ドコモ公式サポート (@docomo_cs) <a href="https://twitter.com/docomo_cs/status/740741467329597441">2016年6月9日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="docomo_cs" id="740741467329597441" >}}
 
 さらにこの前のAmazon Prime Dayで[Fire TV Stick](https://www.amazon.co.jp/dp/B00ZVNYLS8/)も買ってしまったので向かうところ敵なし。
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">録画体制はテレビの録画機能を使って、外付けHDDは持ってたから追加投資なしで、見放題系はdアニメストア+Chromecastで月500円未満で済ませる戦略<br>お金をかけられないにしては上出来なのでは <a href="https://t.co/NcvqreAYpi">https://t.co/NcvqreAYpi</a></p>&mdash; Hiroshi Shimoju (@shimoju_) <a href="https://twitter.com/shimoju_/status/749599441225519104">2016年7月3日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="shimoju_" id="749599441225519104" >}}
 
 QOLを上げるための努力は惜しまないぞ〜

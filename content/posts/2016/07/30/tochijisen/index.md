@@ -11,10 +11,7 @@ tags:
 
 あと、選管がTwitter広告出してて頑張ってるなあと思った。
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">いよいよ明日は東京都知事選挙の投票日！<br>１８歳（誕生日が８月１日以前の方）から投票ができます。<br>みなさまの１票をお待ちしております。<a href="https://twitter.com/hashtag/%E6%9D%B1%E4%BA%AC%E9%83%BD%E7%9F%A5%E4%BA%8B%E9%81%B8%E6%8C%99?src=hash">#東京都知事選挙</a>　<a href="https://twitter.com/hashtag/%E9%83%BD%E7%9F%A5%E4%BA%8B%E9%81%B8?src=hash">#都知事選</a>　<a href="https://twitter.com/hashtag/%EF%BC%97%E6%9C%88%EF%BC%93%EF%BC%91%E6%97%A5?src=hash">#７月３１日</a> <a href="https://t.co/d0GEeqEoZH">https://t.co/d0GEeqEoZH</a></p>&mdash; 東京都選挙管理委員会 (@tocho_senkyo) <a href="https://twitter.com/tocho_senkyo/status/759040813254844423">2016年7月29日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="tocho_senkyo" id="759040813254844423" >}}
 
 それはともかく、タイトルの通り東京都知事選挙の投票資格がない。なので投票所入場券も届いていない。明日は傍観である。
 

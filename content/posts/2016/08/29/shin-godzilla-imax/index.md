@@ -34,7 +34,4 @@ IMAXシアターではブランドを強調していきたいようで、上映�
 
 最後に上映中の勘違い。
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">昨日のシン・ゴジラIMAXではカヨコ登場シーンで香水の匂いがきて、なるほどこれがIMAXか〜と一瞬納得しかけたけどそれは4DXとかのやつでこれはたぶん客の匂い</p>&mdash; Hiroshi Shimoju (@shimoju_) <a href="https://twitter.com/shimoju_/status/769754089684996098">2016年8月28日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="shimoju_" id="769754089684996098" >}}

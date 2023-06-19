@@ -13,10 +13,7 @@ tags:
 
 さらに京王線の定期券は京王のカードじゃないとクレジット払いできないらしく、かなしい気持ちになっていた。
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">京王線の定期をクレジットで買おうとしたら京王のカードじゃねえとダメだコラと言われたので泣く泣くお金をおろした</p>&mdash; Hiroshi Shimoju (@shimoju_) <a href="https://twitter.com/shimoju_/status/742144683384655872">2016年6月13日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="shimoju_" id="742144683384655872" >}}
 
 (配属が福岡にならない限り)数年はお世話になる予定の路線なので、京王の策略に乗せられてるなと思いつつも作ってしまうことにした。
 

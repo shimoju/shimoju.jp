@@ -13,10 +13,7 @@ tags:
 
 タイトルが発表されたっきり続報がなくて夢だったのかなと思っていたが、今日の[WIXOSSのイベント](http://www.takaratomy.co.jp/products/wixoss/event/160520_01/)内でPVが公開され、公式サイトもオープンした。
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">オリジナルTVアニメ『Lostorage incited WIXOSS』ティザーPV公開！公式サイトもオープン！！<a href="https://t.co/0PqK7vJVtl">https://t.co/0PqK7vJVtl</a><a href="https://twitter.com/hashtag/Lostorage?src=hash">#Lostorage</a></p>&mdash; WIXOSSアニメ公式 (@wixoss_anime) <a href="https://twitter.com/wixoss_anime/status/762153069207363585">2016年8月7日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="wixoss_anime" id="762153069207363585" >}}
 
 {{< youtube id="WK0KjP10b5A" title="TVアニメ『Lostorage incited WIXOSS』ティザーPV" >}}
 
@@ -31,10 +28,7 @@ tags:
 
 その前作監督の佐藤卓哉さんはこんなことを言っている。ヒリヒリする人間ドラマという軸は変わらずも、その表現の仕方にどんな違いが出るか、だろうか。
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">新wixoss諸々オープン。今回は不参加ですが別方向からのカイジ的な何物か？を楽しみにしています。個人的には不穏さの表し方がselectorとどう変わるか細かく見て欲しいですねw</p>&mdash; 佐藤卓哉 (@tak_tea3) <a href="https://twitter.com/tak_tea3/status/762171577521741826">2016年8月7日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="tak_tea3" id="762171577521741826" >}}
 
 ちなみにselector1期・2期・劇場版のPVはこちら。今見ると1期のPVが一番ホラー演出強めで、カードゲームの販促アニメでよくこんなん通したなと……。
 

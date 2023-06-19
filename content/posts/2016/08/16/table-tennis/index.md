@@ -13,9 +13,6 @@ tags:
 
 見ているだけなのに胃が痛くなる。
 
-{% raw %}
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">卓球こっちが胃が痛い</p>&mdash; Hiroshi Shimoju (@shimoju_) <a href="https://twitter.com/shimoju_/status/765011237885194240">2016年8月15日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-{% endraw %}
+{{< tweet user="shimoju_" id="765011237885194240" >}}
 
 女子団体はいま見てるけど、男子団体は18日朝なので残念ながらお仕事…長期戦になったら見れないぞ……
