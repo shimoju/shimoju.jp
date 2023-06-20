@@ -13,6 +13,8 @@ markup:
       # InstagramやSpeaker Deckの埋め込みコードのために生のHTMLを許可する
       # 将来的にShortcodeに移行してこのオプションはfalseにしたい
       unsafe: true
+minify:
+  minifyOutput: true
 
 menu:
   main:
