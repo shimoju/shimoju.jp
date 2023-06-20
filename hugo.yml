@@ -5,6 +5,12 @@ theme: PaperMod
 permalinks:
   posts: /:year/:month/:day/:slugorfilename/
 enableRobotsTXT: true
+markup:
+  goldmark:
+    renderer:
+      # InstagramやSpeaker Deckの埋め込みコードのために生のHTMLを許可する
+      # 将来的にShortcodeに移行してこのオプションはfalseにしたい
+      unsafe: true
 
 params:
   homeInfoParams:
