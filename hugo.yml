@@ -28,6 +28,7 @@ menu:
 params:
   author: Hiroshi Shimoju
   description: テクノロジーと社会
+  dateFormat: 2006/01/02
   showCodeCopyButtons: true
   showPostNavLinks: true
   showShareButtons: true
