@@ -25,3 +25,4 @@ params:
       url: https://www.facebook.com/hiroshi.shimoju
     - name: scrapbox
       url: https://scrapbox.io/shimoju/
+  showShareButtons: true
