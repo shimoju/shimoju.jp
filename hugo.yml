@@ -26,6 +26,8 @@ menu:
       weight: 20
 
 params:
+  author: Hiroshi Shimoju
+  description: テクノロジーと社会
   showCodeCopyButtons: true
   showPostNavLinks: true
   showShareButtons: true
