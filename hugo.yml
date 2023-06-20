@@ -1,6 +1,7 @@
 baseURL: https://shimoju.jp/
 languageCode: ja
 defaultContentLanguage: ja
+hasCJKLanguage: true
 title: shimoju.diary
 theme: PaperMod
 permalinks:
