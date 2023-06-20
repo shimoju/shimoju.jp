@@ -18,14 +18,18 @@ minify:
 
 menu:
   main:
+    - identifier: archives
+      name: Archives
+      pageRef: /archives
+      weight: 10
     - identifier: categories
       name: Categories
       pageRef: /categories
-      weight: 10
+      weight: 20
     - identifier: tags
       name: Tags
       pageRef: /tags
-      weight: 20
+      weight: 30
 
 params:
   author: Hiroshi Shimoju
