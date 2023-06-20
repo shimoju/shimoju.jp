@@ -12,6 +12,17 @@ markup:
       # 将来的にShortcodeに移行してこのオプションはfalseにしたい
       unsafe: true
 
+menu:
+  main:
+    - identifier: categories
+      name: Categories
+      pageRef: /categories
+      weight: 10
+    - identifier: tags
+      name: Tags
+      pageRef: /tags
+      weight: 20
+
 params:
   showCodeCopyButtons: true
   showPostNavLinks: true
