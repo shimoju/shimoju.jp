@@ -37,6 +37,7 @@ params:
   dateFormat: 2006/01/02
   showCodeCopyButtons: true
   showPostNavLinks: true
+  showRssButtonInSectionTermList: true
   showShareButtons: true
   homeInfoParams:
     title: Hiroshi Shimoju
