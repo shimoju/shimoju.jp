@@ -1,0 +1,31 @@
+/* 本文のline-heightを2にする */
+/* single.htmlの本文。デフォルト：1.6（bodyから継承） */
+.post-content {
+  line-height: 2;
+}
+
+/* list.htmlの本文。デフォルト：1.6 */
+.entry-content {
+  line-height: 2;
+}
+
+/* 見出しのline-heightを1.4にする */
+/* list.htmlの見出し（最初の記事またはHome-Info）。デフォルト：1.3 */
+.first-entry .entry-header h1 {
+  line-height: 1.4;
+}
+
+/* list.htmlの見出し（2番目以降の記事）。デフォルト：1.3 */
+.entry-header h2 {
+  line-height: 1.4;
+}
+
+/* その他の見出し。デフォルト：1.2 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.4;
+}
