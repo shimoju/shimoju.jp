@@ -49,7 +49,7 @@ permalinks:
 ```
 
 アーカイブ（[/archives/](https://shimoju.jp/archives/)）、カテゴリー（[/categories/](https://shimoju.jp/categories/)）、タグ（[/tags/](https://shimoju.jp/tags/)）はとくに設定しなくても同じパスだったのでそのまま使えている。
-カテゴリー名・タグ名はHexoでは指定した通りのURLになる（大文字にすればURLも大文字になる）が、Hugoだと小文字に統一されるようで、そこだけ404になってしまったのが悲しみ。
+カテゴリー名・タグ名はHexoでは指定した通りのURLになる（大文字にすればURLも大文字になる）のに対して、Hugoだと小文字に統一されるようで、そこだけ404になってしまったのが悲しみ。
 
 RSSフィードはURLが変わったので[リダイレクトを設定してある](https://github.com/shimoju/shimoju.jp/blob/master/static/_redirects)。
 
