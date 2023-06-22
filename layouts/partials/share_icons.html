@@ -80,3 +80,11 @@
     {{- end }}
     {{- /* はてなブックマーク end */ -}}
 </div>
+{{- /* はてなスター start */ -}}
+{{- if (cond ($custom) (in $ShareButtons "hatena-star") (true)) }}
+<div class="hatena-star-container" data-hatena-star-container data-hatena-star-url="{{ $pageurl }}"
+    data-hatena-star-title="{{ $title }}" data-hatena-star-variant="profile-icon"
+    data-hatena-star-profile-url-template="https://blog.hatena.ne.jp/{username}/"></div>
+<script async src="https://s.hatena.ne.jp/js/widget/star.js"></script>
+{{- end }}
+{{- /* はてなスター end */ -}}
