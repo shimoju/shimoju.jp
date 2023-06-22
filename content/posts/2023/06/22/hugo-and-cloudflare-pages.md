@@ -41,18 +41,17 @@ PaperModは[assets/css/extendedにCSSを置くとそれもバンドルしてく�
 
 ## クールなURIは変わらない
 
-URLはできるだけ変えないように、パーマリンクは以前のブログと同様に設定した。
+URLはできるだけ変えないように、パーマリンクは[以前のブログと同様に設定した](https://github.com/shimoju/shimoju.jp/blob/master/hugo.yml)。
 
 ```yaml
 permalinks:
   posts: /:year/:month/:day/:slugorfilename/
 ```
 
-アーカイブ（[/archives/](https://shimoju.jp/archives/)）、カテゴリー（[/categories/](https://shimoju.jp/categories/)）、タグ（[/tags/](https://shimoju.jp/tags/)）はとくに設定しなくても同じパスだったのでそのまま使えた。
+アーカイブ（[/archives/](https://shimoju.jp/archives/)）、カテゴリー（[/categories/](https://shimoju.jp/categories/)）、タグ（[/tags/](https://shimoju.jp/tags/)）はとくに設定しなくても同じパスだったのでそのまま使えている。
 カテゴリー名・タグ名はHexoでは指定した通りのURLになる（大文字にすればURLも大文字になる）が、Hugoだと小文字に統一されるようで、そこだけ404になってしまったのが悲しみ。
 
 RSSフィードはURLが変わったので[リダイレクトを設定してある](https://github.com/shimoju/shimoju.jp/blob/master/static/_redirects)。
-実はカテゴリーやタグごとにもRSSが生成されていて、特定のカテゴリーだけ購読できるようになっている。使う人がいるかはわからないけど。
 
 ## ホスティング
 
