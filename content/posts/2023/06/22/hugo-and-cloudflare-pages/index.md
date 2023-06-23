@@ -22,7 +22,7 @@ GatsbyやAstroも考えたけど、そんな凝ったことやるわけでもな
 
 ## テーマ
 
-[adityatelange/hugo-PaperMod](https://github.com/adityaおtelange/hugo-PaperMod)を採用。
+[adityatelange/hugo-PaperMod](https://github.com/adityatelange/hugo-PaperMod)を採用。
 
 このテーマがあったのもHugoを選定した理由のひとつで、シンプルなデザインながら機能も豊富で気に入っている。
 トップページにプロフィールを表示できる[Home-Info Mode](https://github.com/adityatelange/hugo-PaperMod/wiki/Features#home-info-mode)があり、これを使って簡単なプロフィールと各種SNSへのリンクを置いた。
