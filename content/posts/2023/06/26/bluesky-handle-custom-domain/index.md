@@ -14,7 +14,7 @@ tags:
 
 どうやら現状はログインしていないとプロフィールすら閲覧できないっぽい。招待コードは2つ余っているのでTwitterなどで声をかけていただければ。
 
-いまのところ見た目はまんまTwitterという感じで、非中央集権型SNSを実現するプロトコルとしても[ActivityPub](https://www.w3.org/TR/activitypub/)という先例があるので、[AT Protocol](https://atproto.com/)がどのように差別化を図っていくのか気になる。
+いまのところ見た目はまんまTwitterという感じ。非中央集権型SNSを実現するプロトコルとしても[ActivityPub](https://www.w3.org/TR/activitypub/)という先例があるので、[AT Protocol](https://atproto.com/)がどのように差別化を図っていくのか気になる。
 
 Twitterの雲行きが怪しい昨今、Mastodonなど含め色々試しつつ、複数の発信手段を確保しておきたい気持ち。このブログを整備し直したのもその一環だし。
 
