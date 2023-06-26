@@ -16,6 +16,8 @@ tags:
 
 いまのところ見た目はまんまTwitterという感じで、非中央集権型SNSを実現するプロトコルとしても[ActivityPub](https://www.w3.org/TR/activitypub/)という先例があるので、[AT Protocol](https://atproto.com/)がどのように差別化を図っていくのか気になる。
 
+Twitterの雲行きが怪しい昨今、Mastodonなど含め色々試しつつ、複数の発信手段を確保しておきたい気持ち。このブログを整備し直したのもその一環だし。
+
 ## ハンドルネームにカスタムドメインを設定する
 
 [Blueskyはハンドルとして任意のドメインを設定できる](https://gigazine.net/news/20230421-bluesky-handle-domain-name/)ようになっており、DNSレコードを用いて本人認証を実現できる。
