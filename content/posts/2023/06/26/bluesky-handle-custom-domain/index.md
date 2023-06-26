@@ -1,12 +1,11 @@
 ---
 title: Blueskyのハンドルネームにカスタムドメインを設定する
-date: 2023-06-26T20:55:43+09:00
+date: 2023-06-26T22:30:43+09:00
 categories:
   - 技術
 tags:
   - Bluesky
   - DNS
-draft: true
 ---
 
 同僚から[Bluesky](https://bsky.app/)の招待コードをもらったので登録してみた。
