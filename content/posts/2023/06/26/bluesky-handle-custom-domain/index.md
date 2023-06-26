@@ -31,7 +31,7 @@ Settings→Change handleからハンドル設定画面を開き、「I have my o
 
 ![Blueskyのハンドル設定画面：カスタムドメインの設定](bluesky-change-handle-2.png)
 
-「Verify DNS Record」をクリックしてDNSレコードを検証する。成功したら「Domain verified!」のメッセージが出るのでSaveすれば変更完了。
+「Verify DNS Record」を押してDNSレコードを検証する。成功したら「Domain verified!」のメッセージが出るのでSaveすれば変更完了。
 
 ![Blueskyのハンドル設定画面：DNSレコードの検証に成功](bluesky-change-handle-3.png)
 
