@@ -61,4 +61,4 @@ params:
     - name: Scrapbox
       url: https://scrapbox.io/shimoju/
     - name: RSS
-      url: /index.xml
+      url: https://shimoju.jp/index.xml
