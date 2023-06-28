@@ -24,19 +24,19 @@ tags:
 
 Mac Homebrew
 
-```shell-session
+```sh
 $ brew install imagemagick
 ```
 
 Debian / Ubuntu
 
-```shell-session
+```sh
 $ sudo apt-get install -y imagemagick
 ```
 
 CentOS
 
-```shell-session
+```sh
 $ sudo yum -y install ImageMagick
 ```
 
@@ -48,7 +48,7 @@ $ sudo yum -y install ImageMagick
 
 ### ImageMagick 6 (Ubuntu 16.04)
 
-```shell-session
+```sh
 $ ls -Alh /usr/lib/x86_64-linux-gnu/ImageMagick-6.8.9/bin-Q16
 total 88K
 -rwxr-xr-x 1 root root 6.3K Jul 31 13:22 animate
@@ -68,7 +68,7 @@ total 88K
 
 `magick`コマンドへのシンボリックリンクになっていることがわかる
 
-```shell-session
+```sh
 $ ls -Alh /usr/local/Cellar/imagemagick/7.0.7-7/bin | grep -v config
 total 64
 lrwxr-xr-x  1 shimoju  admin     6B 10  7 21:02 animate -> magick
@@ -92,7 +92,7 @@ lrwxr-xr-x  1 shimoju  admin     6B 10  7 21:02 stream -> magick
 - サイズをさっと知りたいときとか、大量の画像の中からサイズが違うものを探したりとかに便利
 - フォーマット文字列はこちら参照：[Format and Print Image Properties @ ImageMagick](https://www.imagemagick.org/script/escape.php)
 
-```shell-session
+```sh
 $ identify *.jpg
 original.jpg JPEG 800x533 800x533+0+0 8-bit sRGB 104823B 0.000u 0:00.000
 resize.jpg JPEG 400x267 400x267+0+0 8-bit sRGB 37116B 0.000u 0:00.000
@@ -100,7 +100,7 @@ resize.jpg JPEG 400x267 400x267+0+0 8-bit sRGB 37116B 0.000u 0:00.000
 
 JSON形式で出力して`jq`に食わせる
 
-```shell-session
+```sh
 $ identify -format '{"width": %w, "height": %h}' *.jpg | jq
 {
   "width": 800,
@@ -110,7 +110,7 @@ $ identify -format '{"width": %w, "height": %h}' *.jpg | jq
 
 `grep -v`で指定のサイズではない画像を抽出
 
-```shell-session
+```sh
 $ identify -format '%wx%h %f\n' *.jpg | grep -v 800x533
 200x200 crop.jpg
 ```
@@ -124,25 +124,25 @@ $ identify -format '%wx%h %f\n' *.jpg | grep -v 800x533
 
 `-rotate`で指定した角度回転する
 
-```shell-session
+```sh
 $ convert -rotate 90 original.jpg rotate.jpg
 ```
 
 上下反転
 
-```shell-session
+```sh
 $ convert -flip original.jpg flip.jpg
 ```
 
 左右反転
 
-```shell-session
+```sh
 $ convert -flop original.jpg flop.jpg
 ```
 
 上下左右反転
 
-```shell-session
+```sh
 $ convert -flip -flop original.jpg flipflop.jpg
 ```
 
@@ -150,14 +150,14 @@ $ convert -flip -flop original.jpg flipflop.jpg
 
 ピクセルを間引く
 
-```shell-session
+```sh
 $ convert -sample 10% original.jpg sample.jpg
 ```
 
 10%になるようにピクセルを間引いたあと、1000%になるように拡大
 →元画像と同じサイズでモザイクがかかる
 
-```shell-session
+```sh
 $ convert -sample 10% -sample 1000% original.jpg mosaic.jpg
 ```
 
@@ -165,7 +165,7 @@ $ convert -sample 10% -sample 1000% original.jpg mosaic.jpg
 
 デフォルトではアスペクト比を変えない：指定した幅・高さに収まるようにリサイズされる
 
-```shell-session
+```sh
 $ convert -resize 400x400 original.jpg resize.jpg
 $ identify resize.jpg
 resize.jpg JPEG 400x267 400x267+0+0 8-bit sRGB 37116B 0.000u 0:00.000
@@ -173,13 +173,13 @@ resize.jpg JPEG 400x267 400x267+0+0 8-bit sRGB 37116B 0.000u 0:00.000
 
 `!`をつけるとアスペクト比を無視して指定した値にリサイズする
 
-```shell-session
+```sh
 $ convert -resize 400x400! original.jpg resize2.jpg
 ```
 
 幅または高さのみ指定できる
 
-```shell-session
+```sh
 $ convert -resize 400x original.jpg resize3.jpg
 ```
 
@@ -187,13 +187,13 @@ $ convert -resize 400x original.jpg resize3.jpg
 
 不連続に変化している箇所を検出する
 
-```shell-session
+```sh
 $ convert -edge 5 original.jpg edge.jpg
 ```
 
 値を変化させてみよう
 
-```shell-session
+```sh
 $ convert -edge 10 original.jpg edge2.jpg
 $ convert -edge 1 original.jpg edge3.jpg
 ```
@@ -202,14 +202,14 @@ $ convert -edge 1 original.jpg edge3.jpg
 
 `-gravity`で基準点を指定し、`-crop widthxheight`で切り抜くサイズを指定
 
-```shell-session
+```sh
 $ convert -gravity center -crop 200x200+0+0 original.jpg crop.jpg
 ```
 
 `+`/`-`で基準点からのx,y座標を指定できる
 画像右上を基準に、xに140px,yに50px移動し、その点から200x200px切り抜く
 
-```shell-session
+```sh
 $ convert -gravity northeast -crop 200x200+140+50 original.jpg crop.jpg
 ```
 
@@ -218,7 +218,7 @@ $ convert -gravity northeast -crop 200x200+140+50 original.jpg crop.jpg
 指定したサイズになるように余白を追加する
 正方形のサイズが必要なのに4:3の画像しかないときなどに便利
 
-```shell-session
+```sh
 $ convert -background black -gravity center \
           -extent 800x800 original.jpg extent.jpg
 ```
@@ -226,21 +226,21 @@ $ convert -background black -gravity center \
 余白の色は`-background`で指定する
 PNG(透過が扱えるフォーマット)であれば、`-background transparent`で透過できる
 
-```shell-session
+```sh
 $ convert -background transparent -gravity north \
           -extent 1000x1000 original.jpg extent.png
 ```
 
 ### 文字の画像を作る
 
-```shell-session
+```sh
 $ convert -background transparent \
           -fill '#ff6060' -font Arial -pointsize 128 label:LGTM lgtm.png
 ```
 
 指定サイズで作成
 
-```shell-session
+```sh
 $ convert -size 400x200 -gravity center -background transparent \
           -fill '#ff6060' -font Arial -pointsize 128 label:LGTM lgtm.png
 ```
@@ -249,14 +249,14 @@ $ convert -size 400x200 -gravity center -background transparent \
 
 `original.jpg`の上に`lgtm.png`を合成して、`compose-over.jpg`として出力
 
-```shell-session
+```sh
 $ convert original.jpg lgtm.png -gravity center \
           -compose over -composite compose-over.jpg
 ```
 
 `-geometry`で基準点から移動
 
-```shell-session
+```sh
 $ convert original.jpg lgtm.png -gravity center -geometry +150+50 \
           -compose over -composite compose-over.jpg
 ```
@@ -272,21 +272,21 @@ $ convert original.jpg lgtm.png -gravity center -geometry +150+50 \
 
 乗算 (multiply)
 
-```shell-session
+```sh
 $ convert original.jpg lgtm.png -gravity center -geometry +150+50 \
           -compose multiply -composite compose-multiply.jpg
 ```
 
 オーバーレイ (overlay)
 
-```shell-session
+```sh
 $ convert original.jpg lgtm.png -gravity center -geometry +150+50 \
           -compose overlay -composite compose-overlay.jpg
 ```
 
 減算 (subtract)
 
-```shell-session
+```sh
 $ convert original.jpg lgtm.png -gravity center -geometry +150+50 \
           -compose subtract -composite compose-subtract.jpg
 ```
