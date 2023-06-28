@@ -63,7 +63,7 @@ Lintツールを導入すること自体が目的ではありません。Lintツ
 
 ブランチで追加・変更したファイルは`git diff`のオプションを使って取得することができます。
 
-```bash
+```sh
 git diff --name-only --diff-filter=ACM origin/master...HEAD
 ```
 
@@ -82,7 +82,7 @@ git diff --name-only --diff-filter=ACM origin/master...HEAD
 
 そこで以下のような[一括チェック用のシェルスクリプト](https://github.com/shimoju/step-by-step-linting/pull/1/files#diff-a53fc6fd70572e51bd83043b394df77c)を用意しました。
 
-```bash
+```sh
 #!/bin/bash
 
 function diff-filter-ext() {

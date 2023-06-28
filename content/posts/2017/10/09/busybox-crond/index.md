@@ -29,7 +29,7 @@ Alpine LinuxであればそのままBusyBoxなので`crond`で起動できます
 
 ### Alpine Linux 3.6 / BusyBox v1.26.2
 
-```shell-session
+```sh
 # crond --help
 BusyBox v1.26.2 (2017-06-11 06:38:32 GMT) multi-call binary.
 
@@ -46,7 +46,7 @@ Usage: crond -fbS -l N -d N -L LOGFILE -c DIR
 
 ### Debian jessie / BusyBox v1.22.1
 
-```shell-session
+```sh
 # busybox crond --help
 BusyBox v1.22.1 (Debian 1:1.22.0-9+deb8u1) multi-call binary.
 
@@ -89,7 +89,7 @@ CMD ["busybox", "crond", "-f", "-L", "/dev/stderr"]
 
 `/var/spool/cron/crontabs/root`にいつものようにcrontabを書いて実行します。
 
-```shell-session
+```sh
 $ cat crontab
 * * * * * echo '=== environment variables ===' && env
 
