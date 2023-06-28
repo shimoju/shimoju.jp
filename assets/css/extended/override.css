@@ -29,3 +29,9 @@ h5,
 h6 {
   line-height: 1.4;
 }
+
+/* ネストしたol, ul要素に不自然なmargin-bottomがつくのを避ける */
+.post-content li ol,
+.post-content li ul {
+  margin-bottom: 0;
+}
