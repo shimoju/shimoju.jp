@@ -5,6 +5,7 @@ categories:
   - 技術
 tags:
   - Hugo
+  - PaperMod
   - Cloudflare
 ---
 
