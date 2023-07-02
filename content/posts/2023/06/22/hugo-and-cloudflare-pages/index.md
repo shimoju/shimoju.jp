@@ -40,6 +40,33 @@ PaperModは[assets/css/extendedにCSSを置くとそれもバンドルしてく�
 - [日本語の文章とline-heightに対する考察 - Qiita](https://qiita.com/NagayamaToshiaki/items/25d4969636d05bf48c41)
 - [ウェブデザインにおけるline-heightについて  |  Rriver](https://parashuto.com/rriver/development/line-height-in-web-design)
 
+```css
+.post-content {
+  line-height: 2;
+}
+
+.entry-content {
+  line-height: 2;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.4;
+}
+
+.entry-header h2 {
+  line-height: 1.4;
+}
+
+.first-entry .entry-header h1 {
+  line-height: 1.4;
+}
+```
+
 ## クールなURIは変わらない
 
 URLはできるだけ変えないように、パーマリンクは[以前のブログと同様に設定した](https://github.com/shimoju/shimoju.jp/blob/master/hugo.yml)。
@@ -53,6 +80,10 @@ permalinks:
 カテゴリー名・タグ名はHexoでは指定した通りのURLになる（大文字にすればURLも大文字になる）のに対して、Hugoだと小文字に統一されるようで、そこだけ404になってしまったのが悲しみ。
 
 RSSフィードはURLが変わったので[リダイレクトを設定してある](https://github.com/shimoju/shimoju.jp/blob/master/static/_redirects)。
+
+```
+/feed.xml /index.xml 301
+```
 
 ## ホスティング
 
