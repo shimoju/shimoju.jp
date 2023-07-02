@@ -58,6 +58,8 @@ params:
       url: https://www.instagram.com/shimoju_/
     - name: Facebook
       url: https://www.facebook.com/hiroshi.shimoju
+    - name: Bluesky
+      url: https://bsky.app/profile/shimoju.jp
     - name: Scrapbox
       url: https://scrapbox.io/shimoju/
     - name: RSS
