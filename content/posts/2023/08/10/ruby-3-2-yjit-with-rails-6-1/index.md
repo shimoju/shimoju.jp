@@ -102,6 +102,11 @@ gem 'psych', '< 4.0.0'
 アプリケーション内で該当のライブラリを使っていれば、こちらも明示的にGemfileに追加します。
 今回のアプリではnet-ftpを使っていたので対応しました。
 
+```ruby
+# Gemfile
+gem 'net-ftp'
+```
+
 ### RailsをGitHubの6-1-stableブランチを使うように変更
 
 [Rails 6.1はすでにセキュリティ修正のみ行うフェーズ](https://railsguides.jp/maintenance_policy.html)になっており、Ruby 3.2に対応したRails 6.1の新バージョンがリリースされることはありません。
