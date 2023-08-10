@@ -7,7 +7,6 @@ tags:
   - Ruby
   - Rails
   - YJIT
-draft: true
 ---
 
 先日、携わっているサービスで一番大きいRailsアプリをRuby 3.2にアップデートし、YJITを有効化できました。
