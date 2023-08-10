@@ -149,9 +149,9 @@ gem 'rails', git: 'https://github.com/rails/rails.git', branch: '6-1-stable'
 コードの修正が伴う変更ではありませんが、[libyamlなどのライブラリのソースコード同梱が廃止された](https://www.ruby-lang.org/ja/news/2022/12/25/ruby-3-2-0-released/)影響で、ビルドする際は事前にライブラリをインストールしておく必要があります。
 また、YJITを有効にしてビルドするにはRustも必要です。
 
-> - YJIT をビルドするためには Rust 1.58.0 以降が必要となります
-
 > - `libyaml` や `libffi` のような 3rd パーティのライブラリのソースコードの同梱を廃止しました
+
+> - YJIT をビルドするためには Rust 1.58.0 以降が必要となります
 
 [RubyのDocker official image](https://hub.docker.com/_/ruby)は[YJITを有効にしてビルドしてある](https://github.com/docker-library/ruby/blob/ed1be47a38a7a24a0aa03c450549afcb592f02a8/3.2/bookworm/Dockerfile#L82)ため、対応不要でYJITが使えます。
 
