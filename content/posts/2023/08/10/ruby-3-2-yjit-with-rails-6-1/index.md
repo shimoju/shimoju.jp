@@ -77,7 +77,8 @@ changelogを読みながらひたすらアップデートします。
 YAMLを扱うgemは対応バージョンにアップデートします。
 
 ただし今回はそのgemが[Settingslogic](https://github.com/binarylogic/settingslogic)であり、アップデートが止まっています。
-チームで検討した結果、SettingslogicをやめてRails標準の[config_forを用いたカスタム設定](https://railsguides.jp/configuring.html#%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E8%A8%AD%E5%AE%9A)に移行する方針としましたが、移行完了するまではPsych 3系に固定することにしました。
+チームで検討した結果、SettingslogicをやめてRails標準の[config_forを用いたカスタム設定](https://railsguides.jp/configuring.html#%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E8%A8%AD%E5%AE%9A)へ移行する方針とし、移行完了するまではPsych 4未満に固定することにしました。
+Gemfileでバージョン指定すればRuby 3.1以降でもPsych 3系を利用できます。
 
 ```ruby
 # Gemfile
@@ -96,7 +97,7 @@ gem 'psych', '< 4.0.0'
 > - net-ftp 0.1.3
 > - （以下省略）
 
-外部のgemがこれらのgemに依存している場合、そのgemが対応済みであればアップデートします。もしくは明示的にGemfileに追加します。
+外部のgemがこれらのライブラリに依存している場合、そのgemが対応済みであればアップデートします。もしくは明示的にGemfileに追加します。
 
 アプリケーション内で該当のライブラリを使っていれば、こちらも明示的にGemfileに追加します。
 今回のアプリではnet-ftpを使っていたので対応しました。
@@ -124,7 +125,7 @@ gem 'rails', git: 'https://github.com/rails/rails.git', branch: '6-1-stable'
 
 #### ビルド時の注意点
 
-コードの修正が必要な変更ではありませんが、[libyamlなどのライブラリのソースコード同梱が廃止された](https://www.ruby-lang.org/ja/news/2022/12/25/ruby-3-2-0-released/)影響で、ビルドする際は事前にライブラリをインストールしておく必要があります。
+コードの修正が伴う変更ではありませんが、[libyamlなどのライブラリのソースコード同梱が廃止された](https://www.ruby-lang.org/ja/news/2022/12/25/ruby-3-2-0-released/)影響で、ビルドする際は事前にライブラリをインストールしておく必要があります。
 また、YJITを有効にしてビルドするにはRustも必要です。
 
 > - YJIT をビルドするためには Rust 1.58.0 以降が必要となります
@@ -160,7 +161,6 @@ true
 リクエスト全体でもグラフを目で見てわかるくらい改善できていました。
 
 JITコンパイラなのだから当たり前ですが、DBや外部IOがボトルネックになっている箇所では効果が得られず、Rubyがヘビーに使われている処理では大きく改善できる傾向です。
-
 具体的なグラフなどは会社のテックブログで出せたらなと思っています（力尽きなければ……）。
 
 ## まとめ
