@@ -140,7 +140,7 @@ gem 'rails', git: 'https://github.com/rails/rails.git', branch: '6-1-stable'
 ### Ruby 3.2にアップデート
 
 ここまでの手順ができていれば、あまり苦労はなくRuby 3.2にアップデートできました。
-[Ruby 3.2ではFile.exists?やDir.exists?が削除された](https://www.ruby-lang.org/ja/news/2022/12/25/ruby-3-2-0-released/)のが比較的大きい非互換です。
+[Ruby 3.2ではDir.exists?やFile.exists?が削除された](https://www.ruby-lang.org/ja/news/2022/12/25/ruby-3-2-0-released/)のが比較的大きい非互換です。
 
 アプリケーションはgrepして`Dir/File.exist?`に直し、gemはアップデートしていけば問題ありません。
 
