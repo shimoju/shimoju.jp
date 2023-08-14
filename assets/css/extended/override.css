@@ -1,9 +1,3 @@
-html {
-  /* iPhone Safariのフォントサイズ自動調節でコードブロックが崩れないようにする */
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
-
 /* 本文のline-heightを2にする */
 /* single.htmlの本文。デフォルト：1.6（bodyから継承） */
 .post-content {
