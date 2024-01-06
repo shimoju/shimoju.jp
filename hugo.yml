@@ -41,7 +41,7 @@ params:
   showRssButtonInSectionTermList: true
   showShareButtons: true
   shareButtons:
-    - twitter
+    - x
     - facebook
     - hatena-bookmark
     - hatena-star
@@ -51,7 +51,7 @@ params:
   socialIcons:
     - name: GitHub
       url: https://github.com/shimoju
-    - name: Twitter
+    - name: X
       url: https://twitter.com/shimoju_
     - name: Mastodon
       url: https://ruby.social/@shimoju
