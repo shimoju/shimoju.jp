@@ -40,7 +40,7 @@ Rubyそのものを学ぶことに重きを置きつつも、次に進むため�
 
 ### RubyGemsを活用する
 
-Chapter 15「RubyGemsを活用する」ではgemコマンドおよびBundlerについて解説したほか、Gemを用いた項目もあります。
+Chapter 15「RubyGemsを活用する」ではgemコマンドおよびBundlerについて解説したほか、本書にはサードパーティーのGemを用いた項目もあります。
 
 たとえばChapter 18「使いやすいコマンドラインツールを作る」では、標準ライブラリであるoptparseとRakeに加え、[Thor](https://github.com/rails/thor)を用いてサブコマンドを持つCLIプログラムを作成しています。
 他にもJSON、YAML、TOMLの読み込み、`DATA`/`__END__`や`bundler/inline`など、スクリプティングに便利な機能は標準ライブラリかどうかにかかわらず複数取り上げています。RubyGemsを活用しながら、ちょっとした作業の自動化やコマンドラインツールにRubyを使ってもらえるといいなと思います。
@@ -52,7 +52,7 @@ Chapter 15「RubyGemsを活用する」ではgemコマンドおよびBundlerに�
 
 たとえば自己代入を利用したインスタンス変数の初期化（`@foo ||= bar`）や、Ruby 3.1に同梱されるPsych 4以降で`YAML.load`の挙動が変わった理由、エンコーディングにおけるSJIS（CP932）とShift_JISの違いなどをコラムとして掲載しました。
 
-### Webアプリケーションを作成する
+### Webアプリケーションの基礎を理解する
 
 発展的な章として、Chapter 21「基本的なWebアプリケーションの機能を実現する」があります。この章ではSinatraなども利用せず、[Rack](https://github.com/rack/rack)のみを用いて簡単なWebアプリを作成します。
 
