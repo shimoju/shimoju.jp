@@ -19,7 +19,7 @@ tags:
 
 [SUZURI](https://suzuri.jp/)では2014年のサービス開始当初からHerokuを利用しており、2018年からは[Heroku Enterprise](https://jp.heroku.com/enterprise)を契約し、ここまで運用してきました。
 
-今年、10年間使ってきたHerokuからAmazon EKSに移設することを決定し、2024年6月に無事完了しました。
+今年、10年間使ってきたHerokuからAmazon EKSに移設することを決定し、2024年6月に完了しました。
 これまで[Heroku関連の記事をいくつか書いたり](/tags/heroku/)、[Salesforceのセミナーで登壇する](https://www.slideshare.net/slideshow/gmoheroku-154211436/154211436)機会もいただくなど、長年付き合ってきたプラットフォームなので思い出深いものがあります。
 
 移設の意思決定は、インフラの専門部署である技術部プラットフォームグループとSUZURI事業部の共同で行いました。[なぜSUZURIはHerokuから「EKS」へ移設する決定をしたのか](https://tech.pepabo.com/2024/06/13/heroku-to-eks/)に詳しいのでこちらをご覧ください。
@@ -58,8 +58,8 @@ Herokuから別のコンテナプラットフォームへの移行を検討し�
 
 ### Private Spacesで動くアプリケーションのうち、小規模なものを通常版Heroku（Common Runtime）に移設
 
-Heroku Enterpriseでは[Private Spaces](https://jp.heroku.com/private-spaces)と呼ばれる分離環境を構築でき、SUZURIではこれを活用していました。
-このPrivate SpacesにはSUZURIのメインアプリケーション（モノリス）以外にも小規模なアプリが乗っていましたが、これはEKSではなく通常版Heroku（[Common Runtime](https://devcenter.heroku.com/ja/articles/dyno-runtime#common-runtime)）に移設しました。
+Heroku Enterpriseでは[Private Spaces](https://jp.heroku.com/private-spaces)と呼ばれる分離環境を構築でき、SUZURIではこれを利用して日本リージョンにデプロイしていました。
+Private SpacesにはSUZURIのメインアプリケーション（モノリス）以外にも小規模なアプリが乗っていましたが、これはEKSではなく通常版Heroku（[Common Runtime](https://devcenter.heroku.com/ja/articles/dyno-runtime#common-runtime)）に移設しました。
 
 小規模なのでEKSへの移設コストをかけるメリットが薄いことと、これ以外にもいくつかのアプリがCommon Runtime上で動いており、Herokuの知見は今後も残り続けることから、わざわざHeroku以外のプラットフォームを採用する理由はないと判断したためです。
 したがってHeroku Enterpriseは解約したものの、通常版Herokuについては継続利用しています。
@@ -74,7 +74,7 @@ EKSを採用するにあたっては、インフラがアプリケーション�
 - CronJobリソース、Jobリソースの作成変更
 
 サービス運用では時折アドホックなデータの変更や処理の再実行が必要になることがあります（ここでは[oneshot task](https://osa.hatenablog.com/entry/introduce-oneshot-task-generator)と呼びます）。
-Herokuでは`heroku run`コマンドを用いることで簡単にoneshot taskを実行できました。
+Herokuでは`heroku run`コマンドによって簡単にoneshot taskを実行できました。
 この`heroku run`に相当するオペレーションができないとアジリティが落ちるのは目に見えていたため、ラッパースクリプトを用意してJobリソースを楽に作成できるようにしてあります。
 
 ## まとめ
@@ -89,6 +89,6 @@ Herokuでは`heroku run`コマンドを用いることで簡単にoneshot task�
 - サービス復元時間：変わらず
 
 という結果が得られました。
-デプロイ頻度とリードタイムについては開発生産性を上げる取り組みを別途行っていたり、障害にはプラットフォーム起因だけでなくアプリケーション起因もあるため、厳密にEKS移設による影響を評価することは難しいですが、少なくともFour Keysにおいてはアジリティの低下は見られないと言えそうです。
+デプロイ頻度とリードタイムについては開発生産性を上げるために別途取り組んでいたり、障害にはプラットフォーム起因だけでなくアプリケーション起因もあるため、厳密にEKS移設による影響を評価することは難しいですが、少なくともFour Keysにおいてはアジリティの低下は見られないと言えそうです。
 
 今後はKubernetesをより活用し、開発者体験とユーザー体験の両面でさらなる向上を目指したいと思っています。
