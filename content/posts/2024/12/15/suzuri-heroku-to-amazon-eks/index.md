@@ -7,6 +7,7 @@ tags:
   - Heroku
   - EKS
   - Kubernetes
+  - SUZURI
 ---
 
 これは[🎄GMOペパボ エンジニア Advent Calendar 2024](https://adventar.org/calendars/10317)の15日目の記事です。
