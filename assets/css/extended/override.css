@@ -1,12 +1,12 @@
-/* 本文のline-heightを2にする */
+/* 本文のline-heightを1.9にする */
 /* single.htmlの本文。デフォルト：1.6（bodyから継承） */
 .post-content {
-  line-height: 2;
+  line-height: 1.9;
 }
 
 /* list.htmlの本文。デフォルト：1.6 */
 .entry-content {
-  line-height: 2;
+  line-height: 1.9;
 }
 
 /* 見出しのline-heightを1.4にする */
