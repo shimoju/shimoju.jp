@@ -3,4 +3,4 @@
 set -eu
 cd $(dirname "${0}")/..
 
-exec hugo server --buildDrafts
+exec hugo server --buildDrafts --buildFuture --openBrowser --navigateToChanged
