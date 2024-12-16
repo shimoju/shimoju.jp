@@ -36,4 +36,4 @@ Herokuで動くように作ればスケーラブルなアプリが自然にで�
 > Heroku's GitHub sync features are hard-coded to connect to and use github.com.
 > ―[Can I use Github Enterprise with Pipeline Review apps? - Knowledge Base](https://kb.heroku.com/can-i-use-github-enterprise-with-pipeline-review-apps)
 
-実はこの日には[新卒エンジニア研修の座学で1時間の発表](https://shimoju.jp/2017/10/30/classroom-learning-for-new-engineers/)もしており、2回目の発表でとてもヘビーでした。あんまりうまく喋れてなかったのではないかと思います……。
+実はこの日には[新卒エンジニア研修の座学で1時間の発表](/2017/10/30/classroom-learning-for-new-engineers/)もしており、2回目の発表でとてもヘビーでした。あんまりうまく喋れてなかったのではないかと思います……。

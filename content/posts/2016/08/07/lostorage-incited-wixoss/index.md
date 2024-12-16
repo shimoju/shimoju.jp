@@ -6,7 +6,7 @@ categories:
 tags:
 ---
 
-[前の日記](https://shimoju.jp/2016/08/04/anime/)で好きな作品のひとつに挙げていた、アニメ「[selector infected WIXOSS](http://selector-wixoss.com/)」。
+[前の日記](/2016/08/04/anime/)で好きな作品のひとつに挙げていた、アニメ「[selector infected WIXOSS](http://selector-wixoss.com/)」。
 劇場版まで作られ、4月には新シリーズの制作が発表されていた。
 
 - [美少女殺伐TCG「WIXOSS」の新作アニメが今秋放送決定！　タイトルは「Lostorage incited WIXOSS」 - ねとらぼ](http://nlab.itmedia.co.jp/nl/articles/1604/16/news036.html)

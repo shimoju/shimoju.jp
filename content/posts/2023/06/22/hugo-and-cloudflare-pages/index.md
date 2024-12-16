@@ -9,13 +9,13 @@ tags:
   - Cloudflare
 ---
 
-このブログはNode.js製の静的サイトジェネレーターである[Hexo](https://hexo.io/)で作っていたけど、放置しすぎて（最新の記事が[3年前](https://shimoju.jp/2020/10/24/kaigi-on-rails/)…）Node.jsやnpmがだいぶ古くなっており、アップデートが面倒な状態になっていた。
+このブログはNode.js製の静的サイトジェネレーターである[Hexo](https://hexo.io/)で作っていたけど、放置しすぎて（最新の記事が[3年前](/2020/10/24/kaigi-on-rails/)…）Node.jsやnpmがだいぶ古くなっており、アップデートが面倒な状態になっていた。
 
 最近は[Scrapbox](https://scrapbox.io/shimoju/)にシュッと書いてしまうことが多いものの、やっぱりすべてをコントロールできる自分のサイトを持ちたいよなーということで作り直した。
 
 ## 静的サイトジェネレーター
 
-[前回の構築時](https://shimoju.jp/2017/09/26/hello-hexo-netlify/)にも比較に上がっていた[Hugo](https://gohugo.io/)を採用。
+[前回の構築時](/2017/09/26/hello-hexo-netlify/)にも比較に上がっていた[Hugo](https://gohugo.io/)を採用。
 
 以前と比べて、Markdownとアセットをまとめて管理できる[Page Bundles](https://gohugo.io/content-management/page-bundles/)機能などが追加されて順調に進化していることや、Hexoから大きくディレクトリ構成やfront-matterを変えなくてもよかったのが理由。
 
@@ -76,7 +76,7 @@ permalinks:
   posts: /:year/:month/:day/:slugorfilename/
 ```
 
-アーカイブ（[/archives/](https://shimoju.jp/archives/)）、カテゴリー（[/categories/](https://shimoju.jp/categories/)）、タグ（[/tags/](https://shimoju.jp/tags/)）はとくに設定しなくても同じパスだったのでそのまま使えている。
+アーカイブ（[/archives/](/archives/)）、カテゴリー（[/categories/](/categories/)）、タグ（[/tags/](/tags/)）はとくに設定しなくても同じパスだったのでそのまま使えている。
 カテゴリー名・タグ名はHexoでは指定した通りのURLになる（大文字にすればURLも大文字になる）のに対して、Hugoだと小文字に統一されるようで、そこだけ404になってしまったのが悲しみ。
 
 RSSフィードはURLが変わったので[リダイレクトを設定してある](https://github.com/shimoju/shimoju.jp/blob/master/static/_redirects)。

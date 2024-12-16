@@ -13,7 +13,7 @@ tags:
 
 この郵便番号データは`ZipCodeJp.export_json`で更新できますが、このときgemの[`data/zip_code`](https://github.com/tanihiro/zip-code-jp/tree/master/data/zip_code)ディレクトリ内にあるJSONファイルを直接更新します。
 一般的なサーバ環境であればcronで回すなどすれば普通に更新できますが、Herokuの場合はローカルにファイルを書き込んでも再起動のタイミングで自動で消滅します。[Heroku Scheduler](https://elements.heroku.com/addons/scheduler)などで定期実行しても、既にパッケージされたslug内のデータは変更できないので意味がありません。
-[Release Phase](https://shimoju.jp/2018/07/29/heroku-release-phase/)でいけないかな？とも思いましたが、[Release Phaseはslugのビルド後に実行される](https://devcenter.heroku.com/articles/release-phase#when-does-the-release-command-run)のでこれも使えません。
+[Release Phase](/2018/07/29/heroku-release-phase/)でいけないかな？とも思いましたが、[Release Phaseはslugのビルド後に実行される](https://devcenter.heroku.com/articles/release-phase#when-does-the-release-command-run)のでこれも使えません。
 
 どうしようかなと考えた結果、デプロイ時に更新処理を実行するようにして、slugに最新の郵便番号データを入れてあげることにしました。
 
