@@ -15,7 +15,7 @@ tags:
 ということで今年の書き初め、もとい新年初Pull RequestはBlueskyにかかわるもの。
 このブログで利用している[Hugo PaperMod](https://github.com/adityatelange/hugo-PaperMod)テーマに[Blueskyのアイコンを追加しました](https://github.com/adityatelange/hugo-PaperMod/pull/1383)。
 
-実際に設置すると[こんな感じ](https://shimoju.jp/)。めっちゃええやん。
+実際に設置すると[こんな感じ](/)。めっちゃええやん。
 
 ![Hugo PaperModのソーシャルアイコン設置例](hugo-papermod-social-icons.png)
 

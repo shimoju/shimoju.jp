@@ -8,7 +8,7 @@ tags:
   - ImageMagick
 ---
 
-この記事は、[ImageMagickと画像加工について発表した](https://shimoju.jp/2017/10/30/classroom-learning-for-new-engineers/)ときの資料を文章に起こして加筆修正したものです。
+この記事は、[ImageMagickと画像加工について発表した](/2017/10/30/classroom-learning-for-new-engineers/)ときの資料を文章に起こして加筆修正したものです。
 
 ## ImageMagickとは
 
