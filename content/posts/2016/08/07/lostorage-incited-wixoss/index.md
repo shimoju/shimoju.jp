@@ -13,7 +13,7 @@ tags:
 
 タイトルが発表されたっきり続報がなくて夢だったのかなと思っていたが、今日の[WIXOSSのイベント](http://www.takaratomy.co.jp/products/wixoss/event/160520_01/)内でPVが公開され、公式サイトもオープンした。
 
-{{< tweet user="wixoss_anime" id="762153069207363585" >}}
+{{< x user="wixoss_anime" id="762153069207363585" >}}
 
 {{< youtube id="WK0KjP10b5A" title="TVアニメ『Lostorage incited WIXOSS』ティザーPV" >}}
 
@@ -28,7 +28,7 @@ tags:
 
 その前作監督の佐藤卓哉さんはこんなことを言っている。ヒリヒリする人間ドラマという軸は変わらずも、その表現の仕方にどんな違いが出るか、だろうか。
 
-{{< tweet user="tak_tea3" id="762171577521741826" >}}
+{{< x user="tak_tea3" id="762171577521741826" >}}
 
 ちなみにselector1期・2期・劇場版のPVはこちら。今見ると1期のPVが一番ホラー演出強めで、カードゲームの販促アニメでよくこんなん通したなと……。
 

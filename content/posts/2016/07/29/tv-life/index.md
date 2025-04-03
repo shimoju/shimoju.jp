@@ -22,10 +22,10 @@ tags:
 
 (こんなツイートをしたらドコモ公式からリプライが来てびっくりした図)
 
-{{< tweet user="docomo_cs" id="740741467329597441" >}}
+{{< x user="docomo_cs" id="740741467329597441" >}}
 
 さらにこの前のAmazon Prime Dayで[Fire TV Stick](https://www.amazon.co.jp/dp/B00ZVNYLS8/)も買ってしまったので向かうところ敵なし。
 
-{{< tweet user="shimoju_" id="749599441225519104" >}}
+{{< x user="shimoju_" id="749599441225519104" >}}
 
 QOLを上げるための努力は惜しまないぞ〜
