@@ -63,7 +63,7 @@ params:
       url: https://www.instagram.com/shimoju_/
     - name: Facebook
       url: https://www.facebook.com/hiroshi.shimoju
-    - name: Scrapbox
+    - name: Cosense
       url: https://scrapbox.io/shimoju/
     - name: RSS
       url: https://shimoju.jp/index.xml
