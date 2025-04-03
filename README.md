@@ -7,7 +7,7 @@ brew install hugo
 git clone https://github.com/shimoju/shimoju.jp.git
 cd shimoju.jp
 git submodule update --init --recursive
-bin/server
+bin/dev
 ```
 
 ## Create new post
