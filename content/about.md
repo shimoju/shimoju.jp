@@ -76,6 +76,7 @@ Ruby on Railsを用いたWebアプリケーションのバックエンド開発�
 未対応だった3つの経路を3人のエンジニアで手分けして実装した。未対応箇所の洗い出しや、誰がどの部分を担当するかの判断、コードレビューなどを行い、プロジェクトを主導した。
 
 - チーム構成 : エンジニア3人
+- 利用技術 : Ruby, Ruby on Rails, TypeScript, React, Vue.js
 
 #### プレゼント機能（2024年）
 
@@ -83,6 +84,7 @@ Ruby on Railsを用いたWebアプリケーションのバックエンド開発�
 当初はMinimum Viable Productとして請求書による決済を検討していたが、価値が届くのが結果的に遅くなることから、クレジットカード決済も要件に盛り込んでリリースした。さらに配信者にヒアリングした結果、料金がネックになる可能性が想定されたことから、初回限定割引の機能も追加で実装した。
 
 - チーム構成 : エンジニア1人、デザイナー1人、プロダクトマネージャー1人
+- 利用技術 : Ruby, Ruby on Rails, TypeScript, React, GraphQL
 
 #### Heroku EnterpriseからAmazon EKSへの移設（2024年）
 
@@ -91,6 +93,7 @@ SUZURIではこれまでHeroku Enterpriseを利用していたが、別サービ
 また、小規模でEKSに移設する必要がないアプリは通常版Heroku（Common Runtime）に移設した。
 
 - チーム構成 : エンジニア3人
+- 利用技術 : Ruby, Ruby on Rails, Heroku, Docker, Kubernetes, Amazon Web Services
 - 記事 : [SUZURIをHerokuからAmazon EKSに移設するためにやったこと](/2024/12/15/suzuri-heroku-to-amazon-eks/)
 
 #### Rails 6.1のままRuby 3.2にアップデートし、YJITを有効化（2023年）
@@ -102,6 +105,7 @@ Rails 6.1はRuby 3.2に対応していないため、通常の手法ではRails 
 その後、2024年にはRuby 3.3とRails 7.0へのアップデートを完了している。
 
 - チーム構成 : エンジニア1人
+- 利用技術 : Ruby, Ruby on Rails, Docker
 - 記事 : [Rails 6.1のままRuby 3.2にアップデートし、YJITの恩恵を受ける](/2023/08/10/ruby-3-2-yjit-with-rails-6-1/)
 
 #### SAMLを用いたシングルサインオンの実装（2020年）
@@ -110,6 +114,7 @@ COVID-19の拡大に伴い在宅勤務に切り替えたことで、IPアドレ�
 その対策として、SUZURI・CanvathにSAMLを用いたシングルサインオンを実装してIPアドレス制限を撤廃した。また、一部の社内サービスではoauth2-proxyを用いてアプリケーションの外側でアクセス制御を実現した。実装にあたってはセキュリティや内部統制上の要件も検討し、セキュリティを保ちながら快適にリモートワークを行えるようになった。
 
 - チーム構成 : エンジニア1人
+- 利用技術 : Ruby, Ruby on Rails, Nginx, oauth2-proxy
 - 記事 : [快適なリモートワークを実現するために〜RailsでSSOを実現する3パターン](https://scrapbox.io/shimoju/%E5%BF%AB%E9%81%A9%E3%81%AA%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%92%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AB%E3%80%9CRails%E3%81%A7SSO%E3%82%92%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8B3%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3)
 
 #### Canvathの事業譲受（2018年）
@@ -119,6 +124,7 @@ COVID-19の拡大に伴い在宅勤務に切り替えたことで、IPアドレ�
 Herokuに移設するためにログを標準出力に書き出す、環境変数を使う、リクエスト契機の処理をやめて非同期化するなどの対応を行った。ほかにもパフォーマンス改善やセキュリティ対策、問い合わせの調査対応を進め、自社で運用が完結できるようにした。
 
 - チーム構成 : エンジニア1人、プロダクトマネージャー1人、デザイナー1人
+- 利用技術 : Ruby, Ruby on Rails, JavaScript, Heroku, Amazon Web Services
 
 #### 新卒エンジニア研修の設計・運営（2017年）
 
