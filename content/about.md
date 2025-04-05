@@ -30,21 +30,20 @@ Ruby on Railsを用いたWebアプリケーションのバックエンド開発�
 
 | | | 業務経験 |
 | - | - | - |
-| プログラミング言語 | Ruby | 9年 |
-| | JavaScript | 9年 |
-| | TypeScript | 3年 |
-| | Rust | 1年未満 |
-| フレームワーク | Ruby on Rails | 9年 |
-| | React | 3年 |
+| バックエンド | Ruby | 9年 |
+| | Ruby on Rails | 9年 |
 | | GraphQL | 3年 |
+| | Rust | 1年未満 |
+| フロントエンド | JavaScript | 9年 |
+| | TypeScript | 3年 |
+| | React | 3年 |
 | | Vue.js | 1年未満 |
-| インフラ関連サービス | Amazon Web Services | 9年 |
+| インフラ | Amazon Web Services | 9年 |
 | | Heroku | 9年 |
 | | Docker | 9年 |
-| | GitHub Actions | 5年 |
 | | Kubernetes | 3年 |
-| | Google Cloud | 2年 |
 | | Terraform | 2年 |
+| CI/CD | GitHub Actions | 5年 |
 
 ### 採用・教育
 
@@ -140,7 +139,7 @@ Herokuに移設するためにログを標準出力に書き出す、環境変�
 
 #### 利用技術
 
-- バックエンド : Ruby, Ruby on Rails, Node.js, Rust
+- バックエンド : Ruby, Ruby on Rails, Node.js, Rust, GraphQL
 - フロントエンド : JavaScript, TypeScript, CoffeeScript, React, Vue.js, Backbone.js, Apollo Client
 - インフラ : OpenStack, Amazon Web Services, Google Cloud, Heroku, Docker, Kubernetes, Ansible, Terraform
 - データベース : PostgreSQL, Amazon Aurora
