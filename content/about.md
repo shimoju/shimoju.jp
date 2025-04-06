@@ -23,7 +23,7 @@ Ruby on Railsを用いたWebアプリケーションのバックエンド開発�
 フロントエンドはReact/GraphQLを使用した開発経験があります。パフォーマンス改善、インフラの構築・運用に携わったこともあり、必要に応じて幅広い技術領域に取り組んでいます。
 
 - Webアプリケーションの設計・開発・運用
-- リアーキテクティング・パフォーマンス改善（大規模なデータ移行、APMを利用したボトルネックの特定、N+1の解消などのクエリチューニング）
+- リアーキテクティング・パフォーマンス改善（大規模なデータ移行、APMを利用したボトルネックの特定、クエリチューニング）
 - 開発基盤の整備（開発環境やCI/CDパイプラインの構築）
 - インフラの構築・運用（IaaS上でのインフラ構築、TerraformによるIaC）
 - セキュリティ対策（言語処理系・フレームワークのアップデート、脆弱性の修正、内部統制の整備）
@@ -172,9 +172,9 @@ Herokuに移設するためにログを標準出力に書き出す、環境変�
 
 ### アウトプット
 
-- Blog : https://shimoju.jp/
-- Cosense : https://scrapbox.io/shimoju/
-- GitHub : https://github.com/shimoju
+- Blog : [https://shimoju.jp/](https://shimoju.jp/)
+- Cosense : [https://scrapbox.io/shimoju/](https://scrapbox.io/shimoju/)
+- GitHub : [https://github.com/shimoju](https://github.com/shimoju)
 
 ### 著作
 
