@@ -7,7 +7,6 @@ date: 2025-04-06T00:00:00+09:00
 
 - 氏名 : 下重博資（Hiroshi Shimoju）
 - 生年月日 : 1991年5月22日
-- 居住地 : 東京都
 - メールアドレス : hiroshi.shimoju@gmail.com
 
 ## 職務要約
