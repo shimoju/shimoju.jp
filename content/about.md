@@ -37,10 +37,9 @@ Ruby on Railsを用いたWebアプリケーションのバックエンド開発�
 | フロントエンド | JavaScript | 9年 |
 | | TypeScript | 3年 |
 | | React | 3年 |
-| | Vue.js | 1年未満 |
-| インフラ | Amazon Web Services | 9年 |
+| クラウド | Amazon Web Services | 9年 |
 | | Heroku | 9年 |
-| | Docker | 9年 |
+| インフラ | Docker | 9年 |
 | | Kubernetes | 3年 |
 | | Terraform | 2年 |
 | CI/CD | GitHub Actions | 5年 |
@@ -153,7 +152,8 @@ Herokuに移設するためにログを標準出力に書き出す、環境変�
 
 - バックエンド : Ruby, Ruby on Rails, Node.js, Rust, GraphQL
 - フロントエンド : JavaScript, TypeScript, CoffeeScript, React, Vue.js, Backbone.js, Apollo Client
-- インフラ : OpenStack, Amazon Web Services, Google Cloud, Heroku, Docker, Kubernetes, Ansible, Terraform
+- クラウド : OpenStack, Amazon Web Services, Google Cloud, Heroku
+- インフラ : Docker, Kubernetes, Ansible, Terraform
 - データベース : PostgreSQL, Amazon Aurora
 - ミドルウェア : Redis, Sidekiq, Elasticsearch
 - モニタリング : Datadog, Sentry, Grafana, Mackerel
