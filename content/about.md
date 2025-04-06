@@ -146,7 +146,6 @@ Herokuに移設するためにログを標準出力に書き出す、環境変�
   - [ペパボの新卒エンジニア研修2017 Vol.1](https://tech.pepabo.com/2017/08/08/engineer-training-2017-vol1/)
   - [ペパボの新卒エンジニア研修2017 Vol.2](https://tech.pepabo.com/2017/11/08/engineer-training-2017-vol2/)
   - [新卒エンジニア研修の座学でImageMagickと画像加工の話をした](/2017/10/30/classroom-learning-for-new-engineers/)
-  - [研修資料](https://github.com/pepabo/textbook)
 
 #### 利用技術
 
