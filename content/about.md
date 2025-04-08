@@ -182,7 +182,14 @@ Herokuに移設するためにログを標準出力に書き出す、環境変�
 
 ### プレゼンテーション
 
-主なものを記載。LT登壇は[Shibuya.rb](https://shibuyarb.connpass.com/)を中心に多数。
+#### 2025年
+
+- [ojからjsonに移行する](https://scrapbox.io/shimoju/oj%E3%81%8B%E3%82%89json%E3%81%AB%E7%A7%BB%E8%A1%8C%E3%81%99%E3%82%8B)（[Shibuya.rb[:20250219]](https://shibuyarb.connpass.com/event/342987/)）
+
+#### 2024年
+
+- [Redisを用いたキューのパフォーマンス改善](https://scrapbox.io/shimoju/Redis%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E3%82%AD%E3%83%A5%E3%83%BC%E3%81%AE%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9%E6%94%B9%E5%96%84)（[Shibuya.rb[:20240717]](https://shibuyarb.connpass.com/event/324064/)）
+- [grpc ruby：プロセスをフォークした後GCが走るとSEGVする](https://scrapbox.io/shimoju/grpc_ruby%EF%BC%9A%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%E3%82%92%E3%83%95%E3%82%A9%E3%83%BC%E3%82%AF%E3%81%97%E3%81%9F%E5%BE%8CGC%E3%81%8C%E8%B5%B0%E3%82%8B%E3%81%A8SEGV%E3%81%99%E3%82%8B)（[Shibuya.rb[:20240619]](https://shibuyarb.connpass.com/event/285788/)）
 
 #### 2023年
 
