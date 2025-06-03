@@ -6,7 +6,7 @@ summaryLength: 140
 title: shimoju.diary
 theme: PaperMod
 permalinks:
-  posts: /:year/:month/:day/:slugorfilename/
+  posts: /:year/:month/:day/:slugorcontentbasename/
 enableRobotsTXT: true
 markup:
   goldmark:
