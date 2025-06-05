@@ -8,6 +8,7 @@ tags:
 cover:
   image: gaming-pc.jpg
   alt: 自作したゲーミングPC
+  relative: true
 ---
 
 2021年に[マウスコンピューターのゲーミングPC](https://scrapbox.io/shimoju/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC_%E3%82%B2%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0PC_G-Tune_TD-P)を購入し、4年以上使ってきました。
