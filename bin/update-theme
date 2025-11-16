@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -eu
+cd $(dirname "${0}")/..
+
+git submodule update --remote
+git add themes
+git commit -m 'Update theme'
