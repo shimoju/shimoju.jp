@@ -6,3 +6,6 @@ cd $(dirname "${0}")/..
 git submodule update --remote
 git add themes
 git commit -m 'Update theme'
+
+# オリジナルのshare_icons.htmlを上書きしているので、差分が出たら取り込む
+diff -u themes/PaperMod/layouts/partials/share_icons.html layouts/partials/share_icons.html
