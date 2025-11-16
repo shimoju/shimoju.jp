@@ -5,6 +5,10 @@ categories:
   - PC
 tags:
   - 自作PC
+cover:
+  image: gaming-pc.jpg
+  alt: 起動中のゲーミングPC
+  relative: true
 draft: true
 ---
 
