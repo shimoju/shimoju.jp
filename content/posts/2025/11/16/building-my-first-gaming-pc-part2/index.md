@@ -1,6 +1,6 @@
 ---
 title: はじめてのゲーミングPC自作記：組み立て編
-date: 2025-11-16T17:00:00+09:00
+date: 2025-11-16T18:00:00+09:00
 categories:
   - PC
 tags:
@@ -9,7 +9,6 @@ cover:
   image: gaming-pc.jpg
   alt: 起動中のゲーミングPC
   relative: true
-draft: true
 ---
 
 前回の[パーツ選定編](/2025/06/05/building-my-first-gaming-pc/)からの続き。書きかけのまま半年経ってしまいましたが、今回は組み立て編です。
