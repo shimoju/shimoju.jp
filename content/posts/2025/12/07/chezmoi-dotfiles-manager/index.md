@@ -7,12 +7,6 @@ tags:
   - dotfiles
 ---
 
-これは[SmartHR Advent Calendar 2025（シリーズ 1）](https://qiita.com/advent-calendar/2025/smarthr)の7日目の記事です。
-
-6日目はhakoedaさんの「[SmartHRに開発組織のイネーブリングユニット「DevEnable」を新設しました](https://tech.smarthr.jp/entry/2025/12/06/180159)」でした。
-
-## chezmoiでdotfilesを管理する
-
 dotfilesの管理は永遠につきまとう課題です。
 今までは[itamaeを用いて管理](https://github.com/shimoju/setup)し、さらにServerspecによるテストも記述していました。
 
@@ -160,3 +154,10 @@ GitHub用に`README.md`を配置しつつ、適用対象からは除外するよ
 
 他にも[パスワードマネージャー経由で秘匿情報を取得し、テンプレートに埋め込む機能](https://www.chezmoi.io/user-guide/password-managers/)もあります。
 これを使えば秘匿情報を含むファイルも管理できるので、今度試してみたいです。
+
+---
+
+これは[SmartHR Advent Calendar 2025（シリーズ 1）](https://qiita.com/advent-calendar/2025/smarthr)の7日目の記事です。
+
+6日目はhakoedaさんの「[SmartHRに開発組織のイネーブリングユニット「DevEnable」を新設しました](https://tech.smarthr.jp/entry/2025/12/06/180159)」でした。
+他の記事もぜひご覧ください！
