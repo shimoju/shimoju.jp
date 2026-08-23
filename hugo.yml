@@ -1,5 +1,5 @@
 baseURL: https://shimoju.jp/
-languageCode: ja
+locale: ja
 defaultContentLanguage: ja
 hasCJKLanguage: true
 summaryLength: 140
