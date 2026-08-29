@@ -14,6 +14,8 @@ markup:
       # InstagramやSpeaker Deckの埋め込みコードのために生のHTMLを許可する
       # 将来的にShortcodeに移行してこのオプションはfalseにしたい
       unsafe: true
+  highlight:
+    style: catppuccin-mocha
 minify:
   minifyOutput: true
 
