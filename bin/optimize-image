@@ -1,0 +1,75 @@
+#!/bin/sh
+
+set -eu
+
+usage() {
+  cat <<'EOF'
+Usage: bin/optimize-image [--width PIXELS] PNG...
+
+Resize and optimize PNGs in place. The default maximum width is 1600px.
+EOF
+}
+
+max_width=1600
+
+case "${1:-}" in
+  -w | --width)
+    max_width=$2
+    shift 2
+    ;;
+  -h | --help)
+    usage
+    exit
+    ;;
+esac
+
+[ "$#" -gt 0 ] || { usage >&2; exit 2; }
+
+temp_dir=$(mktemp -d "${TMPDIR:-/tmp}/optimize-image.XXXXXX")
+cleanup() {
+  rm -rf "$temp_dir"
+}
+trap cleanup 0
+trap 'exit 1' 1 2 15
+
+for input in "$@"; do
+  case "$input" in
+    *.png | *.PNG) ;;
+    *)
+      echo "optimize-image: unsupported file type: $input" >&2
+      exit 1
+      ;;
+  esac
+
+  dimensions=$(magick identify -ping -format '%w %h' "$input")
+  input_width=${dimensions%% *}
+  input_height=${dimensions#* }
+  input_size=$(wc -c <"$input" | tr -d ' ')
+
+  resized="$temp_dir/resized.png"
+  optimized="$temp_dir/optimized.png"
+
+  source=$input
+  if [ "$input_width" -gt "$max_width" ]; then
+    # Keep the source ICC profile so pngquant can convert its colors to sRGB.
+    magick "$input" -filter Lanczos -resize "${max_width}x>" "png:$resized"
+    source=$resized
+  fi
+
+  pngquant \
+    --force \
+    --quiet \
+    --speed 1 \
+    --quality 85-100 \
+    --output "$optimized" \
+    -- "$source"
+  oxipng --quiet -o 4 --strip safe --alpha "$optimized"
+
+  output_dimensions=$(magick identify -ping -format '%wx%h' "$optimized")
+  output_size=$(wc -c <"$optimized" | tr -d ' ')
+  mv "$optimized" "$input"
+
+  printf '%s: %sx%s -> %s, %s -> %s bytes\n' \
+    "$input" "$input_width" "$input_height" "$output_dimensions" \
+    "$input_size" "$output_size"
+done

@@ -1,0 +1,129 @@
+#!/bin/sh
+
+set -eu
+
+usage() {
+  cat <<'EOF'
+Usage: bin/optimize-video [OPTIONS] VIDEO...
+
+Create a web-optimized MP4 next to each input video. MOV inputs become
+NAME.mp4; other inputs become NAME-optimized.mp4. Input files are preserved.
+
+Options:
+  -w, --width PIXELS  Maximum width (default: 1440)
+      --fps FPS       Output frame rate (default: 30)
+      --crf VALUE     H.264 quality, lower is higher quality (default: 23)
+  -h, --help          Show this help
+EOF
+}
+
+max_width=1440
+frame_rate=30
+crf=23
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    -w | --width)
+      max_width=$2
+      shift 2
+      ;;
+    --fps)
+      frame_rate=$2
+      shift 2
+      ;;
+    --crf)
+      crf=$2
+      shift 2
+      ;;
+    -h | --help)
+      usage
+      exit
+      ;;
+    --)
+      shift
+      break
+      ;;
+    -*)
+      usage >&2
+      exit 2
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+
+[ "$#" -gt 0 ] || { usage >&2; exit 2; }
+
+temp_dir=$(mktemp -d "${TMPDIR:-/tmp}/optimize-video.XXXXXX")
+cleanup() {
+  rm -rf "$temp_dir"
+}
+trap cleanup 0
+trap 'exit 1' 1 2 15
+
+for input in "$@"; do
+  case "$input" in
+    *.mov | *.MOV)
+      output=${input%.*}.mp4
+      ;;
+    *)
+      output=${input%.*}-optimized.mp4
+      ;;
+  esac
+
+  temp_file="$temp_dir/output.mp4"
+  input_size=$(wc -c <"$input" | tr -d ' ')
+
+  # Even dimensions are required by yuv420p. Lanczos keeps terminal text crisp.
+  input_colors=$(ffprobe \
+    -v error \
+    -select_streams v:0 \
+    -show_entries stream=color_space,color_transfer,color_primaries \
+    -of default=nw=1:nk=1 \
+    "$input")
+  case "$input_colors" in
+    *unknown* | *unspecified* | '')
+      input_color_options=:iall=bt709
+      ;;
+    *)
+      input_color_options=
+      ;;
+  esac
+  video_filter="scale=w='trunc(min(iw,${max_width})/2)*2':h=-2:flags=lanczos,fps=${frame_rate},colorspace=all=bt709${input_color_options}:format=yuv420p"
+
+  ffmpeg \
+    -hide_banner \
+    -loglevel error \
+    -stats \
+    -y \
+    -i "$input" \
+    -map 0:v:0 \
+    -map '0:a?' \
+    -map_metadata -1 \
+    -vf "$video_filter" \
+    -c:v libx264 \
+    -preset slow \
+    -crf "$crf" \
+    -pix_fmt yuv420p \
+    -color_primaries bt709 \
+    -color_trc bt709 \
+    -colorspace bt709 \
+    -c:a aac \
+    -b:a 128k \
+    -movflags +faststart \
+    -f mp4 \
+    "$temp_file"
+
+  output_size=$(wc -c <"$temp_file" | tr -d ' ')
+  output_dimensions=$(ffprobe \
+    -v error \
+    -select_streams v:0 \
+    -show_entries stream=width,height \
+    -of csv=s=x:p=0 \
+    "$temp_file")
+  mv "$temp_file" "$output"
+
+  printf '%s -> %s: %s, %s -> %s bytes\n' \
+    "$input" "$output" "$output_dimensions" "$input_size" "$output_size"
+done
