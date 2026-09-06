@@ -149,7 +149,7 @@ READMEの「related post suggestions」等は、実装上はmainSections内の�
 | `unsafe: true`、生HTMLのInstagram/Speaker Deck | shortcode移行を検討。切替時に無条件で無効化しない |
 | share_iconsを上書き、はてなブックマーク・はてなスターを追加 | PaperMod標準機能とは区別する |
 | はてなスターの外部`star.js`をasync取得 | UIと通信を含めて移行要否を判断。asyncでも処理コストは残る |
-| extend_headのauthorリンク、行高・文字サイズ等のCSS補正 | サイト固有の要件として新デザインに反映 |
+| extend_headのauthorリンク、行高・入れ子リスト余白のCSS補正 | サイト固有の要件として新デザインに反映 |
 | `static/_headers`のpages.dev向けnoindex | 配信要件。テーマとは別に維持 |
 | Search、Profile、ToC、読了時間、語数、パンくず、コメント、Analytics、多言語は未設定 | 「PaperModで可能」と「現在使っている」を分ける |
 
