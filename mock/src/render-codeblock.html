@@ -1,0 +1,16 @@
+{{- $options := dict -}}
+{{- if not (transform.CanHighlight .Type) -}}
+  {{- $options = dict "type" "text" -}}
+{{- end -}}
+{{- $result := transform.HighlightCodeBlock . $options -}}
+{{- $filename := .Attributes.filename | default "" -}}
+<div class="code-block{{ if not (or .Type $filename) }} unlabelled{{ end }}">
+  <div class="code-toolbar" lang="en">
+    {{- if or .Type $filename -}}
+    <span class="code-label">{{ with .Type }}{{ upper . }}{{ end }}{{ if and .Type $filename }} · {{ end }}{{ $filename }}</span>
+    {{- end -}}
+    <button class="copy" type="button" aria-label="Copy code">Copy</button>
+  </div>
+  {{- $result.Wrapped | replaceRE `<pre\b` `<pre aria-label="Code, horizontally scrollable"` | safeHTML -}}
+  <span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
+</div>

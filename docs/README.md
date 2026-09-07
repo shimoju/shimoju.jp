@@ -10,6 +10,8 @@
 | [2. Hugo本体とテーマの責務](02-hugo-core-vs-theme.md) | minify、画像、SRI、ハイライト、shortcode、SEOなどの要件分担 |
 | [3. PaperModの機能・品質・性能](03-papermod-analysis.md) | 実装と有効化条件、採否の提案、現サイトとの差分、性能比較の手順 |
 | [4. 自作テーマの視覚要件](04-theme-visual-requirements.md) | 合意済みの必須ルール、モックの初期値、代表画面で比較する項目、確認条件 |
+| [5. 静的HTMLモックの比較・検証記録](05-theme-mock-review.md) | モックの構成、採用した初期値、比較結果、Chromeでの検証範囲 |
+| [6. モックレビューの反映と第2案](06-theme-mock-revision.md) | 採用確定項目の固定、新しい比較案、Hugoのコード属性、再検証結果 |
 
 ## 調査対象と根拠
 
