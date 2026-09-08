@@ -1,6 +1,6 @@
 # 2. Hugo本体とテーマの責務
 
-前提は[調査概要](README.md)を参照。HugoにAPIや組み込みテンプレートがあることと、任意のテーマでその機能が自動的に有効になることは別である。
+前提は[技術情報の前提](README.md#技術情報の前提)を参照。HugoにAPIや組み込みテンプレートがあることと、任意のテーマでその機能が自動的に有効になることは別である。
 
 ## 責務の見方
 
@@ -15,7 +15,7 @@
 
 ## 要件分担表
 
-「本体の能力」だけで完了とせず、右側の設定・表示・検証まで要件に含める。
+「本体の能力」だけで完了とせず、右側の設定・表示・検証まで分けて考える。以下はAPIの責務表であり、全機能の採用を意味しない。検索・目次等の採否は[視覚要件](04-theme-visual-requirements.md)に従う。
 
 | 機能 | Hugo本体の能力・標準挙動 | テーマ／サイトが決める部分 | 配信／ブラウザー |
 | --- | --- | --- | --- |
@@ -112,7 +112,7 @@ Hugo内蔵の画像render hookも主にURL解決のためで、標準のレス�
 - 外部画像は、URLをそのまま出力するだけなら寸法取得や変換はできない。Hugoでremote Resourceとして取得する設計なら、ビルド時ネットワーク依存・失敗時処理も要件になる。[画像処理](https://gohugo.io/content-management/image-processing/)
 - width/heightやアスペクト比による領域確保と、lazy loadによる取得延期は別。CLS対策には前者も必要。
 
-## シンタックスハイライトと目次
+## シンタックスハイライト
 
 HugoのChromaはビルド時に色分けされたHTMLを生成する。コードフェンスに言語を指定するか、内蔵`highlight` shortcode・`transform.Highlight`等から利用できる。言語未指定の扱い、行番号・強調行などは設定で制御する。[Syntax highlighting](https://gohugo.io/content-management/syntax-highlighting/)
 
@@ -121,11 +121,11 @@ HugoのChromaはビルド時に色分けされたHTMLを生成する。コード
 | `markup.highlight.noClasses: true`（既定） | 色をinline styleで出す。`style`設定が配色に影響する |
 | `markup.highlight.noClasses: false` | クラスを出す。対応するChroma CSSをテーマが配信する必要がある |
 
-現サイトは`style: catppuccin-mocha`を指定し、`noClasses`は未指定なので実効値は`true`。PaperModはクラス向けCSSも常時バンドルしている。自作テーマはinline方式かクラス方式を意図して選び、配色、HTMLサイズ、CSSの共有キャッシュ、dark modeを比較する。Hugo v0.164以降にはChroma CSS生成のlight/dark mode関連機能が追加されており、採用時は対応スタイルと最低バージョンも確認する。[Syntax highlighting](https://gohugo.io/content-management/syntax-highlighting/)、[PaperMod head][pm-head]
+現サイトは`style: catppuccin-mocha`を指定し、`noClasses`は未指定なので実効値は`true`。PaperModはクラス向けCSSも常時バンドルしている。自作テーマはモックと同じクラス方式を採用し、Latte／MochaのCSSを両配色へ適用する。Hugo v0.164以降にはChroma CSS生成のlight/dark mode関連機能が追加されており、採用時は対応スタイルと最低バージョンも確認する。[Syntax highlighting](https://gohugo.io/content-management/syntax-highlighting/)、[PaperMod head][pm-head]
 
 コピー機能はHugoの色付けとは独立したテーマJS。PaperModは`pre > code`にボタンを追加する。自作テーマでは行番号を含めないコピー、空白保持、Clipboard APIのPromise失敗、キーボード操作、通知を要件にする。[PaperMod footer][pm-footer]
 
-Hugoは`.TableOfContents`を提供するが、PaperModは`UseHugoToc`が真の場合にのみそれを使い、それ以外は本文HTMLの見出しを解析して独自に目次を組み立てる。`ShowToc`は表示の有効化、`TocOpen`は開閉初期状態。自作テーマではHugo標準の目次を基本案にし、独自処理が必要な理由があるか判断する。[PaperMod toc][pm-toc]
+目次は実装しない。Hugoに目次APIがあることは、今回の採用要件を意味しない。
 
 ## shortcode・render hookとコンテンツ互換性
 
@@ -143,32 +143,13 @@ HugoにはOGP/Twitter Cards等の内蔵partialがあるが、テーマから呼�
 
 HTTP圧縮、Cache-Control、CSP、実際の404ステータス、プレビュー用`X-Robots-Tag`は配信の責務。Hugoが`_headers`等をコピーできても、その解釈はホスティングサービスに依存する。現サイトの[`static/_headers`](../static/_headers)は`pages.dev`向けnoindexヘッダーであり、PaperMod標準機能ではない。
 
-## PaperMod調査からのフィードバック
-
-以下は資料3の実装調査で分かった点を、この資料へ反映した記録。更新時も実装箇所と両資料をセットで見直す。
-
-| ID | 実装で確認したこと | 責務の結論・要件への反映 |
-| --- | --- | --- |
-| F1 | CSSはheadのPipesでminify、HTMLは現サイト設定でminify | 本体の実行能力と、テーマ／サイトの有効化を分ける |
-| F2 | カバー・本文・figureで画像処理の範囲が異なる | 「画像最適化対応」の一括要件では不足。入口別に寸法・srcset・lazy・例外を定義 |
-| F3 | CSSと検索JSにfingerprint/SRI。inline JSには同じ処理なし | 全JSにSRIが付くという説明を避ける。外部サービスとCSPも別に検討 |
-| F4 | 検索JSONはHugoで生成、検索はFuse.js | JSON出力は本体、索引設計と検索実行・UIはテーマ |
-| F5 | `UseHugoToc`で内蔵目次に切替。それ以外は独自解析 | ToCのデータAPIとテーマ固有の生成ロジックを分ける |
-| F6 | 前後記事ナビはmainSections内の前後移動 | Hugoの関連度APIを使った関連記事推薦と同一視しない |
-| F7 | OGP・JSON-LDはproduction条件、About等もBlogPosting | 本体が意味を判断するのではなくテーマの条件で決まる。種別・環境別に検証 |
-| F8 | RSSはテーマで上書き、sitemapは同梱なし | どちらもHugoの出力機構を使うが、内容を定義する担当は異なる |
-| F9 | 現サイトはinline色付け、テーマはChroma CSSも配信 | 色付けAPI、配色方式、不要CSS、コピーUIを別要件にする |
-| F10 | はてなスターJSはサイトのpartial上書き | PaperMod素体と現サイトの性能差を区別し、比較時の外部サービスを揃える |
-| F11 | X shortcodeがビルド時の外部取得に失敗しても警告で完走 | ビルド成功と埋め込み再現性を分ける。ベンチマーク前に内容一致を確認 |
-
-各機能の採否案と検証方法は[資料3](03-papermod-analysis.md)にまとめる。
+実装時の注意は[資料3](03-papermod-analysis.md)と[資料5](05-theme-implementation.md)、受け入れ検査は[資料6](06-theme-validation.md)を参照する。
 
 [pm-head]: https://github.com/adityatelange/hugo-PaperMod/blob/d3768854d00ad003b0a8dbdba254ce9224377a01/layouts/_partials/head.html
 [pm-cover]: https://github.com/adityatelange/hugo-PaperMod/blob/d3768854d00ad003b0a8dbdba254ce9224377a01/layouts/_partials/cover.html
 [pm-image]: https://github.com/adityatelange/hugo-PaperMod/blob/d3768854d00ad003b0a8dbdba254ce9224377a01/layouts/_markup/render-image.html
 [pm-figure]: https://github.com/adityatelange/hugo-PaperMod/blob/d3768854d00ad003b0a8dbdba254ce9224377a01/layouts/_shortcodes/figure.html
 [pm-footer]: https://github.com/adityatelange/hugo-PaperMod/blob/d3768854d00ad003b0a8dbdba254ce9224377a01/layouts/_partials/footer.html
-[pm-toc]: https://github.com/adityatelange/hugo-PaperMod/blob/d3768854d00ad003b0a8dbdba254ce9224377a01/layouts/_partials/toc.html
 [pm-shortcodes]: https://github.com/adityatelange/hugo-PaperMod/tree/d3768854d00ad003b0a8dbdba254ce9224377a01/layouts/_shortcodes
 [pm-search-index]: https://github.com/adityatelange/hugo-PaperMod/blob/d3768854d00ad003b0a8dbdba254ce9224377a01/layouts/index.json
 [pm-rss]: https://github.com/adityatelange/hugo-PaperMod/blob/d3768854d00ad003b0a8dbdba254ce9224377a01/layouts/rss.xml

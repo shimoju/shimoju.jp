@@ -1,36 +1,42 @@
 # 静的HTMLモック
 
-[合意した視覚要件](../docs/04-theme-visual-requirements.md)に基づく、ブラウザで読むためのモック。Hugoテーマの完成実装ではありません。本番の設定・テンプレート・記事は変更していません。
+[視覚要件](../docs/04-theme-visual-requirements.md)の配置・組版・操作を確認するためのHTML。Hugoテーマの完成実装ではなく、本番の設定・テンプレート・記事は変更していません。
 
 ## 開く
 
-リポジトリ直下で実行します。生成済みHTMLがあるため、閲覧時のビルドや依存パッケージのインストールは不要です。Node.jsを使用します。
+リポジトリ直下で実行します。生成済みHTMLの閲覧にはNode.jsだけを使い、ビルドや依存パッケージのインストールは不要です。
 
 ```sh
 node mock/serve.mjs
 ```
 
-[レビューの入口](http://127.0.0.1:4173/)から、基本画面と比較条件を選べます。[ホーム](http://127.0.0.1:4173/home.html)、[長い実記事](http://127.0.0.1:4173/article.html)、[本文部品](http://127.0.0.1:4173/specimen.html)へ直接移動もできます。
+[入口](http://127.0.0.1:4173/)から画面と配色を選べます。[ホーム](http://127.0.0.1:4173/home.html)、[実記事](http://127.0.0.1:4173/article.html)、[本文部品](http://127.0.0.1:4173/specimen.html)へ直接移動もできます。
 
-サーバーはこの端末の127.0.0.1だけで待ち受け、`mock/site/`だけを配信します。停止は起動したターミナルでCtrl+C。別のポートを使う場合は`MOCK_PORT=4174 node mock/serve.mjs`。
+サーバーは127.0.0.1だけで待ち受け、mock/site/だけを配信します。停止はCtrl+C。別ポートは`MOCK_PORT=4174 node mock/serve.mjs`。ファイルを直接開いても文章は表示できますが、コピー・設定保存の検証はlocalhost経由で行ってください。
 
-`site/`フォルダはそのまま静的サイトとして閲覧できます。ファイルを直接開く場合も文章・レイアウトを表示できますが、コピーや設定保存を含む検証はlocalhost経由を基本にしてください。公開・デプロイは行っていません。
+## 収録画面とソース
 
-## 成果物
+レビュー入口を含む33ページ。同じHTMLを各幅・両配色で表示します。
 
-- `site/`：32画面とレビュー入口、共通CSS・JavaScript、既存記事の画像・動画。JSで本文を生成しない静的HTML。
-- `src/theme.css`：配色、フォント候補順、文字サイズ、余白、レスポンシブの定義。
-- `src/theme.js`：配色切り替え、コピー、比較条件、外部送信しない操作デモ。
-- `src/specimen.md`：実記事にないH5/H6・表・脚注・行番号などを補う検証用文章。
-- `src/render-codeblock.html`：Hugoで実行するコードブロックのレンダーフック。言語・ファイル名・行番号を取得。
-- `build.mjs`：実記事をHugoでHTML化し、共通の枠を付けて静的ファイルを生成するスクリプト。
-- `verify.mjs` / `test-theme.mjs` / `test-copy.mjs`：出力・内部リンク、配色状態、コピー状態の検査。
-- `verification/browser-checks.json`：Chromeで測定した幅・配色ごとの結果。
-- `inspect-fonts.mjs` / `verification/font-features.json`：明示したフォントファイルのpaltテーブル検査と結果。フォントの導入・配信は行いません。
-- [相対サイズへの移行](../docs/12-theme-relative-sizing.md)：今回の変更と拡大時の検証。フォントの確定は[資料11](../docs/11-theme-system-monospace.md)、第6案以前は資料5〜10に履歴として残しています。
-- `verification/code-font-files.json`：コード候補の名目送り幅・アウトライン・ビットマップテーブルの検査。Windows同梱版の実機描画とは区別します。
+| 画面 | ファイル |
+| --- | --- |
+| ホーム・記事一覧とページ送り | home.html、home-2.html、home-3.html、posts.html、posts-2.html、posts-3.html |
+| 実記事5件 | article.html、article-hugo.html、article-diary.html、article-bgm.html、article-pasmo.html |
+| About・Archives・404 | about.html、archives.html、404.html |
+| タグ・カテゴリ一覧と個別分類 | tags.html、categories.html、tag-1〜11.html、category-1〜2.html |
+| 0件・1件・要約なし | empty.html、single-item.html |
+| 本文部品とレビュー入口 | specimen.html、index.html |
 
-生成済みファイルは直接編集せず、`src/`と`build.mjs`を変更して再生成します。
+- [src/theme.css](src/theme.css)：配色・フォント候補・サイズ・余白・レスポンシブ。
+- [src/theme.js](src/theme.js)：配色、コピー、レビュー用条件、外部送信しない操作デモ。
+- [src/specimen.md](src/specimen.md)：H2〜H6、表、脚注、コード・画像の境界条件。
+- [src/render-codeblock.html](src/render-codeblock.html)：Hugoのコード生成・言語・ファイル名・行番号。
+- [build.mjs](build.mjs)：実記事をHTML化し、共通枠を付けてsite/へ生成。素材のパスはsite/manifest.jsonにも記録。
+- [inspect-fonts.mjs](inspect-fonts.mjs)：必要時にフォントファイルのpalt・名目送り幅等を再確認するツール。
+
+生成済みファイルは直接編集せず、src/とbuild.mjsを変更して再生成します。
+
+## 再生成と検査
 
 ```sh
 node mock/build.mjs
@@ -39,38 +45,24 @@ node mock/test-theme.mjs
 node mock/test-copy.mjs
 ```
 
-再生成時だけHugoが必要です。検証環境はHugo v0.165.0、Node.js v24.20.0。Hugo付属ChromaのLatte/Mochaスタイルを使い、セレクターにモード指定を付ける以外、ハイライト宣言は変更していません。Markdown変換は専用の一時ディレクトリで行い、本番の`public/`や設定には触れません。ビルド時も外部埋め込みを取得しません。
+再生成時だけHugoが必要です。確認環境はHugo v0.165.0、Node.js v24.20.0。Hugo付属ChromaのLatte／Mochaを生成し、モード別セレクター以外のハイライト宣言は変更しません。Markdown変換は一時ディレクトリで行い、本番のpublic/や設定には触れず、外部埋め込みも取得しません。
 
-## 比較する
+文字拡大・OS別フォント・キーボード等の確認は[検証手順](../docs/06-theme-validation.md)、書体と単位の理由は[実装上の判断理由](../docs/05-theme-implementation.md)を参照してください。
 
-同じページのURLを別タブで開いて比較できます。400px／1280pxが基準幅であり、異なるHTMLを作り分けてはいません。切り替え幅は640pxです。
+## 表示条件と操作の境界
 
-| 条件 | URLパラメーター・ページ |
+| 条件 | 指定 |
 | --- | --- |
-| 明示的な配色 | `?theme=light` / `?theme=dark` |
-| 日本語コードの診断 | `specimen.html#code`：日本語フォールバックの明示／省略を同じページで確認 |
-| コピー失敗 | `specimen.html?copy=failure#code`でコピーボタンを押す |
+| 配色 | `?theme=light`／`?theme=dark` |
+| コピー失敗 | `specimen.html?copy=failure#code` |
+| 組版・日本語コード | specimen.html。palt、フォールバック、paddingの診断用サンプル |
+| 文字拡大の一時ビルド | `node mock/build.mjs --text-scale=1.25`／`--text-scale=2`。確認後は通常ビルドへ必ず戻す |
 
-複数条件をつなぐ場合は`&`を使います。例：`specimen.html?theme=dark&copy=failure#code`。本文・記事見出しはHelvetica系、サイト名はAvenir Nextに固定しました。配色条件はページ間の移動でも引き継ぎます。旧`font`／`masthead`パラメーターは無効です。
+配色パラメーターは保存済み設定より優先しますが、それだけでは保存内容を変えません。配色ボタンでモック専用キー`shimoju-mock-theme`に保存し、明示選択がなければOS設定に追従します。システム設定への復帰UIはありません。
 
-採用済みの本文1rem、記事タイトル1.6rem、サイトタイトル2rem、コード0.875rem・行高1.5、本文色リンクに加え、一覧カバー上配置、X・GitHub・RSSと著作権の中央2段フッターを固定しました。旧比較パラメーターは無視します。目次は不採用のままです。
-
-本文・見出しのpaltを有効にし、コードは除外しています。レビュー入口には本文・サイト名・コードの候補順、palt有効／無効の短文診断を表示します。インラインコードは0.85em、paddingは上下0.25em・左右0.35emを維持。コードの自動カーニングは無効です。日本語の明示候補はHiragino Sans → Noto Sans JP → Noto Sans CJK JPとし、最後は本文がsans-serif、コードがmonospaceです。コードの先頭はui-monospace → Menlo → Consolas。Safariではシステム側の日本語選択が後続候補より優先される可能性があります。SF Mono／SFMono-Regular／游ゴシックは明示指定しません。フォントの調査は資料11、相対サイズ移行と検証は[資料12](../docs/12-theme-relative-sizing.md)を参照してください。
-
-配色パラメーターは保存済み設定より優先しますが、それだけでは保存内容を変えません。配色ボタンを操作すると、モック専用キー`shimoju-mock-theme`へ保存します。OS設定へ戻すUIは設けていません。
-
-## 操作の範囲
-
-文字サイズはルートがモバイル100%・640px以上106.25%。ブラウザの既定文字サイズが16pxなら本文16px／17pxです。本文最大幅720pxはpxで維持します。文字の拡大負荷を再現する場合は`node mock/build.mjs --text-scale=1.25`または`--text-scale=2`で一時ビルドし、確認後は必ず`node mock/build.mjs`で通常ビルドへ戻してください。これはブラウザの既定文字サイズやネイティブズームを変更する機能ではありません。`verify.mjs`は検証用CSSの残留をエラーにします。
-
-- 配色、コードコピー、ページ送り、ローカルな画面遷移は動作します。
-- コピー成功は実際のクリップボード書き込み。レビュー入口の貼り付け欄で内容を確認できます。欄の内容は送信・保存しません。
-- コピー失敗のパラメーターは、エラー表示を確実に再現するためのものです。
-- 読者向けUIは英語統一案です。コピーはCopy → Copied → 3秒後にCopyへ戻ります。成功・失敗ともブロック下部の可視メッセージは出しません。
-- 一覧は画像・タイトル・要約、Archivesはタイトル・日付を同じリンクに含めています。存在しないPrevious／Nextは非表示、1ページだけならページ送り自体を表示しません。
-- X／Facebook／はてなブックマークと、はてなスターはローカルな表示デモ。実投稿・反応・ログイン・サービス連携は行いません。
-- 実記事内の外部リンク、プロフィールのリンク、RSSは実サイトへ移動します。
-- 記事5件、分類件数、ページ数はモック収録分です。本番の全件数ではありません。実記事本文は全文を使用し、X埋め込みだけリンクへ置き換えています。
-- ホーム紹介文は仮文。部品ページの公開日・更新日は表示確認用です。
-
-Chromeで幅を変え、Tabキー・ホバー・コピー・クリック範囲を確認してください。実際のブラウザズームも使用できます。CSSで画面全体を縮小する見せ方や、固定幅の画像カンプは使っていません。
+- 配色、コードコピー、ページ送り、ローカルな画面遷移は動作します。コピーは実際のクリップボードへ書き込み、入口の貼り付け欄で照合できます。欄の内容は送信・保存しません。
+- コピーはCopy → Copied → 3秒後にCopy。失敗はCopy failedとなり再試行できます。ブロック下部の可視メッセージは出しません。
+- シェア3サービスとはてなスターはローカルな表示デモ。実投稿・反応・ログイン・サービス連携は行いません。
+- 実記事の外部リンク、プロフィール、RSSは実サイトへ移動します。
+- 記事本文は実記事を使い、X埋め込みだけリンクへ置き換えています。記事・分類件数とページ数は収録分です。ホーム紹介文は仮文、部品ページの日付は検証用です。
+- 入口と診断サンプルはテーマ本来のUIではありません。読者向けUIは現在のモックでは英語表記で、記事本文と説明は日本語です。
