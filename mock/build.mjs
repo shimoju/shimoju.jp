@@ -5,6 +5,14 @@ import { fileURLToPath } from 'node:url';
 import { tmpdir } from 'node:os';
 
 // Build-time only. Delivered site/ is plain HTML/CSS/JS and needs no Hugo runtime.
+const args = process.argv.slice(2);
+if (args.length > 1 || (args.length && !/^--text-scale=(1|1\.25|2)$/.test(args[0]))) {
+  throw new Error('Usage: node mock/build.mjs [--text-scale=1|1.25|2]');
+}
+const textScale = args.length ? Number(args[0].split('=')[1]) : 1;
+// Temporary layout stress test, not a change to the browser's font preferences.
+const testStyle = textScale === 1 ? '' : `<style data-text-scale-test>html{font-size:${100 * textScale}%}@media(min-width:640px){html{font-size:${106.25 * textScale}%}}</style>`;
+if (textScale !== 1) console.warn(`TEST BUILD: text scale ${textScale}; restore with node mock/build.mjs before delivery.`);
 const root = dirname(fileURLToPath(import.meta.url));
 const repo = dirname(root);
 const out = join(root, 'site');
@@ -59,11 +67,11 @@ const pages = [];
 function page(file, title, content, { home = false, current = '', review = false } = {}) {
   pages.push({ file, title, review });
   put(join(out, file), `<!doctype html>
-<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="color-scheme" content="light dark"><title>${escape(title)} — shimoju.diary${review ? ' / モックレビュー' : ''}</title><link rel="icon" href="data:,"><link rel="alternate" type="application/rss+xml" title="shimoju.diary RSS" href="https://shimoju.jp/index.xml"><script src="assets/theme.js"></script><link rel="stylesheet" href="assets/syntax.css"><link rel="stylesheet" href="assets/theme.css"></head>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="color-scheme" content="light dark"><title>${escape(title)} — shimoju.diary${review ? ' / モックレビュー' : ''}</title><link rel="icon" href="data:,"><link rel="alternate" type="application/rss+xml" title="shimoju.diary RSS" href="https://shimoju.jp/index.xml"><script src="assets/theme.js"></script><link rel="stylesheet" href="assets/syntax.css"><link rel="stylesheet" href="assets/theme.css">${testStyle}</head>
 <body class="${home ? 'home' : ''}"><a class="skip-link" href="#main" lang="en">Skip to content</a>
 ${review ? '' : `<header class="site-header shell">${home ? '<h1 class="site-heading">' : ''}<a class="site-name" href="home.html">shimoju.diary</a>${home ? '</h1>' : ''}${nav(current)}</header>`}
 <main id="main" class="shell${review ? ' review' : ''}" tabindex="-1">${content}</main>
-<footer class="site-footer shell" lang="en"><span>© 2026 Hiroshi Shimoju</span><a href="https://shimoju.jp/index.xml">RSS</a></footer></body></html>\n`);
+<footer class="site-footer shell" lang="en"><nav class="footer-links" aria-label="Follow and subscribe"><a href="https://x.com/shimoju_">X</a><a href="https://github.com/shimoju">GitHub</a><a href="https://shimoju.jp/index.xml">RSS</a></nav><span>© 2026 Hiroshi Shimoju</span></footer></body></html>\n`);
 }
 const posts = sources.slice(0, 5).map(([id]) => ({ id, ...data.get(id) }));
 const terms = kind => [...new Set(posts.flatMap(p => p[kind]))].sort((a, b) => a.localeCompare(b, 'ja'));
@@ -74,14 +82,14 @@ const date = value => `<time datetime="${value}">${value.replaceAll('-', '/')}</
 const plain = html => html.replace(/<[^>]*>/g, '').trim();
 function entries(items, { noSummary = false } = {}) {
   if (!items.length) return '<p class="empty">まだ記事がありません。</p>';
-  return `<div class="post-list">${items.map(post => `<article class="post-entry${post.id === 'article' ? ' has-cover' : ''}"><a class="entry-link" href="${post.id}.html" aria-labelledby="entry-${post.id}"><div class="entry-text"><h2 class="entry-title" id="entry-${post.id}">${escape(post.title)}</h2><div class="meta">${date(post.date)}</div>${noSummary ? '' : `<p class="entry-summary">${plain(post.summary)}</p>`}</div>${post.id === 'article' ? `<figure class="entry-cover">${cover}</figure>` : ''}</a></article>`).join('')}</div>`;
+  return `<div class="post-list">${items.map(post => `<article class="post-entry${post.id === 'article' ? ' has-cover' : ''}"><a class="entry-link" href="${post.id}.html" aria-labelledby="entry-${post.id}">${post.id === 'article' ? `<figure class="entry-cover">${cover}</figure>` : ''}<div class="entry-text"><h2 class="entry-title" id="entry-${post.id}">${escape(post.title)}</h2><div class="meta">${date(post.date)}</div>${noSummary ? '' : `<p class="entry-summary">${plain(post.summary)}</p>`}</div></a></article>`).join('')}</div>`;
 }
 function pager(base, current, total) {
   const url = n => `${base}${n === 1 ? '' : `-${n}`}.html`;
   if (total <= 1) return '';
   return `<nav class="pager" lang="en" aria-label="Pagination">${current > 1 ? `<a class="previous-page" href="${url(current - 1)}" rel="prev">← Previous</a>` : ''}<span class="page-number" aria-label="Page ${current} of ${total}">${current} / ${total}</span>${current < total ? `<a class="next-page" href="${url(current + 1)}" rel="next">Next →</a>` : ''}</nav>`;
 }
-const intro = '<section class="intro" aria-label="紹介"><p>テクノロジーと社会、日々のこと。<br>Ruby on RailsでWebアプリケーションをつくっています。</p><div class="intro-links" lang="en"><a href="https://github.com/shimoju">GitHub</a><a href="https://x.com/shimoju_">X</a><a href="about.html">About</a></div></section>';
+const intro = '<section class="intro" aria-label="紹介"><p>テクノロジーと社会、日々のこと。<br>Ruby on RailsでWebアプリケーションをつくっています。</p></section>';
 for (const base of ['home', 'posts']) for (let n = 1; n <= 3; n++) {
   const home = base === 'home';
   const top = home ? (n === 1 ? intro : '') : heading('Posts');
@@ -151,10 +159,10 @@ const reviewLinks = [
   ['single-item.html', '1件・要約なし', '任意要素の欠落'],
 ];
 const options = items => items.map(([value, label]) => `<option value="${value}">${label}</option>`).join('');
-page('index.html', 'モックレビュー', `<header class="review-header"><p class="eyebrow">SHIMOJU.DIARY / VISUAL STUDY 02</p><h1>文字と余白から、読む場所をつくる。</h1><p>レビューを反映した第2案。採用済みの条件は固定し、<br>カバーの位置、サイトタイトル、フッターを比較します。</p>${toggle}</header>
-<section class="review-section"><h2>今回固定したこと</h2><p>本文17px／16px、記事タイトルは本文の1.6倍、コード行高1.5。本文リンクは本文色＋下線で、ホバーによる色変更なし。カバーは本文幅いっぱい、目次は不採用です。</p><p class="review-note">読者向けの操作表記は英語統一の提案を反映（Previous / Next / Copy / Copied / RSS）。記事本文やこのレビュー用の説明は日本語です。分類件数とページ数は収録した5記事に対応します。</p></section>
-<section class="review-section"><h2>新しい比較案</h2><p class="review-note">一度に変える条件を絞って、同じページで比較してください。比較条件はURLに残ります。カバーは両案とも全幅です。</p><form id="comparison-form" class="review-controls"><label>代表ページ<select name="page">${options([['home.html', 'ホーム'], ['article.html', '長い実記事'], ['specimen.html', '本文部品'], ['archives.html', 'Archives'], ['about.html', 'About']])}</select></label><label>配色<select name="theme">${options([['light', 'Latte / ライト'], ['dark', 'Mocha / ダーク']])}</select></label><label>カバーの位置<select name="cover-position">${options([['', 'タイトル・要約の下'], ['above', 'タイトルの上']])}</select></label><label>サイトタイトル<select name="masthead">${options([['', '記事ページは控えめ'], ['uniform', '全ページをホームと同じサイズ']])}</select></label><label>フッター<select name="footer">${options([['', '著作権は左・RSSは右'], ['centered', '中央揃え']])}</select></label><button type="submit">比較ページを開く →</button></form><ul><li><a href="home.html?cover-position=above">カバーをタイトルの上に置く</a></li><li><a href="article.html?masthead=uniform">記事のサイトタイトルをホームと同じ大きさにする</a></li><li><a href="home.html?footer=centered">フッターを中央に揃える</a></li></ul></section>
-<section class="review-section"><h2>現在のfont-family</h2><p class="review-note">実際のCSS変数から取得した候補順です。各文字の描画に使われたフォント名そのものを特定する表示ではありません。Webフォントは読み込みません。</p><h3>本文・見出し</h3><code class="font-stack" data-font-stack="body"></code><p>日本語とEnglish、Ruby on Rails、2026年。読むための文字と余白。</p><h3>コード・インラインコード</h3><code class="font-stack" data-font-stack="code"></code><p><code>const message = "日本語のコメントとABC 0123456789";</code></p></section>
+page('index.html', 'モックレビュー', `<header class="review-header"><p class="eyebrow">SHIMOJU.DIARY / VISUAL STUDY 08</p><h1>文字と余白から、読む場所をつくる。</h1><p>採用済みの書体を維持し、文字と余白を相対サイズへ。<br>ブラウザの既定文字サイズを起点に、本文と見出しの比率を揃えます。</p>${toggle}</header>
+<section class="review-section"><h2>今回固定したこと</h2><p>ルートはモバイル100%・デスクトップ106.25%。本文1rem、記事タイトル1.6rem、サイト名2rem、コードブロック0.875rem・行高1.5に統一しました。インラインコードは周囲に追従する0.85em、paddingは上下0.25em・左右0.35emを維持しています。</p><p class="review-note">ブラウザの既定文字サイズが16pxなら、本文17px／16px、サイト名34px／32px。本文の最大幅720pxは固定し、文字を含む操作部品は拡大と折り返しに追従します。カバー上配置、中央2段フッター、palt有効とコードへの非継承は維持しています。</p></section>
+<section class="review-section"><h2>代表ページを開く</h2><p class="review-note">サイト名の書体比較は終了しました。Avenir Nextがなければ本文書体へ戻します。Webフォントは追加しません。</p><form id="comparison-form" class="review-controls"><label>代表ページ<select name="page">${options([['home.html', 'ホーム'], ['article.html', '長い実記事'], ['specimen.html', '本文部品'], ['about.html', 'About'], ['index.html', '候補順とpaltの確認']])}</select></label><label>配色<select name="theme">${options([['light', 'Latte / ライト'], ['dark', 'Mocha / ダーク']])}</select></label><button type="submit">ページを開く →</button></form><p><a href="home.html">ホーム</a> ／ <a href="article.html">長い実記事</a> ／ <a href="specimen.html#code">日本語コメントを確認</a></p></section>
+<section class="review-section" id="font-check"><h2>採用した候補順とpalt</h2><p class="review-note">CSSの指定候補であり、文字ごとに実際に選ばれたフォントの特定ではありません。OSの導入状況とブラウザ設定により代替されます。</p><h3>本文・見出し</h3><code class="font-stack" data-font-stack="body"></code><ul><li>macOS／iOS：Helvetica Neue＋Hiragino Sans。</li><li>Windows：Arial＋Noto Sans JPを優先。Noto CJKは2025年3月のWindows更新でも追加されています。Notoがなければブラウザのsans-serifへ戻します。</li><li>Android：AOSPではArialがsans-serifへの別名になり、欧文はRoboto、日本語は言語別のNoto CJKフォールバック。メーカー・ブラウザ差はあり得ます。</li><li>ヒラギノ・Notoの明示候補は本文とコードで共通にし、最後は本文がsans-serif、コードがmonospaceです。</li></ul><p>日本語とEnglish、Ruby on Rails、2026年。「括弧」、句読点。Webアプリケーションの読みやすさ。</p><h3>サイトタイトル</h3><code class="font-stack" data-font-stack="site"></code><p class="review-note">Avenir Nextはサイト名だけに採用。本文や記事見出しには適用しません。</p><h3>コード・インラインコード</h3><code class="font-stack" data-font-stack="code"></code><p class="review-note">先頭のui-monospaceでSafariのSF Monoを利用し、未対応のChrome／Firefoxでは後続のMenlo（Mac）・Consolas（Windows）を使う方針です。日本語の明示候補はHiragino Sans、Noto Sans JP、Noto Sans CJK JPです。Safariではシステム側の日本語選択がこれらより優先される可能性があります。通常のNotoの日本語全角文字は基本的に等幅で、欧文は先行するコード用書体に任せます。最後はOSのmonospaceです。paltは適用せず、和欧文の幅が厳密に2:1になるとは保証しません。</p><p><code>const message = "日本語のコメントとABC 0123456789";</code></p><h3>paltの診断</h3><p class="review-note">本文と見出しはfont-feature-settings: "palt"。次の同一文だけを有効／無効で比較します。採否の選択肢ではなく、現在の描画での作用を確認する診断です。</p><div class="font-probe-scroll"><p>有効：<span class="font-probe" data-palt-probe="on">「日本語」、カタカナ。（余白）</span></p><p>無効：<span class="font-probe palt-off" data-palt-probe="off">「日本語」、カタカナ。（余白）</span></p></div></section>
 <section class="review-section"><h2>基本画面</h2><p class="review-note">400px／1280px・両配色が基準。追加確認は320px／360px／768pxです。</p><ul class="review-grid">${reviewLinks.map(([url, title, note]) => `<li><a href="${url}">${title}<small>${note}</small></a></li>`).join('')}</ul></section>
 <section class="review-section"><h2>操作状態の確認</h2><ul><li><a href="specimen.html#code">コードコピー・成功</a>：Copy → Copied → 3秒後にCopy。下部メッセージは表示しません。</li><li><a href="specimen.html?copy=failure#code">コードコピー・失敗</a>：Copy failedになり、再試行できます。</li><li><a href="home.html">一覧の記事全体</a>／<a href="archives.html">Archivesのタイトルと日付</a>を一つのリンクにしています。</li><li><a href="article-diary.html">シェアとはてなスター</a>：外部送信をしないローカルな表示デモ。</li><li>Tabキーで記事全体のフォーカスと移動、マウスでクリック範囲を確認できます。</li></ul><p class="review-note">初回はOS配色に追従し、手動操作後は選択を保持します。旧比較パラメーター（本文サイズ・リンク色など）は適用しません。言語とファイル名はHugoのレンダーフックから取得しています。</p></section>`, { review: true });
 // A review-only paste target lets a human verify clipboard contents without sending them.

@@ -1,4789 +1,722 @@
 {
-  "revision": "v2 — user review applied",
-  "date": "2026-09-06",
-  "browser": "Chrome on macOS via Chrome control",
-  "scope": "33 pages × 5 CSS viewport widths × 2 themes; 24 representative variant checks",
-  "assetSHA256": {
-    "assets/theme.css": "0ed57a5f4fa219473be5d4195b5e9e0f12a012256d8c751a4f1f510783f90c71",
-    "assets/theme.js": "934a25e510170bb49b6bf012409584d9ac0f6ba3c5353061b180aad68f727a44",
-    "assets/syntax.css": "53da51190ac54cf7da84cc032d3d15a895aeff5ffed8e2d830af01b516a95197"
+  "revision": "v8 — relative typography and scalable controls",
+  "date": "2026-09-08",
+  "browser": "Chrome on macOS",
+  "assetSha256": {
+    "assets/theme.css": "b483fe88b1420122cc88b43249973b1f5b4db562735c947171dbd295d15d947e",
+    "assets/theme.js": "d3bdff99f3c0aea36600c21e9232d7d30c11dae4d7f10af3dc5b00039804cc34",
+    "assets/syntax.css": "53da51190ac54cf7da84cc032d3d15a895aeff5ffed8e2d830af01b516a95197",
+    "index.html": "de83341b43958845c97b50867ec7216a38162ece12d698a8ecc2c1b63943d368",
+    "specimen.html": "2ef33ef1060a25b2a565179c337ca27a1de944c3f7cb1c6a7bc2a6c5ebaab435"
   },
-  "checks": [
-    {
-      "page": "home.html",
-      "theme": "light",
-      "actualPage": "home.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "article.html",
-      "theme": "light",
-      "actualPage": "article.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "about.html",
-      "theme": "light",
-      "actualPage": "about.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "posts.html",
-      "theme": "light",
-      "actualPage": "posts.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "tags.html",
-      "theme": "light",
-      "actualPage": "tags.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "categories.html",
-      "theme": "light",
-      "actualPage": "categories.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-6.html",
-      "theme": "light",
-      "actualPage": "tag-6.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "category-1.html",
-      "theme": "light",
-      "actualPage": "category-1.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "archives.html",
-      "theme": "light",
-      "actualPage": "archives.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "404.html",
-      "theme": "light",
-      "actualPage": "404.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "specimen.html",
-      "theme": "light",
-      "actualPage": "specimen.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "article-diary.html",
-      "theme": "light",
-      "actualPage": "article-diary.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "home-2.html",
-      "theme": "light",
-      "actualPage": "home-2.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "home-3.html",
-      "theme": "light",
-      "actualPage": "home-3.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "posts-2.html",
-      "theme": "light",
-      "actualPage": "posts-2.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "posts-3.html",
-      "theme": "light",
-      "actualPage": "posts-3.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "empty.html",
-      "theme": "light",
-      "actualPage": "empty.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "single-item.html",
-      "theme": "light",
-      "actualPage": "single-item.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "article-hugo.html",
-      "theme": "light",
-      "actualPage": "article-hugo.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "tag-1.html",
-      "theme": "light",
-      "actualPage": "tag-1.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-3.html",
-      "theme": "light",
-      "actualPage": "tag-3.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-4.html",
-      "theme": "light",
-      "actualPage": "tag-4.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-5.html",
-      "theme": "light",
-      "actualPage": "tag-5.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-7.html",
-      "theme": "light",
-      "actualPage": "tag-7.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-8.html",
-      "theme": "light",
-      "actualPage": "tag-8.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-10.html",
-      "theme": "light",
-      "actualPage": "tag-10.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-11.html",
-      "theme": "light",
-      "actualPage": "tag-11.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-2.html",
-      "theme": "light",
-      "actualPage": "tag-2.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-9.html",
-      "theme": "light",
-      "actualPage": "tag-9.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "category-2.html",
-      "theme": "light",
-      "actualPage": "category-2.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "article-bgm.html",
-      "theme": "light",
-      "actualPage": "article-bgm.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "article-pasmo.html",
-      "theme": "light",
-      "actualPage": "article-pasmo.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "index.html",
-      "theme": "light",
-      "actualPage": "index.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "home.html",
-      "theme": "dark",
-      "actualPage": "home.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "article.html",
-      "theme": "dark",
-      "actualPage": "article.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "about.html",
-      "theme": "dark",
-      "actualPage": "about.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "posts.html",
-      "theme": "dark",
-      "actualPage": "posts.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "tags.html",
-      "theme": "dark",
-      "actualPage": "tags.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "categories.html",
-      "theme": "dark",
-      "actualPage": "categories.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-6.html",
-      "theme": "dark",
-      "actualPage": "tag-6.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "category-1.html",
-      "theme": "dark",
-      "actualPage": "category-1.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "archives.html",
-      "theme": "dark",
-      "actualPage": "archives.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "404.html",
-      "theme": "dark",
-      "actualPage": "404.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "specimen.html",
-      "theme": "dark",
-      "actualPage": "specimen.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "article-diary.html",
-      "theme": "dark",
-      "actualPage": "article-diary.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "home-2.html",
-      "theme": "dark",
-      "actualPage": "home-2.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "home-3.html",
-      "theme": "dark",
-      "actualPage": "home-3.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "posts-2.html",
-      "theme": "dark",
-      "actualPage": "posts-2.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "posts-3.html",
-      "theme": "dark",
-      "actualPage": "posts-3.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "empty.html",
-      "theme": "dark",
-      "actualPage": "empty.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "single-item.html",
-      "theme": "dark",
-      "actualPage": "single-item.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "article-hugo.html",
-      "theme": "dark",
-      "actualPage": "article-hugo.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "tag-1.html",
-      "theme": "dark",
-      "actualPage": "tag-1.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-3.html",
-      "theme": "dark",
-      "actualPage": "tag-3.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-4.html",
-      "theme": "dark",
-      "actualPage": "tag-4.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-5.html",
-      "theme": "dark",
-      "actualPage": "tag-5.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-7.html",
-      "theme": "dark",
-      "actualPage": "tag-7.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-8.html",
-      "theme": "dark",
-      "actualPage": "tag-8.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-10.html",
-      "theme": "dark",
-      "actualPage": "tag-10.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-11.html",
-      "theme": "dark",
-      "actualPage": "tag-11.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-2.html",
-      "theme": "dark",
-      "actualPage": "tag-2.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "tag-9.html",
-      "theme": "dark",
-      "actualPage": "tag-9.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320
-    },
-    {
-      "page": "category-2.html",
-      "theme": "dark",
-      "actualPage": "category-2.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "article-bgm.html",
-      "theme": "dark",
-      "actualPage": "article-bgm.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "article-pasmo.html",
-      "theme": "dark",
-      "actualPage": "article-pasmo.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "index.html",
-      "theme": "dark",
-      "actualPage": "index.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320
-    },
-    {
-      "page": "home.html",
-      "theme": "light",
-      "actualPage": "home.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "article.html",
-      "theme": "light",
-      "actualPage": "article.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "about.html",
-      "theme": "light",
-      "actualPage": "about.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "posts.html",
-      "theme": "light",
-      "actualPage": "posts.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "tags.html",
-      "theme": "light",
-      "actualPage": "tags.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "categories.html",
-      "theme": "light",
-      "actualPage": "categories.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-6.html",
-      "theme": "light",
-      "actualPage": "tag-6.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "category-1.html",
-      "theme": "light",
-      "actualPage": "category-1.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "archives.html",
-      "theme": "light",
-      "actualPage": "archives.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "404.html",
-      "theme": "light",
-      "actualPage": "404.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "specimen.html",
-      "theme": "light",
-      "actualPage": "specimen.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "article-diary.html",
-      "theme": "light",
-      "actualPage": "article-diary.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "home-2.html",
-      "theme": "light",
-      "actualPage": "home-2.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "home-3.html",
-      "theme": "light",
-      "actualPage": "home-3.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "posts-2.html",
-      "theme": "light",
-      "actualPage": "posts-2.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "posts-3.html",
-      "theme": "light",
-      "actualPage": "posts-3.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "empty.html",
-      "theme": "light",
-      "actualPage": "empty.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "single-item.html",
-      "theme": "light",
-      "actualPage": "single-item.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "article-hugo.html",
-      "theme": "light",
-      "actualPage": "article-hugo.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "tag-1.html",
-      "theme": "light",
-      "actualPage": "tag-1.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-3.html",
-      "theme": "light",
-      "actualPage": "tag-3.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-4.html",
-      "theme": "light",
-      "actualPage": "tag-4.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-5.html",
-      "theme": "light",
-      "actualPage": "tag-5.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-7.html",
-      "theme": "light",
-      "actualPage": "tag-7.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-8.html",
-      "theme": "light",
-      "actualPage": "tag-8.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-10.html",
-      "theme": "light",
-      "actualPage": "tag-10.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-11.html",
-      "theme": "light",
-      "actualPage": "tag-11.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-2.html",
-      "theme": "light",
-      "actualPage": "tag-2.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-9.html",
-      "theme": "light",
-      "actualPage": "tag-9.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "category-2.html",
-      "theme": "light",
-      "actualPage": "category-2.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "article-bgm.html",
-      "theme": "light",
-      "actualPage": "article-bgm.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "article-pasmo.html",
-      "theme": "light",
-      "actualPage": "article-pasmo.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "index.html",
-      "theme": "light",
-      "actualPage": "index.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "home.html",
-      "theme": "dark",
-      "actualPage": "home.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "article.html",
-      "theme": "dark",
-      "actualPage": "article.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "about.html",
-      "theme": "dark",
-      "actualPage": "about.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "posts.html",
-      "theme": "dark",
-      "actualPage": "posts.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "tags.html",
-      "theme": "dark",
-      "actualPage": "tags.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "categories.html",
-      "theme": "dark",
-      "actualPage": "categories.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-6.html",
-      "theme": "dark",
-      "actualPage": "tag-6.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "category-1.html",
-      "theme": "dark",
-      "actualPage": "category-1.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "archives.html",
-      "theme": "dark",
-      "actualPage": "archives.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "404.html",
-      "theme": "dark",
-      "actualPage": "404.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "specimen.html",
-      "theme": "dark",
-      "actualPage": "specimen.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "article-diary.html",
-      "theme": "dark",
-      "actualPage": "article-diary.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "home-2.html",
-      "theme": "dark",
-      "actualPage": "home-2.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "home-3.html",
-      "theme": "dark",
-      "actualPage": "home-3.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "posts-2.html",
-      "theme": "dark",
-      "actualPage": "posts-2.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "posts-3.html",
-      "theme": "dark",
-      "actualPage": "posts-3.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "empty.html",
-      "theme": "dark",
-      "actualPage": "empty.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "single-item.html",
-      "theme": "dark",
-      "actualPage": "single-item.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "article-hugo.html",
-      "theme": "dark",
-      "actualPage": "article-hugo.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "tag-1.html",
-      "theme": "dark",
-      "actualPage": "tag-1.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-3.html",
-      "theme": "dark",
-      "actualPage": "tag-3.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-4.html",
-      "theme": "dark",
-      "actualPage": "tag-4.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-5.html",
-      "theme": "dark",
-      "actualPage": "tag-5.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-7.html",
-      "theme": "dark",
-      "actualPage": "tag-7.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-8.html",
-      "theme": "dark",
-      "actualPage": "tag-8.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-10.html",
-      "theme": "dark",
-      "actualPage": "tag-10.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-11.html",
-      "theme": "dark",
-      "actualPage": "tag-11.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-2.html",
-      "theme": "dark",
-      "actualPage": "tag-2.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "tag-9.html",
-      "theme": "dark",
-      "actualPage": "tag-9.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 360,
-      "contentWidth": 320,
-      "offscreen": [],
-      "scrollWidth": 360,
-      "width": 360
-    },
-    {
-      "page": "category-2.html",
-      "theme": "dark",
-      "actualPage": "category-2.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "article-bgm.html",
-      "theme": "dark",
-      "actualPage": "article-bgm.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "article-pasmo.html",
-      "theme": "dark",
-      "actualPage": "article-pasmo.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "index.html",
-      "theme": "dark",
-      "actualPage": "index.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 345,
-      "contentWidth": 305,
-      "offscreen": [],
-      "scrollWidth": 345,
-      "width": 360
-    },
-    {
-      "page": "home.html",
-      "theme": "light",
-      "actualPage": "home.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "article.html",
-      "theme": "light",
-      "actualPage": "article.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "about.html",
-      "theme": "light",
-      "actualPage": "about.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "posts.html",
-      "theme": "light",
-      "actualPage": "posts.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "tags.html",
-      "theme": "light",
-      "actualPage": "tags.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "categories.html",
-      "theme": "light",
-      "actualPage": "categories.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-6.html",
-      "theme": "light",
-      "actualPage": "tag-6.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "category-1.html",
-      "theme": "light",
-      "actualPage": "category-1.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "archives.html",
-      "theme": "light",
-      "actualPage": "archives.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "404.html",
-      "theme": "light",
-      "actualPage": "404.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "specimen.html",
-      "theme": "light",
-      "actualPage": "specimen.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "article-diary.html",
-      "theme": "light",
-      "actualPage": "article-diary.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "home-2.html",
-      "theme": "light",
-      "actualPage": "home-2.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "home-3.html",
-      "theme": "light",
-      "actualPage": "home-3.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "posts-2.html",
-      "theme": "light",
-      "actualPage": "posts-2.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "posts-3.html",
-      "theme": "light",
-      "actualPage": "posts-3.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "empty.html",
-      "theme": "light",
-      "actualPage": "empty.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "single-item.html",
-      "theme": "light",
-      "actualPage": "single-item.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "article-hugo.html",
-      "theme": "light",
-      "actualPage": "article-hugo.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "tag-1.html",
-      "theme": "light",
-      "actualPage": "tag-1.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-3.html",
-      "theme": "light",
-      "actualPage": "tag-3.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-4.html",
-      "theme": "light",
-      "actualPage": "tag-4.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-5.html",
-      "theme": "light",
-      "actualPage": "tag-5.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-7.html",
-      "theme": "light",
-      "actualPage": "tag-7.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-8.html",
-      "theme": "light",
-      "actualPage": "tag-8.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-10.html",
-      "theme": "light",
-      "actualPage": "tag-10.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-11.html",
-      "theme": "light",
-      "actualPage": "tag-11.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-2.html",
-      "theme": "light",
-      "actualPage": "tag-2.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-9.html",
-      "theme": "light",
-      "actualPage": "tag-9.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "category-2.html",
-      "theme": "light",
-      "actualPage": "category-2.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "article-bgm.html",
-      "theme": "light",
-      "actualPage": "article-bgm.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "article-pasmo.html",
-      "theme": "light",
-      "actualPage": "article-pasmo.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "index.html",
-      "theme": "light",
-      "actualPage": "index.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "home.html",
-      "theme": "dark",
-      "actualPage": "home.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "article.html",
-      "theme": "dark",
-      "actualPage": "article.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "about.html",
-      "theme": "dark",
-      "actualPage": "about.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "posts.html",
-      "theme": "dark",
-      "actualPage": "posts.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "tags.html",
-      "theme": "dark",
-      "actualPage": "tags.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "categories.html",
-      "theme": "dark",
-      "actualPage": "categories.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-6.html",
-      "theme": "dark",
-      "actualPage": "tag-6.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "category-1.html",
-      "theme": "dark",
-      "actualPage": "category-1.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "archives.html",
-      "theme": "dark",
-      "actualPage": "archives.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "404.html",
-      "theme": "dark",
-      "actualPage": "404.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "specimen.html",
-      "theme": "dark",
-      "actualPage": "specimen.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "article-diary.html",
-      "theme": "dark",
-      "actualPage": "article-diary.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "home-2.html",
-      "theme": "dark",
-      "actualPage": "home-2.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "home-3.html",
-      "theme": "dark",
-      "actualPage": "home-3.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "posts-2.html",
-      "theme": "dark",
-      "actualPage": "posts-2.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "posts-3.html",
-      "theme": "dark",
-      "actualPage": "posts-3.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "empty.html",
-      "theme": "dark",
-      "actualPage": "empty.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "single-item.html",
-      "theme": "dark",
-      "actualPage": "single-item.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "article-hugo.html",
-      "theme": "dark",
-      "actualPage": "article-hugo.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "tag-1.html",
-      "theme": "dark",
-      "actualPage": "tag-1.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-3.html",
-      "theme": "dark",
-      "actualPage": "tag-3.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-4.html",
-      "theme": "dark",
-      "actualPage": "tag-4.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-5.html",
-      "theme": "dark",
-      "actualPage": "tag-5.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-7.html",
-      "theme": "dark",
-      "actualPage": "tag-7.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-8.html",
-      "theme": "dark",
-      "actualPage": "tag-8.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-10.html",
-      "theme": "dark",
-      "actualPage": "tag-10.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-11.html",
-      "theme": "dark",
-      "actualPage": "tag-11.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-2.html",
-      "theme": "dark",
-      "actualPage": "tag-2.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "tag-9.html",
-      "theme": "dark",
-      "actualPage": "tag-9.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400
-    },
-    {
-      "page": "category-2.html",
-      "theme": "dark",
-      "actualPage": "category-2.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "article-bgm.html",
-      "theme": "dark",
-      "actualPage": "article-bgm.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "article-pasmo.html",
-      "theme": "dark",
-      "actualPage": "article-pasmo.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "index.html",
-      "theme": "dark",
-      "actualPage": "index.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400
-    },
-    {
-      "page": "home.html",
-      "theme": "light",
-      "actualPage": "home.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "article.html",
-      "theme": "light",
-      "actualPage": "article.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "about.html",
-      "theme": "light",
-      "actualPage": "about.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "posts.html",
-      "theme": "light",
-      "actualPage": "posts.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tags.html",
-      "theme": "light",
-      "actualPage": "tags.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "categories.html",
-      "theme": "light",
-      "actualPage": "categories.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "tag-6.html",
-      "theme": "light",
-      "actualPage": "tag-6.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "category-1.html",
-      "theme": "light",
-      "actualPage": "category-1.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "archives.html",
-      "theme": "light",
-      "actualPage": "archives.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "404.html",
-      "theme": "light",
-      "actualPage": "404.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "specimen.html",
-      "theme": "light",
-      "actualPage": "specimen.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "article-diary.html",
-      "theme": "light",
-      "actualPage": "article-diary.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "home-2.html",
-      "theme": "light",
-      "actualPage": "home-2.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "home-3.html",
-      "theme": "light",
-      "actualPage": "home-3.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "posts-2.html",
-      "theme": "light",
-      "actualPage": "posts-2.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "posts-3.html",
-      "theme": "light",
-      "actualPage": "posts-3.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "empty.html",
-      "theme": "light",
-      "actualPage": "empty.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "single-item.html",
-      "theme": "light",
-      "actualPage": "single-item.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "article-hugo.html",
-      "theme": "light",
-      "actualPage": "article-hugo.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-1.html",
-      "theme": "light",
-      "actualPage": "tag-1.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-3.html",
-      "theme": "light",
-      "actualPage": "tag-3.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-4.html",
-      "theme": "light",
-      "actualPage": "tag-4.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-5.html",
-      "theme": "light",
-      "actualPage": "tag-5.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-7.html",
-      "theme": "light",
-      "actualPage": "tag-7.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-8.html",
-      "theme": "light",
-      "actualPage": "tag-8.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-10.html",
-      "theme": "light",
-      "actualPage": "tag-10.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-11.html",
-      "theme": "light",
-      "actualPage": "tag-11.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-2.html",
-      "theme": "light",
-      "actualPage": "tag-2.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "tag-9.html",
-      "theme": "light",
-      "actualPage": "tag-9.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "category-2.html",
-      "theme": "light",
-      "actualPage": "category-2.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "article-bgm.html",
-      "theme": "light",
-      "actualPage": "article-bgm.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "article-pasmo.html",
-      "theme": "light",
-      "actualPage": "article-pasmo.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "index.html",
-      "theme": "light",
-      "actualPage": "index.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "home.html",
-      "theme": "dark",
-      "actualPage": "home.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "article.html",
-      "theme": "dark",
-      "actualPage": "article.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "about.html",
-      "theme": "dark",
-      "actualPage": "about.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "posts.html",
-      "theme": "dark",
-      "actualPage": "posts.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tags.html",
-      "theme": "dark",
-      "actualPage": "tags.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "categories.html",
-      "theme": "dark",
-      "actualPage": "categories.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "tag-6.html",
-      "theme": "dark",
-      "actualPage": "tag-6.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "category-1.html",
-      "theme": "dark",
-      "actualPage": "category-1.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "archives.html",
-      "theme": "dark",
-      "actualPage": "archives.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "404.html",
-      "theme": "dark",
-      "actualPage": "404.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "specimen.html",
-      "theme": "dark",
-      "actualPage": "specimen.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "article-diary.html",
-      "theme": "dark",
-      "actualPage": "article-diary.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "home-2.html",
-      "theme": "dark",
-      "actualPage": "home-2.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "home-3.html",
-      "theme": "dark",
-      "actualPage": "home-3.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "posts-2.html",
-      "theme": "dark",
-      "actualPage": "posts-2.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "posts-3.html",
-      "theme": "dark",
-      "actualPage": "posts-3.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "empty.html",
-      "theme": "dark",
-      "actualPage": "empty.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "single-item.html",
-      "theme": "dark",
-      "actualPage": "single-item.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "article-hugo.html",
-      "theme": "dark",
-      "actualPage": "article-hugo.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-1.html",
-      "theme": "dark",
-      "actualPage": "tag-1.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-3.html",
-      "theme": "dark",
-      "actualPage": "tag-3.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-4.html",
-      "theme": "dark",
-      "actualPage": "tag-4.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-5.html",
-      "theme": "dark",
-      "actualPage": "tag-5.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-7.html",
-      "theme": "dark",
-      "actualPage": "tag-7.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-8.html",
-      "theme": "dark",
-      "actualPage": "tag-8.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-10.html",
-      "theme": "dark",
-      "actualPage": "tag-10.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-11.html",
-      "theme": "dark",
-      "actualPage": "tag-11.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "tag-2.html",
-      "theme": "dark",
-      "actualPage": "tag-2.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "tag-9.html",
-      "theme": "dark",
-      "actualPage": "tag-9.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768
-    },
-    {
-      "page": "category-2.html",
-      "theme": "dark",
-      "actualPage": "category-2.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "article-bgm.html",
-      "theme": "dark",
-      "actualPage": "article-bgm.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "article-pasmo.html",
-      "theme": "dark",
-      "actualPage": "article-pasmo.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "index.html",
-      "theme": "dark",
-      "actualPage": "index.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768
-    },
-    {
-      "page": "home.html",
-      "theme": "light",
-      "actualPage": "home.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "article.html",
-      "theme": "light",
-      "actualPage": "article.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "about.html",
-      "theme": "light",
-      "actualPage": "about.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "posts.html",
-      "theme": "light",
-      "actualPage": "posts.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tags.html",
-      "theme": "light",
-      "actualPage": "tags.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "categories.html",
-      "theme": "light",
-      "actualPage": "categories.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "tag-6.html",
-      "theme": "light",
-      "actualPage": "tag-6.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "category-1.html",
-      "theme": "light",
-      "actualPage": "category-1.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "archives.html",
-      "theme": "light",
-      "actualPage": "archives.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "404.html",
-      "theme": "light",
-      "actualPage": "404.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "specimen.html",
-      "theme": "light",
-      "actualPage": "specimen.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "article-diary.html",
-      "theme": "light",
-      "actualPage": "article-diary.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "home-2.html",
-      "theme": "light",
-      "actualPage": "home-2.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "home-3.html",
-      "theme": "light",
-      "actualPage": "home-3.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "posts-2.html",
-      "theme": "light",
-      "actualPage": "posts-2.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "posts-3.html",
-      "theme": "light",
-      "actualPage": "posts-3.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "empty.html",
-      "theme": "light",
-      "actualPage": "empty.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "single-item.html",
-      "theme": "light",
-      "actualPage": "single-item.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "article-hugo.html",
-      "theme": "light",
-      "actualPage": "article-hugo.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-1.html",
-      "theme": "light",
-      "actualPage": "tag-1.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-3.html",
-      "theme": "light",
-      "actualPage": "tag-3.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-4.html",
-      "theme": "light",
-      "actualPage": "tag-4.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-5.html",
-      "theme": "light",
-      "actualPage": "tag-5.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-7.html",
-      "theme": "light",
-      "actualPage": "tag-7.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-8.html",
-      "theme": "light",
-      "actualPage": "tag-8.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-10.html",
-      "theme": "light",
-      "actualPage": "tag-10.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-11.html",
-      "theme": "light",
-      "actualPage": "tag-11.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-2.html",
-      "theme": "light",
-      "actualPage": "tag-2.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "tag-9.html",
-      "theme": "light",
-      "actualPage": "tag-9.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "category-2.html",
-      "theme": "light",
-      "actualPage": "category-2.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "article-bgm.html",
-      "theme": "light",
-      "actualPage": "article-bgm.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "article-pasmo.html",
-      "theme": "light",
-      "actualPage": "article-pasmo.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "index.html",
-      "theme": "light",
-      "actualPage": "index.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "home.html",
-      "theme": "dark",
-      "actualPage": "home.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "article.html",
-      "theme": "dark",
-      "actualPage": "article.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "about.html",
-      "theme": "dark",
-      "actualPage": "about.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "posts.html",
-      "theme": "dark",
-      "actualPage": "posts.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tags.html",
-      "theme": "dark",
-      "actualPage": "tags.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "categories.html",
-      "theme": "dark",
-      "actualPage": "categories.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "tag-6.html",
-      "theme": "dark",
-      "actualPage": "tag-6.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "category-1.html",
-      "theme": "dark",
-      "actualPage": "category-1.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "archives.html",
-      "theme": "dark",
-      "actualPage": "archives.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "404.html",
-      "theme": "dark",
-      "actualPage": "404.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "specimen.html",
-      "theme": "dark",
-      "actualPage": "specimen.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "article-diary.html",
-      "theme": "dark",
-      "actualPage": "article-diary.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "home-2.html",
-      "theme": "dark",
-      "actualPage": "home-2.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "home-3.html",
-      "theme": "dark",
-      "actualPage": "home-3.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "posts-2.html",
-      "theme": "dark",
-      "actualPage": "posts-2.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "posts-3.html",
-      "theme": "dark",
-      "actualPage": "posts-3.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "empty.html",
-      "theme": "dark",
-      "actualPage": "empty.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "single-item.html",
-      "theme": "dark",
-      "actualPage": "single-item.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "article-hugo.html",
-      "theme": "dark",
-      "actualPage": "article-hugo.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-1.html",
-      "theme": "dark",
-      "actualPage": "tag-1.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-3.html",
-      "theme": "dark",
-      "actualPage": "tag-3.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-4.html",
-      "theme": "dark",
-      "actualPage": "tag-4.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-5.html",
-      "theme": "dark",
-      "actualPage": "tag-5.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-7.html",
-      "theme": "dark",
-      "actualPage": "tag-7.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-8.html",
-      "theme": "dark",
-      "actualPage": "tag-8.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-10.html",
-      "theme": "dark",
-      "actualPage": "tag-10.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-11.html",
-      "theme": "dark",
-      "actualPage": "tag-11.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "tag-2.html",
-      "theme": "dark",
-      "actualPage": "tag-2.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "tag-9.html",
-      "theme": "dark",
-      "actualPage": "tag-9.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280
-    },
-    {
-      "page": "category-2.html",
-      "theme": "dark",
-      "actualPage": "category-2.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "article-bgm.html",
-      "theme": "dark",
-      "actualPage": "article-bgm.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "article-pasmo.html",
-      "theme": "dark",
-      "actualPage": "article-pasmo.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
-    },
-    {
-      "page": "index.html",
-      "theme": "dark",
-      "actualPage": "index.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280
+  "method": "Read-only DOM geometry and computed-style measurements through Chrome skill; per-condition aggregates below. Explicit CSS root-scale test builds, not browser font preferences or native zoom.",
+  "baselineRoutes": [
+    "index.html",
+    "home.html",
+    "article.html",
+    "about.html",
+    "posts.html",
+    "tags.html",
+    "categories.html",
+    "tag-6.html",
+    "category-1.html",
+    "archives.html",
+    "404.html",
+    "specimen.html",
+    "article-diary.html",
+    "home-2.html",
+    "home-3.html",
+    "posts-2.html",
+    "posts-3.html",
+    "empty.html",
+    "single-item.html",
+    "article-hugo.html",
+    "tag-1.html",
+    "tag-3.html",
+    "tag-4.html",
+    "tag-5.html",
+    "tag-7.html",
+    "tag-8.html",
+    "tag-10.html",
+    "tag-11.html",
+    "tag-2.html",
+    "tag-9.html",
+    "category-2.html",
+    "article-bgm.html",
+    "article-pasmo.html"
+  ],
+  "stressRoutes": [
+    "index.html",
+    "home.html",
+    "article.html",
+    "about.html",
+    "posts-2.html",
+    "tags.html",
+    "categories.html",
+    "archives.html",
+    "404.html",
+    "specimen.html"
+  ],
+  "summary": {
+    "total": 490,
+    "layoutIssues": [],
+    "ratioIssues": []
+  },
+  "groups": [
+    {
+      "scale": 1,
+      "width": 320,
+      "theme": "light",
+      "pages": 33,
+      "root": [
+        16
+      ],
+      "body": [
+        16
+      ],
+      "title": [
+        25.6
+      ],
+      "site": [
+        32
+      ],
+      "code": [
+        14
+      ],
+      "scroll": [
+        320
+      ]
+    },
+    {
+      "scale": 1,
+      "width": 320,
+      "theme": "dark",
+      "pages": 33,
+      "root": [
+        16
+      ],
+      "body": [
+        16
+      ],
+      "title": [
+        25.6
+      ],
+      "site": [
+        32
+      ],
+      "code": [
+        14
+      ],
+      "scroll": [
+        320
+      ]
+    },
+    {
+      "scale": 1,
+      "width": 360,
+      "theme": "light",
+      "pages": 33,
+      "root": [
+        16
+      ],
+      "body": [
+        16
+      ],
+      "title": [
+        25.6
+      ],
+      "site": [
+        32
+      ],
+      "code": [
+        14
+      ],
+      "scroll": [
+        360
+      ]
+    },
+    {
+      "scale": 1,
+      "width": 360,
+      "theme": "dark",
+      "pages": 33,
+      "root": [
+        16
+      ],
+      "body": [
+        16
+      ],
+      "title": [
+        25.6
+      ],
+      "site": [
+        32
+      ],
+      "code": [
+        14
+      ],
+      "scroll": [
+        360
+      ]
+    },
+    {
+      "scale": 1,
+      "width": 400,
+      "theme": "light",
+      "pages": 33,
+      "root": [
+        16
+      ],
+      "body": [
+        16
+      ],
+      "title": [
+        25.6
+      ],
+      "site": [
+        32
+      ],
+      "code": [
+        14
+      ],
+      "scroll": [
+        400
+      ]
+    },
+    {
+      "scale": 1,
+      "width": 400,
+      "theme": "dark",
+      "pages": 33,
+      "root": [
+        16
+      ],
+      "body": [
+        16
+      ],
+      "title": [
+        25.6
+      ],
+      "site": [
+        32
+      ],
+      "code": [
+        14
+      ],
+      "scroll": [
+        400
+      ]
+    },
+    {
+      "scale": 1,
+      "width": 768,
+      "theme": "light",
+      "pages": 33,
+      "root": [
+        17
+      ],
+      "body": [
+        17
+      ],
+      "title": [
+        27.2
+      ],
+      "site": [
+        34
+      ],
+      "code": [
+        14.875
+      ],
+      "scroll": [
+        768
+      ]
+    },
+    {
+      "scale": 1,
+      "width": 768,
+      "theme": "dark",
+      "pages": 33,
+      "root": [
+        17
+      ],
+      "body": [
+        17
+      ],
+      "title": [
+        27.2
+      ],
+      "site": [
+        34
+      ],
+      "code": [
+        14.875
+      ],
+      "scroll": [
+        768
+      ]
+    },
+    {
+      "scale": 1,
+      "width": 1280,
+      "theme": "light",
+      "pages": 33,
+      "root": [
+        17
+      ],
+      "body": [
+        17
+      ],
+      "title": [
+        27.2
+      ],
+      "site": [
+        34
+      ],
+      "code": [
+        14.875
+      ],
+      "scroll": [
+        1280
+      ]
+    },
+    {
+      "scale": 1,
+      "width": 1280,
+      "theme": "dark",
+      "pages": 33,
+      "root": [
+        17
+      ],
+      "body": [
+        17
+      ],
+      "title": [
+        27.2
+      ],
+      "site": [
+        34
+      ],
+      "code": [
+        14.875
+      ],
+      "scroll": [
+        1280
+      ]
+    },
+    {
+      "scale": 1.25,
+      "width": 320,
+      "theme": "light",
+      "pages": 10,
+      "root": [
+        20
+      ],
+      "body": [
+        20
+      ],
+      "title": [
+        32
+      ],
+      "site": [
+        40
+      ],
+      "code": [
+        17.5
+      ],
+      "scroll": [
+        320
+      ]
+    },
+    {
+      "scale": 1.25,
+      "width": 320,
+      "theme": "dark",
+      "pages": 10,
+      "root": [
+        20
+      ],
+      "body": [
+        20
+      ],
+      "title": [
+        32
+      ],
+      "site": [
+        40
+      ],
+      "code": [
+        17.5
+      ],
+      "scroll": [
+        320
+      ]
+    },
+    {
+      "scale": 1.25,
+      "width": 400,
+      "theme": "light",
+      "pages": 10,
+      "root": [
+        20
+      ],
+      "body": [
+        20
+      ],
+      "title": [
+        32
+      ],
+      "site": [
+        40
+      ],
+      "code": [
+        17.5
+      ],
+      "scroll": [
+        400
+      ]
+    },
+    {
+      "scale": 1.25,
+      "width": 400,
+      "theme": "dark",
+      "pages": 10,
+      "root": [
+        20
+      ],
+      "body": [
+        20
+      ],
+      "title": [
+        32
+      ],
+      "site": [
+        40
+      ],
+      "code": [
+        17.5
+      ],
+      "scroll": [
+        400
+      ]
+    },
+    {
+      "scale": 1.25,
+      "width": 768,
+      "theme": "light",
+      "pages": 10,
+      "root": [
+        21.25
+      ],
+      "body": [
+        21.25
+      ],
+      "title": [
+        34
+      ],
+      "site": [
+        42.5
+      ],
+      "code": [
+        18.5938
+      ],
+      "scroll": [
+        768
+      ]
+    },
+    {
+      "scale": 1.25,
+      "width": 768,
+      "theme": "dark",
+      "pages": 10,
+      "root": [
+        21.25
+      ],
+      "body": [
+        21.25
+      ],
+      "title": [
+        34
+      ],
+      "site": [
+        42.5
+      ],
+      "code": [
+        18.5938
+      ],
+      "scroll": [
+        768
+      ]
+    },
+    {
+      "scale": 1.25,
+      "width": 1280,
+      "theme": "light",
+      "pages": 10,
+      "root": [
+        21.25
+      ],
+      "body": [
+        21.25
+      ],
+      "title": [
+        34
+      ],
+      "site": [
+        42.5
+      ],
+      "code": [
+        18.5938
+      ],
+      "scroll": [
+        1280
+      ]
+    },
+    {
+      "scale": 1.25,
+      "width": 1280,
+      "theme": "dark",
+      "pages": 10,
+      "root": [
+        21.25
+      ],
+      "body": [
+        21.25
+      ],
+      "title": [
+        34
+      ],
+      "site": [
+        42.5
+      ],
+      "code": [
+        18.5938
+      ],
+      "scroll": [
+        1280
+      ]
+    },
+    {
+      "scale": 2,
+      "width": 320,
+      "theme": "light",
+      "pages": 10,
+      "root": [
+        32
+      ],
+      "body": [
+        32
+      ],
+      "title": [
+        51.2
+      ],
+      "site": [
+        64
+      ],
+      "code": [
+        28
+      ],
+      "scroll": [
+        320
+      ]
+    },
+    {
+      "scale": 2,
+      "width": 320,
+      "theme": "dark",
+      "pages": 10,
+      "root": [
+        32
+      ],
+      "body": [
+        32
+      ],
+      "title": [
+        51.2
+      ],
+      "site": [
+        64
+      ],
+      "code": [
+        28
+      ],
+      "scroll": [
+        320
+      ]
+    },
+    {
+      "scale": 2,
+      "width": 400,
+      "theme": "light",
+      "pages": 10,
+      "root": [
+        32
+      ],
+      "body": [
+        32
+      ],
+      "title": [
+        51.2
+      ],
+      "site": [
+        64
+      ],
+      "code": [
+        28
+      ],
+      "scroll": [
+        400
+      ]
+    },
+    {
+      "scale": 2,
+      "width": 400,
+      "theme": "dark",
+      "pages": 10,
+      "root": [
+        32
+      ],
+      "body": [
+        32
+      ],
+      "title": [
+        51.2
+      ],
+      "site": [
+        64
+      ],
+      "code": [
+        28
+      ],
+      "scroll": [
+        400
+      ]
+    },
+    {
+      "scale": 2,
+      "width": 768,
+      "theme": "light",
+      "pages": 10,
+      "root": [
+        34
+      ],
+      "body": [
+        34
+      ],
+      "title": [
+        54.4
+      ],
+      "site": [
+        68
+      ],
+      "code": [
+        29.75
+      ],
+      "scroll": [
+        768
+      ]
+    },
+    {
+      "scale": 2,
+      "width": 768,
+      "theme": "dark",
+      "pages": 10,
+      "root": [
+        34
+      ],
+      "body": [
+        34
+      ],
+      "title": [
+        54.4
+      ],
+      "site": [
+        68
+      ],
+      "code": [
+        29.75
+      ],
+      "scroll": [
+        768
+      ]
+    },
+    {
+      "scale": 2,
+      "width": 1280,
+      "theme": "light",
+      "pages": 10,
+      "root": [
+        34
+      ],
+      "body": [
+        34
+      ],
+      "title": [
+        54.4
+      ],
+      "site": [
+        68
+      ],
+      "code": [
+        29.75
+      ],
+      "scroll": [
+        1280
+      ]
+    },
+    {
+      "scale": 2,
+      "width": 1280,
+      "theme": "dark",
+      "pages": 10,
+      "root": [
+        34
+      ],
+      "body": [
+        34
+      ],
+      "title": [
+        54.4
+      ],
+      "site": [
+        68
+      ],
+      "code": [
+        29.75
+      ],
+      "scroll": [
+        1280
+      ]
     }
   ],
-  "variants": [
-    {
-      "page": "home.html",
-      "theme": "light",
-      "actualPage": "home.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320,
-      "coverAbove": true,
-      "coverHeight": 139,
-      "coverWidth": 265,
-      "footer": "center",
-      "headerPadding": "40px",
-      "siteSize": "30px"
+  "ratioTolerance": 0.001,
+  "interaction": {
+    "scale": 2,
+    "width": 320,
+    "page": "specimen.html?theme=light&copy=failure",
+    "action": "Clicked first Copy code button",
+    "result": "Copy failed",
+    "button": {
+      "clientWidth": 154,
+      "scrollWidth": 154,
+      "clientHeight": 72,
+      "scrollHeight": 72
     },
-    {
-      "page": "article.html",
-      "theme": "light",
-      "actualPage": "article.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320,
-      "coverAbove": null,
-      "coverHeight": null,
-      "coverWidth": null,
-      "footer": "center",
-      "headerPadding": "40px",
-      "siteSize": "30px"
-    },
-    {
-      "page": "404.html",
-      "theme": "light",
-      "actualPage": "404.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320,
-      "coverAbove": null,
-      "coverHeight": null,
-      "coverWidth": null,
-      "footer": "center",
-      "headerPadding": "40px",
-      "siteSize": "30px"
-    },
-    {
-      "page": "home.html",
-      "theme": "dark",
-      "actualPage": "home.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320,
-      "coverAbove": true,
-      "coverHeight": 139,
-      "coverWidth": 265,
-      "footer": "center",
-      "headerPadding": "40px",
-      "siteSize": "30px"
-    },
-    {
-      "page": "article.html",
-      "theme": "dark",
-      "actualPage": "article.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 305,
-      "contentWidth": 265,
-      "offscreen": [],
-      "scrollWidth": 305,
-      "width": 320,
-      "coverAbove": null,
-      "coverHeight": null,
-      "coverWidth": null,
-      "footer": "center",
-      "headerPadding": "40px",
-      "siteSize": "30px"
-    },
-    {
-      "page": "404.html",
-      "theme": "dark",
-      "actualPage": "404.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 320,
-      "contentWidth": 280,
-      "offscreen": [],
-      "scrollWidth": 320,
-      "width": 320,
-      "coverAbove": null,
-      "coverHeight": null,
-      "coverWidth": null,
-      "footer": "center",
-      "headerPadding": "40px",
-      "siteSize": "30px"
-    },
-    {
-      "page": "home.html",
-      "theme": "light",
-      "actualPage": "home.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400,
-      "coverAbove": true,
-      "coverHeight": 181,
-      "coverWidth": 345,
-      "footer": "center",
-      "headerPadding": "40px",
-      "siteSize": "30px"
-    },
-    {
-      "page": "article.html",
-      "theme": "light",
-      "actualPage": "article.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400,
-      "coverAbove": null,
-      "coverHeight": null,
-      "coverWidth": null,
-      "footer": "center",
-      "headerPadding": "40px",
-      "siteSize": "30px"
-    },
-    {
-      "page": "404.html",
-      "theme": "light",
-      "actualPage": "404.html",
-      "actualTheme": "light",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400,
-      "coverAbove": null,
-      "coverHeight": null,
-      "coverWidth": null,
-      "footer": "center",
-      "headerPadding": "40px",
-      "siteSize": "30px"
-    },
-    {
-      "page": "home.html",
-      "theme": "dark",
-      "actualPage": "home.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400,
-      "coverAbove": true,
-      "coverHeight": 181,
-      "coverWidth": 345,
-      "footer": "center",
-      "headerPadding": "40px",
-      "siteSize": "30px"
-    },
-    {
-      "page": "article.html",
-      "theme": "dark",
-      "actualPage": "article.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 385,
-      "contentWidth": 345,
-      "offscreen": [],
-      "scrollWidth": 385,
-      "width": 400,
-      "coverAbove": null,
-      "coverHeight": null,
-      "coverWidth": null,
-      "footer": "center",
-      "headerPadding": "40px",
-      "siteSize": "30px"
-    },
-    {
-      "page": "404.html",
-      "theme": "dark",
-      "actualPage": "404.html",
-      "actualTheme": "dark",
-      "bodySize": "16px",
-      "brokenImages": [],
-      "clientWidth": 400,
-      "contentWidth": 360,
-      "offscreen": [],
-      "scrollWidth": 400,
-      "width": 400,
-      "coverAbove": null,
-      "coverHeight": null,
-      "coverWidth": null,
-      "footer": "center",
-      "headerPadding": "40px",
-      "siteSize": "30px"
-    },
-    {
-      "page": "home.html",
-      "theme": "light",
-      "actualPage": "home.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768,
-      "coverAbove": true,
-      "coverHeight": 370,
-      "coverWidth": 705,
-      "footer": "center",
-      "headerPadding": "64px",
-      "siteSize": "36px"
-    },
-    {
-      "page": "article.html",
-      "theme": "light",
-      "actualPage": "article.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768,
-      "coverAbove": null,
-      "coverHeight": null,
-      "coverWidth": null,
-      "footer": "center",
-      "headerPadding": "64px",
-      "siteSize": "36px"
-    },
-    {
-      "page": "404.html",
-      "theme": "light",
-      "actualPage": "404.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768,
-      "coverAbove": null,
-      "coverHeight": null,
-      "coverWidth": null,
-      "footer": "center",
-      "headerPadding": "64px",
-      "siteSize": "36px"
-    },
-    {
-      "page": "home.html",
-      "theme": "dark",
-      "actualPage": "home.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768,
-      "coverAbove": true,
-      "coverHeight": 370,
-      "coverWidth": 705,
-      "footer": "center",
-      "headerPadding": "64px",
-      "siteSize": "36px"
-    },
-    {
-      "page": "article.html",
-      "theme": "dark",
-      "actualPage": "article.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 753,
-      "contentWidth": 705,
-      "offscreen": [],
-      "scrollWidth": 753,
-      "width": 768,
-      "coverAbove": null,
-      "coverHeight": null,
-      "coverWidth": null,
-      "footer": "center",
-      "headerPadding": "64px",
-      "siteSize": "36px"
-    },
-    {
-      "page": "404.html",
-      "theme": "dark",
-      "actualPage": "404.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 768,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 768,
-      "width": 768,
-      "coverAbove": null,
-      "coverHeight": null,
-      "coverWidth": null,
-      "footer": "center",
-      "headerPadding": "64px",
-      "siteSize": "36px"
-    },
-    {
-      "page": "home.html",
-      "theme": "light",
-      "actualPage": "home.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280,
-      "coverAbove": true,
-      "coverHeight": 378,
-      "coverWidth": 720,
-      "footer": "center",
-      "headerPadding": "64px",
-      "siteSize": "36px"
-    },
-    {
-      "page": "article.html",
-      "theme": "light",
-      "actualPage": "article.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280,
-      "coverAbove": null,
-      "coverHeight": null,
-      "coverWidth": null,
-      "footer": "center",
-      "headerPadding": "64px",
-      "siteSize": "36px"
-    },
-    {
-      "page": "404.html",
-      "theme": "light",
-      "actualPage": "404.html",
-      "actualTheme": "light",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280,
-      "coverAbove": null,
-      "coverHeight": null,
-      "coverWidth": null,
-      "footer": "center",
-      "headerPadding": "64px",
-      "siteSize": "36px"
-    },
-    {
-      "page": "home.html",
-      "theme": "dark",
-      "actualPage": "home.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280,
-      "coverAbove": true,
-      "coverHeight": 378,
-      "coverWidth": 720,
-      "footer": "center",
-      "headerPadding": "64px",
-      "siteSize": "36px"
-    },
-    {
-      "page": "article.html",
-      "theme": "dark",
-      "actualPage": "article.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1265,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1265,
-      "width": 1280,
-      "coverAbove": null,
-      "coverHeight": null,
-      "coverWidth": null,
-      "footer": "center",
-      "headerPadding": "64px",
-      "siteSize": "36px"
-    },
-    {
-      "page": "404.html",
-      "theme": "dark",
-      "actualPage": "404.html",
-      "actualTheme": "dark",
-      "bodySize": "17px",
-      "brokenImages": [],
-      "clientWidth": 1280,
-      "contentWidth": 720,
-      "offscreen": [],
-      "scrollWidth": 1280,
-      "width": 1280,
-      "coverAbove": null,
-      "coverHeight": null,
-      "coverWidth": null,
-      "footer": "center",
-      "headerPadding": "64px",
-      "siteSize": "36px"
+    "inlineProbe": {
+      "lineHeight": "60.8px",
+      "withPaddingHeight": 425.578125,
+      "withoutPaddingHeight": 364.78125,
+      "note": "Extra wrapping at narrow width differs with padding; line-height unchanged."
     }
+  },
+  "visualChecks": [
+    "400px light article header, cover and prose",
+    "320px light 2x code toolbar showing Copy failed without clipping"
   ],
-  "interactions": {
-    "summaryClick": "Navigated from home summary to article.html; comparison parameters retained",
-    "archiveDateClick": "Navigated from the date to article.html",
-    "bodyLinkHover": {
-      "before": "rgb(76, 79, 105)",
-      "after": "rgb(76, 79, 105)",
-      "underline": "underline"
-    },
-    "themeButtonHover": {
-      "before": "rgba(0, 0, 0, 0)",
-      "after": "rgba(0, 0, 0, 0)"
-    },
-    "keyboardFocus": "2px blue outline preserved",
-    "copy": {
-      "success": "Copied",
-      "reset": "Copy; enabled",
-      "resetMs": 3000,
-      "heightBefore": 160,
-      "heightAfter": 160,
-      "failure": "Copy failed; enabled",
-      "visibleFooterMessage": false
-    },
-    "clipboardPaste": "Not reverified: browser-control virtual clipboard had no data. Payload and timer tested with test-copy.mjs.",
-    "inlineBackgrounds": {
-      "light": "#e6e9ef",
-      "dark": "#313244"
-    }
-  }
+  "limitations": [
+    "Actual browser default-font preference change blocked by browser settings access policy; not attempted through alternate mechanisms.",
+    "Root-scale test builds stress layout only; native zoom and actual preference propagation unverified.",
+    "Other OS/browser rendering and WCAG conformance not assessed.",
+    "Broken image check detects completed loads with zero naturalWidth; does not assert all media downloaded."
+  ],
+  "restoration": "Normal build restored; verify.mjs rejects remaining data-text-scale-test markers."
 }

@@ -12,6 +12,12 @@
 | [4. 自作テーマの視覚要件](04-theme-visual-requirements.md) | 合意済みの必須ルール、モックの初期値、代表画面で比較する項目、確認条件 |
 | [5. 静的HTMLモックの比較・検証記録](05-theme-mock-review.md) | モックの構成、採用した初期値、比較結果、Chromeでの検証範囲 |
 | [6. モックレビューの反映と第2案](06-theme-mock-revision.md) | 採用確定項目の固定、新しい比較案、Hugoのコード属性、再検証結果 |
+| [7. 書体・palt・余白の第3案](07-theme-font-and-spacing.md) | サイト名・カバー・フッターの固定、欧文書体の比較、paltの対応確認、余白調整 |
+| [8. Helvetica系の採用とOS別フォールバック](08-theme-font-fallbacks.md) | macOS・Windows・iOS・Androidの提供状況、候補を残す理由、サイト名のAvenir案、インラインコード微調整 |
+| [9. コード用フォントと日本語フォールバック](09-theme-code-fonts.md) | Avenir採用、SF Monoの復帰、WindowsのBIZ UD、Macのヒラギノ明示、等幅性と描画の検証 |
+| [10. 本文・コードの日本語フォント統一](10-theme-unified-japanese-fonts.md) | SFMono-Regular削除、コードのNoto採用、等幅性の整理、確認範囲 |
+| [11. ui-monospaceと標準フォールバック](11-theme-system-monospace.md) | SF Monoの利用方法の再調査、Safariと他ブラウザの差、游ゴシック指定の削除 |
+| [12. 相対サイズへの移行](12-theme-relative-sizing.md) | ルートの割合指定、remとemの使い分け、拡大時の部品、検証範囲 |
 
 ## 調査対象と根拠
 

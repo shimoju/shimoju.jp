@@ -1,0 +1,128 @@
+[
+  {
+    "file": "NotoSansJP-VF.ttf",
+    "sha256": "f4b373b226668ee33a6e54b02823dcd2d1209f17159f777421ae8c2275160369",
+    "faces": [
+      {
+        "family": "Noto Sans JP",
+        "style": "Thin",
+        "postScriptName": "NotoSansJP-Thin",
+        "version": "Version 2.004;hotconv 1.0.118;makeotfexe 2.5.65603",
+        "unitsPerEm": 1000,
+        "nominalAdvancesEm": {
+          "0": 0.521,
+          " ": 0.22,
+          "i": 0.245,
+          "M": 0.77,
+          "W": 0.842,
+          "日": 1,
+          "あ": 1,
+          "カ": 1,
+          "「": 1,
+          "、": 1,
+          "ｱ": 0.5
+        },
+        "outlineTables": [
+          "glyf"
+        ],
+        "bitmapTables": [],
+        "palt": true,
+        "features": {
+          "GPOS": [
+            "halt",
+            "kern",
+            "mark",
+            "palt",
+            "vert",
+            "vhal",
+            "vkrn",
+            "vpal"
+          ],
+          "GSUB": [
+            "aalt",
+            "ccmp",
+            "dlig",
+            "fwid",
+            "hist",
+            "hwid",
+            "jp78",
+            "jp83",
+            "jp90",
+            "liga",
+            "locl",
+            "nlck",
+            "pwid",
+            "ruby",
+            "vert",
+            "vrt2"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "file": "NotoSansCJKjp-Regular.otf",
+    "sha256": "68a3fc98800b2a27b371f2fb79991daf3633bd89309d4ffaa6946fd587f375b5",
+    "faces": [
+      {
+        "family": "Noto Sans CJK JP",
+        "style": "Regular",
+        "postScriptName": "NotoSansCJKjp-Regular",
+        "version": "Version 2.004;hotconv 1.0.118;makeotfexe 2.5.65603",
+        "unitsPerEm": 1000,
+        "nominalAdvancesEm": {
+          "0": 0.555,
+          " ": 0.224,
+          "i": 0.275,
+          "M": 0.812,
+          "W": 0.878,
+          "日": 1,
+          "あ": 1,
+          "カ": 1,
+          "「": 1,
+          "、": 1,
+          "ｱ": 0.5
+        },
+        "outlineTables": [
+          "CFF "
+        ],
+        "bitmapTables": [],
+        "palt": true,
+        "features": {
+          "GPOS": [
+            "halt",
+            "kern",
+            "mark",
+            "palt",
+            "vert",
+            "vhal",
+            "vkrn",
+            "vpal"
+          ],
+          "GSUB": [
+            "aalt",
+            "calt",
+            "ccmp",
+            "dlig",
+            "fwid",
+            "hist",
+            "hwid",
+            "jp78",
+            "jp83",
+            "jp90",
+            "liga",
+            "ljmo",
+            "locl",
+            "nlck",
+            "pwid",
+            "ruby",
+            "tjmo",
+            "vert",
+            "vjmo",
+            "vrt2"
+          ]
+        }
+      }
+    ]
+  }
+]

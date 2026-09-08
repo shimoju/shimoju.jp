@@ -4,6 +4,7 @@
 <header class="site-header shell"><a class="site-name" href="home.html">shimoju.diary</a><nav class="site-nav" lang="en" aria-label="Main navigation"><a href="about.html">About</a><a href="archives.html">Archives</a><a href="categories.html">Categories</a><a href="tags.html">Tags</a><button class="theme-toggle" type="button" lang="en" aria-label="Switch color mode"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.1A8.4 8.4 0 0 1 9.9 4a8.5 8.5 0 1 0 10.2 10.1Z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4.2 4.2l2.1 2.1m11.4 11.4 2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></button></nav></header>
 <main id="main" class="shell" tabindex="-1"><article><header class="article-header"><h1>日本語の技術文書を読むための組版サンプル — 見出し、リンク、表とコードの調和</h1><div class="meta"><span><time datetime="2026-09-05">2026/09/05</time></span><span lang="en">Updated <time datetime="2026-09-06">2026/09/06</time></span></div></header><div class="prose"><p>このページはモックの部品確認用です。実記事とは別に、深い見出しや長い表などの境界条件をまとめています。日本語の文章にRuby、PostgreSQL、HTTP/3、2026年といった英数字が混ざったときも、字面やベースラインが自然につながることを目指します。</p>
 <h2 id="reading">文章とリンクの読みやすさ</h2>
+<p>「日本語」、カタカナ。（括弧の余白）を確認します。本文・見出しは<code>palt</code>を有効にし、欧文のRuby on Rails、HTTP/3と自然につながる組版を比較します。括弧と句読点だけでなく、仮名の字幅も変わり得るため、長文で読み心地を確認してください。</p>
 <p>技術記事では、<a href="https://gohugo.io/documentation/">Hugoのドキュメント</a>、<a href="https://catppuccin.com/palette/">Catppuccinのパレット</a>、<a href="https://docs.ruby-lang.org/ja/">Rubyのリファレンス</a>のように、根拠や背景へのリンクが連続します。リンクを発見できることと、文章全体に落ち着きがあることの両方を確認します。</p>
 <p><code>config.toml</code>を編集して<code>hugo server</code>を実行する。日本語の中に<code>very_long_configuration_identifier_without_spaces</code>が入っても、文章全体の行間は変えません。<strong>大切な語句は太字</strong>にし、<em>補足的な強調</em>も同じ階調で扱います。脚注は本文の流れを妨げない位置に置きます。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <blockquote>
@@ -43,7 +44,12 @@
 </li>
 <li>気になった点をMarkdownに記録する。</li>
 </ol>
+<h3 id="inline-spacing">インラインコードの余白確認</h3>
+<p>上下のpaddingを増やしても、以下の改行位置を揃えた2段落で行送りが変わらないことを確認します。最初が採用案、次がpaddingなしの診断用です。通常の本文には採用案だけを使います。</p>
+<p class="inline-probe">本文と<code>config.toml</code>を読む。<br>本文と<code>日本語の設定</code>を読む。<br>続く行にも十分な余白を残す。</p>
+<p class="inline-probe unpadded">本文と<code>config.toml</code>を読む。<br>本文と<code>日本語の設定</code>を読む。<br>続く行にも十分な余白を残す。</p>
 <h2 id="tables">表と長い識別子</h2>
+<p>ブラウザの既定文字サイズが16pxの場合の換算値です。既定サイズを変えると文字・余白・操作部品も追従し、本文の最大幅720pxは維持します。</p>
 <div class="table-scroll" role="region" aria-label="Table, horizontally scrollable" tabindex="0"><table>
 	<thead>
 			<tr>
@@ -54,9 +60,24 @@
 	</thead>
 	<tbody>
 			<tr>
+					<td>ルート</td>
+					<td>106.25%（17px）</td>
+					<td>100%（16px）</td>
+			</tr>
+			<tr>
 					<td>本文</td>
-					<td>17px</td>
-					<td>16px</td>
+					<td>1rem（17px）</td>
+					<td>1rem（16px）</td>
+			</tr>
+			<tr>
+					<td>記事タイトル</td>
+					<td>1.6rem（27.2px）</td>
+					<td>1.6rem（25.6px）</td>
+			</tr>
+			<tr>
+					<td>サイト名</td>
+					<td>2rem（34px）</td>
+					<td>2rem（32px）</td>
 			</tr>
 			<tr>
 					<td>行高</td>
@@ -65,13 +86,20 @@
 			</tr>
 			<tr>
 					<td>コード</td>
-					<td>14px / 1.5</td>
-					<td>14px / 1.5</td>
+					<td>0.875rem（14.875px） / 1.5</td>
+					<td>0.875rem（14px） / 1.5</td>
 			</tr>
 	</tbody>
 </table></div>
 <div class="table-scroll" role="region" aria-label="Table, horizontally scrollable" tabindex="0"><table class="wide-table"><thead><tr><th scope="col">設定項目</th><th scope="col">識別子</th><th scope="col">内容</th><th scope="col">備考</th></tr></thead><tbody><tr><th scope="row">APIエンドポイント</th><td><code>GET /api/v1/projects/:project_id/deployments</code></td><td>デプロイ履歴の一覧を取得</td><td>ローカルな横スクロールの検証</td></tr><tr><th scope="row">環境変数</th><td><code>APPLICATION_DATABASE_CONNECTION_TIMEOUT</code></td><td>接続を待つ最大時間</td><td>長い英数字を含む表</td></tr></tbody></table></div>
 <h2 id="code">コードと日本語コメント</h2>
+<h3 id="日本語フォールバックの診断">日本語フォールバックの診断</h3>
+<p>上段は採用した指定（ヒラギノ・Notoの候補を明示し、最後はmonospace）、下段は日本語候補を省いた診断用です。Safariでは先頭のui-monospaceによるシステム側の日本語選択が優先される可能性があり、両段が同じ書体になる場合もあります。字幅の測定だけで実際のフォント名を特定するものではありません。</p>
+<div class="font-probe-scroll">
+<p>採用：<code data-code-probe="explicit"><span>日本語あいうえお「設定」、。</span> <span>iiWW00 // config.toml</span></code></p>
+<p>省略：<code class="code-probe-auto" data-code-probe="automatic"><span>日本語あいうえお「設定」、。</span> <span>iiWW00 // config.toml</span></code></p>
+</div>
+<h3 id="複数行とシンタックスハイライト">複数行とシンタックスハイライト</h3>
 <p>行番号なしを基本とし、指定されたブロックだけ行番号と強調行を表示します。配色のトークンとBase背景はHugo付属のCatppuccinから生成しています。</p>
 <div class="code-block">
   <div class="code-toolbar" lang="en"><span class="code-label">RUBY</span><button class="copy" type="button" aria-label="Copy code">Copy</button>
@@ -122,4 +150,4 @@
 </ol>
 </div>
 </div><footer class="article-end"><div class="article-tags" aria-label="Tags"><a href="tag-6.html">#Hugo</a></div><div class="engagement" lang="en"><div class="shares"><button type="button" data-share="X" title="Mock: no external sharing">X</button><button type="button" data-share="Facebook" title="Mock: no external sharing">Facebook</button><button type="button" data-share="Hatena Bookmark" title="Mock: no external sharing">Hatena Bookmark</button></div><button class="hatena-star" type="button" aria-label="Add a Hatena Star (mock)" aria-pressed="false"><span aria-hidden="true">☆</span> Hatena Star</button></div><p class="interaction-note" role="status" aria-live="polite" lang="en"></p><nav class="post-nav" aria-label="Adjacent posts"><a href="article.html"><small lang="en">← Previous post</small>2026年、開発環境を一新した。Ghostty、herdr、Neovim、mise、そして自作Zshプロンプト</a></nav></footer></article></main>
-<footer class="site-footer shell" lang="en"><span>© 2026 Hiroshi Shimoju</span><a href="https://shimoju.jp/index.xml">RSS</a></footer></body></html>
+<footer class="site-footer shell" lang="en"><nav class="footer-links" aria-label="Follow and subscribe"><a href="https://x.com/shimoju_">X</a><a href="https://github.com/shimoju">GitHub</a><a href="https://shimoju.jp/index.xml">RSS</a></nav><span>© 2026 Hiroshi Shimoju</span></footer></body></html>

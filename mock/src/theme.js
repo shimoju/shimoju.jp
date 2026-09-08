@@ -8,10 +8,9 @@
   if (!['light', 'dark'].includes(chosen)) chosen = null;
   const preview = params.get('theme');
   root.dataset.theme = ['light', 'dark'].includes(preview) ? preview : chosen || (os.matches ? 'dark' : 'light');
-  for (const [key, allowed] of Object.entries({'cover-position': ['above'], masthead: ['uniform'], footer: ['centered']})) {
-    if (allowed.includes(params.get(key))) root.setAttribute('data-' + key, params.get(key));
-  }
   const syncButton = () => {
+    const comparison = document.querySelector('#comparison-form');
+    if (comparison) comparison.elements.namedItem('theme').value = root.dataset.theme;
     const button = document.querySelector('.theme-toggle');
     if (!button) return;
     const label = root.dataset.theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
@@ -36,15 +35,14 @@
       }
       syncButton();
     });
-    // Keep comparison settings while following internal mock navigation.
+    // Keep the color preview while following internal mock navigation.
     document.addEventListener('click', event => {
       const link = event.target.closest('a');
       if (!link || !link.getAttribute('href') || link.getAttribute('href').startsWith('#')) return;
       const url = new URL(link.href);
-      if (url.origin !== location.origin || !url.pathname.endsWith('.html') || url.pathname.endsWith('/index.html')) return;
-      for (const key of ['theme', 'cover-position', 'masthead', 'footer']) {
-        if (params.has(key) && !url.searchParams.has(key)) url.searchParams.set(key, key === 'theme' ? root.dataset.theme : params.get(key));
-      }
+      if (url.origin !== location.origin || !url.pathname.endsWith('.html')) return;
+      if (url.pathname.endsWith('/index.html')) return;
+      if (params.has('theme') && !url.searchParams.has('theme')) url.searchParams.set('theme', root.dataset.theme);
       link.href = url.href;
     });
     document.querySelectorAll('.copy').forEach(button => {
@@ -90,11 +88,20 @@
       button.querySelector('span').textContent = active ? '★ 1' : '☆';
       document.querySelector('.interaction-note').textContent = 'Hatena Star preview (mock; no reaction was sent).';
     });
-    for (const [name, property] of [['body', '--font-body'], ['code', '--font-code']]) {
-      const output = document.querySelector(`[data-font-stack="${name}"]`);
-      if (output) output.textContent = getComputedStyle(root).getPropertyValue(property).trim();
+    const showFontStacks = () => {
+      for (const [name, property] of [['body', '--font-body'], ['code', '--font-code'], ['site', '--font-site']]) {
+        const output = document.querySelector(`[data-font-stack="${name}"]`);
+        if (output) output.textContent = getComputedStyle(root).getPropertyValue(property).trim();
+      }
+    };
+    showFontStacks();
+    // DOMContentLoaded may precede stylesheet loading on a cold cache.
+    document.defaultView?.addEventListener('load', showFontStacks, { once: true });
+    const comparisonForm = document.querySelector('#comparison-form');
+    if (comparisonForm) {
+      comparisonForm.elements.namedItem('theme').value = root.dataset.theme;
     }
-    document.querySelector('#comparison-form')?.addEventListener('submit', event => {
+    comparisonForm?.addEventListener('submit', event => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
       const query = new URLSearchParams();

@@ -1,0 +1,500 @@
+[
+  {
+    "file": "SFNSMono.ttf",
+    "sha256": "55caaed55254a28ac793847e8976be16c5ba7cbad1ec2ee2d5d86d4e6b3fa0c1",
+    "faces": [
+      {
+        "family": ".SF NS Mono",
+        "style": "Light",
+        "postScriptName": ".SFNSMono-Light",
+        "version": "21.0d1e1",
+        "unitsPerEm": 2048,
+        "nominalAdvancesEm": {
+          "0": 0.6181640625,
+          " ": 0.6181640625,
+          "i": 0.6181640625,
+          "M": 0.6181640625,
+          "W": 0.6181640625,
+          "日": null,
+          "あ": null,
+          "カ": null,
+          "「": null,
+          "、": null,
+          "ｱ": null
+        },
+        "outlineTables": [
+          "glyf"
+        ],
+        "bitmapTables": [],
+        "palt": false,
+        "features": {
+          "GPOS": [],
+          "GSUB": [
+            "c2sc",
+            "ccmp",
+            "locl",
+            "smcp",
+            "ss03",
+            "ss04"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "file": "Menlo.ttc",
+    "sha256": "dc256e0b39c2a6fec947129d421fef41b8b429f58f9b6e5d1b148c87f775c1f6",
+    "faces": [
+      {
+        "family": "Menlo",
+        "style": "Regular",
+        "postScriptName": "Menlo-Regular",
+        "version": "17.0d1e1",
+        "unitsPerEm": 2048,
+        "nominalAdvancesEm": {
+          "0": 0.60205078125,
+          " ": 0.60205078125,
+          "i": 0.60205078125,
+          "M": 0.60205078125,
+          "W": 0.60205078125,
+          "日": null,
+          "あ": null,
+          "カ": null,
+          "「": null,
+          "、": null,
+          "ｱ": null
+        },
+        "outlineTables": [
+          "glyf"
+        ],
+        "bitmapTables": [],
+        "palt": false,
+        "features": {
+          "GPOS": [],
+          "GSUB": []
+        }
+      },
+      {
+        "family": "Menlo",
+        "style": "Bold",
+        "postScriptName": "Menlo-Bold",
+        "version": "17.0d1e1",
+        "unitsPerEm": 2048,
+        "nominalAdvancesEm": {
+          "0": 0.60205078125,
+          " ": 0.60205078125,
+          "i": 0.60205078125,
+          "M": 0.60205078125,
+          "W": 0.60205078125,
+          "日": null,
+          "あ": null,
+          "カ": null,
+          "「": null,
+          "、": null,
+          "ｱ": null
+        },
+        "outlineTables": [
+          "glyf"
+        ],
+        "bitmapTables": [],
+        "palt": false,
+        "features": {
+          "GPOS": [],
+          "GSUB": []
+        }
+      },
+      {
+        "family": "Menlo",
+        "style": "Italic",
+        "postScriptName": "Menlo-Italic",
+        "version": "17.0d1e1",
+        "unitsPerEm": 2048,
+        "nominalAdvancesEm": {
+          "0": 0.60205078125,
+          " ": 0.60205078125,
+          "i": 0.60205078125,
+          "M": 0.60205078125,
+          "W": 0.60205078125,
+          "日": null,
+          "あ": null,
+          "カ": null,
+          "「": null,
+          "、": null,
+          "ｱ": null
+        },
+        "outlineTables": [
+          "glyf"
+        ],
+        "bitmapTables": [],
+        "palt": false,
+        "features": {
+          "GPOS": [],
+          "GSUB": []
+        }
+      },
+      {
+        "family": "Menlo",
+        "style": "Bold Italic",
+        "postScriptName": "Menlo-BoldItalic",
+        "version": "17.0d1e1",
+        "unitsPerEm": 2048,
+        "nominalAdvancesEm": {
+          "0": 0.60205078125,
+          " ": 0.60205078125,
+          "i": 0.60205078125,
+          "M": 0.60205078125,
+          "W": 0.60205078125,
+          "日": null,
+          "あ": null,
+          "カ": null,
+          "「": null,
+          "、": null,
+          "ｱ": null
+        },
+        "outlineTables": [
+          "glyf"
+        ],
+        "bitmapTables": [],
+        "palt": false,
+        "features": {
+          "GPOS": [],
+          "GSUB": []
+        }
+      }
+    ]
+  },
+  {
+    "file": "ヒラギノ角ゴシック W3.ttc",
+    "sha256": "833776a6fd68e2c71c0c52fd8041195bd3d0a336cdb278170b7ad71c7e1b3475",
+    "faces": [
+      {
+        "family": "Hiragino Sans",
+        "style": "W3",
+        "postScriptName": "HiraginoSans-W3",
+        "version": "20.0d1e1",
+        "unitsPerEm": 1000,
+        "nominalAdvancesEm": {
+          "0": 0.657,
+          " ": 0.333,
+          "i": 0.238,
+          "M": 0.945,
+          "W": 1.006,
+          "日": 1,
+          "あ": 1,
+          "カ": 1,
+          "「": 1,
+          "、": 1,
+          "ｱ": 0.5
+        },
+        "outlineTables": [
+          "CFF "
+        ],
+        "bitmapTables": [],
+        "palt": true,
+        "features": {
+          "GPOS": [
+            "halt",
+            "kern",
+            "palt",
+            "vhal",
+            "vkrn",
+            "vpal"
+          ],
+          "GSUB": [
+            "aalt",
+            "afrc",
+            "ccmp",
+            "dlig",
+            "dnom",
+            "expt",
+            "frac",
+            "fwid",
+            "hkna",
+            "hwid",
+            "HOPE",
+            "ital",
+            "jp78",
+            "jp83",
+            "jp90",
+            "liga",
+            "nalt",
+            "nlck",
+            "numr",
+            "pkna",
+            "pwid",
+            "qwid",
+            "ruby",
+            "sinf",
+            "subs",
+            "sups",
+            "trad",
+            "twid",
+            "vert",
+            "vkna",
+            "vrt2",
+            "zero"
+          ]
+        }
+      },
+      {
+        "family": ".Hiragino Kaku Gothic Interface",
+        "style": "W3",
+        "postScriptName": ".HiraKakuInterface-W3",
+        "version": "20.0d1e1",
+        "unitsPerEm": 1083,
+        "nominalAdvancesEm": {
+          "0": 0.6066481994459834,
+          " ": 0.3074792243767313,
+          "i": 0.21975992613111728,
+          "M": 0.8725761772853186,
+          "W": 0.9289012003693444,
+          "日": 0.9233610341643582,
+          "あ": 0.9233610341643582,
+          "カ": 0.9233610341643582,
+          "「": 0.9233610341643582,
+          "、": 0.9233610341643582,
+          "ｱ": 0.4616805170821791
+        },
+        "outlineTables": [
+          "CFF "
+        ],
+        "bitmapTables": [],
+        "palt": true,
+        "features": {
+          "GPOS": [
+            "halt",
+            "palt",
+            "vhal",
+            "vpal"
+          ],
+          "GSUB": [
+            "aalt",
+            "afrc",
+            "ccmp",
+            "dlig",
+            "dnom",
+            "expt",
+            "frac",
+            "fwid",
+            "hkna",
+            "hwid",
+            "HOPE",
+            "ital",
+            "jp78",
+            "jp83",
+            "jp90",
+            "liga",
+            "nalt",
+            "nlck",
+            "numr",
+            "pkna",
+            "pwid",
+            "qwid",
+            "ruby",
+            "sinf",
+            "subs",
+            "sups",
+            "trad",
+            "twid",
+            "vert",
+            "vkna",
+            "vrt2",
+            "zero"
+          ]
+        }
+      },
+      {
+        "family": "Hiragino Kaku Gothic ProN",
+        "style": "W3",
+        "postScriptName": "HiraKakuProN-W3",
+        "version": "20.0d1e1",
+        "unitsPerEm": 1000,
+        "nominalAdvancesEm": {
+          "0": 0.657,
+          " ": 0.333,
+          "i": 0.238,
+          "M": 0.945,
+          "W": 1.006,
+          "日": 1,
+          "あ": 1,
+          "カ": 1,
+          "「": 1,
+          "、": 1,
+          "ｱ": 0.5
+        },
+        "outlineTables": [
+          "CFF "
+        ],
+        "bitmapTables": [],
+        "palt": true,
+        "features": {
+          "GPOS": [
+            "halt",
+            "kern",
+            "palt",
+            "vhal",
+            "vkrn",
+            "vpal"
+          ],
+          "GSUB": [
+            "aalt",
+            "afrc",
+            "ccmp",
+            "dlig",
+            "dnom",
+            "expt",
+            "frac",
+            "fwid",
+            "hkna",
+            "hwid",
+            "HOPE",
+            "ital",
+            "jp78",
+            "jp83",
+            "jp90",
+            "liga",
+            "nalt",
+            "nlck",
+            "numr",
+            "pkna",
+            "pwid",
+            "qwid",
+            "ruby",
+            "sinf",
+            "subs",
+            "sups",
+            "trad",
+            "twid",
+            "vert",
+            "vkna",
+            "vrt2",
+            "zero"
+          ]
+        }
+      },
+      {
+        "family": "Hiragino Kaku Gothic Pro",
+        "style": "W3",
+        "postScriptName": "HiraKakuPro-W3",
+        "version": "20.0d1e1",
+        "unitsPerEm": 1000,
+        "nominalAdvancesEm": {
+          "0": 0.657,
+          " ": 0.333,
+          "i": 0.238,
+          "M": 0.945,
+          "W": 1.006,
+          "日": 1,
+          "あ": 1,
+          "カ": 1,
+          "「": 1,
+          "、": 1,
+          "ｱ": 0.5
+        },
+        "outlineTables": [
+          "CFF "
+        ],
+        "bitmapTables": [],
+        "palt": true,
+        "features": {
+          "GPOS": [
+            "halt",
+            "kern",
+            "palt",
+            "vhal",
+            "vkrn",
+            "vpal"
+          ],
+          "GSUB": [
+            "aalt",
+            "afrc",
+            "dlig",
+            "dnom",
+            "expt",
+            "frac",
+            "fwid",
+            "hkna",
+            "hwid",
+            "HOPE",
+            "ital",
+            "jp78",
+            "jp83",
+            "liga",
+            "nalt",
+            "nlck",
+            "numr",
+            "pwid",
+            "qwid",
+            "ruby",
+            "sinf",
+            "sups",
+            "trad",
+            "twid",
+            "vert",
+            "vkna",
+            "vrt2",
+            "zero"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "file": "BIZUDGothic-Regular.ttf",
+    "sha256": "7d2b48d84ef4e65c9f85bcf65fb1fb41c92b134be641fab6a7141d597c9a92b0",
+    "faces": [
+      {
+        "family": "BIZ UDGothic",
+        "style": "Regular",
+        "postScriptName": "BIZUDGothic-Regular",
+        "version": "Version 1.051",
+        "unitsPerEm": 2048,
+        "nominalAdvancesEm": {
+          "0": 0.5,
+          " ": 0.5,
+          "i": 0.5,
+          "M": 0.5,
+          "W": 0.5,
+          "日": 1,
+          "あ": 1,
+          "カ": 1,
+          "「": 1,
+          "、": 1,
+          "ｱ": 0.5
+        },
+        "outlineTables": [
+          "glyf"
+        ],
+        "bitmapTables": [],
+        "palt": false,
+        "features": {
+          "GPOS": [],
+          "GSUB": [
+            "aalt",
+            "ccmp",
+            "dlig",
+            "expt",
+            "frac",
+            "fwid",
+            "hojo",
+            "hwid",
+            "jp78",
+            "jp83",
+            "jp90",
+            "liga",
+            "nalt",
+            "nlck",
+            "numr",
+            "ruby",
+            "sups",
+            "trad",
+            "vert",
+            "vkna",
+            "vrt2",
+            "zero"
+          ]
+        }
+      }
+    ]
+  }
+]

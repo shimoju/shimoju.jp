@@ -26,7 +26,9 @@ node mock/serve.mjs
 - `build.mjs`：実記事をHugoでHTML化し、共通の枠を付けて静的ファイルを生成するスクリプト。
 - `verify.mjs` / `test-theme.mjs` / `test-copy.mjs`：出力・内部リンク、配色状態、コピー状態の検査。
 - `verification/browser-checks.json`：Chromeで測定した幅・配色ごとの結果。
-- [レビュー反映・検証メモ](../docs/06-theme-mock-revision.md)：今回の変更、新しい比較案、意見、確認範囲と制約。初版は[資料5](../docs/05-theme-mock-review.md)に履歴として残しています。
+- `inspect-fonts.mjs` / `verification/font-features.json`：明示したフォントファイルのpaltテーブル検査と結果。フォントの導入・配信は行いません。
+- [相対サイズへの移行](../docs/12-theme-relative-sizing.md)：今回の変更と拡大時の検証。フォントの確定は[資料11](../docs/11-theme-system-monospace.md)、第6案以前は資料5〜10に履歴として残しています。
+- `verification/code-font-files.json`：コード候補の名目送り幅・アウトライン・ビットマップテーブルの検査。Windows同梱版の実機描画とは区別します。
 
 生成済みファイルは直接編集せず、`src/`と`build.mjs`を変更して再生成します。
 
@@ -46,18 +48,20 @@ node mock/test-copy.mjs
 | 条件 | URLパラメーター・ページ |
 | --- | --- |
 | 明示的な配色 | `?theme=light` / `?theme=dark` |
-| カバーの位置 | 両案とも全幅。省略：タイトル・要約の下、`cover-position=above`：タイトルの上 |
-| サイトタイトル | 省略：ホーム36px／30px、記事等24px／22px。`masthead=uniform`：全画面36px／30pxと上余白も統一 |
-| フッター | 省略：著作権は左・RSSは右、`footer=centered`：中央揃え |
+| 日本語コードの診断 | `specimen.html#code`：日本語フォールバックの明示／省略を同じページで確認 |
 | コピー失敗 | `specimen.html?copy=failure#code`でコピーボタンを押す |
 
-複数条件をつなぐ場合は`&`を使います。例：`article.html?theme=dark&masthead=uniform`。最初は一度に一条件だけを変えるのを推奨します。
+複数条件をつなぐ場合は`&`を使います。例：`specimen.html?theme=dark&copy=failure#code`。本文・記事見出しはHelvetica系、サイト名はAvenir Nextに固定しました。配色条件はページ間の移動でも引き継ぎます。旧`font`／`masthead`パラメーターは無効です。
 
-採用済みの本文17px／16px、タイトル1.6倍、コード行高1.5、本文色リンクは固定です。旧比較パラメーターは無視します。目次のページと実装は削除しました。レビュー入口には現在のフォント候補順も表示します。
+採用済みの本文1rem、記事タイトル1.6rem、サイトタイトル2rem、コード0.875rem・行高1.5、本文色リンクに加え、一覧カバー上配置、X・GitHub・RSSと著作権の中央2段フッターを固定しました。旧比較パラメーターは無視します。目次は不採用のままです。
+
+本文・見出しのpaltを有効にし、コードは除外しています。レビュー入口には本文・サイト名・コードの候補順、palt有効／無効の短文診断を表示します。インラインコードは0.85em、paddingは上下0.25em・左右0.35emを維持。コードの自動カーニングは無効です。日本語の明示候補はHiragino Sans → Noto Sans JP → Noto Sans CJK JPとし、最後は本文がsans-serif、コードがmonospaceです。コードの先頭はui-monospace → Menlo → Consolas。Safariではシステム側の日本語選択が後続候補より優先される可能性があります。SF Mono／SFMono-Regular／游ゴシックは明示指定しません。フォントの調査は資料11、相対サイズ移行と検証は[資料12](../docs/12-theme-relative-sizing.md)を参照してください。
 
 配色パラメーターは保存済み設定より優先しますが、それだけでは保存内容を変えません。配色ボタンを操作すると、モック専用キー`shimoju-mock-theme`へ保存します。OS設定へ戻すUIは設けていません。
 
 ## 操作の範囲
+
+文字サイズはルートがモバイル100%・640px以上106.25%。ブラウザの既定文字サイズが16pxなら本文16px／17pxです。本文最大幅720pxはpxで維持します。文字の拡大負荷を再現する場合は`node mock/build.mjs --text-scale=1.25`または`--text-scale=2`で一時ビルドし、確認後は必ず`node mock/build.mjs`で通常ビルドへ戻してください。これはブラウザの既定文字サイズやネイティブズームを変更する機能ではありません。`verify.mjs`は検証用CSSの残留をエラーにします。
 
 - 配色、コードコピー、ページ送り、ローカルな画面遷移は動作します。
 - コピー成功は実際のクリップボード書き込み。レビュー入口の貼り付け欄で内容を確認できます。欄の内容は送信・保存しません。
