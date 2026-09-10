@@ -51,7 +51,7 @@ button:disabled { cursor: default; }
 .skip-link { position: absolute; top: 8px; left: 12px; padding: 0.5rem 1rem; background: var(--page); transform: translateY(-180%); z-index: 2; }
 .skip-link:focus { transform: none; }
 .site-header { text-align: center; padding-block: var(--space-page) var(--space-end); }
-.site-name { font-family: var(--font-site); font-size: 1.931rem; font-weight: 500; line-height: 1.4; text-decoration: none; letter-spacing: -.025em; }
+.site-name { font-family: var(--font-site); font-size: 1.931rem; font-weight: 300; line-height: 1.4; text-decoration: none; letter-spacing: -.025em; }
 .site-heading { margin: 0; line-height: 1.4; font-size: inherit; }
 .site-nav { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; column-gap: 1.375rem; row-gap: 0.125rem; margin-top: 0.875rem; font-size: var(--text-small); }
 .site-nav a { display: inline-flex; align-items: center; min-height: 2.75rem; text-decoration: none; }
@@ -178,6 +178,7 @@ code, pre { font-family: var(--font-code); font-feature-settings: normal; font-v
 .review-grid a { display: block; padding-block: 0.75rem; border-bottom: 1px solid var(--border); }
 .review-grid small { color: var(--muted); display: block; font-size: var(--text-label); }
 .review-controls { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: end; }
+.site-title-sample { text-align: center; }
 .review-controls label { display: grid; min-width: 0; max-width: 100%; gap: 0.25rem; font-size: var(--text-meta); }
 .review-controls select { min-width: 0; max-width: 100%; padding: 0.5rem; border: 1px solid var(--border); background: var(--base); border-radius: 4px; }
 .review-controls button { padding: 0.5rem 1rem; min-height: 2.75rem; background: var(--text); color: var(--page); border: 0; border-radius: 4px; }

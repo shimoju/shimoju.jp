@@ -101,10 +101,12 @@ for (const {file} of manifest.pages) {
 assert.doesNotMatch(themeCss, /system-ui|data-typography="system"/);
 for (const { file } of manifest.pages) assert.doesNotMatch(read(file), /value="system"|system-ui/);
 assert.doesNotMatch(themeCss, /data-typography|Segoe UI Variable|Arial|Helvetica|Avenir/);
-for (const weight of [400, 500, 700]) assert(read('index.html').includes(`data-weight-probe="${weight}" style="font-weight: ${weight}"`));
+for (const weight of [200, 300, 400, 500, 700]) assert(read('index.html').includes(`data-weight-probe="${weight}" style="font-weight: ${weight}"`));
+for (const { file } of manifest.pages) assert.doesNotMatch(read(file), /data-site-weight-preview|name="site-weight"/);
 for (const { file } of manifest.pages) assert.doesNotMatch(read(file), /data-heading-preview|name="heading"/);
+assert.doesNotMatch(themeCss, /data-site-weight/);
 assert.match(themeCss, /h1, h2, h3, h4, h5, h6 \{[^}]*font-weight: 500;/);
-assert.match(themeCss, /\.site-name \{[^}]*font-weight: 500;/);
+assert.match(themeCss, /\.site-name \{[^}]*font-weight: 300;/);
 assert.match(themeCss, /strong, b \{ font-weight: 700; \}/);
 assert.match(themeCss, /\.prose th \{ font-weight: 700; \}/);
 assert.match(read('specimen.html'), /<b>注目する日本語とEnglish 0123（b）<\/b>/);

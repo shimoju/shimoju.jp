@@ -64,9 +64,11 @@ node mock/test-copy.mjs
 
 配色パラメーターは保存済み設定より優先しますが、それだけでは保存内容を変えません。配色ボタンでモック専用キー`shimoju-mock-theme`に保存し、明示選択がなければOS設定に追従します。システム設定への復帰UIはありません。
 
-本文・記事見出し・サイト名は`-apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", "Noto Sans CJK JP", sans-serif`で確定しています。旧案・Variable版の選択UIは撤去し、古い`?typography=`パラメーターも無視します。見出しとサイト名は500、本文は400、strong／b・thは700です。
+本文・記事見出し・サイト名は`-apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", "Noto Sans CJK JP", sans-serif`で確定しています。旧案・Variable版の選択UIは撤去し、古い`?typography=`パラメーターも無視します。見出しは500・サイト名は300、本文は400、strong／b・thは700です。
 
-Macの和文がNotoへフォールバックするのを避けるため、Hiragino SansをNotoより前に明示します。Windowsにヒラギノがあっても欧文はSegoe UIを優先するため、その後ろに置きます。通常版Segoe UIの500でSemiboldになることはユーザーがWindows実機で確認済みです。別環境では入口の400・500・700サンプルで実際のフェイスを確認できます。選定理由・フォールバックの注意点は[実装上の判断理由](../docs/05-theme-implementation.md)を参照してください。
+Macの和文がNotoへフォールバックするのを避けるため、Hiragino SansをNotoより前に明示します。Windowsにヒラギノがあっても欧文はSegoe UIを優先するため、その後ろに置きます。通常版Segoe UIの500でSemiboldになることはユーザーがWindows実機で確認済みです。別環境では入口の200・300・400・500・700サンプルで実際のフェイスを確認できます。選定理由・フォールバックの注意点は[実装上の判断理由](../docs/05-theme-implementation.md)を参照してください。
+
+サイトタイトルはウェイト300に確定しました。本文と同じ書体のまま軽くすることでリズムをつくります。サイズ1.931rem・字間、本文400・記事見出し500・強調700は維持します。比較UIは撤去し、古い`?site-weight=`パラメーターは無視します。実フォント確認欄の200・300・400・500・700は診断用に残します。実フェイスは開発者ツールで確認し、CSSの計算値と区別してください。
 
 ルートは全幅で106.25%、本文1rem・記事タイトル1.6rem・サイト名1.931remです。既定文字サイズ16pxでは本文のCSSサイズは17px。Safariの和文が小さく描画される実測を踏まえ、モバイルにも同じ割合を採用しました。コードブロックは`calc(14 / 17 * 1rem)`（標準設定で14px）・行高1.3。インラインコードは0.85emを維持します。ブラウザの既定文字サイズ変更にすべて追従します。
 

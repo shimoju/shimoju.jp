@@ -89,4 +89,9 @@ for (const choice of ['current', 'scale', 'plus-one', 'plus-two', 'invalid']) {
   assert.equal(app.root.dataset.proseSpacing, undefined, 'Retired spacing choices do not override adopted margins');
   assert.equal(new URL(app.follow('http://mock.invalid/about.html')).searchParams.get('heading-space'), null);
 }
+for (const choice of ['200', '300', '500', 'invalid']) {
+  const app = boot({ search: `?site-weight=${choice}&theme=dark` });
+  assert.equal(app.root.dataset.siteWeight, undefined, 'Retired site-weight preview does not override adopted weight');
+  assert.equal(new URL(app.follow('http://mock.invalid/about.html')).searchParams.get('site-weight'), null);
+}
 console.log('PASS: OS-following, persistence, color previews, navigation, retired options, cold-cache font display, unavailable storage.');
