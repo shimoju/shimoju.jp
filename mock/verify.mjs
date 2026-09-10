@@ -145,7 +145,32 @@ for (const { file } of manifest.pages) {
   assert.match(footer, />X<\/a>[\s\S]*>GitHub<\/a>[\s\S]*>RSS<\/a><\/nav><span>© 2026 Hiroshi Shimoju/);
 }
 assert.doesNotMatch(read('home.html'), /新着記事|unavailable|Previous<|公開 |RSSを購読/);
-assert.doesNotMatch(read('home-3.html'), /Next →/);
+assert.doesNotMatch(read('home-3.html'), /class="next-page"/);
+assert.doesNotMatch(read('home.html'), /class="previous-page"/);
+for (const { file } of manifest.pages) {
+  for (const [nav] of read(file).matchAll(/<nav class="(?:pager|post-nav)"[\s\S]*?<\/nav>/g)) {
+    for (const label of nav.matchAll(/(?:<small lang="en">|rel="(?:prev|next)">)([\s\S]*?)(?:<\/small>|<\/a>)/g)) {
+      assert.match(label[1], /^(?:<span aria-hidden="true">«<\/span> Previous(?: post)?|Next(?: post)? <span aria-hidden="true">»<\/span>)$/);
+    }
+  }
+}
+assert.match(read('home-2.html'), /<span aria-hidden="true">«<\/span> Previous/);
+assert.match(read('home-2.html'), /Next <span aria-hidden="true">»<\/span>/);
+assert.match(read('article-hugo.html'), /<span aria-hidden="true">«<\/span> Previous post/);
+assert.match(read('article-hugo.html'), /Next post <span aria-hidden="true">»<\/span>/);
+assert.match(read('index.html'), /<button type="submit">ページを開く<\/button>/);
+for (const selector of ['.site-nav a', '.pager a', '.article-tags a', '.post-nav a', '.terms a', '.archive-month a', '.profile-links a', '.site-footer a']) {
+  const rule = themeCss.split(`${selector} {`)[1]?.split('}')[0];
+  assert(rule?.includes('text-decoration: none;'), `${selector}: no underline by default`);
+  assert(themeCss.includes(`${selector}:hover { text-decoration: underline; }`), `${selector}: underline on hover`);
+}
+assert.match(themeCss, /\.site-nav a\[aria-current="page"\] \{ text-decoration: underline; \}/);
+assert.match(themeCss, /\.entry-link:hover \{[^}]*text-decoration: none;/);
+assert.match(themeCss, /\.entry-link:hover \.entry-title \{ text-decoration: underline; text-decoration-thickness: 1px; \}/);
+assert.match(themeCss, /\.site-name \{[^}]*text-decoration: none;/);
+assert.doesNotMatch(themeCss, /\.site-name:hover/);
+assert.match(themeCss, /:focus-visible \{[^}]*outline: 2px solid var\(--accent\)/);
+assert.match(read('specimen.html'), /class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;<\/a>/);
 assert.doesNotMatch(read('single-item.html'), /class="pager"/);
 assert.match(read('specimen.html'), /code-label">TOML · config.toml/);
 assert.match(read('specimen.html'), /code-label">EXAMPLE-UNKNOWN · example.txt/);
