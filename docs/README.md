@@ -8,7 +8,7 @@
 | [2. Hugo本体とテーマの責務](02-hugo-core-vs-theme.md) | アセット、画像、ハイライト、shortcode、SEO、配信の担当を区別する |
 | [3. PaperModからの移行](03-papermod-analysis.md) | 既存URL・コンテンツ・外部サービス・SEO・性能の移行時の注意 |
 | [4. 視覚要件](04-theme-visual-requirements.md) | 画面、情報、書体、サイズ、配色、本文部品、操作の仕様 |
-| [5. 実装上の判断理由](05-theme-implementation.md) | ui-monospace、OS別フォールバック、palt・等幅性、相対サイズ、コード生成 |
+| [5. 実装上の判断理由](05-theme-implementation.md) | コードの欧文等幅性、OS別フォールバック、palt・等幅性、相対サイズ、コード生成 |
 | [6. 検証手順](06-theme-validation.md) | 自動テスト、幅・配色・文字拡大、フォント、操作、本実装で残る確認 |
 
 [モックREADME](../mock/README.md)には閲覧・再生成方法、収録画面、動く操作と表示デモの境界を記載する。モックのUI表記やサンプルデータを、本番のコンテンツ仕様と混同しない。

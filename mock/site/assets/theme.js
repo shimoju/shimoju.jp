@@ -35,16 +35,18 @@
       }
       syncButton();
     });
-    // Keep the color preview while following internal mock navigation.
-    document.addEventListener('click', event => {
+    // Keep explicit preview choices while following internal mock navigation.
+    const preservePreview = event => {
       const link = event.target.closest('a');
       if (!link || !link.getAttribute('href') || link.getAttribute('href').startsWith('#')) return;
       const url = new URL(link.href);
       if (url.origin !== location.origin || !url.pathname.endsWith('.html')) return;
-      if (url.pathname.endsWith('/index.html')) return;
-      if (params.has('theme') && !url.searchParams.has('theme')) url.searchParams.set('theme', root.dataset.theme);
+      if (!url.pathname.endsWith('/index.html') && params.has('theme') && !url.searchParams.has('theme')) url.searchParams.set('theme', root.dataset.theme);
       link.href = url.href;
-    });
+    };
+    document.addEventListener('click', preservePreview);
+    document.addEventListener('auxclick', preservePreview);
+    document.addEventListener('contextmenu', preservePreview);
     document.querySelectorAll('.copy').forEach(button => {
       let resetTimer;
       button.addEventListener('click', async () => {

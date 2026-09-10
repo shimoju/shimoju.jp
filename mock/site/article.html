@@ -36,7 +36,7 @@
 <p>prefixキーが面倒でtmuxを挫折しており、マルチプレクサなあ〜と思っていたが、使ってみたら体験がとても良く虜になってしまった。
 マウスでほぼすべての操作ができるためキーボード操作は少しずつ覚えていけばよく、とっつきやすいのもよかった。</p>
 <p>herdrはcmuxと同様にWorkspace→Tab→Paneの3層構造だが、サイドバーに独立したAgentタブがあり、今どのエージェントが動いていて、どれが返事待ちなのかを一覧できるのも気に入っている。</p>
-<p><img src="assets/ghostty-herdr.png" alt="Ghostty+herdrを動かしている様子"></p>
+<figure><img src="assets/ghostty-herdr.png" alt="Ghostty+herdrを動かしている様子"></figure>
 <p>Ghostty側のキーバインドでは一工夫した。</p>
 <ul>
 <li>Ghosttyではキーバインドに<a href="https://ghostty.org/docs/config/keybind#performable:">performable:</a>というprefixをつけるとアクションが実行可能な場合にのみ入力が処理される</li>
@@ -151,7 +151,7 @@
 調べたところ、git statusを非同期で取得して完了後にプロンプトを書き換えることで、体感速度を向上させる工夫をしている実装があることがわかった。</p>
 <p>候補としては<a href="https://github.com/sindresorhus/pure">Pure</a>、<a href="https://github.com/romkatv/powerlevel10k">Powerlevel10k Lean Style</a>、<a href="https://github.com/reobin/typewritten">Typewritten</a>が挙がり、まずはPureを試した。
 使い心地は素晴らしかったが、Starshipにあった時刻表示がなんだかんだ便利で、できれば右寄せで出したい……となり、AIがあれば自作できるのでは？と思い立ち実装してみた。</p>
-<p><img src="assets/zsh-prompt.png" alt="自作したZshのプロンプト"></p>
+<figure><img src="assets/zsh-prompt.png" alt="自作したZshのプロンプト"></figure>
 <p>1行目左側のカレントディレクトリとgit status表示はPureの形式を引き継ぎ、右側にコマンド実行時間・時刻を表示するようにした。
 自作すれば情報はどこにでも表示し放題だが、言語バージョンは表示せず、Nerd FontsによるリッチなアイコンもなくしてPureライクなミニマルスタイルに振り切ったのがこだわりポイント。
 代わりにCatppuccin Mochaのカラーパレットを採用してカラフルな見た目に。色が自分好みになるだけで満足度が上がる。</p>
@@ -184,7 +184,7 @@ Prezto廃止、mise移行による削減もあり、シェル全体の起動時�
 <p>引き続きVisual Studio Codeがメインだが、ターミナルから離れずに作業を完結したくなり、Neovimを日常的に利用できるように設定を作り込んだ。</p>
 <p>ターミナル用のエディタとして以前からNeovimを使っていたものの、設定はほぼしていなかった。8月にNeovim専用の設定をLuaで書き、組み込みの<code>vim.pack</code>でプラグインを管理する構成へ変えた。
 <a href="https://github.com/saghen/blink.cmp">blink.cmp</a>を用いた補完と、<a href="https://github.com/ibhagwan/fzf-lua">fzf-lua</a>、<a href="https://github.com/tpope/vim-fugitive">fugitive</a>、<a href="https://github.com/lewis6991/gitsigns.nvim">gitsigns</a>を組み合わせ、AIが書いたコードをターミナルで確認、コミットできるワークフローを整えた。</p>
-<p><img src="assets/neovim.png" alt="Neovim"></p>
+<figure><img src="assets/neovim.png" alt="Neovim"></figure>
 <ol>
 <li><code>&lt;leader&gt;gs</code>でfzf.git_statusを開き、変更一覧とdiffをざっと確認</li>
 <li>Enterでファイルを開く</li>
@@ -197,7 +197,7 @@ Prezto廃止、mise移行による削減もあり、シェル全体の起動時�
 <li><code>&lt;leader&gt;gP</code>でpush</li>
 </ol>
 <p>こんな感じの流れになる。こちらもプラグインの選定や設定はCodexにやってもらい、<a href="https://github.com/shimoju/dotfiles/blob/4abc2f3eda3b88fec9787d4a33fb824cdac61eef/docs/neovim/neovim-cheatsheet.html">自分専用のチートシート</a>も作ってもらった。まだ不慣れなのでVS Codeを使ってしまうことも多いが、少しずつ慣れていきたい。</p>
-<p><img src="assets/neovim-cheatsheet.png" alt="Neovim チートシート"></p>
+<figure><img src="assets/neovim-cheatsheet.png" alt="Neovim チートシート"></figure>
 <h2 id="フォント">フォント</h2>
 <ul>
 <li><strong><a href="https://github.com/yuru7/udev-gothic">UDEV Gothic</a> → <a href="https://github.com/yuru7/moralerspace">Moralerspace Argon</a></strong></li>
@@ -268,4 +268,5 @@ Neovimマスターになって爆速で編集作業ができている可能性�
 2027年にはAIデスクトップアプリがメインになってる説は割とありそう。</p>
 <p>dotfilesの全体は<a href="https://github.com/shimoju/dotfiles">shimoju/dotfiles</a>にある。</p>
 </div><footer class="article-end"><div class="article-tags" aria-label="Tags"><a href="tag-1.html">#chezmoi</a><a href="tag-3.html">#dotfiles</a><a href="tag-4.html">#Ghostty</a><a href="tag-5.html">#herdr</a><a href="tag-7.html">#mise</a><a href="tag-8.html">#Neovim</a><a href="tag-10.html">#Zsh</a><a href="tag-11.html">#開発環境</a></div><div class="engagement" lang="en"><div class="shares"><button type="button" data-share="X" title="Mock: no external sharing">X</button><button type="button" data-share="Facebook" title="Mock: no external sharing">Facebook</button><button type="button" data-share="Hatena Bookmark" title="Mock: no external sharing">Hatena Bookmark</button></div><button class="hatena-star" type="button" aria-label="Add a Hatena Star (mock)" aria-pressed="false"><span aria-hidden="true">☆</span> Hatena Star</button></div><p class="interaction-note" role="status" aria-live="polite" lang="en"></p><nav class="post-nav" aria-label="Adjacent posts"><a href="article-hugo.html"><small lang="en">← Previous post</small>HugoとCloudflare Pagesでブログを作り直した</a></nav></footer></article></main>
-<footer class="site-footer shell" lang="en"><nav class="footer-links" aria-label="Follow and subscribe"><a href="https://x.com/shimoju_">X</a><a href="https://github.com/shimoju">GitHub</a><a href="https://shimoju.jp/index.xml">RSS</a></nav><span>© 2026 Hiroshi Shimoju</span></footer></body></html>
+<footer class="site-footer shell" lang="en"><nav class="footer-links" aria-label="Follow and subscribe"><a href="https://x.com/shimoju_">X</a><a href="https://github.com/shimoju">GitHub</a><a href="https://shimoju.jp/index.xml">RSS</a></nav><span>© 2026 Hiroshi Shimoju</span></footer>
+</body></html>

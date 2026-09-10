@@ -3,13 +3,14 @@ import { runInNewContext } from 'node:vm';
 import assert from 'node:assert/strict';
 
 const source = readFileSync(new URL('src/theme.js', import.meta.url), 'utf8');
-function boot({ dark = false, saved = null, search = '', storageFails = false, withForm = false, withFontStacks = false } = {}) {
+function boot({ dark = false, saved = null, search = '', hash = '', storageFails = false, withForm = false, withFontStacks = false } = {}) {
   const root = { dataset: {}, setAttribute(name, value) { this.dataset[name.slice(5).replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = value; } };
   const callbacks = {};
   const attributes = {};
   const button = { setAttribute: (name, value) => attributes[name] = value, addEventListener: (name, fn) => callbacks[name] = fn };
   const os = { matches: dark, addEventListener: (_, fn) => callbacks.osChange = fn };
   const fields = { theme: {} };
+  const historyUrls = [];
   let cssReady = false;
   const fontOutputs = { body: {}, code: {}, site: {} };
   const form = { elements: { namedItem: name => fields[name] }, addEventListener() {} };
@@ -25,10 +26,11 @@ function boot({ dark = false, saved = null, search = '', storageFails = false, w
     getItem: () => { if (storageFails) throw new Error('Unavailable'); return stored; },
     setItem: (_, value) => { if (storageFails) throw new Error('Unavailable'); stored = value; },
   };
-  runInNewContext(source, { document, getComputedStyle: () => ({ getPropertyValue: name => cssReady ? name : '' }), URL, URLSearchParams, matchMedia: () => os, localStorage, location: { search, origin: 'http://mock.invalid', pathname: '/article.html', hash: '' }, history: { replaceState() {} } });
+  runInNewContext(source, { document, getComputedStyle: () => ({ getPropertyValue: name => cssReady ? name : '' }), URL, URLSearchParams, matchMedia: () => os, localStorage, location: { search, origin: 'http://mock.invalid', pathname: '/article.html', hash }, history: { replaceState: (_, __, url) => historyUrls.push(url) } });
   return { root, attributes, fields, stored: () => stored, click: () => callbacks.click(), changeOS: value => callbacks.osChange({ matches: value }),
     fontOutputs, loadStyles() { cssReady = true; callbacks.load(); },
-    follow(href) { const link = { href, getAttribute: () => href }; callbacks.linkClick({ target: { closest: () => link } }); return link.href; } };
+    historyUrls,
+    follow(href) { const link = typeof href === 'string' ? { href, getAttribute: () => href } : href; callbacks.linkClick({ target: { closest: () => link } }); return link.href; } };
 }
 for (const dark of [false, true]) {
   const app = boot({ dark });
@@ -76,4 +78,15 @@ const coldCache = boot({ withFontStacks: true });
 assert.equal(coldCache.fontOutputs.body.textContent, '');
 coldCache.loadStyles();
 for (const name of ['body', 'code', 'site']) assert.equal(coldCache.fontOutputs[name].textContent, '--font-' + name);
-console.log('PASS: OS-following, persistence, color previews, preview form synchronization, retired masthead options, cold-cache font display, unavailable storage.');
+for (const value of ['medium', '500', 'invalid']) assert.equal(boot({ search: `?heading=${value}` }).root.dataset.heading, undefined);
+for (const choice of ['native', 'segoe', 'explicit', 'system', 'invalid']) {
+  const app = boot({ search: `?typography=${choice}&theme=light` });
+  assert.equal(app.root.dataset.typography, undefined, 'Retired typography choices do not affect the adopted font');
+  assert.equal(new URL(app.follow('http://mock.invalid/about.html')).searchParams.get('typography'), null);
+}
+for (const choice of ['current', 'scale', 'plus-one', 'plus-two', 'invalid']) {
+  const app = boot({ search: `?heading-space=${choice}&theme=dark` });
+  assert.equal(app.root.dataset.proseSpacing, undefined, 'Retired spacing choices do not override adopted margins');
+  assert.equal(new URL(app.follow('http://mock.invalid/about.html')).searchParams.get('heading-space'), null);
+}
+console.log('PASS: OS-following, persistence, color previews, navigation, retired options, cold-cache font display, unavailable storage.');

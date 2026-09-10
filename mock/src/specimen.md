@@ -13,6 +13,8 @@ date: 2026-09-05
 
 `config.toml`を編集して`hugo server`を実行する。日本語の中に`very_long_configuration_identifier_without_spaces`が入っても、文章全体の行間は変えません。**大切な語句は太字**にし、*補足的な強調*も同じ階調で扱います。脚注は本文の流れを妨げない位置に置きます。[^note]
 
+通常の日本語とEnglish 0123に対して、<strong>重要な日本語とEnglish 0123（strong）</strong>、<b>注目する日本語とEnglish 0123（b）</b>を同じ700で表示します。<strong>強調の中の<b>入れ子の太字</b></strong>も700を維持し、<strong><code>inline_code</code></strong>は強調の太さを継承します。
+
 > 読みやすさは文字サイズだけでは決まらない。行の長さ、前後の余白、見出しの強さが揃って、長い文章を読み進められる。
 >
 > これは表示確認のための例文です。
@@ -27,11 +29,19 @@ date: 2026-09-05
 
 ##### H5：日本語コメントのある場合 {#heading-five}
 
-小さな階層でも、本文より文字を小さくしません。H5は本文の1.0625倍、太さ600を初期値としています。この段落と次のH6を続けて読み、差が十分かを確認します。
+小さな階層でも、本文より文字を小さくしません。H5は本文の1.099倍、太さ500です。この段落と次のH6を続けて読み、差が十分かを確認します。
 
 ###### H6：折り返した行の扱いと、長い日本語見出しが続くときの読みやすさ {#heading-six}
 
-H6は本文と同じサイズで、太さ600です。わずかなサイズ差だけで十分かどうかは継続検討の対象です。通常の段落と混同しないことも確認します。
+H6は本文と同じサイズで、太さ500です。わずかなサイズ差だけで十分かどうかは継続検討の対象です。通常の段落と混同しないことも確認します。
+
+## 連続する見出しの余白確認 {#consecutive-headings}
+
+### 本文を挟まないH3
+
+#### 続けて配置したH4
+
+見出し同士の間隔はマージン相殺の影響を受けます。前2.121em・後0.687emの共通指定で、階層と続く本文のまとまりを確認します。
 
 ## リストと手順 {#lists}
 
@@ -61,12 +71,21 @@ H6は本文と同じサイズで、太さ600です。わずかなサイズ差だ
 
 | 項目 | デスクトップ | モバイル |
 | --- | --- | --- |
-| ルート | 106.25%（17px） | 100%（16px） |
-| 本文 | 1rem（17px） | 1rem（16px） |
-| 記事タイトル | 1.6rem（27.2px） | 1.6rem（25.6px） |
-| サイト名 | 2rem（34px） | 2rem（32px） |
+| ルート | 106.25%（17px） | 106.25%（17px） |
+| 本文 | 1rem（17px） | 1rem（17px） |
+| 記事タイトル | 1.6rem（27.2px） | 1.6rem（27.2px） |
+| H2 | 1.456rem（約24.75px） | 1.456rem（約24.75px） |
+| H3 | 1.326rem（約22.54px） | 1.326rem（約22.54px） |
+| H4 | 1.207rem（約20.52px） | 1.207rem（約20.52px） |
+| H5 | 1.099rem（約18.68px） | 1.099rem（約18.68px） |
+| H6 | 1rem（17px） | 1rem（17px） |
+| サイト名 | 1.931rem（約32.83px） | 1.931rem（約32.83px） |
+| 一覧タイトル | 1.207rem | 1.207rem |
+| 補助文字・小 | 0.910rem | 0.910rem |
+| 日付・タグ | 0.829rem | 0.829rem |
+| 小さなラベル | 0.754rem | 0.754rem |
 | 行高 | 1.9 | 1.9 |
-| コード | 0.875rem（14.875px） / 1.5 | 0.875rem（14px） / 1.5 |
+| コード | calc(14 / 17 * 1rem)（14px） / 1.3 | calc(14 / 17 * 1rem)（14px） / 1.3 |
 
 <table class="wide-table"><thead><tr><th scope="col">設定項目</th><th scope="col">識別子</th><th scope="col">内容</th><th scope="col">備考</th></tr></thead><tbody><tr><th scope="row">APIエンドポイント</th><td><code>GET /api/v1/projects/:project_id/deployments</code></td><td>デプロイ履歴の一覧を取得</td><td>ローカルな横スクロールの検証</td></tr><tr><th scope="row">環境変数</th><td><code>APPLICATION_DATABASE_CONNECTION_TIMEOUT</code></td><td>接続を待つ最大時間</td><td>長い英数字を含む表</td></tr></tbody></table>
 
@@ -74,11 +93,11 @@ H6は本文と同じサイズで、太さ600です。わずかなサイズ差だ
 
 ### 日本語フォールバックの診断
 
-上段は採用した指定（ヒラギノ・Notoの候補を明示し、最後はmonospace）、下段は日本語候補を省いた診断用です。Safariでは先頭のui-monospaceによるシステム側の日本語選択が優先される可能性があり、両段が同じ書体になる場合もあります。字幅の測定だけで実際のフォント名を特定するものではありません。
+採用した指定はMenlo, Consolas, monospaceです。欧文はMacでMenlo、WindowsでConsolasを優先し、その他の環境と和文はブラウザのmonospace・不足文字のフォールバックに委ねます。本文との書体の統一は求めず、palt・合字・自動カーニングは無効にします。欧文のiiii／WWWW／0000が同じ幅であること、日本語と約物の字幅・混植の読みやすさを確認します。和欧文の厳密な2:1の幅比や、字幅だけからの実フォントの特定は保証しません。
 
 <div class="font-probe-scroll">
-<p>採用：<code data-code-probe="explicit"><span>日本語あいうえお「設定」、。</span> <span>iiWW00 // config.toml</span></code></p>
-<p>省略：<code class="code-probe-auto" data-code-probe="automatic"><span>日本語あいうえお「設定」、。</span> <span>iiWW00 // config.toml</span></code></p>
+<p>採用：<code data-code-probe="adopted"><span>日本語あいうえお「設定」、。</span> <span>iiWW00 // config.toml</span></code></p>
+<p>欧文の字幅：<code data-code-probe="width"><span>iiii</span> <span>WWWW</span> <span>0000</span></code></p>
 </div>
 
 ### 複数行とシンタックスハイライト

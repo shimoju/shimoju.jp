@@ -15,6 +15,7 @@ for (const { file } of manifest.pages) {
   assert.match(html, /<html lang="ja">/);
   assert.match(html, /name="viewport" content="width=device-width, initial-scale=1"/);
   assert.match(html, /name="robots" content="noindex,nofollow"/);
+  assert.doesNotMatch(html, /data-typography-preview|name="typography"|typography-preview/, `${file}: retired font comparison`);
   assert.doesNotMatch(html, /<iframe|<script[^>]+src="https?:|<link[^>]+href="https?:[^>]+rel="stylesheet"/);
   assert.doesNotMatch(html, /tabindex="0"[^>]+tabindex="0"/);
   for (const match of html.matchAll(/\b(href|src)="([^"]+)"/g)) {
@@ -33,6 +34,8 @@ for (const { file } of manifest.pages) {
   for (const img of html.matchAll(/<img\b[^>]*>/g)) assert.match(img[0], /alt="[^"]+"/, `${file}: image needs alt`);
 }
 const article = read('article.html');
+assert.doesNotMatch(article, /<p>\s*<img\b/);
+assert.match(article, /<figure><img[^>]*ghostty-herdr\.png/);
 assert(article.indexOf('<h1>') < article.indexOf('class="meta"'));
 assert(article.indexOf('class="meta"') < article.indexOf('class="article-cover"'));
 assert(article.indexOf('class="article-cover"') < article.indexOf('class="prose"'));
@@ -56,31 +59,75 @@ assert.match(read('specimen.html'), /class="footnotes"/);
 assert.doesNotMatch(read('assets/theme.css'), /data-type|data-links|data-leading|data-title|data-cover-position|data-font|data-footer|data-masthead|\.toc/);
 assert.doesNotMatch(read('index.html'), /name="(?:type|cover|links|leading|title|cover-position|font|footer|masthead)"|article-toc|specimen-toc/);
 assert.match(read('index.html'), /data-font-stack="body"/);
+assert.match(read('assets/theme.css'), /a \{[^}]*text-underline-offset: \.26em;/);
+assert.match(read('assets/theme.css'), /\.shares button \{[^}]*text-underline-offset: \.26em;/);
 assert.doesNotMatch(read('index.html'), /masthead=/);
 assert.match(read('assets/theme.css'), /body \{[^}]*font-feature-settings: "palt";/);
 assert.match(read('assets/theme.css'), /code, pre \{[^}]*font-feature-settings: normal;/);
 assert.match(read('assets/theme.css'), /code, pre \{[^}]*font-kerning: none;/);
-assert.match(read('assets/theme.css'), /--font-body: "Helvetica Neue", Arial, var\(--font-ja\)/);
+assert.match(read('assets/theme.css'), /--font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", "Noto Sans CJK JP", sans-serif;/);
 assert.match(read('assets/theme.css'), /"Hiragino Sans", "Noto Sans JP", "Noto Sans CJK JP", sans-serif/);
-assert.doesNotMatch(read('assets/theme.css'), /Segoe UI|BIZ UD|SFMono-Regular|"SF Mono"|Yu Gothic|MS Gothic|Meiryo|Hiragino Kaku|Liberation Mono|Roboto|Century Gothic/);
-assert.match(read('assets/theme.css'), /--font-code: ui-monospace, Menlo, Consolas, "Hiragino Sans", "Noto Sans JP", "Noto Sans CJK JP", monospace/);
-for (const file of ['index.html', 'specimen.html']) assert.doesNotMatch(read(file), /SFMono-Regular|BIZ UD|Yu Gothic|游ゴシック/);
+assert.doesNotMatch(read('assets/theme.css'), /BIZ UD|SFMono-Regular|"SF Mono"|Yu Gothic|MS Gothic|Meiryo|Hiragino Kaku|Liberation Mono|Roboto|Century Gothic/);
+assert.match(read('assets/theme.css'), /--font-code: Menlo, Consolas, monospace;/);
+assert.doesNotMatch(read('assets/theme.css'), /ui-monospace|code-probe-auto/);
+assert.match(read('specimen.html'), /data-code-probe="width"/);
+for (const file of ['index.html', 'specimen.html']) assert.doesNotMatch(read(file), /ui-monospace|SF Mono|code-probe-auto/);
+for (const file of ['index.html', 'specimen.html']) assert.doesNotMatch(read(file), /SFMono-Regular|BIZ UD/);
 assert.match(read('assets/theme.css'), /:not\(pre\) > code \{ font-size: \.85em; padding: \.25em \.35em/);
 const themeCss = read('assets/theme.css');
-assert.match(themeCss, /html \{ font-size: 100%;/);
-assert.match(themeCss, /@media \(min-width: 640px\) \{\s*html \{ font-size: 106\.25%;/);
+for (const [name, step] of [['small', -1], ['meta', -2], ['label', -3]]) {
+  const expected = (1.6 ** (step / 5)).toFixed(3).slice(1);
+  assert(themeCss.includes(`--text-${name}: ${expected}rem;`));
+}
+assert.match(themeCss, /\.entry-title \{ font-size: 1\.207rem;/);
+for (const selector of ['.site-nav', '.entry-summary', '.prose table', '.footnotes', '.archive-month h3']) {
+  const block = themeCss.slice(themeCss.indexOf(selector + ' {')).split('}')[0];
+  assert(block.includes('font-size: var(--text-small)'), selector);
+}
+assert.doesNotMatch(themeCss, /font-size: (?:0?\.875|0?\.8125|0?\.9375|0?\.75|0?\.9)rem;/);
+assert.match(themeCss, /--space-block: 1\.931em;/);
+for (const selector of ['.prose figure', '.table-scroll', '.code-block']) {
+  const block = themeCss.slice(themeCss.indexOf(selector + ' {')).split('}')[0];
+  assert(block.includes('margin: var(--space-block) 0;'), selector);
+}
+assert.match(themeCss, /\.prose :is\(h2, h3, h4, h5, h6\) \{ margin: 2\.121em 0 \.687em; \}/);
+assert.equal(Number((1.6 ** (8 / 5)).toFixed(3)), 2.121);
+assert.equal(Number((1.6 ** (-4 / 5)).toFixed(3)), .687);
+assert.match(themeCss, /\.prose > :first-child \{ margin-top: 0; \}/);
+assert.doesNotMatch(themeCss, /data-prose-spacing|--prose-heading-before|spacing-preview/);
+for (const {file} of manifest.pages) {
+  assert.doesNotMatch(read(file), /data-spacing-preview|name="heading-space"|spacing-preview/);
+}
+assert.doesNotMatch(themeCss, /system-ui|data-typography="system"/);
+for (const { file } of manifest.pages) assert.doesNotMatch(read(file), /value="system"|system-ui/);
+assert.doesNotMatch(themeCss, /data-typography|Segoe UI Variable|Arial|Helvetica|Avenir/);
+for (const weight of [400, 500, 700]) assert(read('index.html').includes(`data-weight-probe="${weight}" style="font-weight: ${weight}"`));
+for (const { file } of manifest.pages) assert.doesNotMatch(read(file), /data-heading-preview|name="heading"/);
+assert.match(themeCss, /h1, h2, h3, h4, h5, h6 \{[^}]*font-weight: 500;/);
+assert.match(themeCss, /\.site-name \{[^}]*font-weight: 500;/);
+assert.match(themeCss, /strong, b \{ font-weight: 700; \}/);
+assert.match(themeCss, /\.prose th \{ font-weight: 700; \}/);
+assert.match(read('specimen.html'), /<b>注目する日本語とEnglish 0123（b）<\/b>/);
+assert.doesNotMatch(themeCss, /font-weight: 600/);
+assert.match(themeCss, /\.archive-month h3 \{[^}]*font-weight: 400;/);
+assert.doesNotMatch(themeCss, /Heading Latin|data-heading|--heading-weight|--font-heading/);
+assert.match(themeCss, /html \{ font-size: 106\.25%;/);
+assert.equal((themeCss.match(/html \{ font-size:/g) || []).length, 1, 'Root size is shared across viewports');
 assert.match(themeCss, /--body-size: 1rem;/);
 assert.match(themeCss, /--content-width: 720px;/);
-for (const [tag, ratio] of [['h1', '1.6'], ['h2', '1.4'], ['h3', '1.25'], ['h4', '1.125'], ['h5', '1.0625'], ['h6', '1']]) {
+for (const [tag, ratio] of [['h1', '1.6'], ['h2', '1.456'], ['h3', '1.326'], ['h4', '1.207'], ['h5', '1.099'], ['h6', '1']]) {
+  assert.equal(Number(ratio), Number((1.6 ** ((6 - Number(tag[1])) / 5)).toFixed(3)), `${tag} follows the five-interval scale`);
   assert(themeCss.includes(`${tag} { font-size: ${ratio}rem;`), `${tag} uses the root type scale`);
 }
-assert.match(themeCss, /\.site-name \{[^}]*font-size: 2rem;/);
-assert.match(themeCss, /\.code-block pre \{[^}]*font-size: 0\.875rem;/);
+assert.match(themeCss, /\.site-name \{[^}]*font-size: 1\.931rem;/);
+assert.equal(Number((1.6 ** (7 / 5)).toFixed(3)), 1.931);
+assert.match(themeCss, /\.code-block pre \{[^}]*font-size: calc\(14 \/ 17 \* 1rem\);/);
+assert.match(themeCss, /--code-leading: 1\.3;/);
 assert.doesNotMatch(themeCss, /font(?:-size)?:[^;{}]*\dpx/);
 assert.match(themeCss, /\.code-toolbar \{[^}]*flex-wrap: wrap/);
 assert.doesNotMatch(themeCss.match(/\.theme-toggle \{[^}]*\}/)[0], /[; ]height:/);
 for (const { file } of manifest.pages) assert.doesNotMatch(read(file), /data-text-scale-test/, 'Deliverable must not contain test-only font overrides');
-assert.match(read('assets/theme.css'), /--font-site: "Avenir Next", var\(--font-body\)/);
+assert.match(read('assets/theme.css'), /--font-site: var\(--font-body\)/);
 assert.match(read('assets/theme.css'), /\.site-name \{ font-family: var\(--font-site\)/);
 assert.match(read('index.html'), /data-palt-probe="on"/);
 assert.match(read('index.html'), /data-palt-probe="off"/);
@@ -109,7 +156,7 @@ for (const entry of read('home.html').matchAll(/<article class="post-entry[^>]*>
   if (entry[1].includes('entry-cover')) assert(entry[1].indexOf('entry-cover') < entry[1].indexOf('entry-text'));
 }
 for (const entry of read('archives.html').matchAll(/<li>([\s\S]*?)<\/li>/g)) assert.match(entry[1], /<a[^>]*>[\s\S]*<time[\s\S]*<\/time><\/a>/);
-assert.doesNotMatch(read('assets/theme.css'), /@font-face|object-fit:\s*cover|max-height:/);
+assert.doesNotMatch(themeCss, /@font-face|object-fit:\s*cover|max-height:/);
 const syntax = read('assets/syntax.css');
 assert.match(syntax, /\[data-theme="light"\] \.chroma \{ color:#4c4f69;background-color:#eff1f5/);
 assert.match(syntax, /\[data-theme="dark"\] \.chroma \{ color:#cdd6f4;background-color:#1e1e2e/);

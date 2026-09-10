@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), 'site');
 const port = Number(process.env.MOCK_PORT || 4173);
+const host = process.env.MOCK_HOST || '0.0.0.0';
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.png': 'image/png', '.mp4': 'video/mp4' };
 createServer(async (request, response) => {
   try {
@@ -22,4 +23,4 @@ createServer(async (request, response) => {
     const notFound = await readFile(resolve(root, '404.html'), 'utf8');
     response.end(request.method === 'HEAD' ? undefined : notFound.replace('<head>', '<head><base href="/">'));
   }
-}).listen(port, '127.0.0.1', () => console.log(`Mock: http://127.0.0.1:${port}/`));
+}).listen(port, host, () => console.log(`Mock: http://127.0.0.1:${port}/ (listening on ${host}; serves mock/site/ only)`));
