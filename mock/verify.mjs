@@ -159,7 +159,7 @@ assert.match(read('home-2.html'), /Next <span aria-hidden="true">»<\/span>/);
 assert.match(read('article-hugo.html'), /<span aria-hidden="true">«<\/span> Previous post/);
 assert.match(read('article-hugo.html'), /Next post <span aria-hidden="true">»<\/span>/);
 assert.match(read('index.html'), /<button type="submit">ページを開く<\/button>/);
-for (const selector of ['.site-nav a', '.pager a', '.article-tags a', '.post-nav a', '.terms a', '.archive-month a', '.profile-links a', '.site-footer a']) {
+for (const selector of ['.site-nav a', '.pager a', '.article-tags a', '.terms a', '.archive-month a', '.profile-links a', '.site-footer a']) {
   const rule = themeCss.split(`${selector} {`)[1]?.split('}')[0];
   assert(rule?.includes('text-decoration: none;'), `${selector}: no underline by default`);
   assert(themeCss.includes(`${selector}:hover { text-decoration: underline; }`), `${selector}: underline on hover`);
@@ -167,6 +167,17 @@ for (const selector of ['.site-nav a', '.pager a', '.article-tags a', '.post-nav
 assert.match(themeCss, /\.site-nav a\[aria-current="page"\] \{ text-decoration: underline; \}/);
 assert.match(themeCss, /\.entry-link:hover \{[^}]*text-decoration: none;/);
 assert.match(themeCss, /\.entry-link:hover \.entry-title \{ text-decoration: underline; text-decoration-thickness: 1px; \}/);
+assert.match(themeCss, /\.post-nav a \{ text-decoration: none; \}/);
+assert.match(themeCss, /\.post-nav a:hover \.post-nav-title \{ text-decoration: underline; text-decoration-thickness: 1px; \}/);
+assert.doesNotMatch(themeCss, /\.post-nav a:hover \{/);
+for (const { file } of manifest.pages) {
+  const nav = read(file).match(/<nav class="post-nav"[\s\S]*?<\/nav>/)?.[0];
+  if (!nav) continue;
+  for (const [link] of nav.matchAll(/<a\b[\s\S]*?<\/a>/g)) {
+    assert.match(link, /<\/small><span class="post-nav-title">[^<]+<\/span><\/a>/);
+    assert.equal((link.match(/class="post-nav-title"/g) || []).length, 1);
+  }
+}
 assert.match(themeCss, /\.site-name \{[^}]*text-decoration: none;/);
 assert.doesNotMatch(themeCss, /\.site-name:hover/);
 assert.match(themeCss, /:focus-visible \{[^}]*outline: 2px solid var\(--accent\)/);

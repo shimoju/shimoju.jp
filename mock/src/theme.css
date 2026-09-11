@@ -152,7 +152,7 @@ code, pre { font-family: var(--font-code); font-feature-settings: normal; font-v
 .interaction-note { color: var(--muted); font-size: var(--text-label); min-height: 1.9em; }
 .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: var(--text-small); }
 .post-nav a { text-decoration: none; }
-.post-nav a:hover { text-decoration: underline; }
+.post-nav a:hover .post-nav-title { text-decoration: underline; text-decoration-thickness: 1px; }
 .post-nav a + a { text-align: right; }
 .post-nav small { display: block; color: var(--muted); font-size: var(--text-label); margin-bottom: 0.5rem; }
 .terms { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; list-style: none; padding: 0; margin: 0; }
