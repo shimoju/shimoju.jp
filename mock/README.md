@@ -1,4 +1,3 @@
-# 静的HTMLモック
 
 [視覚要件](../docs/04-theme-visual-requirements.md)の配置・組版・操作を確認するためのHTML。Hugoテーマの完成実装ではなく、本番の設定・テンプレート・記事は変更していません。
 
@@ -30,7 +29,8 @@ LANアドレス経由のHTTPは通常secure contextにならないため、Clipb
 | 本文部品とレビュー入口 | specimen.html、index.html |
 
 - [src/theme.css](src/theme.css)：配色・フォント候補・サイズ・余白・レスポンシブ。
-- [src/theme.js](src/theme.js)：配色、コピー、レビュー用条件、外部送信しない操作デモ。
+- [src/theme.js](src/theme.js)：配色、コピー、レビュー用条件。
+- [sharing.mjs](sharing.mjs)・[src/sharing.js](src/sharing.js)：共有・フッターのSVG、共有リンク、はてなスターの読み込み。
 - [src/specimen.md](src/specimen.md)：H2〜H6、表、脚注、コード・画像の境界条件。
 - [src/render-codeblock.html](src/render-codeblock.html)：Hugoのコード生成・言語・ファイル名・行番号。
 - [build.mjs](build.mjs)：実記事をHTML化し、共通枠を付けてsite/へ生成。素材のパスはsite/manifest.jsonにも記録。
@@ -45,6 +45,7 @@ node mock/build.mjs
 node mock/verify.mjs
 node mock/test-theme.mjs
 node mock/test-copy.mjs
+node mock/test-sharing.mjs
 ```
 
 再生成時だけHugoが必要です。確認環境はHugo v0.165.0、Node.js v24.20.0。Hugo付属ChromaのLatte／Mochaを生成し、モード別セレクター以外のハイライト宣言は変更しません。Markdown変換は一時ディレクトリで行い、本番のpublic/や設定には触れず、外部埋め込みも取得しません。
@@ -58,6 +59,7 @@ node mock/test-copy.mjs
 | 条件 | 指定 |
 | --- | --- |
 | 配色 | `?theme=light`／`?theme=dark` |
+| シェアボタン | 自作SVG＋通常リンクに確定。はてなスターのみ公式スクリプトを使用し、旧`?share=`は無視する |
 | コピー失敗 | `specimen.html?copy=failure#code` |
 | 組版・日本語コード | specimen.html。palt、フォールバック、paddingの診断用サンプル |
 | 文字拡大の一時ビルド | `node mock/build.mjs --text-scale=1.25`／`--text-scale=2`。確認後は通常ビルドへ必ず戻す |
@@ -84,7 +86,7 @@ Macの和文がNotoへフォールバックするのを避けるため、Hiragin
 
 - 配色、コードコピー、ページ送り、ローカルな画面遷移は動作します。コピーは実際のクリップボードへ書き込み、入口の貼り付け欄で照合できます。欄の内容は送信・保存しません。
 - コピーはCopy → Copied → 3秒後にCopy。失敗はCopy failedとなり再試行できます。ブロック下部の可視メッセージは出しません。
-- シェア3サービスとはてなスターはローカルな表示デモ。実投稿・反応・ログイン・サービス連携は行いません。
+- 実記事5件のシェア3サービス・はてなスターは実サービスへ接続します。共有・スターの対象は実記事の公開URLです。投稿の確定やスター追加は実際に反映されます。本文部品ページには設置しません。設定・配色対応・検証の境界は[シェア機能](../docs/07-theme-sharing.md)を参照してください。
 - 実記事の外部リンク、プロフィール、RSSは実サイトへ移動します。
 - 記事本文は実記事を使い、X埋め込みだけリンクへ置き換えています。記事・分類件数とページ数は収録分です。ホーム紹介文は仮文、部品ページの日付は検証用です。
 - 入口と診断サンプルはテーマ本来のUIではありません。読者向けUIは現在のモックでは英語表記で、記事本文と説明は日本語です。

@@ -79,17 +79,6 @@
         }
       });
     });
-    // Local-only demonstrations: never send a share or a Hatena reaction.
-    document.querySelectorAll('[data-share]').forEach(button => button.addEventListener('click', () => {
-      document.querySelector('.interaction-note').textContent = `${button.dataset.share} preview (mock; nothing was shared).`;
-    }));
-    document.querySelector('.hatena-star')?.addEventListener('click', event => {
-      const button = event.currentTarget;
-      const active = button.getAttribute('aria-pressed') !== 'true';
-      button.setAttribute('aria-pressed', String(active));
-      button.querySelector('span').textContent = active ? '★ 1' : '☆';
-      document.querySelector('.interaction-note').textContent = 'Hatena Star preview (mock; no reaction was sent).';
-    });
     const showFontStacks = () => {
       for (const [name, property] of [['body', '--font-body'], ['code', '--font-code'], ['site', '--font-site']]) {
         const output = document.querySelector(`[data-font-stack="${name}"]`);

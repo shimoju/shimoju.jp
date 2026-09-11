@@ -10,6 +10,7 @@ function boot({ dark = false, saved = null, search = '', hash = '', storageFails
   const button = { setAttribute: (name, value) => attributes[name] = value, addEventListener: (name, fn) => callbacks[name] = fn };
   const os = { matches: dark, addEventListener: (_, fn) => callbacks.osChange = fn };
   const fields = { theme: {} };
+  const location = { search, origin: 'http://mock.invalid', pathname: '/article.html', hash };
   const historyUrls = [];
   let cssReady = false;
   const fontOutputs = { body: {}, code: {}, site: {} };
@@ -26,7 +27,7 @@ function boot({ dark = false, saved = null, search = '', hash = '', storageFails
     getItem: () => { if (storageFails) throw new Error('Unavailable'); return stored; },
     setItem: (_, value) => { if (storageFails) throw new Error('Unavailable'); stored = value; },
   };
-  runInNewContext(source, { document, getComputedStyle: () => ({ getPropertyValue: name => cssReady ? name : '' }), URL, URLSearchParams, matchMedia: () => os, localStorage, location: { search, origin: 'http://mock.invalid', pathname: '/article.html', hash }, history: { replaceState: (_, __, url) => historyUrls.push(url) } });
+  runInNewContext(source, { document, getComputedStyle: () => ({ getPropertyValue: name => cssReady ? name : '' }), URL, URLSearchParams, matchMedia: () => os, localStorage, location, history: { replaceState: (_, __, url) => historyUrls.push(url) } });
   return { root, attributes, fields, stored: () => stored, click: () => callbacks.click(), changeOS: value => callbacks.osChange({ matches: value }),
     fontOutputs, loadStyles() { cssReady = true; callbacks.load(); },
     historyUrls,
@@ -94,4 +95,9 @@ for (const choice of ['200', '300', '500', 'invalid']) {
   assert.equal(app.root.dataset.siteWeight, undefined, 'Retired site-weight preview does not override adopted weight');
   assert.equal(new URL(app.follow('http://mock.invalid/about.html')).searchParams.get('site-weight'), null);
 }
-console.log('PASS: OS-following, persistence, color previews, navigation, retired options, cold-cache font display, unavailable storage.');
+for (const share of ['icons', 'official', 'invalid']) {
+  const app = boot({ search: `?share=${share}` });
+  assert.equal(app.root.dataset.share, undefined);
+  assert.equal(new URL(app.follow('http://mock.invalid/article-hugo.html')).searchParams.get('share'), null);
+}
+console.log('PASS: OS-following, persistence, previews, navigation, retired options, cold-cache font display, unavailable storage.');

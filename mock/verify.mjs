@@ -42,7 +42,8 @@ assert(article.indexOf('class="article-cover"') < article.indexOf('class="prose"
 assert(article.indexOf('class="prose"') < article.indexOf('class="article-tags"'));
 assert(article.indexOf('class="article-tags"') < article.indexOf('class="engagement"'));
 assert(article.indexOf('class="engagement"') < article.indexOf('class="post-nav"'));
-assert.doesNotMatch(article, /<details/);
+assert.doesNotMatch(article, /<details[^>]*class="toc"/);
+assert.doesNotMatch(article, /sharing-review|official-share|data-share-preview/);
 assert(!existsSync(resolve(site, 'article-toc.html')));
 assert(!existsSync(resolve(site, 'specimen-toc.html')));
 assert(manifest.pages.every(p => !p.file.includes('-toc')));
@@ -60,7 +61,7 @@ assert.doesNotMatch(read('assets/theme.css'), /data-type|data-links|data-leading
 assert.doesNotMatch(read('index.html'), /name="(?:type|cover|links|leading|title|cover-position|font|footer|masthead)"|article-toc|specimen-toc/);
 assert.match(read('index.html'), /data-font-stack="body"/);
 assert.match(read('assets/theme.css'), /a \{[^}]*text-underline-offset: \.26em;/);
-assert.match(read('assets/theme.css'), /\.shares button \{[^}]*text-underline-offset: \.26em;/);
+assert.doesNotMatch(read('assets/theme.css'), /\.shares button|\.hatena-star span/);
 assert.doesNotMatch(read('index.html'), /masthead=/);
 assert.match(read('assets/theme.css'), /body \{[^}]*font-feature-settings: "palt";/);
 assert.match(read('assets/theme.css'), /code, pre \{[^}]*font-feature-settings: normal;/);
@@ -142,7 +143,9 @@ for (const file of ['home.html', 'home-2.html', 'home-3.html']) {
 }
 for (const { file } of manifest.pages) {
   const footer = read(file).match(/<footer class="site-footer[\s\S]*?<\/footer>/)[0];
-  assert.match(footer, />X<\/a>[\s\S]*>GitHub<\/a>[\s\S]*>RSS<\/a><\/nav><span>© 2026 Hiroshi Shimoju/);
+  assert.match(footer, /aria-label="X"[\s\S]*aria-label="GitHub"[\s\S]*aria-label="RSS"[\s\S]*<\/nav><span>© 2026 Hiroshi Shimoju/);
+  assert.equal((footer.match(/<svg /g) || []).length, 3);
+  assert.equal((footer.match(/aria-hidden="true"/g) || []).length, 3);
 }
 assert.doesNotMatch(read('home.html'), /新着記事|unavailable|Previous<|公開 |RSSを購読/);
 assert.doesNotMatch(read('home-3.html'), /class="next-page"/);
@@ -159,7 +162,7 @@ assert.match(read('home-2.html'), /Next <span aria-hidden="true">»<\/span>/);
 assert.match(read('article-hugo.html'), /<span aria-hidden="true">«<\/span> Previous post/);
 assert.match(read('article-hugo.html'), /Next post <span aria-hidden="true">»<\/span>/);
 assert.match(read('index.html'), /<button type="submit">ページを開く<\/button>/);
-for (const selector of ['.site-nav a', '.pager a', '.article-tags a', '.terms a', '.archive-month a', '.profile-links a', '.site-footer a']) {
+for (const selector of ['.site-nav a', '.pager a', '.article-tags a', '.terms a', '.archive-month a', '.profile-links a']) {
   const rule = themeCss.split(`${selector} {`)[1]?.split('}')[0];
   assert(rule?.includes('text-decoration: none;'), `${selector}: no underline by default`);
   assert(themeCss.includes(`${selector}:hover { text-decoration: underline; }`), `${selector}: underline on hover`);
