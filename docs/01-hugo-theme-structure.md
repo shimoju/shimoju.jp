@@ -18,7 +18,7 @@ Hugoテーマに、必ず個別実装しなければならない固定数の画�
 | --- | --- | --- | --- |
 | 必須 | ホーム `/` | `home` / `home.html` → `list.html` | 現行設定の紹介文、記事一覧、ページ送り。紹介は初ページのみ、SNSリンクは共通フッター |
 | 必須 | 記事詳細 `/2026/09/01/development-environment-2026/` | `page` / `posts/page.html`、`page.html`、`single.html` | タイトル、公開日・更新日、本文、コード、画像、タグ、前後記事、共有・スター |
-| 必須 | 固定ページ `/about/` | `page` / `page.html`、`single.html`、独自`layout` | 現行のプロフィール本文。冒頭文やリンク集をテンプレートから追加しない。日付・共有・はてなスターを表示し、タグ・前後記事は表示しない |
+| 必須 | 固定ページ `/about/` | `page` / `page.html`、`single.html`、独自`layout` | 現行のプロフィール本文を維持する。日付・共有・はてなスターを表示し、タグ・前後記事は表示しない |
 | 必須 | セクション一覧 `/posts/` | `section` / `section.html` → `list.html` | 見出し、説明、記事一覧。ホームとは紹介部分が異なる |
 | 必須 | タグ・カテゴリの一覧 `/tags/`、`/categories/` | `taxonomy` / `taxonomy.html` → `list.html` | 分類名と件数。記事カードの一覧とは異なる |
 | 必須 | 個別タグ・カテゴリ `/tags/hugo/`、`/categories/技術/` | `term` / `term.html` → `list.html` | 分類見出し、その分類の記事、ページ送り |
@@ -41,7 +41,7 @@ Hugoテーマに、必ず個別実装しなければならない固定数の画�
 | 記事本文 | H2〜H6、段落、強調、リンク、引用、入れ子リスト、タスクリスト、表、脚注、区切り、長いURL |
 | コード | 言語あり／なし、インラインコード、長い行、行番号、強調行、コピー成功／失敗、light/dark |
 | 画像・埋め込み | 横長／縦長／小画像、alt・caption、リンク付き画像、本文最上部の大画像、動画、SNS・Speaker Deck、取得失敗 |
-| メタ情報 | 複数タグ、長いタグ、固定ページの日付省略、更新日、下書きプレビュー、共有ボタンの折り返し |
+| メタ情報 | 複数タグ、長いタグ、Aboutの日付・共有・スター、更新日の表示条件、下書きプレビュー、共有ボタンの折り返し |
 | アクセシビリティ | 200%拡大、Tab操作、フォーカス表示、reduced motion、JS無効でも記事を読める、画像が読み込めない |
 
 具体的な手順とモックの検査コマンドは[資料6](06-theme-validation.md)を参照する。
@@ -127,10 +127,13 @@ Go templateでは`{{ ... }}`内に処理を書く。`.`は現在のコンテキ�
 {{ define "main" }}
   <article>
     <h1>{{ .Title }}</h1>
-    {{ if and (eq .Section "posts") (not .Date.IsZero) }}
+    {{ if not .Date.IsZero }}
       <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
         {{ .Date.Format "2006/01/02" }}
       </time>
+    {{ end }}
+    {{ if and (not .Lastmod.IsZero) (ne (.Date.Format "2006-01-02") (.Lastmod.Format "2006-01-02")) }}
+      <span lang="en">Updated <time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Lastmod.Format "2006/01/02" }}</time></span>
     {{ end }}
     {{ .Content }}
   </article>
@@ -171,8 +174,8 @@ Go templateでは`{{ ... }}`内に処理を書く。`.`は現在のコンテキ�
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
   <ul>
-    {{ range .Pages.ByTitle }}
-      <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a> ({{ len .Pages }})</li>
+    {{ range .Data.Terms.Alphabetical }}
+      <li><a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a> ({{ .Count }})</li>
     {{ end }}
   </ul>
 {{ end }}
@@ -180,7 +183,7 @@ Go templateでは`{{ ... }}`内に処理を書く。`.`は現在のコンテキ�
 
 この例の`list.html`はhome/section/termを担当し、taxonomyだけ別にする。`.Pages`は子セクション等も含み得るので、実サイトの一覧対象は`.RegularPages`、`.RegularPagesRecursive`等との違いを確認して決める。
 
-この4ファイルはHugo v0.165.0の最小サイトでビルド確認済み。home、ページ送り、section、記事の日付、taxonomy、term、空sectionのページ送り省略を確認した。最小例ではAboutの日付を省略しているが、採用要件では日付・共有・はてなスターを表示する。実用テーマとして必要なデザイン・SEO等の完成品ではない。
+この最小例は記事・About共通の日付表示と、分類名順の一覧を示す。共有・はてなスター、記事のタグ・前後記事は[視覚要件](04-theme-visual-requirements.md)に従って組み込む。
 
 `define`を使う子テンプレートには、`define`、空白、Go templateコメント以外を外側に置かない。外側に通常のHTMLを書くとbase templateが適用されない。HTMLの出力はコンテキストに応じてエスケープされるため、`safeHTML`等は信頼できるHTMLに限定する。[テンプレートの種類](https://gohugo.io/templates/types/)、[テンプレート入門](https://gohugo.io/templates/introduction/)
 
@@ -202,4 +205,4 @@ Go templateでは`{{ ... }}`内に処理を書く。`.`は現在のコンテキ�
 5. キーボード・拡大表示・JS無効・画像と外部サービスの失敗時を確認する。
 6. [資料3の性能確認](03-papermod-analysis.md#性能の確認)でPaperModと比較する。
 
-これらは自作テーマ実装時の受け入れ条件案であり、この調査で新テーマを実装したという意味ではない。
+これらは自作テーマ実装時の受け入れ条件とする。

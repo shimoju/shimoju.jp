@@ -8,14 +8,14 @@
 | --- | --- |
 | postsの`/:year/:month/:day/:slugorcontentbasename/` | 既存URLを維持。contentの物理パスと混同しない |
 | 日本語・CJK要約・日付`2006/01/02` | 日本語の要約と実記事を確認。公開日と更新日を区別し、本文に著者名・読了時間・文字数を反復しない |
-| Home-InfoとSNSリンク | 現行のホーム紹介文は設定から取得して初ページだけに表示。Aboutは現行本文を維持し、追加の冒頭文・リンク集は置かない。X・GitHub・RSSは共通フッター |
+| Home-InfoとSNSリンク | 現行のホーム紹介文は設定から取得して初ページだけに表示。Aboutは現行本文を維持する。X・GitHub・RSSは共通フッター |
 | 一覧・分類・ページ送り | 同じ記事の情報を一つのリンクへ。空・1件・複数ページと端の操作を維持 |
 | Archives | 独自layoutで年月・記事タイトル・日付。PaperModは年にPublishDate、月にDateを使うため、移行時は日付基準を明示する |
 | カバー・本文画像 | 切り抜きなし。寸法・画像候補・読み込み優先度を入口ごとに設計する |
 | 前後記事 | posts内の前後移動。HugoのRelated APIによる関連記事推薦とは別 |
 | コードコピー | レンダーフックとClipboard API。行番号なしの本文、失敗処理、読み上げ通知を維持 |
 | Mochaのinlineハイライト | `noClasses: false`とLatte／MochaのCSSにする。ライトのコードも正しい配色にする |
-| 共有・はてなスター | X・Facebook・はてなブックマーク、はてなスターを接続。Xのタグ由来ハッシュタグは付けない |
+| 共有・はてなスター | 記事・AboutにX・Facebook・はてなブックマーク、はてなスターを接続。Xのタグ由来ハッシュタグは付けない |
 | RSS | 現行テンプレートの対象範囲・除外条件、home/section/taxonomy/termのRSS、要約・件数制限なし、既存URLと自動検出を維持 |
 | 検索・Profile・目次・パンくず・編集リンク・トップへ戻る | 実装しない。未使用のJS・CSSや検索索引を持ち込まない |
 | `minify.minifyOutput`、robots生成、pages.dev向けnoindex | サイト・配信側の設定として維持し、本番とプレビューで確認 |
@@ -26,7 +26,7 @@
 
 - 記事のshortcodeは`video`、`x`、`youtube`を使用する。videoはPaperMod提供、xとyoutubeはHugo内蔵。videoの名前・引数は自作テーマでも維持する。[同梱shortcode][pm-shortcodes]
 - Instagram・Speaker Deckなどの生HTML埋め込みがある。`unsafe: true`を無条件にfalseへ変えず、必要ならshortcode等へ移行する。生HTMLはMarkdown画像hookの対象外。[現設定](../hugo.yml)
-- [share_icons.html](../layouts/_partials/share_icons.html)のはてなブックマーク・スターはサイト独自。モックの表示デモだけで移行完了としない。外部JSのasync読み込みでも通信・処理コスト・レイアウト変動は残る。
+- [share_icons.html](../layouts/_partials/share_icons.html)のはてなブックマーク・スターはサイト独自。モックでは実サービスに接続しており、本実装でも公開URLと動作を確認する。外部JSのasync読み込みでも通信・処理コスト・レイアウト変動は残る。
 - [サイト側partials](../layouts/_partials/)と[上書きCSS](../assets/css/extended/override.css)を棚卸しする。組版調整は新テーマへ統合し、旧PaperModセレクターをそのまま残さない。
 - [static/_headers](../static/_headers)のpages.dev向けnoindexは配信機能。テーマを替えても別に管理する。
 - PaperModのソースをコピー・改変する場合はMITの著作権・許諾表示を保持する。フッターの表示クレジットとは別。[LICENSE][pm-license]
@@ -39,8 +39,8 @@
 | description | Description、Summary、サイト説明等を条件で選択 | HTML混入、長さ、固定ページ・分類の説明 |
 | canonical | ページ`canonicalURL`があれば使用、それ以外はPermalink | ページ送り、別サイト転載、URL正規化 |
 | robots meta | productionまたは`params.env: production`かつrobotsNoIndexでなければindex/follow。それ以外はnoindex/nofollow | 404・検索・プレビューの意図を明示 |
-| OGP | ページならarticle、他はwebsite。日付・タグ等、画像のfallbackあり | 固定ページもarticle扱い。ページ用途に合わせる |
-| Twitter Cards | 画像ありならsummary_large_image、なければsummary | fallback画像、絶対URL、実際の画像サイズ |
+| OGP | ページならarticle、他はwebsite。日付・タグ等、画像のfallbackあり | カバーのある記事だけ画像を指定。固定ページの型はページ用途に合わせる |
+| Twitter Cards | 画像ありならsummary_large_image、なければsummary | カバーの有無に応じたカード種別、絶対URL、実際の画像サイズ |
 | 構造化データ | ホームはOrganization（Personも設定可）、page/sectionにBreadcrumbList、pageにBlogPosting | About/Archives/Search等の型、内容・URL整合性 |
 | 言語 | html lang/dir、翻訳へのhreflang | locale、翻訳のないページ、言語別canonical |
 | RSS発見 | AlternativeOutputFormatsへのlink | フィードのタイトル・URL・MIME |
