@@ -74,8 +74,8 @@ for (const [lastmod, expected] of [['2026-09-05', false], ['2026-09-06', true], 
 for (const file of ['article', 'article-hugo', 'article-diary', 'article-bgm', 'article-pasmo']) {
   assert.doesNotMatch(read(`${file}.html`).match(/<header class="article-header">[\s\S]*?<\/header>/)[0], /Updated/);
 }
-assert.match(read('assets/theme.css'), /\.meta \{[^}]*gap: 0\.4rem 1\.7rem;/);
-assert.match(read('assets/theme.css'), /\.article-tags \{[^}]*gap: 0\.9rem 1\.7rem;/);
+assert.match(read('assets/theme.css'), /\.meta \{[^}]*gap: var\(--ui-space-1\) var\(--ui-space-4\);/);
+assert.match(read('assets/theme.css'), /\.article-tags \{[^}]*gap: var\(--ui-space-2\) var\(--ui-space-4\);/);
 assert.doesNotMatch(read('home-2.html'), /class="intro"/);
 assert.doesNotMatch(read('home-3.html'), /rel="next"/);
 assert.doesNotMatch(read('home.html'), /rel="prev"/);
@@ -166,6 +166,8 @@ const rootRatio = Number(themeCss.match(/html \{ font-size: ([\d.]+)%;/)[1]) / 1
 function tokenPixels(name, defaultSize, bodyRem = parseFloat(lengthTokens['--body-size'])) {
   if (name === '--body-size') return bodyRem * rootRatio * defaultSize;
   const value = lengthTokens[name];
+  const alias = value.match(/^var\((--[\w-]+)\)$/);
+  if (alias) return tokenPixels(alias[1], defaultSize, bodyRem);
   if (/^[\d.]+rem$/.test(value)) return parseFloat(value) * rootRatio * defaultSize;
   const product = value.match(/^calc\(var\((--[\w-]+)\) \* ([\d.]+)\)$/);
   assert(product, `Expected a rem length or body-based product: ${name}`);
@@ -179,7 +181,7 @@ for (const defaultSize of [16, 20, 32]) {
 assert.equal(tokenPixels('--code-size', 16, 1.8), 14, 'Code size is independent of the body token');
 assert(Math.abs(tokenPixels('--text-h1', 16, 1.8) - 28.8) < 1e-9);
 assert(Math.abs(tokenPixels('--space-section', 16, 1.8) - 46.08) < 1e-9);
-assert.match(themeCss, /\.site-nav \{[^}]*column-gap: 2\.3rem; row-gap: 0\.2rem;/);
+assert.match(themeCss, /\.site-nav \{[^}]*column-gap: var\(--ui-space-6\); row-gap: var\(--ui-space-1\);/);
 assert.match(themeCss, /--code-leading: 1\.3;/);
 assert.doesNotMatch(themeCss, /font(?:-size)?:[^;{}]*\dpx/);
 assert.match(themeCss, /\.code-toolbar \{[^}]*flex-wrap: wrap/);
@@ -263,3 +265,25 @@ const cover = readFileSync(resolve(site, 'assets/zsh-prompt-cover.png'));
 assert.equal(cover.readUInt32BE(16), 1200);
 assert.equal(cover.readUInt32BE(20), 630);
 console.log(`PASS: ${manifest.pages.length} pages, ${links} local references, grouped links, pagination, adopted options, Hugo code labels, palettes, 1200×630 cover.`);
+
+const cssRule = selector => themeCss.slice(themeCss.indexOf(selector + ' {')).split('}')[0];
+for (const [, step, rem] of themeCss.matchAll(/--ui-space-(\d+): ([\d.]+)rem;/g)) {
+  assert.equal(Math.round(Number(rem) * 10), Number(step) * 4, 'UI spacing uses a 4px grid');
+}
+for (const size of [16, 20, 32]) {
+  for (const [name, px] of [['control-size', 48], ['code-inset', 16], ['icon-gap', 12], ['icon-size', 24], ['icon-size-small', 20]]) {
+    assert(Math.abs(tokenPixels('--' + name, size) - px * size / 16) < 1e-9);
+    assert(Math.abs(tokenPixels('--' + name, size, 1.8) - px * size / 16) < 1e-9, 'UI dimensions are independent of body size');
+  }
+}
+assert(cssRule('.code-toolbar').includes('padding: var(--ui-space-1) var(--ui-space-3) var(--ui-space-1) var(--code-inset);'));
+assert(cssRule('.code-block pre').includes('padding: var(--ui-space-3) var(--code-inset) var(--ui-space-4);'));
+for (const selector of ['.share-icons', '.footer-links']) assert(cssRule(selector).includes('gap: var(--icon-gap)'));
+assert.match(themeCss, /--radius-small: 4px;/);
+assert.match(themeCss, /--radius-large: 8px;/);
+assert.match(themeCss, /--gutter: 24px;/);
+assert.match(themeCss, /--gutter: 16px;/);
+for (const [, value] of themeCss.matchAll(/border-radius: ([^;]+);/g)) {
+  assert(['var(--radius-small)', 'var(--radius-large)', '50%'].includes(value));
+}
+console.log('PASS: UI grid, shared code inset/icon spacing, radius scale, responsive gutters, independent text scale.');
