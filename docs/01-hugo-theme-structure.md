@@ -16,9 +16,9 @@ Hugoテーマに、必ず個別実装しなければならない固定数の画�
 
 | 優先度 | 画面・URL例 | HugoのKind / 主なテンプレート候補 | モックに含める内容 |
 | --- | --- | --- | --- |
-| 必須 | ホーム `/` | `home` / `home.html` → `list.html` | 短い紹介、記事一覧、ページ送り。紹介は初ページのみ、SNSリンクは共通フッター |
+| 必須 | ホーム `/` | `home` / `home.html` → `list.html` | 現行設定の紹介文、記事一覧、ページ送り。紹介は初ページのみ、SNSリンクは共通フッター |
 | 必須 | 記事詳細 `/2026/09/01/development-environment-2026/` | `page` / `posts/page.html`、`page.html`、`single.html` | タイトル、公開日・更新日、本文、コード、画像、タグ、前後記事、共有・スター |
-| 必須 | 固定ページ `/about/` | `page` / `page.html`、`single.html`、独自`layout` | プロフィールと全リンク。記事用メタ情報・共有・スター・前後記事は表示しない |
+| 必須 | 固定ページ `/about/` | `page` / `page.html`、`single.html`、独自`layout` | 現行のプロフィール本文。冒頭文やリンク集をテンプレートから追加しない。日付・共有・はてなスターを表示し、タグ・前後記事は表示しない |
 | 必須 | セクション一覧 `/posts/` | `section` / `section.html` → `list.html` | 見出し、説明、記事一覧。ホームとは紹介部分が異なる |
 | 必須 | タグ・カテゴリの一覧 `/tags/`、`/categories/` | `taxonomy` / `taxonomy.html` → `list.html` | 分類名と件数。記事カードの一覧とは異なる |
 | 必須 | 個別タグ・カテゴリ `/tags/hugo/`、`/categories/技術/` | `term` / `term.html` → `list.html` | 分類見出し、その分類の記事、ページ送り |
@@ -50,7 +50,7 @@ Hugoテーマに、必ず個別実装しなければならない固定数の画�
 
 | 成果物 | 自作が必要か | 決めること |
 | --- | --- | --- |
-| RSS `index.xml` | Hugo内蔵あり。要件に応じ上書き | home/section/termのどこに出すか、全文／要約、件数、除外ページ、HTMLの購読リンク |
+| RSS `index.xml` | Hugo内蔵あり。要件に応じ上書き | PaperModの対象範囲・除外条件を維持。home/section/taxonomy/term、要約・件数無制限、既存URL・自動検出 |
 | `sitemap.xml` | Hugo内蔵あり | 公開対象、除外、更新日の由来 |
 | `robots.txt` | `enableRobotsTXT: true`で生成可能 | 本番とプレビューの方針。noindexとは別 |
 | CSS/JS | テーマ側で作る | 共通／画面別の分割、minify、fingerprint、読み込み方法 |
@@ -180,7 +180,7 @@ Go templateでは`{{ ... }}`内に処理を書く。`.`は現在のコンテキ�
 
 この例の`list.html`はhome/section/termを担当し、taxonomyだけ別にする。`.Pages`は子セクション等も含み得るので、実サイトの一覧対象は`.RegularPages`、`.RegularPagesRecursive`等との違いを確認して決める。
 
-この4ファイルはHugo v0.165.0の最小サイトでビルド確認済み。home、ページ送り、section、記事の日付、Aboutの日付省略、taxonomy、term、空sectionのページ送り省略を確認した。実用テーマとして必要なデザイン・SEO等の完成品ではない。
+この4ファイルはHugo v0.165.0の最小サイトでビルド確認済み。home、ページ送り、section、記事の日付、taxonomy、term、空sectionのページ送り省略を確認した。最小例ではAboutの日付を省略しているが、採用要件では日付・共有・はてなスターを表示する。実用テーマとして必要なデザイン・SEO等の完成品ではない。
 
 `define`を使う子テンプレートには、`define`、空白、Go templateコメント以外を外側に置かない。外側に通常のHTMLを書くとbase templateが適用されない。HTMLの出力はコンテキストに応じてエスケープされるため、`safeHTML`等は信頼できるHTMLに限定する。[テンプレートの種類](https://gohugo.io/templates/types/)、[テンプレート入門](https://gohugo.io/templates/introduction/)
 

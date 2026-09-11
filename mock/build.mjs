@@ -16,6 +16,7 @@ const testStyle = textScale === 1 ? '' : `<style data-text-scale-test>html{font-
 if (textScale !== 1) console.warn(`TEST BUILD: text scale ${textScale}; restore with node mock/build.mjs before delivery.`);
 const root = dirname(fileURLToPath(import.meta.url));
 const repo = dirname(root);
+const siteConfig = JSON.parse(execFileSync('hugo', ['config', '--format', 'json'], { cwd: repo, encoding: 'utf8' }));
 const out = join(root, 'site');
 const scratch = mkdtempSync(join(tmpdir(), 'shimoju-visual-mock-'));
 const put = (path, text) => { mkdirSync(dirname(path), { recursive: true }); writeFileSync(path, text); };
@@ -42,7 +43,7 @@ unsafe = true
 noClasses = false
 style = 'catppuccin-latte'
 `);
-put(join(scratch, 'layouts/single.html'), '{{ dict "title" .Title "date" (.Date.Format "2006-01-02") "tags" (.Params.tags | default slice) "categories" (.Params.categories | default slice) "body" .Content "summary" .Summary | jsonify | safeHTML }}');
+put(join(scratch, 'layouts/single.html'), '{{ $lastmod := "" }}{{ if not .Lastmod.IsZero }}{{ $lastmod = .Lastmod.Format "2006-01-02" }}{{ end }}{{ dict "lastmod" $lastmod "title" .Title "date" (.Date.Format "2006-01-02") "tags" (.Params.tags | default slice) "categories" (.Params.categories | default slice) "body" .Content "summary" .Summary | jsonify | safeHTML }}');
 put(join(scratch, 'layouts/_markup/render-codeblock.html'), read(join(root, 'src/render-codeblock.html')));
 put(join(scratch, 'layouts/_shortcodes/video.html'), '<video controls preload="metadata" aria-label="自作Zshプロンプトの操作デモ"><source src="{{ .Get "src" }}" type="video/mp4"></video>');
 put(join(scratch, 'layouts/_shortcodes/x.html'), '<p><a href="https://x.com/{{ .Get "user" }}/status/{{ .Get "id" }}">Xの投稿を読む（モックでは外部埋め込みを省略）</a></p>');
@@ -91,7 +92,7 @@ function pager(base, current, total) {
   if (total <= 1) return '';
   return `<nav class="pager" lang="en" aria-label="Pagination">${current > 1 ? `<a class="previous-page" href="${url(current - 1)}" rel="prev"><span aria-hidden="true">«</span> Previous</a>` : ''}<span class="page-number" aria-label="Page ${current} of ${total}">${current} / ${total}</span>${current < total ? `<a class="next-page" href="${url(current + 1)}" rel="next">Next <span aria-hidden="true">»</span></a>` : ''}</nav>`;
 }
-const intro = '<section class="intro" aria-label="紹介"><p>テクノロジーと社会、日々のこと。<br>Ruby on RailsでWebアプリケーションをつくっています。</p></section>';
+const intro = `<section class="intro" aria-label="紹介"><p>${escape(siteConfig.params.homeinfoparams.content)}</p></section>`;
 for (const base of ['home', 'posts']) for (let n = 1; n <= 3; n++) {
   const home = base === 'home';
   const top = home ? (n === 1 ? intro : '') : heading('Posts');
@@ -121,15 +122,12 @@ function end(post) {
   const tags = (post.tags || []).map(tag => `<a href="${termFiles.tags.get(tag) || 'tags.html'}">#${escape(tag)}</a>`).join('');
   return `<footer class="article-end"><div class="article-tags" aria-label="Tags">${tags}</div>${engagement(post)}<nav class="post-nav" aria-label="Adjacent posts">${older ? `<a href="${older.id}.html"><small lang="en"><span aria-hidden="true">«</span> Previous post</small><span class="post-nav-title">${escape(older.title)}</span></a>` : ''}${newer ? `<a href="${newer.id}.html"><small lang="en">Next post <span aria-hidden="true">»</span></small><span class="post-nav-title">${escape(newer.title)}</span></a>` : ''}</nav></footer>`;
 }
-for (const post of [...posts, { id: 'specimen', ...data.get('specimen'), tags: ['Hugo'] }]) {
-  const header = `<header class="article-header"><h1>${escape(post.title)}</h1><div class="meta"><span>${date(post.date)}</span>${post.id === 'specimen' ? `<span lang="en">Updated ${date('2026-09-06')}</span>` : ''}</div>${post.id === 'article' ? `<figure class="article-cover">${cover}</figure>` : ''}</header>`;
+for (const post of [...posts, { id: 'specimen', ...data.get('specimen'), tags: ['Hugo'] }, { id: 'about', ...data.get('about'), publicUrl: 'https://shimoju.jp/about/' }]) {
+  const header = `<header class="article-header"><h1>${escape(post.title)}</h1><div class="meta"><span>${date(post.date)}</span>${post.lastmod && post.lastmod !== post.date ? `<span lang="en">Updated ${date(post.lastmod)}</span>` : ''}</div>${post.id === 'article' ? `<figure class="article-cover">${cover}</figure>` : ''}</header>`;
   const content = `<div class="prose">${decorate(post.body)}</div>`;
-  page(`${post.id}.html`, post.title, `<article>${header}${content}${end(post)}</article>`);
+  const footer = post.id === 'about' ? `<footer class="article-end">${engagement(post)}</footer>` : end(post);
+  page(`${post.id}.html`, post.title, `<article>${header}${content}${footer}</article>`, { current: post.id === 'about' ? 'about' : '' });
 }
-const allLinks = [['Email', 'mailto:hiroshi.shimoju@gmail.com'], ['GitHub', 'https://github.com/shimoju'], ['Bluesky', 'https://bsky.app/profile/shimoju.jp'], ['X', 'https://x.com/shimoju_'], ['Mastodon', 'https://ruby.social/@shimoju'], ['Threads', 'https://www.threads.net/@shimoju_'], ['Instagram', 'https://www.instagram.com/shimoju_/'], ['Facebook', 'https://www.facebook.com/hiroshi.shimoju'], ['Cosense', 'https://scrapbox.io/shimoju/']];
-const profileLinks = `<h2 id="profile-links">リンク</h2><ul class="profile-links">${allLinks.map(([name, url]) => `<li><a href="${url}">${name}</a></li>`).join('')}</ul>`;
-const aboutBody = decorate(data.get('about').body).replace(/(<h2[^>]*>職務要約<\/h2>)/, profileLinks + '$1');
-page('about.html', 'About', heading('About') + `<div class="prose"><p>このブログでは、技術のことや日々の記録を書いています。</p>${aboutBody}</div>`, { current: 'about' });
 let archive = heading('Archives');
 for (const year of [...new Set(posts.map(p => p.date.slice(0, 4)))]) {
   archive += `<section class="archive-year"><h2>${year}</h2>`;
@@ -143,9 +141,9 @@ page('empty.html', 'Posts', heading('Posts', '0件の表示確認') + entries([]
 page('single-item.html', 'Posts', heading('Posts', '1件・要約なしの表示確認') + entries([posts[2]], { noSummary: true }));
 
 const reviewLinks = [
-  ['home.html', 'ホーム', '短い紹介・画像あり／なし・初ページ'],
+  ['home.html', 'ホーム', '現行の紹介・画像あり／なし・初ページ'],
   ['article.html', '記事詳細', '実記事全文・長いタイトル・1200 × 630カバー'],
-  ['about.html', 'About', '実プロフィール・全リンク'],
+  ['about.html', 'About', '現行のプロフィール本文'],
   ['posts.html', '記事一覧', '共通の一覧部品'],
   ['tags.html', 'Tags', '分類名と件数'],
   ['categories.html', 'Categories', 'カテゴリ名と件数'],

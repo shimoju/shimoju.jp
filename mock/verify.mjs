@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { runInNewContext } from 'node:vm';
 
 const site = resolve(dirname(fileURLToPath(import.meta.url)), 'site');
 const read = file => readFileSync(resolve(site, file), 'utf8');
@@ -47,7 +48,34 @@ assert.doesNotMatch(article, /sharing-review|official-share|data-share-preview/)
 assert(!existsSync(resolve(site, 'article-toc.html')));
 assert(!existsSync(resolve(site, 'specimen-toc.html')));
 assert(manifest.pages.every(p => !p.file.includes('-toc')));
-assert.doesNotMatch(read('about.html'), /class="(?:meta|article-tags|engagement|post-nav)"/);
+assert.doesNotMatch(read('about.html'), /class="(?:article-tags|post-nav)"/);
+assert.match(read('about.html'), /class="meta"><span><time datetime="2025-11-16">2025\/11\/16<\/time>/);
+assert.doesNotMatch(read('about.html').match(/<header class="article-header">[\s\S]*?<\/header>/)[0], /Updated/);
+assert.match(read('about.html'), /<footer class="article-end"><div class="engagement"/);
+assert.doesNotMatch(read('about.html'), /profile-links|このブログでは、技術のことや日々の記録を書いています/);
+assert.match(read('about.html'), /<div class="prose"><h2[^>]*>プロフィール<\/h2>/);
+assert.match(read('home.html'), /株式会社SmartHR 技術統括本部 プロダクトエンジニア/);
+assert.match(read('home.html'), /Rails Girlsのコーチ/);
+assert.doesNotMatch(read('home.html'), /テクノロジーと社会、日々のこと/);
+assert.match(read('specimen.html'), /Updated <time datetime="2026-09-06">2026\/09\/06<\/time>/);
+const buildSource = readFileSync(resolve(site, '../build.mjs'), 'utf8');
+assert.doesNotMatch(buildSource, /\[frontmatter\]|\.Params\.lastmod/);
+assert.match(buildSource, /\.Lastmod\.Format "2006-01-02"/);
+assert.match(buildSource, /\.Date\.Format "2006-01-02"/);
+// The builder receives calendar dates formatted by Hugo, not raw timestamps.
+const articleHeader = buildSource.match(/const header = (`<header class="article-header">[^\n]+`);/)[1];
+for (const [lastmod, expected] of [['2026-09-05', false], ['2026-09-06', true], ['', false]]) {
+  const html = runInNewContext(articleHeader, {
+    post: { id: 'test', title: 'Date test', date: '2026-09-05', lastmod },
+    date: value => value, escape: value => value,
+  });
+  assert.equal(html.includes('Updated'), expected, `Update visibility for ${lastmod || 'zero date'}`);
+}
+for (const file of ['article', 'article-hugo', 'article-diary', 'article-bgm', 'article-pasmo']) {
+  assert.doesNotMatch(read(`${file}.html`).match(/<header class="article-header">[\s\S]*?<\/header>/)[0], /Updated/);
+}
+assert.match(read('assets/theme.css'), /\.meta \{[^}]*gap: 0\.25rem 1rem;/);
+assert.match(read('assets/theme.css'), /\.article-tags \{[^}]*gap: 0\.5rem 1rem;/);
 assert.doesNotMatch(read('home-2.html'), /class="intro"/);
 assert.doesNotMatch(read('home-3.html'), /rel="next"/);
 assert.doesNotMatch(read('home.html'), /rel="prev"/);
@@ -162,7 +190,7 @@ assert.match(read('home-2.html'), /Next <span aria-hidden="true">»<\/span>/);
 assert.match(read('article-hugo.html'), /<span aria-hidden="true">«<\/span> Previous post/);
 assert.match(read('article-hugo.html'), /Next post <span aria-hidden="true">»<\/span>/);
 assert.match(read('index.html'), /<button type="submit">ページを開く<\/button>/);
-for (const selector of ['.site-nav a', '.pager a', '.article-tags a', '.terms a', '.archive-month a', '.profile-links a']) {
+for (const selector of ['.site-nav a', '.pager a', '.article-tags a', '.terms a', '.archive-month a']) {
   const rule = themeCss.split(`${selector} {`)[1]?.split('}')[0];
   assert(rule?.includes('text-decoration: none;'), `${selector}: no underline by default`);
   assert(themeCss.includes(`${selector}:hover { text-decoration: underline; }`), `${selector}: underline on hover`);

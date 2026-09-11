@@ -110,3 +110,36 @@ ruby = "3.4"
 配色は保存済みの明示選択を優先し、なければOS設定に追従する。初回描画前の設定でちらつきを防ぎ、ストレージの読み書きが失敗しても本文と切り替えを使えるようにする。モックの`?theme=`・`?copy=failure`、レビュー入口、文字拡大用ビルドは検証専用で、本番テーマに必要な機能ではない。
 
 シェア・はてなスターはモックでも実サービスへ接続する。自作SVG＋通常リンクを採用し、はてなスターのみ公式スクリプトを読み込む。フッターのX・GitHub・RSSも同じSVGの仕組みを使う。Xへのタグ由来ハッシュタグは付けない。本実装では共有対象に記事のPermalinkを用い、location.hrefやモック専用パラメーターを使わない。[公式設定と実装上の注意](07-theme-sharing.md)を参照する。モックの固定年・記事件数・分類件数や`noindex,nofollow`を本番へそのままコピーしない。
+
+## 紹介文・更新日・一覧のデータ
+
+ホーム紹介文は現行の`site.Params.homeInfoParams.content`から取得し、初ページにのみ表示する。モックも`hugo config --format json`の結果を読み、別の固定文章を持たない。Aboutは現行`content/about.md`をHugoでレンダリングした本文を使う。設定ファイルとコンテンツファイルの役割を保ち、追加の冒頭文やリンク集をテンプレートに埋め込まない。
+
+`lastmod`はHugo標準の更新日フィールド。既定の`.Lastmod`はGit・記事日付等へフォールバックする。現行サイトでは`enableGitInfo`を有効化しておらず、`date`だけを指定した記事では`.Lastmod`も同じ日付になる。日付補完は変更せず、`.Date`と`.Lastmod`をそれぞれ`2006-01-02`で整形して比較し、年月日が異なる場合だけ更新日を表示する。同日の時刻差だけでは表示せず、明示指定の有無は判定しない。`.Lastmod`がゼロ時刻の場合も表示しない。[Lastmod](https://gohugo.io/methods/page/lastmod/)、[日付設定](https://gohugo.io/configuration/front-matter/)
+
+モックもHugo標準の`.Lastmod`を取得して年月日で比較する。部品ページの更新日はfront matterに指定し、ページIDによる固定表示は行わない。本実装での表示条件は`and (not .Lastmod.IsZero) (ne (.Date.Format "2006-01-02") (.Lastmod.Format "2006-01-02"))`とする。公開日・更新日の横gapとタグの横gapは1rem、縦gapはそれぞれ0.25rem・0.5rem。
+
+タグ・カテゴリの名称順にはHugoの`Taxonomy.Alphabetical`を用いる。分類一覧テンプレートでは`range .Data.Terms.Alphabetical`とし、表示名・URLは各要素の`.Page`から取得する。独自の日本語照合・読み仮名対応は行わない。モックのJavaScriptによる名称順との厳密一致ではなく、Hugo標準の順序を採用する。[Alphabetical](https://gohugo.io/methods/taxonomy/alphabetical/)
+
+一覧は本実装で`pagination.pagerSize: 10`を維持する。モックはページ送り検証のため2件×3ページのままとする。補助UIの英語ラベルと日本語説明の使い分けも現在のモックを正式採用する。
+
+## RSSとOGPの互換性
+
+RSSに含める項目・本文・対象ページの選択はテンプレート、どのページ種別でRSSを生成するかは`outputs`等の設定が担当する。テーマのテンプレートだけでなく、サイト設定も一緒に維持する。[RSS templates](https://gohugo.io/templates/rss/)、[Outputs](https://gohugo.io/configuration/outputs/)
+
+PaperModの現行`layouts/rss.xml`を基準に、以下を踏襲する。
+
+- home/sectionはRegularPages、taxonomy/termはPagesを対象にする。posts限定への変更や、Aboutの独自除外は行わない。
+- `hiddenInRss`、search/archivesレイアウトの除外など、現行の条件を維持する。
+- Descriptionがあれば優先し、なければSummaryを使う要約形式。全文のcontent:encodedは追加しない。
+- 件数制限なし（`services.rss.limit: -1`）。home・section・taxonomy・termにHTMLとRSSを維持する。
+- `/index.xml`、`/posts/index.xml`、`/tags/index.xml`、`/categories/index.xml`、各タグ・カテゴリ配下の`index.xml`と`/feed.xml`からの既存リダイレクトを維持する。
+- headの自動検出はページのRSS出力からURLを取得する。モックの全画面共通`/index.xml`指定をそのまま移植せず、分類一覧・個別分類では各フィードを参照する。
+- RSSのlastBuildDateには従来どおり補完後の`.Lastmod`を使用する。画面上で更新日を非表示にする条件はRSS・OGP・構造化データに適用せず、日付の出力を現行と比較する。
+- PaperModのコードをコピー・改変する場合はMITライセンスの表示を保持する。
+
+この段階ではRSS生成をモックへ追加しない。本実装で各フィードの対象・項目・URL・自動検出を比較する。
+
+OGP画像はカバーのある記事だけに設定する。共通の代替画像やタイトル入り画像の自動生成は行わない。カバーを絶対URLとして解決し、カバーのない記事では画像メタ情報を省略する。
+
+外部埋め込み（X・YouTube・Instagram・Speaker Deck等）の動作・余白・配色・失敗時表示は本実装時の確認対象とする。現段階ではモックに追加しない。

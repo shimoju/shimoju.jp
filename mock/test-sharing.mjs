@@ -57,7 +57,14 @@ for (const name of ['article', 'article-hugo', 'article-diary', 'article-bgm', '
   assert.match(html, /data-hatena-star-url="https:\/\/shimoju.jp\/\d{4}\/\d{2}\/\d{2}\//);
   assert.doesNotMatch(html, /data-share-preview|official-share|sharing-review/);
 }
-for (const name of ['home', 'about', 'index', 'specimen']) {
+const about = readFileSync(new URL('site/about.html', import.meta.url), 'utf8');
+assert.match(about, /src="assets\/sharing.js"/);
+assert.match(about, /data-hatena-star-url="https:\/\/shimoju.jp\/about\/"/);
+assert.match(about, /data-hatena-star-title="About"/);
+for (const [, , href] of shareLinks('https://shimoju.jp/about/', 'About')) {
+  assert(about.includes(href.replaceAll('&', '&amp;')));
+}
+for (const name of ['home', 'index', 'specimen']) {
   assert.doesNotMatch(readFileSync(new URL(`site/${name}.html`, import.meta.url), 'utf8'), /src="assets\/sharing.js"/);
 }
-console.log('PASS: share URL encoding, SVG links, public targets, only Hatena Star SDK, failure feedback, non-article isolation.');
+console.log('PASS: share URL encoding, SVG links, public article/About targets, only Hatena Star SDK, failure feedback, other pages isolated.');
