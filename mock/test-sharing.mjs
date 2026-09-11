@@ -47,7 +47,7 @@ assert.doesNotMatch(starRule, /background|border|padding/);
 assert.match(starRule, /color-scheme: light/);
 assert.match(css, /\.icon-link svg \{[^}]*fill: currentColor/);
 const iconRule = css.match(/\.icon-link \{([^}]+)\}/)[1];
-assert.match(iconRule, /width: 4\.352rem; height: 4\.352rem; flex-shrink: 0;/);
+assert.match(iconRule, /width: 4\.4rem; height: 4\.4rem; flex-shrink: 0;/);
 for (const [, rule] of css.matchAll(/\.footer-links a(?:[^{]*)\{([^}]+)\}/g)) {
   assert.doesNotMatch(rule, /(?:width|height)\s*:/, 'Footer icons must use the shared square dimensions');
 }

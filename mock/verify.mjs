@@ -74,8 +74,8 @@ for (const [lastmod, expected] of [['2026-09-05', false], ['2026-09-06', true], 
 for (const file of ['article', 'article-hugo', 'article-diary', 'article-bgm', 'article-pasmo']) {
   assert.doesNotMatch(read(`${file}.html`).match(/<header class="article-header">[\s\S]*?<\/header>/)[0], /Updated/);
 }
-assert.match(read('assets/theme.css'), /\.meta \{[^}]*gap: 0\.425rem 1\.7rem;/);
-assert.match(read('assets/theme.css'), /\.article-tags \{[^}]*gap: 0\.85rem 1\.7rem;/);
+assert.match(read('assets/theme.css'), /\.meta \{[^}]*gap: 0\.4rem 1\.7rem;/);
+assert.match(read('assets/theme.css'), /\.article-tags \{[^}]*gap: 0\.9rem 1\.7rem;/);
 assert.doesNotMatch(read('home-2.html'), /class="intro"/);
 assert.doesNotMatch(read('home-3.html'), /rel="next"/);
 assert.doesNotMatch(read('home.html'), /rel="prev"/);
@@ -113,7 +113,7 @@ for (const selector of ['.site-nav', '.entry-summary', '.prose table', '.footnot
   const block = themeCss.slice(themeCss.indexOf(selector + ' {')).split('}')[0];
   assert(block.includes('font-size: var(--text-small)'), selector);
 }
-assert.doesNotMatch(themeCss, /\d+\.\d+\.\d+rem/);
+assert.doesNotMatch(themeCss, /\d+\.\d{2,}rem/, 'Independent rem dimensions use at most one decimal place');
 assert.match(themeCss, /--space-block: 1\.931em;/);
 for (const selector of ['.prose figure', '.table-scroll', '.code-block']) {
   const block = themeCss.slice(themeCss.indexOf(selector + ' {')).split('}')[0];
@@ -179,7 +179,7 @@ for (const defaultSize of [16, 20, 32]) {
 assert.equal(tokenPixels('--code-size', 16, 1.8), 14, 'Code size is independent of the body token');
 assert(Math.abs(tokenPixels('--text-h1', 16, 1.8) - 28.8) < 1e-9);
 assert(Math.abs(tokenPixels('--space-section', 16, 1.8) - 46.08) < 1e-9);
-assert.match(themeCss, /\.site-nav \{[^}]*column-gap: 2\.3375rem; row-gap: 0\.2125rem;/);
+assert.match(themeCss, /\.site-nav \{[^}]*column-gap: 2\.3rem; row-gap: 0\.2rem;/);
 assert.match(themeCss, /--code-leading: 1\.3;/);
 assert.doesNotMatch(themeCss, /font(?:-size)?:[^;{}]*\dpx/);
 assert.match(themeCss, /\.code-toolbar \{[^}]*flex-wrap: wrap/);

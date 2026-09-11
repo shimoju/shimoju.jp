@@ -77,7 +77,7 @@ Safariでは-apple-system使用時の和文が約1px小さく見え、iPhone Saf
 コードブロックは`--code-size: 1.4rem`を`font-size`で参照し、行高1.3。既定文字サイズ16pxでは両幅とも14px・行送り18.2pxとなる。px固定ではないため、既定文字サイズ20pxなら17.5px、32pxなら28pxへ拡大する。インラインコードは周囲の0.85emを維持する。
 
 - 本文基準トークン：見出し・補助文字・モジュラースケールの余白。`calc(var(--body-size) * 倍率)`で本文サイズに追従する。
-- rem：本文基準値、コードサイズ、本文から独立したUIの寸法・間隔。既定文字サイズ16pxでは1rem＝10px相当。
+- rem：本文基準値、コードサイズ、本文から独立したUIの寸法・間隔。既定文字サイズ16pxでは1rem＝10px相当。直接指定するrem値は小数第2位を四捨五入して小数第1位までとし、整数px相当に揃える。本文基準トークンの倍率とem指定は丸めず維持する。
 - 外部部品：iframe内のremは別文書のルートに従う。ページへ直接挿入する部品やShadow DOM内のremはページのルートの影響を受けるため、公式ウィジェットを改変せず表示を確認する。
 - em：インラインコードの文字とpadding、段落・本文見出しの余白、リストの字下げ。周囲の文字サイズに追従させる。
 - 単位なし：行高。本文1.9、コード1.3。
@@ -119,7 +119,7 @@ ruby = "3.4"
 
 `lastmod`はHugo標準の更新日フィールド。既定の`.Lastmod`はGit・記事日付等へフォールバックする。現行サイトでは`enableGitInfo`を有効化しておらず、`date`だけを指定した記事では`.Lastmod`も同じ日付になる。Hugo標準の日付補完を使用し、`.Date`と`.Lastmod`をそれぞれ`2006-01-02`で整形して比較し、年月日が異なる場合だけ更新日を表示する。同日の時刻差だけでは表示しない。`.Lastmod`がゼロ時刻の場合も表示しない。[Lastmod](https://gohugo.io/methods/page/lastmod/)、[日付設定](https://gohugo.io/configuration/front-matter/)
 
-モックもHugo標準の`.Lastmod`を取得して年月日で比較する。部品ページの更新日はfront matterから取得する。本実装での表示条件は`and (not .Lastmod.IsZero) (ne (.Date.Format "2006-01-02") (.Lastmod.Format "2006-01-02"))`とする。公開日・更新日の横gapとタグの横gapは1.7rem、縦gapはそれぞれ0.425rem・0.85rem。
+モックもHugo標準の`.Lastmod`を取得して年月日で比較する。部品ページの更新日はfront matterから取得する。本実装での表示条件は`and (not .Lastmod.IsZero) (ne (.Date.Format "2006-01-02") (.Lastmod.Format "2006-01-02"))`とする。公開日・更新日の横gapとタグの横gapは1.7rem、縦gapはそれぞれ0.4rem・0.9rem。
 
 タグ・カテゴリの名称順にはHugoの`Taxonomy.Alphabetical`を用いる。分類一覧テンプレートでは`range .Data.Terms.Alphabetical`とし、表示名・URLは各要素の`.Page`から取得する。独自の日本語照合・読み仮名対応は行わない。[Alphabetical](https://gohugo.io/methods/taxonomy/alphabetical/)
 
