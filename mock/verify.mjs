@@ -183,7 +183,10 @@ assert.match(themeCss, /\.site-nav \{[^}]*column-gap: 2\.3rem; row-gap: 0\.2rem;
 assert.match(themeCss, /--code-leading: 1\.3;/);
 assert.doesNotMatch(themeCss, /font(?:-size)?:[^;{}]*\dpx/);
 assert.match(themeCss, /\.code-toolbar \{[^}]*flex-wrap: wrap/);
-assert.doesNotMatch(themeCss.match(/\.theme-toggle \{[^}]*\}/)[0], /[; ]height:/);
+for (const selector of ['.site-nav a', '.pager a', '.article-tags a', '.terms a', '.copy']) {
+  assert.doesNotMatch(themeCss.slice(themeCss.indexOf(selector + ' {')).split('}')[0], /[; ]height:/, 'Text controls must grow with their content');
+}
+assert.doesNotMatch(read('index.html'), /name="controls"/);
 for (const { file } of manifest.pages) assert.doesNotMatch(read(file), /data-text-scale-test/, 'Deliverable must not contain test-only font overrides');
 assert.match(read('assets/theme.css'), /--font-site: var\(--font-body\)/);
 assert.match(read('assets/theme.css'), /\.site-name \{ font-family: var\(--font-site\)/);
@@ -225,7 +228,7 @@ for (const selector of ['.site-nav a', '.pager a', '.article-tags a', '.terms a'
 assert.match(themeCss, /\.site-nav a\[aria-current="page"\] \{ text-decoration: underline; \}/);
 assert.match(themeCss, /\.entry-link:hover \{[^}]*text-decoration: none;/);
 assert.match(themeCss, /\.entry-link:hover \.entry-title \{ text-decoration: underline; text-decoration-thickness: 1px; \}/);
-assert.match(themeCss, /\.post-nav a \{ text-decoration: none; \}/);
+assert.match(themeCss, /\.post-nav a \{[^}]*text-decoration: none;/);
 assert.match(themeCss, /\.post-nav a:hover \.post-nav-title \{ text-decoration: underline; text-decoration-thickness: 1px; \}/);
 assert.doesNotMatch(themeCss, /\.post-nav a:hover \{/);
 for (const { file } of manifest.pages) {

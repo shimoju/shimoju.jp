@@ -101,3 +101,29 @@ for (const share of ['icons', 'official', 'invalid']) {
   assert.equal(new URL(app.follow('http://mock.invalid/article-hugo.html')).searchParams.get('share'), null);
 }
 console.log('PASS: OS-following, persistence, previews, navigation, retired options, cold-cache font display, unavailable storage.');
+
+for (const choice of ['current', '48', 'invalid']) {
+  const app = boot({ search: `?controls=${choice}&theme=dark`, withForm: true });
+  assert.equal(app.root.dataset.controls, undefined);
+  assert.equal(app.fields.controls, undefined);
+  assert.equal(new URL(app.follow('http://mock.invalid/about.html')).searchParams.get('controls'), null);
+}
+const controlCss = readFileSync(new URL('src/theme.css', import.meta.url), 'utf8');
+assert.match(controlCss, /--control-size: 4\.8rem;/);
+assert.doesNotMatch(controlCss, /data-controls/);
+const controlRule = selector => controlCss.slice(controlCss.indexOf(selector + ' {')).split('}')[0];
+for (const selector of ['.site-nav a', '.article-tags a', '.terms a']) {
+  const rule = controlRule(selector);
+  assert(rule.includes('min-height: var(--control-size)'));
+  assert(!rule.includes('min-width:'), selector + ' keeps its content width');
+}
+for (const selector of ['.theme-toggle', '.icon-link', '.pager a', '.site-name']) {
+  assert(controlRule(selector).includes('min-width: var(--control-size)'));
+  assert(controlRule(selector).includes('min-height: var(--control-size)'));
+}
+for (const selector of ['.copy', '.entry-link', '.post-nav a', '.archive-month a']) {
+  assert(controlRule(selector).includes('min-height: var(--control-size)'));
+}
+assert.match(controlCss, /\.site-nav \{[^}]*column-gap: 2\.3rem;/);
+assert.match(controlCss, /\.site-nav \{ column-gap: 1\.9rem;/);
+console.log('PASS: adopted 48px controls, natural-width text links, retired preview parameters.');
