@@ -46,6 +46,11 @@ const starRule = css.match(/\.star-widget \{([^}]+)\}/)[1];
 assert.doesNotMatch(starRule, /background|border|padding/);
 assert.match(starRule, /color-scheme: light/);
 assert.match(css, /\.icon-link svg \{[^}]*fill: currentColor/);
+const iconRule = css.match(/\.icon-link \{([^}]+)\}/)[1];
+assert.match(iconRule, /width: 2\.560rem; height: 2\.560rem; flex-shrink: 0;/);
+for (const [, rule] of css.matchAll(/\.footer-links a(?:[^{]*)\{([^}]+)\}/g)) {
+  assert.doesNotMatch(rule, /(?:width|height)\s*:/, 'Footer icons must use the shared square dimensions');
+}
 for (const name of ['article', 'article-hugo', 'article-diary', 'article-bgm', 'article-pasmo']) {
   const html = readFileSync(new URL(`site/${name}.html`, import.meta.url), 'utf8');
   assert.match(html, /src="assets\/sharing.js"/);
