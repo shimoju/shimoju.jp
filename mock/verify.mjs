@@ -74,8 +74,8 @@ for (const [lastmod, expected] of [['2026-09-05', false], ['2026-09-06', true], 
 for (const file of ['article', 'article-hugo', 'article-diary', 'article-bgm', 'article-pasmo']) {
   assert.doesNotMatch(read(`${file}.html`).match(/<header class="article-header">[\s\S]*?<\/header>/)[0], /Updated/);
 }
-assert.match(read('assets/theme.css'), /\.meta \{[^}]*gap: 0\.25rem 1rem;/);
-assert.match(read('assets/theme.css'), /\.article-tags \{[^}]*gap: 0\.5rem 1rem;/);
+assert.match(read('assets/theme.css'), /\.meta \{[^}]*gap: 0\.425rem 1\.7rem;/);
+assert.match(read('assets/theme.css'), /\.article-tags \{[^}]*gap: 0\.85rem 1\.7rem;/);
 assert.doesNotMatch(read('home-2.html'), /class="intro"/);
 assert.doesNotMatch(read('home-3.html'), /rel="next"/);
 assert.doesNotMatch(read('home.html'), /rel="prev"/);
@@ -105,15 +105,15 @@ for (const file of ['index.html', 'specimen.html']) assert.doesNotMatch(read(fil
 assert.match(read('assets/theme.css'), /:not\(pre\) > code \{ font-size: \.85em; padding: \.25em \.35em/);
 const themeCss = read('assets/theme.css');
 for (const [name, step] of [['small', -1], ['meta', -2], ['label', -3]]) {
-  const expected = (1.6 ** (step / 5)).toFixed(3).slice(1);
-  assert(themeCss.includes(`--text-${name}: ${expected}rem;`));
+  const expected = (1.6 ** (step / 5)).toFixed(3);
+  assert(themeCss.includes(`--text-${name}: calc(var(--body-size) * ${expected});`));
 }
-assert.match(themeCss, /\.entry-title \{ font-size: 1\.207rem;/);
+assert.match(themeCss, /\.entry-title \{ font-size: var\(--text-h4\);/);
 for (const selector of ['.site-nav', '.entry-summary', '.prose table', '.footnotes', '.archive-month h3']) {
   const block = themeCss.slice(themeCss.indexOf(selector + ' {')).split('}')[0];
   assert(block.includes('font-size: var(--text-small)'), selector);
 }
-assert.doesNotMatch(themeCss, /font-size: (?:0?\.875|0?\.8125|0?\.9375|0?\.75|0?\.9)rem;/);
+assert.doesNotMatch(themeCss, /\d+\.\d+\.\d+rem/);
 assert.match(themeCss, /--space-block: 1\.931em;/);
 for (const selector of ['.prose figure', '.table-scroll', '.code-block']) {
   const block = themeCss.slice(themeCss.indexOf(selector + ' {')).split('}')[0];
@@ -142,17 +142,44 @@ assert.match(read('specimen.html'), /<b>注目する日本語とEnglish 0123（b
 assert.doesNotMatch(themeCss, /font-weight: 600/);
 assert.match(themeCss, /\.archive-month h3 \{[^}]*font-weight: 400;/);
 assert.doesNotMatch(themeCss, /Heading Latin|data-heading|--heading-weight|--font-heading/);
-assert.match(themeCss, /html \{ font-size: 106\.25%;/);
+assert.match(themeCss, /html \{ font-size: 62\.5%;/);
 assert.equal((themeCss.match(/html \{ font-size:/g) || []).length, 1, 'Root size is shared across viewports');
-assert.match(themeCss, /--body-size: 1rem;/);
+assert.match(themeCss, /--body-size: 1\.7rem;/);
 assert.match(themeCss, /--content-width: 720px;/);
 for (const [tag, ratio] of [['h1', '1.6'], ['h2', '1.456'], ['h3', '1.326'], ['h4', '1.207'], ['h5', '1.099'], ['h6', '1']]) {
   assert.equal(Number(ratio), Number((1.6 ** ((6 - Number(tag[1])) / 5)).toFixed(3)), `${tag} follows the five-interval scale`);
-  assert(themeCss.includes(`${tag} { font-size: ${ratio}rem;`), `${tag} uses the root type scale`);
+  const token = tag === 'h6' ? 'body-size' : `text-${tag}`;
+  assert(themeCss.includes(`${tag} { font-size: var(--${token});`), `${tag} uses the body type scale`);
+  if (tag !== 'h6') assert(themeCss.includes(`--${token}: calc(var(--body-size) * ${ratio});`));
 }
-assert.match(themeCss, /\.site-name \{[^}]*font-size: 1\.931rem;/);
+assert.match(themeCss, /\.site-name \{[^}]*font-size: var\(--text-site\);/);
+assert.match(themeCss, /--text-site: calc\(var\(--body-size\) \* 1\.931\);/);
 assert.equal(Number((1.6 ** (7 / 5)).toFixed(3)), 1.931);
-assert.match(themeCss, /\.code-block pre \{[^}]*font-size: calc\(14 \/ 17 \* 1rem\);/);
+assert.match(themeCss, /\.code-block pre \{[^}]*font-size: var\(--code-size\);/);
+assert.match(themeCss, /--code-size: 1\.4rem;/);
+for (const [name, ratio] of Object.entries({cover: '1.931', section: '2.560', group: '3.089', end: '3.394', page: '4.096'})) {
+  assert(themeCss.includes(`--space-${name}: calc(var(--body-size) * ${ratio});`));
+}
+// Token arithmetic supplements (but does not replace) browser layout checks.
+const lengthTokens = Object.fromEntries([...themeCss.matchAll(/(--[\w-]+): ([^;]+);/g)].map(([, name, value]) => [name, value]));
+const rootRatio = Number(themeCss.match(/html \{ font-size: ([\d.]+)%;/)[1]) / 100;
+function tokenPixels(name, defaultSize, bodyRem = parseFloat(lengthTokens['--body-size'])) {
+  if (name === '--body-size') return bodyRem * rootRatio * defaultSize;
+  const value = lengthTokens[name];
+  if (/^[\d.]+rem$/.test(value)) return parseFloat(value) * rootRatio * defaultSize;
+  const product = value.match(/^calc\(var\((--[\w-]+)\) \* ([\d.]+)\)$/);
+  assert(product, `Expected a rem length or body-based product: ${name}`);
+  return tokenPixels(product[1], defaultSize, bodyRem) * Number(product[2]);
+}
+for (const defaultSize of [16, 20, 32]) {
+  for (const [name, expected] of Object.entries({'body-size': 17, 'text-h1': 27.2, 'text-h2': 24.752, 'text-site': 32.827, 'text-small': 15.47, 'text-meta': 14.093, 'text-label': 12.818, 'space-section': 43.52, 'space-page': 69.632, 'code-size': 14})) {
+    assert(Math.abs(tokenPixels(`--${name}`, defaultSize) - expected * defaultSize / 16) < 1e-9, `${name}: scales with the browser default`);
+  }
+}
+assert.equal(tokenPixels('--code-size', 16, 1.8), 14, 'Code size is independent of the body token');
+assert(Math.abs(tokenPixels('--text-h1', 16, 1.8) - 28.8) < 1e-9);
+assert(Math.abs(tokenPixels('--space-section', 16, 1.8) - 46.08) < 1e-9);
+assert.match(themeCss, /\.site-nav \{[^}]*column-gap: 2\.3375rem; row-gap: 0\.2125rem;/);
 assert.match(themeCss, /--code-leading: 1\.3;/);
 assert.doesNotMatch(themeCss, /font(?:-size)?:[^;{}]*\dpx/);
 assert.match(themeCss, /\.code-toolbar \{[^}]*flex-wrap: wrap/);
