@@ -75,9 +75,9 @@ for (const file of ['article', 'article-hugo', 'article-diary', 'article-bgm', '
   assert.doesNotMatch(read(`${file}.html`).match(/<header class="article-header">[\s\S]*?<\/header>/)[0], /Updated/);
 }
 assert.match(read('assets/theme.css'), /\.meta \{[^}]*gap: var\(--ui-space-1\) var\(--ui-space-4\);/);
-assert.match(read('assets/theme.css'), /\.article-tags \{[^}]*gap: var\(--ui-space-2\);/);
-assert.match(read('assets/theme.css'), /\.terms \{[^}]*gap: var\(--ui-space-2\);/);
-assert.match(read('assets/theme.css'), /\.article-header h1 \{ margin-bottom: var\(--ui-space-2\); \}/);
+assert.match(read('assets/theme.css'), /\.article-tags \{[^}]*gap: var\(--term-gap\);/);
+assert.match(read('assets/theme.css'), /\.terms \{[^}]*gap: var\(--term-gap\);/);
+assert.match(read('assets/theme.css'), /\.article-header h1 \{ margin-bottom: var\(--title-meta-gap\); \}/);
 assert.doesNotMatch(read('home-2.html'), /class="intro"/);
 assert.doesNotMatch(read('home-3.html'), /rel="next"/);
 assert.doesNotMatch(read('home.html'), /rel="prev"/);
@@ -214,17 +214,20 @@ assert.doesNotMatch(read('home-3.html'), /class="next-page"/);
 assert.doesNotMatch(read('home.html'), /class="previous-page"/);
 for (const { file } of manifest.pages) {
   for (const [nav] of read(file).matchAll(/<nav class="(?:pager|post-nav)"[\s\S]*?<\/nav>/g)) {
-    for (const label of nav.matchAll(/(?:<small lang="en">|rel="(?:prev|next)">)([\s\S]*?)(?:<\/small>|<\/a>)/g)) {
-      assert.match(label[1], /^(?:<span aria-hidden="true">«<\/span> Previous(?: post)?|Next(?: post)? <span aria-hidden="true">»<\/span>)$/);
+    for (const [link] of nav.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/g)) {
+      const previous = link.includes('rel="prev"');
+      const label = previous ? '<span aria-hidden="true">«</span> Previous' : 'Next <span aria-hidden="true">»</span>';
+      assert(link.includes(`<span class="nav-label">${label}</span>`), 'Shared inline label preserves spaces next to arrows');
+      assert.doesNotMatch(link, /Previous post|Next post/);
     }
   }
 }
 assert.match(read('home-2.html'), /<span aria-hidden="true">«<\/span> Previous/);
 assert.match(read('home-2.html'), /Next <span aria-hidden="true">»<\/span>/);
-assert.match(read('article-hugo.html'), /<span aria-hidden="true">«<\/span> Previous post/);
-assert.match(read('article-hugo.html'), /Next post <span aria-hidden="true">»<\/span>/);
+assert.match(read('article-hugo.html'), /<span aria-hidden="true">«<\/span> Previous/);
+assert.match(read('article-hugo.html'), /Next <span aria-hidden="true">»<\/span>/);
 assert.match(read('index.html'), /<button type="submit">ページを開く<\/button>/);
-for (const selector of ['.site-nav a', '.pager a', '.article-tags a', '.terms a', '.archive-month a']) {
+for (const selector of ['.site-nav a', '.pager a', '.article-tags a']) {
   const rule = themeCss.split(`${selector} {`)[1]?.split('}')[0];
   assert(rule?.includes('text-decoration: none;'), `${selector}: no underline by default`);
   assert(themeCss.includes(`${selector}:hover { text-decoration: underline; }`), `${selector}: underline on hover`);
@@ -268,12 +271,58 @@ assert.equal(cover.readUInt32BE(16), 1200);
 assert.equal(cover.readUInt32BE(20), 630);
 console.log(`PASS: ${manifest.pages.length} pages, ${links} local references, grouped links, pagination, adopted options, Hugo code labels, palettes, 1200×630 cover.`);
 
-const cssRule = selector => themeCss.slice(themeCss.indexOf(selector + ' {')).split('}')[0];
+const cssRule = selector => themeCss.split('\n').find(line => line.startsWith(selector + ' {'))?.split('}')[0] || '';
+assert(cssRule('.nav-label').includes('display: inline-block; white-space: nowrap;'));
+assert(cssRule('.post-nav').includes('repeat(2, minmax(0, 1fr))'));
+for (const page of ['article.html', 'article-hugo.html', 'article-pasmo.html']) assert(read('index.html').includes(`value="${page}"`));
+const mobileRules = themeCss.slice(themeCss.indexOf('@media (max-width: 639px)'));
+assert(mobileRules.includes('.post-nav { column-gap: var(--ui-space-4); }'));
+assert.doesNotMatch(themeCss, /data-post-nav/);
+assert.doesNotMatch(read('index.html'), /name="post-nav"/);
+assert(cssRule('.archive-month').includes('align-items: first baseline;'));
+assert(cssRule('.archive-month h3').includes('margin: 0;'));
+assert(cssRule('.archive-month ul').includes('gap: var(--ui-space-6);'));
+assert.doesNotMatch(themeCss, /\.archive-month li \{/);
+assert(cssRule('.archive-month:last-child').includes('margin-bottom: 0;'));
+assert(cssRule('.archive-month a').includes('flex-direction: column; gap: var(--title-meta-gap); line-height: 1.5;'));
+assert(cssRule('.archive-month a').includes('text-decoration: none;'));
+assert(cssRule('.archive-month time').includes('margin: 0;'));
+assert.match(themeCss, /\.archive-month a:hover \.archive-title \{ text-decoration: underline; text-decoration-thickness: 1px; \}/);
+assert.doesNotMatch(themeCss, /\.archive-month a:hover \{/);
+for (const [entry] of read('archives.html').matchAll(/<li>[\s\S]*?<\/li>/g)) {
+  assert.match(entry, /<span class="archive-title" id="archive-[^"]+">[^<]+<\/span><time/, 'Date must remain outside the underlined title');
+}
+for (const selector of ['.article-tags', '.terms']) assert(cssRule(selector).includes('gap: var(--term-gap);'));
+assert(cssRule('.article-tags a').includes('padding-inline: var(--term-inset);'));
+assert(cssRule('.terms a').includes('padding: var(--ui-space-2) var(--term-inset);'));
+assert(cssRule('.terms a').includes('gap: var(--ui-space-1);'), 'Keep the name and count closer than adjacent terms');
+assert(cssRule('.terms a').includes('text-decoration: none;'));
+assert.match(themeCss, /\.terms a:hover \.term-name \{ text-decoration: underline; text-decoration-thickness: 1px; \}/);
+assert.doesNotMatch(themeCss, /\.terms a:hover \{/);
+for (const file of ['tags.html', 'categories.html']) {
+  const terms = read(file).match(/<ul class="terms">([\s\S]*?)<\/ul>/)[1];
+  for (const [link] of terms.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/g)) {
+    assert.match(link, /<span class="term-name">[^<]+<\/span><small>\d+<\/small><\/a>/, 'Count stays outside the underlined name');
+  }
+}
+for (const selector of ['.entry-title', '.article-header h1', '.archive-month a']) {
+  assert(cssRule(selector).includes('var(--title-meta-gap)'), `${selector}: common title/date spacing`);
+}
+assert.match(themeCss, /\.post-nav a\[rel="prev"\] \{ grid-column: 1; grid-row: 1; text-align: left; \}/);
+assert.match(themeCss, /\.post-nav a\[rel="next"\] \{ grid-column: 2; grid-row: 1; text-align: right; \}/);
+assert.doesNotMatch(themeCss, /\.post-nav a(?::last-child| \+ a)/);
+for (const [file, roles] of [['article.html', ['prev']], ['article-hugo.html', ['prev', 'next']], ['article-pasmo.html', ['next']]]) {
+  const nav = read(file).match(/<nav class="post-nav"[\s\S]*?<\/nav>/)[0];
+  assert.deepEqual([...nav.matchAll(/<a rel="(prev|next)"/g)].map(match => match[1]), roles, `${file}: retain roles with either neighbor absent`);
+  for (const [, role, label] of nav.matchAll(/<a rel="(prev|next)"[^>]*><small[^>]*>([\s\S]*?)<\/small>/g)) {
+    assert(label.includes(role === 'prev' ? 'Previous' : 'Next'));
+  }
+}
 for (const [, step, rem] of themeCss.matchAll(/--ui-space-(\d+): ([\d.]+)rem;/g)) {
   assert.equal(Math.round(Number(rem) * 10), Number(step) * 4, 'UI spacing uses a 4px grid');
 }
 for (const size of [16, 20, 32]) {
-  for (const [name, px] of [['control-size', 48], ['code-inset', 16], ['icon-gap', 12], ['icon-size', 24], ['icon-size-small', 20]]) {
+  for (const [name, px] of [['control-size', 48], ['code-inset', 16], ['icon-gap', 12], ['icon-size', 24], ['icon-size-small', 20], ['title-meta-gap', 8], ['term-gap', 8], ['term-inset', 4]]) {
     assert(Math.abs(tokenPixels('--' + name, size) - px * size / 16) < 1e-9);
     assert(Math.abs(tokenPixels('--' + name, size, 1.8) - px * size / 16) < 1e-9, 'UI dimensions are independent of body size');
   }

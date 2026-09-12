@@ -127,3 +127,11 @@ for (const selector of ['.copy', '.entry-link', '.post-nav a', '.archive-month a
 assert.match(controlCss, /\.site-nav \{[^}]*column-gap: var\(--ui-space-6\);/);
 assert.match(controlCss, /\.site-nav \{ column-gap: var\(--ui-space-4\);/);
 console.log('PASS: adopted 48px controls, natural-width text links, retired preview parameters.');
+
+for (const value of ['columns', 'stacked', 'invalid']) {
+  const app = boot({ search: '?post-nav=' + value, withForm: true });
+  assert.equal(app.root.dataset.postNav, undefined);
+  assert.equal(app.fields['post-nav'], undefined);
+  assert.equal(new URL(app.follow('http://mock.invalid/article-hugo.html')).searchParams.get('post-nav'), null);
+}
+console.log('PASS: retired mobile navigation preview does not override the adopted layout.');
