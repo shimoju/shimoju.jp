@@ -8,14 +8,14 @@
 | --- | --- |
 | postsの`/:year/:month/:day/:slugorcontentbasename/` | 既存URLを維持。contentの物理パスと混同しない |
 | 日本語・CJK要約・日付`2006/01/02` | 日本語の要約と実記事を確認。公開日と更新日を区別し、本文に著者名・読了時間・文字数を反復しない |
-| Home-InfoとSNSリンク | 現行のホーム紹介文は設定から取得して初ページだけに表示。Aboutは現行本文を維持する。X・GitHub・RSSは共通フッター |
+| Home-InfoとSNSリンク | 現行のホーム紹介文は設定から取得して初ページだけに表示。Aboutは現行本文を維持する。X・Bluesky・GitHub・RSSは共通フッター |
 | 一覧・分類・ページ送り | 同じ記事の情報を一つのリンクへ。空・1件・複数ページと端の操作を維持 |
 | Archives | 独自layoutで年月・記事タイトル・日付。PaperModは年にPublishDate、月にDateを使うため、移行時は日付基準を明示する |
 | カバー・本文画像 | 切り抜きなし。寸法・画像候補・読み込み優先度を入口ごとに設計する |
 | 前後記事 | posts内の前後移動。HugoのRelated APIによる関連記事推薦とは別 |
 | コードコピー | レンダーフックとClipboard API。行番号なしの本文、失敗処理、読み上げ通知を維持 |
 | Mochaのinlineハイライト | `noClasses: false`とLatte／MochaのCSSにする。ライトのコードも正しい配色にする |
-| 共有・はてなスター | 記事・AboutにX・Facebook・はてなブックマーク、はてなスターを接続。Xのタグ由来ハッシュタグは付けない |
+| 共有・はてなスター | 記事・AboutにX・Facebook・Bluesky・はてなブックマーク、はてなスターを接続。Xのタグ由来ハッシュタグは付けない |
 | RSS | 現行テンプレートの対象範囲・除外条件、home/section/taxonomy/termのRSS、要約・件数制限なし、既存URLと自動検出を維持 |
 | 検索・Profile・目次・パンくず・編集リンク・トップへ戻る | 実装しない。未使用のJS・CSSや検索索引を持ち込まない |
 | `minify.minifyOutput`、robots生成、pages.dev向けnoindex | サイト・配信側の設定として維持し、本番とプレビューで確認 |

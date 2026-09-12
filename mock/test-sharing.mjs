@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
-import { engagement, shareLinks } from './sharing.mjs';
+import { engagement, shareLinks, icon } from './sharing.mjs';
 
 const url = 'https://shimoju.jp/2016/08/17/shakai-fukki/';
 const title = '日本語 & "引用" #記号 😀';
@@ -10,11 +10,14 @@ assert.equal(links[0].searchParams.get('text'), title);
 assert.equal(links[0].searchParams.get('url'), url);
 assert.equal(links[0].searchParams.has('hashtags'), false);
 assert.equal(links[1].searchParams.get('u'), url);
-assert.equal(links[2].href, 'https://b.hatena.ne.jp/entry/s/shimoju.jp/2016/08/17/shakai-fukki/');
-assert.equal(shareLinks('https://shimoju.jp/2023/06/22/hugo-and-cloudflare-pages/', '')[2][2], 'https://b.hatena.ne.jp/entry/s/shimoju.jp/2023/06/22/hugo-and-cloudflare-pages/');
+assert.equal(links[2].origin + links[2].pathname, 'https://bsky.app/intent/compose');
+assert.equal(links[2].searchParams.get('text'), `${title}\n${url}`);
+assert.deepEqual(shareLinks(url, title).map(([id]) => id), ['x', 'facebook', 'bluesky', 'hatena']);
+assert.equal(links[3].href, 'https://b.hatena.ne.jp/entry/s/shimoju.jp/2016/08/17/shakai-fukki/');
+assert.equal(shareLinks('https://shimoju.jp/2023/06/22/hugo-and-cloudflare-pages/', '')[3][2], 'https://b.hatena.ne.jp/entry/s/shimoju.jp/2023/06/22/hugo-and-cloudflare-pages/');
 const markup = engagement({ publicUrl: url, title });
-assert.equal((markup.match(/class="icon-link share-icon"/g) || []).length, 3);
-assert.equal((markup.match(/<svg /g) || []).length, 3);
+assert.equal((markup.match(/class="icon-link share-icon"/g) || []).length, 4);
+assert.equal((markup.match(/<svg /g) || []).length, 4);
 assert.match(markup, /日本語 &amp; &quot;引用&quot;/);
 assert.match(markup, /data-hatena-star-url="https:\/\/shimoju.jp\//);
 assert.doesNotMatch(markup, /onclick|javascript:|localhost|127\.0\.0\.1/);
@@ -42,10 +45,19 @@ assert.match(app.status.textContent, /はてなスターを読み込めません
 assert.equal(boot(false).scripts.length, 0);
 assert.doesNotMatch(markup, /official-share|sharing-review|実動作確認/);
 const css = readFileSync(new URL('src/theme.css', import.meta.url), 'utf8');
+assert.equal([...css.matchAll(/\.star-widget \{/g)].length, 1, 'Use the same star layout at every viewport width');
+assert.doesNotMatch(css, /--star-inset/);
 const starRule = css.match(/\.star-widget \{([^}]+)\}/)[1];
-assert.doesNotMatch(starRule, /background|border|padding/);
+assert.doesNotMatch(starRule, /background|border|padding|margin|flex-basis/);
 assert.match(starRule, /color-scheme: light/);
 assert.match(css, /\.icon-link svg \{[^}]*fill: currentColor/);
+assert.match(css, /\.icon-link svg \{ width: var\(--icon-size\); height: var\(--icon-size\);/);
+for (const [name, box] of Object.entries({bluesky: [0, 0, 360, 320], x: [4, 3, 16, 18], facebook: [7, 2, 11, 20], hatena: [3, 4, 17.5, 16], github: [2, 2, 20, 20], rss: [3, 3, 18, 18]})) {
+  const svg = icon(name);
+  assert(svg.includes(`viewBox="${box.join(' ')}"`));
+  assert(svg.includes(`width="${box[2]}" height="${box[3]}"`), 'Intrinsic aspect ratio follows the artwork');
+  assert(svg.includes('preserveAspectRatio="xMidYMid meet"'), 'Fit and center silhouettes without stretching or cropping');
+}
 const iconRule = css.match(/\.icon-link \{([^}]+)\}/)[1];
 assert.match(iconRule, /width: var\(--control-size\); height: var\(--control-size\); flex-shrink: 0;/);
 for (const [, rule] of css.matchAll(/\.footer-links a(?:[^{]*)\{([^}]+)\}/g)) {

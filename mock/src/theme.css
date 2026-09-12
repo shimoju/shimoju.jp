@@ -123,6 +123,7 @@ img, video { max-width: 100%; height: auto; }
 .next-page { grid-column: 3; grid-row: 1; justify-self: end; }
 .page-number { color: var(--muted); font-size: var(--text-meta); grid-column: 2; grid-row: 1; }
 .article-header { margin-bottom: var(--ui-space-10); }
+.article-header h1 { margin-bottom: var(--ui-space-2); }
 .article-cover { margin: var(--space-cover) 0 0; }
 .article-cover img { width: 100%; display: block; }
 .prose { line-height: var(--body-leading); }
@@ -159,7 +160,7 @@ code, pre { font-family: var(--font-code); font-feature-settings: normal; font-v
 .code-block .chroma .line { min-width: max-content; }
 .footnotes { font-size: var(--text-small); color: var(--muted); margin-top: var(--space-group); }
 .article-end { margin-top: var(--space-end); }
-.article-tags { display: flex; flex-wrap: wrap; gap: var(--ui-space-2) var(--ui-space-4); font-size: var(--text-meta); margin-bottom: var(--ui-space-8); }
+.article-tags { display: flex; flex-wrap: wrap; gap: var(--ui-space-2); font-size: var(--text-meta); margin-bottom: var(--ui-space-8); }
 .article-tags:empty { display: none; }
 .article-tags a { text-decoration: none; display: inline-flex; align-items: center; min-height: var(--control-size); padding-inline: var(--ui-space-1); padding-block: var(--ui-space-2); justify-content: center; }
 .article-tags a:hover { text-decoration: underline; }
@@ -178,7 +179,7 @@ code, pre { font-family: var(--font-code); font-feature-settings: normal; font-v
 .post-nav a:hover .post-nav-title { text-decoration: underline; text-decoration-thickness: 1px; }
 .post-nav a + a { text-align: right; }
 .post-nav small { display: block; color: var(--muted); font-size: var(--text-label); margin-bottom: var(--ui-space-2); }
-.terms { display: flex; flex-wrap: wrap; gap: var(--ui-space-2) var(--ui-space-4); list-style: none; padding: 0; margin: 0; }
+.terms { display: flex; flex-wrap: wrap; gap: var(--ui-space-2); list-style: none; padding: 0; margin: 0; }
 .terms a { display: inline-flex; max-width: 100%; align-items: center; gap: var(--ui-space-3); min-height: var(--control-size); padding: var(--ui-space-2) var(--ui-space-3); text-decoration: none; justify-content: center; }
 .terms a:hover { text-decoration: underline; }
 .terms small { color: var(--muted); font-size: var(--text-label); font-variant-numeric: tabular-nums; }

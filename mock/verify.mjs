@@ -75,7 +75,9 @@ for (const file of ['article', 'article-hugo', 'article-diary', 'article-bgm', '
   assert.doesNotMatch(read(`${file}.html`).match(/<header class="article-header">[\s\S]*?<\/header>/)[0], /Updated/);
 }
 assert.match(read('assets/theme.css'), /\.meta \{[^}]*gap: var\(--ui-space-1\) var\(--ui-space-4\);/);
-assert.match(read('assets/theme.css'), /\.article-tags \{[^}]*gap: var\(--ui-space-2\) var\(--ui-space-4\);/);
+assert.match(read('assets/theme.css'), /\.article-tags \{[^}]*gap: var\(--ui-space-2\);/);
+assert.match(read('assets/theme.css'), /\.terms \{[^}]*gap: var\(--ui-space-2\);/);
+assert.match(read('assets/theme.css'), /\.article-header h1 \{ margin-bottom: var\(--ui-space-2\); \}/);
 assert.doesNotMatch(read('home-2.html'), /class="intro"/);
 assert.doesNotMatch(read('home-3.html'), /rel="next"/);
 assert.doesNotMatch(read('home.html'), /rel="prev"/);
@@ -203,9 +205,9 @@ for (const file of ['home.html', 'home-2.html', 'home-3.html']) {
 }
 for (const { file } of manifest.pages) {
   const footer = read(file).match(/<footer class="site-footer[\s\S]*?<\/footer>/)[0];
-  assert.match(footer, /aria-label="X"[\s\S]*aria-label="GitHub"[\s\S]*aria-label="RSS"[\s\S]*<\/nav><span>© 2026 Hiroshi Shimoju/);
-  assert.equal((footer.match(/<svg /g) || []).length, 3);
-  assert.equal((footer.match(/aria-hidden="true"/g) || []).length, 3);
+  assert.match(footer, /aria-label="X"[\s\S]*aria-label="Bluesky"[\s\S]*aria-label="GitHub"[\s\S]*aria-label="RSS"[\s\S]*<\/nav><span>© 2026 Hiroshi Shimoju/);
+  assert.equal((footer.match(/<svg /g) || []).length, 4);
+  assert.equal((footer.match(/aria-hidden="true"/g) || []).length, 4);
 }
 assert.doesNotMatch(read('home.html'), /新着記事|unavailable|Previous<|公開 |RSSを購読/);
 assert.doesNotMatch(read('home-3.html'), /class="next-page"/);

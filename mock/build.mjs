@@ -17,6 +17,7 @@ if (textScale !== 1) console.warn(`TEST BUILD: text scale ${textScale}; restore 
 const root = dirname(fileURLToPath(import.meta.url));
 const repo = dirname(root);
 const siteConfig = JSON.parse(execFileSync('hugo', ['config', '--format', 'json'], { cwd: repo, encoding: 'utf8' }));
+const blueskyProfile = siteConfig.params.socialicons.find(link => link.name.toLowerCase() === 'bluesky').url;
 const out = join(root, 'site');
 const scratch = mkdtempSync(join(tmpdir(), 'shimoju-visual-mock-'));
 const put = (path, text) => { mkdirSync(dirname(path), { recursive: true }); writeFileSync(path, text); };
@@ -73,7 +74,7 @@ function page(file, title, content, { home = false, current = '', review = false
 <body class="${home ? 'home' : ''}"><a class="skip-link" href="#main" lang="en">Skip to content</a>
 ${review ? '' : `<header class="site-header shell">${home ? '<h1 class="site-heading">' : ''}<a class="site-name" href="home.html">shimoju.diary</a>${home ? '</h1>' : ''}${nav(current)}</header>`}
 <main id="main" class="shell${review ? ' review' : ''}" tabindex="-1">${content}</main>
-<footer class="site-footer shell" lang="en"><nav class="footer-links" aria-label="Follow and subscribe"><a class="icon-link" href="https://x.com/shimoju_" aria-label="X" title="X">${icon('x')}</a><a class="icon-link" href="https://github.com/shimoju" aria-label="GitHub" title="GitHub">${icon('github')}</a><a class="icon-link" href="https://shimoju.jp/index.xml" aria-label="RSS" title="RSS">${icon('rss')}</a></nav><span>© 2026 Hiroshi Shimoju</span></footer>
+<footer class="site-footer shell" lang="en"><nav class="footer-links" aria-label="Follow and subscribe"><a class="icon-link" href="https://x.com/shimoju_" aria-label="X" title="X">${icon('x')}</a><a class="icon-link" href="${escape(blueskyProfile)}" aria-label="Bluesky" title="Bluesky">${icon('bluesky')}</a><a class="icon-link" href="https://github.com/shimoju" aria-label="GitHub" title="GitHub">${icon('github')}</a><a class="icon-link" href="https://shimoju.jp/index.xml" aria-label="RSS" title="RSS">${icon('rss')}</a></nav><span>© 2026 Hiroshi Shimoju</span></footer>
 </body></html>\n`);
 }
 const posts = sources.slice(0, 5).map(([id, source]) => ({ id, ...data.get(id), publicUrl: `https://shimoju.jp/${source.replace('content/posts/', '').replace('/index.md', '/')}` }));
