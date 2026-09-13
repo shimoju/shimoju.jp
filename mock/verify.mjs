@@ -227,16 +227,27 @@ assert.match(read('home-2.html'), /Next <span aria-hidden="true">»<\/span>/);
 assert.match(read('article-hugo.html'), /<span aria-hidden="true">«<\/span> Previous/);
 assert.match(read('article-hugo.html'), /Next <span aria-hidden="true">»<\/span>/);
 assert.match(read('index.html'), /<button type="submit">ページを開く<\/button>/);
+// Shorthand declarations reset thickness to auto, including `text-decoration: none`.
+assert.doesNotMatch(themeCss, /\btext-decoration\s*:/, 'Toggle decorations with text-decoration-line only');
+const decorationRule = themeCss.match(/^([^{}\n]+) \{ text-decoration-thickness: 1px; \}$/m);
+assert(decorationRule, 'Shared explicit decoration thickness');
+const decorationOrigins = decorationRule[1].split(',').map(selector => selector.trim());
+assert.deepEqual(decorationOrigins, ['a', '.entry-title', '.post-nav-title', '.term-name', '.archive-title']);
+assert.equal((themeCss.match(/text-decoration-thickness\s*:/g) || []).length, 1, 'Keep thickness in one shared rule');
+for (const [, selector] of themeCss.matchAll(/([^{}]+)\{[^{}]*text-decoration-line: underline;/g)) {
+  const origin = selector.trim().split(/\s+/).at(-1).split(':')[0].split('[')[0];
+  assert(decorationOrigins.includes(origin), `${selector.trim()}: explicit thickness on decoration origin`);
+}
 for (const selector of ['.site-nav a', '.pager a', '.article-tags a']) {
   const rule = themeCss.split(`${selector} {`)[1]?.split('}')[0];
-  assert(rule?.includes('text-decoration: none;'), `${selector}: no underline by default`);
-  assert(themeCss.includes(`${selector}:hover { text-decoration: underline; }`), `${selector}: underline on hover`);
+  assert(rule?.includes('text-decoration-line: none;'), `${selector}: no underline by default`);
+  assert(themeCss.includes(`${selector}:hover { text-decoration-line: underline; }`), `${selector}: underline on hover`);
 }
-assert.match(themeCss, /\.site-nav a\[aria-current="page"\] \{ text-decoration: underline; \}/);
-assert.match(themeCss, /\.entry-link:hover \{[^}]*text-decoration: none;/);
-assert.match(themeCss, /\.entry-link:hover \.entry-title \{ text-decoration: underline; text-decoration-thickness: 1px; \}/);
-assert.match(themeCss, /\.post-nav a \{[^}]*text-decoration: none;/);
-assert.match(themeCss, /\.post-nav a:hover \.post-nav-title \{ text-decoration: underline; text-decoration-thickness: 1px; \}/);
+assert.match(themeCss, /\.site-nav a\[aria-current="page"\] \{ text-decoration-line: underline; \}/);
+assert.match(themeCss, /\.entry-link:hover \{[^}]*text-decoration-line: none;/);
+assert.match(themeCss, /\.entry-link:hover \.entry-title \{ text-decoration-line: underline; \}/);
+assert.match(themeCss, /\.post-nav a \{[^}]*text-decoration-line: none;/);
+assert.match(themeCss, /\.post-nav a:hover \.post-nav-title \{ text-decoration-line: underline; \}/);
 assert.doesNotMatch(themeCss, /\.post-nav a:hover \{/);
 for (const { file } of manifest.pages) {
   const nav = read(file).match(/<nav class="post-nav"[\s\S]*?<\/nav>/)?.[0];
@@ -246,7 +257,7 @@ for (const { file } of manifest.pages) {
     assert.equal((link.match(/class="post-nav-title"/g) || []).length, 1);
   }
 }
-assert.match(themeCss, /\.site-name \{[^}]*text-decoration: none;/);
+assert.match(themeCss, /\.site-name \{[^}]*text-decoration-line: none;/);
 assert.doesNotMatch(themeCss, /\.site-name:hover/);
 assert.match(themeCss, /:focus-visible \{[^}]*outline: 2px solid var\(--accent\)/);
 assert.match(read('specimen.html'), /class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;<\/a>/);
@@ -285,9 +296,9 @@ assert(cssRule('.archive-month ul').includes('gap: var(--ui-space-6);'));
 assert.doesNotMatch(themeCss, /\.archive-month li \{/);
 assert(cssRule('.archive-month:last-child').includes('margin-bottom: 0;'));
 assert(cssRule('.archive-month a').includes('flex-direction: column; gap: var(--title-meta-gap); line-height: 1.5;'));
-assert(cssRule('.archive-month a').includes('text-decoration: none;'));
+assert(cssRule('.archive-month a').includes('text-decoration-line: none;'));
 assert(cssRule('.archive-month time').includes('margin: 0;'));
-assert.match(themeCss, /\.archive-month a:hover \.archive-title \{ text-decoration: underline; text-decoration-thickness: 1px; \}/);
+assert.match(themeCss, /\.archive-month a:hover \.archive-title \{ text-decoration-line: underline; \}/);
 assert.doesNotMatch(themeCss, /\.archive-month a:hover \{/);
 for (const [entry] of read('archives.html').matchAll(/<li>[\s\S]*?<\/li>/g)) {
   assert.match(entry, /<span class="archive-title" id="archive-[^"]+">[^<]+<\/span><time/, 'Date must remain outside the underlined title');
@@ -296,8 +307,8 @@ for (const selector of ['.article-tags', '.terms']) assert(cssRule(selector).inc
 assert(cssRule('.article-tags a').includes('padding-inline: var(--term-inset);'));
 assert(cssRule('.terms a').includes('padding: var(--ui-space-2) var(--term-inset);'));
 assert(cssRule('.terms a').includes('gap: var(--ui-space-1);'), 'Keep the name and count closer than adjacent terms');
-assert(cssRule('.terms a').includes('text-decoration: none;'));
-assert.match(themeCss, /\.terms a:hover \.term-name \{ text-decoration: underline; text-decoration-thickness: 1px; \}/);
+assert(cssRule('.terms a').includes('text-decoration-line: none;'));
+assert.match(themeCss, /\.terms a:hover \.term-name \{ text-decoration-line: underline; \}/);
 assert.doesNotMatch(themeCss, /\.terms a:hover \{/);
 for (const file of ['tags.html', 'categories.html']) {
   const terms = read(file).match(/<ul class="terms">([\s\S]*?)<\/ul>/)[1];
