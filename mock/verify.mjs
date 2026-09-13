@@ -312,6 +312,19 @@ for (const { file } of manifest.pages) {
   assert.match(read(file), /class="sun" viewBox="0\.25 0\.25 23\.5 23\.5" preserveAspectRatio="xMidYMid meet"/);
 }
 assert.doesNotMatch(themeCss, /--copy-icon-size/);
+assert.doesNotMatch(read('index.html'), /toggle-position/);
+assert.doesNotMatch(themeCss, /data-toggle-position/);
+assert(cssRule('.site-header').includes('padding-block: max(var(--header-top-space), calc(var(--control-size) + var(--ui-space-4))) var(--header-bottom-space);'));
+assert.doesNotMatch(themeCss, /--toggle-optical-inset/);
+assert(cssRule('.site-header > .theme-toggle').includes('position: absolute; top: var(--ui-space-2); inset-inline-end: 0;'));
+assert(cssRule('.site-header > .theme-toggle:focus-visible').includes('outline-offset: -2px;'));
+for (const { file, review } of manifest.pages) {
+  const html = read(file);
+  assert.equal((html.match(/class="theme-toggle"/g) || []).length, 1, `${file}: one color-mode control`);
+  if (review) continue;
+  assert.match(html, /<header class="site-header shell"><button class="theme-toggle"/);
+  assert.doesNotMatch(html.match(/<nav class="site-nav"[\s\S]*?<\/nav>/)?.[0] || '', /theme-toggle/);
+}
 assert(cssRule('.heading-anchor').includes('color: var(--muted);'));
 assert(cssRule('.heading-anchor:hover').includes('color: var(--muted);'));
 assert.doesNotMatch(themeCss, /(?:^|\n)a:hover\s*\{/);

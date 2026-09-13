@@ -102,6 +102,14 @@ for (const share of ['icons', 'official', 'invalid']) {
 }
 console.log('PASS: OS-following, persistence, previews, navigation, retired options, cold-cache font display, unavailable storage.');
 
+for (const value of ['', 'corner', 'navigation', 'invalid']) {
+  const app = boot({ search: '?toggle-position=' + value, withForm: true });
+  assert.equal(app.root.dataset.togglePosition, undefined);
+  assert.equal(app.fields['toggle-position'], undefined);
+  assert.equal(new URL(app.follow('http://mock.invalid/about.html')).searchParams.get('toggle-position'), null);
+}
+console.log('PASS: retired toggle-position preview does not override the adopted header layout.');
+
 for (const choice of ['current', '48', 'invalid']) {
   const app = boot({ search: `?controls=${choice}&theme=dark`, withForm: true });
   assert.equal(app.root.dataset.controls, undefined);
@@ -111,7 +119,7 @@ for (const choice of ['current', '48', 'invalid']) {
 const controlCss = readFileSync(new URL('src/theme.css', import.meta.url), 'utf8');
 assert.match(controlCss, /--control-size: var\(--ui-space-12\);/);
 assert.doesNotMatch(controlCss, /data-controls/);
-const controlRule = selector => controlCss.slice(controlCss.indexOf(selector + ' {')).split('}')[0];
+const controlRule = selector => controlCss.split('\n').find(line => line.startsWith(selector + ' {'))?.split('}')[0] || '';
 for (const selector of ['.site-nav a', '.article-tags a', '.terms a']) {
   const rule = controlRule(selector);
   assert(rule.includes('min-height: var(--control-size)'));

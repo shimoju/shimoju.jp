@@ -60,6 +60,12 @@ Noto Sans Mono CJK JPは通常版とは別の等幅向けバリエーション�
 
 コード・インラインコードは`font-feature-settings: normal`、`font-variant-ligatures: none`、`font-kerning: none`にする。これは混植の字幅を2:1に補正する指定ではない。paltとフォールバックの再確認方法は[検証手順](06-theme-validation.md)を参照。
 
+## ヘッダーの配色切り替え
+
+配色ボタンは初期HTMLでsite-headerの先頭に置き、site-navには含めない。ヘッダーをposition: relative、ボタンをabsolute・top: 0.8rem・inset-inline-end: 0とし、操作領域の右端を本文コンテナに揃える。SVGの光学的な右補正はしない。サイト名と文字ナビは中央揃えを維持する。
+
+ヘッダーの上paddingは従来の上余白と「操作領域4.8rem＋上下余白1.6rem」の大きい方を使う。モバイルでは上下余白の基準トークンだけを切り替え、上paddingの下限は維持する。フォーカス輪郭はoutline-offset: -2pxで内側に描く。配置比較UI・toggle-positionパラメーターの適用・JavaScriptによるDOM移動は廃止する。
+
 ## 相対サイズと文字拡大
 
 ルートは全幅で62.5%、本文基準は`--body-size: 1.7rem`とする。見出しは本文・H6からH1の1.6倍までを5区間の等比で分ける。1段の倍率は`1.6^(1/5)`、サイト名は7段目の`1.6^(7/5)`とする。H6→H1は本文の1、1.099、1.207、1.326、1.456、1.6倍、サイト名は1.931倍。各倍率は元の式から独立に算出し、小数第3位に丸めた定数を使う。`--text-h1: calc(var(--body-size) * 1.6)`等のトークンに集約し、各セレクターはトークンを参照する。H6は`var(--body-size)`とする。
