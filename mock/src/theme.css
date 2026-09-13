@@ -44,7 +44,8 @@
   --body-leading: 1.9;
   --code-leading: 1.3;
   --content-width: 720px;
-  --gutter: 24px;
+  --gutter-base: 24px;
+  --gutter: max(var(--gutter-base), var(--ui-space-4));
   --text-small: calc(var(--body-size) * 0.910);
   --text-meta: calc(var(--body-size) * 0.829);
   --text-label: calc(var(--body-size) * 0.754);
@@ -147,6 +148,7 @@ img, video { max-width: 100%; height: auto; }
 /* Hide the optional permalink UI when the primary input cannot hover. */
 @media (hover: none) {
   .heading-anchor { display: none; }
+  :root { --gutter: var(--gutter-base); }
 }
 .prose ul, .prose ol { padding-left: 1.6em; margin-block: 1em; }
 .prose li { margin-block: .15em; }
@@ -172,6 +174,7 @@ code, pre { font-family: var(--font-code); font-feature-settings: normal; font-v
 .code-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ui-space-2); padding: var(--ui-space-1) var(--ui-space-3) var(--ui-space-1) var(--code-inset); color: var(--muted); font-size: var(--text-label); }
 .code-label { min-width: 0; overflow-wrap: anywhere; }
 .copy { flex-shrink: 0; border: 0; border-radius: var(--radius-small); background: none; min-width: min(var(--ui-space-20), 100%); max-width: 100%; min-height: var(--control-size); padding: var(--ui-space-2) var(--ui-space-2); font-size: var(--text-label); }
+.copy:focus-visible { outline-offset: -2px; }
 .unlabelled .code-toolbar { justify-content: flex-end; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 .code-block pre { margin: 0; padding: var(--ui-space-3) var(--code-inset) var(--ui-space-4); overflow-x: auto; font-size: var(--code-size); line-height: var(--code-leading); white-space: pre; overflow-wrap: normal; tab-size: 2; }
@@ -244,7 +247,7 @@ code, pre { font-family: var(--font-code); font-feature-settings: normal; font-v
 .inline-probe code { white-space: nowrap; }
 .inline-probe.unpadded code { padding: 0; }
 @media (max-width: 639px) {
-  :root { --gutter: 16px; }
+  :root { --gutter-base: 16px; }
   .site-header { padding-block: var(--space-section); }
   .site-nav { column-gap: var(--ui-space-4); margin-top: var(--ui-space-3); }
   .intro { margin-bottom: var(--space-group); }

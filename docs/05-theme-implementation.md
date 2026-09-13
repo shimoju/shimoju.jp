@@ -72,7 +72,7 @@ Noto Sans Mono CJK JPは通常版とは別の等幅向けバリエーション�
 
 引用罫線は`--quote-border`で独立させ、ライトはLatte Overlay1 #8c8fa1、ダークはMocha Overlay1 #7f849cを使う。太さ2px、本文色・背景・一般境界線は維持する。
 
-本文H2〜H6のIDを保持し、同じIDを指すネイティブリンクを追加する。見出しをposition: relative、リンクをabsolute・right: 100%・幅1.6remとし、本文を押し動かさない。リンクはopacity: 0を基本に、見出しの:hover／:focus-withinで表示する。`@media (hover: none)`ではdisplay: noneにして、タッチ主体の環境では操作UIとTab停止を省く。画面幅やタッチ対応の有無だけでは判定しない。アンカーは本文付随のリンクなので48pxの独立操作部品ルールから除外し、フォーカス輪郭は内側に描く。表示制御にJavaScriptは使わない。
+本文H2〜H6のIDを保持し、同じIDを指すネイティブリンクを追加する。見出しをposition: relative、リンクをabsolute・right: 100%・幅`--ui-space-4`（1.6rem）とする。`--gutter-base`はデスクトップ24px・モバイル16px、共通ガターは`--gutter: max(var(--gutter-base), var(--ui-space-4))`とし、リンク幅に足りない分だけサイト全体の左右余白を広げる。見出しへの左paddingは設けず、本文と左端を揃える。共通のshellは最大720pxなので、既に十分な左右余白がある広い画面では配置は変わらない。リンクはopacity: 0を基本に、見出しの:hover／:focus-withinで表示する。`@media (hover: none)`ではdisplay: noneにし、`--gutter: var(--gutter-base)`で基準ガターに戻す。画面幅やタッチ対応の有無だけでは判定しない。アンカーは本文付随のリンクなので48pxの独立操作部品ルールから除外し、フォーカス輪郭は内側に描く。表示制御にJavaScriptは使わない。
 
 ブラウザの既定文字サイズが16pxならルートは10px、本文は17pxになる。本文基準トークンは本文サイズ変更に追従し、素のremで指定したコード・操作部品の寸法は本文サイズから独立する。ブラウザの既定文字サイズ変更では、どちらも同じ倍率で拡大する。ルートをpxで固定しない。[W3Cの相対サイズの説明](https://www.w3.org/WAI/tutorials/page-structure/styling/)
 
@@ -85,13 +85,13 @@ Safariでは-apple-system使用時の和文が約1px小さく見え、iPhone Saf
 - 外部部品：iframe内のremは別文書のルートに従う。ページへ直接挿入する部品やShadow DOM内のremはページのルートの影響を受けるため、公式ウィジェットを改変せず表示を確認する。
 - em：インラインコードの文字とpadding、段落・本文見出しの余白、リストの字下げ。周囲の文字サイズに追従させる。
 - 単位なし：行高。本文1.9、コード1.3。
-- px：本文最大幅720px、左右ガター24px／16px、ブレークポイント640px、細い罫線・角丸。
+- px：本文最大幅720px、左右ガターの基準24px／16px、ブレークポイント640px、細い罫線・角丸。ガターには見出しリンク幅1.6remの下限も設ける。
 
 固定heightで文字を切らず、min-heightと折り返しを使う。コードのラベルとボタンは必要なら縦に並べ、コード本文だけを横スクロールさせる。インラインコードのpaddingは行高を不自然に押し広げないようにする。paddingの有無で折り返し位置が変わる場合、段落全体の高さだけを比較して行高の増加と判定しない。
 
 ## UIの余白・寸法
 
-UIの余白・寸法は4px相当を単位とし、8px刻みを中心にする。`--ui-space-N`は既定文字サイズ16pxで4×N px相当のrem値とする。コード本文の左右と言語ラベルの左余白は`--code-inset`（1.6rem）、シェア・プロフィールのgapは`--icon-gap`（1.2rem）を共用する。操作領域は`--control-size`（4.8rem）、コピー幅は8rem、アイコンは小2rem・標準2.4remとする。角丸は大8px（コード・画像・動画）、小4px（アイコン・ボタン・インラインコード等）に分け、配色切り替えの円形は別扱いにする。ページ左右ガターはデスクトップ24px・モバイル16px。本文基準のスケール・em指定・インラインコードの文字サイズとpaddingは変更しない。
+UIの余白・寸法は4px相当を単位とし、8px刻みを中心にする。`--ui-space-N`は既定文字サイズ16pxで4×N px相当のrem値とする。コード本文の左右と言語ラベルの左余白は`--code-inset`（1.6rem）、シェア・プロフィールのgapは`--icon-gap`（1.2rem）を共用する。操作領域は`--control-size`（4.8rem）、コピー幅は8rem、アイコンは小2rem・標準2.4remとする。角丸は大8px（コード・画像・動画）、小4px（アイコン・ボタン・インラインコード等）に分け、配色切り替えの円形は別扱いにする。ページ左右ガターの基準はデスクトップ24px・モバイル16pxとし、見出しリンクを表示できる環境ではリンク幅1.6rem以上を確保する。本文基準のスケール・em指定・インラインコードの文字サイズとpaddingは変更しない。
 
 ## 操作領域
 
@@ -125,7 +125,7 @@ ruby = "3.4"
 
 ページ送りと記事間移動は、左のPreviousが新しい記事、右のNextが古い記事を指す。記事配列は新しい順とし、リンク先・DOM順・rel属性もこの順序に揃える。Hugoの取得メソッド名を画面ラベルと直接対応させず、返る記事の日付で方向を検証する。
 
-ルートに`scrollbar-gutter: stable`を指定し、通常型スクロールバーの有無によるページ間の横移動を抑える。コード本文は`pre:focus-visible`の`outline-offset: -2px`で共通の2px輪郭を内側に描き、親の角丸とoverflowによる切れを防ぐ。コピーのフォーカスは独立して維持する。単独の本文動画はブロック表示と`--space-block`の前後余白を使い、figure内では動画自身のmarginを0にして二重化を避ける。Archivesの日付は`--text-meta`を使う。
+ルートに`scrollbar-gutter: stable`を指定し、通常型スクロールバーの有無によるページ間の横移動を抑える。Copyボタンとコード本文は、それぞれ`.copy:focus-visible`と`.code-block pre:focus-visible`の`outline-offset: -2px`で共通の2px輪郭を内側に描き、親の角丸とoverflowによる切れを防ぐ。操作領域とツールバーの寸法は維持する。単独の本文動画はブロック表示と`--space-block`の前後余白を使い、figure内では動画自身のmarginを0にして二重化を避ける。Archivesの日付は`--text-meta`を使う。
 
 下線の有無は`text-decoration-line`だけで切り替える。太さは`a`と、下線を直接描く子要素（`.entry-title`・`.post-nav-title`・`.term-name`・`.archive-title`）をまとめた共通ルールで`text-decoration-thickness: 1px`にする。太さは継承されないため、子要素にも明示する。`text-decoration`の一括指定は太さを`auto`へ戻すため、非表示時を含め使用しない。`a`の`text-underline-offset: 0.26em`と、その子要素への継承は維持する。
 

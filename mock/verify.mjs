@@ -291,6 +291,9 @@ for (const name of ['heading-rhythm', 'quote-line', 'heading-links']) {
 assert(cssRule('.heading-anchor').includes('display: flex;'));
 assert(cssRule('.heading-anchor').includes('opacity: 0;'));
 assert(cssRule('.heading-anchor').includes('position: absolute; right: 100%;'));
+assert(!themeCss.includes('--heading-anchor-inset'));
+assert.match(themeCss, /--gutter: max\(var\(--gutter-base\), var\(--ui-space-4\)\);/);
+assert.match(themeCss, /@media \(hover: none\) \{\s*\.heading-anchor \{ display: none; \}\s*:root \{ --gutter: var\(--gutter-base\); \}/);
 assert(cssRule('.heading-anchor').includes('text-decoration-line: none;'));
 assert(cssRule('.heading-anchor span').includes('font-size: var(--text-label);'));
 assert(cssRule('.heading-anchor').includes('color: var(--muted);'));
@@ -313,6 +316,7 @@ for (const [, level, id, contents] of read('specimen.html').matchAll(/<h([2-6]) 
 }
 assert.doesNotMatch(read('home.html'), /class="heading-anchor"/);
 assert(cssRule('.code-block pre:focus-visible').includes('outline-offset: -2px;'));
+assert(cssRule('.copy:focus-visible').includes('outline-offset: -2px;'));
 assert(cssRule('.prose video').includes('display: block; margin: var(--space-block) 0;'));
 assert(cssRule('.prose figure video').includes('margin: 0;'));
 assert(cssRule('.archive-month time').includes('font-size: var(--text-meta);'));
@@ -386,8 +390,8 @@ assert(cssRule('.code-block pre').includes('padding: var(--ui-space-3) var(--cod
 for (const selector of ['.share-icons', '.footer-links']) assert(cssRule(selector).includes('gap: var(--icon-gap)'));
 assert.match(themeCss, /--radius-small: 4px;/);
 assert.match(themeCss, /--radius-large: 8px;/);
-assert.match(themeCss, /--gutter: 24px;/);
-assert.match(themeCss, /--gutter: 16px;/);
+assert.match(themeCss, /--gutter-base: 24px;/);
+assert.match(themeCss, /--gutter-base: 16px;/);
 for (const [, value] of themeCss.matchAll(/border-radius: ([^;]+);/g)) {
   assert(['var(--radius-small)', 'var(--radius-large)', '50%'].includes(value));
 }
