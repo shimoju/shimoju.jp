@@ -283,6 +283,21 @@ assert.equal(cover.readUInt32BE(20), 630);
 console.log(`PASS: ${manifest.pages.length} pages, ${links} local references, grouped links, pagination, adopted options, Hugo code labels, palettes, 1200×630 cover.`);
 
 const cssRule = selector => themeCss.split('\n').find(line => line.startsWith(selector + ' {'))?.split('}')[0] || '';
+assert(cssRule('html').includes('scrollbar-gutter: stable;'));
+assert(cssRule('.code-block pre:focus-visible').includes('outline-offset: -2px;'));
+assert(cssRule('.prose video').includes('display: block; margin: var(--space-block) 0;'));
+assert(cssRule('.prose figure video').includes('margin: 0;'));
+assert(cssRule('.archive-month time').includes('font-size: var(--text-meta);'));
+const specimen = read('specimen.html');
+assert.match(specimen, /<li>\s*<p>最初の段落[\s\S]*?<p>同じ項目の補足段落/);
+assert.match(specimen, /<blockquote>\s*<p>引用の中にも[\s\S]*?<ul>[\s\S]*?class="code-block/);
+for (const [file, newer, older] of [['article.html', null, 'article-hugo.html'], ['article-hugo.html', 'article.html', 'article-diary.html'], ['article-pasmo.html', 'article-bgm.html', null]]) {
+  const nav = read(file).match(/<nav class="post-nav"[\s\S]*?<\/nav>/)[0];
+  for (const [rel, target] of [['prev', newer], ['next', older]]) {
+    const actual = nav.match(new RegExp(`<a rel="${rel}" href="([^"]+)"`))?.[1] || null;
+    assert.equal(actual, target, `${file}: ${rel} follows newest-first reading order`);
+  }
+}
 assert(cssRule('.nav-label').includes('display: inline-block; white-space: nowrap;'));
 assert(cssRule('.post-nav').includes('repeat(2, minmax(0, 1fr))'));
 for (const page of ['article.html', 'article-hugo.html', 'article-pasmo.html']) assert(read('index.html').includes(`value="${page}"`));
@@ -322,7 +337,7 @@ for (const selector of ['.entry-title', '.article-header h1', '.archive-month a'
 assert.match(themeCss, /\.post-nav a\[rel="prev"\] \{ grid-column: 1; grid-row: 1; text-align: left; \}/);
 assert.match(themeCss, /\.post-nav a\[rel="next"\] \{ grid-column: 2; grid-row: 1; text-align: right; \}/);
 assert.doesNotMatch(themeCss, /\.post-nav a(?::last-child| \+ a)/);
-for (const [file, roles] of [['article.html', ['prev']], ['article-hugo.html', ['prev', 'next']], ['article-pasmo.html', ['next']]]) {
+for (const [file, roles] of [['article.html', ['next']], ['article-hugo.html', ['prev', 'next']], ['article-pasmo.html', ['prev']]]) {
   const nav = read(file).match(/<nav class="post-nav"[\s\S]*?<\/nav>/)[0];
   assert.deepEqual([...nav.matchAll(/<a rel="(prev|next)"/g)].map(match => match[1]), roles, `${file}: retain roles with either neighbor absent`);
   for (const [, role, label] of nav.matchAll(/<a rel="(prev|next)"[^>]*><small[^>]*>([\s\S]*?)<\/small>/g)) {
