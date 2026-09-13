@@ -209,22 +209,22 @@ for (const { file } of manifest.pages) {
   assert.equal((footer.match(/<svg /g) || []).length, 4);
   assert.equal((footer.match(/aria-hidden="true"/g) || []).length, 4);
 }
-assert.doesNotMatch(read('home.html'), /新着記事|unavailable|Previous<|公開 |RSSを購読/);
+assert.doesNotMatch(read('home.html'), /新着記事|unavailable|Prev<|公開 |RSSを購読/);
 assert.doesNotMatch(read('home-3.html'), /class="next-page"/);
 assert.doesNotMatch(read('home.html'), /class="previous-page"/);
 for (const { file } of manifest.pages) {
   for (const [nav] of read(file).matchAll(/<nav class="(?:pager|post-nav)"[\s\S]*?<\/nav>/g)) {
     for (const [link] of nav.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/g)) {
       const previous = link.includes('rel="prev"');
-      const label = previous ? '<span aria-hidden="true">«</span> Previous' : 'Next <span aria-hidden="true">»</span>';
+      const label = previous ? '<span aria-hidden="true">«</span> Prev' : 'Next <span aria-hidden="true">»</span>';
       assert(link.includes(`<span class="nav-label">${label}</span>`), 'Shared inline label preserves spaces next to arrows');
-      assert.doesNotMatch(link, /Previous post|Next post/);
+      assert.doesNotMatch(link, /Prev post|Next post/);
     }
   }
 }
-assert.match(read('home-2.html'), /<span aria-hidden="true">«<\/span> Previous/);
+assert.match(read('home-2.html'), /<span aria-hidden="true">«<\/span> Prev/);
 assert.match(read('home-2.html'), /Next <span aria-hidden="true">»<\/span>/);
-assert.match(read('article-hugo.html'), /<span aria-hidden="true">«<\/span> Previous/);
+assert.match(read('article-hugo.html'), /<span aria-hidden="true">«<\/span> Prev/);
 assert.match(read('article-hugo.html'), /Next <span aria-hidden="true">»<\/span>/);
 assert.match(read('index.html'), /<button type="submit">ページを開く<\/button>/);
 // Shorthand declarations reset thickness to auto, including `text-decoration: none`.
@@ -331,6 +331,9 @@ for (const [file, newer, older] of [['article.html', null, 'article-hugo.html'],
   }
 }
 assert(cssRule('.nav-label').includes('display: inline-block; white-space: nowrap;'));
+assert(cssRule('.pager').includes('grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);'));
+assert(!themeCss.includes('@container pagination') && !themeCss.includes('.pager-layout'));
+assert.doesNotMatch(read('home-2.html'), /Previous|pager-layout/);
 assert(cssRule('.post-nav').includes('repeat(2, minmax(0, 1fr))'));
 for (const page of ['article.html', 'article-hugo.html', 'article-pasmo.html']) assert(read('index.html').includes(`value="${page}"`));
 const mobileRules = themeCss.slice(themeCss.indexOf('@media (max-width: 639px)'));
@@ -373,7 +376,7 @@ for (const [file, roles] of [['article.html', ['next']], ['article-hugo.html', [
   const nav = read(file).match(/<nav class="post-nav"[\s\S]*?<\/nav>/)[0];
   assert.deepEqual([...nav.matchAll(/<a rel="(prev|next)"/g)].map(match => match[1]), roles, `${file}: retain roles with either neighbor absent`);
   for (const [, role, label] of nav.matchAll(/<a rel="(prev|next)"[^>]*><small[^>]*>([\s\S]*?)<\/small>/g)) {
-    assert(label.includes(role === 'prev' ? 'Previous' : 'Next'));
+    assert(label.includes(role === 'prev' ? 'Prev' : 'Next'));
   }
 }
 for (const [, step, rem] of themeCss.matchAll(/--ui-space-(\d+): ([\d.]+)rem;/g)) {

@@ -123,13 +123,13 @@ ruby = "3.4"
 
 ホバーで前景色を変えない。`a:hover { color: inherit; }`のような共通指定は、個別リンクの色を親要素の色で上書きするため設けない。見出しリンクは通常・ホバーとも`--muted`、記号サイズは`--text-label`を参照する。共有・プロフィールアイコンは通常の`--text`を維持する。背景・境界線・下線による状態表示は前景色と分けて管理する。
 
-ページ送りと記事間移動は、左のPreviousが新しい記事、右のNextが古い記事を指す。記事配列は新しい順とし、リンク先・DOM順・rel属性もこの順序に揃える。Hugoの取得メソッド名を画面ラベルと直接対応させず、返る記事の日付で方向を検証する。
+ページ送りと記事間移動は、左のPrevが新しい記事、右のNextが古い記事を指す。記事配列は新しい順とし、リンク先・DOM順・rel属性もこの順序に揃える。Hugoの取得メソッド名を画面ラベルと直接対応させず、返る記事の日付で方向を検証する。
 
 ルートに`scrollbar-gutter: stable`を指定し、通常型スクロールバーの有無によるページ間の横移動を抑える。Copyボタンとコード本文は、それぞれ`.copy:focus-visible`と`.code-block pre:focus-visible`の`outline-offset: -2px`で共通の2px輪郭を内側に描き、親の角丸とoverflowによる切れを防ぐ。操作領域とツールバーの寸法は維持する。単独の本文動画はブロック表示と`--space-block`の前後余白を使い、figure内では動画自身のmarginを0にして二重化を避ける。Archivesの日付は`--text-meta`を使う。
 
 下線の有無は`text-decoration-line`だけで切り替える。太さは`a`と、下線を直接描く子要素（`.entry-title`・`.post-nav-title`・`.term-name`・`.archive-title`）をまとめた共通ルールで`text-decoration-thickness: 1px`にする。太さは継承されないため、子要素にも明示する。`text-decoration`の一括指定は太さを`auto`へ戻すため、非表示時を含め使用しない。`a`の`text-underline-offset: 0.26em`と、その子要素への継承は維持する。
 
-一覧は一記事を一つのネイティブリンクで囲み、`aria-labelledby`で記事タイトルをリンク名にする。長い要約全体の読み上げや重複したTab停止を避け、新しいタブで開く操作を保つ。別ボタンを追加するときはリンクの入れ子を作らない。Archivesもタイトルと日付を同じリンクにする。リンクは縦方向flex・行高1.5・gapに`--title-meta-gap`を使い、日付のmarginは0とする。タイトルを`.archive-title`で囲み、ホバー下線はタイトルだけに付ける。月のgridは`align-items: first baseline`、月見出しはmargin 0とし、先頭記事のベースラインに合わせる。記事リストは縦方向flexと`--ui-space-6`（24px）のgapを使い、月末の記事にも余白が付くliのmarginは設けない。月間隔は`--ui-space-8`（32px）、最後の月はmargin-bottom 0。年の間隔は`--space-group`を維持する。記事詳細・About・一覧・Archivesのタイトルと日付の間隔は`--title-meta-gap`（0.8rem）を共用する。分類一覧は名称を`.term-name`で囲み、ホバー下線はこの要素だけに付ける。件数も含むリンク全体のクリック範囲とフォーカスを維持する。前後記事は`rel="prev"`／`rel="next"`で役割を明示し、全画面幅で左列／右列の1行目へ配置する。列は`repeat(2, minmax(0, 1fr))`で同幅とし、列間はデスクトップ24px・モバイル16px。DOM上の順番や隣接要素の有無を役割判定に使わない。ページ送りと前後記事の方向ラベルは共通の`.nav-label`で生成し、`display: inline-block; white-space: nowrap`で記号と文字の半角スペースを保持する。Previous／Nextにpostは付けない。
+一覧は一記事を一つのネイティブリンクで囲み、`aria-labelledby`で記事タイトルをリンク名にする。長い要約全体の読み上げや重複したTab停止を避け、新しいタブで開く操作を保つ。別ボタンを追加するときはリンクの入れ子を作らない。Archivesもタイトルと日付を同じリンクにする。リンクは縦方向flex・行高1.5・gapに`--title-meta-gap`を使い、日付のmarginは0とする。タイトルを`.archive-title`で囲み、ホバー下線はタイトルだけに付ける。月のgridは`align-items: first baseline`、月見出しはmargin 0とし、先頭記事のベースラインに合わせる。記事リストは縦方向flexと`--ui-space-6`（24px）のgapを使い、月末の記事にも余白が付くliのmarginは設けない。月間隔は`--ui-space-8`（32px）、最後の月はmargin-bottom 0。年の間隔は`--space-group`を維持する。記事詳細・About・一覧・Archivesのタイトルと日付の間隔は`--title-meta-gap`（0.8rem）を共用する。分類一覧は名称を`.term-name`で囲み、ホバー下線はこの要素だけに付ける。件数も含むリンク全体のクリック範囲とフォーカスを維持する。前後記事は`rel="prev"`／`rel="next"`で役割を明示し、全画面幅で左列／右列の1行目へ配置する。列は`repeat(2, minmax(0, 1fr))`で同幅とし、列間はデスクトップ24px・モバイル16px。DOM上の順番や隣接要素の有無を役割判定に使わない。ページ送りと前後記事の方向ラベルは共通の`.nav-label`で生成し、`display: inline-block; white-space: nowrap`で記号と文字の半角スペースを保持する。Prev／Nextにpostは付けない。
 
 配色は保存済みの明示選択を優先し、なければOS設定に追従する。初回描画前の設定でちらつきを防ぎ、ストレージの読み書きが失敗しても本文と切り替えを使えるようにする。モックの`?theme=`・`?copy=failure`、レビュー入口、文字拡大用ビルドは検証専用で、本番テーマに必要な機能ではない。
 
