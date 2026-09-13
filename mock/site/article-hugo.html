@@ -21,9 +21,13 @@
 <li><a href="https://qiita.com/NagayamaToshiaki/items/25d4969636d05bf48c41">日本語の文章とline-heightに対する考察 - Qiita</a></li>
 <li><a href="https://parashuto.com/rriver/development/line-height-in-web-design">ウェブデザインにおけるline-heightについて  |  Rriver</a></li>
 </ul>
-<div class="code-block">
-  <div class="code-toolbar" lang="en"><span class="code-label">CSS</span><button class="copy" type="button" aria-label="Copy code">Copy</button>
-  </div><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">post-content</span> <span class="p">{</span>
+<div class="code-block"><span class="code-label" lang="en">CSS</span><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">post-content</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">line-height</span><span class="p">:</span> <span class="mi">2</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -50,17 +54,25 @@
 </div>
 <h2 id="クールなuriは変わらない">クールなURIは変わらない<a class="heading-anchor" href="#クールなuriは変わらない" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <p>URLはできるだけ変えないように、パーマリンクは<a href="https://github.com/shimoju/shimoju.jp/blob/master/hugo.yml">以前のブログと同様に設定した</a>。</p>
-<div class="code-block">
-  <div class="code-toolbar" lang="en"><span class="code-label">YAML</span><button class="copy" type="button" aria-label="Copy code">Copy</button>
-  </div><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">permalinks</span><span class="p">:</span><span class="w">
+<div class="code-block"><span class="code-label" lang="en">YAML</span><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">permalinks</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">posts</span><span class="p">:</span><span class="w"> </span><span class="l">/:year/:month/:day/:slugorfilename/</span></span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
 </div>
 <p>アーカイブ（<a href="https://shimoju.jp/archives/">/archives/</a>）、カテゴリー（<a href="https://shimoju.jp/categories/">/categories/</a>）、タグ（<a href="https://shimoju.jp/tags/">/tags/</a>）はとくに設定しなくても同じパスだったのでそのまま使えている。
 カテゴリー名・タグ名はHexoでは指定した通りのURLになる（大文字にすればURLも大文字になる）のに対して、Hugoだと小文字に統一されるようで、そこだけ404になってしまったのが悲しみ。</p>
 <p>RSSフィードはURLが変わったので<a href="https://github.com/shimoju/shimoju.jp/blob/master/static/_redirects">リダイレクトを設定してある</a>。</p>
-<div class="code-block unlabelled">
-  <div class="code-toolbar" lang="en"><button class="copy" type="button" aria-label="Copy code">Copy</button>
-  </div><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">/feed.xml /index.xml 301</span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
+<div class="code-block unlabelled"><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">/feed.xml /index.xml 301</span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
 </div>
 <h2 id="ホスティング">ホスティング<a class="heading-anchor" href="#ホスティング" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <p>少し前にNetlifyから<a href="https://www.cloudflare.com/ja-jp/products/pages/">Cloudflare Pages</a>に乗り換えており、引き続きこれを採用した。</p>

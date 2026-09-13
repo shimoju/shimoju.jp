@@ -17,9 +17,13 @@
 ターミナルとしての仕事に徹していて、デフォルトのキーバインドが必要十分かつMacアプリとして違和感のない配置になっているのが好み。</p>
 <p>テキスト選択時のクリップボードコピー、タイトルバーをタブにする、ウィンドウ状態の保存など、iTerm2で利用していた設定を踏襲した。
 テーマは<a href="https://catppuccin.com/">Catppuccin Mocha</a>で、herdrやエディタのカラースキームもすべてこれで統一している。</p>
-<div class="code-block unlabelled">
-  <div class="code-toolbar" lang="en"><button class="copy" type="button" aria-label="Copy code">Copy</button>
-  </div><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">copy-on-select = clipboard
+<div class="code-block unlabelled"><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">copy-on-select = clipboard
 </span></span><span class="line"><span class="cl">font-family = Moralerspace Argon HW
 </span></span><span class="line"><span class="cl">font-size = 14
 </span></span><span class="line"><span class="cl">font-thicken = true
@@ -44,18 +48,26 @@
 <li>herdrではprefixキーに加えて<code>cmd+1-9</code>や<code>cmd+alt+矢印</code>を受け取る</li>
 </ul>
 <p>こうすることで、Ghosttyで複数のタブを開いているときはGhosttyのタブ移動として動作させつつ、タブがひとつのみのときはherdrのタブ移動として動く。</p>
-<div class="code-block unlabelled">
-  <div class="code-toolbar" lang="en"><button class="copy" type="button" aria-label="Copy code">Copy</button>
-  </div><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl"># Ghostty
+<div class="code-block unlabelled"><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl"># Ghostty
 </span></span><span class="line"><span class="cl">keybind = performable:super+1=goto_tab:1
 </span></span><span class="line"><span class="cl">keybind = performable:super+2=goto_tab:2
 </span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">keybind = performable:super+shift+[=previous_tab
 </span></span><span class="line"><span class="cl">keybind = performable:super+shift+]=next_tab</span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
 </div>
-<div class="code-block">
-  <div class="code-toolbar" lang="en"><span class="code-label">TOML</span><button class="copy" type="button" aria-label="Copy code">Copy</button>
-  </div><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># herdr</span>
+<div class="code-block"><span class="code-label" lang="en">TOML</span><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># herdr</span>
 </span></span><span class="line"><span class="cl"><span class="nx">previous_tab</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;prefix+p&#34;</span><span class="p">,</span> <span class="s2">&#34;cmd+shift+[&#34;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">next_tab</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;prefix+n&#34;</span><span class="p">,</span> <span class="s2">&#34;cmd+shift+]&#34;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">switch_tab</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;prefix+1..9&#34;</span><span class="p">,</span> <span class="s2">&#34;cmd+1..9&#34;</span><span class="p">]</span></span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
@@ -64,9 +76,13 @@
 もう慣れたし<code>cmd+t</code>や<code>cmd+d</code>も潰して全部herdr前提にしてもいいかもと思いつつ、デフォルトのキーバインドはできるだけ活かしたい派なので……。</p>
 <p>ほかにはAIエージェントを素早く開けるように、<code>prefix+a</code>でペイン、<code>prefix+shift+a</code>でタブで開くカスタムコマンドを用意した。
 <a href="https://herdr.dev/docs/configuration/#custom-command-keybindings">herdrのカスタムコマンド</a>ではタブで開くオプションがないようで、<a href="https://github.com/shimoju/dotfiles/blob/4abc2f3eda3b88fec9787d4a33fb824cdac61eef/dot_local/bin/executable_herdr-open">簡単なラッパースクリプト</a>を書いて実現した。</p>
-<div class="code-block">
-  <div class="code-toolbar" lang="en"><span class="code-label">TOML</span><button class="copy" type="button" aria-label="Copy code">Copy</button>
-  </div><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">keys</span><span class="p">.</span><span class="nx">command</span><span class="p">]]</span>
+<div class="code-block"><span class="code-label" lang="en">TOML</span><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">keys</span><span class="p">.</span><span class="nx">command</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">key</span> <span class="p">=</span> <span class="s2">&#34;prefix+a&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;shell&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">command</span> <span class="p">=</span> <span class="s2">&#34;herdr-open --pane --direction right -- codex&#34;</span>
@@ -79,9 +95,13 @@
 </span></span><span class="line"><span class="cl"><span class="nx">description</span> <span class="p">=</span> <span class="s2">&#34;open coding agent in tab&#34;</span></span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
 </div>
 <p>あと公式で紹介されている、<code>type = &quot;popup&quot;</code>を用いてポップアップウィンドウでターミナルを開くコマンドが地味に便利。</p>
-<div class="code-block">
-  <div class="code-toolbar" lang="en"><span class="code-label">TOML</span><button class="copy" type="button" aria-label="Copy code">Copy</button>
-  </div><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">keys</span><span class="p">.</span><span class="nx">command</span><span class="p">]]</span>
+<div class="code-block"><span class="code-label" lang="en">TOML</span><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">keys</span><span class="p">.</span><span class="nx">command</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">key</span> <span class="p">=</span> <span class="s2">&#34;prefix+t&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;popup&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">command</span> <span class="p">=</span> <span class="s2">&#34;exec \&#34;${SHELL:-sh}\&#34;&#34;</span>
@@ -108,9 +128,13 @@
 <p>プラグインは補完周りと、Preztoでも使っていた<a href="https://github.com/zsh-users/zsh-syntax-highlighting">zsh-syntax-highlighting</a>、<a href="https://github.com/zsh-users/zsh-history-substring-search">zsh-history-substring-search</a>、<a href="https://github.com/zsh-users/zsh-autosuggestions">zsh-autosuggestions</a>の3点セットくらい。
 <a href="https://github.com/mattmc3/ez-compinit">ez-compinit</a>はcompinit処理を楽にしてくれるだけでなく、Preztoの補完スタイルを再現できるオプションもあり、移行にかなり役立った。</p>
 <p>よく使う操作をシェルのショートカットに割り当てるやつ、やりたいと思いつつできていなかったのだが、AIに頼めば一瞬でやってくれてさすがである。<code>ctrl-s</code>でherdr起動、<code>ctrl-o</code>でfzfを用いたディレクトリ移動を設定した。</p>
-<div class="code-block">
-  <div class="code-toolbar" lang="en"><span class="code-label">ZSH</span><button class="copy" type="button" aria-label="Copy code">Copy</button>
-  </div><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># ctrl-s: herdrを起動</span>
+<div class="code-block"><span class="code-label" lang="en">ZSH</span><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># ctrl-s: herdrを起動</span>
 </span></span><span class="line"><span class="cl">_herdr_widget<span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  zle .push-line
 </span></span><span class="line"><span class="cl">  <span class="nv">BUFFER</span><span class="o">=</span><span class="s1">&#39; herdr&#39;</span>

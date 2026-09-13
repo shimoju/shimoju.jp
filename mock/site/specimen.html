@@ -32,7 +32,7 @@
 <li>コードブロックは内側で横スクロールする
 <ul>
 <li>日本語コメントを含める</li>
-<li>コピー操作は常時見える位置に置く</li>
+<li>コピー操作はホバー・フォーカス・タップで表示する</li>
 </ul>
 </li>
 </ul>
@@ -75,9 +75,13 @@
 </ul>
 </li>
 </ul>
-<div class="code-block">
-  <div class="code-toolbar" lang="en"><span class="code-label">RUBY</span><button class="copy" type="button" aria-label="Copy code">Copy</button>
-  </div><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># 引用の字下げ・コードの左右余白・局所スクロールを確認</span>
+<div class="code-block"><span class="code-label" lang="en">RUBY</span><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># 引用の字下げ・コードの左右余白・局所スクロールを確認</span>
 </span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="s2">&#34;日本語のコメントとRubyのコード&#34;</span></span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
 </div>
 <p>コードの後に続く段落です。引用の左罫線が全体をまとめ、コピー操作とフォーカス枠も利用できます。</p>
@@ -184,9 +188,13 @@
 </div>
 <h3 id="複数行とシンタックスハイライト">複数行とシンタックスハイライト<a class="heading-anchor" href="#複数行とシンタックスハイライト" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h3>
 <p>行番号なしを基本とし、指定されたブロックだけ行番号と強調行を表示します。配色のトークンとBase背景はHugo付属のCatppuccinから生成しています。</p>
-<div class="code-block">
-  <div class="code-toolbar" lang="en"><span class="code-label">RUBY</span><button class="copy" type="button" aria-label="Copy code">Copy</button>
-  </div><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># 日本語コメントと英数字のベースラインを確認する</span>
+<div class="code-block"><span class="code-label" lang="en">RUBY</span><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># 日本語コメントと英数字のベースラインを確認する</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Article</span>
 </span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="ss">title</span><span class="p">:,</span> <span class="ss">tags</span><span class="p">:</span> <span class="o">[]</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="vi">@title</span> <span class="o">=</span> <span class="n">title</span>
@@ -200,23 +208,35 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="no">Article</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">title</span><span class="p">:</span> <span class="s2">&#34;技術と日々の記録&#34;</span><span class="p">,</span> <span class="ss">tags</span><span class="p">:</span> <span class="o">[</span><span class="s2">&#34;Ruby&#34;</span><span class="p">,</span> <span class="s2">&#34;日本語&#34;</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">summary</span></span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
 </div>
-<div class="code-block">
-  <div class="code-toolbar" lang="en"><span class="code-label">TOML · config.toml</span><button class="copy" type="button" aria-label="Copy code">Copy</button>
-  </div><div class="highlight" filename="config.toml"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="ln">1</span><span class="cl"><span class="c"># config.toml — 行番号と強調行の確認</span>
+<div class="code-block"><span class="code-label" lang="en">TOML · config.toml</span><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight" filename="config.toml"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="ln">1</span><span class="cl"><span class="c"># config.toml — 行番号と強調行の確認</span>
 </span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="p">[</span><span class="nx">tools</span><span class="p">]</span>
 </span></span><span class="line hl"><span class="ln">3</span><span class="cl"><span class="nx">ruby</span> <span class="p">=</span> <span class="s2">&#34;3.4&#34;</span>
 </span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nx">node</span> <span class="p">=</span> <span class="s2">&#34;24&#34;</span></span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
 </div>
-<div class="code-block unlabelled">
-  <div class="code-toolbar" lang="en"><button class="copy" type="button" aria-label="Copy code">Copy</button>
-  </div><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">言語指定なし / plain text
+<div class="code-block unlabelled"><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">言語指定なし / plain text
 </span></span><span class="line"><span class="cl">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789
 </span></span><span class="line"><span class="cl">長い行：abcdefghijklmnopqrstuvwxyz/abcdefghijklmnopqrstuvwxyz/abcdefghijklmnopqrstuvwxyz/abcdefghijklmnopqrstuvwxyz/abcdefghijklmnopqrstuvwxyz</span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
 </div>
 <p>言語名とファイル名は、コード本文から推測せず、コードフェンスに指定した値をHugoで取得します。次は未対応の言語指定でも内容をプレーンテキストとして表示する例です。</p>
-<div class="code-block">
-  <div class="code-toolbar" lang="en"><span class="code-label">EXAMPLE-UNKNOWN · example.txt</span><button class="copy" type="button" aria-label="Copy code">Copy</button>
-  </div><div class="highlight" filename="example.txt"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">This language has no highlighter.
+<div class="code-block"><span class="code-label" lang="en">EXAMPLE-UNKNOWN · example.txt</span><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight" filename="example.txt"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">This language has no highlighter.
 </span></span><span class="line"><span class="cl">日本語の内容とファイル名は、そのまま表示します。</span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
 </div>
 <h2 id="images">画像とキャプション<a class="heading-anchor" href="#images" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>

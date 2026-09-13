@@ -121,12 +121,14 @@ for (const selector of ['.theme-toggle', '.icon-link', '.pager a', '.site-name']
   assert(controlRule(selector).includes('min-width: var(--control-size)'));
   assert(controlRule(selector).includes('min-height: var(--control-size)'));
 }
-for (const selector of ['.copy', '.entry-link', '.post-nav a', '.archive-month a']) {
+for (const selector of ['.entry-link', '.post-nav a', '.archive-month a']) {
   assert(controlRule(selector).includes('min-height: var(--control-size)'));
 }
 assert.match(controlCss, /\.site-nav \{[^}]*column-gap: var\(--ui-space-6\);/);
 assert.match(controlCss, /\.site-nav \{ column-gap: var\(--ui-space-4\);/);
-console.log('PASS: adopted 48px controls, natural-width text links, retired preview parameters.');
+assert.match(controlCss, /--copy-control-size: var\(--ui-space-10\);/);
+assert(controlRule('.copy').includes('width: var(--copy-control-size); min-height: var(--copy-control-size);'));
+console.log('PASS: adopted 48px controls, 40px copy control, natural-width text links, retired preview parameters.');
 
 for (const value of ['columns', 'stacked', 'invalid']) {
   const app = boot({ search: '?post-nav=' + value, withForm: true });

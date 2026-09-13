@@ -32,6 +32,8 @@
   --ui-space-20: 8rem;
   --ui-space-34: 13.6rem;
   --control-size: var(--ui-space-12);
+  --copy-control-size: var(--ui-space-10);
+  --copy-icon-size: var(--ui-space-4);
   --code-inset: var(--ui-space-4);
   --icon-size-small: var(--ui-space-5);
   --icon-size: var(--ui-space-6);
@@ -170,17 +172,27 @@ strong, b { font-weight: 700; }
 .prose .wide-table { min-width: 740px; }
 code, pre { font-family: var(--font-code); font-feature-settings: normal; font-variant-ligatures: none; font-kerning: none; }
 :not(pre) > code { font-size: .85em; padding: .25em .35em; border-radius: var(--radius-small); background: var(--inline); box-decoration-break: clone; -webkit-box-decoration-break: clone; overflow-wrap: anywhere; }
-.code-block { background: var(--base); border: 1px solid var(--border); border-radius: var(--radius-large); margin: var(--space-block) 0; overflow: hidden; }
-.code-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ui-space-2); padding: var(--ui-space-1) var(--ui-space-3) var(--ui-space-1) var(--code-inset); color: var(--muted); font-size: var(--text-label); }
-.code-label { min-width: 0; overflow-wrap: anywhere; }
-.copy { flex-shrink: 0; border: 0; border-radius: var(--radius-small); background: none; min-width: min(var(--ui-space-20), 100%); max-width: 100%; min-height: var(--control-size); padding: var(--ui-space-2) var(--ui-space-2); font-size: var(--text-label); }
+.code-block { position: relative; display: flex; flex-direction: column; background: var(--base); border: 1px solid var(--border); border-radius: var(--radius-large); margin: var(--space-block) 0; overflow: hidden; }
+.code-label { display: block; padding: var(--code-inset) calc(var(--copy-control-size) + var(--ui-space-2)) 0 var(--code-inset); color: var(--muted); font-size: var(--text-label); line-height: 1.5; overflow-wrap: anywhere; }
+.copy { position: absolute; top: var(--ui-space-1); right: var(--ui-space-1); z-index: 1; display: grid; place-items: center; width: var(--copy-control-size); min-height: var(--copy-control-size); padding: var(--ui-space-3); border: 0; border-radius: var(--radius-small); background: none; color: var(--muted); opacity: 0; pointer-events: none; }
+.copy[hidden] { display: none; }
+/* The visible face is 24px; the actual button stays 40px inside the code block. */
+.copy::before { content: ""; position: absolute; inset: var(--ui-space-2); border-radius: var(--radius-small); background: var(--base); box-shadow: inset 0 0 0 1px var(--border); z-index: -1; }
+.copy svg { width: var(--copy-icon-size); height: var(--copy-icon-size); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.copy svg > * { display: none; }
+.copy[data-copy-state="idle"] .copy-symbol-idle, .copy[data-copy-state="success"] .copy-symbol-success, .copy[data-copy-state="error"] .copy-symbol-error { display: inline; }
+.code-block:not([data-copy-dismissed]):is(:focus-within, [data-copy-visible]) .copy { opacity: 1; pointer-events: auto; }
+@media (hover: hover) {
+  .code-block:not([data-copy-dismissed]):hover .copy { opacity: 1; pointer-events: auto; }
+}
 .copy:focus-visible { outline-offset: -2px; }
-.unlabelled .code-toolbar { justify-content: flex-end; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
-.code-block pre { margin: 0; padding: var(--ui-space-3) var(--code-inset) var(--ui-space-4); overflow-x: auto; font-size: var(--code-size); line-height: var(--code-leading); white-space: pre; overflow-wrap: normal; tab-size: 2; }
+.code-block pre { margin: 0; padding: var(--code-inset); overflow-x: auto; font-size: var(--code-size); line-height: var(--code-leading); white-space: pre; overflow-wrap: normal; tab-size: 2; }
+/* Outer inset: 16px. A label belongs to its code, so their internal gap is 8px. */
+.code-label ~ .highlight pre { padding-top: var(--ui-space-2); }
 .code-block pre code { font-size: inherit; padding: 0; background: none; }
 .code-block pre:focus-visible { outline-offset: -2px; }
-.code-block .highlight { margin: 0; }
+.code-block .highlight { min-width: 0; margin: 0; }
 .code-block .chroma .line { min-width: max-content; }
 .footnotes { font-size: var(--text-small); color: var(--muted); margin-top: var(--space-group); }
 .article-end { margin-top: var(--space-end); }

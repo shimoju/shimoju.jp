@@ -186,7 +186,7 @@ assert(Math.abs(tokenPixels('--space-section', 16, 1.8) - 46.08) < 1e-9);
 assert.match(themeCss, /\.site-nav \{[^}]*column-gap: var\(--ui-space-6\); row-gap: var\(--ui-space-1\);/);
 assert.match(themeCss, /--code-leading: 1\.3;/);
 assert.doesNotMatch(themeCss, /font(?:-size)?:[^;{}]*\dpx/);
-assert.match(themeCss, /\.code-toolbar \{[^}]*flex-wrap: wrap/);
+assert(!themeCss.includes('.code-toolbar'));
 for (const selector of ['.site-nav a', '.pager a', '.article-tags a', '.terms a', '.copy']) {
   assert.doesNotMatch(themeCss.slice(themeCss.indexOf(selector + ' {')).split('}')[0], /[; ]height:/, 'Text controls must grow with their content');
 }
@@ -262,8 +262,8 @@ assert.doesNotMatch(themeCss, /\.site-name:hover/);
 assert.match(themeCss, /:focus-visible \{[^}]*outline: 2px solid var\(--accent\)/);
 assert.match(read('specimen.html'), /class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;<\/a>/);
 assert.doesNotMatch(read('single-item.html'), /class="pager"/);
-assert.match(read('specimen.html'), /code-label">TOML · config.toml/);
-assert.match(read('specimen.html'), /code-label">EXAMPLE-UNKNOWN · example.txt/);
+assert.match(read('specimen.html'), /code-label" lang="en">TOML · config.toml/);
+assert.match(read('specimen.html'), /code-label" lang="en">EXAMPLE-UNKNOWN · example.txt/);
 assert.match(read('specimen.html'), /code-block unlabelled/);
 assert.doesNotMatch(read('specimen.html'), /copy-status/);
 for (const entry of read('home.html').matchAll(/<article class="post-entry[^>]*>([\s\S]*?)<\/article>/g)) {
@@ -317,6 +317,23 @@ for (const [, level, id, contents] of read('specimen.html').matchAll(/<h([2-6]) 
 assert.doesNotMatch(read('home.html'), /class="heading-anchor"/);
 assert(cssRule('.code-block pre:focus-visible').includes('outline-offset: -2px;'));
 assert(cssRule('.copy:focus-visible').includes('outline-offset: -2px;'));
+assert(cssRule('.copy').includes('position: absolute;'));
+assert(cssRule('.copy').includes('width: var(--copy-control-size); min-height: var(--copy-control-size);'));
+assert(cssRule('.copy').includes('opacity: 0; pointer-events: none;'));
+assert(cssRule('.copy[hidden]').includes('display: none;'));
+assert(cssRule('.copy::before').includes('inset: var(--ui-space-2);'));
+assert(cssRule('.copy svg').includes('width: var(--copy-icon-size); height: var(--copy-icon-size);'));
+assert.doesNotMatch(cssRule('.code-block'), /min-height:/);
+assert.match(themeCss, /@media \(hover: hover\) \{\s*\.code-block:not\(\[data-copy-dismissed\]\):hover \.copy \{ opacity: 1; pointer-events: auto; \}/);
+assert(cssRule('.code-block:not([data-copy-dismissed]):is(:focus-within, [data-copy-visible]) .copy').includes('opacity: 1; pointer-events: auto;'));
+for (const { file } of manifest.pages) {
+  for (const [button] of read(file).matchAll(/<button class="copy"[\s\S]*?<\/button>/g)) {
+    assert.match(button, /aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden/);
+    assert.match(button, /<svg[^>]*aria-hidden="true"/);
+    for (const state of ['idle', 'success', 'error']) assert(button.includes(`copy-symbol-${state}`));
+  }
+  assert(!read(file).includes('class="code-toolbar"'));
+}
 assert(cssRule('.prose video').includes('display: block; margin: var(--space-block) 0;'));
 assert(cssRule('.prose figure video').includes('margin: 0;'));
 assert(cssRule('.archive-month time').includes('font-size: var(--text-meta);'));
@@ -388,8 +405,16 @@ for (const size of [16, 20, 32]) {
     assert(Math.abs(tokenPixels('--' + name, size, 1.8) - px * size / 16) < 1e-9, 'UI dimensions are independent of body size');
   }
 }
-assert(cssRule('.code-toolbar').includes('padding: var(--ui-space-1) var(--ui-space-3) var(--ui-space-1) var(--code-inset);'));
-assert(cssRule('.code-block pre').includes('padding: var(--ui-space-3) var(--code-inset) var(--ui-space-4);'));
+for (const size of [16, 20, 32]) {
+  assert.equal(tokenPixels('--copy-control-size', size), 40 * size / 16);
+  assert.equal(tokenPixels('--copy-icon-size', size), 16 * size / 16);
+  assert.equal(tokenPixels('--copy-control-size', size) - 2 * tokenPixels('--ui-space-2', size), 24 * size / 16);
+}
+assert(cssRule('.code-label').includes('padding: var(--code-inset) calc(var(--copy-control-size) + var(--ui-space-2)) 0 var(--code-inset);'));
+assert(cssRule('.code-block pre').includes('padding: var(--code-inset);'));
+assert(cssRule('.code-label ~ .highlight pre').includes('padding-top: var(--ui-space-2);'));
+assert(cssRule('.code-block').includes('display: flex; flex-direction: column;'));
+assert(cssRule('.code-block .highlight').includes('min-width: 0;'));
 for (const selector of ['.share-icons', '.footer-links']) assert(cssRule(selector).includes('gap: var(--icon-gap)'));
 assert.match(themeCss, /--radius-small: 4px;/);
 assert.match(themeCss, /--radius-large: 8px;/);

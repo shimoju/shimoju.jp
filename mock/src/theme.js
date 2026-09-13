@@ -47,12 +47,50 @@
     document.addEventListener('click', preservePreview);
     document.addEventListener('auxclick', preservePreview);
     document.addEventListener('contextmenu', preservePreview);
+    const copyControls = [];
     document.querySelectorAll('.copy').forEach(button => {
       let resetTimer;
+      const block = button.closest('.code-block');
+      const pre = block.querySelector('pre');
+      const status = block.querySelector('.copy-feedback');
+      button.hidden = false;
+      const reveal = () => {
+        delete block.dataset.copyDismissed;
+        block.dataset.copyVisible = '';
+      };
+      const dismiss = () => {
+        if (document.activeElement === button) pre.focus({ preventScroll: true });
+        delete block.dataset.copyVisible;
+        block.dataset.copyDismissed = '';
+      };
+      copyControls.push({ block, dismiss });
+      // Native clicks include taps, but do not consume drags, selection or scrolling.
+      block.addEventListener('click', event => {
+        if (!event.target.closest('.copy')) reveal();
+      });
+      block.addEventListener('focusin', () => { delete block.dataset.copyDismissed; });
+      block.addEventListener('pointerenter', event => {
+        if (event.pointerType === 'mouse') delete block.dataset.copyDismissed;
+      });
+      block.addEventListener('pointerleave', event => {
+        if (event.pointerType === 'mouse') {
+          delete block.dataset.copyVisible;
+        }
+      });
+      block.addEventListener('focusout', event => {
+        if (!block.contains(event.relatedTarget)) delete block.dataset.copyVisible;
+      });
+      pre.addEventListener('scroll', dismiss, { passive: true });
+      block.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          dismiss();
+          event.stopPropagation();
+        }
+      });
       button.addEventListener('click', async () => {
-        const block = button.closest('.code-block');
-        const status = block.querySelector('.copy-feedback');
         clearTimeout(resetTimer);
+        reveal();
+        status.textContent = '';
         button.disabled = true;
         // Strip line numbers; copy only the code text, including its original newlines.
         const clone = block.querySelector('pre code').cloneNode(true);
@@ -60,17 +98,18 @@
         try {
           if (params.get('copy') === 'failure') throw new Error('Mock failure state');
           await navigator.clipboard.writeText(clone.textContent);
-          button.textContent = 'Copied';
+          button.dataset.copyState = 'success';
           button.setAttribute('aria-label', 'Copied');
-          button.removeAttribute('title');
+          button.title = 'Copied';
           status.textContent = 'Code copied.';
           resetTimer = setTimeout(() => {
-            button.textContent = 'Copy';
+            button.dataset.copyState = 'idle';
             button.setAttribute('aria-label', 'Copy code');
+            button.title = 'Copy code';
             status.textContent = '';
           }, 3000);
         } catch {
-          button.textContent = 'Copy failed';
+          button.dataset.copyState = 'error';
           button.setAttribute('aria-label', 'Copy failed. Retry copying code');
           button.title = 'Copy failed. Select the code and copy it manually, or retry.';
           status.textContent = 'Copy failed. Select the code and copy it manually, or retry.';
@@ -78,6 +117,15 @@
           button.disabled = false;
         }
       });
+    });
+    document.addEventListener('pointerdown', event => {
+      copyControls.forEach(({ block, dismiss }) => {
+        if (!block.contains(event.target)) dismiss();
+      });
+    });
+    // Also allow dismissal when the hovered code block itself has no keyboard focus.
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') copyControls.forEach(({ dismiss }) => dismiss());
     });
     const showFontStacks = () => {
       for (const [name, property] of [['body', '--font-body'], ['code', '--font-code'], ['site', '--font-site']]) {
