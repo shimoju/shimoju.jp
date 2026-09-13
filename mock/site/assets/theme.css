@@ -33,9 +33,8 @@
   --ui-space-34: 13.6rem;
   --control-size: var(--ui-space-12);
   --copy-control-size: var(--ui-space-10);
-  --copy-icon-size: var(--ui-space-4);
   --code-inset: var(--ui-space-4);
-  --icon-size-small: var(--ui-space-5);
+  --icon-size-small: var(--ui-space-4);
   --icon-size: var(--ui-space-6);
   --icon-gap: var(--ui-space-3);
   --title-meta-gap: var(--ui-space-2);
@@ -47,7 +46,8 @@
   --code-leading: 1.3;
   --content-width: 720px;
   --gutter-base: 24px;
-  --gutter: max(var(--gutter-base), var(--ui-space-4));
+  --heading-anchor-size: var(--ui-space-6);
+  --gutter: max(var(--gutter-base), var(--heading-anchor-size));
   --text-small: calc(var(--body-size) * 0.910);
   --text-meta: calc(var(--body-size) * 0.829);
   --text-label: calc(var(--body-size) * 0.754);
@@ -91,8 +91,7 @@ button:disabled { cursor: default; }
 .site-nav a:hover { text-decoration-line: underline; }
 .site-nav a[aria-current="page"] { text-decoration-line: underline; }
 .theme-toggle { display: inline-grid; place-items: center; border: 0; background: none; padding: var(--ui-space-3); min-width: var(--control-size); min-height: var(--control-size); border-radius: 50%; width: var(--control-size); height: var(--control-size); }
-.theme-toggle:hover { background: none; }
-.theme-toggle svg { width: var(--icon-size-small); height: var(--icon-size-small); fill: none; stroke: currentColor; stroke-width: 1.5; }
+.theme-toggle svg { width: var(--icon-size-small); height: var(--icon-size-small); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .sun, [data-theme="dark"] .moon { display: none; }
 [data-theme="dark"] .sun { display: block; }
 main { min-height: 42vh; }
@@ -142,8 +141,8 @@ img, video { max-width: 100%; height: auto; }
 .prose :is(h2, h3, h4, h5, h6) { margin: 2.121em 0 .687em; }
 .prose :is(h2 + h3, h2 + h4, h2 + h5, h2 + h6, h3 + h4, h3 + h5, h3 + h6, h4 + h5, h4 + h6, h5 + h6) { margin-top: .910em; }
 .prose :is(h2, h3, h4, h5, h6) { position: relative; }
-.heading-anchor { display: flex; position: absolute; right: 100%; top: 0; width: var(--ui-space-4); height: 1.5em; align-items: center; justify-content: center; color: var(--muted); text-decoration-line: none; opacity: 0; }
-.heading-anchor span { font-size: var(--text-label); }
+.heading-anchor { display: flex; position: absolute; right: 100%; top: 0; width: var(--heading-anchor-size); min-height: var(--heading-anchor-size); height: 1.5em; align-items: center; justify-content: flex-end; color: var(--muted); text-decoration-line: none; opacity: 0; }
+.heading-anchor span { flex: 0 0 var(--ui-space-4); text-align: center; font-size: var(--text-label); }
 .heading-anchor:hover { color: var(--muted); }
 .heading-anchor:focus-visible { outline-offset: -2px; }
 .prose :is(h2, h3, h4, h5, h6):is(:hover, :focus-within) > .heading-anchor { opacity: 1; }
@@ -178,7 +177,7 @@ code, pre { font-family: var(--font-code); font-feature-settings: normal; font-v
 .copy[hidden] { display: none; }
 /* The visible face is 24px; the actual button stays 40px inside the code block. */
 .copy::before { content: ""; position: absolute; inset: var(--ui-space-2); border-radius: var(--radius-small); background: var(--base); box-shadow: inset 0 0 0 1px var(--border); z-index: -1; }
-.copy svg { width: var(--copy-icon-size); height: var(--copy-icon-size); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.copy svg { width: var(--icon-size-small); height: var(--icon-size-small); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .copy svg > * { display: none; }
 .copy[data-copy-state="idle"] .copy-symbol-idle, .copy[data-copy-state="success"] .copy-symbol-success, .copy[data-copy-state="error"] .copy-symbol-error { display: inline; }
 .code-block:not([data-copy-dismissed]):is(:focus-within, [data-copy-visible]) .copy { opacity: 1; pointer-events: auto; }
@@ -205,7 +204,6 @@ code, pre { font-family: var(--font-code); font-feature-settings: normal; font-v
 .share-icons { display: flex; flex-wrap: wrap; align-items: center; gap: var(--icon-gap); }
 .icon-link { display: inline-flex; justify-content: center; align-items: center; width: var(--control-size); height: var(--control-size); flex-shrink: 0; border-radius: var(--radius-small); color: var(--text); text-decoration-line: none; min-height: var(--control-size); min-width: var(--control-size); }
 .icon-link svg { width: var(--icon-size); height: var(--icon-size); fill: currentColor; }
-.icon-link:hover { background: var(--base); box-shadow: inset 0 0 0 1px var(--border); }
 /* Match the official iframe's scheme so the browser preserves its transparency. */
 .star-widget { color-scheme: light; min-width: 0; max-width: 100%; line-height: 1.9; }
 .widget-status { flex-basis: 100%; margin: 0; color: var(--muted); font-size: var(--text-label); }

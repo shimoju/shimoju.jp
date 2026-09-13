@@ -292,10 +292,23 @@ assert(cssRule('.heading-anchor').includes('display: flex;'));
 assert(cssRule('.heading-anchor').includes('opacity: 0;'));
 assert(cssRule('.heading-anchor').includes('position: absolute; right: 100%;'));
 assert(!themeCss.includes('--heading-anchor-inset'));
-assert.match(themeCss, /--gutter: max\(var\(--gutter-base\), var\(--ui-space-4\)\);/);
+assert.match(themeCss, /--gutter: max\(var\(--gutter-base\), var\(--heading-anchor-size\)\);/);
 assert.match(themeCss, /@media \(hover: none\) \{\s*\.heading-anchor \{ display: none; \}\s*:root \{ --gutter: var\(--gutter-base\); \}/);
 assert(cssRule('.heading-anchor').includes('text-decoration-line: none;'));
 assert(cssRule('.heading-anchor span').includes('font-size: var(--text-label);'));
+assert(cssRule('.heading-anchor').includes('width: var(--heading-anchor-size); min-height: var(--heading-anchor-size); height: 1.5em;'));
+assert(cssRule('.heading-anchor').includes('justify-content: flex-end;'));
+assert(cssRule('.heading-anchor span').includes('flex: 0 0 var(--ui-space-4); text-align: center;'));
+assert.doesNotMatch(themeCss, /\.heading-anchor::(?:before|after)/);
+for (const size of [16, 20, 32]) assert.equal(tokenPixels('--heading-anchor-size', size), 24 * size / 16);
+assert.doesNotMatch(themeCss, /\.(?:icon-link|theme-toggle|copy):hover\s*\{/);
+assert(cssRule('.theme-toggle svg').includes('width: var(--icon-size-small); height: var(--icon-size-small);'));
+assert(cssRule('.theme-toggle svg').includes('stroke-linecap: round; stroke-linejoin: round;'));
+for (const { file } of manifest.pages) {
+  assert.match(read(file), /class="moon" viewBox="2\.54 3\.25 18\.32 18\.29" preserveAspectRatio="xMidYMid meet"/);
+  assert.match(read(file), /class="sun" viewBox="0\.25 0\.25 23\.5 23\.5" preserveAspectRatio="xMidYMid meet"/);
+}
+assert.doesNotMatch(themeCss, /--copy-icon-size/);
 assert(cssRule('.heading-anchor').includes('color: var(--muted);'));
 assert(cssRule('.heading-anchor:hover').includes('color: var(--muted);'));
 assert.doesNotMatch(themeCss, /(?:^|\n)a:hover\s*\{/);
@@ -322,7 +335,7 @@ assert(cssRule('.copy').includes('width: var(--copy-control-size); min-height: v
 assert(cssRule('.copy').includes('opacity: 0; pointer-events: none;'));
 assert(cssRule('.copy[hidden]').includes('display: none;'));
 assert(cssRule('.copy::before').includes('inset: var(--ui-space-2);'));
-assert(cssRule('.copy svg').includes('width: var(--copy-icon-size); height: var(--copy-icon-size);'));
+assert(cssRule('.copy svg').includes('width: var(--icon-size-small); height: var(--icon-size-small);'));
 assert.doesNotMatch(cssRule('.code-block'), /min-height:/);
 assert.match(themeCss, /@media \(hover: hover\) \{\s*\.code-block:not\(\[data-copy-dismissed\]\):hover \.copy \{ opacity: 1; pointer-events: auto; \}/);
 assert(cssRule('.code-block:not([data-copy-dismissed]):is(:focus-within, [data-copy-visible]) .copy').includes('opacity: 1; pointer-events: auto;'));
@@ -400,14 +413,14 @@ for (const [, step, rem] of themeCss.matchAll(/--ui-space-(\d+): ([\d.]+)rem;/g)
   assert.equal(Math.round(Number(rem) * 10), Number(step) * 4, 'UI spacing uses a 4px grid');
 }
 for (const size of [16, 20, 32]) {
-  for (const [name, px] of [['control-size', 48], ['code-inset', 16], ['icon-gap', 12], ['icon-size', 24], ['icon-size-small', 20], ['title-meta-gap', 8], ['term-gap', 8], ['term-inset', 4]]) {
+  for (const [name, px] of [['control-size', 48], ['code-inset', 16], ['icon-gap', 12], ['icon-size', 24], ['icon-size-small', 16], ['title-meta-gap', 8], ['term-gap', 8], ['term-inset', 4]]) {
     assert(Math.abs(tokenPixels('--' + name, size) - px * size / 16) < 1e-9);
     assert(Math.abs(tokenPixels('--' + name, size, 1.8) - px * size / 16) < 1e-9, 'UI dimensions are independent of body size');
   }
 }
 for (const size of [16, 20, 32]) {
   assert.equal(tokenPixels('--copy-control-size', size), 40 * size / 16);
-  assert.equal(tokenPixels('--copy-icon-size', size), 16 * size / 16);
+  assert.equal(tokenPixels('--icon-size-small', size), 16 * size / 16);
   assert.equal(tokenPixels('--copy-control-size', size) - 2 * tokenPixels('--ui-space-2', size), 24 * size / 16);
 }
 assert(cssRule('.code-label').includes('padding: var(--code-inset) calc(var(--copy-control-size) + var(--ui-space-2)) 0 var(--code-inset);'));

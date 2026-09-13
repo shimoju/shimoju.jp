@@ -63,7 +63,7 @@ for (const mode of ['light', 'dark']) {
 }
 put(join(out, 'assets/syntax.css'), syntax);
 
-const sunMoon = '<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.1A8.4 8.4 0 0 1 9.9 4a8.5 8.5 0 1 0 10.2 10.1Z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4.2 4.2l2.1 2.1m11.4 11.4 2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>';
+const sunMoon = '<svg class="moon" viewBox="2.54 3.25 18.32 18.29" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><path d="M20 14.1A8.4 8.4 0 0 1 9.9 4a8.5 8.5 0 1 0 10.2 10.1Z"/></svg><svg class="sun" viewBox="0.25 0.25 23.5 23.5" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4.2 4.2l2.1 2.1m11.4 11.4 2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>';
 const toggle = `<button class="theme-toggle" type="button" lang="en" aria-label="Switch color mode">${sunMoon}</button>`;
 const nav = current => `<nav class="site-nav" lang="en" aria-label="Main navigation">${['About', 'Archives', 'Categories', 'Tags'].map(name => `<a href="${name.toLowerCase()}.html"${name.toLowerCase() === current ? ' aria-current="page"' : ''}>${name}</a>`).join('')}${toggle}</nav>`;
 const pages = [];
