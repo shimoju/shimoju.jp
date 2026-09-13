@@ -53,7 +53,7 @@ assert.match(read('about.html'), /class="meta"><span><time datetime="2025-11-16"
 assert.doesNotMatch(read('about.html').match(/<header class="article-header">[\s\S]*?<\/header>/)[0], /Updated/);
 assert.match(read('about.html'), /<footer class="article-end"><div class="engagement"/);
 assert.doesNotMatch(read('about.html'), /profile-links|このブログでは、技術のことや日々の記録を書いています/);
-assert.match(read('about.html'), /<div class="prose"><h2[^>]*>プロフィール<\/h2>/);
+assert.match(read('about.html'), /<div class="prose"><h2[^>]*>プロフィール<a class="heading-anchor"[^>]*><span aria-hidden="true">#<\/span><\/a><\/h2>/);
 assert.match(read('home.html'), /株式会社SmartHR 技術統括本部 プロダクトエンジニア/);
 assert.match(read('home.html'), /Rails Girlsのコーチ/);
 assert.doesNotMatch(read('home.html'), /テクノロジーと社会、日々のこと/);
@@ -143,7 +143,7 @@ assert.match(themeCss, /\.prose th \{ font-weight: 700; \}/);
 assert.match(read('specimen.html'), /<b>注目する日本語とEnglish 0123（b）<\/b>/);
 assert.doesNotMatch(themeCss, /font-weight: 600/);
 assert.match(themeCss, /\.archive-month h3 \{[^}]*font-weight: 400;/);
-assert.doesNotMatch(themeCss, /Heading Latin|data-heading|--heading-weight|--font-heading/);
+assert.doesNotMatch(themeCss, /Heading Latin|data-heading(?:=|\])|--heading-weight|--font-heading/);
 assert.match(themeCss, /html \{ font-size: 62\.5%;/);
 assert.equal((themeCss.match(/html \{ font-size:/g) || []).length, 1, 'Root size is shared across viewports');
 assert.match(themeCss, /--body-size: 1\.7rem;/);
@@ -284,6 +284,34 @@ console.log(`PASS: ${manifest.pages.length} pages, ${links} local references, gr
 
 const cssRule = selector => themeCss.split('\n').find(line => line.startsWith(selector + ' {'))?.split('}')[0] || '';
 assert(cssRule('html').includes('scrollbar-gutter: stable;'));
+for (const name of ['heading-rhythm', 'quote-line', 'heading-links']) {
+  assert(!read('index.html').includes(`name="${name}"`));
+  assert(!themeCss.includes(`data-${name}`));
+}
+assert(cssRule('.heading-anchor').includes('display: flex;'));
+assert(cssRule('.heading-anchor').includes('opacity: 0;'));
+assert(cssRule('.heading-anchor').includes('position: absolute; right: 100%;'));
+assert(cssRule('.heading-anchor').includes('text-decoration-line: none;'));
+assert(cssRule('.heading-anchor span').includes('font-size: var(--text-label);'));
+assert(cssRule('.heading-anchor').includes('color: var(--muted);'));
+assert(cssRule('.heading-anchor:hover').includes('color: var(--muted);'));
+assert.doesNotMatch(themeCss, /(?:^|\n)a:hover\s*\{/);
+for (const [, selector, declarations] of themeCss.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+  if (selector.includes(':hover') && /(?:^|;)\s*color\s*:/.test(declarations)) {
+    assert.equal(selector.trim(), '.heading-anchor:hover', 'Hover must preserve the normal foreground color');
+    assert.match(declarations, /color: var\(--muted\);/);
+  }
+}
+assert.match(themeCss, /\.prose :is\(h2, h3, h4, h5, h6\):is\(:hover, :focus-within\) > \.heading-anchor \{ opacity: 1; \}/);
+assert.match(themeCss, /@media \(hover: none\) \{\s*\.heading-anchor \{ display: none; \}/);
+assert.match(themeCss, /\.prose :is\(h2, h3, h4, h5, h6\) \+ p \{ margin-top: 0; \}/);
+assert.match(themeCss, /\.prose :is\(h2 \+ h3,[^\n]+h5 \+ h6\) \{ margin-top: \.910em; \}/);
+assert.match(themeCss.split(':root[data-theme="dark"]')[0], /--quote-border: #8c8fa1;/);
+assert.match(themeCss.split(':root[data-theme="dark"]')[1].split('}')[0], /--quote-border: #7f849c;/);
+for (const [, level, id, contents] of read('specimen.html').matchAll(/<h([2-6]) id="([^"]+)">([\s\S]*?)<\/h\1>/g)) {
+  assert(contents.includes(`class="heading-anchor" href="#${id}" aria-label="Link to this section" title="Link to this section" lang="en"`), `H${level} native permalink with English tooltip and accessible name`);
+}
+assert.doesNotMatch(read('home.html'), /class="heading-anchor"/);
 assert(cssRule('.code-block pre:focus-visible').includes('outline-offset: -2px;'));
 assert(cssRule('.prose video').includes('display: block; margin: var(--space-block) 0;'));
 assert(cssRule('.prose figure video').includes('margin: 0;'));

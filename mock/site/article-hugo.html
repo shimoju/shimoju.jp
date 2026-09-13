@@ -4,16 +4,16 @@
 <header class="site-header shell"><a class="site-name" href="home.html">shimoju.diary</a><nav class="site-nav" lang="en" aria-label="Main navigation"><a href="about.html">About</a><a href="archives.html">Archives</a><a href="categories.html">Categories</a><a href="tags.html">Tags</a><button class="theme-toggle" type="button" lang="en" aria-label="Switch color mode"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.1A8.4 8.4 0 0 1 9.9 4a8.5 8.5 0 1 0 10.2 10.1Z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4.2 4.2l2.1 2.1m11.4 11.4 2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></button></nav></header>
 <main id="main" class="shell" tabindex="-1"><article><header class="article-header"><h1>HugoとCloudflare Pagesでブログを作り直した</h1><div class="meta"><span><time datetime="2023-06-22">2023/06/22</time></span></div></header><div class="prose"><p>このブログはNode.js製の静的サイトジェネレーターである<a href="https://hexo.io/">Hexo</a>で作っていたけど、放置しすぎて（最新の記事が<a href="https://shimoju.jp/2020/10/24/kaigi-on-rails/">3年前</a>…）Node.jsやnpmがだいぶ古くなっており、アップデートが面倒な状態になっていた。</p>
 <p>最近は<a href="https://scrapbox.io/shimoju/">Scrapbox</a>にシュッと書いてしまうことが多いものの、やっぱりすべてをコントロールできる自分のサイトを持ちたいよなーということで作り直した。</p>
-<h2 id="静的サイトジェネレーター">静的サイトジェネレーター</h2>
+<h2 id="静的サイトジェネレーター">静的サイトジェネレーター<a class="heading-anchor" href="#静的サイトジェネレーター" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <p><a href="https://shimoju.jp/2017/09/26/hello-hexo-netlify/">前回の構築時</a>にも比較に上がっていた<a href="https://gohugo.io/">Hugo</a>を採用。</p>
 <p>以前と比べて、Markdownとアセットをまとめて管理できる<a href="https://gohugo.io/content-management/page-bundles/">Page Bundles</a>機能などが追加されて順調に進化していることや、Hexoから大きくディレクトリ構成やfront-matterを変えなくてもよかったのが理由。</p>
 <p>GatsbyやAstroも考えたけど、そんな凝ったことやるわけでもないし、アップデート業もめんどいし、ということで。ワンバイナリでオールインワンなのは楽ですね。</p>
-<h2 id="テーマ">テーマ</h2>
+<h2 id="テーマ">テーマ<a class="heading-anchor" href="#テーマ" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <p><a href="https://github.com/adityatelange/hugo-PaperMod">adityatelange/hugo-PaperMod</a>を採用。</p>
 <p>このテーマがあったのもHugoを選定した理由のひとつで、シンプルなデザインながら機能も豊富で気に入っている。
 トップページにプロフィールを表示できる<a href="https://github.com/adityatelange/hugo-PaperMod/wiki/Features#home-info-mode">Home-Info Mode</a>があり、これを使って簡単なプロフィールと各種SNSへのリンクを置いた。</p>
 <p>CSS/JSのバンドリングやSubresource Integrity対応もしてるし、コードブロックのコピーボタンや、見出しにマウスカーソルを乗せるとアンカーリンクを出せるなど、細かいところも気が利いていて良い。</p>
-<h2 id="デザイン調整">デザイン調整</h2>
+<h2 id="デザイン調整">デザイン調整<a class="heading-anchor" href="#デザイン調整" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <p>PaperModは<a href="https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-css-with-themes-assets">assets/css/extendedにCSSを置くとそれもバンドルしてくれる</a>。</p>
 <p>デフォルトだと本文のline-heightが1.6、見出しが1.2〜1.3で、和文だと詰まった印象だったので調整。
 以下の記事を参考に、<a href="https://github.com/shimoju/shimoju.jp/blob/master/assets/css/extended/override.css">本文は2、見出しは1.4にした</a>。Paperというくらいだしゆったりさせてみた。</p>
@@ -48,7 +48,7 @@
 </span></span><span class="line"><span class="cl">  <span class="k">line-height</span><span class="p">:</span> <span class="mf">1.4</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
 </div>
-<h2 id="クールなuriは変わらない">クールなURIは変わらない</h2>
+<h2 id="クールなuriは変わらない">クールなURIは変わらない<a class="heading-anchor" href="#クールなuriは変わらない" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <p>URLはできるだけ変えないように、パーマリンクは<a href="https://github.com/shimoju/shimoju.jp/blob/master/hugo.yml">以前のブログと同様に設定した</a>。</p>
 <div class="code-block">
   <div class="code-toolbar" lang="en"><span class="code-label">YAML</span><button class="copy" type="button" aria-label="Copy code">Copy</button>
@@ -62,14 +62,14 @@
   <div class="code-toolbar" lang="en"><button class="copy" type="button" aria-label="Copy code">Copy</button>
   </div><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">/feed.xml /index.xml 301</span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
 </div>
-<h2 id="ホスティング">ホスティング</h2>
+<h2 id="ホスティング">ホスティング<a class="heading-anchor" href="#ホスティング" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <p>少し前にNetlifyから<a href="https://www.cloudflare.com/ja-jp/products/pages/">Cloudflare Pages</a>に乗り換えており、引き続きこれを採用した。</p>
 <p>Cloudflare Pagesについては<a href="https://scrapbox.io/shimoju/Cloudflare_Pages">Scrapboxにまとめている</a>。
 プレビュー環境もあるしHTTP/3対応もしてるし、レスポンスヘッダーのカスタマイズやリダイレクトもできるし便利。</p>
 <p>環境変数<code>HUGO_VERSION</code>を設定しておかないとかなり古いバージョンでビルドされてしまうので注意。
 <a href="https://developers.cloudflare.com/pages/platform/language-support-and-tools/">ビルドシステム</a>はv1とv2（ベータ）があり、v2にするとデフォルトのバージョンも上がる。
 v1はRuby 2.7系までしか対応してなかったけど、v2だと3.2もいけるのでRubyでも使えそう。</p>
-<h2 id="todo">ToDo</h2>
+<h2 id="todo">ToDo<a class="heading-anchor" href="#todo" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <ul>
 <li><code>&lt;ul&gt;&lt;li&gt;&lt;ul&gt;</code>のときに子要素のulにmargin-bottomが入ってリストが不格好になる</li>
 <li>Twitterシェアボタンは記事につけたタグがハッシュタグとして付加されるのだが、タグが0個の状態でTwitterシェアすると<code>#</code>だけがツイートに入ってしまう</li>

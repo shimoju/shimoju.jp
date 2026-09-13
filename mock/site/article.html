@@ -7,7 +7,7 @@
 <p>ターミナルに求めるものも変わってきて、AIエージェントを効率的に管理するための機能や、素早くエージェントを立ち上げられる起動の速さや応答性を重視するようになった。</p>
 <p>ということでここ1、2か月ほど開発環境を見直していた。
 ターミナルエミュレータだけでなく、マルチプレクサ、シェル環境、エディタ、言語ランタイム管理まで全体的に変わり、文字どおりほぼ一新した状態になった。</p>
-<h2 id="ターミナルエミュレータ">ターミナルエミュレータ</h2>
+<h2 id="ターミナルエミュレータ">ターミナルエミュレータ<a class="heading-anchor" href="#ターミナルエミュレータ" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <ul>
 <li><strong>iTerm2 → <a href="https://cmux.com/ja">cmux</a> → <a href="https://ghostty.org/">Ghostty</a></strong>（<a href="https://github.com/shimoju/dotfiles/blob/4abc2f3eda3b88fec9787d4a33fb824cdac61eef/dot_config/ghostty/config">設定</a>）</li>
 </ul>
@@ -29,7 +29,7 @@
 </span></span><span class="line"><span class="cl">theme = Catppuccin Mocha
 </span></span><span class="line"><span class="cl">window-save-state = always</span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
 </div>
-<h2 id="ターミナルマルチプレクサ">ターミナルマルチプレクサ</h2>
+<h2 id="ターミナルマルチプレクサ">ターミナルマルチプレクサ<a class="heading-anchor" href="#ターミナルマルチプレクサ" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <ul>
 <li><strong>未利用 → <a href="https://herdr.dev/">herdr</a></strong>（<a href="https://github.com/shimoju/dotfiles/blob/4abc2f3eda3b88fec9787d4a33fb824cdac61eef/dot_config/herdr/config.toml">設定</a>）</li>
 </ul>
@@ -89,7 +89,7 @@
 </span></span><span class="line"><span class="cl"><span class="nx">width</span> <span class="p">=</span> <span class="s2">&#34;80%&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">height</span> <span class="p">=</span> <span class="s2">&#34;80%&#34;</span></span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
 </div>
-<h2 id="aiエージェント">AIエージェント</h2>
+<h2 id="aiエージェント">AIエージェント<a class="heading-anchor" href="#aiエージェント" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <ul>
 <li><strong>業務用: Cursor → Claude Code</strong></li>
 <li><strong>個人用: 未利用 → Codex, Claude Code</strong></li>
@@ -98,7 +98,7 @@
 <p>個人では別のAIを試したかったため、Claude Codeの安いプランに加えてCodex（ChatGPT Pro）を契約した。GPT-5.6は日本語も結構上手だし、<code>/goal</code>コマンドの自律的作業もいい感じ。
 後述するZshフレームワークの移行や独自プロンプトの作成はCodexにやってもらった。</p>
 <p>両者ともデスクトップアプリの開発が進んでおり、最終的にはデスクトップアプリにすべてが統一される未来もありそう。とはいえ現状はターミナルから離れずに作業できるほうが使いやすいし他ツールとも連携しやすいかなと思っている。</p>
-<h2 id="シェル">シェル</h2>
+<h2 id="シェル">シェル<a class="heading-anchor" href="#シェル" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <ul>
 <li><strong>シェル: Zsh</strong></li>
 <li><strong>プラグイン管理: <a href="https://github.com/sorin-ionescu/prezto">Prezto</a> → <a href="https://antidote.sh/">Antidote</a></strong>（<a href="https://github.com/shimoju/dotfiles/tree/4abc2f3eda3b88fec9787d4a33fb824cdac61eef/dot_config/zsh">設定</a>）</li>
@@ -143,7 +143,7 @@
 </span></span><span class="line"><span class="cl">zle -N _ghq_fzf_cd_widget
 </span></span><span class="line"><span class="cl">bindkey -M emacs <span class="s1">&#39;^O&#39;</span> _ghq_fzf_cd_widget</span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
 </div>
-<h2 id="シェルプロンプト">シェルプロンプト</h2>
+<h2 id="シェルプロンプト">シェルプロンプト<a class="heading-anchor" href="#シェルプロンプト" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <ul>
 <li><strong><a href="https://starship.rs/">Starship</a> → <a href="https://github.com/shimoju/dotfiles/blob/4abc2f3eda3b88fec9787d4a33fb824cdac61eef/dot_config/zsh/prompt/prompt_shsh_setup">自作プロンプト</a></strong></li>
 </ul>
@@ -176,7 +176,7 @@
 </ul>
 <p>ベンチマークを取ったのはナイスで、AIが自律的にボトルネックを特定してパフォーマンス改善を進めてくれたし、修正案の評価も定量的にできるようになった。
 Prezto廃止、mise移行による削減もあり、シェル全体の起動時間は約90〜100msまで短縮できた。爆速になって嬉しい。</p>
-<h2 id="エディタ">エディタ</h2>
+<h2 id="エディタ">エディタ<a class="heading-anchor" href="#エディタ" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <ul>
 <li><strong>メイン: Visual Studio Code</strong></li>
 <li><strong>ターミナル用: Neovim</strong>（<a href="https://github.com/shimoju/dotfiles/tree/4abc2f3eda3b88fec9787d4a33fb824cdac61eef/dot_config/nvim">設定</a>）</li>
@@ -198,7 +198,7 @@ Prezto廃止、mise移行による削減もあり、シェル全体の起動時�
 </ol>
 <p>こんな感じの流れになる。こちらもプラグインの選定や設定はCodexにやってもらい、<a href="https://github.com/shimoju/dotfiles/blob/4abc2f3eda3b88fec9787d4a33fb824cdac61eef/docs/neovim/neovim-cheatsheet.html">自分専用のチートシート</a>も作ってもらった。まだ不慣れなのでVS Codeを使ってしまうことも多いが、少しずつ慣れていきたい。</p>
 <figure><img src="assets/neovim-cheatsheet.png" alt="Neovim チートシート"></figure>
-<h2 id="フォント">フォント</h2>
+<h2 id="フォント">フォント<a class="heading-anchor" href="#フォント" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <ul>
 <li><strong><a href="https://github.com/yuru7/udev-gothic">UDEV Gothic</a> → <a href="https://github.com/yuru7/moralerspace">Moralerspace Argon</a></strong></li>
 </ul>
@@ -207,7 +207,7 @@ Prezto廃止、mise移行による削減もあり、シェル全体の起動時�
 エディタではこの半角3:全角5を愛用していたが、AIエージェントの影響でターミナルで長文を読む機会が増えたこともあり、半角1:全角2の幅で表示したときの読みやすさや統一感をより重視するようになった。</p>
 <p>MoralerspaceはUDEV Gothicよりも半角1:全角2の幅で表示したときに欧文の圧迫感が少なく、洒落っ気がある印象。等幅フォントでありながら、前後の文字に応じて字形や余白を調整する<a href="https://monaspace.githubnext.com/#texture-healing">Texture healing</a>もギミックとしておもしろい。</p>
 <p>Ghosttyでは半角1:全角2のMoralerspace Argon HWを、Visual Studio Codeでは半角3:全角5のMoralerspace Argonを利用している。</p>
-<h2 id="言語ランタイム管理">言語ランタイム管理</h2>
+<h2 id="言語ランタイム管理">言語ランタイム管理<a class="heading-anchor" href="#言語ランタイム管理" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <ul>
 <li><strong><a href="https://github.com/anyenv/anyenv">anyenv</a> → <a href="https://mise.jdx.dev/">mise</a></strong>（<a href="https://github.com/shimoju/dotfiles/blob/4abc2f3eda3b88fec9787d4a33fb824cdac61eef/dot_config/mise/config.toml">設定</a>）</li>
 </ul>
@@ -218,20 +218,20 @@ pnpmや<a href="https://github.com/vercel-labs/skills">skills</a>などグロー
 <p>Rustもrustupからmiseに移行したが、<a href="https://mise.jdx.dev/lang/rust.html">miseのRust管理</a>では内部的にrustupを用いているため、個別で管理するのをやめた、が正確なところ。</p>
 <p>今のところ言語ランタイムとグローバルnpmパッケージの管理のみに絞っており、システムパッケージやGUIアプリは引き続きHomebrew（<a href="https://github.com/shimoju/dotfiles/blob/4abc2f3eda3b88fec9787d4a33fb824cdac61eef/dot_config/homebrew/Brewfile">Brewfile</a>）で管理している。
 バージョンを切り替える用途がなければmiseのうまみがあまりない気がするのだが、統一したほうが楽なのかな〜うーん。</p>
-<h2 id="ブラウザ">ブラウザ</h2>
+<h2 id="ブラウザ">ブラウザ<a class="heading-anchor" href="#ブラウザ" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <ul>
 <li><strong>業務用: Google Chrome</strong></li>
 <li><strong>個人用: Firefox</strong></li>
 </ul>
 <p>ブラウザの多様性はあったほうがいいよなと思い、2年ほど前からFirefoxに戻った。動かないサイトにはほぼ出会ったことはなく、普通に使えている。</p>
 <p>明確にパフォーマンス差を感じるのはGoogle Meetくらいで、業務ではそのMeetや組織のGoogleアカウント管理の都合があるためChromeを利用。</p>
-<h2 id="markdownビューア">Markdownビューア</h2>
+<h2 id="markdownビューア">Markdownビューア<a class="heading-anchor" href="#markdownビューア" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <ul>
 <li><strong>Visual Studio Code → <a href="https://github.com/charmbracelet/glow">Glow</a>, <a href="https://github.com/k1LoW/mo">mo</a></strong></li>
 </ul>
 <p>MarkdownはもっぱらVS Codeで開いていたが、SKILL.mdをさっと確認したいといった用途も増えてきたため、専用のMarkdownビューアも導入した。
 ターミナル内でMarkdownをさっと読むときはGlow、Mermaidなど図表を含むドキュメントを読むときはブラウザで動くmoを使っている。</p>
-<h2 id="diffビューアレビューツール">diffビューア・レビューツール</h2>
+<h2 id="diffビューアレビューツール">diffビューア・レビューツール<a class="heading-anchor" href="#diffビューアレビューツール" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <ul>
 <li><strong>通常のgit diff → <a href="https://github.com/dandavison/delta">delta</a>, <a href="https://hunk.dev/">Hunk</a>, <a href="https://github.com/gitui-org/gitui">GitUI</a></strong></li>
 </ul>
@@ -241,26 +241,26 @@ AIが書いたコードは読みづらいことも多いので、diffの視認�
 <p>HunkはAIと人間が相互にコメントできるレビュー機能を持ったdiffビューアで、話題になっていたので導入。ただ権限の問題でAIエージェントから既存のHunkセッションが見えないことがあったり、動作がやや重いこともあってあまり使いこなせていない。
 ターミナルにこだわらず、ブラウザで動く<a href="https://github.com/yoshiko-pg/difit">difit</a>や<a href="https://github.com/tomasz-tomczyk/crit">Crit</a>の方がいいかも。</p>
 <p>gitのコマンド操作に慣れているのでTUIの必要性はそこまで感じていないが、GitUIもインストールしてみた。git logを追うときはこっちのほうが見やすそう。</p>
-<h2 id="ファイルマネージャ">ファイルマネージャ</h2>
+<h2 id="ファイルマネージャ">ファイルマネージャ<a class="heading-anchor" href="#ファイルマネージャ" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <ul>
 <li><strong>未利用 → <a href="https://yazi-rs.github.io/">Yazi</a></strong>（<a href="https://github.com/shimoju/dotfiles/blob/4abc2f3eda3b88fec9787d4a33fb824cdac61eef/dot_config/yazi/yazi.toml">設定</a>）</li>
 </ul>
 <p>使用頻度は高くないが、ターミナルファイルマネージャとして新しく導入した。
 画像表示プロトコルに対応したターミナルエミュレータであれば画像やPDFも表示できてすごい。</p>
 <p>Ghosttyは<a href="https://sw.kovidgoyal.net/kitty/graphics-protocol/#unicode-placeholders">Kitty unicode placeholders</a>に対応しており綺麗に表示できるが、herdrでは<a href="https://herdr.dev/docs/configuration/#kitty-graphics">experimental扱いのため</a>、明示的に<code>kitty_graphics = true</code>を設定する必要がある。</p>
-<h2 id="標準コマンドの代替いろいろ">標準コマンドの代替いろいろ</h2>
+<h2 id="標準コマンドの代替いろいろ">標準コマンドの代替いろいろ<a class="heading-anchor" href="#標準コマンドの代替いろいろ" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <ul>
 <li><strong><a href="https://eza.rocks/">eza</a>, <a href="https://github.com/ajeetdsouza/zoxide">zoxide</a>, <a href="https://github.com/burntsushi/ripgrep">ripgrep</a>, <a href="https://github.com/sharkdp/fd">fd</a>, <a href="https://github.com/sharkdp/bat">bat</a></strong></li>
 </ul>
 <p>ripgrepは以前から入れていたが、調べると標準コマンドの代替ツールが色々出ていることに気づき、ひととおりインストールしてみた。
 一番使っているのはシンタックスハイライト・行番号付きでcatできるbatと、アイコンやgitステータス付きでlsできるeza。</p>
-<h2 id="dotfiles管理">dotfiles管理</h2>
+<h2 id="dotfiles管理">dotfiles管理<a class="heading-anchor" href="#dotfiles管理" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <ul>
 <li><strong><a href="https://www.chezmoi.io/">chezmoi</a></strong></li>
 </ul>
 <p>昨年<a href="https://shimoju.jp/2025/12/07/chezmoi-dotfiles-manager/">itamaeからchezmoiへ移行</a>し、引き続きdotfilesはchezmoiで管理している。
 miseにも<a href="https://mise.jdx.dev/dotfiles.html">dotfiles管理機能</a>があるようだが、思想がだいぶ異なりそうなのでまだ試していない。</p>
-<h2 id="まとめ">まとめ</h2>
+<h2 id="まとめ">まとめ<a class="heading-anchor" href="#まとめ" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
 <p>2026年9月時点の環境をまとめてみた。</p>
 <p>herdrやHunkなどAIエージェントのためのツールも有用だが、一番満足したのはGhostty移行やZshのカスタマイズ、プロンプトの自作を通して、基礎となるターミナル操作が快適になったこと。やってよかった。</p>
 <p>短期間に一気に更新したので、しばらくしたらまた所感を書きたい。

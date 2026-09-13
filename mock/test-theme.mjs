@@ -135,3 +135,22 @@ for (const value of ['columns', 'stacked', 'invalid']) {
   assert.equal(new URL(app.follow('http://mock.invalid/article-hugo.html')).searchParams.get('post-nav'), null);
 }
 console.log('PASS: retired mobile navigation preview does not override the adopted layout.');
+
+for (const [key, dataset, allowed] of [['heading-rhythm', 'headingRhythm', ['related']], ['quote-line', 'quoteLine', ['stronger']], ['heading-links', 'headingLinks', ['always', 'contextual']]]) {
+  for (const value of ['', 'invalid', ...allowed]) {
+    const app = boot({ search: `?${key}=${value}`, withForm: true, storageFails: true });
+    assert.equal(app.root.dataset[dataset], undefined);
+    assert.equal(app.fields[key], undefined);
+    assert.equal(new URL(app.follow('http://mock.invalid/about.html')).searchParams.get(key), null);
+    assert.equal(new URL(app.follow('http://mock.invalid/index.html')).searchParams.get(key), null);
+    assert.equal(new URL(app.follow(`http://mock.invalid/specimen.html?${key}=`)).searchParams.get(key), '');
+    assert.equal(app.follow('https://example.com/article.html'), 'https://example.com/article.html');
+    assert.equal(app.follow('#heading-three'), '#heading-three');
+  }
+}
+const combined = boot({ search: '?heading-rhythm=related&quote-line=stronger&heading-links=contextual&theme=light', withForm: true });
+combined.click();
+assert.equal(combined.root.dataset.headingLinks, undefined);
+assert.equal(new URL(combined.follow('http://mock.invalid/about.html')).searchParams.get('theme'), 'dark');
+assert.equal(combined.stored(), 'dark', 'Visual variants do not change saved preferences');
+console.log('PASS: retired detail variants cannot override adopted spacing, quote colors or heading links.');
