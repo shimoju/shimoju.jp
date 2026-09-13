@@ -28,6 +28,8 @@ X・Facebook・Bluesky・はてなブックマークは自作SVGと通常のリ�
 
 ホバーによる背景・境界線・色・サイズの変化は付けず、キーボード操作時は共通のフォーカス輪郭を使う。アイコンリンクには下線を付けない。aria-labelとtitleでサービス名を付け、SVG自身はaria-hiddenにする。はてなブックマークは「View on」とし、投稿パネルへ直接進むリンクと区別する。
 
+記事・Aboutのシェア列は、操作領域とSVGの片側差分12px相当を基準にshare-mountを左へ寄せ、SVG表示領域を本文に揃える。補正量はガター内に制限し、リンクの操作領域48pxと列内gap12px・スターとのgap16px相当は維持する。シェアのフォーカス輪郭は内側に描く。サービスごとの図柄補正とフッターの位置補正は行わない。
+
 はてなスターにはサイト側の背景・枠線・paddingを付けない。外側のcolor-scheme: lightは、公式iframeとの配色方式の不一致によってブラウザが不透明な背景を補うのを防ぐため維持する。公式スクリプト・iframe・Shadow DOM内部を改変せず、そのまま描画する。
 
 フッターのX・Bluesky・GitHub・RSSはSVGアイコンとし、同一タブで開く。BlueskyプロフィールはHugo設定のsocialIconsから取得する（`https://bsky.app/profile/shimoju.jp`）。本文リンクには本文の装飾を使う。RSSの自動検出用link rel=alternateも維持する。

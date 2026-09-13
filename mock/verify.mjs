@@ -292,8 +292,11 @@ assert(cssRule('.heading-anchor').includes('display: flex;'));
 assert(cssRule('.heading-anchor').includes('opacity: 0;'));
 assert(cssRule('.heading-anchor').includes('position: absolute; right: 100%;'));
 assert(!themeCss.includes('--heading-anchor-inset'));
-assert.match(themeCss, /--gutter: max\(var\(--gutter-base\), var\(--heading-anchor-size\)\);/);
-assert.match(themeCss, /@media \(hover: none\) \{\s*\.heading-anchor \{ display: none; \}\s*:root \{ --gutter: var\(--gutter-base\); \}/);
+assert.match(themeCss, /^:root \{[^}]*--gutter: 24px;/);
+assert.match(themeCss, /@media \(hover: hover\) \{\s*:root \{ --gutter: max\(24px, var\(--heading-anchor-size\)\); \}\s*\}/);
+assert.match(themeCss, /@media \(max-width: 639px\) and \(hover: none\) \{\s*:root \{ --gutter: 16px; \}\s*\}/);
+assert.match(themeCss, /@media \(hover: none\) \{\s*\.heading-anchor \{ display: none; \}\s*\}/);
+assert.doesNotMatch(themeCss, /--gutter-base/);
 assert(cssRule('.heading-anchor').includes('text-decoration-line: none;'));
 assert(cssRule('.heading-anchor span').includes('font-size: var(--text-label);'));
 assert(cssRule('.heading-anchor').includes('width: var(--heading-anchor-size); min-height: var(--heading-anchor-size); height: 1.5em;'));
@@ -384,6 +387,12 @@ for (const [entry] of read('archives.html').matchAll(/<li>[\s\S]*?<\/li>/g)) {
   assert.match(entry, /<span class="archive-title" id="archive-[^"]+">[^<]+<\/span><time/, 'Date must remain outside the underlined title');
 }
 for (const selector of ['.article-tags', '.terms']) assert(cssRule(selector).includes('gap: var(--term-gap);'));
+for (const selector of ['.article-tags', '.terms']) assert(cssRule(selector).includes('margin-inline-start: calc(-1 * var(--term-optical-inset));'));
+assert.match(themeCss, /--term-optical-inset: min\(var\(--term-inset\), var\(--gutter\)\);/);
+assert.match(themeCss, /--share-optical-inset: min\(calc\(\(var\(--control-size\) - var\(--icon-size\)\) \/ 2\), var\(--gutter\)\);/);
+assert(cssRule('.share-mount').includes('margin-inline-start: calc(-1 * var(--share-optical-inset));'));
+assert(cssRule('.article-tags a:focus-visible, .terms a:focus-visible, .share-icons a:focus-visible').includes('outline-offset: -2px;'));
+assert(!cssRule('.footer-links').includes('optical-inset'), 'The footer remains centered');
 assert(cssRule('.article-tags a').includes('padding-inline: var(--term-inset);'));
 assert(cssRule('.terms a').includes('padding: var(--ui-space-2) var(--term-inset);'));
 assert(cssRule('.terms a').includes('gap: var(--ui-space-1);'), 'Keep the name and count closer than adjacent terms');
@@ -431,8 +440,7 @@ assert(cssRule('.code-block .highlight').includes('min-width: 0;'));
 for (const selector of ['.share-icons', '.footer-links']) assert(cssRule(selector).includes('gap: var(--icon-gap)'));
 assert.match(themeCss, /--radius-small: 4px;/);
 assert.match(themeCss, /--radius-large: 8px;/);
-assert.match(themeCss, /--gutter-base: 24px;/);
-assert.match(themeCss, /--gutter-base: 16px;/);
+assert.equal([...themeCss.matchAll(/--gutter:/g)].length, 3, 'Gutters have only the base, hover and narrow non-hover rules');
 for (const [, value] of themeCss.matchAll(/border-radius: ([^;]+);/g)) {
   assert(['var(--radius-small)', 'var(--radius-large)', '50%'].includes(value));
 }

@@ -45,9 +45,10 @@
   --body-leading: 1.9;
   --code-leading: 1.3;
   --content-width: 720px;
-  --gutter-base: 24px;
   --heading-anchor-size: var(--ui-space-6);
-  --gutter: max(var(--gutter-base), var(--heading-anchor-size));
+  --gutter: 24px;
+  --term-optical-inset: min(var(--term-inset), var(--gutter));
+  --share-optical-inset: min(calc((var(--control-size) - var(--icon-size)) / 2), var(--gutter));
   --text-small: calc(var(--body-size) * 0.910);
   --text-meta: calc(var(--body-size) * 0.829);
   --text-label: calc(var(--body-size) * 0.754);
@@ -149,7 +150,12 @@ img, video { max-width: 100%; height: auto; }
 /* Hide the optional permalink UI when the primary input cannot hover. */
 @media (hover: none) {
   .heading-anchor { display: none; }
-  :root { --gutter: var(--gutter-base); }
+}
+@media (hover: hover) {
+  :root { --gutter: max(24px, var(--heading-anchor-size)); }
+}
+@media (max-width: 639px) and (hover: none) {
+  :root { --gutter: 16px; }
 }
 .prose ul, .prose ol { padding-left: 1.6em; margin-block: 1em; }
 .prose li { margin-block: .15em; }
@@ -195,12 +201,12 @@ code, pre { font-family: var(--font-code); font-feature-settings: normal; font-v
 .code-block .chroma .line { min-width: max-content; }
 .footnotes { font-size: var(--text-small); color: var(--muted); margin-top: var(--space-group); }
 .article-end { margin-top: var(--space-end); }
-.article-tags { display: flex; flex-wrap: wrap; gap: var(--term-gap); font-size: var(--text-meta); margin-bottom: var(--ui-space-8); }
+.article-tags { display: flex; flex-wrap: wrap; gap: var(--term-gap); font-size: var(--text-meta); margin-inline-start: calc(-1 * var(--term-optical-inset)); margin-bottom: var(--ui-space-8); }
 .article-tags:empty { display: none; }
 .article-tags a { text-decoration-line: none; display: inline-flex; align-items: center; min-height: var(--control-size); padding-inline: var(--term-inset); padding-block: var(--ui-space-2); justify-content: center; }
 .article-tags a:hover { text-decoration-line: underline; }
 .engagement { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ui-space-4); font-size: var(--text-meta); }
-.share-mount { min-width: 0; max-width: 100%; }
+.share-mount { min-width: 0; max-width: 100%; margin-inline-start: calc(-1 * var(--share-optical-inset)); }
 .share-icons { display: flex; flex-wrap: wrap; align-items: center; gap: var(--icon-gap); }
 .icon-link { display: inline-flex; justify-content: center; align-items: center; width: var(--control-size); height: var(--control-size); flex-shrink: 0; border-radius: var(--radius-small); color: var(--text); text-decoration-line: none; min-height: var(--control-size); min-width: var(--control-size); }
 .icon-link svg { width: var(--icon-size); height: var(--icon-size); fill: currentColor; }
@@ -214,7 +220,8 @@ code, pre { font-family: var(--font-code); font-feature-settings: normal; font-v
 .post-nav a[rel="prev"] { grid-column: 1; grid-row: 1; text-align: left; }
 .post-nav a[rel="next"] { grid-column: 2; grid-row: 1; text-align: right; }
 .post-nav small { display: block; color: var(--muted); font-size: var(--text-label); margin-bottom: var(--ui-space-2); }
-.terms { display: flex; flex-wrap: wrap; gap: var(--term-gap); list-style: none; padding: 0; margin: 0; }
+.terms { display: flex; flex-wrap: wrap; gap: var(--term-gap); list-style: none; padding: 0; margin: 0; margin-inline-start: calc(-1 * var(--term-optical-inset)); }
+.article-tags a:focus-visible, .terms a:focus-visible, .share-icons a:focus-visible { outline-offset: -2px; }
 .terms a { display: inline-flex; max-width: 100%; align-items: center; gap: var(--ui-space-1); min-height: var(--control-size); padding: var(--ui-space-2) var(--term-inset); text-decoration-line: none; justify-content: center; }
 .terms a:hover .term-name { text-decoration-line: underline; }
 .terms small { color: var(--muted); font-size: var(--text-label); font-variant-numeric: tabular-nums; }
@@ -257,7 +264,6 @@ code, pre { font-family: var(--font-code); font-feature-settings: normal; font-v
 .inline-probe code { white-space: nowrap; }
 .inline-probe.unpadded code { padding: 0; }
 @media (max-width: 639px) {
-  :root { --gutter-base: 16px; }
   .site-header { padding-block: var(--space-section); }
   .site-nav { column-gap: var(--ui-space-4); margin-top: var(--ui-space-3); }
   .intro { margin-bottom: var(--space-group); }
