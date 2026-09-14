@@ -114,9 +114,8 @@ Go templateでは`{{ ... }}`内に処理を書く。`.`は現在のコンテキ�
   <title>{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ site.Title }}</title>
 </head>
 <body>
-  <a href="#main">本文へ移動</a>
   <header><a href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a></header>
-  <main id="main">{{ block "main" . }}{{ end }}</main>
+  <main>{{ block "main" . }}{{ end }}</main>
 </body>
 </html>
 ```

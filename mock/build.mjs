@@ -72,9 +72,9 @@ function page(file, title, content, { home = false, current = '', review = false
   pages.push({ file, title, review });
   put(join(out, file), `<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="color-scheme" content="light dark"><title>${escape(title)} — shimoju.diary${review ? ' / モックレビュー' : ''}</title><link rel="icon" href="data:,"><link rel="alternate" type="application/rss+xml" title="shimoju.diary RSS" href="https://shimoju.jp/index.xml"><script src="assets/theme.js"></script><link rel="stylesheet" href="assets/syntax.css"><link rel="stylesheet" href="assets/theme.css">${testStyle}${content.includes("data-sharing-entry") ? '<script defer src="assets/sharing.js"></script>' : ''}</head>
-<body class="${home ? 'home' : ''}"><a class="skip-link" href="#main" lang="en">Skip to content</a>
+<body class="${home ? 'home' : ''}">
 ${review ? '' : `<header class="site-header shell">${toggle}${home ? '<h1 class="site-heading">' : ''}<a class="site-name" href="home.html">shimoju.diary</a>${home ? '</h1>' : ''}${nav(current)}</header>`}
-<main id="main" class="shell${review ? ' review' : ''}" tabindex="-1">${content}</main>
+<main class="shell${review ? ' review' : ''}">${content}</main>
 <footer class="site-footer shell" lang="en"><nav class="footer-links" aria-label="Follow and subscribe"><a class="icon-link" href="https://x.com/shimoju_" aria-label="X" title="X">${icon('x')}</a><a class="icon-link" href="${escape(blueskyProfile)}" aria-label="Bluesky" title="Bluesky">${icon('bluesky')}</a><a class="icon-link" href="https://github.com/shimoju" aria-label="GitHub" title="GitHub">${icon('github')}</a><a class="icon-link" href="https://shimoju.jp/index.xml" aria-label="RSS" title="RSS">${icon('rss')}</a></nav><span>© 2026 Hiroshi Shimoju</span></footer>
 </body></html>\n`);
 }

@@ -13,6 +13,7 @@ for (const { file } of manifest.pages) {
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
   assert.equal(new Set(ids).size, ids.length, `${file}: duplicate id`);
   assert.equal((html.match(/<h1\b/g) || []).length, 1, `${file}: one h1`);
+  assert.equal((html.match(/<main\b/g) || []).length, 1, `${file}: one main landmark`);
   assert.match(html, /<html lang="ja">/);
   assert.match(html, /name="viewport" content="width=device-width, initial-scale=1"/);
   assert.match(html, /name="robots" content="noindex,nofollow"/);

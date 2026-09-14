@@ -91,8 +91,6 @@ button:disabled { cursor: default; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: var(--radius-small); }
 ::selection { background: var(--border); color: var(--text); }
 .shell { width: min(var(--content-width), calc(100% - var(--gutter) * 2)); margin-inline: auto; }
-.skip-link { position: absolute; top: 8px; left: 12px; padding: var(--ui-space-2) var(--ui-space-4); background: var(--page); transform: translateY(-180%); z-index: 2; }
-.skip-link:focus { transform: none; }
 .site-header { position: relative; text-align: center; padding-block: var(--space-group) var(--space-section); }
 .site-header > .theme-toggle { position: absolute; top: var(--ui-space-2); inset-inline-end: 0; }
 .site-header > .theme-toggle:focus-visible { outline-offset: -2px; }
