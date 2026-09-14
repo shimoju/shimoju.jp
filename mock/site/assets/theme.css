@@ -242,7 +242,7 @@ code, pre { font-family: var(--font-code); font-feature-settings: normal; font-v
 .archive-year { margin-top: var(--space-group); }
 .archive-year:first-of-type { margin-top: 0; }
 .archive-year h2 { margin: 0 0 var(--ui-space-6); }
-.archive-month { display: grid; grid-template-columns: var(--ui-space-12) minmax(0, 1fr); align-items: first baseline; gap: var(--ui-space-6); margin-bottom: var(--ui-space-8); }
+.archive-month { display: grid; grid-template-columns: var(--ui-space-8) minmax(0, 1fr); align-items: first baseline; column-gap: var(--ui-space-12); margin-bottom: var(--ui-space-8); }
 .archive-month:last-child { margin-bottom: 0; }
 .archive-month h3 { margin: 0; font-size: var(--text-small); color: var(--muted); font-weight: 400; line-height: var(--leading-label); }
 .archive-month ul { display: flex; flex-direction: column; gap: var(--ui-space-6); padding: 0; margin: 0; list-style: none; }
@@ -279,6 +279,6 @@ code, pre { font-family: var(--font-code); font-feature-settings: normal; font-v
 .inline-probe code { white-space: nowrap; }
 .inline-probe.unpadded code { padding: 0; }
 @media (max-width: 639px) {
-  .archive-month { column-gap: var(--ui-space-4); grid-template-columns: var(--ui-space-8) minmax(0, 1fr); }
+  .archive-month { column-gap: var(--ui-space-4); }
   .review-grid { grid-template-columns: 1fr; }
 }

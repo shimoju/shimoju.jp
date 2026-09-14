@@ -429,6 +429,9 @@ assert.doesNotMatch(cssRule('.entry-link:is(:hover, :focus-visible) .entry-title
 assert.doesNotMatch(cssRule(':not(pre) > code'), /line-height/);
 
 assert(cssRule('.archive-month').includes('align-items: first baseline;'));
+assert(cssRule('.archive-month').includes('grid-template-columns: var(--ui-space-8) minmax(0, 1fr);'));
+assert(cssRule('.archive-month').includes('column-gap: var(--ui-space-12);'));
+assert(mobileRules.includes('.archive-month { column-gap: var(--ui-space-4); }'));
 assert(cssRule('.archive-month h3').includes('margin: 0;'));
 assert(cssRule('.archive-month ul').includes('gap: var(--ui-space-6);'));
 assert.doesNotMatch(themeCss, /\.archive-month li \{/);
