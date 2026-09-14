@@ -321,7 +321,13 @@ for (const { file } of manifest.pages) {
 assert.doesNotMatch(themeCss, /--copy-icon-size/);
 assert.doesNotMatch(read('index.html'), /toggle-position/);
 assert.doesNotMatch(themeCss, /data-toggle-position/);
-assert(cssRule('.site-header').includes('padding-block: max(var(--space-section), var(--header-top-min)) var(--space-section);'));
+assert(cssRule('.site-header').includes('padding-block: var(--space-group) var(--space-section);'));
+assert.doesNotMatch(themeCss, /--header-top-min|--ui-space-16/);
+for (const size of [16, 20, 32]) {
+  const top = tokenPixels('--space-group', size);
+  const buttonBottom = tokenPixels('--ui-space-2', size) + tokenPixels('--control-size-small', size);
+  assert(top - buttonBottom >= tokenPixels('--ui-space-2', size), 'Header leaves at least 8px equivalent below the theme control');
+}
 assert.doesNotMatch(themeCss, /--toggle-optical-inset/);
 assert(cssRule('.site-header > .theme-toggle').includes('position: absolute; top: var(--ui-space-2); inset-inline-end: 0;'));
 assert(cssRule('.site-header > .theme-toggle:focus-visible').includes('outline-offset: -2px;'));
@@ -471,7 +477,7 @@ for (const [, step, rem] of themeCss.matchAll(/--ui-space-(\d+): ([\d.]+)rem;/g)
   assert.equal(Math.round(Number(rem) * 10), Number(step) * 4, 'UI spacing uses a 4px grid');
 }
 for (const size of [16, 20, 32]) {
-  for (const [name, px] of [['control-size', 48], ['control-size-small', 32], ['header-top-min', 64], ['code-inset', 16], ['icon-gap', 8], ['icon-size', 24], ['icon-size-small', 16], ['title-meta-gap', 8], ['text-link-gap', 8], ['text-link-inset', 4]]) {
+  for (const [name, px] of [['control-size', 48], ['control-size-small', 32], ['code-inset', 16], ['icon-gap', 8], ['icon-size', 24], ['icon-size-small', 16], ['title-meta-gap', 8], ['text-link-gap', 8], ['text-link-inset', 4]]) {
     assert(Math.abs(tokenPixels('--' + name, size) - px * size / 16) < 1e-9);
     assert(Math.abs(tokenPixels('--' + name, size, 1.8) - px * size / 16) < 1e-9, 'UI dimensions are independent of body size');
   }

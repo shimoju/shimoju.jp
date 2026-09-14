@@ -29,12 +29,10 @@
   --ui-space-8: 3.2rem;
   --ui-space-10: 4rem;
   --ui-space-12: 4.8rem;
-  --ui-space-16: 6.4rem;
   --ui-space-20: 8rem;
   --ui-space-34: 13.6rem;
   --control-size: var(--ui-space-12);
   --control-size-small: var(--ui-space-8);
-  --header-top-min: var(--ui-space-16);
   --code-inset: var(--ui-space-4);
   --icon-size-small: var(--ui-space-4);
   --icon-size: var(--ui-space-6);
@@ -95,7 +93,7 @@ button:disabled { cursor: default; }
 .shell { width: min(var(--content-width), calc(100% - var(--gutter) * 2)); margin-inline: auto; }
 .skip-link { position: absolute; top: 8px; left: 12px; padding: var(--ui-space-2) var(--ui-space-4); background: var(--page); transform: translateY(-180%); z-index: 2; }
 .skip-link:focus { transform: none; }
-.site-header { position: relative; text-align: center; padding-block: max(var(--space-section), var(--header-top-min)) var(--space-section); }
+.site-header { position: relative; text-align: center; padding-block: var(--space-group) var(--space-section); }
 .site-header > .theme-toggle { position: absolute; top: var(--ui-space-2); inset-inline-end: 0; }
 .site-header > .theme-toggle:focus-visible { outline-offset: -2px; }
 .site-name { font-family: var(--font-site); font-size: var(--text-site); font-weight: 300; line-height: var(--leading-heading); text-decoration-line: none; letter-spacing: -.025em; display: inline-flex; align-items: center; justify-content: center; min-height: var(--control-size); min-width: var(--control-size); }
