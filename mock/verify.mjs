@@ -235,21 +235,23 @@ assert(decorationRule, 'Shared explicit decoration thickness');
 const decorationOrigins = decorationRule[1].split(',').map(selector => selector.trim());
 assert.deepEqual(decorationOrigins, ['a', '.entry-title', '.post-nav-title', '.term-name', '.archive-title']);
 assert.equal((themeCss.match(/text-decoration-thickness\s*:/g) || []).length, 1, 'Keep thickness in one shared rule');
+assert(themeCss.includes(`${decorationOrigins.join(', ')} { text-decoration-color: var(--muted); }`), 'Persistent decorations use muted on every origin');
+assert(themeCss.includes('a:is(:hover, :focus-visible), a:is(:hover, :focus-visible) :is(.entry-title, .post-nav-title, .term-name, .archive-title) { text-decoration-color: var(--text); }'), 'Hover and keyboard focus strengthen decorations without changing foregrounds');
 for (const [, selector] of themeCss.matchAll(/([^{}]+)\{[^{}]*text-decoration-line: underline;/g)) {
-  const origin = selector.trim().split(/\s+/).at(-1).split(':')[0].split('[')[0];
+  const origin = selector.trim().replaceAll(':is(:hover, :focus-visible)', '').split(/\s+/).at(-1).split(':')[0].split('[')[0];
   assert(decorationOrigins.includes(origin), `${selector.trim()}: explicit thickness on decoration origin`);
 }
 for (const selector of ['.site-nav a', '.pager a', '.article-tags a']) {
   const rule = themeCss.split(`${selector} {`)[1]?.split('}')[0];
   assert(rule?.includes('text-decoration-line: none;'), `${selector}: no underline by default`);
-  assert(themeCss.includes(`${selector}:hover { text-decoration-line: underline; }`), `${selector}: underline on hover`);
+  assert(themeCss.includes(`${selector}:is(:hover, :focus-visible) { text-decoration-line: underline; }`), `${selector}: underline on hover and keyboard focus`);
 }
 assert.match(themeCss, /\.site-nav a\[aria-current="page"\] \{ text-decoration-line: underline; \}/);
-assert.match(themeCss, /\.entry-link:hover \{[^}]*text-decoration-line: none;/);
-assert.match(themeCss, /\.entry-link:hover \.entry-title \{ text-decoration-line: underline; \}/);
+assert.match(themeCss, /\.entry-link:is\(:hover, :focus-visible\) \{[^}]*text-decoration-line: none;/);
+assert.match(themeCss, /\.entry-link:is\(:hover, :focus-visible\) \.entry-title \{ text-decoration-line: underline; \}/);
 assert.match(themeCss, /\.post-nav a \{[^}]*text-decoration-line: none;/);
-assert.match(themeCss, /\.post-nav a:hover \.post-nav-title \{ text-decoration-line: underline; \}/);
-assert.doesNotMatch(themeCss, /\.post-nav a:hover \{/);
+assert.match(themeCss, /\.post-nav a:is\(:hover, :focus-visible\) \.post-nav-title \{ text-decoration-line: underline; \}/);
+assert.doesNotMatch(themeCss, /\.post-nav a:is\(:hover, :focus-visible\) \{/);
 for (const { file } of manifest.pages) {
   const nav = read(file).match(/<nav class="post-nav"[\s\S]*?<\/nav>/)?.[0];
   if (!nav) continue;
@@ -395,8 +397,8 @@ assert(cssRule('.archive-month:last-child').includes('margin-bottom: 0;'));
 assert(cssRule('.archive-month a').includes('flex-direction: column; gap: var(--title-meta-gap); line-height: 1.5;'));
 assert(cssRule('.archive-month a').includes('text-decoration-line: none;'));
 assert(cssRule('.archive-month time').includes('margin: 0;'));
-assert.match(themeCss, /\.archive-month a:hover \.archive-title \{ text-decoration-line: underline; \}/);
-assert.doesNotMatch(themeCss, /\.archive-month a:hover \{/);
+assert.match(themeCss, /\.archive-month a:is\(:hover, :focus-visible\) \.archive-title \{ text-decoration-line: underline; \}/);
+assert.doesNotMatch(themeCss, /\.archive-month a:is\(:hover, :focus-visible\) \{/);
 for (const [entry] of read('archives.html').matchAll(/<li>[\s\S]*?<\/li>/g)) {
   assert.match(entry, /<span class="archive-title" id="archive-[^"]+">[^<]+<\/span><time/, 'Date must remain outside the underlined title');
 }
@@ -411,8 +413,8 @@ assert(cssRule('.article-tags a').includes('padding-inline: var(--term-inset);')
 assert(cssRule('.terms a').includes('padding: var(--ui-space-2) var(--term-inset);'));
 assert(cssRule('.terms a').includes('gap: var(--ui-space-1);'), 'Keep the name and count closer than adjacent terms');
 assert(cssRule('.terms a').includes('text-decoration-line: none;'));
-assert.match(themeCss, /\.terms a:hover \.term-name \{ text-decoration-line: underline; \}/);
-assert.doesNotMatch(themeCss, /\.terms a:hover \{/);
+assert.match(themeCss, /\.terms a:is\(:hover, :focus-visible\) \.term-name \{ text-decoration-line: underline; \}/);
+assert.doesNotMatch(themeCss, /\.terms a:is\(:hover, :focus-visible\) \{/);
 for (const file of ['tags.html', 'categories.html']) {
   const terms = read(file).match(/<ul class="terms">([\s\S]*?)<\/ul>/)[1];
   for (const [link] of terms.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/g)) {
