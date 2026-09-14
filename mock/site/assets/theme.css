@@ -171,6 +171,7 @@ img, video { max-width: 100%; height: auto; }
 .prose figure video { margin: 0; }
 .prose figcaption { color: var(--muted); font-size: var(--text-meta); margin-top: var(--ui-space-3); }
 .prose hr { border: 0; border-top: 1px solid var(--border); margin: var(--space-section) 0; }
+.prose sup { line-height: 0; }
 strong, b { font-weight: 700; }
 .table-scroll { overflow-x: auto; margin: var(--space-block) 0; }
 .prose table { border-collapse: collapse; width: 100%; text-align: left; font-size: var(--text-small); line-height: 1.75; }

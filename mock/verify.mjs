@@ -139,6 +139,7 @@ assert.doesNotMatch(themeCss, /data-site-weight/);
 assert.match(themeCss, /h1, h2, h3, h4, h5, h6 \{[^}]*font-weight: 500;/);
 assert.match(themeCss, /\.site-name \{[^}]*font-weight: 300;/);
 assert.match(themeCss, /strong, b \{ font-weight: 700; \}/);
+assert.match(themeCss, /\.prose sup \{ line-height: 0; \}/);
 assert.match(themeCss, /\.prose th \{ font-weight: 700; \}/);
 assert.match(read('specimen.html'), /<b>注目する日本語とEnglish 0123（b）<\/b>/);
 assert.doesNotMatch(themeCss, /font-weight: 600/);
