@@ -132,8 +132,8 @@ for (const selector of ['.icon-link', '.pager a', '.site-name']) {
 for (const selector of ['.entry-link', '.post-nav a', '.archive-month a']) {
   assert(controlRule(selector).includes('min-height: var(--control-size)'));
 }
-assert.match(controlCss, /\.site-nav \{[^}]*column-gap: var\(--ui-space-6\);/);
-assert.match(controlCss, /\.site-nav \{ column-gap: var\(--ui-space-4\);/);
+assert.match(controlCss, /\.site-nav \{[^}]*column-gap: var\(--text-link-gap\);/);
+assert.match(controlCss, /\.site-nav a \{[^}]*padding: var\(--ui-space-2\) var\(--text-link-inset\);/);
 assert.match(controlCss, /--control-size-small: var\(--ui-space-8\);/);
 assert.doesNotMatch(controlCss, /--copy-control-size|border-radius: 50%/);
 const smallControl = controlRule('.theme-toggle, .copy');

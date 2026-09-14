@@ -75,8 +75,8 @@ for (const file of ['article', 'article-hugo', 'article-diary', 'article-bgm', '
   assert.doesNotMatch(read(`${file}.html`).match(/<header class="article-header">[\s\S]*?<\/header>/)[0], /Updated/);
 }
 assert.match(read('assets/theme.css'), /\.meta \{[^}]*gap: var\(--ui-space-1\) var\(--ui-space-4\);/);
-assert.match(read('assets/theme.css'), /\.article-tags \{[^}]*gap: var\(--term-gap\);/);
-assert.match(read('assets/theme.css'), /\.terms \{[^}]*gap: var\(--term-gap\);/);
+assert.match(read('assets/theme.css'), /\.article-tags \{[^}]*gap: var\(--text-link-gap\);/);
+assert.match(read('assets/theme.css'), /\.terms \{[^}]*gap: var\(--text-link-gap\);/);
 assert.match(read('assets/theme.css'), /\.article-header h1 \{ margin-bottom: var\(--title-meta-gap\); \}/);
 assert.doesNotMatch(read('home-2.html'), /class="intro"/);
 assert.doesNotMatch(read('home-3.html'), /rel="next"/);
@@ -184,7 +184,7 @@ for (const defaultSize of [16, 20, 32]) {
 assert.equal(tokenPixels('--code-size', 16, 1.8), 14, 'Code size is independent of the body token');
 assert(Math.abs(tokenPixels('--text-h1', 16, 1.8) - 28.8) < 1e-9);
 assert(Math.abs(tokenPixels('--space-section', 16, 1.8) - 46.08) < 1e-9);
-assert.match(themeCss, /\.site-nav \{[^}]*column-gap: var\(--ui-space-6\); row-gap: var\(--ui-space-1\);/);
+assert.match(themeCss, /\.site-nav \{[^}]*column-gap: var\(--text-link-gap\); row-gap: var\(--ui-space-1\);/);
 assert.match(themeCss, /--leading-code: 1\.3;/);
 assert.doesNotMatch(themeCss, /font(?:-size)?:[^;{}]*\dpx/);
 assert(!themeCss.includes('.code-toolbar'));
@@ -321,7 +321,7 @@ for (const { file } of manifest.pages) {
 assert.doesNotMatch(themeCss, /--copy-icon-size/);
 assert.doesNotMatch(read('index.html'), /toggle-position/);
 assert.doesNotMatch(themeCss, /data-toggle-position/);
-assert(cssRule('.site-header').includes('padding-block: max(var(--header-top-space), var(--header-top-min)) var(--header-bottom-space);'));
+assert(cssRule('.site-header').includes('padding-block: max(var(--space-section), var(--header-top-min)) var(--space-section);'));
 assert.doesNotMatch(themeCss, /--toggle-optical-inset/);
 assert(cssRule('.site-header > .theme-toggle').includes('position: absolute; top: var(--ui-space-2); inset-inline-end: 0;'));
 assert(cssRule('.site-header > .theme-toggle:focus-visible').includes('outline-offset: -2px;'));
@@ -390,10 +390,15 @@ assert(!themeCss.includes('@container pagination') && !themeCss.includes('.pager
 assert.doesNotMatch(read('home-2.html'), /Previous|pager-layout/);
 assert(cssRule('.post-nav').includes('repeat(2, minmax(0, 1fr))'));
 for (const page of ['article.html', 'article-hugo.html', 'article-pasmo.html']) assert(read('index.html').includes(`value="${page}"`));
-const mobileRules = themeCss.slice(themeCss.indexOf('@media (max-width: 639px)'));
+const mobileRules = themeCss.slice(themeCss.indexOf('@media (max-width: 639px) {'));
 assert(cssRule('.site-nav').includes('margin-top: var(--ui-space-2);'));
-assert(mobileRules.includes('.site-nav { column-gap: var(--ui-space-4); }'));
-assert(mobileRules.includes('.post-nav { column-gap: var(--ui-space-4); }'));
+assert.doesNotMatch(mobileRules, /\.(?:site-header|site-nav|intro|article-header|post-nav|site-footer)\s*\{/);
+assert(cssRule('.post-nav').includes('gap: var(--ui-space-4);'));
+assert(cssRule('.intro').includes('margin: 0 0 var(--space-group);'));
+assert(cssRule('.site-footer').includes('padding-block: var(--space-group) var(--ui-space-8);'));
+assert(cssRule('.article-header').includes('margin-bottom: var(--ui-space-8);'));
+assert(cssRule('.site-nav a').includes('padding: var(--ui-space-2) var(--text-link-inset);'));
+assert.doesNotMatch(themeCss, /--header-(?:top|bottom)-space|--term-(?:gap|inset)/);
 assert.doesNotMatch(themeCss, /data-post-nav/);
 assert.doesNotMatch(read('index.html'), /name="post-nav"/);
 // Leading uses semantic tokens; only superscript deliberately has a literal zero.
@@ -430,15 +435,15 @@ assert.doesNotMatch(themeCss, /\.archive-month a:is\(:hover, :focus-visible\) \{
 for (const [entry] of read('archives.html').matchAll(/<li>[\s\S]*?<\/li>/g)) {
   assert.match(entry, /<span class="archive-title" id="archive-[^"]+">[^<]+<\/span><time/, 'Date must remain outside the underlined title');
 }
-for (const selector of ['.article-tags', '.terms']) assert(cssRule(selector).includes('gap: var(--term-gap);'));
+for (const selector of ['.article-tags', '.terms']) assert(cssRule(selector).includes('gap: var(--text-link-gap);'));
 for (const selector of ['.article-tags', '.terms']) assert(cssRule(selector).includes('margin-inline-start: calc(-1 * var(--term-optical-inset));'));
-assert.match(themeCss, /--term-optical-inset: min\(var\(--term-inset\), var\(--gutter\)\);/);
+assert.match(themeCss, /--term-optical-inset: min\(var\(--text-link-inset\), var\(--gutter\)\);/);
 assert.match(themeCss, /--share-optical-inset: min\(calc\(\(var\(--control-size\) - var\(--icon-size\)\) \/ 2\), var\(--gutter\)\);/);
 assert(cssRule('.share-mount').includes('margin-inline-start: calc(-1 * var(--share-optical-inset));'));
 assert(cssRule('.article-tags a:focus-visible, .terms a:focus-visible, .share-icons a:focus-visible').includes('outline-offset: -2px;'));
 assert(!cssRule('.footer-links').includes('optical-inset'), 'The footer remains centered');
-assert(cssRule('.article-tags a').includes('padding-inline: var(--term-inset);'));
-assert(cssRule('.terms a').includes('padding: var(--ui-space-2) var(--term-inset);'));
+assert(cssRule('.article-tags a').includes('padding-inline: var(--text-link-inset);'));
+assert(cssRule('.terms a').includes('padding: var(--ui-space-2) var(--text-link-inset);'));
 assert(cssRule('.terms a').includes('gap: var(--ui-space-1);'), 'Keep the name and count closer than adjacent terms');
 assert(cssRule('.terms a').includes('text-decoration-line: none;'));
 assert.match(themeCss, /\.terms a:is\(:hover, :focus-visible\) \.term-name \{ text-decoration-line: underline; \}/);
@@ -466,7 +471,7 @@ for (const [, step, rem] of themeCss.matchAll(/--ui-space-(\d+): ([\d.]+)rem;/g)
   assert.equal(Math.round(Number(rem) * 10), Number(step) * 4, 'UI spacing uses a 4px grid');
 }
 for (const size of [16, 20, 32]) {
-  for (const [name, px] of [['control-size', 48], ['control-size-small', 32], ['header-top-min', 64], ['code-inset', 16], ['icon-gap', 8], ['icon-size', 24], ['icon-size-small', 16], ['title-meta-gap', 8], ['term-gap', 8], ['term-inset', 4]]) {
+  for (const [name, px] of [['control-size', 48], ['control-size-small', 32], ['header-top-min', 64], ['code-inset', 16], ['icon-gap', 8], ['icon-size', 24], ['icon-size-small', 16], ['title-meta-gap', 8], ['text-link-gap', 8], ['text-link-inset', 4]]) {
     assert(Math.abs(tokenPixels('--' + name, size) - px * size / 16) < 1e-9);
     assert(Math.abs(tokenPixels('--' + name, size, 1.8) - px * size / 16) < 1e-9, 'UI dimensions are independent of body size');
   }
