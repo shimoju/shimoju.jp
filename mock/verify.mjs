@@ -185,7 +185,7 @@ assert.equal(tokenPixels('--code-size', 16, 1.8), 14, 'Code size is independent 
 assert(Math.abs(tokenPixels('--text-h1', 16, 1.8) - 28.8) < 1e-9);
 assert(Math.abs(tokenPixels('--space-section', 16, 1.8) - 46.08) < 1e-9);
 assert.match(themeCss, /\.site-nav \{[^}]*column-gap: var\(--ui-space-6\); row-gap: var\(--ui-space-1\);/);
-assert.match(themeCss, /--code-leading: 1\.3;/);
+assert.match(themeCss, /--leading-code: 1\.3;/);
 assert.doesNotMatch(themeCss, /font(?:-size)?:[^;{}]*\dpx/);
 assert(!themeCss.includes('.code-toolbar'));
 for (const selector of ['.site-nav a', '.pager a', '.article-tags a', '.terms a']) {
@@ -302,7 +302,7 @@ assert.match(themeCss, /@media \(hover: none\) \{\s*\.heading-anchor \{ display:
 assert.doesNotMatch(themeCss, /--gutter-base/);
 assert(cssRule('.heading-anchor').includes('text-decoration-line: none;'));
 assert(cssRule('.heading-anchor span').includes('font-size: var(--text-label);'));
-assert(cssRule('.heading-anchor').includes('width: var(--heading-anchor-size); min-height: var(--heading-anchor-size); height: 1.5em;'));
+assert(cssRule('.heading-anchor').includes('width: var(--heading-anchor-size); min-height: var(--heading-anchor-size); height: calc(var(--leading-heading) * 1em);'));
 assert(cssRule('.heading-anchor').includes('justify-content: flex-end;'));
 assert(cssRule('.heading-anchor span').includes('flex: 0 0 var(--ui-space-4); text-align: center;'));
 assert.doesNotMatch(themeCss, /\.heading-anchor::(?:before|after)/);
@@ -391,15 +391,38 @@ assert.doesNotMatch(read('home-2.html'), /Previous|pager-layout/);
 assert(cssRule('.post-nav').includes('repeat(2, minmax(0, 1fr))'));
 for (const page of ['article.html', 'article-hugo.html', 'article-pasmo.html']) assert(read('index.html').includes(`value="${page}"`));
 const mobileRules = themeCss.slice(themeCss.indexOf('@media (max-width: 639px)'));
+assert(cssRule('.site-nav').includes('margin-top: var(--ui-space-2);'));
+assert(mobileRules.includes('.site-nav { column-gap: var(--ui-space-4); }'));
 assert(mobileRules.includes('.post-nav { column-gap: var(--ui-space-4); }'));
 assert.doesNotMatch(themeCss, /data-post-nav/);
 assert.doesNotMatch(read('index.html'), /name="post-nav"/);
+// Leading uses semantic tokens; only superscript deliberately has a literal zero.
+for (const [role, value] of Object.entries({ body: 1.9, heading: 1.5, label: 1.5, table: 1.6, code: 1.3 })) {
+  assert(themeCss.includes(`--leading-${role}: ${value};`));
+}
+assert.doesNotMatch(themeCss, /--(?:body|code)-leading/);
+for (const [, value] of themeCss.matchAll(/line-height: ([^;]+);/g)) {
+  assert(value === '0' || /^var\(--leading-(body|heading|label|table|code)\)$/.test(value), `Untokenized leading: ${value}`);
+}
+for (const [selector, role] of Object.entries({
+  '.site-name': 'heading', '.site-heading': 'heading', '.entry-title': 'heading', '.post-nav-title': 'heading', '.archive-title': 'heading',
+  '.entry-summary': 'body', '.prose': 'body', '.star-widget': 'body', '.review-note': 'body',
+  '.site-nav': 'label', '.meta': 'label', '.pager': 'label', '.nav-label': 'label', '.post-nav small': 'label', '.article-tags': 'label', '.terms': 'label',
+  '.archive-month h3': 'label', '.archive-month time': 'label', '.code-label': 'label', '.site-footer': 'label', '.font-stack': 'label',
+  '.prose table': 'table', '.code-block pre': 'code',
+})) assert(cssRule(selector).includes(`line-height: var(--leading-${role});`), `${selector}: ${role}`);
+assert(cssRule('.post-nav-title').includes('display: block;'));
+assert(cssRule('.heading-anchor').includes('height: calc(var(--leading-heading) * 1em);'));
+assert(cssRule('.paste-check').includes('/var(--leading-code)'));
+assert.doesNotMatch(cssRule('.entry-link:is(:hover, :focus-visible) .entry-title'), /line-height/);
+assert.doesNotMatch(cssRule(':not(pre) > code'), /line-height/);
+
 assert(cssRule('.archive-month').includes('align-items: first baseline;'));
 assert(cssRule('.archive-month h3').includes('margin: 0;'));
 assert(cssRule('.archive-month ul').includes('gap: var(--ui-space-6);'));
 assert.doesNotMatch(themeCss, /\.archive-month li \{/);
 assert(cssRule('.archive-month:last-child').includes('margin-bottom: 0;'));
-assert(cssRule('.archive-month a').includes('flex-direction: column; gap: var(--title-meta-gap); line-height: 1.5;'));
+assert(cssRule('.archive-month a').includes('flex-direction: column; gap: var(--title-meta-gap);'));
 assert(cssRule('.archive-month a').includes('text-decoration-line: none;'));
 assert(cssRule('.archive-month time').includes('margin: 0;'));
 assert.match(themeCss, /\.archive-month a:is\(:hover, :focus-visible\) \.archive-title \{ text-decoration-line: underline; \}/);
