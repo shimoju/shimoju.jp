@@ -125,7 +125,7 @@ for (const selector of ['.site-nav a', '.article-tags a', '.terms a']) {
   assert(rule.includes('min-height: var(--control-size)'));
   assert(!rule.includes('min-width:'), selector + ' keeps its content width');
 }
-for (const selector of ['.theme-toggle', '.icon-link', '.pager a', '.site-name']) {
+for (const selector of ['.icon-link', '.pager a', '.site-name']) {
   assert(controlRule(selector).includes('min-width: var(--control-size)'));
   assert(controlRule(selector).includes('min-height: var(--control-size)'));
 }
@@ -134,9 +134,14 @@ for (const selector of ['.entry-link', '.post-nav a', '.archive-month a']) {
 }
 assert.match(controlCss, /\.site-nav \{[^}]*column-gap: var\(--ui-space-6\);/);
 assert.match(controlCss, /\.site-nav \{ column-gap: var\(--ui-space-4\);/);
-assert.match(controlCss, /--copy-control-size: var\(--ui-space-10\);/);
-assert(controlRule('.copy').includes('width: var(--copy-control-size); min-height: var(--copy-control-size);'));
-console.log('PASS: adopted 48px controls, 40px copy control, natural-width text links, retired preview parameters.');
+assert.match(controlCss, /--control-size-small: var\(--ui-space-8\);/);
+assert.doesNotMatch(controlCss, /--copy-control-size|border-radius: 50%/);
+const smallControl = controlRule('.theme-toggle, .copy');
+for (const property of ['width', 'height', 'min-width', 'min-height']) assert(smallControl.includes(`${property}: var(--control-size-small);`));
+assert(smallControl.includes('padding: var(--ui-space-2);'));
+assert(smallControl.includes('border-radius: var(--radius-small);'));
+assert(controlRule('.theme-toggle svg, .copy svg').includes('width: var(--icon-size-small); height: var(--icon-size-small);'));
+console.log('PASS: 48px/24px large icons, 32px/16px small icons, shared small radius, natural-width text links.');
 
 for (const value of ['columns', 'stacked', 'invalid']) {
   const app = boot({ search: '?post-nav=' + value, withForm: true });

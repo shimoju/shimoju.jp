@@ -29,14 +29,16 @@
   --ui-space-8: 3.2rem;
   --ui-space-10: 4rem;
   --ui-space-12: 4.8rem;
+  --ui-space-16: 6.4rem;
   --ui-space-20: 8rem;
   --ui-space-34: 13.6rem;
   --control-size: var(--ui-space-12);
-  --copy-control-size: var(--ui-space-10);
+  --control-size-small: var(--ui-space-8);
+  --header-top-min: var(--ui-space-16);
   --code-inset: var(--ui-space-4);
   --icon-size-small: var(--ui-space-4);
   --icon-size: var(--ui-space-6);
-  --icon-gap: var(--ui-space-3);
+  --icon-gap: var(--ui-space-2);
   --title-meta-gap: var(--ui-space-2);
   --term-gap: var(--ui-space-2);
   --term-inset: var(--ui-space-1);
@@ -87,7 +89,7 @@ button:disabled { cursor: default; }
 .shell { width: min(var(--content-width), calc(100% - var(--gutter) * 2)); margin-inline: auto; }
 .skip-link { position: absolute; top: 8px; left: 12px; padding: var(--ui-space-2) var(--ui-space-4); background: var(--page); transform: translateY(-180%); z-index: 2; }
 .skip-link:focus { transform: none; }
-.site-header { --header-top-space: var(--space-page); --header-bottom-space: var(--space-end); position: relative; text-align: center; padding-block: max(var(--header-top-space), calc(var(--control-size) + var(--ui-space-4))) var(--header-bottom-space); }
+.site-header { --header-top-space: var(--space-page); --header-bottom-space: var(--space-end); position: relative; text-align: center; padding-block: max(var(--header-top-space), var(--header-top-min)) var(--header-bottom-space); }
 .site-header > .theme-toggle { position: absolute; top: var(--ui-space-2); inset-inline-end: 0; }
 .site-header > .theme-toggle:focus-visible { outline-offset: -2px; }
 .site-name { font-family: var(--font-site); font-size: var(--text-site); font-weight: 300; line-height: 1.4; text-decoration-line: none; letter-spacing: -.025em; display: inline-flex; align-items: center; justify-content: center; min-height: var(--control-size); min-width: var(--control-size); }
@@ -96,8 +98,9 @@ button:disabled { cursor: default; }
 .site-nav a { display: inline-flex; align-items: center; min-height: var(--control-size); text-decoration-line: none; justify-content: center; padding-block: var(--ui-space-2); }
 .site-nav a:is(:hover, :focus-visible) { text-decoration-line: underline; }
 .site-nav a[aria-current="page"] { text-decoration-line: underline; }
-.theme-toggle { display: inline-grid; place-items: center; border: 0; background: none; padding: var(--ui-space-3); min-width: var(--control-size); min-height: var(--control-size); border-radius: 50%; width: var(--control-size); height: var(--control-size); }
-.theme-toggle svg { width: var(--icon-size-small); height: var(--icon-size-small); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+/* Small icon controls share geometry; visibility and placement belong to each role. */
+.theme-toggle, .copy { display: inline-grid; place-items: center; width: var(--control-size-small); height: var(--control-size-small); min-width: var(--control-size-small); min-height: var(--control-size-small); padding: var(--ui-space-2); border: 0; border-radius: var(--radius-small); background: none; }
+.theme-toggle svg, .copy svg { width: var(--icon-size-small); height: var(--icon-size-small); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .sun, [data-theme="dark"] .moon { display: none; }
 [data-theme="dark"] .sun { display: block; }
 main { min-height: 42vh; }
@@ -184,12 +187,12 @@ strong, b { font-weight: 700; }
 code, pre { font-family: var(--font-code); font-feature-settings: normal; font-variant-ligatures: none; font-kerning: none; }
 :not(pre) > code { font-size: .85em; padding: .25em .35em; border-radius: var(--radius-small); background: var(--inline); box-decoration-break: clone; -webkit-box-decoration-break: clone; overflow-wrap: anywhere; }
 .code-block { position: relative; display: flex; flex-direction: column; background: var(--base); border: 1px solid var(--border); border-radius: var(--radius-large); margin: var(--space-block) 0; overflow: hidden; }
-.code-label { display: block; padding: var(--code-inset) calc(var(--copy-control-size) + var(--ui-space-2)) 0 var(--code-inset); color: var(--muted); font-size: var(--text-label); line-height: 1.5; overflow-wrap: anywhere; }
-.copy { position: absolute; top: var(--ui-space-1); right: var(--ui-space-1); z-index: 1; display: grid; place-items: center; width: var(--copy-control-size); min-height: var(--copy-control-size); padding: var(--ui-space-3); border: 0; border-radius: var(--radius-small); background: none; color: var(--muted); opacity: 0; pointer-events: none; }
+/* Keep the label's 48px inset independent of the control size. */
+.code-label { display: block; padding: var(--code-inset) var(--ui-space-12) 0 var(--code-inset); color: var(--muted); font-size: var(--text-label); line-height: 1.5; overflow-wrap: anywhere; }
+.copy { position: absolute; top: var(--ui-space-2); right: var(--ui-space-2); z-index: 1; color: var(--muted); opacity: 0; pointer-events: none; }
 .copy[hidden] { display: none; }
-/* The visible face is 24px; the actual button stays 40px inside the code block. */
-.copy::before { content: ""; position: absolute; inset: var(--ui-space-2); border-radius: var(--radius-small); background: var(--base); box-shadow: inset 0 0 0 1px var(--border); z-index: -1; }
-.copy svg { width: var(--icon-size-small); height: var(--icon-size-small); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+/* 32px target, 24px face, 16px SVG. The visible face remains 12px from the code edge. */
+.copy::before { content: ""; position: absolute; inset: var(--ui-space-1); border-radius: var(--radius-small); background: var(--base); box-shadow: inset 0 0 0 1px var(--border); z-index: -1; }
 .copy svg > * { display: none; }
 .copy[data-copy-state="idle"] .copy-symbol-idle, .copy[data-copy-state="success"] .copy-symbol-success, .copy[data-copy-state="error"] .copy-symbol-error { display: inline; }
 .code-block:not([data-copy-dismissed]):is(:focus-within, [data-copy-visible]) .copy { opacity: 1; pointer-events: auto; }

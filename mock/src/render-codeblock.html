@@ -9,7 +9,7 @@
   <span class="code-label" lang="en">{{ with .Type }}{{ upper . }}{{ end }}{{ if and .Type $filename }} · {{ end }}{{ $filename }}</span>
   {{- end -}}
   <button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
       <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
       <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
       <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>

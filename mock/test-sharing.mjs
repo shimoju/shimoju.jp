@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
-import { engagement, shareLinks, icon } from './sharing.mjs';
+import { engagement, shareLinks } from './sharing.mjs';
+import { icon } from './icons.mjs';
 
 const url = 'https://shimoju.jp/2016/08/17/shakai-fukki/';
 const title = '日本語 & "引用" #記号 😀';
@@ -52,10 +53,11 @@ assert.doesNotMatch(starRule, /background|border|padding|margin|flex-basis/);
 assert.match(starRule, /color-scheme: light/);
 assert.match(css, /\.icon-link svg \{[^}]*fill: currentColor/);
 assert.match(css, /\.icon-link svg \{ width: var\(--icon-size\); height: var\(--icon-size\);/);
-for (const [name, box] of Object.entries({bluesky: [0, 0, 360, 320], x: [4, 3, 16, 18], facebook: [7, 2, 11, 20], hatena: [3, 4, 17.5, 16], github: [2, 2, 20, 20], rss: [3, 3, 18, 18]})) {
+for (const name of ['bluesky', 'x', 'facebook', 'hatena', 'github', 'rss', 'moon', 'sun']) {
   const svg = icon(name);
-  assert(svg.includes(`viewBox="${box.join(' ')}"`));
-  assert(svg.includes(`width="${box[2]}" height="${box[3]}"`), 'Intrinsic aspect ratio follows the artwork');
+  assert(svg.includes('viewBox="0 0 24 24"'), 'All artwork uses the same coordinate system');
+  assert(svg.includes('width="24" height="24"'), 'Intrinsic dimensions match the shared canvas');
+  assert.doesNotMatch(svg, /transform=|vector-effect=|stroke-width=/, 'No per-icon scale or stroke correction');
   assert(svg.includes('preserveAspectRatio="xMidYMid meet"'), 'Fit and center silhouettes without stretching or cropping');
 }
 const iconRule = css.match(/\.icon-link \{([^}]+)\}/)[1];
