@@ -129,6 +129,10 @@ p { margin: var(--space-paragraph) 0; }
 .page-heading { margin-bottom: var(--space-section); }
 .page-heading h1 { margin-bottom: 0; }
 .page-heading p { margin: var(--description-gap) 0 0; color: var(--muted); }
+.recovery-nav { display: flex; flex-wrap: wrap; gap: var(--ui-space-1) var(--text-link-gap); margin-inline-start: calc(-1 * var(--term-optical-inset)); line-height: var(--leading-label); }
+.recovery-nav a { display: inline-flex; align-items: center; min-height: var(--control-size); max-width: 100%; padding: var(--ui-space-2) var(--text-link-inset); text-decoration-line: none; }
+.recovery-nav a:is(:hover, :focus-visible) { text-decoration-line: underline; }
+.recovery-nav a:focus-visible { outline-offset: -2px; }
 .eyebrow { font-size: var(--text-label); color: var(--muted); letter-spacing: .1em; margin: 0 0 var(--ui-space-3); line-height: var(--leading-label); }
 .intro { margin: 0 0 var(--space-group); }
 .intro p { margin-top: 0; }

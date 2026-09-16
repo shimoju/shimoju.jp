@@ -36,6 +36,11 @@ for (const { file } of manifest.pages) {
   for (const img of html.matchAll(/<img\b[^>]*>/g)) assert.match(img[0], /alt="[^"]+"/, `${file}: image needs alt`);
 }
 const article = read('article.html');
+const notFound = read('404.html');
+assert.match(notFound, /<title>404 — Page not found — shimoju\.diary<\/title>/);
+assert.match(notFound, /<div lang="en"><header class="page-heading"><h1>404 — Page not found<\/h1>/);
+assert.match(notFound, /<nav class="recovery-nav" aria-label="Page recovery"><a href="home\.html">Back to Home<\/a><a href="archives\.html">Browse Archives<\/a><\/nav>/);
+assert.doesNotMatch(notFound, /お探しのページ|ページが見つかりません/);
 assert.doesNotMatch(article, /<p>\s*<img\b/);
 assert.match(article, /<figure><img[^>]*ghostty-herdr\.png/);
 assert(article.indexOf('<h1>') < article.indexOf('class="meta"'));
@@ -439,6 +444,10 @@ assert(cssRule('.intro').includes('margin: 0 0 var(--space-group);'));
 assert(cssRule('.site-footer').includes('padding-block: var(--space-group) var(--ui-space-8);'));
 assert(cssRule('.article-header').includes('margin-bottom: var(--ui-space-8);'));
 assert(cssRule('.site-nav a').includes('padding: var(--ui-space-2) var(--text-link-inset);'));
+assert(cssRule('.recovery-nav').includes('gap: var(--ui-space-1) var(--text-link-gap);'));
+assert(cssRule('.recovery-nav').includes('margin-inline-start: calc(-1 * var(--term-optical-inset));'));
+assert(cssRule('.recovery-nav a').includes('padding: var(--ui-space-2) var(--text-link-inset);'));
+assert(cssRule('.recovery-nav a').includes('min-height: var(--control-size);'));
 assert.doesNotMatch(themeCss, /--header-(?:top|bottom)-space|--term-(?:gap|inset)/);
 assert.doesNotMatch(themeCss, /data-post-nav/);
 assert.doesNotMatch(read('index.html'), /name="post-nav"/);

@@ -142,7 +142,7 @@ for (const year of [...new Set(posts.map(p => p.date.slice(0, 4)))]) {
   archive += '</section>';
 }
 page('archives.html', 'Archives', archive, { current: 'archives' });
-page('404.html', 'ページが見つかりません', heading('ページが見つかりません') + '<div class="prose"><p>お探しのページは移動したか、公開されていない可能性があります。</p><p><a href="home.html" lang="en">Home</a>に戻るか、<a href="archives.html" lang="en">Archives</a>から記事を探せます。</p></div>');
+page('404.html', '404 — Page not found', '<div lang="en">' + heading('404 — Page not found') + '<nav class="recovery-nav" aria-label="Page recovery"><a href="home.html">Back to Home</a><a href="archives.html">Browse Archives</a></nav></div>');
 page('empty.html', 'Posts', heading('Posts', '0件の表示確認') + entries([]));
 page('single-item.html', 'Posts', heading('Posts', '1件・要約なしの表示確認') + entries([posts[2]], { noSummary: true }));
 
