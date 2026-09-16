@@ -107,6 +107,28 @@ for (const file of ['index.html', 'specimen.html']) assert.doesNotMatch(read(fil
 for (const file of ['index.html', 'specimen.html']) assert.doesNotMatch(read(file), /SFMono-Regular|BIZ UD/);
 assert.match(read('assets/theme.css'), /:not\(pre\) > code \{ font-size: \.85em; padding: \.25em \.35em/);
 const themeCss = read('assets/theme.css');
+for (const [name, value] of Object.entries({
+  'space-paragraph': '1em', 'space-list-item': '.125em',
+  'space-list-nested': '.25em', 'space-list-paragraph': '.375em',
+  'list-indent': '1.5em', 'quote-inset': '1.25em',
+  'title-meta-gap': 'var(--ui-space-2)', 'description-gap': 'var(--ui-space-3)',
+  'media-info-gap': 'var(--ui-space-6)',
+})) assert(themeCss.includes(`--${name}: ${value};`), `${name}: semantic spacing token`);
+assert.match(themeCss, /\.prose li \{ margin-block: var\(--space-list-item\); \}/);
+assert.match(themeCss, /\.prose li > ul, \.prose li > ol \{ margin-block: var\(--space-list-nested\); \}/);
+assert.match(themeCss, /\.prose li > p \{ margin-block: var\(--space-list-paragraph\); \}/);
+assert.match(themeCss, /\.prose ul, \.prose ol \{ padding-left: var\(--list-indent\);/);
+assert.match(themeCss, /\.prose blockquote \{[^}]*padding: 0 0 0 var\(--quote-inset\);/);
+assert.match(themeCss, /\.page-heading h1 \{ margin-bottom: 0; \}/);
+for (const selector of ['.page-heading p', '.entry-summary', '.prose figcaption']) {
+  const block = themeCss.slice(themeCss.indexOf(selector + ' {')).split('}')[0];
+  assert(block.includes('var(--description-gap)'), `${selector}: shared description gap`);
+}
+assert.match(themeCss, /\.entry-link \{[^}]*gap: var\(--media-info-gap\);/);
+assert.match(themeCss, /body \{[^}]*display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh;/);
+assert.match(themeCss, /\.site-footer \{ margin-block-start: auto;/);
+assert.doesNotMatch(themeCss, /body > main \{|body > \.site-header, body > \.site-footer/);
+assert.doesNotMatch(themeCss, /min-height: 42vh/);
 for (const [name, step] of [['small', -1], ['meta', -2], ['label', -3]]) {
   const expected = (1.6 ** (step / 5)).toFixed(3);
   assert(themeCss.includes(`--text-${name}: calc(var(--body-size) * ${expected});`));
