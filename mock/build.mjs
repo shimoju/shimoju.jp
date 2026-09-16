@@ -81,7 +81,7 @@ ${review ? '' : `<header class="site-header shell">${toggle}${home ? '<h1 class=
 const posts = sources.slice(0, 5).map(([id, source]) => ({ id, ...data.get(id), publicUrl: `https://shimoju.jp/${source.replace('content/posts/', '').replace('/index.md', '/')}` }));
 const terms = kind => [...new Set(posts.flatMap(p => p[kind]))].sort((a, b) => a.localeCompare(b, 'ja'));
 const termFiles = Object.fromEntries(['tags', 'categories'].map(kind => [kind, new Map(terms(kind).map((name, i) => [name, `${kind === 'tags' ? 'tag' : 'category'}-${i + 1}.html`]))]));
-const heading = (title, description = '') => `<header class="page-heading"><h1>${escape(title)}</h1>${description ? `<p>${escape(description)}</p>` : ''}</header>`;
+const heading = (title, description = '', descriptionLang = '') => `<header class="page-heading"><h1>${escape(title)}</h1>${description ? `<p${descriptionLang ? ` lang="${escape(descriptionLang)}"` : ''}>${escape(description)}</p>` : ''}</header>`;
 const cover = '<img src="assets/zsh-prompt-cover.png" width="1200" height="630" alt="自作したZshプロンプトを表示するGhosttyのターミナル画面">';
 const date = value => `<time datetime="${value}">${value.replaceAll('-', '/')}</time>`;
 const plain = html => html.replace(/<[^>]*>/g, '').trim();
@@ -102,14 +102,33 @@ for (const base of ['home', 'posts']) for (let n = 1; n <= 3; n++) {
   const top = home ? (n === 1 ? intro : '') : heading('Posts');
   page(`${base}${n === 1 ? '' : `-${n}`}.html`, home ? 'Home' : 'Posts', top + entries(posts.slice((n - 1) * 2, n * 2)) + pager(base, n, 3), { home });
 }
+function classificationList(kind, names) {
+  const title = kind === 'tags' ? 'Tags' : 'Categories';
+  return heading(title) + (names.length
+    ? `<ul class="terms">${names.map(name => `<li><a href="${termFiles[kind].get(name)}"><span class="term-name">${escape(name)}</span><small>${posts.filter(p => p[kind].includes(name)).length}</small></a></li>`).join('')}</ul>`
+    : `<p class="empty" lang="en">${kind === 'tags' ? 'No tags yet.' : 'No categories yet.'}</p>`);
+}
+function classificationPages(base, title, items, kind) {
+  const pageSize = 2;
+  const total = Math.max(1, Math.ceil(items.length / pageSize));
+  for (let n = 1; n <= total; n++) {
+    page(`${base}${n === 1 ? '' : `-${n}`}.html`, title,
+      heading(title, `${items.length} ${items.length === 1 ? 'post' : 'posts'}`, 'en') + entries(items.slice((n - 1) * pageSize, n * pageSize)) + pager(base, n, total),
+      { current: kind });
+  }
+}
 for (const kind of ['tags', 'categories']) {
-  page(`${kind}.html`, kind === 'tags' ? 'Tags' : 'Categories', heading(kind === 'tags' ? 'Tags' : 'Categories') + `<ul class="terms">${terms(kind).map(name => `<li><a href="${termFiles[kind].get(name)}"><span class="term-name">${escape(name)}</span><small>${posts.filter(p => p[kind].includes(name)).length}</small></a></li>`).join('')}</ul>`, { current: kind });
+  page(`${kind}.html`, kind === 'tags' ? 'Tags' : 'Categories', classificationList(kind, terms(kind)), { current: kind });
+  page(`${kind}-empty.html`, kind === 'tags' ? 'Tags' : 'Categories', classificationList(kind, []), { current: kind });
   for (const name of terms(kind)) {
     const items = posts.filter(p => p[kind].includes(name));
     const file = termFiles[kind].get(name);
-    page(file, name, heading(name, `${items.length}件の記事`) + entries(items) + pager(file.slice(0, -5), 1, 1), { current: kind });
+    classificationPages(file.slice(0, -5), name, items, kind);
   }
 }
+// Review-only groups reuse real articles without changing their actual taxonomy metadata.
+classificationPages('tag-pagination', 'Sample tag', posts, 'tags');
+classificationPages('category-pagination', 'Sample category', posts, 'categories');
 
 function decorate(html) {
   return html
@@ -146,6 +165,16 @@ page('404.html', '404 — Page not found', '<div lang="en">' + heading('404 — 
 page('empty.html', 'Posts', heading('Posts', '0件の表示確認') + entries([]));
 page('single-item.html', 'Posts', heading('Posts', '1件・要約なしの表示確認') + entries([posts[2]], { noSummary: true }));
 
+const classificationReviewLinks = [
+  ['tag-pagination.html', 'タグ別一覧・先頭ページ', '検証専用の分類・5件中2件・Nextのみ'],
+  ['tag-pagination-2.html', 'タグ別一覧・途中ページ', '検証専用の分類・Prev／Next両方'],
+  ['tag-pagination-3.html', 'タグ別一覧・最終ページ', '検証専用の分類・Prevのみ'],
+  ['category-pagination.html', 'カテゴリ別一覧・先頭ページ', '検証専用の分類・5件中2件・Nextのみ'],
+  ['category-pagination-2.html', 'カテゴリ別一覧・途中ページ', '検証専用の分類・Prev／Next両方'],
+  ['category-pagination-3.html', 'カテゴリ別一覧・最終ページ', '検証専用の分類・Prevのみ'],
+  ['tags-empty.html', 'Tags・分類0件', '記事0件の一覧とは異なる空状態'],
+  ['categories-empty.html', 'Categories・分類0件', '短い英語の案内・ページ送りなし'],
+];
 const reviewLinks = [
   ['home.html', 'ホーム', '現行の紹介・画像あり／なし・初ページ'],
   ['article.html', '記事詳細', '実記事全文・長いタイトル・1200 × 630カバー'],
@@ -155,6 +184,7 @@ const reviewLinks = [
   ['categories.html', 'Categories', 'カテゴリ名と件数'],
   [termFiles.tags.get('Hugo'), '個別タグ：Hugo', '1件のタグ別一覧'],
   [termFiles.categories.get('技術'), '個別カテゴリ：技術', '複数記事のカテゴリ別一覧'],
+  ...classificationReviewLinks,
   ['archives.html', 'Archives', '年・月ごとの一覧'],
   ['404.html', '404', '見つからないページと復帰導線'],
   ['specimen.html', '本文部品', 'H2〜H6・表・脚注・コード・縦長画像'],
@@ -169,7 +199,7 @@ const reviewLinks = [
 const options = items => items.map(([value, label]) => `<option value="${value}">${label}</option>`).join('');
 page('index.html', 'モックレビュー', `<header class="review-header"><p class="eyebrow">SHIMOJU.DIARY / MOCK REVIEW</p><h1>文字と余白から、読む場所をつくる。</h1><p>Apple標準＋Segoe UIを採用。<br>画面幅・配色ごとに、和欧文の組版と読み心地を確認します。</p>${toggle}</header>
 <section class="review-section"><h2>今回固定したこと</h2><p>補助文字は本文の0.910／0.829／0.754倍、一覧タイトルは1.207倍。画像・動画・表・コードの前後余白は1.931em、大きな区切りは本文サイズの2.560／3.089／3.394／4.096倍です。</p><p>ルートは全画面幅で62.5%、本文は1.7rem。H6→H1は本文の1、1.099、1.207、1.326、1.456、1.6倍、サイト名は1.931倍を本文基準トークンで指定します。コードブロックは本文から独立した1.4rem・行高1.3です。インラインコードは周囲に追従する0.85em、paddingは上下0.25em・左右0.35emを維持しています。</p><p class="review-note">ブラウザの既定文字サイズが16pxなら、本文17px、サイト名約32.83px、コードブロック14px。Safariの和文が小さく描画される実測を踏まえ、モバイルも同じ指定にしています。本文の最大幅720pxは固定し、文字を含む操作部品は拡大と折り返しに追従します。カバー上配置、中央2段フッター、palt有効とコードへの非継承は維持しています。</p></section>
-<section class="review-section"><h2>代表ページを開く</h2><p class="review-note">採用した候補順は-apple-system、BlinkMacSystemFont、Segoe UI、Hiragino Sans、Noto Sans JP、sans-serifです。Apple標準の指定だけでは和文がNotoにフォールバックする場合に備え、Hiragino Sansを明示します。Windowsの欧文はSegoe UIを優先し、ヒラギノがある場合の和文はヒラギノを優先します。サイト名も本文・見出しと同じ書体にします。本文400、見出し500・サイト名300、strong／b・thは700、サイズ・行高・paltも共通です。</p><form id="comparison-form" class="review-controls"><label>代表ページ<select name="page">${options([['home.html', 'ホーム'], ['home-2.html', 'ホーム・前後ページあり'], ['tags.html', 'タグ一覧'], ['archives.html', 'Archives'], ['article.html', '長い実記事・Nextのみ'], ['article-hugo.html', '前後記事あり'], ['article-pasmo.html', 'Prevのみ'], ['specimen.html', '本文部品'], ['about.html', 'About'], ['index.html', '候補順とpaltの確認']])}</select></label><label>配色<select name="theme">${options([['light', 'Latte / ライト'], ['dark', 'Mocha / ダーク']])}</select></label><button type="submit">ページを開く</button></form><p class="review-note">配色ボタンはヘッダー右上に独立して配置し、サイト名と文字ナビをそれぞれ中央に揃えます。48px相当の操作領域と上下8px相当の余裕を確保します。操作領域の右端を本文領域の右端に揃え、SVGの光学的な右補正は行いません。</p><p class="review-note">前後記事は全画面幅で横並び、一覧のページ送りと同じく左が新しい記事（Prev）、右が古い記事（Next）です。「前後記事あり」「Prevのみ」「Nextのみ」で確認できます。左右同幅・列間はデスクトップ24px／モバイル16pxとし、タイトルは省略せず折り返します。独立したリンク・ボタンの最小高さは4.8remです。ヘッダーナビ・タグ・カテゴリのリンクには最小幅を設けず、内容幅と4px刻みの横gapで文字間隔を整えます。ページ送り・アイコンなどは最小幅も4.8remを確保します。UI寸法は4px相当刻みとし、コード本文の左右と言語ラベルの左は16px相当で共通化しています。角丸は大8px・小4px、ページ左右余白は基本24px、狭いホバー不可環境のみ16pxで、ホバー可能環境では見出しリンク幅以上を確保します。アイコンの絵柄は小16px・標準24px相当、文字サイズは維持しています。本文内リンク・脚注・はてなスターは変更しません。</p><p class="review-note">フォントは全ページで共通です。以下の同文サンプルで、欧文・和文に選ばれた実フォントと500の太さを確認できます。ユーザーのWindows実機ではSegoe UIの500でSemiboldを確認済みです。</p><p><a href="home.html">ホーム</a> ／ <a href="article.html">長い実記事</a> ／ <a href="specimen.html#code">日本語コメントを確認</a></p></section>
+<section class="review-section"><h2>代表ページを開く</h2><p class="review-note">採用した候補順は-apple-system、BlinkMacSystemFont、Segoe UI、Hiragino Sans、Noto Sans JP、sans-serifです。Apple標準の指定だけでは和文がNotoにフォールバックする場合に備え、Hiragino Sansを明示します。Windowsの欧文はSegoe UIを優先し、ヒラギノがある場合の和文はヒラギノを優先します。サイト名も本文・見出しと同じ書体にします。本文400、見出し500・サイト名300、strong／b・thは700、サイズ・行高・paltも共通です。</p><form id="comparison-form" class="review-controls"><label>代表ページ<select name="page">${options([['home.html', 'ホーム'], ['home-2.html', 'ホーム・前後ページあり'], ['tags.html', 'タグ一覧'], ...classificationReviewLinks.map(([file, label]) => [file, label]), ['archives.html', 'Archives'], ['article.html', '長い実記事・Nextのみ'], ['article-hugo.html', '前後記事あり'], ['article-pasmo.html', 'Prevのみ'], ['specimen.html', '本文部品'], ['about.html', 'About'], ['index.html', '候補順とpaltの確認']])}</select></label><label>配色<select name="theme">${options([['light', 'Latte / ライト'], ['dark', 'Mocha / ダーク']])}</select></label><button type="submit">ページを開く</button></form><p class="review-note">配色ボタンはヘッダー右上に独立して配置し、サイト名と文字ナビをそれぞれ中央に揃えます。48px相当の操作領域と上下8px相当の余裕を確保します。操作領域の右端を本文領域の右端に揃え、SVGの光学的な右補正は行いません。</p><p class="review-note">前後記事は全画面幅で横並び、一覧のページ送りと同じく左が新しい記事（Prev）、右が古い記事（Next）です。「前後記事あり」「Prevのみ」「Nextのみ」で確認できます。左右同幅・列間はデスクトップ24px／モバイル16pxとし、タイトルは省略せず折り返します。独立したリンク・ボタンの最小高さは4.8remです。ヘッダーナビ・タグ・カテゴリのリンクには最小幅を設けず、内容幅と4px刻みの横gapで文字間隔を整えます。ページ送り・アイコンなどは最小幅も4.8remを確保します。UI寸法は4px相当刻みとし、コード本文の左右と言語ラベルの左は16px相当で共通化しています。角丸は大8px・小4px、ページ左右余白は基本24px、狭いホバー不可環境のみ16pxで、ホバー可能環境では見出しリンク幅以上を確保します。アイコンの絵柄は小16px・標準24px相当、文字サイズは維持しています。本文内リンク・脚注・はてなスターは変更しません。</p><p class="review-note">フォントは全ページで共通です。以下の同文サンプルで、欧文・和文に選ばれた実フォントと500の太さを確認できます。ユーザーのWindows実機ではSegoe UIの500でSemiboldを確認済みです。</p><p><a href="home.html">ホーム</a> ／ <a href="article.html">長い実記事</a> ／ <a href="specimen.html#code">日本語コメントを確認</a></p></section>
 <section class="review-section"><h2>サイトタイトル</h2><p class="site-title-sample"><a class="site-name" href="home.html">shimoju.diary</a></p><p class="review-note">サイトタイトルは本文と同じ書体でウェイト300を採用しました。Windowsでも適用を確認済みです。サイズは本文の1.931倍とし、本文400・記事見出し500・強調700との軽重でリズムをつくります。</p></section>\n<section class="review-section"><h2>本文見出しの余白</h2><p>本文内のH2〜H6は前2.121em・後0.687emを基本とし、連続する下位見出しの前は0.910emにします。直後の段落の上marginは0とし、見出しの下marginで距離を決めます。各見出し自身の文字サイズに追従します。本文の先頭要素が見出しの場合は上余白0とし、記事タイトルの余白は変更しません。実記事・About・本文部品で、連続見出しや段落とのまとまりを確認できます。</p></section>\n<section class="review-section" id="weight-check"><h2>200・300・400・500・700の実フォントを確認</h2><p class="review-note">同じ文章を同じサイズ・行高で表示します。200／300の細さと、500が400より適切に太くなるか確認してください。各行は診断用の固定ウェイトです。strongや見出しからの継承ではなく、各行へ数値を直接指定しています。</p><p data-weight-probe="200" style="font-weight: 200">200：株式会社SmartHR・日本語とEnglish 0123456789 ← → ■ □ ▲ ▼ ∩ ≡</p><p data-weight-probe="300" style="font-weight: 300">300：株式会社SmartHR・日本語とEnglish 0123456789 ← → ■ □ ▲ ▼ ∩ ≡</p><p data-weight-probe="400" style="font-weight: 400">400：株式会社SmartHR・日本語とEnglish 0123456789 ← → ■ □ ▲ ▼ ∩ ≡</p><p data-weight-probe="500" style="font-weight: 500">500：株式会社SmartHR・日本語とEnglish 0123456789 ← → ■ □ ▲ ▼ ∩ ≡</p><p data-weight-probe="700" style="font-weight: 700">700：株式会社SmartHR・日本語とEnglish 0123456789 ← → ■ □ ▲ ▼ ∩ ≡</p></section>\n<section class="review-section" id="font-check"><h2>現在の候補順とpalt</h2><p class="review-note">CSSの指定候補であり、文字ごとに実際に選ばれたフォントの特定ではありません。OSの導入状況とブラウザ設定により代替されます。候補がなければsans-serifへ委ねます。Yu Gothic UIを明示指定せず、WindowsのシステムUI書体にも委ねませんが、最終フォールバックで選ばれる書体までは禁止できません。</p><h3>本文・見出し</h3><code class="font-stack" data-font-stack="body"></code><ul><li>macOS／iOS：Apple標準のSan Franciscoとヒラギノを想定。和文の補完にHiragino Sansを明示します。</li><li>Windows：Segoe UI＋Noto Sans JPを優先（ヒラギノ導入時の和文はヒラギノ）。Noto Sans JPは2025年3月のWindows更新で追加されています。Notoがなければブラウザのsans-serifへ戻します。</li><li>Linux／Android：利用できるNoto候補、なければsans-serifへ委ねます。特定の欧文書体を保証しません。</li><li>コードはMenlo, Consolas, monospaceとし、和文候補は明示しません。</li></ul><p>日本語とEnglish、Ruby on Rails、2026年。「括弧」、句読点。Webアプリケーションの読みやすさ。</p><h3>サイトタイトル</h3><code class="font-stack" data-font-stack="site"></code><p class="review-note">本文・見出しと同じ書体で300。</p><h3>コード・インラインコード</h3><code class="font-stack" data-font-stack="code"></code><p class="review-note">採用確定：MacはMenlo、WindowsはConsolasを優先します。それ以外の環境と和文はブラウザのmonospace・不足文字のフォールバックに委ね、本文の和文書体との統一は求めません。欧文の等幅性を守るため、日本語向けのプロポーショナル書体は候補に含めません。palt・合字・自動カーニングは無効。実際の和文の字幅と読みやすさは実機で確認し、和欧文の厳密な2:1の幅比は保証しません。</p><p><code>const message = "日本語のコメントとABC 0123456789";</code></p><h3>paltの診断</h3><p class="review-note">本文と見出しはfont-feature-settings: "palt"。次の同一文だけを有効／無効で比較します。採否の選択肢ではなく、現在の描画での作用を確認する診断です。</p><div class="font-probe-scroll"><p>有効：<span class="font-probe" data-palt-probe="on">「日本語」、カタカナ。（余白）</span></p><p>無効：<span class="font-probe palt-off" data-palt-probe="off">「日本語」、カタカナ。（余白）</span></p></div></section>
 <section class="review-section"><h2>基本画面</h2><p class="review-note">400px／1280px・両配色が基準。追加確認は320px／360px／768pxです。</p><ul class="review-grid">${reviewLinks.map(([url, title, note]) => `<li><a href="${url}">${title}<small>${note}</small></a></li>`).join('')}</ul></section>
 <section class="review-section"><h2>操作状態の確認</h2><ul><li><a href="specimen.html#code">コードコピー・成功</a>：コピーアイコン → チェック → 3秒後にコピーアイコン。ホバー・フォーカス・タップで表示します。下部メッセージは表示しません。</li><li><a href="specimen.html?copy=failure#code">コードコピー・失敗</a>：×のアイコンとCopy failedの通知になり、再試行できます。</li><li><a href="home.html">一覧の記事全体</a>／<a href="archives.html">Archivesのタイトルと日付</a>を一つのリンクにしています。</li><li><a href="article-diary.html">シェアとはてなスター</a>：実サービスに接続します。投稿確定・スター追加は公開記事に反映されます。</li><li>Tabキーで記事全体のフォーカスと移動、マウスでクリック範囲を確認できます。</li></ul><p class="review-note">初回はOS配色に追従し、手動操作後は選択を保持します。旧比較パラメーター（本文サイズ・リンク色など）は適用しません。言語とファイル名はHugoのレンダーフックから取得しています。</p></section>`, { review: true });

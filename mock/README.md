@@ -21,16 +21,20 @@ LANアドレス経由のHTTPは通常secure contextにならないため、Clipb
 
 本実装は1ページ10件・Hugo標準の分類名称順としますが、モックはページ送りの検証用に2件×3ページを維持します。RSS・OGP・外部埋め込みの実装方針は[実装上の判断理由](../docs/05-theme-implementation.md#rssとogpの互換性)を参照してください。
 
-レビュー入口を含む33ページ。同じHTMLを各幅・両配色で表示します。
+レビュー入口を含む42ページ。同じHTMLを各幅・両配色で表示します。
 
 | 画面 | ファイル |
 | --- | --- |
 | ホーム・記事一覧とページ送り | home.html、home-2.html、home-3.html、posts.html、posts-2.html、posts-3.html |
 | 実記事5件 | article.html、article-hugo.html、article-diary.html、article-bgm.html、article-pasmo.html |
 | About・Archives・404 | about.html、archives.html、404.html |
-| タグ・カテゴリ一覧と個別分類 | tags.html、categories.html、tag-1〜11.html、category-1〜2.html |
+| タグ・カテゴリ一覧と個別分類 | tags.html、categories.html、tag-1〜11.html、category-1〜2.html、category-2-2.html |
+| 個別分類のページ送り確認 | tag-pagination.html／-2.html／-3.html、category-pagination.html／-2.html／-3.html |
+| 分類項目0件 | tags-empty.html、categories-empty.html |
 | 0件・1件・要約なし | empty.html、single-item.html |
 | 本文部品とレビュー入口 | specimen.html、index.html |
+
+`Sample tag`／`Sample category`は、実記事5件を2件・2件・1件に分割する検証専用の分類です。実記事のタグ・カテゴリや分類一覧の件数は変更しません。実際の個別分類も同じページ送り処理を使い、日記は2ページになります。分類項目0件は「No tags yet.」「No categories yet.」を表示します。これらの確認ページはレビュー入口のリンクと代表ページ選択から開けます。
 
 - [src/theme.css](src/theme.css)：配色・フォント候補・サイズ・余白・レスポンシブ。
 - [src/theme.js](src/theme.js)：配色、コピー、レビュー用条件。

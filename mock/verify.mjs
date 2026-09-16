@@ -86,6 +86,43 @@ assert.doesNotMatch(read('home-2.html'), /class="intro"/);
 assert.doesNotMatch(read('home-3.html'), /rel="next"/);
 assert.doesNotMatch(read('home.html'), /rel="prev"/);
 assert.match(read('empty.html'), /まだ記事がありません/);
+for (const [kind, label] of [['tags', 'No tags yet.'], ['categories', 'No categories yet.']]) {
+  const file = `${kind}-empty.html`, html = read(file);
+  assert(html.includes(`<a href="${kind}.html" aria-current="page">`), `${file}: retain current navigation`);
+  assert(html.includes(`<p class="empty" lang="en">${label}</p>`));
+  assert.doesNotMatch(html, /class="(?:pager|terms|post-list)"|まだ記事がありません/);
+  assert(manifest.reviewPages.includes(file));
+  assert(read('index.html').includes(`<option value="${file}">`));
+}
+const fixtureArticles = ['article.html', 'article-hugo.html', 'article-diary.html', 'article-bgm.html', 'article-pasmo.html'];
+for (const [base, title, kind] of [['tag-pagination', 'Sample tag', 'tags'], ['category-pagination', 'Sample category', 'categories']]) {
+  const allArticles = [];
+  for (let n = 1; n <= 3; n++) {
+    const file = `${base}${n === 1 ? '' : `-${n}`}.html`, html = read(file);
+    assert(html.includes(`<h1>${title}</h1><p lang="en">5 posts</p>`), `${file}: retain title and total count`);
+    assert(html.includes(`<a href="${kind}.html" aria-current="page">`));
+    const items = [...html.matchAll(/<a class="entry-link" href="([^"]+)"/g)].map(m => m[1]);
+    assert.equal(items.length, n === 3 ? 1 : 2);
+    allArticles.push(...items);
+    assert(html.includes(`aria-label="Page ${n} of 3"`));
+    const prev = html.match(/<a class="previous-page" href="([^"]+)"/);
+    const next = html.match(/<a class="next-page" href="([^"]+)"/);
+    assert.equal(prev?.[1], n === 1 ? undefined : `${base}${n === 2 ? '' : '-2'}.html`);
+    assert.equal(next?.[1], n === 3 ? undefined : `${base}-${n + 1}.html`);
+    assert(manifest.reviewPages.includes(file));
+    assert(read('index.html').includes(`<option value="${file}">`));
+  }
+  assert.deepEqual(allArticles, fixtureArticles, `${base}: chronological order, no omissions or duplicates`);
+}
+assert.match(read('category-2.html'), /class="next-page" href="category-2-2.html"/);
+assert.match(read('category-2-2.html'), /<h1>日記<\/h1><p lang="en">3 posts<\/p>/);
+assert.match(read('tag-6.html'), /<h1>Hugo<\/h1><p lang="en">1 post<\/p>/);
+assert.match(read('category-1.html'), /<p lang="en">2 posts<\/p>/);
+for (const { file } of manifest.pages.filter(p => /^(?:tag|category)-/.test(p.file))) {
+  assert.doesNotMatch(read(file), /件の記事/);
+}
+assert.match(read('category-2-2.html'), /class="previous-page" href="category-2.html"/);
+assert.doesNotMatch(read('tag-6.html'), /class="pager"/);
 assert.doesNotMatch(read('single-item.html'), /class="entry-summary"/);
 for (let n = 2; n <= 6; n++) assert.match(read('specimen.html'), new RegExp(`<h${n}\\b`));
 assert.match(read('specimen.html'), /class="ln"/);

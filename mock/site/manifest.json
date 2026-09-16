@@ -37,6 +37,11 @@
       "review": false
     },
     {
+      "file": "tags-empty.html",
+      "title": "Tags",
+      "review": false
+    },
+    {
       "file": "tag-1.html",
       "title": "chezmoi",
       "review": false
@@ -97,6 +102,11 @@
       "review": false
     },
     {
+      "file": "categories-empty.html",
+      "title": "Categories",
+      "review": false
+    },
+    {
       "file": "category-1.html",
       "title": "技術",
       "review": false
@@ -104,6 +114,41 @@
     {
       "file": "category-2.html",
       "title": "日記",
+      "review": false
+    },
+    {
+      "file": "category-2-2.html",
+      "title": "日記",
+      "review": false
+    },
+    {
+      "file": "tag-pagination.html",
+      "title": "Sample tag",
+      "review": false
+    },
+    {
+      "file": "tag-pagination-2.html",
+      "title": "Sample tag",
+      "review": false
+    },
+    {
+      "file": "tag-pagination-3.html",
+      "title": "Sample tag",
+      "review": false
+    },
+    {
+      "file": "category-pagination.html",
+      "title": "Sample category",
+      "review": false
+    },
+    {
+      "file": "category-pagination-2.html",
+      "title": "Sample category",
+      "review": false
+    },
+    {
+      "file": "category-pagination-3.html",
+      "title": "Sample category",
       "review": false
     },
     {
@@ -206,6 +251,14 @@
     "categories.html",
     "tag-6.html",
     "category-1.html",
+    "tag-pagination.html",
+    "tag-pagination-2.html",
+    "tag-pagination-3.html",
+    "category-pagination.html",
+    "category-pagination-2.html",
+    "category-pagination-3.html",
+    "tags-empty.html",
+    "categories-empty.html",
     "archives.html",
     "404.html",
     "specimen.html",
