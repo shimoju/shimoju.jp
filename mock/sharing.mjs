@@ -19,7 +19,7 @@ export function engagement(post) {
   const icons = links.map(([id, name, href]) => `<a class="icon-link share-icon" href="${escape(href)}" target="_blank" rel="noopener noreferrer" aria-label="${id === 'hatena' ? 'View on' : 'Share on'} ${name} (opens in a new tab)" title="${name}">${icon(id)}</a>`).join('');
   return `<div class="engagement" id="engagement" data-sharing-entry>
   <div class="share-mount" aria-label="Share this article" lang="en"><div class="share-icons">${icons}</div></div>
-  <div class="star-widget" aria-label="Hatena Star"><div data-hatena-star-container data-hatena-star-url="${escape(post.publicUrl)}" data-hatena-star-title="${escape(post.title)}" data-hatena-star-variant="profile-icon" data-hatena-star-profile-url-template="https://blog.hatena.ne.jp/{username}/"></div><noscript>Hatena Star requires JavaScript.</noscript></div>
-  <p class="widget-status" role="status" aria-live="polite"></p>
+  <div class="star-widget" aria-label="Hatena Star"><div data-hatena-star-container data-hatena-star-url="${escape(post.publicUrl)}" data-hatena-star-title="${escape(post.title)}" data-hatena-star-variant="profile-icon" data-hatena-star-profile-url-template="https://blog.hatena.ne.jp/{username}/"></div><noscript lang="en">Hatena Star requires JavaScript.</noscript></div>
+  <p class="widget-status" role="status" aria-live="polite" lang="en"></p>
 </div>`;
 }

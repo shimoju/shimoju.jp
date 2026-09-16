@@ -7,7 +7,7 @@
   script.src = 'https://s.hatena.ne.jp/js/widget/star.js';
   script.async = true;
   script.addEventListener('error', () => {
-    entry.querySelector('.widget-status').textContent = 'はてなスターを読み込めませんでした。共有リンクは引き続き利用できます。';
+    entry.querySelector('.widget-status').textContent = 'Unable to load Hatena Star. Share links are still available.';
   }, { once: true });
   document.head.append(script);
 })();

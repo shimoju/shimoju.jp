@@ -42,7 +42,9 @@ function boot(present = true) {
 const app = boot();
 assert.deepEqual(app.scripts.map(el => el.src), ['https://s.hatena.ne.jp/js/widget/star.js']);
 app.scripts[0].error();
-assert.match(app.status.textContent, /はてなスターを読み込めませんでした/);
+assert.equal(app.status.textContent, 'Unable to load Hatena Star. Share links are still available.');
+assert.match(markup, /class="widget-status" role="status" aria-live="polite" lang="en"/);
+assert.match(markup, /<noscript lang="en">Hatena Star requires JavaScript\.<\/noscript>/);
 assert.equal(boot(false).scripts.length, 0);
 assert.doesNotMatch(markup, /official-share|sharing-review|実動作確認/);
 const css = readFileSync(new URL('src/theme.css', import.meta.url), 'utf8');

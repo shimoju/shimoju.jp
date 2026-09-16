@@ -85,7 +85,19 @@ assert.match(read('assets/theme.css'), /\.article-header h1 \{ margin-bottom: va
 assert.doesNotMatch(read('home-2.html'), /class="intro"/);
 assert.doesNotMatch(read('home-3.html'), /rel="next"/);
 assert.doesNotMatch(read('home.html'), /rel="prev"/);
-assert.match(read('empty.html'), /まだ記事がありません/);
+assert.match(read('empty.html'), /<p class="empty" lang="en">No posts yet\.<\/p>/);
+assert.match(read('empty.html'), /<p lang="en">Empty list preview<\/p>/);
+assert.match(read('single-item.html'), /<p lang="en">Single post preview · No summary<\/p>/);
+assert.match(read('home.html'), /aria-label="Introduction"/);
+assert.match(read('article.html'), /aria-label="Zsh prompt demo" lang="en"/);
+assert.match(read('article-pasmo.html'), /<p lang="en"><a[^>]+>View post on X<\/a> \(embed omitted in this mock\)<\/p>/);
+for (const { file, review } of manifest.pages) {
+  if (review) continue;
+  const html = read(file);
+  assert.doesNotMatch(html, /まだ記事がありません|件の記事|Xの投稿を読む|はてなスターを読み込めませんでした|0件の表示確認|1件・要約なしの表示確認/);
+  // Content titles, taxonomy names, image alt text and vendor widgets retain their language.
+  for (const [, label] of html.matchAll(/\saria-label="([^"]*)"/g)) assert.doesNotMatch(label, /[ぁ-んァ-ヶ一-龯]/u, `${file}: fixed UI labels are English`);
+}
 for (const [kind, label] of [['tags', 'No tags yet.'], ['categories', 'No categories yet.']]) {
   const file = `${kind}-empty.html`, html = read(file);
   assert(html.includes(`<a href="${kind}.html" aria-current="page">`), `${file}: retain current navigation`);

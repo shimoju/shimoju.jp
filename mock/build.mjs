@@ -47,8 +47,8 @@ style = 'catppuccin-latte'
 `);
 put(join(scratch, 'layouts/single.html'), '{{ $lastmod := "" }}{{ if not .Lastmod.IsZero }}{{ $lastmod = .Lastmod.Format "2006-01-02" }}{{ end }}{{ dict "lastmod" $lastmod "title" .Title "date" (.Date.Format "2006-01-02") "tags" (.Params.tags | default slice) "categories" (.Params.categories | default slice) "body" .Content "summary" .Summary | jsonify | safeHTML }}');
 put(join(scratch, 'layouts/_markup/render-codeblock.html'), read(join(root, 'src/render-codeblock.html')));
-put(join(scratch, 'layouts/_shortcodes/video.html'), '<video controls preload="metadata" aria-label="自作Zshプロンプトの操作デモ"><source src="{{ .Get "src" }}" type="video/mp4"></video>');
-put(join(scratch, 'layouts/_shortcodes/x.html'), '<p><a href="https://x.com/{{ .Get "user" }}/status/{{ .Get "id" }}">Xの投稿を読む（モックでは外部埋め込みを省略）</a></p>');
+put(join(scratch, 'layouts/_shortcodes/video.html'), '<video controls preload="metadata" aria-label="Zsh prompt demo" lang="en"><source src="{{ .Get "src" }}" type="video/mp4"></video>');
+put(join(scratch, 'layouts/_shortcodes/x.html'), '<p lang="en"><a href="https://x.com/{{ .Get "user" }}/status/{{ .Get "id" }}">View post on X</a> (embed omitted in this mock)</p>');
 for (const [id, source] of sources) put(join(scratch, `content/${id}.md`), read(join(repo, source)));
 execFileSync('hugo', ['--source', scratch, '--destination', join(scratch, 'rendered')], { stdio: 'pipe' });
 const data = new Map(sources.map(([id]) => [id, JSON.parse(read(join(scratch, `rendered/${id}/index.html`)))]));
@@ -86,7 +86,7 @@ const cover = '<img src="assets/zsh-prompt-cover.png" width="1200" height="630" 
 const date = value => `<time datetime="${value}">${value.replaceAll('-', '/')}</time>`;
 const plain = html => html.replace(/<[^>]*>/g, '').trim();
 function entries(items, { noSummary = false } = {}) {
-  if (!items.length) return '<p class="empty">まだ記事がありません。</p>';
+  if (!items.length) return '<p class="empty" lang="en">No posts yet.</p>';
   return `<div class="post-list">${items.map(post => `<article class="post-entry${post.id === 'article' ? ' has-cover' : ''}"><a class="entry-link" href="${post.id}.html" aria-labelledby="entry-${post.id}">${post.id === 'article' ? `<figure class="entry-cover">${cover}</figure>` : ''}<div class="entry-text"><h2 class="entry-title" id="entry-${post.id}">${escape(post.title)}</h2><div class="meta">${date(post.date)}</div>${noSummary ? '' : `<p class="entry-summary">${plain(post.summary)}</p>`}</div></a></article>`).join('')}</div>`;
 }
 // One inline formatting context preserves the spaces beside the arrows inside flex links.
@@ -96,7 +96,7 @@ function pager(base, current, total) {
   if (total <= 1) return '';
   return `<nav class="pager" lang="en" aria-label="Pagination">${current > 1 ? `<a class="previous-page" href="${url(current - 1)}" rel="prev">${navLabel('prev')}</a>` : ''}<span class="page-number" aria-label="Page ${current} of ${total}">${current} / ${total}</span>${current < total ? `<a class="next-page" href="${url(current + 1)}" rel="next">${navLabel('next')}</a>` : ''}</nav>`;
 }
-const intro = `<section class="intro" aria-label="紹介"><p>${escape(siteConfig.params.homeinfoparams.content)}</p></section>`;
+const intro = `<section class="intro" aria-label="Introduction"><p>${escape(siteConfig.params.homeinfoparams.content)}</p></section>`;
 for (const base of ['home', 'posts']) for (let n = 1; n <= 3; n++) {
   const home = base === 'home';
   const top = home ? (n === 1 ? intro : '') : heading('Posts');
@@ -162,8 +162,8 @@ for (const year of [...new Set(posts.map(p => p.date.slice(0, 4)))]) {
 }
 page('archives.html', 'Archives', archive, { current: 'archives' });
 page('404.html', '404 — Page not found', '<div lang="en">' + heading('404 — Page not found') + '<nav class="recovery-nav" aria-label="Page recovery"><a href="home.html">Back to Home</a><a href="archives.html">Browse Archives</a></nav></div>');
-page('empty.html', 'Posts', heading('Posts', '0件の表示確認') + entries([]));
-page('single-item.html', 'Posts', heading('Posts', '1件・要約なしの表示確認') + entries([posts[2]], { noSummary: true }));
+page('empty.html', 'Posts', heading('Posts', 'Empty list preview', 'en') + entries([]));
+page('single-item.html', 'Posts', heading('Posts', 'Single post preview · No summary', 'en') + entries([posts[2]], { noSummary: true }));
 
 const classificationReviewLinks = [
   ['tag-pagination.html', 'タグ別一覧・先頭ページ', '検証専用の分類・5件中2件・Nextのみ'],

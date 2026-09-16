@@ -171,7 +171,7 @@ ruby = "3.4"
 
 タグ・カテゴリの名称順にはHugoの`Taxonomy.Alphabetical`を用いる。分類一覧テンプレートでは`range .Data.Terms.Alphabetical`とし、表示名・URLは各要素の`.Page`から取得する。独自の日本語照合・読み仮名対応は行わない。[Alphabetical](https://gohugo.io/methods/taxonomy/alphabetical/)
 
-一覧は本実装で`pagination.pagerSize: 10`を維持する。モックはページ送り検証のため2件×3ページのままとする。補助UIは英語ラベル・日本語説明とする。
+一覧は本実装で`pagination.pagerSize: 10`を維持する。モックはページ送り検証のため2件×3ページのままとする。補助UIは操作ラベルだけでなく、件数・空状態・エラー説明・固定の読み上げラベルも短い英語で統一する。コンテンツ由来の文章・名称・画像の代替テキスト、レビュー入口の説明は翻訳しない。
 
 ## RSSとOGPの互換性
 
