@@ -314,14 +314,20 @@ for (const name of ['heading-rhythm', 'quote-line', 'heading-links']) {
   assert(!read('index.html').includes(`name="${name}"`));
   assert(!themeCss.includes(`data-${name}`));
 }
-assert(cssRule('.heading-anchor').includes('display: flex;'));
+assert(cssRule('.heading-anchor').includes('display: none;'));
 assert(cssRule('.heading-anchor').includes('opacity: 0;'));
 assert(cssRule('.heading-anchor').includes('position: absolute; right: 100%;'));
 assert(!themeCss.includes('--heading-anchor-inset'));
-assert.match(themeCss, /^:root \{[^}]*--gutter: 24px;/);
-assert.match(themeCss, /@media \(hover: hover\) \{\s*:root \{ --gutter: max\(24px, var\(--heading-anchor-size\)\); \}\s*\}/);
-assert.match(themeCss, /@media \(max-width: 639px\) and \(hover: none\) \{\s*:root \{ --gutter: 16px; \}\s*\}/);
-assert.match(themeCss, /@media \(hover: none\) \{\s*\.heading-anchor \{ display: none; \}\s*\}/);
+assert.match(themeCss, /^:root \{[^}]*--gutter: 16px;/);
+const wideRules = themeCss.match(/@media \(min-width: 640px\) \{((?:\s*[^{}]+\{[^{}]*\})+)\s*\}/)?.[1];
+const hoverRules = themeCss.match(/@media \(hover: hover\) \{((?:\s*[^{}]+\{[^{}]*\})+)\s*\}/)?.[1];
+assert(wideRules && hoverRules, 'Separate width and input-capability enhancements');
+assert(wideRules.includes(':root { --gutter: 24px; }'));
+assert(hoverRules.includes(':root { --gutter: max(24px, var(--heading-anchor-size)); }'));
+assert(hoverRules.includes('.heading-anchor { display: flex; }'));
+assert(themeCss.indexOf('@media (hover: hover)') > themeCss.indexOf('@media (min-width: 640px)'), 'Hover gutter wins at every width');
+assert.doesNotMatch(themeCss, /@media[^{}]*(?:max-width|hover: none)/);
+assert.equal((themeCss.match(/@media/g) || []).length, 2, 'One width enhancement and one input enhancement');
 assert.doesNotMatch(themeCss, /--gutter-base/);
 assert(cssRule('.heading-anchor').includes('text-decoration-line: none;'));
 assert(cssRule('.heading-anchor span').includes('font-size: var(--text-label);'));
@@ -371,7 +377,6 @@ for (const [, selector, declarations] of themeCss.matchAll(/([^{}]+)\{([^{}]*)\}
   }
 }
 assert.match(themeCss, /\.prose :is\(h2, h3, h4, h5, h6\):is\(:hover, :focus-within\) > \.heading-anchor \{ opacity: 1; \}/);
-assert.match(themeCss, /@media \(hover: none\) \{\s*\.heading-anchor \{ display: none; \}/);
 assert.match(themeCss, /\.prose :is\(h2, h3, h4, h5, h6\) \+ p \{ margin-top: 0; \}/);
 assert.match(themeCss, /\.prose :is\(h2 \+ h3,[^\n]+h5 \+ h6\) \{ margin-top: \.910em; \}/);
 assert.match(themeCss.split(':root[data-theme="dark"]')[0], /--quote-border: #8c8fa1;/);
@@ -390,7 +395,7 @@ assert(cssRule('.copy[hidden]').includes('display: none;'));
 assert(cssRule('.copy::before').includes('inset: var(--ui-space-1);'));
 assert(cssRule('.theme-toggle svg, .copy svg').includes('width: var(--icon-size-small); height: var(--icon-size-small);'));
 assert.doesNotMatch(cssRule('.code-block'), /min-height:/);
-assert.match(themeCss, /@media \(hover: hover\) \{\s*\.code-block:not\(\[data-copy-dismissed\]\):hover \.copy \{ opacity: 1; pointer-events: auto; \}/);
+assert(hoverRules.includes('.code-block:not([data-copy-dismissed]):hover .copy { opacity: 1; pointer-events: auto; }'));
 assert(cssRule('.code-block:not([data-copy-dismissed]):is(:focus-within, [data-copy-visible]) .copy').includes('opacity: 1; pointer-events: auto;'));
 for (const { file } of manifest.pages) {
   for (const [button] of read(file).matchAll(/<button class="copy"[\s\S]*?<\/button>/g)) {
@@ -419,9 +424,10 @@ assert(!themeCss.includes('@container pagination') && !themeCss.includes('.pager
 assert.doesNotMatch(read('home-2.html'), /Previous|pager-layout/);
 assert(cssRule('.post-nav').includes('repeat(2, minmax(0, 1fr))'));
 for (const page of ['article.html', 'article-hugo.html', 'article-pasmo.html']) assert(read('index.html').includes(`value="${page}"`));
-const mobileRules = themeCss.slice(themeCss.indexOf('@media (max-width: 639px) {'));
 assert(cssRule('.site-nav').includes('margin-top: var(--ui-space-2);'));
-assert.doesNotMatch(mobileRules, /\.(?:site-header|site-nav|intro|article-header|post-nav|site-footer)\s*\{/);
+assert.doesNotMatch(wideRules, /\.(?:site-header|site-nav|intro|article-header|post-nav|site-footer)\s*\{/);
+assert(cssRule('.review-grid').includes('grid-template-columns: 1fr;'));
+assert(wideRules.includes('.review-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }'));
 assert(cssRule('.post-nav').includes('gap: var(--ui-space-4);'));
 assert(cssRule('.intro').includes('margin: 0 0 var(--space-group);'));
 assert(cssRule('.site-footer').includes('padding-block: var(--space-group) var(--ui-space-8);'));
@@ -453,8 +459,8 @@ assert.doesNotMatch(cssRule(':not(pre) > code'), /line-height/);
 
 assert(cssRule('.archive-month').includes('align-items: first baseline;'));
 assert(cssRule('.archive-month').includes('grid-template-columns: var(--ui-space-8) minmax(0, 1fr);'));
-assert(cssRule('.archive-month').includes('column-gap: var(--ui-space-12);'));
-assert(mobileRules.includes('.archive-month { column-gap: var(--ui-space-4); }'));
+assert(cssRule('.archive-month').includes('column-gap: var(--ui-space-4);'));
+assert(wideRules.includes('.archive-month { column-gap: var(--ui-space-12); }'));
 assert(cssRule('.archive-month h3').includes('margin: 0;'));
 assert(cssRule('.archive-month ul').includes('gap: var(--ui-space-6);'));
 assert.doesNotMatch(themeCss, /\.archive-month li \{/);
@@ -523,7 +529,7 @@ assert(cssRule('.code-block .highlight').includes('min-width: 0;'));
 for (const selector of ['.share-icons', '.footer-links']) assert(cssRule(selector).includes('gap: var(--icon-gap)'));
 assert.match(themeCss, /--radius-small: 4px;/);
 assert.match(themeCss, /--radius-large: 8px;/);
-assert.equal([...themeCss.matchAll(/--gutter:/g)].length, 3, 'Gutters have only the base, hover and narrow non-hover rules');
+assert.equal([...themeCss.matchAll(/--gutter:/g)].length, 3, 'Gutters have only the narrow base, wide and hover rules');
 for (const [, value] of themeCss.matchAll(/border-radius: ([^;]+);/g)) {
   assert(['var(--radius-small)', 'var(--radius-large)', '50%'].includes(value));
 }
