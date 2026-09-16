@@ -111,7 +111,9 @@ button:disabled { cursor: default; }
 .site-nav a[aria-current="page"] { text-decoration-line: underline; }
 /* Small icon controls share geometry; visibility and placement belong to each role. */
 .theme-toggle, .copy { display: inline-grid; place-items: center; width: var(--control-size-small); height: var(--control-size-small); min-width: var(--control-size-small); min-height: var(--control-size-small); padding: var(--ui-space-2); border: 0; border-radius: var(--radius-small); background: none; }
-.theme-toggle svg, .copy svg { width: var(--icon-size-small); height: var(--icon-size-small); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+/* Same visible stroke: 1.5 units at 24px, 2.25 units at 16px. Scale with text enlargement. */
+.icon-link svg, .theme-toggle svg, .copy svg { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
+.theme-toggle svg, .copy svg { width: var(--icon-size-small); height: var(--icon-size-small); stroke-width: 2.25; }
 .sun, [data-theme="dark"] .moon { display: none; }
 [data-theme="dark"] .sun { display: block; }
 h1, h2, h3, h4, h5, h6 { line-height: var(--leading-heading); font-weight: 500; overflow-wrap: anywhere; }
@@ -216,7 +218,7 @@ code, pre { font-family: var(--font-code); font-feature-settings: normal; font-v
 .share-mount { min-width: 0; max-width: 100%; margin-inline-start: calc(-1 * var(--share-optical-inset)); }
 .share-icons { display: flex; flex-wrap: wrap; align-items: center; gap: var(--icon-gap); }
 .icon-link { display: inline-flex; justify-content: center; align-items: center; width: var(--control-size); height: var(--control-size); flex-shrink: 0; border-radius: var(--radius-small); color: var(--text); text-decoration-line: none; min-height: var(--control-size); min-width: var(--control-size); }
-.icon-link svg { width: var(--icon-size); height: var(--icon-size); fill: currentColor; }
+.icon-link svg { width: var(--icon-size); height: var(--icon-size); stroke-width: 1.5; }
 /* Match the official iframe's scheme so the browser preserves its transparency. */
 .star-widget { color-scheme: light; min-width: 0; max-width: 100%; line-height: var(--leading-body); }
 .widget-status { flex-basis: 100%; margin: 0; color: var(--muted); font-size: var(--text-label); }

@@ -51,14 +51,15 @@ assert.doesNotMatch(css, /--star-inset/);
 const starRule = css.match(/\.star-widget \{([^}]+)\}/)[1];
 assert.doesNotMatch(starRule, /background|border|padding|margin|flex-basis/);
 assert.match(starRule, /color-scheme: light/);
-assert.match(css, /\.icon-link svg \{[^}]*fill: currentColor/);
+assert.match(css, /\.icon-link svg, \.theme-toggle svg, \.copy svg \{ fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round;/);
+assert.match(css, /\.icon-link svg \{[^}]*stroke-width: 1\.5;/);
 assert.match(css, /\.icon-link svg \{ width: var\(--icon-size\); height: var\(--icon-size\);/);
 for (const name of ['bluesky', 'x', 'facebook', 'hatena', 'github', 'rss', 'moon', 'sun']) {
   const svg = icon(name);
   assert(svg.includes('viewBox="0 0 24 24"'), 'All artwork uses the same coordinate system');
   assert(svg.includes('width="24" height="24"'), 'Intrinsic dimensions match the shared canvas');
-  assert.doesNotMatch(svg, /transform=|vector-effect=|stroke-width=/, 'No per-icon scale or stroke correction');
-  assert(svg.includes('preserveAspectRatio="xMidYMid meet"'), 'Fit and center silhouettes without stretching or cropping');
+  assert.doesNotMatch(svg, /transform=|vector-effect=|stroke-width=|fill=/, 'No per-icon scale, fill or stroke correction');
+  assert(svg.includes('preserveAspectRatio="xMidYMid meet"'), 'Fit and center artwork without stretching or cropping');
 }
 const iconRule = css.match(/\.icon-link \{([^}]+)\}/)[1];
 assert.match(iconRule, /width: var\(--control-size\); height: var\(--control-size\); flex-shrink: 0;/);

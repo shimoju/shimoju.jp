@@ -338,8 +338,14 @@ assert.doesNotMatch(themeCss, /\.heading-anchor::(?:before|after)/);
 for (const size of [16, 20, 32]) assert.equal(tokenPixels('--heading-anchor-size', size), 24 * size / 16);
 assert.doesNotMatch(themeCss, /\.(?:icon-link|theme-toggle|copy):hover\s*\{/);
 assert(cssRule('.theme-toggle svg, .copy svg').includes('width: var(--icon-size-small); height: var(--icon-size-small);'));
-assert(cssRule('.theme-toggle svg, .copy svg').includes('stroke-linecap: round; stroke-linejoin: round;'));
-assert(cssRule('.theme-toggle svg, .copy svg').includes('stroke-width: 1.5;'));
+assert(cssRule('.icon-link svg, .theme-toggle svg, .copy svg').includes('fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round;'));
+assert(cssRule('.theme-toggle svg, .copy svg').includes('stroke-width: 2.25;'));
+assert(cssRule('.icon-link svg').includes('stroke-width: 1.5;'));
+for (const size of [16, 20, 32]) {
+  const expectedStroke = 1.5 * size / 16;
+  assert.equal(2.25 * tokenPixels('--icon-size-small', size) / 24, expectedStroke, 'Small icons render a 1.5px stroke, scaling with text');
+  assert.equal(1.5 * tokenPixels('--icon-size', size) / 24, expectedStroke, 'Large icons render the same stroke');
+}
 for (const { file } of manifest.pages) {
   for (const name of ['moon', 'sun']) assert(read(file).includes(`class="${name}" viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet"`));
   for (const [svg] of read(file).matchAll(/<svg\b[^>]*>/g)) {
