@@ -79,7 +79,7 @@ UIの余白・寸法は4px相当を単位とし、8px刻みを中心にする。
 
 配色パラメーターは保存済み設定より優先しますが、それだけでは保存内容を変えません。配色ボタンでモック専用キー`shimoju-mock-theme`に保存し、明示選択がなければOS設定に追従します。システム設定への復帰UIはありません。
 
-本文・記事見出し・サイト名は`-apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", "Noto Sans CJK JP", sans-serif`を使います。見出しは500・サイト名は300、本文は400、strong／b・thは700です。
+本文・記事見出し・サイト名は`-apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif`を使います。見出しは500・サイト名は300、本文は400、strong／b・thは700です。
 
 Macの和文がNotoへフォールバックするのを避けるため、Hiragino SansをNotoより前に明示します。Windowsにヒラギノがあっても欧文はSegoe UIを優先するため、その後ろに置きます。通常版Segoe UIの500でSemiboldになることはユーザーがWindows実機で確認済みです。別環境では入口の200・300・400・500・700サンプルで実際のフェイスを確認できます。選定理由・フォールバックの注意点は[実装上の判断理由](../docs/05-theme-implementation.md)を参照してください。
 
