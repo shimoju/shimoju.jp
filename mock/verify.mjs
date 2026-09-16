@@ -81,8 +81,6 @@ for (const file of ['article', 'article-hugo', 'article-diary', 'article-bgm', '
   assert.doesNotMatch(read(`${file}.html`).match(/<header class="article-header">[\s\S]*?<\/header>/)[0], /Updated/);
 }
 assert.match(read('assets/theme.css'), /\.meta \{[^}]*gap: var\(--ui-space-1\) var\(--ui-space-4\);/);
-assert.match(read('assets/theme.css'), /\.article-tags \{[^}]*gap: var\(--text-link-gap\);/);
-assert.match(read('assets/theme.css'), /\.terms \{[^}]*gap: var\(--text-link-gap\);/);
 assert.match(read('assets/theme.css'), /\.article-header h1 \{ margin-bottom: var\(--title-meta-gap\); \}/);
 assert.doesNotMatch(read('home-2.html'), /class="intro"/);
 assert.doesNotMatch(read('home-3.html'), /rel="next"/);
@@ -212,7 +210,6 @@ for (const defaultSize of [16, 20, 32]) {
 assert.equal(tokenPixels('--code-size', 16, 1.8), 14, 'Code size is independent of the body token');
 assert(Math.abs(tokenPixels('--text-h1', 16, 1.8) - 28.8) < 1e-9);
 assert(Math.abs(tokenPixels('--space-section', 16, 1.8) - 46.08) < 1e-9);
-assert.match(themeCss, /\.site-nav \{[^}]*column-gap: var\(--text-link-gap\); row-gap: var\(--ui-space-1\);/);
 assert.match(themeCss, /--leading-code: 1\.3;/);
 assert.doesNotMatch(themeCss, /font(?:-size)?:[^;{}]*\dpx/);
 assert(!themeCss.includes('.code-toolbar'));
@@ -444,7 +441,6 @@ assert(cssRule('.intro').includes('margin: 0 0 var(--space-group);'));
 assert(cssRule('.site-footer').includes('padding-block: var(--space-group) var(--ui-space-8);'));
 assert(cssRule('.article-header').includes('margin-bottom: var(--ui-space-8);'));
 assert(cssRule('.site-nav a').includes('padding: var(--ui-space-2) var(--text-link-inset);'));
-assert(cssRule('.recovery-nav').includes('gap: var(--ui-space-1) var(--text-link-gap);'));
 assert(cssRule('.recovery-nav').includes('margin-inline-start: calc(-1 * var(--term-optical-inset));'));
 assert(cssRule('.recovery-nav a').includes('padding: var(--ui-space-2) var(--text-link-inset);'));
 assert(cssRule('.recovery-nav a').includes('min-height: var(--control-size);'));
@@ -488,7 +484,10 @@ assert.doesNotMatch(themeCss, /\.archive-month a:is\(:hover, :focus-visible\) \{
 for (const [entry] of read('archives.html').matchAll(/<li>[\s\S]*?<\/li>/g)) {
   assert.match(entry, /<span class="archive-title" id="archive-[^"]+">[^<]+<\/span><time/, 'Date must remain outside the underlined title');
 }
-for (const selector of ['.article-tags', '.terms']) assert(cssRule(selector).includes('gap: var(--text-link-gap);'));
+for (const selector of ['.site-nav', '.recovery-nav', '.article-tags', '.terms']) {
+  assert(cssRule(selector).includes('gap: var(--ui-space-1) var(--text-link-gap);'), `${selector}: shared 4px row / 8px column spacing`);
+  assert.doesNotMatch(cssRule(selector), /(?:row|column)-gap:/, `${selector}: use the shared shorthand`);
+}
 for (const selector of ['.article-tags', '.terms']) assert(cssRule(selector).includes('margin-inline-start: calc(-1 * var(--term-optical-inset));'));
 assert.match(themeCss, /--term-optical-inset: min\(var\(--text-link-inset\), var\(--gutter\)\);/);
 assert.match(themeCss, /--share-optical-inset: min\(calc\(\(var\(--control-size\) - var\(--icon-size\)\) \/ 2\), var\(--gutter\)\);/);
