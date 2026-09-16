@@ -65,7 +65,7 @@
   --space-list-item: .125em; /* 1/8 */
   --space-list-nested: .25em; /* 1/4 */
   --space-list-paragraph: .375em; /* 3/8 */
-  --list-indent: 1.5em; /* 12/8 */
+  --list-indent: 1.75em; /* 14/8 */
   --quote-inset: 1.25em; /* 10/8 */
   --space-cover: calc(var(--body-size) * 1.931);
   /* Body-scale steps +10, +12, +13, +15; preserve these ratios rather than round to UI pixels. */

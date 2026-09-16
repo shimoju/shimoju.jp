@@ -110,7 +110,7 @@ const themeCss = read('assets/theme.css');
 for (const [name, value] of Object.entries({
   'space-paragraph': '1em', 'space-list-item': '.125em',
   'space-list-nested': '.25em', 'space-list-paragraph': '.375em',
-  'list-indent': '1.5em', 'quote-inset': '1.25em',
+  'list-indent': '1.75em', 'quote-inset': '1.25em',
   'title-meta-gap': 'var(--ui-space-2)', 'description-gap': 'var(--ui-space-3)',
   'media-info-gap': 'var(--ui-space-6)',
 })) assert(themeCss.includes(`--${name}: ${value};`), `${name}: semantic spacing token`);
