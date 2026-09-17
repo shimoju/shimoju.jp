@@ -1,207 +1,80 @@
-# 1. Hugoテーマに必要な画面とテンプレート
+# 1. Hugoのテーマ構造と責務
 
-前提とバージョンは[技術情報の前提](README.md#技術情報の前提)を参照。ここでは「Hugoが描画するために必要なもの」と「このブログで実装するもの」を区別する。
+Hugoのページモデル、テンプレート、テーマとの責務分担をまとめた調査資料。テンプレート名はv0.146以降の体系を前提とする。確認環境は[技術情報の前提](README.md#技術情報の前提)、PaperMod固有の挙動は[資料2](02-papermod-analysis.md)を参照。
 
-対象画面をHugoテンプレートへ対応付ける。最新の表示仕様は[HTMLモック](../mock/README.md)、判断理由は[資料4](04-theme-visual-requirements.md)を参照する。
+## ページ種別とテンプレート
 
-## 必須の考え方
+Hugoには、テーマが必ず個別に実装する固定数の画面はない。有効なページ種別・出力形式に対し、検索順に従ってテンプレートが選ばれる。`all.html`は広いフォールバック、`single.html`と`list.html`は詳細と一覧のフォールバックに使える。`baseof.html`は共通枠であり、単独で記事本文を描画するテンプレートではない。[テンプレートの種類](https://gohugo.io/templates/types/)、[検索順](https://gohugo.io/templates/lookup-order/)
 
-Hugoテーマに、必ず個別実装しなければならない固定数の画面はない。有効なページ種別・出力形式に対応するテンプレートが必要になる。共通の`all.html`だけで広くHTMLを描画することも可能だが、記事と一覧を分けるブログなら`single.html`と`list.html`が実用上の出発点になる。`baseof.html`は共通枠を再利用する仕組みであり、それだけでは記事本文を描画するテンプレートにならない。[新テンプレートシステム](https://gohugo.io/templates/new-templatesystem-overview/)、[テンプレートの種類](https://gohugo.io/templates/types/)
-
-`theme.toml`、README、LICENSE、スクリーンショット、サンプルサイトは配布・利用案内のためのもの。`theme.toml`を置くだけでページが描画されるわけではない。自分のサイト専用ならルートの`layouts/`と`assets/`から始めてもよく、再利用するテーマとして切り出す場合は`themes/<テーマ名>/`にまとめ、サイト設定の`theme`で選ぶ。[ディレクトリ構成](https://gohugo.io/getting-started/directory-structure/)
-
-## 実装する画面
-
-検索・Profile・目次は実装しない。各ページは共通枠と本文・一覧部品を再利用する。
-
-| 優先度 | 画面・URL例 | HugoのKind / 主なテンプレート候補 | モックに含める内容 |
-| --- | --- | --- | --- |
-| 必須 | ホーム `/` | `home` / `home.html` → `list.html` | 現行設定の紹介文、記事一覧、ページ送り。紹介は初ページのみ、SNSリンクは共通フッター |
-| 必須 | 記事詳細 `/2026/09/01/development-environment-2026/` | `page` / `posts/page.html`、`page.html`、`single.html` | タイトル、公開日・更新日、本文、コード、画像、タグ、前後記事、共有・スター |
-| 必須 | 固定ページ `/about/` | `page` / `page.html`、`single.html`、独自`layout` | 現行のプロフィール本文を維持する。日付・共有・はてなスターを表示し、タグ・前後記事は表示しない |
-| 必須 | セクション一覧 `/posts/` | `section` / `section.html` → `list.html` | 見出し、説明、記事一覧。ホームとは紹介部分が異なる |
-| 必須 | タグ・カテゴリの一覧 `/tags/`、`/categories/` | `taxonomy` / `taxonomy.html` → `list.html` | 分類名と件数。記事カードの一覧とは異なる |
-| 必須 | 個別タグ・カテゴリ `/tags/hugo/`、`/categories/技術/` | `term` / `term.html` → `list.html` | 分類見出し、その分類の記事、ページ送り |
-| 必須 | 年月別アーカイブ `/archives/` | `page` + `layout: archives` / `archives.html` | 年月・タイトル・日付。Hugo固有のKindではない |
-| 必須 | 404 | `404` / `404.html` | 見つからないことの説明、ホーム等への復帰導線 |
-| 状態として必須 | 一覧2ページ目以降 `/page/2/` 等 | 元の一覧と同じテンプレート | 初ページのみの紹介を消す、前後リンクの端の状態 |
-
-上表の矢印は同じ配置・言語・HTML形式で見た代表的フォールバック。実際にはページパス、独自`layout`、`type`等も選択に影響する。`taxonomy`は「タグ全体」、`term`は「特定タグの記事一覧」で、v0.146以降の`taxonomy.html`は`term`用を兼ねない。[新テンプレートシステム](https://gohugo.io/templates/new-templatesystem-overview/)
-
-404のHTML生成と、存在しないURLにHTTP 404を返す設定は別。後者は配信環境で確認する。[404テンプレート](https://gohugo.io/templates/404/)
-
-### 画面ごとの状態・部品
-
-別画面を増やすより、以下を同じモックのバリエーションとして用意すると実装時の見落としを減らせる。
-
-| 対象 | 確認する状態 |
-| --- | --- |
-| 共通枠 | 400px／1280px、追加320px／360px／768px、light/dark、メニューが横幅を超える場合、長いサイト名、キーボードフォーカス |
-| 記事一覧 | 0件・1件・多数、長い日本語タイトル、要約なし、カバーあり／なし、先頭／途中／最終ページ |
-| 記事本文 | H2〜H6、段落、強調、リンク、引用、入れ子リスト、タスクリスト、表、脚注、区切り、長いURL |
-| コード | 言語あり／なし、インラインコード、長い行、行番号、強調行、コピー成功／失敗、light/dark |
-| 画像・埋め込み | 横長／縦長／小画像、alt・caption、リンク付き画像、本文最上部の大画像、動画、SNS・Speaker Deck、取得失敗 |
-| メタ情報 | 複数タグ、長いタグ、Aboutの日付・共有・スター、更新日の表示条件、下書きプレビュー、共有ボタンの折り返し |
-| アクセシビリティ | 200%拡大、Tab操作、フォーカス表示、reduced motion、JS無効でも記事を読める、画像が読み込めない |
-
-モックの再生成・検査コマンドは[モックREADME](../mock/README.md#再生成と検査)を参照する。
-
-## HTML画面以外の成果物
-
-| 成果物 | 自作が必要か | 決めること |
+| ページ種別 | Kind | HTMLテンプレートの代表例 |
 | --- | --- | --- |
-| RSS `index.xml` | Hugo内蔵あり。要件に応じ上書き | PaperModの対象範囲・除外条件を維持。home/section/taxonomy/term、要約・件数無制限、既存URL・自動検出 |
-| `sitemap.xml` | Hugo内蔵あり | 公開対象、除外、更新日の由来 |
-| `robots.txt` | `enableRobotsTXT: true`で生成可能 | 本番とプレビューの方針。noindexとは別 |
-| CSS/JS | テーマ側で作る | 共通／画面別の分割、minify、fingerprint、読み込み方法 |
-| favicon等 | 元画像とリンクを用意する | 種類・サイズ。テーマのHTMLだけでは実画像は生成されない |
-| リダイレクト | Hugoの`aliases`等を利用可能 | 既存URLの維持、配信側の301/308等との使い分け |
+| ホーム | `home` | `home.html`、`list.html` |
+| 記事・固定ページ | `page` | `page.html`、`single.html` |
+| セクション一覧 | `section` | `section.html`、`list.html` |
+| タクソノミー一覧 | `taxonomy` | `taxonomy.html`、`list.html` |
+| 個別の分類に属するページ一覧 | `term` | `term.html`、`list.html` |
+| 404 | `404` | `404.html` |
 
-根拠: [RSS](https://gohugo.io/templates/rss/)、[sitemap](https://gohugo.io/templates/sitemap/)、[robots.txt](https://gohugo.io/templates/robots/)、[出力形式の有効化](https://gohugo.io/configuration/outputs/)。PaperMod固有の出力は[資料3](03-papermod-analysis.md)を参照。
+表は代表例であり、ページパス、`layout`、`type`、言語、出力形式等も検索順に影響する。`taxonomy`は分類名の集合、`term`は特定の分類に属するページの集合。v0.146以降の`taxonomy.html`は`term`用を兼ねない。[新テンプレートシステム](https://gohugo.io/templates/new-templatesystem-overview/)
 
-## 推奨ディレクトリ構成
+`Kind`はHugoが持つページ種別、`type`はコンテンツ型、`layout`はテンプレート選択の指定で、それぞれ別の概念。年月別Archivesは独自の`layout`で構成でき、Hugo固有のKindではない。一覧の2ページ目以降はページ送り機能が同じテンプレートから生成する。
 
-最初から全ファイルを作る必要はない。以下は拡張時の置き場所を含めた設計例。
+## テーマとディレクトリ
 
-```text
-themes/my-theme/
-├── theme.toml                 # 配布メタデータ・対応バージョン
-├── README.md / LICENSE
-├── archetypes/default.md     # 新規記事のfront matter雛形（任意）
-├── assets/
-│   ├── css/main.css           # Hugo Pipesで処理するソース
-│   └── js/main.js
-├── static/                   # そのまま配信するファイル
-├── i18n/ja.yaml              # UIラベル（多言語化する場合）
-└── layouts/
-    ├── baseof.html           # 共通HTML枠
-    ├── home.html             # ホーム固有部分が必要なら
-    ├── single.html           # 記事・固定ページの共通フォールバック
-    ├── list.html             # section・term等の共通フォールバック
-    ├── taxonomy.html         # タグ／カテゴリ自体の一覧
-    ├── archives.html         # 独自layout
-    ├── 404.html
-    ├── posts/page.html       # 記事と固定ページを分ける場合
-    ├── _partials/
-    │   ├── head.html
-    │   ├── header.html
-    │   ├── footer.html
-    │   └── post-card.html
-    ├── _markup/
-    │   ├── render-image.html
-    │   ├── render-heading.html
-    │   └── render-codeblock.html
-    └── _shortcodes/
-        └── video.html
-```
+テーマはテンプレート・アセット等の集合で、サイト側と同じHugoの仕組みを使う。サイト側に同じテンプレートパスのファイルがあれば、テーマ側を上書きできる。ただし、サイト側の汎用テンプレートよりテーマ側の具体的なテンプレートが先に選ばれる場合がある。[検索順](https://gohugo.io/templates/lookup-order/)
 
-`assets/`は変換・結合の対象として取得する場所、`static/`は基本的にコピーする場所。`content/`は通常サイト側に残す。記事と画像を一緒に持つ`index.md`のleaf bundleと、セクション等の説明を持つ`_index.md`のbranch bundleを区別する。現在の記事は`content/posts/YYYY/MM/DD/<slug>/index.md`形式で、出力URLは`hugo.yml`のpermalinksにより決まる。[ディレクトリ構成](https://gohugo.io/getting-started/directory-structure/)、[Page bundles](https://gohugo.io/content-management/page-bundles/)
+| 場所 | 役割 |
+| --- | --- |
+| `layouts/` | ページ・出力形式ごとのテンプレートと共通枠 |
+| `layouts/_partials/` | テンプレートから呼ぶ共通部品 |
+| `layouts/_markup/` | Markdown要素の出力を変えるrender hook |
+| `layouts/_shortcodes/` | コンテンツから明示的に呼ぶshortcode |
+| `assets/` | Hugo Pipes等でResourceとして取得・加工するソース |
+| `static/` | 出力先へ基本的にそのままコピーするファイル |
+| `archetypes/` | 新規コンテンツの雛形 |
+| `i18n/` | 翻訳ラベル |
+| `theme.toml`、README、LICENSE等 | テーマのメタデータ・利用案内・ライセンス |
 
-## テンプレートの基本と最小例
+テーマのメタデータだけでは画面は生成されない。テーマとしてのファイル群は`themes/<名前>/`等に配置され、サイト設定から読み込まれる。[ディレクトリ構成](https://gohugo.io/getting-started/directory-structure/)
 
-Go templateでは`{{ ... }}`内に処理を書く。`.`は現在のコンテキストで、`range`・`with`の内側で変わる。`$page := .`のように元のPageを保存できる。`partial "name.html" .`はコンテキストを渡して部品を呼び出す。`{{-`・`-}}`は隣接空白を除去するもので、HTML/CSSのminifyとは別。[テンプレート入門](https://gohugo.io/templates/introduction/)
+コンテンツの`index.md`はleaf bundle、`_index.md`はbranch bundleを表す。前者は記事と画像等のResource、後者はセクション等の一覧ページの説明やメタデータをまとめる。コンテンツの物理パスと出力URLは同一とは限らず、パーマリンク設定等がURLに影響する。[Page bundles](https://gohugo.io/content-management/page-bundles/)
 
-以下の4ファイルは、構文と一覧／詳細の分離を示す小さなサンプル。CSS、SEO、メニュー、404等は別途追加する。ルートの`layouts/`またはテーマの`layouts/`に同名で配置する。
+## Hugo本体とテーマの責務
 
-### `layouts/baseof.html`
+HugoがAPIや内蔵テンプレートを提供することと、任意のテーマでその機能が表示されることは別である。
 
-```go-html-template
-<!doctype html>
-<html lang="{{ site.Language.Locale }}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ site.Title }}</title>
-</head>
-<body>
-  <header><a href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a></header>
-  <main>{{ block "main" . }}{{ end }}</main>
-</body>
-</html>
-```
+| 領域 | Hugo本体 | テーマ・サイト側 | ブラウザ・配信側 |
+| --- | --- | --- | --- |
+| 本文・一覧 | Markdown変換、Page・分類モデル、要約・日付等の取得 | 対象データ・表示条件、HTML構造、CSS | HTMLを描画 |
+| ページ送り・目次・関連記事 | Paginator、見出し情報、関連記事抽出等のAPI | 呼び出し・設定とUI | 移動・スクロール等 |
+| CSS・JS | 結合・minify・変換・fingerprint等のビルド機能 | 入力・処理順・出力参照、ブラウザ用JS | JS実行、キャッシュ、HTTP圧縮 |
+| 画像 | Resourceの寸法取得・リサイズ・形式変換 | 候補幅、`srcset`・`sizes`・寸法・alt・読み込み属性 | 候補選択、遅延読み込み、取得優先度 |
+| コード | Chromaによるビルド時ハイライト | 配色CSS、コードの外枠、コピーUI | クリップボードAPIと権限 |
+| RSS・sitemap・robots | 内蔵テンプレートと生成機能 | 有効化・対象・設定、必要に応じた上書き | リーダーやクローラーが利用 |
+| SEO情報 | Permalink等のデータ、OGP等の内蔵partial | 呼び出し・独自出力、canonical・構造化データの組み立て | 検索・SNSが解釈 |
+| 検索・配色・外部サービス | JSON等の出力や埋め込み用テンプレート | 索引・UI・切り替えJS・外部サービスの呼び出し | 検索JS・OS設定・外部バックエンド |
+| 公開・セキュリティ | 出力のエスケープ、ビルド時の実行・取得制限 | 公開条件、raw HTMLや外部スクリプトの設定 | TLS・CSP・CORS・認証・HTTPステータス |
 
-### `layouts/single.html`
+サイト設定は言語・URL・出力形式・機能の有効化等を、記事のメタデータはタイトル・日付・画像等の入力値を持つ。テーマ固有のパラメーターやshortcodeは、それを解釈するテンプレートに依存する。
 
-```go-html-template
-{{ define "main" }}
-  <article>
-    <h1>{{ .Title }}</h1>
-    {{ if not .Date.IsZero }}
-      <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-        {{ .Date.Format "2006/01/02" }}
-      </time>
-    {{ end }}
-    {{ if and (not .Lastmod.IsZero) (ne (.Date.Format "2006-01-02") (.Lastmod.Format "2006-01-02")) }}
-      <span lang="en">Updated <time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Lastmod.Format "2006/01/02" }}</time></span>
-    {{ end }}
-    {{ .Content }}
-  </article>
-{{ end }}
-```
+### 混同しやすい境界
 
-### `layouts/list.html`
+- HTML等の出力minifyと、Resourceに対するCSS／JSのminifyは別の処理。`static/`のCSSが自動的に結合・変換される仕組みではなく、未使用CSSの削除やHTTP圧縮も別である。[minify設定](https://gohugo.io/configuration/minify/)、[resources.Minify](https://gohugo.io/functions/resources/minify/)
+- fingerprintはハッシュ付きURLと完全性検証用の値を生成する。HTMLの`integrity`属性を出力するのはテンプレート、検証するのはブラウザ。長期キャッシュの設定は配信側の責務となる。[resources.Fingerprint](https://gohugo.io/functions/resources/fingerprint/)
+- 画像処理APIは、全画像を自動的にレスポンシブ画像へ変えるものではない。テンプレートが処理対象と候補を定める。`loading`・`fetchpriority`・preloadは読み込みの指定で、画像の寸法確保とは別の役割を持つ。[画像処理](https://gohugo.io/content-management/image-processing/)、[画像render hook](https://gohugo.io/render-hooks/images/)
+- Chromaはinline styleまたはクラス付きHTMLを生成する。クラス方式では対応するCSSの配信が必要。コピー操作はハイライトとは独立したブラウザ側の機能である。[Syntax highlighting](https://gohugo.io/content-management/syntax-highlighting/)
+- `js.Build`はHugo内蔵のesbuildを利用する。追加パッケージを使う場合の依存管理とは別。Sassの必要ツールはtranspilerによって異なる。[js.Build](https://gohugo.io/functions/js/build/)、[css.Sass](https://gohugo.io/functions/css/sass/)
+- RSS等の生成対象は出力設定、内容はテンプレートが担う。OGP等の内蔵partialはテンプレートからの呼び出しが必要となる。[出力設定](https://gohugo.io/configuration/outputs/)、[RSS](https://gohugo.io/templates/rss/)、[Embedded partial templates](https://gohugo.io/templates/embedded/)
+- 404のHTML生成とHTTP 404の応答、robots.txtとアクセス制御は別の仕組み。HTTPヘッダーや圧縮は配信環境が扱う。[404](https://gohugo.io/templates/404/)、[robots.txt](https://gohugo.io/templates/robots/)
 
-```go-html-template
-{{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  {{ $pages := .Pages }}
-  {{ if .IsHome }}
-    {{ $pages = where site.RegularPages "Section" "posts" }}
-  {{ end }}
-  {{ $pager := .Paginate $pages }}
-  {{ range $pager.Pages }}
-    <article>
-      <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-      <p>{{ .Summary | plainify }}</p>
-    </article>
-  {{ else }}
-    <p>記事はまだありません。</p>
-  {{ end }}
-  {{ if gt $pager.TotalPages 1 }}
-  <nav aria-label="ページ送り">
-    {{ with $pager.Prev }}<a href="{{ .URL }}">前のページ</a>{{ end }}
-    {{ with $pager.Next }}<a href="{{ .URL }}">次のページ</a>{{ end }}
-  </nav>
-  {{ end }}
-{{ end }}
-```
+## テンプレートとコンテンツ変換の仕組み
 
-### `layouts/taxonomy.html`
+Go templateの`.`は現在のコンテキストで、`range`・`with`の内側で変わる。`partial`は渡されたコンテキストで共通部品を実行し、`block`・`define`はbase templateと子テンプレートを組み合わせる。`{{-`・`-}}`は隣接する空白の除去で、HTMLのminifyとは別。[テンプレート入門](https://gohugo.io/templates/introduction/)
 
-```go-html-template
-{{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  <ul>
-    {{ range .Data.Terms.Alphabetical }}
-      <li><a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a> ({{ .Count }})</li>
-    {{ end }}
-  </ul>
-{{ end }}
-```
+`define`を使う子テンプレートの外側に通常のHTMLがあると、base templateが適用されない。HTML出力はコンテキストに応じてエスケープされ、`safeHTML`等はその扱いを変える。[テンプレートの種類](https://gohugo.io/templates/types/)
 
-この例の`list.html`はhome/section/termを担当し、taxonomyだけ別にする。`.Pages`は子セクション等も含み得るので、実サイトの一覧対象は`.RegularPages`、`.RegularPagesRecursive`等との違いを確認して決める。
+- **render hook**：Markdownの画像・リンク・見出し・コード等の変換時に呼ばれる。本文に書かれた生HTMLはMarkdown画像hookの対象にはならない。[Render hooks](https://gohugo.io/render-hooks/introduction/)
+- **shortcode**：記事中から名前と引数で呼ぶ。Hugo内蔵のものと、テーマ・サイトが定義するものがある。`{{< name >}}`と`{{% name %}}`ではMarkdown処理への参加方法が異なる。[Shortcodes](https://gohugo.io/content-management/shortcodes/)
+- **partial**：ページテンプレート等から呼ぶ共通部品。`partialCached`では、言語ごとのSiteに分離されたキャッシュと、指定したvariantキーで結果を再利用する。[partials.IncludeCached](https://gohugo.io/functions/partials/includecached/)
 
-この最小例は記事・About共通の日付表示と、分類名順の一覧を示す。共有・はてなスター、記事のタグ・前後記事の最新仕様は[HTMLモック](../mock/README.md)を参照する。
-
-`define`を使う子テンプレートには、`define`、空白、Go templateコメント以外を外側に置かない。外側に通常のHTMLを書くとbase templateが適用されない。HTMLの出力はコンテキストに応じてエスケープされるため、`safeHTML`等は信頼できるHTMLに限定する。[テンプレートの種類](https://gohugo.io/templates/types/)、[テンプレート入門](https://gohugo.io/templates/introduction/)
-
-### 実装時に決めること
-
-- 一覧のフィルタとソートを決めてから`.Paginate`を呼ぶ。同じページで最初に作られたPaginatorはキャッシュされる。headとmainで異なる条件のPaginatorを先に作らない。[Pagination](https://gohugo.io/templates/pagination/)
-- 特定ページを独自表示にするならfront matterに`layout: archives`等を置く。`type`はコンテンツ型、`Kind`はhome/page/section等で別概念。Archivesという新Kindは作らない。
-- Markdownの標準画像・見出しを一括変更するならrender hook、著者が明示的に呼び出す動画・埋め込みならshortcode、テンプレート間の共通部品ならpartialを選ぶ。[画像render hook](https://gohugo.io/render-hooks/images/)、[Shortcode templates](https://gohugo.io/templates/shortcode/)
-- shortcodeの`{{< name >}}`はHTMLとして扱う用途、`{{% name %}}`は出力をMarkdown処理に参加させる用途。`.Get`で引数、`.Inner`で囲まれた内容を取得する。内部のMarkdown処理をどちらで行うか決め、二重レンダリングを避ける。[Shortcodes](https://gohugo.io/content-management/shortcodes/)
-- `partialCached`は描画時間を短縮するが、ページ・設定など出力に影響する値をキャッシュキーに含める。言語ごとのSiteキャッシュはHugoが分離する。まず通常のpartialで正しく動かし、必要なら計測して最適化する。[partials.IncludeCached](https://gohugo.io/functions/partials/includecached/)
-- 同一テンプレートパスのサイト側ファイルでテーマを上書きできる。ただし汎用テンプレートをサイト側に置いても、テーマ側のより具体的なパスまで必ず上書きするわけではない。現在の`layouts/_partials/share_icons.html`等の上書きを移行時に棚卸しする。[Lookup order](https://gohugo.io/templates/lookup-order/)
-
-## 実装の完了確認
-
-1. 必須画面をモバイルとデスクトップで作り、記事本文の部品一覧を用意する。ライト／ダークの両配色を確認する。
-2. 実記事を流し込み、既存パーマリンク・画像・`video`/`x`/`youtube` shortcode・生HTML埋め込みを維持する。
-3. home/section/taxonomy/term/page/404と、複数ページの一覧を実際に生成する。テンプレート不足・重複出力・非推奨APIの警告を確認する。
-4. RSS・sitemap・robots・canonical・OGPの内容を確認し、公開URLとプレビュー方針を整合させる。
-5. キーボード・拡大表示・JS無効・画像と外部サービスの失敗時を確認する。
-6. [資料3の性能確認](03-papermod-analysis.md#性能の確認)でPaperModと比較する。
-
-これらは自作テーマ実装時の受け入れ条件とする。
+`.Pages`は子セクション等を含み得る。`.RegularPages`と`.RegularPagesRecursive`は通常ページの取得範囲が異なる。ページ送りは渡された集合を分割し、同じページで最初に生成したPaginatorをキャッシュするため、最初の対象・ソート条件が後の呼び出しにも影響する。[Pagination](https://gohugo.io/templates/pagination/)
