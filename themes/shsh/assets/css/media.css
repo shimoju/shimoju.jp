@@ -1,5 +1,6 @@
 img {
   width: var(--image-width, auto);
+  aspect-ratio: var(--image-ratio, auto);
 }
 
 img,

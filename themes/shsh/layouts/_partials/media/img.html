@@ -5,7 +5,10 @@
   decoding="async"
   {{ with .title }}title="{{ . }}"{{ end }}
   {{ with .data.width }}
-    width="{{ . }}" style="--image-width: {{ . }}px"
+    width="{{ . }}" style="--image-width:
+    {{ . }}px;{{ with $.data.height }}
+      --image-ratio: {{ $.data.width }} / {{ . }};
+    {{ end }}"
   {{ end }}
   {{ with .data.height }}height="{{ . }}"{{ end }}
   {{ with .data.srcset }}srcset="{{ . }}" sizes="{{ $.sizes }}"{{ end }}

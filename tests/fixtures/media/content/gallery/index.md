@@ -41,3 +41,7 @@ cover:
 {{< video src="demo.mp4" width="1600" height="900" title="ターミナルの操作" >}}
 
 {{< speakerdeck id="457f092496ab4856b7c3cef5bcd2babb" ratio="1.77777777777778" >}}
+
+前![文中の画像](small.png)後。
+
+[![リンク内の画像](small.png)](https://example.org/)

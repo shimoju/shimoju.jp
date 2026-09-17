@@ -19,13 +19,6 @@
   margin-top: 0;
 }
 
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--icon-gap);
-  font-size: var(--text-small);
-}
-
 .post-list {
   display: grid;
   gap: var(--space-section);

@@ -1,8 +1,8 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-17T13:08:36.856140+00:00",
+  "updated_at": "2026-09-17T13:23:38.876839+00:00",
   "stage": "representative",
-  "summary": "T001〜T003完了。T004〜T008は実装/ローカル検証済み（R001未提出のためimplemented）。共有・スター・preview分離を含む統合72ブラウザテスト成功。次はT009の代表画面比較とR001提出。本番PaperModと凍結モックは維持。",
+  "summary": "T001〜T003完了。T004〜T008/T019は実装・ローカル検証済み。T009の代表画面比較で単独画像の余白とCSS重複を検出しT019で是正。1440/390px両配色・文字拡大を含む統合84件成功。R001提出用の画像と説明を整理中。本番PaperModと凍結モックは維持。",
   "latest_review_id": null,
   "resume": {
     "task_id": "T009",
@@ -325,7 +325,7 @@
         "docs/verification/t007-check.log",
         "docs/verification/t007-media-images/"
       ],
-      "verification_ids": ["V014", "V015"],
+      "verification_ids": ["V014", "V015", "V019"],
       "review_ids": ["R001"],
       "blocked_by": [],
       "next_action": "T008で共有・外部反応を実装し、T009/R001で代表画面全体と共通設計の承認を受ける。"
@@ -394,7 +394,7 @@
         "ホーム/一覧・実記事・本文部品の両配色PC/モバイル比較と責務説明を提出する。",
         "例外・モックとの差分・検証済み/未実施を提示しR001の明示判断を記録する。"
       ],
-      "depends_on": ["T005", "T006", "T007", "T008"],
+      "depends_on": ["T005", "T006", "T007", "T008", "T019"],
       "acceptance_criteria": [
         "同じOS・フォント・ブラウザ条件で比較画像と差分説明を用意する。",
         "トークン/CSS/TS/テンプレートの共有箇所と例外をコードへ結び付けて説明する。",
@@ -406,10 +406,10 @@
         "ユーザーの回答をdecisionへ引用し無回答を承認にしない。"
       ],
       "commit_message": "[T009] 代表画面の比較と共通設計レビューを提出",
-      "status": "not_started",
-      "verification_status": "not_run",
+      "status": "in_progress",
+      "verification_status": "passed",
       "artifact_refs": [],
-      "verification_ids": [],
+      "verification_ids": ["V018", "V019"],
       "review_ids": ["R001"],
       "blocked_by": [],
       "next_action": "ホーム/一覧・実記事・本文部品の両配色PC/モバイル比較と責務説明を提出する。"
@@ -502,7 +502,8 @@
       "acceptance_criteria": [
         "全記事の本文・リンク・埋め込み位置/ID/URLと動画内容を維持する。",
         "本番に診断ページ・検査用shortcodeが混入しない。",
-        "本番と同じ組込X/Instagram/YouTubeのビルド・接続結果を警告と入力エラーに分けて記録する。"
+        "本番と同じ組込X/Instagram/YouTubeのビルド・接続結果を警告と入力エラーに分けて記録する。",
+        "単独Markdown画像のfigure化に必要なmarkup.goldmark.parser.wrapStandAloneImageWithinParagraph=falseをサイト設定へ明示する（F008/T019）。"
       ],
       "verification_plan": [
         "元入力と新入力の対応一覧を全件照合し、通常CI固定応答と実接続ビルドを別実行する。",
@@ -719,6 +720,50 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "照合完了後にPaperMod submodule・専用上書き・更新スクリプトを整理しライセンス表示を保持する。"
+    },
+    {
+      "id": "T019",
+      "title": "代表画面比較で検出した画像配置とCSS重複を是正",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q14",
+        "docs/04-theme-implementation-requirements.md: Q21",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/05-theme-implementation-discipline.md: Q2",
+        "docs/05-theme-implementation-discipline.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q23"
+      ],
+      "scope": [
+        "T007の単独Markdown画像を凍結モックと同じfigureへ統一し、画像の原寸比率によるレイアウトを維持する。",
+        "T004/T005で重複したフッターリンク宣言を役割の所有箇所へ集約する。",
+        "是正の再現用に、同じ実記事を使う隔離レビューfixture・画面比較テスト・動画Range配信を同梱する。"
+      ],
+      "depends_on": ["T004", "T005", "T007"],
+      "acceptance_criteria": [
+        "単独画像の前後余白と原寸比率がモックに一致し、文中画像はinlineを維持する。",
+        "footer-linksの重複が解消され、表示と操作が変わらない。"
+      ],
+      "verification_plan": [
+        "実記事の画像を含む全本文ブロックを両幅/両配色で比較する。",
+        "media fixtureへinline画像/リンク画像の境界を追加し、HTMLと既存ブラウザ検査を再実行する。"
+      ],
+      "commit_message": "[T019] 単独画像の配置をモックに揃え共通CSSの重複を解消",
+      "status": "implemented",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/layouts/_markup/render-image.html",
+        "themes/shsh/layouts/_markup/render-link.html",
+        "themes/shsh/assets/css/media.css",
+        "themes/shsh/assets/css/list.css",
+        "scripts/build-review-fixture.ts",
+        "tests/review.spec.ts",
+        "tests/media.spec.ts",
+        "docs/verification/representative-corrections.md",
+        "docs/verification/t019-check.log"
+      ],
+      "verification_ids": ["V019"],
+      "review_ids": ["R001"],
+      "blocked_by": [],
+      "next_action": "T009で代表画面の比較画像・構造説明をまとめ、R001の明示承認を受ける。"
     }
   ],
   "findings": [
@@ -895,13 +940,57 @@
         "tests/media.spec.ts"
       ],
       "verification_ids": ["V014", "V015"]
+    },
+    {
+      "id": "F008",
+      "title": "単独Markdown画像の段落ラッパーがモックのfigureと異なる",
+      "task_ids": ["T007", "T009", "T019"],
+      "status": "resolved",
+      "requires_user_decision": false,
+      "observation": "実記事の最初の画像ブロックで高さ約9.8pxと前後位置に差。凍結モックは単独画像をfigureへ変換していたが、themeはp内へ出していた。",
+      "evidence_refs": ["mock/build.mjs", "tests/review.spec.ts"],
+      "impact": "本文画像の前後余白と後続ブロックの位置が一致しない。",
+      "recommendation": "HugoのIsBlockとparser設定により単独画像だけfigureにする。候補画像の丸めに依存せず原寸比率で領域を確保する。",
+      "decision": {
+        "outcome": "モックの既存表示へ是正",
+        "reason": "新しい表示仕様ではなくQ21/Q32と凍結モックの再現漏れの修正。",
+        "decided_by": "実装者",
+        "recorded_at": "2026-09-17T13:16:36.112243+00:00",
+        "source": "mock/build.mjs: standalone Markdown images; docs/05-theme-implementation-discipline.md: Q1"
+      },
+      "resolution_refs": [
+        "docs/verification/representative-corrections.md",
+        "themes/shsh/layouts/_markup/render-image.html",
+        "themes/shsh/layouts/_markup/render-link.html"
+      ],
+      "verification_ids": ["V018", "V019"]
+    },
+    {
+      "id": "F009",
+      "title": "フッターリンクの同一宣言がcontrolsとlistに重複",
+      "task_ids": ["T004", "T005", "T019"],
+      "status": "resolved",
+      "requires_user_decision": false,
+      "observation": "footer-linksのdisplay/flex-wrap/gap/font-sizeがcontrols.cssとlist.cssで重複。layout.cssには別責務の整列指定がある。",
+      "evidence_refs": ["themes/shsh/assets/css/controls.css", "themes/shsh/assets/css/list.css"],
+      "impact": "同じ役割を変更する箇所が重複し、将来の差分が見えにくい。",
+      "recommendation": "controls.cssへ操作列の共通宣言を残し、list.cssの重複だけを除去する。",
+      "decision": {
+        "outcome": "表示を維持する内部整理",
+        "reason": "資料5 Q2/Q3に基づく責務の整理。",
+        "decided_by": "実装者",
+        "recorded_at": "2026-09-17T13:16:36.112243+00:00",
+        "source": "docs/05-theme-implementation-discipline.md: Q2/Q3"
+      },
+      "resolution_refs": ["themes/shsh/assets/css/controls.css", "themes/shsh/assets/css/list.css"],
+      "verification_ids": ["V019"]
     }
   ],
   "reviews": [
     {
       "id": "R001",
       "title": "代表画面と共通設計のレビュー",
-      "task_ids": ["T004", "T005", "T006", "T007", "T008", "T009"],
+      "task_ids": ["T004", "T005", "T006", "T007", "T008", "T009", "T019"],
       "status": "not_ready",
       "artifact_refs": [
         "docs/verification/theme-foundation.md",
@@ -909,11 +998,11 @@
         "docs/verification/prose-and-code.md",
         "docs/verification/t006-prose-images/",
         "docs/verification/media.md",
-        "docs/verification/t007-media-images/",
-        "docs/verification/sharing.md"
+        "docs/verification/sharing.md",
+        "docs/verification/representative-corrections.md"
       ],
-      "verification_ids": ["V008", "V011", "V013", "V015", "V017"],
-      "finding_ids": ["F003", "F004", "F005", "F006", "F007"],
+      "verification_ids": ["V008", "V011", "V013", "V015", "V017", "V019"],
+      "finding_ids": ["F003", "F004", "F005", "F006", "F007", "F008", "F009"],
       "decision": null,
       "supersedes": null
     },
@@ -1373,6 +1462,55 @@
       "result": "passed",
       "procedure": "pnpm check成功。既定値/型/未知サービス/httpとhttps/公開previewのHTMLを検査。3エンジン72件成功（25.3秒）。日本語・記号タイトルのURL round-trip、順序、固定ページ/記事、Tab、スター固定応答/失敗、JS無効、preview外部通信なし、両幅/両配色のモック寸法とaxeを確認。実サービスへの投稿/スター追加なし。",
       "supersedes": "V016"
+    },
+    {
+      "id": "V018",
+      "task_ids": ["T009", "T007"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/04-theme-implementation-requirements.md: 実装開始時の確認と完了判定",
+        "docs/05-theme-implementation-discipline.md: Q1",
+        "docs/05-theme-implementation-discipline.md: Q4",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q7",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "代表画面の初回比較",
+      "result": "failed",
+      "subject_ref": "21895d2 + T009の隔離レビューfixture/比較テスト",
+      "environment": "macOS27.0 arm64; Hugo0.166.0; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
+      "procedure": "1440/390px両配色の初回12件中6成功。実記事の単独画像ラッパーが異なること、Firefox文字拡大時のフォント量子化が理論値の0.005px閾値を超えることを検出。",
+      "evidence_refs": ["tests/review.spec.ts", "mock/build.mjs"],
+      "recorded_at": "2026-09-17T13:16:36.112243+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V019",
+      "task_ids": ["T004", "T005", "T006", "T007", "T008", "T009", "T019"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q14",
+        "docs/04-theme-implementation-requirements.md: Q21",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/05-theme-implementation-discipline.md: Q2",
+        "docs/05-theme-implementation-discipline.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q23"
+      ],
+      "kind": "画像配置是正・代表画面と全統合回帰",
+      "result": "passed",
+      "subject_ref": "21895d2 + T019の単独画像/リンク/比率/CSS整理・隔離比較fixture/テスト",
+      "environment": "macOS27.0 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
+      "procedure": "pnpm check成功。3エンジン84テスト成功（37.9秒）。1440×1000/390×844両配色のホーム/一覧の共通枠と、実記事ヘッダー/全本文ブロックがモックと差0.06px未満。125/200%文字拡大で全体の横溢れなし。単独/文中/リンク内画像、原寸比率、生成HTML、axeのChroma限定例外を確認。",
+      "evidence_refs": [
+        "docs/verification/representative-corrections.md",
+        "docs/verification/t019-check.log",
+        "tests/review.spec.ts",
+        "tests/media.spec.ts"
+      ],
+      "recorded_at": "2026-09-17T13:23:38.876839+00:00",
+      "supersedes": "V018"
     }
   ]
 }

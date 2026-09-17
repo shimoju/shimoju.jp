@@ -25,6 +25,8 @@ for (const [port, directory] of /** @type {[number, string][]} */ ([
   [4179, ".cache/media/production"],
   [4180, ".cache/sharing/production"],
   [4181, ".cache/sharing/preview"],
+  [4182, ".cache/review/production"],
+  [4183, ".cache/review/preview"],
 ])) {
   const root = resolve(directory);
   const server = createServer((request, response) => {
@@ -37,10 +39,29 @@ for (const [port, directory] of /** @type {[number, string][]} */ ([
       }
       try {
         if ((await stat(file)).isDirectory()) file = resolve(file, "index.html");
-        response.writeHead(200, {
+        const bytes = await readFile(file);
+        const headers = {
           "Content-Type": types[extname(file)] ?? "application/octet-stream",
-        });
-        response.end(await readFile(file));
+          "Accept-Ranges": "bytes",
+        };
+        const range = request.headers.range?.match(/^bytes=(\d+)-(\d*)$/);
+        if (range) {
+          const start = Number(range[1]);
+          const end = Math.min(range[2] ? Number(range[2]) : bytes.length - 1, bytes.length - 1);
+          if (start > end) {
+            response.writeHead(416, { "Content-Range": `bytes */${bytes.length}` }).end();
+            return;
+          }
+          response.writeHead(206, {
+            ...headers,
+            "Content-Range": `bytes ${start}-${end}/${bytes.length}`,
+            "Content-Length": end - start + 1,
+          });
+          response.end(bytes.subarray(start, end + 1));
+        } else {
+          response.writeHead(200, { ...headers, "Content-Length": bytes.length });
+          response.end(bytes);
+        }
       } catch {
         response.writeHead(404).end("Not found");
       }

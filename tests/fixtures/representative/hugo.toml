@@ -28,3 +28,6 @@ pageRef = '/categories'
 [[menus.main]]
 name = 'Tags'
 pageRef = '/tags'
+
+[markup.goldmark.parser]
+wrapStandAloneImageWithinParagraph = false

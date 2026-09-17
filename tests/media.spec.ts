@@ -29,6 +29,14 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   await expect(terminal).toHaveAttribute("width", "1200");
   await expect(terminal).toHaveAttribute("height", "630");
   await expect(terminal).toHaveAttribute("loading", "lazy");
+  await expect(page.locator(".prose > figure").filter({ has: terminal })).toHaveCount(1);
+  const inline = page.getByRole("img", { name: "文中の画像", exact: true });
+  await expect(page.locator(".prose > p").filter({ has: inline })).toHaveText("前後。");
+  await expect(page.locator(".prose a:empty")).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "リンク内の画像" })).toHaveAttribute(
+    "href",
+    "https://example.org/",
+  );
   await expect(page.locator(".article-cover img")).toHaveAttribute("loading", "eager");
   for (const name of [
     "アニメーションGIF",

@@ -15,3 +15,6 @@ name = 'Example author'
 noClasses = false
 [markup.goldmark.parser.attribute]
 block = true
+
+[markup.goldmark.parser]
+wrapStandAloneImageWithinParagraph = false

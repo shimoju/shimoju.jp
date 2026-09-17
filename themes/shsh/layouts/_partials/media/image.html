@@ -8,10 +8,11 @@
 {{- $sizes := "(min-width: 768px) 720px, (min-width: 640px) calc(100vw - 48px), (hover: hover) calc(100vw - 48px), calc(100vw - 32px)" -}}
 {{- if $data.webp -}}
   <picture>
+    {{- /* Keep inline images adjacent to their surrounding text. */ -}}
     <source type="image/webp" srcset="{{ $data.webp }}" sizes="{{ $sizes }}" />
-    {{ partial "media/img.html" (merge . (dict "data" $data "sizes" $sizes)) }}
+    {{- partial "media/img.html" (merge . (dict "data" $data "sizes" $sizes)) -}}
   </picture>
 {{- else -}}
-  {{ partial "media/img.html" (merge . (dict "data" $data "sizes" $sizes)) }}
+  {{- partial "media/img.html" (merge . (dict "data" $data "sizes" $sizes)) -}}
 {{- end -}}
 {{- /* Preserve adjacent inline text and links. */ -}}
