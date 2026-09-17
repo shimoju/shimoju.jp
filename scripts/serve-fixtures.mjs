@@ -5,6 +5,7 @@ import { extname, resolve, sep } from "node:path";
 /** @type {Record<string, string>} */
 const types = {
   ".html": "text/html; charset=utf-8",
+  ".md": "text/plain; charset=utf-8",
   ".css": "text/css",
   ".js": "text/javascript",
   ".svg": "image/svg+xml",
@@ -16,18 +17,26 @@ const types = {
   ".json": "application/json",
   ".xml": "application/xml",
 };
-for (const [port, directory] of /** @type {[number, string][]} */ ([
-  [4174, ".cache/representative/production"],
-  [4175, ".cache/representative/preview"],
-  [4176, ".cache/representative/development"],
-  [4177, "mock/site"],
-  [4178, ".cache/prose/public"],
-  [4179, ".cache/media/production"],
-  [4180, ".cache/sharing/production"],
-  [4181, ".cache/sharing/preview"],
-  [4182, ".cache/review/production"],
-  [4183, ".cache/review/preview"],
-])) {
+const directories = process.env.SHSH_REVIEW_SERVER
+  ? /** @type {[number, string][]} */ ([
+      [4184, "docs/verification"],
+      [4185, ".cache/review/production"],
+      [4186, ".cache/review/preview"],
+      [4187, "mock/site"],
+    ])
+  : /** @type {[number, string][]} */ ([
+      [4174, ".cache/representative/production"],
+      [4175, ".cache/representative/preview"],
+      [4176, ".cache/representative/development"],
+      [4177, "mock/site"],
+      [4178, ".cache/prose/public"],
+      [4179, ".cache/media/production"],
+      [4180, ".cache/sharing/production"],
+      [4181, ".cache/sharing/preview"],
+      [4182, ".cache/review/production"],
+      [4183, ".cache/review/preview"],
+    ]);
+for (const [port, directory] of directories) {
   const root = resolve(directory);
   const server = createServer((request, response) => {
     async function serve() {

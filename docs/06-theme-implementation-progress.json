@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-17T13:23:38.876839+00:00",
+  "updated_at": "2026-09-17T13:33:54.948070+00:00",
   "stage": "representative",
-  "summary": "T001〜T003完了。T004〜T008/T019は実装・ローカル検証済み。T009の代表画面比較で単独画像の余白とCSS重複を検出しT019で是正。1440/390px両配色・文字拡大を含む統合84件成功。R001提出用の画像と説明を整理中。本番PaperModと凍結モックは維持。",
+  "summary": "T001〜T003完了。T004〜T009/T019は実装・ローカル検証済み。統合84件とタッチ条件の代表比較12件成功。両幅・両配色の比較32画像、共通設計・差分・残件をR001へ提出し明示承認待ち。本番PaperModと凍結モックは維持。",
   "latest_review_id": null,
   "resume": {
-    "task_id": "T009",
-    "action": "1440×1000/390×844・両配色のホーム/一覧/実記事/本文部品比較、125/200%文字拡大、責務と合意済み差分・残件の説明を用意してR001を提出する。明示承認前はT010へ展開しない。"
+    "task_id": "T011",
+    "action": "R001のユーザー判断を待つ間、承認に依存しないRSS/メタ情報を実装する。R001の明示承認前にT010へ展開しない。回答があれば判断を記録し、指摘を後続タスクへ対応付ける。"
   },
   "tasks": [
     {
@@ -406,13 +406,20 @@
         "ユーザーの回答をdecisionへ引用し無回答を承認にしない。"
       ],
       "commit_message": "[T009] 代表画面の比較と共通設計レビューを提出",
-      "status": "in_progress",
+      "status": "implemented",
       "verification_status": "passed",
-      "artifact_refs": [],
-      "verification_ids": ["V018", "V019"],
+      "artifact_refs": [
+        "docs/verification/r001-review.md",
+        "docs/verification/r001/index.html",
+        "docs/verification/r001/images/",
+        "docs/verification/t009-review.log",
+        "scripts/build-review-report.ts",
+        "tests/review.spec.ts"
+      ],
+      "verification_ids": ["V018", "V019", "V020"],
       "review_ids": ["R001"],
       "blocked_by": [],
-      "next_action": "ホーム/一覧・実記事・本文部品の両配色PC/モバイル比較と責務説明を提出する。"
+      "next_action": "R001の明示判断を受け、承認または指摘・修正・再検証を記録する。承認待ちは完了にしない。"
     },
     {
       "id": "T010",
@@ -991,8 +998,14 @@
       "id": "R001",
       "title": "代表画面と共通設計のレビュー",
       "task_ids": ["T004", "T005", "T006", "T007", "T008", "T009", "T019"],
-      "status": "not_ready",
+      "status": "requested",
       "artifact_refs": [
+        "docs/verification/r001-review.md",
+        "docs/verification/r001/index.html",
+        "docs/verification/r001/images/",
+        "docs/verification/t009-review.log",
+        "scripts/build-review-report.ts",
+        "tests/review.spec.ts",
         "docs/verification/theme-foundation.md",
         "docs/verification/home-and-lists.md",
         "docs/verification/prose-and-code.md",
@@ -1001,7 +1014,7 @@
         "docs/verification/sharing.md",
         "docs/verification/representative-corrections.md"
       ],
-      "verification_ids": ["V008", "V011", "V013", "V015", "V017", "V019"],
+      "verification_ids": ["V008", "V011", "V013", "V015", "V017", "V019", "V020"],
       "finding_ids": ["F003", "F004", "F005", "F006", "F007", "F008", "F009"],
       "decision": null,
       "supersedes": null
@@ -1511,6 +1524,37 @@
       ],
       "recorded_at": "2026-09-17T13:23:38.876839+00:00",
       "supersedes": "V018"
+    },
+    {
+      "id": "V020",
+      "task_ids": ["T009"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/04-theme-implementation-requirements.md: 実装開始時の確認と完了判定",
+        "docs/05-theme-implementation-discipline.md: Q1",
+        "docs/05-theme-implementation-discipline.md: Q4",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q7",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "代表画面レビュー提出物とタッチ条件の比較",
+      "result": "passed",
+      "subject_ref": "4fb4f23 + T009のタッチ条件・比較レポート・ローカル閲覧用差分",
+      "environment": "macOS27.0 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6; 1440×1000 hoverあり/390×844タッチhoverなし; DPR1",
+      "procedure": "代表比較12件成功（18.2秒）。両幅・両配色のホーム/一覧/実記事/本文部品の32画像とaxe記録を保存。共通枠/記事全本文ブロックの差0.06px未満、125/200%文字拡大も成功。比較ページを4184で開き画像表示を確認、一覧・本文部品・実記事画像を目視。構造/合意済み差分/未完了範囲を説明。format:check、型統合lint、進捗検査成功。人の承認は未実施。",
+      "evidence_refs": [
+        "docs/verification/r001-review.md",
+        "docs/verification/r001/index.html",
+        "docs/verification/r001/images/",
+        "docs/verification/t009-review.log",
+        "scripts/build-review-report.ts",
+        "tests/review.spec.ts"
+      ],
+      "recorded_at": "2026-09-17T13:33:54.948070+00:00",
+      "supersedes": null
     }
   ]
 }

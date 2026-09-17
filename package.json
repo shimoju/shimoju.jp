@@ -19,7 +19,9 @@
     "check:prose": "node scripts/verify-prose.ts",
     "check:media": "node scripts/verify-media.ts",
     "check:sharing": "node scripts/verify-sharing.ts",
-    "build:review": "node scripts/build-review-fixture.ts"
+    "build:review": "node scripts/build-review-fixture.ts",
+    "review:report": "node scripts/build-review-report.ts",
+    "review": "pnpm build:review && SHSH_REVIEW_SERVER=1 node scripts/serve-fixtures.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

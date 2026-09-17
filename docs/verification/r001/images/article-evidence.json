@@ -1,0 +1,2802 @@
+[
+  {
+    "name": "article",
+    "width": 1440,
+    "height": 1000,
+    "colorScheme": "light",
+    "hasTouch": false,
+    "hover": true,
+    "blocks": 98,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#9ca0b0",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.3,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(19) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.3 (foreground color: #9ca0b0, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"c\"># herdr</span>",
+            "target": [".c"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.3 (foreground color: #9ca0b0, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(19) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"prefix+p\"</span>",
+            "target": [".line:nth-child(2) > .cl > .s2:nth-child(4)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(19) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"cmd+shift+[\"</span>",
+            "target": [".line:nth-child(2) > .cl > .s2:nth-child(6)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(19) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"prefix+n\"</span>",
+            "target": [".line:nth-child(3) > .cl > .s2:nth-child(4)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(19) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"cmd+shift+]\"</span>",
+            "target": [".line:nth-child(3) > .cl > .s2:nth-child(6)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(19) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"prefix+1..9\"</span>",
+            "target": [".line:nth-child(4) > .cl > .s2:nth-child(4)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(19) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"cmd+1..9\"</span>",
+            "target": [".line:nth-child(4) > .cl > .s2:nth-child(6)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(22) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"prefix+a\"</span>",
+            "target": [
+              ".code-block:nth-child(22) > .highlight > pre > .language-toml[data-lang=\"toml\"] > .line:nth-child(2) > .cl > .s2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(22) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"shell\"</span>",
+            "target": [
+              ".code-block:nth-child(22) > .highlight > pre > .language-toml[data-lang=\"toml\"] > .line:nth-child(3) > .cl > .s2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(22) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"herdr-open --pane --direction right -- codex\"</span>",
+            "target": [
+              ".code-block:nth-child(22) > .highlight > pre > .language-toml[data-lang=\"toml\"] > .line:nth-child(4) > .cl > .s2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(22) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"open coding agent in split\"</span>",
+            "target": [
+              ".code-block:nth-child(22) > .highlight > pre > .language-toml[data-lang=\"toml\"] > .line:nth-child(5) > .cl > .s2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(22) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"prefix+shift+a\"</span>",
+            "target": [".line:nth-child(8) > .cl > .s2"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(22) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"shell\"</span>",
+            "target": [".line:nth-child(9) > .cl > .s2"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(22) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"herdr-open --tab -- codex\"</span>",
+            "target": [".line:nth-child(10) > .cl > .s2"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(22) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"open coding agent in tab\"</span>",
+            "target": [".line:nth-child(11) > .cl > .s2"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(24) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"prefix+t\"</span>",
+            "target": [
+              ".code-block:nth-child(24) > .highlight > pre > .language-toml[data-lang=\"toml\"] > .line:nth-child(2) > .cl > .s2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(24) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"popup\"</span>",
+            "target": [
+              ".code-block:nth-child(24) > .highlight > pre > .language-toml[data-lang=\"toml\"] > .line:nth-child(3) > .cl > .s2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(24) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"exec \\\"${SHELL:-sh}\\\"\"</span>",
+            "target": [
+              ".code-block:nth-child(24) > .highlight > pre > .language-toml[data-lang=\"toml\"] > .line:nth-child(4) > .cl > .s2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(24) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"open scratch terminal\"</span>",
+            "target": [
+              ".code-block:nth-child(24) > .highlight > pre > .language-toml[data-lang=\"toml\"] > .line:nth-child(5) > .cl > .s2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(24) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"80%\"</span>",
+            "target": [".line:nth-child(6) > .cl > .s2"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(24) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"80%\"</span>",
+            "target": [".line:nth-child(7) > .cl > .s2"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#9ca0b0",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.3,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.3 (foreground color: #9ca0b0, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"c1\"># ctrl-s: herdrを起動</span>",
+            "target": [".line:nth-child(1) > .cl > .c1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.3 (foreground color: #9ca0b0, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">BUFFER</span>",
+            "target": [".line:nth-child(4) > .cl > .nv"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s1\">' herdr'</span>",
+            "target": [".line:nth-child(4) > .cl > .s1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s1\">'^S'</span>",
+            "target": [".line:nth-child(8) > .cl > .s1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#9ca0b0",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.3,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.3 (foreground color: #9ca0b0, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"c1\"># ctrl-o: ghq配下のリポジトリをfzfで検索して移動</span>",
+            "target": [".line:nth-child(10) > .cl > .c1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.3 (foreground color: #9ca0b0, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#9ca0b0",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.3,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.3 (foreground color: #9ca0b0, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"c1\"># もともとfコマンドとして利用していたのでそれでも呼べるようにしてある</span>",
+            "target": [".line:nth-child(11) > .cl > .c1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.3 (foreground color: #9ca0b0, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#04a5e5",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.46,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.46 (foreground color: #04a5e5, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nb\">local</span>",
+            "target": [".line:nth-child(13) > .cl > .nb"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.46 (foreground color: #04a5e5, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">dir</span>",
+            "target": [".line:nth-child(14) > .cl > .nv:nth-child(1)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">FZF_TMUX_HEIGHT</span>",
+            "target": [".nv:nth-child(8)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">40</span>",
+            "target": [".nv:nth-child(10)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">$dir</span>",
+            "target": [".line:nth-child(15) > .cl > .nv"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#04a5e5",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.46,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.46 (foreground color: #04a5e5, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nb\">builtin</span>",
+            "target": [".line:nth-child(16) > .cl > .nb:nth-child(1)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.46 (foreground color: #04a5e5, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#04a5e5",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.46,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.46 (foreground color: #04a5e5, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nb\">cd</span>",
+            "target": [".nb:nth-child(2)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.46 (foreground color: #04a5e5, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">$dir</span>",
+            "target": [".line:nth-child(16) > .cl > .nv"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#04a5e5",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.46,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.46 (foreground color: #04a5e5, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nb\">local</span>",
+            "target": [".line:nth-child(20) > .cl > .nb"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.46 (foreground color: #04a5e5, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">previous_pwd</span>",
+            "target": [".nv:nth-child(2)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">$PWD</span>",
+            "target": [".line:nth-child(20) > .cl > .nv:nth-child(4)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">$PWD</span>",
+            "target": [".line:nth-child(22) > .cl > .nv:nth-child(4)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">$previous_pwd</span>",
+            "target": [".nv:nth-child(6)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s1\">'^O'</span>",
+            "target": [".line:nth-child(32) > .cl > .s1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "article",
+    "width": 1440,
+    "height": 1000,
+    "colorScheme": "dark",
+    "hasTouch": false,
+    "hover": true,
+    "blocks": 98,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#6c7086",
+                  "bgColor": "#1e1e2e",
+                  "contrastRatio": 3.35,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(19) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.35 (foreground color: #6c7086, background color: #1e1e2e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"c\"># herdr</span>",
+            "target": [".c"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #6c7086, background color: #1e1e2e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#6c7086",
+                  "bgColor": "#1e1e2e",
+                  "contrastRatio": 3.35,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.35 (foreground color: #6c7086, background color: #1e1e2e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"c1\"># ctrl-s: herdrを起動</span>",
+            "target": [".line:nth-child(1) > .cl > .c1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #6c7086, background color: #1e1e2e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#6c7086",
+                  "bgColor": "#1e1e2e",
+                  "contrastRatio": 3.35,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.35 (foreground color: #6c7086, background color: #1e1e2e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"c1\"># ctrl-o: ghq配下のリポジトリをfzfで検索して移動</span>",
+            "target": [".line:nth-child(10) > .cl > .c1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #6c7086, background color: #1e1e2e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#6c7086",
+                  "bgColor": "#1e1e2e",
+                  "contrastRatio": 3.35,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.35 (foreground color: #6c7086, background color: #1e1e2e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"c1\"># もともとfコマンドとして利用していたのでそれでも呼べるようにしてある</span>",
+            "target": [".line:nth-child(11) > .cl > .c1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #6c7086, background color: #1e1e2e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "article",
+    "width": 390,
+    "height": 844,
+    "colorScheme": "light",
+    "hasTouch": true,
+    "hover": false,
+    "blocks": 98,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#9ca0b0",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.3,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(19) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.3 (foreground color: #9ca0b0, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"c\"># herdr</span>",
+            "target": [".c"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.3 (foreground color: #9ca0b0, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(19) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"prefix+p\"</span>",
+            "target": [".line:nth-child(2) > .cl > .s2:nth-child(4)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(19) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"cmd+shift+[\"</span>",
+            "target": [".line:nth-child(2) > .cl > .s2:nth-child(6)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(19) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"prefix+n\"</span>",
+            "target": [".line:nth-child(3) > .cl > .s2:nth-child(4)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(19) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"cmd+shift+]\"</span>",
+            "target": [".line:nth-child(3) > .cl > .s2:nth-child(6)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(19) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"prefix+1..9\"</span>",
+            "target": [".line:nth-child(4) > .cl > .s2:nth-child(4)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(19) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"cmd+1..9\"</span>",
+            "target": [".line:nth-child(4) > .cl > .s2:nth-child(6)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(22) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"prefix+a\"</span>",
+            "target": [
+              ".code-block:nth-child(22) > .highlight > pre > .language-toml[data-lang=\"toml\"] > .line:nth-child(2) > .cl > .s2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(22) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"shell\"</span>",
+            "target": [
+              ".code-block:nth-child(22) > .highlight > pre > .language-toml[data-lang=\"toml\"] > .line:nth-child(3) > .cl > .s2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(22) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"herdr-open --pane --direction right -- codex\"</span>",
+            "target": [
+              ".code-block:nth-child(22) > .highlight > pre > .language-toml[data-lang=\"toml\"] > .line:nth-child(4) > .cl > .s2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(22) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"open coding agent in split\"</span>",
+            "target": [
+              ".code-block:nth-child(22) > .highlight > pre > .language-toml[data-lang=\"toml\"] > .line:nth-child(5) > .cl > .s2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(22) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"prefix+shift+a\"</span>",
+            "target": [".line:nth-child(8) > .cl > .s2"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(22) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"shell\"</span>",
+            "target": [".line:nth-child(9) > .cl > .s2"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(22) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"herdr-open --tab -- codex\"</span>",
+            "target": [".line:nth-child(10) > .cl > .s2"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(22) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"open coding agent in tab\"</span>",
+            "target": [".line:nth-child(11) > .cl > .s2"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(24) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"prefix+t\"</span>",
+            "target": [
+              ".code-block:nth-child(24) > .highlight > pre > .language-toml[data-lang=\"toml\"] > .line:nth-child(2) > .cl > .s2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(24) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"popup\"</span>",
+            "target": [
+              ".code-block:nth-child(24) > .highlight > pre > .language-toml[data-lang=\"toml\"] > .line:nth-child(3) > .cl > .s2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(24) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"exec \\\"${SHELL:-sh}\\\"\"</span>",
+            "target": [
+              ".code-block:nth-child(24) > .highlight > pre > .language-toml[data-lang=\"toml\"] > .line:nth-child(4) > .cl > .s2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(24) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"open scratch terminal\"</span>",
+            "target": [
+              ".code-block:nth-child(24) > .highlight > pre > .language-toml[data-lang=\"toml\"] > .line:nth-child(5) > .cl > .s2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(24) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"80%\"</span>",
+            "target": [".line:nth-child(6) > .cl > .s2"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(24) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s2\">\"80%\"</span>",
+            "target": [".line:nth-child(7) > .cl > .s2"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#9ca0b0",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.3,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.3 (foreground color: #9ca0b0, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"c1\"># ctrl-s: herdrを起動</span>",
+            "target": [".line:nth-child(1) > .cl > .c1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.3 (foreground color: #9ca0b0, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">BUFFER</span>",
+            "target": [".line:nth-child(4) > .cl > .nv"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s1\">' herdr'</span>",
+            "target": [".line:nth-child(4) > .cl > .s1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s1\">'^S'</span>",
+            "target": [".line:nth-child(8) > .cl > .s1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#9ca0b0",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.3,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.3 (foreground color: #9ca0b0, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"c1\"># ctrl-o: ghq配下のリポジトリをfzfで検索して移動</span>",
+            "target": [".line:nth-child(10) > .cl > .c1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.3 (foreground color: #9ca0b0, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#9ca0b0",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.3,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.3 (foreground color: #9ca0b0, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"c1\"># もともとfコマンドとして利用していたのでそれでも呼べるようにしてある</span>",
+            "target": [".line:nth-child(11) > .cl > .c1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.3 (foreground color: #9ca0b0, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#04a5e5",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.46,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.46 (foreground color: #04a5e5, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nb\">local</span>",
+            "target": [".line:nth-child(13) > .cl > .nb"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.46 (foreground color: #04a5e5, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">dir</span>",
+            "target": [".line:nth-child(14) > .cl > .nv:nth-child(1)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">$dir</span>",
+            "target": [".line:nth-child(15) > .cl > .nv"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#04a5e5",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.46,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.46 (foreground color: #04a5e5, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nb\">builtin</span>",
+            "target": [".line:nth-child(16) > .cl > .nb:nth-child(1)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.46 (foreground color: #04a5e5, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#04a5e5",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.46,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.46 (foreground color: #04a5e5, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nb\">cd</span>",
+            "target": [".nb:nth-child(2)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.46 (foreground color: #04a5e5, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">$dir</span>",
+            "target": [".line:nth-child(16) > .cl > .nv"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#04a5e5",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.46,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.46 (foreground color: #04a5e5, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nb\">local</span>",
+            "target": [".line:nth-child(20) > .cl > .nb"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.46 (foreground color: #04a5e5, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">previous_pwd</span>",
+            "target": [".nv:nth-child(2)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">$PWD</span>",
+            "target": [".line:nth-child(20) > .cl > .nv:nth-child(4)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">$PWD</span>",
+            "target": [".line:nth-child(22) > .cl > .nv:nth-child(4)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#dc8a78",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"nv\">$previous_pwd</span>",
+            "target": [".nv:nth-child(6)"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #dc8a78, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#40a02b",
+                  "bgColor": "#eff1f5",
+                  "contrastRatio": 2.95,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"s1\">'^O'</span>",
+            "target": [".line:nth-child(32) > .cl > .s1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #40a02b, background color: #eff1f5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "article",
+    "width": 390,
+    "height": 844,
+    "colorScheme": "dark",
+    "hasTouch": true,
+    "hover": false,
+    "blocks": 98,
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#6c7086",
+                  "bgColor": "#1e1e2e",
+                  "contrastRatio": 3.35,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(19) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.35 (foreground color: #6c7086, background color: #1e1e2e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"c\"># herdr</span>",
+            "target": [".c"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #6c7086, background color: #1e1e2e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#6c7086",
+                  "bgColor": "#1e1e2e",
+                  "contrastRatio": 3.35,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.35 (foreground color: #6c7086, background color: #1e1e2e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"c1\"># ctrl-s: herdrを起動</span>",
+            "target": [".line:nth-child(1) > .cl > .c1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #6c7086, background color: #1e1e2e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#6c7086",
+                  "bgColor": "#1e1e2e",
+                  "contrastRatio": 3.35,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.35 (foreground color: #6c7086, background color: #1e1e2e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"c1\"># ctrl-o: ghq配下のリポジトリをfzfで検索して移動</span>",
+            "target": [".line:nth-child(10) > .cl > .c1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #6c7086, background color: #1e1e2e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#6c7086",
+                  "bgColor": "#1e1e2e",
+                  "contrastRatio": 3.35,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<pre role=\"group\" aria-label=\"Code, horizontally scrollable\" tabindex=\"0\" class=\"chroma\">",
+                    "target": [".code-block:nth-child(36) > .highlight > pre"]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.35 (foreground color: #6c7086, background color: #1e1e2e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"c1\"># もともとfコマンドとして利用していたのでそれでも呼べるようにしてある</span>",
+            "target": [".line:nth-child(11) > .cl > .c1"],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #6c7086, background color: #1e1e2e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
+  }
+]

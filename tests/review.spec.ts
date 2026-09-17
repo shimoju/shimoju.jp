@@ -60,13 +60,6 @@ function sameGeometry(
       expect(Math.abs(block[key] - expected[i]![key]), `block ${i} ${key}`).toBeLessThan(0.06);
 }
 
-test.beforeEach(async ({ page }) => {
-  // Normal CI never connects to live widgets. An empty response preserves the unloaded mount.
-  await page.route("https://**/*", (route) =>
-    route.fulfill({ contentType: "text/javascript", body: "" }),
-  );
-});
-
 for (const [name, path, mock] of [
   ["home", "/", "home.html"],
   ["posts", "/posts/", "posts.html"],
@@ -74,7 +67,7 @@ for (const [name, path, mock] of [
   ["specimen", "/specimen/", "specimen.html"],
 ] as const)
   test(`R001 ${name} comparison, both widths/colors and text enlargement`, async ({
-    page,
+    browser,
     browserName,
   }) => {
     test.setTimeout(90000);
@@ -82,7 +75,18 @@ for (const [name, path, mock] of [
     for (const [width, height] of [
       [1440, 1000],
       [390, 844],
-    ] as const)
+    ] as const) {
+      const context = await browser.newContext({
+        viewport: { width, height },
+        hasTouch: width === 390,
+      });
+      const page = await context.newPage();
+      // Normal CI never connects to live widgets.
+      await page.route("https://**/*", (route) =>
+        route.fulfill({ contentType: "text/javascript", body: "" }),
+      );
+      const hover = await page.evaluate(() => matchMedia("(hover: hover)").matches);
+      if (browserName === "chromium") expect(hover).toBe(width !== 390);
       for (const colorScheme of ["light", "dark"] as const) {
         await page.setViewportSize({ width, height });
         await page.emulateMedia({ colorScheme });
@@ -131,8 +135,19 @@ for (const [name, path, mock] of [
             path: `.cache/review-images/${name}-${width}-${colorScheme}-mock.png`,
             fullPage: true,
           });
-        evidence.push({ name, width, height, colorScheme, blocks: actual.length, violations });
+        evidence.push({
+          name,
+          width,
+          height,
+          colorScheme,
+          hasTouch: width === 390,
+          hover,
+          blocks: actual.length,
+          violations,
+        });
       }
+      await context.close();
+    }
     if (browserName === "chromium")
       writeFileSync(
         `.cache/review-images/${name}-evidence.json`,
