@@ -2,7 +2,7 @@
 
 前提とバージョンは[技術情報の前提](README.md#技術情報の前提)を参照。ここでは「Hugoが描画するために必要なもの」と「このブログで実装するもの」を区別する。
 
-対象画面をHugoテンプレートへ対応付ける。表示項目と画面幅の詳細は[資料4の合意済み視覚要件](04-theme-visual-requirements.md)を参照する。
+対象画面をHugoテンプレートへ対応付ける。最新の表示仕様は[HTMLモック](../mock/README.md)、判断理由は[資料4](04-theme-visual-requirements.md)を参照する。
 
 ## 必須の考え方
 
@@ -44,7 +44,7 @@ Hugoテーマに、必ず個別実装しなければならない固定数の画�
 | メタ情報 | 複数タグ、長いタグ、Aboutの日付・共有・スター、更新日の表示条件、下書きプレビュー、共有ボタンの折り返し |
 | アクセシビリティ | 200%拡大、Tab操作、フォーカス表示、reduced motion、JS無効でも記事を読める、画像が読み込めない |
 
-具体的な手順とモックの検査コマンドは[資料6](06-theme-validation.md)を参照する。
+モックの再生成・検査コマンドは[モックREADME](../mock/README.md#再生成と検査)を参照する。
 
 ## HTML画面以外の成果物
 
@@ -182,7 +182,7 @@ Go templateでは`{{ ... }}`内に処理を書く。`.`は現在のコンテキ�
 
 この例の`list.html`はhome/section/termを担当し、taxonomyだけ別にする。`.Pages`は子セクション等も含み得るので、実サイトの一覧対象は`.RegularPages`、`.RegularPagesRecursive`等との違いを確認して決める。
 
-この最小例は記事・About共通の日付表示と、分類名順の一覧を示す。共有・はてなスター、記事のタグ・前後記事は[視覚要件](04-theme-visual-requirements.md)に従って組み込む。
+この最小例は記事・About共通の日付表示と、分類名順の一覧を示す。共有・はてなスター、記事のタグ・前後記事の最新仕様は[HTMLモック](../mock/README.md)を参照する。
 
 `define`を使う子テンプレートには、`define`、空白、Go templateコメント以外を外側に置かない。外側に通常のHTMLを書くとbase templateが適用されない。HTMLの出力はコンテキストに応じてエスケープされるため、`safeHTML`等は信頼できるHTMLに限定する。[テンプレートの種類](https://gohugo.io/templates/types/)、[テンプレート入門](https://gohugo.io/templates/introduction/)
 

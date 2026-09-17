@@ -15,7 +15,7 @@
 
 ## 要件分担表
 
-「本体の能力」だけで完了とせず、右側の設定・表示・検証まで分けて考える。以下はAPIの責務表であり、全機能の採用を意味しない。検索・目次等の採否は[視覚要件](04-theme-visual-requirements.md)に従う。
+「本体の能力」だけで完了とせず、右側の設定・表示・検証まで分けて考える。以下はAPIの責務表であり、全機能の採用を意味しない。最新の表示・操作仕様は[HTMLモック](../mock/README.md)を参照する。
 
 | 機能 | Hugo本体の能力・標準挙動 | テーマ／サイトが決める部分 | 配信／ブラウザー |
 | --- | --- | --- | --- |
@@ -143,7 +143,7 @@ HugoにはOGP/Twitter Cards等の内蔵partialがあるが、テーマから呼�
 
 HTTP圧縮、Cache-Control、CSP、実際の404ステータス、プレビュー用`X-Robots-Tag`は配信の責務。Hugoが`_headers`等をコピーできても、その解釈はホスティングサービスに依存する。現サイトの[`static/_headers`](../static/_headers)は`pages.dev`向けnoindexヘッダーであり、PaperMod標準機能ではない。
 
-実装時の注意は[資料3](03-papermod-analysis.md)と[資料5](05-theme-implementation.md)、受け入れ検査は[資料6](06-theme-validation.md)を参照する。
+移行時の注意は[資料3](03-papermod-analysis.md)、デザインの判断理由は[資料4](04-theme-visual-requirements.md)を参照する。
 
 [pm-head]: https://github.com/adityatelange/hugo-PaperMod/blob/d3768854d00ad003b0a8dbdba254ce9224377a01/layouts/_partials/head.html
 [pm-cover]: https://github.com/adityatelange/hugo-PaperMod/blob/d3768854d00ad003b0a8dbdba254ce9224377a01/layouts/_partials/cover.html

@@ -1,6 +1,6 @@
 # 3. PaperModからの移行
 
-移行元の調査対象はPaperMod [`d3768854d00ad003b0a8dbdba254ce9224377a01`][pm-root]、Hugo v0.165.0 Extended。以下はその固定版とサイト設定から確認した注意点であり、全バージョンの挙動を示すものではない。可視UIの採否は[視覚要件](04-theme-visual-requirements.md)、責務は[資料2](02-hugo-core-vs-theme.md)を参照する。
+移行元の調査対象はPaperMod [`d3768854d00ad003b0a8dbdba254ce9224377a01`][pm-root]、Hugo v0.165.0 Extended。以下はその固定版とサイト設定から確認した注意点であり、全バージョンの挙動を示すものではない。最新の表示・操作仕様は[HTMLモック](../mock/README.md)、責務は[資料2](02-hugo-core-vs-theme.md)を参照する。
 
 ## 維持するものと実装の対応
 
