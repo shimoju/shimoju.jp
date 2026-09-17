@@ -55,7 +55,7 @@ specimen = specimen.replace(
 );
 specimen = specimen.replace(
   /通常の日本語とEnglish 0123に対して、[^\n]+/,
-  "通常の日本語とEnglish 0123に対して、**重要な日本語とEnglish 0123（strong）**、**注目する日本語とEnglish 0123（b）**を同じ700で表示します。**強調の中の入れ子の太字**も700を維持し、**`inline_code`**は強調の太さを継承します。",
+  "通常の日本語とEnglish 0123に対して、**重要な日本語とEnglish 0123（strong）**、**注目する日本語とEnglish 0123（b）** を同じ700で表示します。**強調の中の入れ子の太字**も700を維持し、**`inline_code`** は強調の太さを継承します。",
 );
 specimen = specimen.replace(
   /<table class="wide-table">[\s\S]*?<\/table>/,

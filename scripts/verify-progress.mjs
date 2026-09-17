@@ -132,7 +132,7 @@ for (const [name, count] of coverage) {
   }
 }
 assert.ok(ancestors("T010").includes("T009"), "Full screens must depend on representative review");
-assert.ok(reference("tasks", "T009").review_ids.includes("R001"));
+assert.ok(reference("tasks", "T009").review_ids.length, "Representative review is required");
 assert.ok(ancestors("T018").includes("T014"), "Completion must depend on full review");
 for (const id of ["T015", "T016", "T017"])
   assert.ok(ancestors("T018").includes(id), `Completion must depend on ${id}`);

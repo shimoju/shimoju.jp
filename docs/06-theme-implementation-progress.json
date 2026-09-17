@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-17T13:44:02.743854+00:00",
-  "stage": "representative",
-  "summary": "T001〜T003完了。代表画面T004〜T009/T019とRSS/メタ情報T011は実装・ローカル検証済み。統合102件成功。比較32画像・共通設計説明をR001へ提出し明示承認待ち。T010以降は承認後に進む。本番PaperModと凍結モックは維持。",
-  "latest_review_id": null,
+  "updated_at": "2026-09-17T14:20:28.718945+00:00",
+  "stage": "revision",
+  "summary": "R001で本文部品のMarkdown強調と開発ファイル配置の修正指示を受領。T020で強調入力と意味検査、T021でthemes/shshへの開発環境集約を行い再レビューする。",
+  "latest_review_id": "R001",
   "resume": {
-    "task_id": "T009",
-    "action": "R001の明示判断を受ける。承認なら対象作業の条件を照合して完了を記録しT010へ進む。修正指示なら指摘と後続タスクを記録して再検証・再レビューする。無回答を承認とせずT010/移行へ進まない。独立作業T011は実装・検証済み。"
+    "task_id": "T021",
+    "action": "テーマ開発環境をthemes/shshへ移し、統合検査と修正済み比較画像をR003へ提出する。"
   },
   "tasks": [
     {
@@ -180,7 +180,7 @@
         "docs/verification/t004-check.log"
       ],
       "verification_ids": ["V008", "V009", "V013"],
-      "review_ids": ["R001"],
+      "review_ids": ["R003"],
       "blocked_by": [],
       "next_action": "T005〜T008で代表画面を揃え、T009/R001で共通設計をレビューする。承認前はimplementedを維持する。"
     },
@@ -232,7 +232,7 @@
         "docs/verification/t005-check.log"
       ],
       "verification_ids": ["V010", "V011", "V013"],
-      "review_ids": ["R001"],
+      "review_ids": ["R003"],
       "blocked_by": [],
       "next_action": "T006の本文組版へ進む。カバー組み込みはT007、完成形の視覚比較とR001承認はT009に残る。"
     },
@@ -283,7 +283,7 @@
         "docs/verification/t006-prose-images/"
       ],
       "verification_ids": ["V012", "V013"],
-      "review_ids": ["R001"],
+      "review_ids": ["R003"],
       "blocked_by": [],
       "next_action": "T007でカバー・本文メディアを実装し、T008の共有と合わせてT009/R001へ提出する。本文部分の実記事比較は済んだが、全ページ完成形の承認は未実施。"
     },
@@ -326,7 +326,7 @@
         "docs/verification/t007-media-images/"
       ],
       "verification_ids": ["V014", "V015", "V019"],
-      "review_ids": ["R001"],
+      "review_ids": ["R003"],
       "blocked_by": [],
       "next_action": "T008で共有・外部反応を実装し、T009/R001で代表画面全体と共通設計の承認を受ける。"
     },
@@ -371,7 +371,7 @@
         "docs/verification/t008-check.log"
       ],
       "verification_ids": ["V016", "V017"],
-      "review_ids": ["R001"],
+      "review_ids": ["R003"],
       "blocked_by": [],
       "next_action": "T009で代表画面全体の比較と構造説明を用意し、R001の明示承認を受ける。公式スター実接続はT017。"
     },
@@ -417,7 +417,7 @@
         "tests/review.spec.ts"
       ],
       "verification_ids": ["V018", "V019", "V020"],
-      "review_ids": ["R001"],
+      "review_ids": ["R003"],
       "blocked_by": [],
       "next_action": "R001の明示判断を受け、承認または指摘・修正・再検証を記録する。承認待ちは完了にしない。"
     },
@@ -783,9 +783,70 @@
         "docs/verification/t019-check.log"
       ],
       "verification_ids": ["V019"],
-      "review_ids": ["R001"],
+      "review_ids": ["R003"],
       "blocked_by": [],
       "next_action": "T009で代表画面の比較画像・構造説明をまとめ、R001の明示承認を受ける。"
+    },
+    {
+      "id": "T020",
+      "title": "本文部品のMarkdown強調入力を修正",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/05-theme-implementation-discipline.md: Q7"
+      ],
+      "scope": ["R001/F010で指摘された本文部品fixtureの入力と強調範囲を是正する。"],
+      "depends_on": ["T009"],
+      "acceptance_criteria": [
+        "強調4箇所とinline codeが正しい範囲で700になり、本文へ**が露出しない。",
+        "凍結モック・テーマCSSを変えず、両幅/両配色・3エンジンで確認する。"
+      ],
+      "verification_plan": [
+        "修正前の生成HTMLで再現を確認し、修正後のstrong/codeの意味・文字・太さと既存代表画面比較12件を確認する。"
+      ],
+      "commit_message": "[T020] 本文部品のMarkdown強調入力を修正",
+      "status": "implemented",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "scripts/build-review-fixture.ts",
+        "tests/review.spec.ts",
+        "docs/verification/t020-review.log"
+      ],
+      "verification_ids": ["V023"],
+      "review_ids": ["R003"],
+      "blocked_by": ["F010"],
+      "next_action": "T021で開発環境を集約し、修正済み画像と構造をR003へ提出する。"
+    },
+    {
+      "id": "T021",
+      "title": "テーマ開発環境をthemes/shshへ集約",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q29",
+        "docs/04-theme-implementation-requirements.md: Q30",
+        "docs/05-theme-implementation-discipline.md: Q7",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "scope": [
+        "設定・依存・検査スクリプト/fixture/baseline・検証資料をthemes/shshへ移し、実行パス・参照・文書を更新する。",
+        "R001の2指摘を解決し、R003で変更範囲を再提出する。"
+      ],
+      "depends_on": ["T003", "T020", "T011"],
+      "acceptance_criteria": [
+        "themes/shshから依存導入・整形・型lint・Hugo生成・ブラウザ検査・レビュー閲覧が成立する。",
+        "ルートにテーマ開発設定や互換実行用package.jsonを残さず、モックとサイトの公開内容・設定は維持する。",
+        "資料4の配置要件をユーザー指示へ更新し、過去の検証記録と新しいパスを追跡できる。"
+      ],
+      "verification_plan": [
+        "frozen-lockfile導入、型エラー検出probe、統合検査、基準JSONとモックのハッシュ維持、レビューURL/画像を検証する。"
+      ],
+      "commit_message": "[T021] テーマ開発環境をthemes/shshへ集約",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": ["R003"],
+      "blocked_by": ["F011"],
+      "next_action": "設定・依存・検査スクリプト/fixture/baseline・検証資料をthemes/shshへ移し、実行パス・参照・文書を更新する。"
     }
   ],
   "findings": [
@@ -1006,6 +1067,50 @@
       },
       "resolution_refs": ["themes/shsh/assets/css/controls.css", "themes/shsh/assets/css/list.css"],
       "verification_ids": ["V019"]
+    },
+    {
+      "id": "F010",
+      "title": "本文部品のMarkdown強調区切りが文字として露出",
+      "task_ids": ["T009", "T020"],
+      "status": "resolved",
+      "requires_user_decision": true,
+      "observation": "review fixtureが句読点を含む文字列とinline codeを**で囲み、後続日本語へ隣接させていた。生成HTMLで強調範囲が連結し**が露出。",
+      "evidence_refs": ["scripts/build-review-fixture.ts", "package.json"],
+      "impact": "本文部品の強調例がモックと異なり、これまでのaxe/寸法検査では意味の崩れを検出できなかった。",
+      "recommendation": "区切りが成立するMarkdown入力へ修正し、各strong/codeの範囲・文字・太さを検査する。",
+      "decision": {
+        "outcome": "approved",
+        "reason": "本文部品の強調崩れと、テーマ開発ファイルをthemes/shshルートへ集約する修正指示。",
+        "decided_by": "user",
+        "recorded_at": "2026-09-17T14:18:47.855207+00:00",
+        "source": "「Markdownの『**』記号が剥き出し」「テーマの開発に関わるファイルはthemes/shshをルートディレクトリとしてそこに集約してください」"
+      },
+      "resolution_refs": [
+        "scripts/build-review-fixture.ts",
+        "tests/review.spec.ts",
+        "docs/verification/t020-review.log"
+      ],
+      "verification_ids": ["V023"]
+    },
+    {
+      "id": "F011",
+      "title": "テーマ開発ファイルがサイトルートに分散",
+      "task_ids": ["T003", "T021"],
+      "status": "approved",
+      "requires_user_decision": true,
+      "observation": "package.json・lint/format/TS/Playwright設定・scripts/testsがサイトルートに置かれている。",
+      "evidence_refs": ["scripts/build-review-fixture.ts", "package.json"],
+      "impact": "テーマ開発の起点とサイトのルートが混在する。",
+      "recommendation": "依存・設定・scripts/tests・検証資料をthemes/shshへ集約し、テーマルートから全コマンドを実行可能にする。",
+      "decision": {
+        "outcome": "approved",
+        "reason": "本文部品の強調崩れと、テーマ開発ファイルをthemes/shshルートへ集約する修正指示。",
+        "decided_by": "user",
+        "recorded_at": "2026-09-17T14:18:47.855207+00:00",
+        "source": "「Markdownの『**』記号が剥き出し」「テーマの開発に関わるファイルはthemes/shshをルートディレクトリとしてそこに集約してください」"
+      },
+      "resolution_refs": [],
+      "verification_ids": []
     }
   ],
   "reviews": [
@@ -1013,7 +1118,7 @@
       "id": "R001",
       "title": "代表画面と共通設計のレビュー",
       "task_ids": ["T004", "T005", "T006", "T007", "T008", "T009", "T019"],
-      "status": "requested",
+      "status": "changes_requested",
       "artifact_refs": [
         "docs/verification/r001-review.md",
         "docs/verification/r001/index.html",
@@ -1030,8 +1135,14 @@
         "docs/verification/representative-corrections.md"
       ],
       "verification_ids": ["V008", "V011", "V013", "V015", "V017", "V019", "V020"],
-      "finding_ids": ["F003", "F004", "F005", "F006", "F007", "F008", "F009"],
-      "decision": null,
+      "finding_ids": ["F003", "F004", "F005", "F006", "F007", "F008", "F009", "F010", "F011"],
+      "decision": {
+        "outcome": "changes_requested",
+        "reason": "本文部品の強調崩れと、テーマ開発ファイルをthemes/shshルートへ集約する修正指示。",
+        "decided_by": "user",
+        "recorded_at": "2026-09-17T14:18:47.855207+00:00",
+        "source": "「Markdownの『**』記号が剥き出し」「テーマの開発に関わるファイルはthemes/shshをルートディレクトリとしてそこに集約してください」"
+      },
       "supersedes": null
     },
     {
@@ -1044,6 +1155,17 @@
       "finding_ids": [],
       "decision": null,
       "supersedes": null
+    },
+    {
+      "id": "R003",
+      "title": "R001指摘修正後の代表画面・共通設計再レビュー",
+      "task_ids": ["T004", "T005", "T006", "T007", "T008", "T009", "T019", "T020", "T021"],
+      "status": "not_ready",
+      "artifact_refs": [],
+      "verification_ids": ["V023"],
+      "finding_ids": ["F010", "F011"],
+      "decision": null,
+      "supersedes": "R001"
     }
   ],
   "verifications": [
@@ -1623,6 +1745,26 @@
       ],
       "recorded_at": "2026-09-17T13:44:02.743854+00:00",
       "supersedes": "V021"
+    },
+    {
+      "id": "V023",
+      "task_ids": ["T020"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/05-theme-implementation-discipline.md: Q7"
+      ],
+      "kind": "本文部品の強調修正と代表画面比較",
+      "result": "passed",
+      "subject_ref": "dd86367 + T020のレビューfixture/強調検査差分",
+      "environment": "macOS27 arm64; Hugo0.166.0; Playwright1.63.0 Chromium/Firefox/WebKit;1440/390px・両配色",
+      "procedure": "修正前の生成HTMLで**露出と誤ったstrong範囲を確認。区切り空白追加後、strong4箇所の文字/範囲とstrong内code・font-weight700・**非露出を検査し、代表画面12件成功。CSS/凍結モックは無変更。",
+      "evidence_refs": [
+        "scripts/build-review-fixture.ts",
+        "tests/review.spec.ts",
+        "docs/verification/t020-review.log"
+      ],
+      "recorded_at": "2026-09-17T14:20:28.718945+00:00",
+      "supersedes": null
     }
   ]
 }

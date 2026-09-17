@@ -92,6 +92,21 @@ for (const [name, path, mock] of [
         await page.emulateMedia({ colorScheme });
         await page.goto(review + path);
         await ready(page);
+        if (name === "specimen") {
+          const sample = page
+            .locator(".prose > p")
+            .filter({ hasText: "通常の日本語とEnglish 0123に対して" });
+          await expect(sample).not.toContainText("**");
+          await expect(sample.locator("strong")).toHaveText([
+            "重要な日本語とEnglish 0123（strong）",
+            "注目する日本語とEnglish 0123（b）",
+            "強調の中の入れ子の太字",
+            "inline_code",
+          ]);
+          await expect(sample.locator("strong > code")).toHaveText("inline_code");
+          for (const emphasis of await sample.locator("strong, strong > code").all())
+            await expect(emphasis).toHaveCSS("font-weight", "700");
+        }
         const violations = await accessibility(page);
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
           true,
