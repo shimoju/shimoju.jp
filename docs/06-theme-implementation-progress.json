@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-17T11:23:23Z",
-  "stage": "not_started",
-  "summary": "実装開始前。2026-09-17に規律・進捗フォーマット・開始用プロンプトの一式を確定。同日の追加指示により、要件に基づくタスク分割とタスク単位のコミットを具体化。テーマ実装・検証・実装成果物のレビュー承認は未実施。",
+  "updated_at": "2026-09-17T11:37:01.628023+00:00",
+  "stage": "planning",
+  "summary": "新規開始を確認。全要件をT001〜T018へ割当。T009の代表画面承認後にT010で全画面へ展開し、T014の全画面レビュー・実機・性能・実配信の検証後に移行完了を監査する。",
   "latest_review_id": null,
   "resume": {
-    "task_id": "T001",
-    "action": "テーマ実装の開始指示を受けたらT001から開始する。"
+    "task_id": "T002",
+    "action": "T001の計画検証・コミット後、旧テーマの全出力と凍結モックを移行基準として記録する。"
   },
   "tasks": [
     {
@@ -34,13 +34,700 @@
         "各タスクのscope・acceptance_criteria・verification_plan・commit_messageが具体的で、関連差分を一緒にレビューできることを確認する。"
       ],
       "commit_message": "[T001] テーマ実装計画と検証条件を定義",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "docs/06-theme-implementation-progress.json",
+        "docs/verification/implementation-plan.md",
+        "scripts/verify-progress.mjs"
+      ],
+      "verification_ids": [
+        "V001"
+      ],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "T002へ進む。実装計画は学びに応じて要件対応を維持して更新する。"
+    },
+    {
+      "id": "T002",
+      "title": "移行前の全コンテンツと公開出力を記録",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q2",
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/04-theme-implementation-requirements.md: 合意事項を適用する際の補足: 移行対象"
+      ],
+      "scope": [
+        "変更前コミット・全記事と固定ページ・見出しID・本文・素材・RSSの識別子を保存する。",
+        "モックの凍結ハッシュと本番／検査時の外部埋め込みの扱いを記録する。"
+      ],
+      "depends_on": [
+        "T001"
+      ],
+      "acceptance_criteria": [
+        "全59記事・About・Archivesと全派生出力が基準資料から追跡できる。増分記事も含める。",
+        "旧テーマを使う再現可能な基準出力と内容の照合データがあり、外部取得の置換箇所を明示する。"
+      ],
+      "verification_plan": [
+        "Hugo 0.166.0で旧テーマの隔離ビルドを行い、ソース一覧と生成HTML/RSSを照合する。",
+        "ソース・素材のSHA-256、全URL、見出しID、本文テキスト、埋め込み入力を機械抽出して件数確認する。"
+      ],
+      "commit_message": "[T002] 移行前の全コンテンツと公開出力を記録",
       "status": "not_started",
       "verification_status": "not_run",
       "artifact_refs": [],
       "verification_ids": [],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "要件と現在のリポジトリを照合し、タスク分割・依存関係・検証計画をこのJSONへ記録する。計画を検証してT001としてコミットし、実装へ進む。"
+      "next_action": "変更前コミット・全記事と固定ページ・見出しID・本文・素材・RSSの識別子を保存する。"
+    },
+    {
+      "id": "T003",
+      "title": "品質検査ツールと再現可能な実行環境を整備",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q4",
+        "docs/04-theme-implementation-requirements.md: Q12",
+        "docs/04-theme-implementation-requirements.md: Q13",
+        "docs/04-theme-implementation-requirements.md: Q22",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q29",
+        "docs/04-theme-implementation-requirements.md: Q30",
+        "docs/04-theme-implementation-requirements.md: 開発・検査ツール",
+        "docs/04-theme-implementation-requirements.md: 実装開始時の確認と完了判定"
+      ],
+      "scope": [
+        "Node 24・pnpm・oxfmt・oxlint/tsgolint・ネイティブTS・Stylelint・Prettier Go template・HTML-validate・Playwright/axeを固定する。",
+        "ブラウザ／検査のstrict型検査、formatterの排他的対象設定、検査速度測定コマンドを用意する。"
+      ],
+      "depends_on": [
+        "T001"
+      ],
+      "acceptance_criteria": [
+        "pnpm-lock.yamlと版指定がありfrozen-lockfileで導入できる。",
+        "凍結モック・記事・生成物・旧テーマは整形/lintから除外し、Hugoテンプレートだけ専用parserで処理する。",
+        "空白制御・inline・属性式・render hookの整形前後の意味と冪等性を確認する。RSS/XMLは別扱いにする。",
+        "型付きlintと型検査がブラウザ／検査の両方で意図的な型エラーを検出する。"
+      ],
+      "verification_plan": [
+        "最小TS/CSS/Hugo/HTML fixtureで各コマンドの成功と意図的なエラーの検出を確認する。",
+        "整形・lint/型検査・Hugo・ブラウザの実測時間と環境を個別に保存する。"
+      ],
+      "commit_message": "[T003] 品質検査ツールと再現可能な実行環境を整備",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "Node 24・pnpm・oxfmt・oxlint/tsgolint・ネイティブTS・Stylelint・Prettier Go template・HTML-validate・Playwright/axeを固定する。"
+    },
+    {
+      "id": "T004",
+      "title": "代表画面の共通枠と配色切替を実装",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q1",
+        "docs/04-theme-implementation-requirements.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q6",
+        "docs/04-theme-implementation-requirements.md: Q7",
+        "docs/04-theme-implementation-requirements.md: Q12",
+        "docs/04-theme-implementation-requirements.md: Q13",
+        "docs/04-theme-implementation-requirements.md: Q15",
+        "docs/04-theme-implementation-requirements.md: Q25",
+        "docs/04-theme-implementation-requirements.md: Q28",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q2",
+        "docs/05-theme-implementation-discipline.md: Q3"
+      ],
+      "scope": [
+        "themes/shshに設定駆動のヘッダー・フッター、役割別トークン、CSS/TSのPipes処理を作る。",
+        "pref-themeによる初期描画・保存・OS追従とJS無効時の配色を実装し、診断パラメーターを除外する。"
+      ],
+      "depends_on": [
+        "T002",
+        "T003"
+      ],
+      "acceptance_criteria": [
+        "別サイトの最小fixtureをHugoだけで生成できる。",
+        "本文基準とUI基準、行高などの役割が分かれ、ライト／ダークとJS無効時が成立する。",
+        "本番はminify/fingerprint、source mapは開発時だけ。設定値・言語・RSSフッター・メニュー参照を検証する。"
+      ],
+      "verification_plan": [
+        "3エンジンで保存設定／OS変更／保存例外／初期描画／JS無効／キーボードを検査する。",
+        "Hugo単独生成、別ドメイン・著者fixture、未知アイコン・メニュー切れ・型違いの失敗を確認する。"
+      ],
+      "commit_message": "[T004] 代表画面の共通枠と配色切替を実装",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [
+        "R001"
+      ],
+      "blocked_by": [],
+      "next_action": "themes/shshに設定駆動のヘッダー・フッター、役割別トークン、CSS/TSのPipes処理を作る。"
+    },
+    {
+      "id": "T005",
+      "title": "代表のホームと一覧を共通の記事集合で生成",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q7",
+        "docs/04-theme-implementation-requirements.md: Q8",
+        "docs/04-theme-implementation-requirements.md: Q16",
+        "docs/04-theme-implementation-requirements.md: Q17",
+        "docs/04-theme-implementation-requirements.md: Q18",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: 合意事項を適用する際の補足: 日付"
+      ],
+      "scope": [
+        "ホーム紹介・記事一覧カード・日付・共通要約・ページ送りを作る。",
+        "記事集合、同日時の公開パス順、日付補完と予約公開をfixtureで確かめる。"
+      ],
+      "depends_on": [
+        "T004"
+      ],
+      "acceptance_criteria": [
+        "モックのホーム／一覧の配置とPrev/Next方向を維持する。",
+        "既定10件・設定変更・0/1件・複数ページ・summary/more/自動要約が成立する。",
+        "日付と予約解禁を混同せず、draft/future/expiryはHugo標準に従う。"
+      ],
+      "verification_plan": [
+        "2件×3ページのモック同等fixtureと10件既定fixtureを生成して記事順・要約・ナビを照合する。",
+        "同日同時刻・タイムゾーン境界・draft/予約/期限切れを生成物で検査する。"
+      ],
+      "commit_message": "[T005] 代表のホームと一覧を共通の記事集合で生成",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [
+        "R001"
+      ],
+      "blocked_by": [],
+      "next_action": "ホーム紹介・記事一覧カード・日付・共通要約・ページ送りを作る。"
+    },
+    {
+      "id": "T006",
+      "title": "記事の本文組版とコード操作を実装",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q9",
+        "docs/04-theme-implementation-requirements.md: Q12",
+        "docs/04-theme-implementation-requirements.md: Q16",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/05-theme-implementation-discipline.md: Q2",
+        "docs/05-theme-implementation-discipline.md: Q3"
+      ],
+      "scope": [
+        "記事ヘッダー・日付・本文・Hugo標準見出しID・コードrender hookとコピーTSを実装する。",
+        "本文部品fixtureと実記事で表・脚注・見出し・日本語コードを再現する。"
+      ],
+      "depends_on": [
+        "T004"
+      ],
+      "acceptance_criteria": [
+        "モックの組版、Chroma公式Latte/Mocha、言語/filename/行番号/強調/未知言語が成立する。",
+        "コピーはラベル・行番号を除き、成功/失敗/再試行/3秒復帰を扱う。",
+        "JS無効時には動かないボタンを出さず本文が読める。"
+      ],
+      "verification_plan": [
+        "3エンジンでコードコピー内容・失敗通知・フォーカス・タッチ・JS無効を検査する。",
+        "specimenと実記事を両配色・PC/モバイルで比較し、見出しIDを旧出力と照合する。"
+      ],
+      "commit_message": "[T006] 記事の本文組版とコード操作を実装",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [
+        "R001"
+      ],
+      "blocked_by": [],
+      "next_action": "記事ヘッダー・日付・本文・Hugo標準見出しID・コードrender hookとコピーTSを実装する。"
+    },
+    {
+      "id": "T007",
+      "title": "カバーと本文メディアの共通配信処理を実装",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q14",
+        "docs/04-theme-implementation-requirements.md: Q21",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/04-theme-implementation-requirements.md: 合意事項を適用する際の補足: SNS既定画像"
+      ],
+      "scope": [
+        "カバー・Markdown画像・figureで共通の画像解決とレスポンシブ変換を使う。",
+        "videoとSpeaker Deckの独自shortcodeを実装する。"
+      ],
+      "depends_on": [
+        "T004"
+      ],
+      "acceptance_criteria": [
+        "360/720/1080/1440と原寸候補、sizes、寸法、WebPと原形式代替、eager/lazyが仕様どおり。",
+        "PNG可逆/JPEG q80、無拡大・無切り抜き、static/外部/SVG/アニメーション境界が成立する。",
+        "動画は著者寸法・controls/playsinline/preloadと既定の非autoplay/非loop/非mutedを維持する。"
+      ],
+      "verification_plan": [
+        "実スクリーンショットと写真および小画像/透明PNG/SVG/アニメーション/static/assets/外部fixtureを検査する。",
+        "画像の実寸・候補上限・原形式代替と視認性を両幅で確認し、切れたローカル参照をビルドエラーにする。"
+      ],
+      "commit_message": "[T007] カバーと本文メディアの共通配信処理を実装",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [
+        "R001"
+      ],
+      "blocked_by": [],
+      "next_action": "カバー・Markdown画像・figureで共通の画像解決とレスポンシブ変換を使う。"
+    },
+    {
+      "id": "T008",
+      "title": "共有と外部反応を設定から生成",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q9",
+        "docs/04-theme-implementation-requirements.md: Q20",
+        "docs/04-theme-implementation-requirements.md: Q26",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: 合意事項を適用する際の補足: 公開URL"
+      ],
+      "scope": [
+        "共通アイコン・順序付き共有リンク・設定駆動のはてなスターを実装する。",
+        "本番URL統一とプレビューの共有操作/スター停止を検査する。"
+      ],
+      "depends_on": [
+        "T004",
+        "T006"
+      ],
+      "acceptance_criteria": [
+        "X/Facebook/Bluesky/はてな閲覧リンク・プロフィール・RSSを役割別に生成する。",
+        "スター既定無効、未設定共有なし、未知サービスはビルドエラー、固有IDの埋め込みなし。",
+        "プレビューは実サービスへの共有操作とスター読み込みを行わない。"
+      ],
+      "verification_plan": [
+        "公開/preview fixtureのリンクURL・順序・既定値・エラーを検査し、ブラウザではスター通信を固定応答で検証する。",
+        "キーボード/JS無効/通信失敗時の可読性を確認する。"
+      ],
+      "commit_message": "[T008] 共有と外部反応を設定から生成",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [
+        "R001"
+      ],
+      "blocked_by": [],
+      "next_action": "共通アイコン・順序付き共有リンク・設定駆動のはてなスターを実装する。"
+    },
+    {
+      "id": "T009",
+      "title": "代表画面の比較と共通設計レビューを提出",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/04-theme-implementation-requirements.md: 実装開始時の確認と完了判定",
+        "docs/05-theme-implementation-discipline.md: Q1",
+        "docs/05-theme-implementation-discipline.md: Q4",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q7",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "scope": [
+        "ホーム/一覧・実記事・本文部品の両配色PC/モバイル比較と責務説明を提出する。",
+        "例外・モックとの差分・検証済み/未実施を提示しR001の明示判断を記録する。"
+      ],
+      "depends_on": [
+        "T005",
+        "T006",
+        "T007",
+        "T008"
+      ],
+      "acceptance_criteria": [
+        "同じOS・フォント・ブラウザ条件で比較画像と差分説明を用意する。",
+        "トークン/CSS/TS/テンプレートの共有箇所と例外をコードへ結び付けて説明する。",
+        "R001が明示承認され、指摘は後続タスクで修正と再検証を完了する。"
+      ],
+      "verification_plan": [
+        "1440×1000と390×844・両配色を基準に比較。文字拡大125/200%も検査する。",
+        "3エンジン操作とaxeを実行し、コード色の合意例外だけ限定記録する。",
+        "ユーザーの回答をdecisionへ引用し無回答を承認にしない。"
+      ],
+      "commit_message": "[T009] 代表画面の比較と共通設計レビューを提出",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [
+        "R001"
+      ],
+      "blocked_by": [],
+      "next_action": "ホーム/一覧・実記事・本文部品の両配色PC/モバイル比較と責務説明を提出する。"
+    },
+    {
+      "id": "T010",
+      "title": "承認済み共通設計を全画面へ展開",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q8",
+        "docs/04-theme-implementation-requirements.md: Q9",
+        "docs/04-theme-implementation-requirements.md: Q16",
+        "docs/04-theme-implementation-requirements.md: Q18",
+        "docs/04-theme-implementation-requirements.md: Q32"
+      ],
+      "scope": [
+        "About/通常固定ページ・Archives・分類一覧/個別分類・404・記事タグ/前後記事へ展開する。"
+      ],
+      "depends_on": [
+        "T009"
+      ],
+      "acceptance_criteria": [
+        "全モック画面に対応し、空分類・個別分類ページ送りを含め共通規則を使う。",
+        "Archivesは年/月の全記事、固定ページはタグ/前後なしで日付非表示設定が効く。"
+      ],
+      "verification_plan": [
+        "全画面対応表と両配色PC/モバイル比較、0/1件・全分類・前後方向・キーボードを検査する。"
+      ],
+      "commit_message": "[T010] 承認済み共通設計を全画面へ展開",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [
+        "R002"
+      ],
+      "blocked_by": [],
+      "next_action": "About/通常固定ページ・Archives・分類一覧/個別分類・404・記事タグ/前後記事へ展開する。"
+    },
+    {
+      "id": "T011",
+      "title": "RSSとメタ情報の公開文書URLを統一",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q8",
+        "docs/04-theme-implementation-requirements.md: Q10",
+        "docs/04-theme-implementation-requirements.md: Q15",
+        "docs/04-theme-implementation-requirements.md: Q16",
+        "docs/04-theme-implementation-requirements.md: Q17",
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q20",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: 合意事項を適用する際の補足: 日付・分類フィード・公開URL・SNS既定画像"
+      ],
+      "scope": [
+        "ホーム/section/分類フィードとSEO/SNS/JSON-LD、sitemap/robotsを実装する。"
+      ],
+      "depends_on": [
+        "T005",
+        "T006",
+        "T007"
+      ],
+      "acceptance_criteria": [
+        "RSS無制限・共通要約・既存GUID、分類一覧RSSの分類ページ配信を維持する。",
+        "canonicalはページ送りを含む各URL、画像はcover/default/none、型はBlogPosting/WebPage/WebSite+Person。",
+        "description優先、.Date、空日付、XMLエスケープ、preview noindexを正しく扱う。"
+      ],
+      "verification_plan": [
+        "全種別とページ送りのHTML/XMLをパースしてURL・件数・日付・テキスト・メタ画像を照合する。",
+        "空feed・記号入り分類・日付なし・site assets/static/外部既定画像・別baseURLを検査する。"
+      ],
+      "commit_message": "[T011] RSSとメタ情報の公開文書URLを統一",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [
+        "R002"
+      ],
+      "blocked_by": [],
+      "next_action": "ホーム/section/分類フィードとSEO/SNS/JSON-LD、sitemap/robotsを実装する。"
+    },
+    {
+      "id": "T012",
+      "title": "サイト設定と全記事の埋め込み入力を移行",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q2",
+        "docs/04-theme-implementation-requirements.md: Q7",
+        "docs/04-theme-implementation-requirements.md: Q11",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q27",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: Q34"
+      ],
+      "scope": [
+        "hugo.ymlをshsh設定に移し、紹介をMarkdownへ、raw埋め込みをshortcodeへ変換してunsafe=falseにする。",
+        "検査用埋め込み置換と本番組込shortcodeを分離し、本番/プレビュービルドを用意する。"
+      ],
+      "depends_on": [
+        "T002",
+        "T007",
+        "T008",
+        "T009",
+        "T010",
+        "T011"
+      ],
+      "acceptance_criteria": [
+        "全記事の本文・リンク・埋め込み位置/ID/URLと動画内容を維持する。",
+        "本番に診断ページ・検査用shortcodeが混入しない。",
+        "本番と同じ組込X/Instagram/YouTubeのビルド・接続結果を警告と入力エラーに分けて記録する。"
+      ],
+      "verification_plan": [
+        "元入力と新入力の対応一覧を全件照合し、通常CI固定応答と実接続ビルドを別実行する。",
+        "Hugo単独で本番/previewを生成し、外部通信制限時の未実施を明記する。"
+      ],
+      "commit_message": "[T012] サイト設定と全記事の埋め込み入力を移行",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [
+        "R002"
+      ],
+      "blocked_by": [],
+      "next_action": "hugo.ymlをshsh設定に移し、紹介をMarkdownへ、raw埋め込みをshortcodeへ変換してunsafe=falseにする。"
+    },
+    {
+      "id": "T013",
+      "title": "全公開出力の移行照合とCI検査を完成",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q2",
+        "docs/04-theme-implementation-requirements.md: Q4",
+        "docs/04-theme-implementation-requirements.md: Q13",
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q22",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q29",
+        "docs/04-theme-implementation-requirements.md: Q30",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/04-theme-implementation-requirements.md: 開発・検査ツール"
+      ],
+      "scope": [
+        "旧基準と全記事/About/Archives/派生一覧のURL・本文・見出しID・素材・RSS識別子を照合する。",
+        "全内部リンク・メタ・画像寸法・生成HTML・操作/axeをGitHub Actionsへ組み込む。"
+      ],
+      "depends_on": [
+        "T003",
+        "T010",
+        "T011",
+        "T012"
+      ],
+      "acceptance_criteria": [
+        "意図しない欠落がなく、承認差分に判断IDと照合証拠がある。",
+        "frozen-lockfile・型付きlint統合・strict・整形対象分離をCIで実行できる。",
+        "別サイト最小fixtureが固有著者/ドメインなしで生成できる。"
+      ],
+      "verification_plan": [
+        "全生成HTML/RSSを走査しリンク先ファイルとfragment、GUID/メタ/画像寸法を検査する。",
+        "3エンジン・axeと各品質コマンドを実行し所要時間/ログを保存する。"
+      ],
+      "commit_message": "[T013] 全公開出力の移行照合とCI検査を完成",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [
+        "R002"
+      ],
+      "blocked_by": [],
+      "next_action": "旧基準と全記事/About/Archives/派生一覧のURL・本文・見出しID・素材・RSS識別子を照合する。"
+    },
+    {
+      "id": "T014",
+      "title": "全画面の一貫性と残件をレビューへ提出",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q1",
+        "docs/05-theme-implementation-discipline.md: Q4",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q7",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "scope": [
+        "全画面比較・検査証拠・未確認の実機/性能/配信条件を提出しR002を依頼する。"
+      ],
+      "depends_on": [
+        "T010",
+        "T011",
+        "T012",
+        "T013"
+      ],
+      "acceptance_criteria": [
+        "ユーザーの明示判断を記録し、指摘を後続タスクで修正・影響範囲再検証する。",
+        "共通設計変更時は必要範囲を再レビューし期待値を承認に結び付ける。"
+      ],
+      "verification_plan": [
+        "全画面・両配色・PC/モバイルと構造の対応表を点検する。",
+        "提出時はimplemented、承認前はcompleteにしない。"
+      ],
+      "commit_message": "[T014] 全画面の一貫性と残件をレビューへ提出",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [
+        "R002"
+      ],
+      "blocked_by": [],
+      "next_action": "全画面比較・検査証拠・未確認の実機/性能/配信条件を提出しR002を依頼する。"
+    },
+    {
+      "id": "T015",
+      "title": "主要実機の操作とフォントを確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/04-theme-implementation-requirements.md: 実装開始時の確認と完了判定",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "scope": [
+        "PC/モバイル主要安定版とOS固有フォントの確認手順・対象URL・記録表を用意する。",
+        "macOS Safari/Chrome/Firefox・Windows Edge/Chromeの和欧文・iOS Safari/Android Chromeの実機結果を集める。"
+      ],
+      "depends_on": [
+        "T014"
+      ],
+      "acceptance_criteria": [
+        "OS/ブラウザ/端末/実フォント/表示幅/配色/文字設定と確認者を記録する。",
+        "本文・コード・画像・タッチ・コピー・キーボード・共有/スターを確認し残る問題を解消する。"
+      ],
+      "verification_plan": [
+        "実機で代表ページを両配色・標準/拡大文字で表示し、OS固有フォントの実フェイスを確認する。",
+        "手元で実行できない環境はユーザーに具体的手順を依頼し、未確認のまま合格にしない。"
+      ],
+      "commit_message": "[T015] 主要実機の操作とフォントを確認",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "PC/モバイル主要安定版とOS固有フォントの確認手順・対象URL・記録表を用意する。"
+    },
+    {
+      "id": "T016",
+      "title": "モバイル性能を測定し影響を検証",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q14",
+        "docs/04-theme-implementation-requirements.md: Q21",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/04-theme-implementation-requirements.md: 実装開始時の確認と完了判定"
+      ],
+      "scope": [
+        "代表記事の外部埋め込みあり/なしでLCP/CLSを測定し、必要な改善と再測定を行う。"
+      ],
+      "depends_on": [
+        "T013"
+      ],
+      "acceptance_criteria": [
+        "モバイル測定条件・回線・CPU・キャッシュ・ブラウザ・試行回数を固定して証拠を保存する。",
+        "LCP<=2.5秒・CLS<=0.1の測定目標を満たす。未達は原因を示し、仕様変更は判断後に行う。"
+      ],
+      "verification_plan": [
+        "Chromium CDPで390×844、DPR3、CPU4倍低速、RTT150ms、下り1.6Mbps/上り750Kbps、cold cacheで各5回。",
+        "各試行の値とtraceを保存し全試行と中央値を報告。実ユーザー保証と区別する。"
+      ],
+      "commit_message": "[T016] モバイル性能を測定し影響を検証",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "代表記事の外部埋め込みあり/なしでLCP/CLSを測定し、必要な改善と再測定を行う。"
+    },
+    {
+      "id": "T017",
+      "title": "Cloudflare Pagesの本番とプレビュー配信を確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q27",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/04-theme-implementation-requirements.md: 実装開始時の確認と完了判定",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "scope": [
+        "実際のCloudflare Pagesのビルドコマンド・版・環境設定を確認し、確認可能な成果物を配信する。",
+        "公開/previewのURL・HTTP404・feed転送・noindexヘッダー・実接続を記録する。"
+      ],
+      "depends_on": [
+        "T014",
+        "T016"
+      ],
+      "acceptance_criteria": [
+        "本番/previewでHugo版・出力・CSS/JS fingerprint/minify/map有無が仕様どおり。",
+        "存在しないURLはHTTP404、feed.xmlは301、previewはnoindexかつ共有/スター無効。",
+        "GitHub Actionsの実行結果と配信成果物を対象コミットに結び付ける。"
+      ],
+      "verification_plan": [
+        "Cloudflareの設定とデプロイ記録を確認し、curl/ブラウザで実レスポンスと外部埋め込みを検証する。",
+        "アカウント操作が必要なら具体的設定と手順を用意し依頼する。未接続を合格にしない。"
+      ],
+      "commit_message": "[T017] Cloudflare Pagesの本番とプレビュー配信を確認",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "実際のCloudflare Pagesのビルドコマンド・版・環境設定を確認し、確認可能な成果物を配信する。"
+    },
+    {
+      "id": "T018",
+      "title": "旧テーマを整理し移行完了を監査",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q6",
+        "docs/04-theme-implementation-requirements.md: Q28",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q8",
+        "docs/05-theme-implementation-discipline.md: Q9"
+      ],
+      "scope": [
+        "照合完了後にPaperMod submodule・専用上書き・更新スクリプトを整理しライセンス表示を保持する。",
+        "仕様の正をテーマ/fixture/文書へ移し、モックを参考資料とし、切戻し手順と最終証拠をまとめる。"
+      ],
+      "depends_on": [
+        "T013",
+        "T014",
+        "T015",
+        "T016",
+        "T017"
+      ],
+      "acceptance_criteria": [
+        "全要件・補足・規律の成果物/検証/レビュー判断を監査し未解決・未確認なし。",
+        "設定/コンテンツを含む変更前コミットまたは配信成果物から切戻せる。",
+        "最終報告に実装結果・証拠・承認モック差分・制約を明記する。"
+      ],
+      "verification_plan": [
+        "撤去後にHugo単独生成・全品質/移行/ブラウザ検査を再実行する。",
+        "全要件を現在の成果物と有効な検証結果に照合し、R001/R002と追加レビューの承認を確認する。"
+      ],
+      "commit_message": "[T018] 旧テーマを整理し移行完了を監査",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "照合完了後にPaperMod submodule・専用上書き・更新スクリプトを整理しライセンス表示を保持する。"
     }
   ],
   "findings": [],
@@ -48,7 +735,14 @@
     {
       "id": "R001",
       "title": "代表画面と共通設計のレビュー",
-      "task_ids": [],
+      "task_ids": [
+        "T004",
+        "T005",
+        "T006",
+        "T007",
+        "T008",
+        "T009"
+      ],
       "status": "not_ready",
       "artifact_refs": [],
       "verification_ids": [],
@@ -59,7 +753,13 @@
     {
       "id": "R002",
       "title": "全画面の一貫性と検証結果・残件のレビュー",
-      "task_ids": [],
+      "task_ids": [
+        "T010",
+        "T011",
+        "T012",
+        "T013",
+        "T014"
+      ],
       "status": "not_ready",
       "artifact_refs": [],
       "verification_ids": [],
@@ -68,5 +768,27 @@
       "supersedes": null
     }
   ],
-  "verifications": []
+  "verifications": [
+    {
+      "id": "V001",
+      "task_ids": [
+        "T001"
+      ],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: 合意済みの実装判断・補足・実装開始時の確認と完了判定",
+        "docs/05-theme-implementation-discipline.md: JSONによる進捗管理・レビューの提出物と通過条件"
+      ],
+      "kind": "計画監査",
+      "result": "passed",
+      "subject_ref": "c266ebb + T001の進捗JSON・計画文書・検査スクリプト",
+      "environment": "macOS arm64; Hugo 0.166.0; Node 24.21.0; pnpm 12.4.1",
+      "procedure": "全要件本文・補足・完了条件を18タスクの完了条件へ照合。node scripts/verify-progress.mjsでQ割当・参照・循環・レビュー依存を確認。",
+      "evidence_refs": [
+        "docs/verification/implementation-plan.md",
+        "scripts/verify-progress.mjs"
+      ],
+      "recorded_at": "2026-09-17T11:37:01.628023+00:00",
+      "supersedes": null
+    }
+  ]
 }
