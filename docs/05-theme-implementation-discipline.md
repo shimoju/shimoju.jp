@@ -2,6 +2,8 @@
 
 状態：確定（2026-09-17）。本資料内のQ1〜Q9と、規律・進捗フォーマット・開始用プロンプトの一式についてユーザーと認識一致を確認済み。Q6はユーザー指定によりJSONを採用。資料4のQ番号とは独立した番号を使う。
 
+追加指示：新規開始時に要件からタスクを分割し、その単位でコミットする。具体的な分割・記録方法は以下に定める。
+
 ## 目的と適用範囲
 
 [実装要件](04-theme-implementation-requirements.md)を満たすshshの実装中に、モックの表示・操作を尊重しながら、同じ役割を一緒に変更できる構造を保つ。また、実装中に見つけた問題を判断・修正・再検証につなげる。
@@ -59,6 +61,18 @@
 - 再開時はJSONとリポジトリの実際の変更・成果物を照合する。不一致があれば根拠を確認して状態を訂正し、記録だけを信じて完了扱いしない。
 - IDは一度発行したら変更・再利用しない。完了した作業や解決済み指摘も削除せず残す。現在の概要と次の行動を更新し、履歴の全文を概要へ転記し続けない。
 
+### タスク分割とコミット
+
+- 新規開始では、最初に全要件を作業へ対応付け、依存順序とレビュー地点を含む計画をJSONへ記録する。要件の未割当・検証の漏れ・依存関係の循環がないことを確認し、計画作成タスクT001としてコミットしてから実装へ進む。計画そのものの追加承認は要求せず、未合意の仕様判断があれば既存の規律に従って相談する。
+- 一つのタスクは、一つの目的と検証可能な成果があり、関連する差分をまとめてレビューできる大きさにする。必要なテンプレート・CSS・TypeScript・検査・文書は同じタスクに含めてよい。要件のQ番号やファイル単位で機械的に分割せず、複数要件をまとめる場合も、同じ要件を複数タスクに分ける場合も対応を記録する。
+- 各タスクの着手前に、対象範囲、完了条件、具体的な検証方法、依存先、予定コミットメッセージを明確にする。「テーマ全体を実装」のように複数の成果を含むタスクは分ける。単独では検証できない断片は関連作業とまとめる。基盤整備は、Hugo生成やfixtureなどで基盤として成立することを検証する。
+- たとえば配色切替は、初期描画・保存・OS追従・JS無効時の表示に必要なテンプレート・CSS・TypeScriptと検査を、一つの機能として扱う。全CSS、全TypeScript、最後に全検査という分け方を既定にしない。
+- 代表画面・共通設計の実装、残りの画面への展開、移行照合、実機・配信検証を区別し、承認に依存する作業がレビュー地点を飛び越さないようにする。後続タスクの詳細は学びに応じて更新してよいが、要件の対応と残件を失わない。
+- 原則として一つのタスクにつき一つのコミットを作る。コミットには、そのタスクの実装と必要な検査・文書・進捗JSONの更新を含める。無関係なタスクやユーザーの既存変更を混ぜない。変更後にその段階で必要な検証を実行し、ステージした差分を確認してからコミットする。
+- コミットと完了判定は区別する。ローカルで検証済みの成果をレビューへ提出する場合、`implemented`のままコミットしてよい。人のレビュー・実機・配信確認が未完了なら、その状態と次の行動をJSONに残す。コミットしたことを理由に`complete`へ変更しない。
+- メッセージは`[T001] テーマ実装計画と検証条件を定義`のように、タスクIDと具体的な成果を日本語で記す。コミットとの対応はこのIDでGit履歴から追跡し、JSONへ自身を含むコミットのハッシュを書き込むための追記コミットやamendは行わない。
+- コミット済みタスクへのレビュー修正は、関連する指摘と元のタスクを参照する後続タスクに分けてコミットする。検証結果や判断の記録だけを更新する場合も、その確認作業のタスクとして扱う。タスクが大きすぎると分かった場合は、コミットする前に計画を分割し、元のタスクの成果・完了条件を失わず各タスクへ対応付ける。
+
 ### フォーマット
 
 パスは原則リポジトリルートからの相対パスとする。要件参照には資料名とQ番号または節名を含める。時刻にはタイムゾーン付きISO 8601形式を使い、未実施の時刻や判断は`null`にする。初期ファイルには計画作成作業と二つのレビューだけを置き、テーマ実装の着手・検証・承認を既成事実にしない。
@@ -71,7 +85,7 @@
 | `summary` | 現在の到達点と残件の短い説明 |
 | `latest_review_id` | 直近に結果が出たレビューのID。まだなければ`null` |
 | `resume` | 次に扱う`task_id`と具体的な`action`。完了時は`task_id`を`null`にする |
-| `tasks` | 作業。ID、要件、依存先、完了条件、実装・検証状態、成果物、検証・レビュー・判断待ちの参照、次の行動 |
+| `tasks` | 作業。ID、要件、対象範囲、依存先、完了条件、検証計画、予定コミットメッセージ、実装・検証状態、成果物、検証・レビュー・判断待ちの参照、次の行動 |
 | `findings` | 不整合・問題・提案と、それに対する判断・解決の記録 |
 | `reviews` | 代表画面・全画面などのレビュー範囲、提出物、結果とユーザーの判断 |
 | `verifications` | 自動検査・視覚確認・実機確認・構造レビューなどの実施記録 |
@@ -80,11 +94,12 @@
 
 | 配列 | フィールド |
 | --- | --- |
-| `tasks` | `id`, `title`, `requirement_refs`, `depends_on`, `acceptance_criteria`, `status`, `verification_status`, `artifact_refs`, `verification_ids`, `review_ids`, `blocked_by`, `next_action` |
+| `tasks` | `id`, `title`, `requirement_refs`, `scope`, `depends_on`, `acceptance_criteria`, `verification_plan`, `commit_message`, `status`, `verification_status`, `artifact_refs`, `verification_ids`, `review_ids`, `blocked_by`, `next_action` |
 | `findings` | `id`, `title`, `task_ids`, `status`, `requires_user_decision`, `observation`, `evidence_refs`, `impact`, `recommendation`, `decision`, `resolution_refs`, `verification_ids` |
 | `reviews` | `id`, `title`, `task_ids`, `status`, `artifact_refs`, `verification_ids`, `finding_ids`, `decision`, `supersedes` |
 | `verifications` | `id`, `task_ids`, `requirement_refs`, `kind`, `result`, `subject_ref`, `environment`, `procedure`, `evidence_refs`, `recorded_at`, `supersedes` |
 
+- `scope`は対象範囲、`verification_plan`は着手前に定める具体的な検証方法を、それぞれ文字列の配列で持つ。検証予定と実施結果を区別し、実施結果は`verifications`に記録する。`commit_message`はタスクIDを含む日本語の予定メッセージで、成果の具体化に合わせて更新してよい。
 - `tasks.status`は`not_started` / `in_progress` / `implemented` / `complete`。`verification_status`は`not_run` / `passed` / `failed` / `stale` / `blocked`。`depends_on`は作業ID、`blocked_by`は判断待ちなどの指摘ID、`review_ids`はその作業の完了に必要なレビューIDを持つ。複数検証のうち必要な一部が未実施・失敗・無効なら、全体を`passed`にしない。
 - `findings.status`は`open` / `awaiting_decision` / `approved` / `rejected` / `resolved`。`approved`は提案の採用であり、修正完了ではない。却下は理由を記録し、元の問題が解消したことを意味しない場合は問題を未解決として残す。
 - `reviews.status`は`not_ready` / `requested` / `changes_requested` / `approved`。承認にはユーザーの明示的な判断を記録する。無回答や自動検査の合格を承認に置き換えない。再レビューは新しいIDで追加し、`supersedes`に前回のIDを記録する。初回は`null`。作業の`review_ids`は現在必要なレビューへ更新し、過去の判断は元の記録に残す。
