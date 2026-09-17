@@ -1,0 +1,14 @@
+{{- /* Skip length-prefixed GIF sub-blocks in bounded batches, without decoding LZW. */ -}}
+{{- $offset := .offset -}}
+{{- $bytes := .bytes -}}
+{{- $done := false -}}
+{{- range seq 1 256 -}}
+  {{- if ge $offset (len $bytes) }}{{ $done = true }}{{ break }}{{ end -}}
+  {{- $length := int (index $bytes $offset) -}}
+  {{- $offset = add $offset 1 $length -}}
+  {{- if not $length }}{{ $done = true }}{{ break }}{{ end -}}
+{{- end -}}
+{{- if not $done }}
+  {{ $offset = partial "media/gif-subblocks-end.html" (dict "bytes" $bytes "offset" $offset) }}
+{{ end -}}
+{{- return $offset -}}

@@ -1,6 +1,6 @@
 {{- if .Pages -}}
   <div class="post-list">
-    {{- range .Pages -}}
+    {{- range $index, $page := .Pages -}}
       {{- $id := printf "entry-%s" (.RelPermalink | crypto.SHA256) -}}
       <article class="post-entry">
         <a
@@ -8,6 +8,7 @@
           href="{{ .RelPermalink }}"
           aria-labelledby="{{ $id }}"
         >
+          {{ partial "media/cover.html" (dict "page" . "class" "entry-cover" "loading" (cond (eq $index 0) "eager" "lazy")) }}
           <div class="entry-text">
             <h2 class="entry-title link-title" id="{{ $id }}">{{ .Title }}</h2>
             <div class="meta">{{ partial "date.html" .Date }}</div>

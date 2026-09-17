@@ -1,0 +1,29 @@
+{{- /* Read absolute px dimensions or the viewBox; relative units need author dimensions. */ -}}
+{{- $dimensions := dict -}}
+{{- with findRE `<svg\s[^>]*>` . 1 -}}
+  {{- $root := index . 0 -}}
+  {{- range $name := slice "width" "height" -}}
+    {{- with findRE (printf `\s%s\s*=\s*["']([0-9]+(?:\.[0-9]+)?)(?:px)?["']` $name) $root 1 -}}
+      {{- $value := replaceRE `^[^"']*["']([0-9.]+)(?:px)?["']$` "$1" (index . 0) | float -}}
+      {{- if gt $value 0 }}
+        {{ $dimensions = merge $dimensions (dict $name (int (math.Ceil $value))) }}
+      {{ end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- with findRE `\sviewBox\s*=\s*["'][^"']+["']` $root 1 -}}
+    {{- $numbers := findRE `[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?` (index . 0) -}}
+    {{- if eq (len $numbers) 4 -}}
+      {{- $w := float (index $numbers 2) -}}{{- $h := float (index $numbers 3) -}}
+      {{- if and (gt $w 0) (gt $h 0) -}}
+        {{- if and $dimensions.width (not $dimensions.height) }}
+          {{ $h = div (mul $h $dimensions.width) $w }}{{ $w = $dimensions.width }}
+        {{ end -}}
+        {{- if and $dimensions.height (not $dimensions.width) }}
+          {{ $w = div (mul $w $dimensions.height) $h }}{{ $h = $dimensions.height }}
+        {{ end -}}
+        {{- $dimensions = merge (dict "width" (int (math.Ceil $w)) "height" (int (math.Ceil $h))) $dimensions -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $dimensions -}}

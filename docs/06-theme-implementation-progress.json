@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-17T12:35:28.335075+00:00",
+  "updated_at": "2026-09-17T12:58:18.370933+00:00",
   "stage": "representative",
-  "summary": "T001〜T003完了。T004〜T006は実装/ローカル検証済み（R001未提出のためimplemented）。一覧と本文/コードコピーを実装し、実記事の両幅/両配色のモック比較を含む全48ブラウザテスト成功。次はT007のカバー・画像・動画。本番PaperModと凍結モックは維持。",
+  "summary": "T001〜T003完了。T004〜T007は実装/ローカル検証済み（R001未提出のためimplemented）。共通画像処理・カバー・video/Speaker Deckを追加し、統合60件とGIF境界追加後のメディア12件が成功。次はT008の共有・外部反応。本番PaperModと凍結モックは維持。",
   "latest_review_id": null,
   "resume": {
-    "task_id": "T007",
-    "action": "共通画像解決・レスポンシブ処理を実装し、T005のカードとT006の記事ヘッダーへカバーを統合する。Markdown/figure、video/Speaker Deckもfixture検証し、既存一覧/本文の回帰検査を行う。T008後にT009でR001を提出する。"
+    "task_id": "T008",
+    "action": "順序付き共有・はてなスターを設定から生成し、production/preview・JS無効・通信失敗をfixtureで検証する。完了後T009で代表画面の両幅/両配色比較と構造説明を揃えR001へ提出する。"
   },
   "tasks": [
     {
@@ -301,7 +301,7 @@
         "T005の記事カードへカバーを組み込み、詳細カバー・Markdown画像・figureで共通の画像解決とレスポンシブ変換を使う。",
         "videoとSpeaker Deckの独自shortcodeを実装する。"
       ],
-      "depends_on": ["T004", "T005"],
+      "depends_on": ["T004", "T005", "T006"],
       "acceptance_criteria": [
         "360/720/1080/1440と原寸候補、sizes、寸法、WebPと原形式代替、eager/lazyが仕様どおり。",
         "PNG可逆/JPEG q80、無拡大・無切り抜き、static/外部/SVG/アニメーション境界が成立する。",
@@ -313,13 +313,22 @@
         "T005で検証済みのテキストカード・ページ送りを回帰確認し、カバー有無の両方をモックと比較する。"
       ],
       "commit_message": "[T007] カバーと本文メディアの共通配信処理を実装",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "status": "implemented",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/layouts/_partials/media/",
+        "themes/shsh/layouts/_shortcodes/",
+        "themes/shsh/assets/css/media.css",
+        "scripts/verify-media.ts",
+        "tests/media.spec.ts",
+        "docs/verification/media.md",
+        "docs/verification/t007-check.log",
+        "docs/verification/t007-media-images/"
+      ],
+      "verification_ids": ["V014", "V015"],
       "review_ids": ["R001"],
       "blocked_by": [],
-      "next_action": "カバー・Markdown画像・figureで共通の画像解決とレスポンシブ変換を使う。"
+      "next_action": "T008で共有・外部反応を実装し、T009/R001で代表画面全体と共通設計の承認を受ける。"
     },
     {
       "id": "T008",
@@ -828,6 +837,53 @@
       },
       "resolution_refs": [".htmlvalidate.json", "scripts/verify-prose.ts"],
       "verification_ids": ["V012", "V013"]
+    },
+    {
+      "id": "F006",
+      "title": "メディア境界の判定と小さいカバーの表示寸法",
+      "task_ids": ["T007"],
+      "status": "resolved",
+      "requires_user_decision": false,
+      "observation": "初回検査でバイト参照の誤用によりアニメーションが加工され、SVG寸法が欠落。CSS width:autoでは小さいカバーの読み込み前の幅が拡大した。",
+      "evidence_refs": ["docs/verification/media.md"],
+      "impact": "原形式維持・寸法確保・非拡大の要件に反する。",
+      "recommendation": "バイト境界とSVG寸法の解決を是正し、元の画像幅をCSSへ渡して表示上限を保つ。",
+      "decision": {
+        "outcome": "合意済みの画像境界へ是正",
+        "reason": "資料4 Q21/Q32と資料5 Q1に従う内部修正。",
+        "decided_by": "実装者",
+        "recorded_at": "2026-09-17T12:58:18.370933+00:00",
+        "source": "docs/04-theme-implementation-requirements.md: Q21/Q32; docs/05-theme-implementation-discipline.md: Q1"
+      },
+      "resolution_refs": [
+        "themes/shsh/layouts/_partials/media/",
+        "themes/shsh/assets/css/media.css"
+      ],
+      "verification_ids": ["V014", "V015"]
+    },
+    {
+      "id": "F007",
+      "title": "パレットPNGの縮小と透明画素の丸めを可逆圧縮から分離",
+      "task_ids": ["T007"],
+      "status": "resolved",
+      "requires_user_decision": false,
+      "observation": "PNG/WebPを別々に縮小するとパレット再適用が異なった。同一縮小PNGからのWebP変換でも半透明RGBには1段階の丸めと、ブラウザのunpremultiplyによる差がある。alphaと不透明RGBは一致。",
+      "evidence_refs": ["docs/verification/media.md"],
+      "impact": "圧縮形式、縮小、透明画素の変換を混同すると検証結果を誤判定する。",
+      "recommendation": "縮小PNGから可逆WebPを生成し、実ファイルのVP8L、不透明RGB/alpha一致、8bit合成後1段階以内を分けて検証する。",
+      "decision": {
+        "outcome": "変換順序と画素検査の責務を是正",
+        "reason": "可逆WebPという合意形式を維持し、縮小とは区別するQ21の確認を具体化。",
+        "decided_by": "実装者",
+        "recorded_at": "2026-09-17T12:58:18.370933+00:00",
+        "source": "docs/04-theme-implementation-requirements.md: Q21; docs/verification/media.md"
+      },
+      "resolution_refs": [
+        "themes/shsh/layouts/_partials/media/image-data.html",
+        "scripts/verify-media.ts",
+        "tests/media.spec.ts"
+      ],
+      "verification_ids": ["V014", "V015"]
     }
   ],
   "reviews": [
@@ -840,10 +896,12 @@
         "docs/verification/theme-foundation.md",
         "docs/verification/home-and-lists.md",
         "docs/verification/prose-and-code.md",
-        "docs/verification/t006-prose-images/"
+        "docs/verification/t006-prose-images/",
+        "docs/verification/media.md",
+        "docs/verification/t007-media-images/"
       ],
-      "verification_ids": ["V008", "V011", "V013"],
-      "finding_ids": ["F003", "F004", "F005"],
+      "verification_ids": ["V008", "V011", "V013", "V015"],
+      "finding_ids": ["F003", "F004", "F005", "F006", "F007"],
       "decision": null,
       "supersedes": null
     },
@@ -1209,6 +1267,50 @@
         "tests/prose.spec.ts"
       ],
       "supersedes": "V012"
+    },
+    {
+      "id": "V014",
+      "task_ids": ["T007"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q14",
+        "docs/04-theme-implementation-requirements.md: Q21",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/04-theme-implementation-requirements.md: 合意事項を適用する際の補足: SNS既定画像"
+      ],
+      "kind": "メディアの初回生成・ブラウザ検証",
+      "result": "failed",
+      "subject_ref": "T007のカバー・メディア・fixture・検査差分",
+      "environment": "macOS27.0 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
+      "procedure": "初回にアニメーション判定、SVG寸法、カバー読み込み前の拡大、PNGパレット再適用とalpha丸めによる画素差を検出。是正後の統合検査は59成功/1失敗、半透明比較を8bit合成値で切り分け中。",
+      "evidence_refs": ["docs/verification/media.md"],
+      "recorded_at": "2026-09-17T12:54:55.115028+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V015",
+      "task_ids": ["T004", "T005", "T006", "T007"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q14",
+        "docs/04-theme-implementation-requirements.md: Q21",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/04-theme-implementation-requirements.md: 合意事項を適用する際の補足: SNS既定画像"
+      ],
+      "kind": "メディア・一覧/本文回帰と画像比較",
+      "result": "passed",
+      "subject_ref": "T007のカバー・メディア・fixture・検査差分",
+      "environment": "macOS27.0 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
+      "procedure": "pnpm check成功、3エンジン60テスト（22.7秒）。静止/動画GIF境界追加後にlint/CSS/check:mediaとメディア12件（7.8秒）を再検証。カバー型の負例追加後check:media成功。可逆VP8L・原素材バイト一致・eager/lazy・外部非取得・SVG寸法・小画像・DPR1/2・JS無効・axe、1280/400px両配色とモック寸法を確認。PNG文字/写真の変換結果を目視確認。",
+      "evidence_refs": [
+        "docs/verification/media.md",
+        "docs/verification/t007-check.log",
+        "docs/verification/t007-media-images/",
+        "scripts/verify-media.ts",
+        "tests/media.spec.ts"
+      ],
+      "recorded_at": "2026-09-17T12:58:18.370933+00:00",
+      "supersedes": "V014"
     }
   ]
 }

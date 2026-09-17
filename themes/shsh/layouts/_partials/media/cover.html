@@ -1,0 +1,10 @@
+{{- $cover := .page.Params.cover -}}
+{{- if ne $cover nil -}}
+  {{- if not (reflect.IsMap $cover) -}}
+    {{ errorf "shsh: cover must be a map" }}
+  {{- else if isset $cover "image" -}}
+    <figure class="{{ .class }}"
+      >{{ partial "media/image.html" (dict "page" .page "src" $cover.image "alt" $cover.alt "loading" .loading "width" $cover.width "height" $cover.height) }}</figure
+    >
+  {{- end -}}
+{{- end -}}

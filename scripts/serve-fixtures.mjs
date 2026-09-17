@@ -9,6 +9,10 @@ const types = {
   ".js": "text/javascript",
   ".svg": "image/svg+xml",
   ".png": "image/png",
+  ".webp": "image/webp",
+  ".jpg": "image/jpeg",
+  ".gif": "image/gif",
+  ".mp4": "video/mp4",
   ".json": "application/json",
   ".xml": "application/xml",
 };
@@ -18,6 +22,7 @@ for (const [port, directory] of /** @type {[number, string][]} */ ([
   [4176, ".cache/representative/development"],
   [4177, "mock/site"],
   [4178, ".cache/prose/public"],
+  [4179, ".cache/media/production"],
 ])) {
   const root = resolve(directory);
   const server = createServer((request, response) => {
