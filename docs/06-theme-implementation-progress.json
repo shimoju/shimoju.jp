@@ -1,0 +1,61 @@
+{
+  "format_version": 1,
+  "updated_at": "2026-09-17T11:16:54Z",
+  "stage": "not_started",
+  "summary": "実装開始前。2026-09-17にユーザーの「ok、確定してください」により、規律・進捗フォーマット・開始用プロンプトの一式を確定。テーマ実装・検証・実装成果物のレビュー承認は未実施。",
+  "latest_review_id": null,
+  "resume": {
+    "task_id": "T001",
+    "action": "テーマ実装の開始指示を受けたらT001から開始する。"
+  },
+  "tasks": [
+    {
+      "id": "T001",
+      "title": "実装計画と検証条件を具体化する",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: 合意済みの実装判断・補足・実装開始時の確認と完了判定",
+        "docs/05-theme-implementation-discipline.md: JSONによる進捗管理・レビューの提出物と通過条件"
+      ],
+      "depends_on": [],
+      "acceptance_criteria": [
+        "資料4の全要件・補足・完了条件と資料5の規律を、後続の作業・完了条件へ漏れなく対応付けている。",
+        "代表画面、全画面、移行、実機・配信検証の作業と依存関係が記録されている。",
+        "レビューR001・R002の対象作業と、通過に必要な成果物・検証条件が具体化されている。",
+        "視覚比較・性能測定などの環境と、人の判断・確認が必要な作業が特定されている。"
+      ],
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "要件と現在のリポジトリを照合し、後続の作業・依存関係・検証条件をこのJSONへ追加する。"
+    }
+  ],
+  "findings": [],
+  "reviews": [
+    {
+      "id": "R001",
+      "title": "代表画面と共通設計のレビュー",
+      "task_ids": [],
+      "status": "not_ready",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "finding_ids": [],
+      "decision": null,
+      "supersedes": null
+    },
+    {
+      "id": "R002",
+      "title": "全画面の一貫性と検証結果・残件のレビュー",
+      "task_ids": [],
+      "status": "not_ready",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "finding_ids": [],
+      "decision": null,
+      "supersedes": null
+    }
+  ],
+  "verifications": []
+}
