@@ -4,6 +4,11 @@ theme = 'shsh'
 defaultContentLanguage = 'ja'
 locale = 'ja'
 mainSections = ['posts']
+timeZone = 'Asia/Tokyo'
+hasCJKLanguage = true
+summaryLength = 140
+[pagination]
+pagerSize = 2
 [markup.highlight]
 noClasses = false
 [params.author]

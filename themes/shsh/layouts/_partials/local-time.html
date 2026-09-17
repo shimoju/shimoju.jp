@@ -1,0 +1,4 @@
+{{- /* A zone-less date is parsed in Hugo's configured site timezone. Its IANA
+  location also converts offset-bearing article dates correctly across DST. */
+-}}
+{{- return (time.In ((time.AsTime "2000-01-01").Location.String) .) -}}

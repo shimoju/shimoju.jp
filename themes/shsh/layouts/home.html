@@ -1,1 +1,9 @@
-{{ define "main" }}{{ .Content }}{{ end }}
+{{ define "main" }}
+  {{ $pager := .Paginate (partialCached "posts.html" .) }}
+  {{ if eq $pager.PageNumber 1 }}
+    {{ with .Content }}
+      <section class="intro" aria-label="Introduction">{{ . }}</section>
+    {{ end }}
+  {{ end }}
+  {{ partial "post-list.html" $pager }}
+{{ end }}

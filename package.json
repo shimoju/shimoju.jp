@@ -11,10 +11,11 @@
     "check:progress": "node scripts/verify-progress.mjs",
     "check:tooling": "node --experimental-strip-types scripts/verify-tooling.ts",
     "test": "playwright test",
-    "check": "pnpm format:check && pnpm lint && pnpm lint:css && pnpm check:progress && pnpm check:tooling && pnpm build:fixtures && pnpm check:theme && pnpm test",
+    "check": "pnpm format:check && pnpm lint && pnpm lint:css && pnpm check:progress && pnpm check:tooling && pnpm build:fixtures && pnpm check:theme && pnpm check:collections && pnpm test",
     "check:tooling:types": "node scripts/verify-tooling.ts --probe-types",
     "build:fixtures": "node scripts/build-fixtures.ts",
-    "check:theme": "node scripts/verify-theme.ts"
+    "check:theme": "node scripts/verify-theme.ts",
+    "check:collections": "node scripts/verify-collections.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

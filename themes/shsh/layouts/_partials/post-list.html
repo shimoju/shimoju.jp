@@ -1,0 +1,25 @@
+{{- if .Pages -}}
+  <div class="post-list">
+    {{- range .Pages -}}
+      {{- $id := printf "entry-%s" (.RelPermalink | crypto.SHA256) -}}
+      <article class="post-entry">
+        <a
+          class="entry-link"
+          href="{{ .RelPermalink }}"
+          aria-labelledby="{{ $id }}"
+        >
+          <div class="entry-text">
+            <h2 class="entry-title link-title" id="{{ $id }}">{{ .Title }}</h2>
+            <div class="meta">{{ partial "date.html" .Date }}</div>
+            {{- with partial "summary.html" . -}}
+              <p class="entry-summary">{{ . }}</p>
+            {{- end -}}
+          </div>
+        </a>
+      </article>
+    {{- end -}}
+  </div>
+{{- else -}}
+  <p class="empty" lang="en">No posts yet.</p>
+{{- end -}}
+{{- partial "pagination.html" . -}}

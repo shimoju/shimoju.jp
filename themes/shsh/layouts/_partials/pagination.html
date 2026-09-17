@@ -1,0 +1,24 @@
+{{- if gt .TotalPages 1 -}}
+  <nav class="pager" lang="en" aria-label="Pagination">
+    {{- with .Prev -}}
+      <a class="previous-page" href="{{ .URL }}" rel="prev"
+        ><span class="nav-label"
+          ><span aria-hidden="true">«</span> Prev</span
+        ></a
+      >
+    {{- end -}}
+    <span
+      class="page-number"
+      role="group"
+      aria-label="Page {{ .PageNumber }} of {{ .TotalPages }}"
+      >{{ .PageNumber }} / {{ .TotalPages }}</span
+    >
+    {{- with .Next -}}
+      <a class="next-page" href="{{ .URL }}" rel="next"
+        ><span class="nav-label"
+          >Next <span aria-hidden="true">»</span></span
+        ></a
+      >
+    {{- end -}}
+  </nav>
+{{- end -}}

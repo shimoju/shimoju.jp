@@ -12,6 +12,9 @@
 {{- if ne (printf "%T" $author.name) "string" }}
   {{ errorf "shsh: params.author.name must be a string" }}
 {{ end -}}
+{{- if and (isset site.Params "dateformat") (ne (printf "%T" site.Params.dateFormat) "string") -}}
+  {{- errorf "shsh: params.dateFormat must be a string" -}}
+{{- end -}}
 {{- $social := slice -}}
 {{- if isset site.Params "sociallinks" }}
   {{ $social = site.Params.socialLinks }}

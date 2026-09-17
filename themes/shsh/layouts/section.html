@@ -1,0 +1,6 @@
+{{ define "main" }}
+  <header class="page-heading"><h1>{{ .Title }}</h1>{{ .Content }}</header>
+  {{ $posts := partialCached "posts.html" . }}
+  {{ $pages := where $posts "Section" .Section }}
+  {{ partial "post-list.html" (.Paginate $pages) }}
+{{ end }}
