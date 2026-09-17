@@ -15,6 +15,14 @@
 {{- if and (isset site.Params "dateformat") (ne (printf "%T" site.Params.dateFormat) "string") -}}
   {{- errorf "shsh: params.dateFormat must be a string" -}}
 {{- end -}}
+{{- range $key := slice "description" "defaultshareimage" -}}
+  {{- if and (isset site.Params $key) (ne (printf "%T" (index site.Params $key)) "string") -}}
+    {{- errorf "shsh: params.%s must be a string" $key -}}
+  {{- end -}}
+{{- end -}}
+{{- with site.Params.defaultShareImage -}}
+  {{- $image := partial "media/resolve.html" (dict "src" . "global" true) -}}
+{{- end -}}
 {{- $social := slice -}}
 {{- if isset site.Params "sociallinks" }}
   {{ $social = site.Params.socialLinks }}

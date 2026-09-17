@@ -90,7 +90,7 @@ html = pass({
   ),
 });
 assert.match(html, /class="entry-summary">Explicit &amp; link &lt;tag&gt;<\/p>/);
-assert.doesNotMatch(html, /Manual text|After divider|SEO only/);
+assert.doesNotMatch(html.split("<body")[1]!, /Manual text|After divider|SEO only/);
 html = pass({ "posts/manual": post({}, "**Manual** & text.\n\n<!--more-->\n\nAfter divider.") });
 assert.match(html, /class="entry-summary">Manual &amp; text\.<\/p>/);
 assert.doesNotMatch(html, /After divider/);

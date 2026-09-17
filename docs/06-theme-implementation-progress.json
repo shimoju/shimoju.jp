@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-17T13:33:54.948070+00:00",
+  "updated_at": "2026-09-17T13:44:02.743854+00:00",
   "stage": "representative",
-  "summary": "T001〜T003完了。T004〜T009/T019は実装・ローカル検証済み。統合84件とタッチ条件の代表比較12件成功。両幅・両配色の比較32画像、共通設計・差分・残件をR001へ提出し明示承認待ち。本番PaperModと凍結モックは維持。",
+  "summary": "T001〜T003完了。代表画面T004〜T009/T019とRSS/メタ情報T011は実装・ローカル検証済み。統合102件成功。比較32画像・共通設計説明をR001へ提出し明示承認待ち。T010以降は承認後に進む。本番PaperModと凍結モックは維持。",
   "latest_review_id": null,
   "resume": {
-    "task_id": "T011",
-    "action": "R001のユーザー判断を待つ間、承認に依存しないRSS/メタ情報を実装する。R001の明示承認前にT010へ展開しない。回答があれば判断を記録し、指摘を後続タスクへ対応付ける。"
+    "task_id": "T009",
+    "action": "R001の明示判断を受ける。承認なら対象作業の条件を照合して完了を記録しT010へ進む。修正指示なら指摘と後続タスクを記録して再検証・再レビューする。無回答を承認とせずT010/移行へ進まない。独立作業T011は実装・検証済み。"
   },
   "tasks": [
     {
@@ -476,16 +476,30 @@
       ],
       "verification_plan": [
         "全種別とページ送りのHTML/XMLをパースしてURL・件数・日付・テキスト・メタ画像を照合する。",
-        "空feed・記号入り分類・日付なし・site assets/static/外部既定画像・別baseURLを検査する。"
+        "空feed・記号入り分類・日付なし・site assets/static/外部既定画像・別baseURLを検査する。",
+        "隔離fixtureのRSS/XML・head・JSON-LDをブラウザ標準DOMParserでパースし、XML妥当性と出力値を検査。HTML-validate、既存統合回帰も実行する。",
+        "robots.txtはHugo標準enableRobotsTXTを有効にして本番/previewを検査し、移行設定へ明記する。"
       ],
       "commit_message": "[T011] RSSとメタ情報の公開文書URLを統一",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "status": "implemented",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/layouts/rss.xml",
+        "themes/shsh/layouts/robots.txt",
+        "themes/shsh/layouts/_partials/metadata.html",
+        "themes/shsh/layouts/_partials/list-pages.html",
+        "themes/shsh/layouts/_partials/public-url.html",
+        "themes/shsh/layouts/_partials/description.html",
+        "themes/shsh/layouts/_partials/share-image.html",
+        "scripts/verify-metadata.ts",
+        "tests/metadata.spec.ts",
+        "docs/verification/metadata-and-feeds.md",
+        "docs/verification/t011-check.log"
+      ],
+      "verification_ids": ["V021", "V022"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "ホーム/section/分類フィードとSEO/SNS/JSON-LD、sitemap/robotsを実装する。"
+      "next_action": "R002で全画面のメタ情報をレビューする。T012でenableRobotsTXTを設定し、T013で公開URL/RSS GUID/リダイレクトを移行基準と全件照合する。"
     },
     {
       "id": "T012",
@@ -510,7 +524,8 @@
         "全記事の本文・リンク・埋め込み位置/ID/URLと動画内容を維持する。",
         "本番に診断ページ・検査用shortcodeが混入しない。",
         "本番と同じ組込X/Instagram/YouTubeのビルド・接続結果を警告と入力エラーに分けて記録する。",
-        "単独Markdown画像のfigure化に必要なmarkup.goldmark.parser.wrapStandAloneImageWithinParagraph=falseをサイト設定へ明示する（F008/T019）。"
+        "単独Markdown画像のfigure化に必要なmarkup.goldmark.parser.wrapStandAloneImageWithinParagraph=falseをサイト設定へ明示する（F008/T019）。",
+        "HugoのenableRobotsTXT: trueを明示してrobots.txtを生成する。"
       ],
       "verification_plan": [
         "元入力と新入力の対応一覧を全件照合し、通常CI固定応答と実接続ビルドを別実行する。",
@@ -1024,8 +1039,8 @@
       "title": "全画面の一貫性と検証結果・残件のレビュー",
       "task_ids": ["T010", "T011", "T012", "T013", "T014"],
       "status": "not_ready",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "artifact_refs": ["docs/verification/metadata-and-feeds.md"],
+      "verification_ids": ["V022"],
       "finding_ids": [],
       "decision": null,
       "supersedes": null
@@ -1555,6 +1570,59 @@
       ],
       "recorded_at": "2026-09-17T13:33:54.948070+00:00",
       "supersedes": null
+    },
+    {
+      "id": "V021",
+      "task_ids": ["T011"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q8",
+        "docs/04-theme-implementation-requirements.md: Q10",
+        "docs/04-theme-implementation-requirements.md: Q15",
+        "docs/04-theme-implementation-requirements.md: Q16",
+        "docs/04-theme-implementation-requirements.md: Q17",
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q20",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: 合意事項を適用する際の補足: 日付・分類フィード・公開URL・SNS既定画像"
+      ],
+      "kind": "RSS/メタ情報の初回生成・ブラウザ検証",
+      "result": "failed",
+      "subject_ref": "e010108 + T011のRSS/metadata・隔離fixture・検査差分",
+      "environment": "macOS27.0 arm64; Hugo0.166.0; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
+      "procedure": "fixture生HTML・長いalias URLタイトルを検出して入力とalias titleを是正。続く18件は9成功/9失敗。RSSの二重エスケープ、formatterによるmeta content内改行、分類fixtureの内部名と公開slugの取り違えを検出。",
+      "evidence_refs": ["scripts/verify-metadata.ts", "tests/metadata.spec.ts"],
+      "recorded_at": "2026-09-17T13:41:12.451105+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V022",
+      "task_ids": ["T011"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q8",
+        "docs/04-theme-implementation-requirements.md: Q10",
+        "docs/04-theme-implementation-requirements.md: Q15",
+        "docs/04-theme-implementation-requirements.md: Q16",
+        "docs/04-theme-implementation-requirements.md: Q17",
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q20",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: 合意事項を適用する際の補足: 日付・分類フィード・公開URL・SNS既定画像"
+      ],
+      "kind": "RSS/メタ情報・全統合回帰",
+      "result": "passed",
+      "subject_ref": "e010108 + T011のRSS/metadata・隔離fixture・検査差分",
+      "environment": "macOS27.0 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
+      "procedure": "初回是正後metadata18件成功（4.3秒）。pnpm checkで全統合102件成功（39.8秒）。別サイト/サブパス/13記事/分類/空feedのHTML/XMLと値を検証。全件RSS・順序・共通要約・GUID・Date/Lastmod・ページ送りcanonical・schema役割/JSON安全性・画像優先/既定画像のbundle隔離・preview・sitemap/robotsを確認。既存代表画面と操作も回帰成功。",
+      "evidence_refs": [
+        "docs/verification/metadata-and-feeds.md",
+        "docs/verification/t011-check.log",
+        "scripts/verify-metadata.ts",
+        "tests/metadata.spec.ts"
+      ],
+      "recorded_at": "2026-09-17T13:44:02.743854+00:00",
+      "supersedes": "V021"
     }
   ]
 }

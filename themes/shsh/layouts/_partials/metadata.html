@@ -1,0 +1,63 @@
+{{- $config := partialCached "config.html" . -}}
+{{- $url := partial "public-url.html" . -}}
+{{- $title := site.Title -}}
+{{- if not .IsHome }}{{ $title = printf "%s — %s" .Title site.Title }}{{ end -}}
+{{- $description := partial "description.html" . -}}
+{{- $image := partial "share-image.html" . -}}
+{{- $ogType := "website" -}}
+{{- if .IsPage }}{{ $ogType = "article" }}{{ end -}}
+{{- $card := "summary" -}}
+{{- if $image }}{{ $card = "summary_large_image" }}{{ end -}}
+{{- $socialTitle := .Title -}}
+{{- if .IsHome }}{{ $socialTitle = site.Title }}{{ end -}}
+<title>{{ $title }}</title>
+<link rel="canonical" href="{{ $url }}" />
+{{ with $description }}<meta name="description" content="{{ . }}" />{{ end }}
+<meta property="og:title" content="{{ $socialTitle }}" />
+<meta property="og:site_name" content="{{ site.Title }}" />
+<meta property="og:url" content="{{ $url }}" />
+<meta property="og:type" content="{{ $ogType }}" />
+<meta property="og:locale" content="{{ site.Language.Locale }}" />
+{{ with $description }}
+  <meta property="og:description" content="{{ . }}" />
+{{ end }}
+<meta name="twitter:card" content="{{ $card }}" />
+<meta name="twitter:title" content="{{ $socialTitle }}" />
+{{ with $description }}
+  <meta name="twitter:description" content="{{ . }}" />
+{{ end }}
+{{ with $image }}
+  <meta property="og:image" content="{{ . }}" />
+  <meta name="twitter:image" content="{{ . }}" />
+{{ end }}
+{{ $person := dict "@type" "Person" "name" $config.author.name }}
+{{ $schema := dict }}
+{{ if .IsHome }}
+  {{ $person = merge $person (dict "@id" (printf "%s#author" site.Home.Permalink)) }}
+  {{ $website := dict "@type" "WebSite" "url" $url "name" site.Title "author" (dict "@id" (index $person "@id")) }}
+  {{ with $description }}
+    {{ $website = merge $website (dict "description" .) }}
+  {{ end }}
+  {{ $schema = dict "@context" "https://schema.org" "@graph" (slice $website $person) }}
+{{ else if .IsPage }}
+  {{ $type := "WebPage" }}
+  {{ if in site.MainSections .Section }}{{ $type = "BlogPosting" }}{{ end }}
+  {{ $schema = dict "@context" "https://schema.org" "@type" $type "url" $url "name" .Title "headline" .Title "mainEntityOfPage" (dict "@type" "WebPage" "@id" $url) "author" $person "inLanguage" site.Language.Locale }}
+  {{ with $description }}
+    {{ $schema = merge $schema (dict "description" .) }}
+  {{ end }}
+  {{ with $image }}{{ $schema = merge $schema (dict "image" .) }}{{ end }}
+  {{ if not .Date.IsZero }}
+    {{ $date := .Date.Format "2006-01-02T15:04:05Z07:00" }}
+    <meta property="article:published_time" content="{{ $date }}" />
+    {{ $schema = merge $schema (dict "datePublished" $date) }}
+  {{ end }}
+  {{ if not .Lastmod.IsZero }}
+    {{ $modified := .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}
+    <meta property="article:modified_time" content="{{ $modified }}" />
+    {{ $schema = merge $schema (dict "dateModified" $modified) }}
+  {{ end }}
+{{ end }}
+{{ with $schema }}
+<script type="application/ld+json">{{ . | jsonify | safeJS }}</script>
+{{ end }}
