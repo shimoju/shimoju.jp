@@ -1,0 +1,11 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "ignoreFiles": [
+    "mock/**",
+    "themes/PaperMod/**",
+    "public/**",
+    "resources/**",
+    "node_modules/**",
+    ".cache/**"
+  ]
+}

@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-17T11:39:48.982167+00:00",
-  "stage": "planning",
-  "summary": "T001計画とT002移行基準を完了。59記事・About/Archives・170 HTML・48 RSS・凍結モック68ファイルを記録。旧ホームRSSのAbout除外はQ8/Q19の合意差分として明記。テーマ実装と人のレビューは未実施。",
+  "updated_at": "2026-09-17T11:52:33.098846+00:00",
+  "stage": "representative",
+  "summary": "T001〜T003完了。移行基準と固定した品質環境を整備。formatterとFirefox起動の問題を是正し3エンジンで意味保存・操作・axeを確認。テーマ実装・代表画面レビューはこれから。",
   "latest_review_id": null,
   "resume": {
-    "task_id": "T003",
-    "action": "品質ツールの互換版を固定し、formatter意味保存と型付き検査の対象を実証する。"
+    "task_id": "T004",
+    "action": "凍結モックを参照し、設定駆動の共通枠・役割別トークン・Pipes・配色機能をfixtureで実装検証する。"
   },
   "tasks": [
     {
@@ -41,9 +41,7 @@
         "docs/verification/implementation-plan.md",
         "scripts/verify-progress.mjs"
       ],
-      "verification_ids": [
-        "V001"
-      ],
+      "verification_ids": ["V001"],
       "review_ids": [],
       "blocked_by": [],
       "next_action": "T002へ進む。実装計画は学びに応じて要件対応を維持して更新する。"
@@ -62,9 +60,7 @@
         "変更前コミット・全記事と固定ページ・見出しID・本文・素材・RSSの識別子を保存する。",
         "モックの凍結ハッシュと本番／検査時の外部埋め込みの扱いを記録する。"
       ],
-      "depends_on": [
-        "T001"
-      ],
+      "depends_on": ["T001"],
       "acceptance_criteria": [
         "全59記事・About・Archivesと全派生出力が基準資料から追跡できる。増分記事も含める。",
         "旧テーマを使う再現可能な基準出力と内容の照合データがあり、外部取得の置換箇所を明示する。"
@@ -82,9 +78,7 @@
         "tests/fixtures/offline/layouts/_shortcodes/x.html",
         "docs/verification/migration-baseline.md"
       ],
-      "verification_ids": [
-        "V002"
-      ],
+      "verification_ids": ["V002"],
       "review_ids": [],
       "blocked_by": [],
       "next_action": "T013で全出力照合に使用する。元コミットを変えず基準を維持する。"
@@ -107,9 +101,7 @@
         "Node 24・pnpm・oxfmt・oxlint/tsgolint・ネイティブTS・Stylelint・Prettier Go template・HTML-validate・Playwright/axeを固定する。",
         "ブラウザ／検査のstrict型検査、formatterの排他的対象設定、検査速度測定コマンドを用意する。"
       ],
-      "depends_on": [
-        "T001"
-      ],
+      "depends_on": ["T001"],
       "acceptance_criteria": [
         "pnpm-lock.yamlと版指定がありfrozen-lockfileで導入できる。",
         "凍結モック・記事・生成物・旧テーマは整形/lintから除外し、Hugoテンプレートだけ専用parserで処理する。",
@@ -121,13 +113,25 @@
         "整形・lint/型検査・Hugo・ブラウザの実測時間と環境を個別に保存する。"
       ],
       "commit_message": "[T003] 品質検査ツールと再現可能な実行環境を整備",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "package.json",
+        "pnpm-lock.yaml",
+        "tsconfig.json",
+        "playwright.config.ts",
+        "scripts/format.mjs",
+        "scripts/format-template.mjs",
+        "scripts/verify-tooling.ts",
+        "scripts/measure-checks.mjs",
+        "tests/tooling.spec.ts",
+        "docs/verification/toolchain.md",
+        "docs/verification/t003-toolchain.json"
+      ],
+      "verification_ids": ["V005", "V006"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Node 24・pnpm・oxfmt・oxlint/tsgolint・ネイティブTS・Stylelint・Prettier Go template・HTML-validate・Playwright/axeを固定する。"
+      "next_action": "T004でテーマ共通枠と配色を実装する。検査構成の変更時は型検出probeも再実行する。"
     },
     {
       "id": "T004",
@@ -152,10 +156,7 @@
         "themes/shshに設定駆動のヘッダー・フッター、役割別トークン、CSS/TSのPipes処理を作る。",
         "pref-themeによる初期描画・保存・OS追従とJS無効時の配色を実装し、診断パラメーターを除外する。"
       ],
-      "depends_on": [
-        "T002",
-        "T003"
-      ],
+      "depends_on": ["T002", "T003"],
       "acceptance_criteria": [
         "別サイトの最小fixtureをHugoだけで生成できる。",
         "本文基準とUI基準、行高などの役割が分かれ、ライト／ダークとJS無効時が成立する。",
@@ -170,9 +171,7 @@
       "verification_status": "not_run",
       "artifact_refs": [],
       "verification_ids": [],
-      "review_ids": [
-        "R001"
-      ],
+      "review_ids": ["R001"],
       "blocked_by": [],
       "next_action": "themes/shshに設定駆動のヘッダー・フッター、役割別トークン、CSS/TSのPipes処理を作る。"
     },
@@ -192,9 +191,7 @@
         "ホーム紹介・記事一覧カード・日付・共通要約・ページ送りを作る。",
         "記事集合、同日時の公開パス順、日付補完と予約公開をfixtureで確かめる。"
       ],
-      "depends_on": [
-        "T004"
-      ],
+      "depends_on": ["T004"],
       "acceptance_criteria": [
         "モックのホーム／一覧の配置とPrev/Next方向を維持する。",
         "既定10件・設定変更・0/1件・複数ページ・summary/more/自動要約が成立する。",
@@ -209,9 +206,7 @@
       "verification_status": "not_run",
       "artifact_refs": [],
       "verification_ids": [],
-      "review_ids": [
-        "R001"
-      ],
+      "review_ids": ["R001"],
       "blocked_by": [],
       "next_action": "ホーム紹介・記事一覧カード・日付・共通要約・ページ送りを作る。"
     },
@@ -233,9 +228,7 @@
         "記事ヘッダー・日付・本文・Hugo標準見出しID・コードrender hookとコピーTSを実装する。",
         "本文部品fixtureと実記事で表・脚注・見出し・日本語コードを再現する。"
       ],
-      "depends_on": [
-        "T004"
-      ],
+      "depends_on": ["T004"],
       "acceptance_criteria": [
         "モックの組版、Chroma公式Latte/Mocha、言語/filename/行番号/強調/未知言語が成立する。",
         "コピーはラベル・行番号を除き、成功/失敗/再試行/3秒復帰を扱う。",
@@ -250,9 +243,7 @@
       "verification_status": "not_run",
       "artifact_refs": [],
       "verification_ids": [],
-      "review_ids": [
-        "R001"
-      ],
+      "review_ids": ["R001"],
       "blocked_by": [],
       "next_action": "記事ヘッダー・日付・本文・Hugo標準見出しID・コードrender hookとコピーTSを実装する。"
     },
@@ -270,9 +261,7 @@
         "カバー・Markdown画像・figureで共通の画像解決とレスポンシブ変換を使う。",
         "videoとSpeaker Deckの独自shortcodeを実装する。"
       ],
-      "depends_on": [
-        "T004"
-      ],
+      "depends_on": ["T004"],
       "acceptance_criteria": [
         "360/720/1080/1440と原寸候補、sizes、寸法、WebPと原形式代替、eager/lazyが仕様どおり。",
         "PNG可逆/JPEG q80、無拡大・無切り抜き、static/外部/SVG/アニメーション境界が成立する。",
@@ -287,9 +276,7 @@
       "verification_status": "not_run",
       "artifact_refs": [],
       "verification_ids": [],
-      "review_ids": [
-        "R001"
-      ],
+      "review_ids": ["R001"],
       "blocked_by": [],
       "next_action": "カバー・Markdown画像・figureで共通の画像解決とレスポンシブ変換を使う。"
     },
@@ -308,10 +295,7 @@
         "共通アイコン・順序付き共有リンク・設定駆動のはてなスターを実装する。",
         "本番URL統一とプレビューの共有操作/スター停止を検査する。"
       ],
-      "depends_on": [
-        "T004",
-        "T006"
-      ],
+      "depends_on": ["T004", "T006"],
       "acceptance_criteria": [
         "X/Facebook/Bluesky/はてな閲覧リンク・プロフィール・RSSを役割別に生成する。",
         "スター既定無効、未設定共有なし、未知サービスはビルドエラー、固有IDの埋め込みなし。",
@@ -326,9 +310,7 @@
       "verification_status": "not_run",
       "artifact_refs": [],
       "verification_ids": [],
-      "review_ids": [
-        "R001"
-      ],
+      "review_ids": ["R001"],
       "blocked_by": [],
       "next_action": "共通アイコン・順序付き共有リンク・設定駆動のはてなスターを実装する。"
     },
@@ -351,12 +333,7 @@
         "ホーム/一覧・実記事・本文部品の両配色PC/モバイル比較と責務説明を提出する。",
         "例外・モックとの差分・検証済み/未実施を提示しR001の明示判断を記録する。"
       ],
-      "depends_on": [
-        "T005",
-        "T006",
-        "T007",
-        "T008"
-      ],
+      "depends_on": ["T005", "T006", "T007", "T008"],
       "acceptance_criteria": [
         "同じOS・フォント・ブラウザ条件で比較画像と差分説明を用意する。",
         "トークン/CSS/TS/テンプレートの共有箇所と例外をコードへ結び付けて説明する。",
@@ -372,9 +349,7 @@
       "verification_status": "not_run",
       "artifact_refs": [],
       "verification_ids": [],
-      "review_ids": [
-        "R001"
-      ],
+      "review_ids": ["R001"],
       "blocked_by": [],
       "next_action": "ホーム/一覧・実記事・本文部品の両配色PC/モバイル比較と責務説明を提出する。"
     },
@@ -392,9 +367,7 @@
       "scope": [
         "About/通常固定ページ・Archives・分類一覧/個別分類・404・記事タグ/前後記事へ展開する。"
       ],
-      "depends_on": [
-        "T009"
-      ],
+      "depends_on": ["T009"],
       "acceptance_criteria": [
         "全モック画面に対応し、空分類・個別分類ページ送りを含め共通規則を使う。",
         "Archivesは年/月の全記事、固定ページはタグ/前後なしで日付非表示設定が効く。"
@@ -407,9 +380,7 @@
       "verification_status": "not_run",
       "artifact_refs": [],
       "verification_ids": [],
-      "review_ids": [
-        "R002"
-      ],
+      "review_ids": ["R002"],
       "blocked_by": [],
       "next_action": "About/通常固定ページ・Archives・分類一覧/個別分類・404・記事タグ/前後記事へ展開する。"
     },
@@ -428,14 +399,8 @@
         "docs/04-theme-implementation-requirements.md: Q33",
         "docs/04-theme-implementation-requirements.md: 合意事項を適用する際の補足: 日付・分類フィード・公開URL・SNS既定画像"
       ],
-      "scope": [
-        "ホーム/section/分類フィードとSEO/SNS/JSON-LD、sitemap/robotsを実装する。"
-      ],
-      "depends_on": [
-        "T005",
-        "T006",
-        "T007"
-      ],
+      "scope": ["ホーム/section/分類フィードとSEO/SNS/JSON-LD、sitemap/robotsを実装する。"],
+      "depends_on": ["T005", "T006", "T007"],
       "acceptance_criteria": [
         "RSS無制限・共通要約・既存GUID、分類一覧RSSの分類ページ配信を維持する。",
         "canonicalはページ送りを含む各URL、画像はcover/default/none、型はBlogPosting/WebPage/WebSite+Person。",
@@ -450,9 +415,7 @@
       "verification_status": "not_run",
       "artifact_refs": [],
       "verification_ids": [],
-      "review_ids": [
-        "R002"
-      ],
+      "review_ids": ["R002"],
       "blocked_by": [],
       "next_action": "ホーム/section/分類フィードとSEO/SNS/JSON-LD、sitemap/robotsを実装する。"
     },
@@ -474,14 +437,7 @@
         "hugo.ymlをshsh設定に移し、紹介をMarkdownへ、raw埋め込みをshortcodeへ変換してunsafe=falseにする。",
         "検査用埋め込み置換と本番組込shortcodeを分離し、本番/プレビュービルドを用意する。"
       ],
-      "depends_on": [
-        "T002",
-        "T007",
-        "T008",
-        "T009",
-        "T010",
-        "T011"
-      ],
+      "depends_on": ["T002", "T007", "T008", "T009", "T010", "T011"],
       "acceptance_criteria": [
         "全記事の本文・リンク・埋め込み位置/ID/URLと動画内容を維持する。",
         "本番に診断ページ・検査用shortcodeが混入しない。",
@@ -496,9 +452,7 @@
       "verification_status": "not_run",
       "artifact_refs": [],
       "verification_ids": [],
-      "review_ids": [
-        "R002"
-      ],
+      "review_ids": ["R002"],
       "blocked_by": [],
       "next_action": "hugo.ymlをshsh設定に移し、紹介をMarkdownへ、raw埋め込みをshortcodeへ変換してunsafe=falseにする。"
     },
@@ -523,12 +477,7 @@
         "旧基準と全記事/About/Archives/派生一覧のURL・本文・見出しID・素材・RSS識別子を照合する。",
         "全内部リンク・メタ・画像寸法・生成HTML・操作/axeをGitHub Actionsへ組み込む。"
       ],
-      "depends_on": [
-        "T003",
-        "T010",
-        "T011",
-        "T012"
-      ],
+      "depends_on": ["T003", "T010", "T011", "T012"],
       "acceptance_criteria": [
         "意図しない欠落がなく、承認差分に判断IDと照合証拠がある。",
         "frozen-lockfile・型付きlint統合・strict・整形対象分離をCIで実行できる。",
@@ -543,9 +492,7 @@
       "verification_status": "not_run",
       "artifact_refs": [],
       "verification_ids": [],
-      "review_ids": [
-        "R002"
-      ],
+      "review_ids": ["R002"],
       "blocked_by": [],
       "next_action": "旧基準と全記事/About/Archives/派生一覧のURL・本文・見出しID・素材・RSS識別子を照合する。"
     },
@@ -562,15 +509,8 @@
         "docs/05-theme-implementation-discipline.md: Q7",
         "docs/05-theme-implementation-discipline.md: Q8"
       ],
-      "scope": [
-        "全画面比較・検査証拠・未確認の実機/性能/配信条件を提出しR002を依頼する。"
-      ],
-      "depends_on": [
-        "T010",
-        "T011",
-        "T012",
-        "T013"
-      ],
+      "scope": ["全画面比較・検査証拠・未確認の実機/性能/配信条件を提出しR002を依頼する。"],
+      "depends_on": ["T010", "T011", "T012", "T013"],
       "acceptance_criteria": [
         "ユーザーの明示判断を記録し、指摘を後続タスクで修正・影響範囲再検証する。",
         "共通設計変更時は必要範囲を再レビューし期待値を承認に結び付ける。"
@@ -584,9 +524,7 @@
       "verification_status": "not_run",
       "artifact_refs": [],
       "verification_ids": [],
-      "review_ids": [
-        "R002"
-      ],
+      "review_ids": ["R002"],
       "blocked_by": [],
       "next_action": "全画面比較・検査証拠・未確認の実機/性能/配信条件を提出しR002を依頼する。"
     },
@@ -604,9 +542,7 @@
         "PC/モバイル主要安定版とOS固有フォントの確認手順・対象URL・記録表を用意する。",
         "macOS Safari/Chrome/Firefox・Windows Edge/Chromeの和欧文・iOS Safari/Android Chromeの実機結果を集める。"
       ],
-      "depends_on": [
-        "T014"
-      ],
+      "depends_on": ["T014"],
       "acceptance_criteria": [
         "OS/ブラウザ/端末/実フォント/表示幅/配色/文字設定と確認者を記録する。",
         "本文・コード・画像・タッチ・コピー・キーボード・共有/スターを確認し残る問題を解消する。"
@@ -634,12 +570,8 @@
         "docs/04-theme-implementation-requirements.md: Q34",
         "docs/04-theme-implementation-requirements.md: 実装開始時の確認と完了判定"
       ],
-      "scope": [
-        "代表記事の外部埋め込みあり/なしでLCP/CLSを測定し、必要な改善と再測定を行う。"
-      ],
-      "depends_on": [
-        "T013"
-      ],
+      "scope": ["代表記事の外部埋め込みあり/なしでLCP/CLSを測定し、必要な改善と再測定を行う。"],
+      "depends_on": ["T013"],
       "acceptance_criteria": [
         "モバイル測定条件・回線・CPU・キャッシュ・ブラウザ・試行回数を固定して証拠を保存する。",
         "LCP<=2.5秒・CLS<=0.1の測定目標を満たす。未達は原因を示し、仕様変更は判断後に行う。"
@@ -673,10 +605,7 @@
         "実際のCloudflare Pagesのビルドコマンド・版・環境設定を確認し、確認可能な成果物を配信する。",
         "公開/previewのURL・HTTP404・feed転送・noindexヘッダー・実接続を記録する。"
       ],
-      "depends_on": [
-        "T014",
-        "T016"
-      ],
+      "depends_on": ["T014", "T016"],
       "acceptance_criteria": [
         "本番/previewでHugo版・出力・CSS/JS fingerprint/minify/map有無が仕様どおり。",
         "存在しないURLはHTTP404、feed.xmlは301、previewはnoindexかつ共有/スター無効。",
@@ -711,13 +640,7 @@
         "照合完了後にPaperMod submodule・専用上書き・更新スクリプトを整理しライセンス表示を保持する。",
         "仕様の正をテーマ/fixture/文書へ移し、モックを参考資料とし、切戻し手順と最終証拠をまとめる。"
       ],
-      "depends_on": [
-        "T013",
-        "T014",
-        "T015",
-        "T016",
-        "T017"
-      ],
+      "depends_on": ["T013", "T014", "T015", "T016", "T017"],
       "acceptance_criteria": [
         "全要件・補足・規律の成果物/検証/レビュー判断を監査し未解決・未確認なし。",
         "設定/コンテンツを含む変更前コミットまたは配信成果物から切戻せる。",
@@ -737,19 +660,77 @@
       "next_action": "照合完了後にPaperMod submodule・専用上書き・更新スクリプトを整理しライセンス表示を保持する。"
     }
   ],
-  "findings": [],
+  "findings": [
+    {
+      "id": "F001",
+      "title": "Go template整形が条件付き属性で一度では安定しない",
+      "task_ids": ["T003"],
+      "status": "resolved",
+      "requires_user_decision": false,
+      "observation": "Prettier3.9.6/Go plugin0.0.15でrender hookの2回目整形に差分。",
+      "evidence_refs": ["docs/verification/toolchain.md"],
+      "impact": "単回整形を採用するとformat:checkの冪等性条件を満たせない。",
+      "recommendation": "最大5回で固定点を得る共通formatterを使用し、未収束・振動は失敗にする。inline hookは末尾空白を出さない。",
+      "decision": {
+        "outcome": "内部実装の是正を採用",
+        "reason": "資料5 Q1に従い表示・操作仕様を維持した検査環境の整理。合意した検証条件を弱めない。",
+        "decided_by": "実装者",
+        "recorded_at": "2026-09-17T11:52:33.098846+00:00",
+        "source": "docs/05-theme-implementation-discipline.md: Q1"
+      },
+      "resolution_refs": [
+        "package.json",
+        "pnpm-lock.yaml",
+        "tsconfig.json",
+        "playwright.config.ts",
+        "scripts/format.mjs",
+        "scripts/format-template.mjs",
+        "scripts/verify-tooling.ts",
+        "scripts/measure-checks.mjs",
+        "tests/tooling.spec.ts",
+        "docs/verification/toolchain.md",
+        "docs/verification/t003-toolchain.json"
+      ],
+      "verification_ids": ["V003", "V005"]
+    },
+    {
+      "id": "F002",
+      "title": "macOS 27でFirefoxの一時profile起動が失敗",
+      "task_ids": ["T003"],
+      "status": "resolved",
+      "requires_user_decision": false,
+      "observation": "許可された起動環境でもFirefoxがprofile folderを認識できず終了。",
+      "evidence_refs": ["docs/verification/toolchain.md"],
+      "impact": "このMacでFirefoxのPlaywright検査を実行できない。",
+      "recommendation": "MOZ_APP_DATAを検査専用ディレクトリへ隔離し再実行。既存ユーザープロファイルやOS権限は変更しない。",
+      "decision": {
+        "outcome": "内部実装の是正を採用",
+        "reason": "資料5 Q1に従い表示・操作仕様を維持した検査環境の整理。合意した検証条件を弱めない。",
+        "decided_by": "実装者",
+        "recorded_at": "2026-09-17T11:52:33.098846+00:00",
+        "source": "docs/05-theme-implementation-discipline.md: Q1"
+      },
+      "resolution_refs": [
+        "package.json",
+        "pnpm-lock.yaml",
+        "tsconfig.json",
+        "playwright.config.ts",
+        "scripts/format.mjs",
+        "scripts/format-template.mjs",
+        "scripts/verify-tooling.ts",
+        "scripts/measure-checks.mjs",
+        "tests/tooling.spec.ts",
+        "docs/verification/toolchain.md",
+        "docs/verification/t003-toolchain.json"
+      ],
+      "verification_ids": ["V004", "V006"]
+    }
+  ],
   "reviews": [
     {
       "id": "R001",
       "title": "代表画面と共通設計のレビュー",
-      "task_ids": [
-        "T004",
-        "T005",
-        "T006",
-        "T007",
-        "T008",
-        "T009"
-      ],
+      "task_ids": ["T004", "T005", "T006", "T007", "T008", "T009"],
       "status": "not_ready",
       "artifact_refs": [],
       "verification_ids": [],
@@ -760,13 +741,7 @@
     {
       "id": "R002",
       "title": "全画面の一貫性と検証結果・残件のレビュー",
-      "task_ids": [
-        "T010",
-        "T011",
-        "T012",
-        "T013",
-        "T014"
-      ],
+      "task_ids": ["T010", "T011", "T012", "T013", "T014"],
       "status": "not_ready",
       "artifact_refs": [],
       "verification_ids": [],
@@ -778,9 +753,7 @@
   "verifications": [
     {
       "id": "V001",
-      "task_ids": [
-        "T001"
-      ],
+      "task_ids": ["T001"],
       "requirement_refs": [
         "docs/04-theme-implementation-requirements.md: 合意済みの実装判断・補足・実装開始時の確認と完了判定",
         "docs/05-theme-implementation-discipline.md: JSONによる進捗管理・レビューの提出物と通過条件"
@@ -790,18 +763,13 @@
       "subject_ref": "c266ebb + T001の進捗JSON・計画文書・検査スクリプト",
       "environment": "macOS arm64; Hugo 0.166.0; Node 24.21.0; pnpm 12.4.1",
       "procedure": "全要件本文・補足・完了条件を18タスクの完了条件へ照合。node scripts/verify-progress.mjsでQ割当・参照・循環・レビュー依存を確認。",
-      "evidence_refs": [
-        "docs/verification/implementation-plan.md",
-        "scripts/verify-progress.mjs"
-      ],
+      "evidence_refs": ["docs/verification/implementation-plan.md", "scripts/verify-progress.mjs"],
       "recorded_at": "2026-09-17T11:37:01.628023+00:00",
       "supersedes": null
     },
     {
       "id": "V002",
-      "task_ids": [
-        "T002"
-      ],
+      "task_ids": ["T002"],
       "requirement_refs": [
         "docs/04-theme-implementation-requirements.md: Q2",
         "docs/04-theme-implementation-requirements.md: Q19",
@@ -822,6 +790,118 @@
       ],
       "recorded_at": "2026-09-17T11:39:48.982167+00:00",
       "supersedes": null
+    },
+    {
+      "id": "V003",
+      "task_ids": ["T003"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q4",
+        "docs/04-theme-implementation-requirements.md: Q12",
+        "docs/04-theme-implementation-requirements.md: Q13",
+        "docs/04-theme-implementation-requirements.md: Q22",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q29",
+        "docs/04-theme-implementation-requirements.md: Q30",
+        "docs/04-theme-implementation-requirements.md: 開発・検査ツール",
+        "docs/04-theme-implementation-requirements.md: 実装開始時の確認と完了判定"
+      ],
+      "kind": "formatter導入時の冪等性",
+      "result": "failed",
+      "subject_ref": "T003の検査ツール・fixture・進捗の差分",
+      "environment": "macOS 27.0 (26A428) arm64; Node24.21.0/pnpm12.4.1/Hugo0.166.0; Playwright1.63.0",
+      "procedure": "条件付き属性を含むrender-link.htmlをPrettier Go templateで2回整形した結果が一致せず、assertionが失敗。",
+      "evidence_refs": [
+        "docs/verification/toolchain.md",
+        "docs/verification/t003-toolchain.json",
+        "scripts/verify-tooling.ts",
+        "tests/tooling.spec.ts"
+      ],
+      "recorded_at": "2026-09-17T11:52:33.098846+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V004",
+      "task_ids": ["T003"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q4",
+        "docs/04-theme-implementation-requirements.md: Q12",
+        "docs/04-theme-implementation-requirements.md: Q13",
+        "docs/04-theme-implementation-requirements.md: Q22",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q29",
+        "docs/04-theme-implementation-requirements.md: Q30",
+        "docs/04-theme-implementation-requirements.md: 開発・検査ツール",
+        "docs/04-theme-implementation-requirements.md: 実装開始時の確認と完了判定"
+      ],
+      "kind": "Firefox起動",
+      "result": "failed",
+      "subject_ref": "T003の検査ツール・fixture・進捗の差分",
+      "environment": "macOS 27.0 (26A428) arm64; Node24.21.0/pnpm12.4.1/Hugo0.166.0; Playwright1.63.0",
+      "procedure": "ブラウザ起動を許可した環境でもFirefox155はCould not find profile folderで終了。TMPDIR変更でも同じ失敗。",
+      "evidence_refs": [
+        "docs/verification/toolchain.md",
+        "docs/verification/t003-toolchain.json",
+        "scripts/verify-tooling.ts",
+        "tests/tooling.spec.ts"
+      ],
+      "recorded_at": "2026-09-17T11:52:33.098846+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V005",
+      "task_ids": ["T003"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q4",
+        "docs/04-theme-implementation-requirements.md: Q12",
+        "docs/04-theme-implementation-requirements.md: Q13",
+        "docs/04-theme-implementation-requirements.md: Q22",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q29",
+        "docs/04-theme-implementation-requirements.md: Q30",
+        "docs/04-theme-implementation-requirements.md: 開発・検査ツール",
+        "docs/04-theme-implementation-requirements.md: 実装開始時の確認と完了判定"
+      ],
+      "kind": "品質環境・formatter意味保存・型検出",
+      "result": "passed",
+      "subject_ref": "T003の検査ツール・fixture・進捗の差分",
+      "environment": "macOS 27.0 (26A428) arm64; Node24.21.0/pnpm12.4.1/Hugo0.166.0; Playwright1.63.0",
+      "procedure": "frozen-lockfile導入、pnpm check:tooling:types、check:types、measure-checks.mjsを実行。型不一致/Promiseの正負probe、HTML/CSS負例、安定整形、Hugo前後生成と3エンジンのDOM/レイアウト/操作/axeを確認。通常CIの単独型検査重複なし。",
+      "evidence_refs": [
+        "docs/verification/toolchain.md",
+        "docs/verification/t003-toolchain.json",
+        "scripts/verify-tooling.ts",
+        "tests/tooling.spec.ts"
+      ],
+      "recorded_at": "2026-09-17T11:52:33.098846+00:00",
+      "supersedes": "V003"
+    },
+    {
+      "id": "V006",
+      "task_ids": ["T003"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q4",
+        "docs/04-theme-implementation-requirements.md: Q12",
+        "docs/04-theme-implementation-requirements.md: Q13",
+        "docs/04-theme-implementation-requirements.md: Q22",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q29",
+        "docs/04-theme-implementation-requirements.md: Q30",
+        "docs/04-theme-implementation-requirements.md: 開発・検査ツール",
+        "docs/04-theme-implementation-requirements.md: 実装開始時の確認と完了判定"
+      ],
+      "kind": "Firefox再検証",
+      "result": "passed",
+      "subject_ref": "T003の検査ツール・fixture・進捗の差分",
+      "environment": "macOS 27.0 (26A428) arm64; Node24.21.0/pnpm12.4.1/Hugo0.166.0; Playwright1.63.0",
+      "procedure": "Mozilla bug2060476を参照しMOZ_APP_DATAを検査用.cache配下へ隔離。Chromium/Firefox/WebKitの全3テストが成功。",
+      "evidence_refs": [
+        "docs/verification/toolchain.md",
+        "docs/verification/t003-toolchain.json",
+        "scripts/verify-tooling.ts",
+        "tests/tooling.spec.ts"
+      ],
+      "recorded_at": "2026-09-17T11:52:33.098846+00:00",
+      "supersedes": "V004"
     }
   ]
 }

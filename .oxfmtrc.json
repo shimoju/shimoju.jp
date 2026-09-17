@@ -1,0 +1,17 @@
+{
+  "ignorePatterns": [
+    "content/**",
+    "mock/**",
+    "themes/PaperMod/**",
+    "public/**",
+    "resources/**",
+    "node_modules/**",
+    ".cache/**",
+    "test-results/**",
+    "playwright-report/**",
+    "tests/baseline/**",
+    "**/layouts/**",
+    "**/*.xml",
+    "pnpm-lock.yaml"
+  ]
+}

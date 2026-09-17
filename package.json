@@ -1,0 +1,36 @@
+{
+  "name": "shimoju-jp",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "format": "node scripts/format.mjs --write",
+    "format:check": "node scripts/format.mjs",
+    "lint": "oxlint --type-aware --type-check --deny-warnings scripts tests themes playwright.config.ts",
+    "lint:css": "stylelint \"themes/shsh/assets/css/**/*.css\" \"tests/fixtures/**/*.css\" --allow-empty-input",
+    "check:types": "tsc --noEmit",
+    "check:progress": "node scripts/verify-progress.mjs",
+    "check:tooling": "node --experimental-strip-types scripts/verify-tooling.ts",
+    "test": "playwright test",
+    "check": "pnpm format:check && pnpm lint && pnpm lint:css && pnpm check:progress && pnpm check:tooling && pnpm test",
+    "check:tooling:types": "node scripts/verify-tooling.ts --probe-types"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0",
+    "@types/node": "24.13.4",
+    "html-validate": "11.15.0",
+    "oxfmt": "0.67.0",
+    "oxlint": "1.82.0",
+    "oxlint-tsgolint": "7.0.2001",
+    "prettier": "3.9.6",
+    "prettier-plugin-go-template": "0.0.15",
+    "stylelint": "17.15.0",
+    "stylelint-config-standard": "40.0.0",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": "24.x",
+    "pnpm": "12.4.1"
+  },
+  "packageManager": "pnpm@12.4.1"
+}
