@@ -1,0 +1,61 @@
+{{- if not site.Title }}{{ errorf "shsh: site title is required" }}{{ end -}}
+{{- if not (findRE `^https?://[^/]+/` site.BaseURL) }}
+  {{ errorf "shsh: absolute baseURL is required" }}
+{{ end -}}
+{{- $author := site.Params.author | default dict -}}
+{{- if not (reflect.IsMap $author) }}
+  {{ errorf "shsh: params.author must be a map" }}{{ $author = dict }}
+{{ end -}}
+{{- if not $author.name }}
+  {{ errorf "shsh: params.author.name is required" }}
+{{ end -}}
+{{- if ne (printf "%T" $author.name) "string" }}
+  {{ errorf "shsh: params.author.name must be a string" }}
+{{ end -}}
+{{- $social := slice -}}
+{{- if isset site.Params "sociallinks" }}
+  {{ $social = site.Params.socialLinks }}
+{{ end -}}
+{{- if not (reflect.IsSlice $social) }}
+  {{ errorf "shsh: params.socialLinks must be a list" }}{{ $social = slice }}
+{{ end -}}
+{{- range $social -}}
+  {{- if not (reflect.IsMap .) -}}
+    {{- errorf "shsh: socialLinks entries must be maps" -}}
+  {{- else -}}
+    {{- if not (and (eq (printf "%T" .name) "string") (eq (printf "%T" .url) "string")) -}}
+      {{- errorf "shsh: socialLinks name and url must be strings" -}}
+    {{- else if not (in (slice "x" "bluesky" "facebook" "hatena" "github" "rss") .name) -}}
+      {{- errorf "shsh: unknown social icon %q" .name -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $showRSS := true -}}
+{{- if isset site.Params "showrss" -}}
+  {{- if ne (printf "%T" site.Params.showRSS) "bool" }}
+    {{ errorf "shsh: params.showRSS must be boolean" }}
+  {{ end -}}
+  {{- $showRSS = site.Params.showRSS -}}
+{{- end -}}
+{{- range site.Menus.main -}}
+  {{- if .PageRef -}}
+    {{- if not .Page }}
+      {{ errorf "shsh: unresolved menu pageRef %q" .PageRef }}
+    {{ end -}}
+  {{- else -}}
+    {{- $url := urls.Parse .URL -}}
+    {{- if and (not $url.IsAbs) (not $url.Host) $url.Path -}}
+      {{- $target := strings.TrimRight "/" ($url.Path | absURL) -}}
+      {{- $found := false -}}
+      {{- range site.Pages -}}
+        {{- if eq (strings.TrimRight "/" .Permalink) $target }}
+          {{ $found = true }}
+        {{ end -}}
+      {{- end -}}
+      {{- if not (or $found (fileExists (printf "static/%s" (strings.TrimPrefix "/" $url.Path)))) -}}
+        {{- errorf "shsh: unresolved internal menu URL %q" .URL -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return (dict "author" $author "socialLinks" $social "showRSS" $showRSS) -}}

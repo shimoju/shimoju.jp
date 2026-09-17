@@ -16,7 +16,7 @@ CI用の `pnpm check` は整形、型付きlintと型検査の統合、CSS、進
 
 `scripts/format.mjs` が対象を分担する。一般ソースはOxfmt、`themes/shsh/layouts/**/*.html` と検査fixtureの `layouts/**/*.html` はPrettier＋Go template parserを使う。`.prettierrc.json` をエディタとコマンドで共有する。記事、凍結モック、PaperMod、移行前の証拠JSON、生成物、依存は除外する。開発文書は今回追加した `docs/verification/` と進捗JSONを対象とし、既存の仕様文書は一括整形しない。
 
-RSS/XMLはGo HTML parserの対象にしない。生成HTMLはHTML-validateで別検証する。DOCTYPEの小文字を採用し、HTMLで意味が変わらないvoid要素末尾のスラッシュ有無は許容する。alt・構造・属性等の検査は維持し、不正HTMLが失敗することを検証した。
+RSS/XMLはGo HTML parserの対象にしない。生成HTMLはHTML-validateで別検証する。DOCTYPEの小文字を採用し、HTMLで意味が変わらないvoid要素末尾のスラッシュ有無は許容する。Hugo出力の空行インデントを対象外とし、alt・構造・属性等の検査は維持し、不正HTMLが失敗することを検証した。
 
 Prettier 3.9.6＋prettier-plugin-go-template 0.0.15では条件付き属性が2回目にも再整形される。`format-template.mjs` は最大5回で安定する結果を使い、振動または未収束なら失敗する。整形をもう一度実行しても変わらないことを検査する。inline render hookは末尾の空白制御で、隣接リンクや後続文字との間に改行由来の空白を挿入しない。
 

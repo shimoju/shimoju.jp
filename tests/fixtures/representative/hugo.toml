@@ -1,0 +1,25 @@
+baseURL = 'https://example.invalid/'
+title = 'Example journal'
+theme = 'shsh'
+defaultContentLanguage = 'ja'
+locale = 'ja'
+mainSections = ['posts']
+[markup.highlight]
+noClasses = false
+[params.author]
+name = 'Example author'
+[[params.socialLinks]]
+name = 'github'
+url = 'https://github.com/example'
+[[menus.main]]
+name = 'About'
+pageRef = '/about'
+[[menus.main]]
+name = 'Archives'
+pageRef = '/archives'
+[[menus.main]]
+name = 'Categories'
+pageRef = '/categories'
+[[menus.main]]
+name = 'Tags'
+pageRef = '/tags'

@@ -1,0 +1,43 @@
+// Loaded synchronously in <head>, before CSS. Keep first paint and live changes
+// on the same selection rule; no mock query parameters or key migration.
+const root = document.documentElement;
+const os = matchMedia("(prefers-color-scheme: dark)");
+type ColorMode = "light" | "dark";
+let chosen: ColorMode | null = null;
+try {
+  const saved = localStorage.getItem("pref-theme");
+  if (saved === "light" || saved === "dark") chosen = saved;
+} catch {
+  // Storage may be unavailable; an explicit choice still lasts for this page.
+}
+function syncButton() {
+  const button = document.querySelector<HTMLButtonElement>(".theme-toggle");
+  if (!button) return;
+  const label = root.dataset.theme === "dark" ? "Switch to light mode" : "Switch to dark mode";
+  button.setAttribute("aria-label", label);
+  button.title = label;
+}
+function apply() {
+  root.dataset.theme = chosen ?? (os.matches ? "dark" : "light");
+  syncButton();
+}
+apply();
+os.addEventListener("change", () => {
+  if (!chosen) apply();
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const button = document.querySelector<HTMLButtonElement>(".theme-toggle");
+  if (!button) return;
+  button.hidden = false;
+  syncButton();
+  button.addEventListener("click", () => {
+    chosen = root.dataset.theme === "dark" ? "light" : "dark";
+    try {
+      localStorage.setItem("pref-theme", chosen);
+    } catch {
+      /* Keep the chosen mode in memory. */
+    }
+    apply();
+  });
+});
+export {};

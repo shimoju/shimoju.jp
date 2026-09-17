@@ -1,0 +1,27 @@
+<header class="site-header shell">
+  <button
+    class="theme-toggle icon-control"
+    type="button"
+    lang="en"
+    aria-label="Switch color mode"
+    hidden
+  >
+    {{ partial "icon.html" "moon" }}{{ partial "icon.html" "sun" }}
+  </button>
+  {{ if .IsHome }}
+    <h1 class="site-heading">{{ partial "site-name.html" . }}</h1>
+  {{ else }}
+    {{ partial "site-name.html" . }}
+  {{ end }}
+  {{ with site.Menus.main }}
+    <nav class="site-nav" lang="en" aria-label="Main navigation">
+      {{ range . }}
+        <a
+          href="{{ .URL }}"
+          {{ if $.IsMenuCurrent "main" . }}aria-current="page"{{ end }}
+          >{{ .Name }}</a
+        >
+      {{ end }}
+    </nav>
+  {{ end }}
+</header>

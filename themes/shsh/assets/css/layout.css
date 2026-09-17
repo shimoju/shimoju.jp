@@ -1,0 +1,102 @@
+/* Absorb spare viewport height without stretching the content area. */
+.site-footer {
+  margin-block-start: auto;
+  padding-block: var(--space-group) var(--ui-space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ui-space-2);
+  text-align: center;
+  color: var(--muted);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+}
+
+.footer-links {
+  justify-content: center;
+}
+
+.site-footer a {
+  text-decoration-line: none;
+}
+
+.shell {
+  width: min(var(--content-width), calc(100% - var(--gutter) * 2));
+  margin-inline: auto;
+}
+
+.site-header {
+  position: relative;
+  text-align: center;
+  padding-block: var(--space-group) var(--space-section);
+}
+
+.site-header > .theme-toggle {
+  position: absolute;
+  top: var(--ui-space-2);
+  inset-inline-end: 0;
+}
+
+.site-header > .theme-toggle:focus-visible {
+  outline-offset: -2px;
+}
+
+.site-name {
+  font-family: var(--font-site);
+  font-size: var(--text-site);
+  font-weight: 300;
+  line-height: var(--leading-heading);
+  text-decoration-line: none;
+  letter-spacing: -0.025em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--control-size);
+  min-width: var(--control-size);
+}
+
+.site-heading {
+  margin: 0;
+  line-height: var(--leading-heading);
+  font-size: inherit;
+}
+
+.site-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--ui-space-1) var(--text-link-gap);
+  margin-top: var(--ui-space-2);
+  font-size: var(--text-small);
+  line-height: var(--leading-label);
+}
+
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--control-size);
+  text-decoration-line: none;
+  justify-content: center;
+  padding: var(--ui-space-2) var(--text-link-inset);
+}
+
+.site-nav a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+}
+
+.site-nav a[aria-current="page"] {
+  text-decoration-line: underline;
+}
+
+@media (width >= 640px) {
+  :root {
+    --gutter: 24px;
+  }
+}
+
+@media (hover: hover) {
+  :root {
+    --gutter: max(24px, var(--heading-anchor-size));
+  }
+}

@@ -19,7 +19,12 @@ export default defineConfig({
   forbidOnly: Boolean(process.env.CI),
   retries: 0,
   reporter: [["list"], ["html", { open: "never" }]],
-  use: { trace: "retain-on-failure" },
+  webServer: {
+    command: "node scripts/serve-fixtures.mjs",
+    url: "http://127.0.0.1:4174/",
+    reuseExistingServer: false,
+  },
+  use: { baseURL: "http://127.0.0.1:4174", trace: "retain-on-failure" },
   projects: [
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
     { name: "firefox", use: { ...devices["Desktop Firefox"], launchOptions: { env: firefoxEnv } } },

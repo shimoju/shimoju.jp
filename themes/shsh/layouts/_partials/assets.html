@@ -1,0 +1,23 @@
+{{- $dev := hugo.IsDevelopment -}}
+{{- $map := cond $dev "linked" "none" -}}
+{{- $theme := resources.Get "ts/theme.ts" | js.Build (dict "targetPath" "js/theme.js" "target" "es2022" "minify" (not $dev) "sourceMap" $map) -}}
+{{- if not $dev }}{{ $theme = $theme | fingerprint }}{{ end -}}
+<script
+  src="{{ $theme.RelPermalink }}"
+  {{ if not $dev }}
+    integrity="{{ $theme.Data.Integrity }}" crossorigin="anonymous"
+  {{ end }}
+></script>
+{{- $light := css.ChromaStyles (dict "style" "catppuccin-latte" "targetPath" "css/latte.css") -}}
+{{- $dark := css.ChromaStyles (dict "style" "catppuccin-mocha" "targetPath" "css/mocha.css") -}}
+{{- /* Scope the unmodified official declarations; the CSS-only OS fallback excludes explicit choices. */ -}}
+{{- $syntax := resources.FromString "css/syntax.css" (printf "%s\n:root[data-theme=dark] {\n%s\n}\n@media (prefers-color-scheme:dark) { :root:not([data-theme]) {\n%s\n} }" $light.Content $dark.Content $dark.Content) -}}
+{{- $css := resources.Get "css/main.css" | css.Build (dict "targetPath" "css/shsh.css" "importContext" (slice $syntax) "minify" (not $dev) "sourceMap" $map) -}}
+{{- if not $dev }}{{ $css = $css | fingerprint }}{{ end -}}
+<link
+  rel="stylesheet"
+  href="{{ $css.RelPermalink }}"
+  {{ if not $dev }}
+    integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous"
+  {{ end }}
+/>

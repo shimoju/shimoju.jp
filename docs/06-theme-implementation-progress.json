@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-17T11:52:33.098846+00:00",
+  "updated_at": "2026-09-17T12:07:45.606361+00:00",
   "stage": "representative",
-  "summary": "T001〜T003完了。移行基準と固定した品質環境を整備。formatterとFirefox起動の問題を是正し3エンジンで意味保存・操作・axeを確認。テーマ実装・代表画面レビューはこれから。",
+  "summary": "T001〜T003完了。T004の共通枠・Pipes・配色は実装/ローカル検証済み（R001未提出のためimplemented）。凍結モックとの共通枠比較と3エンジン全21テストが成功。本番はPaperModを維持。次はT005のホーム/一覧と記事集合。",
   "latest_review_id": null,
   "resume": {
-    "task_id": "T004",
-    "action": "凍結モックを参照し、設定駆動の共通枠・役割別トークン・Pipes・配色機能をfixtureで実装検証する。"
+    "task_id": "T005",
+    "action": "T004の実装済み基盤を使い、記事集合・共通要約・日付・ホーム紹介・一覧カード・ページ送りを実装し、順序や公開条件をfixtureで検証する。T004の完了には後のR001承認が必要だが、代表画面内の後続実装は進められる。"
   },
   "tasks": [
     {
@@ -128,7 +128,7 @@
         "docs/verification/toolchain.md",
         "docs/verification/t003-toolchain.json"
       ],
-      "verification_ids": ["V005", "V006"],
+      "verification_ids": ["V005", "V006", "V009"],
       "review_ids": [],
       "blocked_by": [],
       "next_action": "T004でテーマ共通枠と配色を実装する。検査構成の変更時は型検出probeも再実行する。"
@@ -167,13 +167,22 @@
         "Hugo単独生成、別ドメイン・著者fixture、未知アイコン・メニュー切れ・型違いの失敗を確認する。"
       ],
       "commit_message": "[T004] 代表画面の共通枠と配色切替を実装",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "status": "implemented",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/",
+        "tests/fixtures/representative/",
+        "scripts/build-fixtures.ts",
+        "scripts/serve-fixtures.mjs",
+        "scripts/verify-theme.ts",
+        "tests/theme.spec.ts",
+        "docs/verification/theme-foundation.md",
+        "docs/verification/t004-check.log"
+      ],
+      "verification_ids": ["V008", "V009"],
       "review_ids": ["R001"],
       "blocked_by": [],
-      "next_action": "themes/shshに設定駆動のヘッダー・フッター、役割別トークン、CSS/TSのPipes処理を作る。"
+      "next_action": "T005〜T008で代表画面を揃え、T009/R001で共通設計をレビューする。承認前はimplementedを維持する。"
     },
     {
       "id": "T005",
@@ -724,6 +733,26 @@
         "docs/verification/t003-toolchain.json"
       ],
       "verification_ids": ["V004", "V006"]
+    },
+    {
+      "id": "F003",
+      "title": "CSS変数内のフォント名がlint修正で小文字化された",
+      "task_ids": ["T004"],
+      "status": "resolved",
+      "requires_user_decision": false,
+      "observation": "凍結モックとの共通枠比較が全3エンジンでfont-familyの差を検出。ChromiumではBlinkMacSystemFontの特殊な解釈にも差があった。",
+      "evidence_refs": ["docs/verification/theme-foundation.md", "tests/theme.spec.ts"],
+      "impact": "既存のフォント選択を維持する要件から外れるおそれがある。",
+      "recommendation": "元のフォント名へ戻しvalue-keyword-caseから--font-*だけを除外、同じ比較を再実行する。",
+      "decision": {
+        "outcome": "モックの表記を維持して是正",
+        "reason": "表示・操作を維持する内部実装の修正であり、仕様変更を採用しない。",
+        "decided_by": "実装者",
+        "recorded_at": "2026-09-17T12:07:45.606361+00:00",
+        "source": "docs/05-theme-implementation-discipline.md: Q1"
+      },
+      "resolution_refs": ["themes/shsh/assets/css/tokens.css", ".stylelintrc.json"],
+      "verification_ids": ["V007", "V008"]
     }
   ],
   "reviews": [
@@ -732,9 +761,9 @@
       "title": "代表画面と共通設計のレビュー",
       "task_ids": ["T004", "T005", "T006", "T007", "T008", "T009"],
       "status": "not_ready",
-      "artifact_refs": [],
-      "verification_ids": [],
-      "finding_ids": [],
+      "artifact_refs": ["docs/verification/theme-foundation.md"],
+      "verification_ids": ["V008"],
+      "finding_ids": ["F003"],
       "decision": null,
       "supersedes": null
     },
@@ -902,6 +931,105 @@
       ],
       "recorded_at": "2026-09-17T11:52:33.098846+00:00",
       "supersedes": "V004"
+    },
+    {
+      "id": "V007",
+      "task_ids": ["T004"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q1",
+        "docs/04-theme-implementation-requirements.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q6",
+        "docs/04-theme-implementation-requirements.md: Q7",
+        "docs/04-theme-implementation-requirements.md: Q12",
+        "docs/04-theme-implementation-requirements.md: Q13",
+        "docs/04-theme-implementation-requirements.md: Q15",
+        "docs/04-theme-implementation-requirements.md: Q25",
+        "docs/04-theme-implementation-requirements.md: Q28",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q2",
+        "docs/05-theme-implementation-discipline.md: Q3"
+      ],
+      "kind": "凍結モックの共通枠比較",
+      "result": "failed",
+      "subject_ref": "T004の共通枠・配色・検査fixture・検査設定差分",
+      "environment": "macOS27.0(26A428) arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
+      "procedure": "両幅・両配色の書体比較で、StylelintによるBlinkMacSystemFont等の小文字化を検出。Chromiumではsystem-uiへの特殊解釈も異なった。",
+      "evidence_refs": [
+        "docs/verification/theme-foundation.md",
+        "docs/verification/t004-check.log",
+        "tests/theme.spec.ts",
+        "scripts/verify-theme.ts"
+      ],
+      "recorded_at": "2026-09-17T12:07:45.606361+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V008",
+      "task_ids": ["T004"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q1",
+        "docs/04-theme-implementation-requirements.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q6",
+        "docs/04-theme-implementation-requirements.md: Q7",
+        "docs/04-theme-implementation-requirements.md: Q12",
+        "docs/04-theme-implementation-requirements.md: Q13",
+        "docs/04-theme-implementation-requirements.md: Q15",
+        "docs/04-theme-implementation-requirements.md: Q25",
+        "docs/04-theme-implementation-requirements.md: Q28",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q2",
+        "docs/05-theme-implementation-discipline.md: Q3"
+      ],
+      "kind": "配色・共通枠・生成物の再検証",
+      "result": "passed",
+      "subject_ref": "T004の共通枠・配色・検査fixture・検査設定差分",
+      "environment": "macOS27.0(26A428) arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
+      "procedure": "元のフォント名と--font-*用lint例外を適用し、モック比較・配色・キーボード・JS無効・axeを含む21テストが3エンジンで成功。Hugo単独生成、設定正負ケース、preview noindex、本番ハッシュと開発mapも検査。WebKitは標準Option-Tabで移動。",
+      "evidence_refs": [
+        "docs/verification/theme-foundation.md",
+        "docs/verification/t004-check.log",
+        "tests/theme.spec.ts",
+        "scripts/verify-theme.ts"
+      ],
+      "recorded_at": "2026-09-17T12:07:45.606361+00:00",
+      "supersedes": "V007"
+    },
+    {
+      "id": "V009",
+      "task_ids": ["T003", "T004"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q1",
+        "docs/04-theme-implementation-requirements.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q6",
+        "docs/04-theme-implementation-requirements.md: Q7",
+        "docs/04-theme-implementation-requirements.md: Q12",
+        "docs/04-theme-implementation-requirements.md: Q13",
+        "docs/04-theme-implementation-requirements.md: Q15",
+        "docs/04-theme-implementation-requirements.md: Q25",
+        "docs/04-theme-implementation-requirements.md: Q28",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q2",
+        "docs/05-theme-implementation-discipline.md: Q3"
+      ],
+      "kind": "品質構成の回帰検証",
+      "result": "passed",
+      "subject_ref": "T004の共通枠・配色・検査fixture・検査設定差分",
+      "environment": "macOS27.0(26A428) arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
+      "procedure": "pnpm check:tooling:typesでブラウザ/検査パスの型不一致・Promiseを検出、正常状態へ戻して成功。pnpm checkで整形・統合lint・CSS・進捗・Hugo/formatter・生成HTML・全ブラウザ検査成功。モック無変更と移行基準SHA256維持も確認。",
+      "evidence_refs": [
+        "docs/verification/theme-foundation.md",
+        "docs/verification/t004-check.log",
+        "tests/theme.spec.ts",
+        "scripts/verify-theme.ts"
+      ],
+      "recorded_at": "2026-09-17T12:07:45.606361+00:00",
+      "supersedes": null
     }
   ]
 }
