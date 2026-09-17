@@ -1,9 +1,0 @@
-{
-  "plugins": ["prettier-plugin-go-template"],
-  "overrides": [
-    {
-      "files": ["themes/shsh/layouts/**/*.html", "tests/fixtures/**/layouts/**/*.html"],
-      "options": { "parser": "go-template", "htmlWhitespaceSensitivity": "strict" }
-    }
-  ]
-}

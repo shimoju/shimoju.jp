@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>R003 指摘修正レビュー</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font:
+          16px/1.7 -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+      }
+      body {
+        max-width: 1500px;
+        margin: 32px auto;
+        padding: 0 20px;
+      }
+      a {
+        color: inherit;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      h2 {
+        margin-top: 2.5rem;
+      }
+      summary {
+        cursor: pointer;
+        padding: 12px 0;
+      }
+      details {
+        border-top: 1px solid #888;
+      }
+      .pair {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        align-items: start;
+      }
+      figure {
+        margin: 0;
+        text-align: center;
+      }
+      figcaption {
+        padding: 8px;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: auto;
+      }
+      .note {
+        max-width: 70em;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>R003 強調入力と開発環境の修正</h1>
+      <p class="note">
+        ホーム・一覧・実記事・本文部品の比較です。左がshsh、右が凍結モック。「原寸を開く」リンクから画像を開けます。本文部品の強調を修正し、開発環境をthemes/shshへ集約しました。他3画面の画像は変更のないR001提出物を参照します。
+      </p>
+      <nav aria-label="比較対象">
+        <a href="#home">ホーム</a><a href="#posts">記事一覧</a><a href="#article">実記事</a
+        ><a href="#specimen">本文部品</a><a href="../r003-review.md">構造・差分・検証範囲</a>
+      </nav>
+      <p>
+        <a href="http://127.0.0.1:4185/" target="_blank" rel="noopener">実装を操作する</a> ／
+        <a href="http://127.0.0.1:4186/" target="_blank" rel="noopener">プレビュー</a> ／
+        <a href="http://127.0.0.1:4187/home.html" target="_blank" rel="noopener">モック</a>
+      </p>
+      <p class="note">
+        記事末尾のタグ・前後記事、About／Archives／分類等は、共通設計の承認後に実装します。本文部品ではモック専用の文字・余白診断を除外しています。比較画像の外部ウィジェットは未読込です。実機・性能・配信検証と本番移行は未完了です。
+      </p>
+    </header>
+    <main>
+      <section id="home">
+        <h2>ホーム</h2>
+        <details>
+          <summary>PC 1440×1000 / ライト</summary>
+          <div class="pair">
+            <figure>
+              <figcaption>
+                <a href="../r001/images/home-1440-light-shsh.png" target="_blank" rel="noopener"
+                  >shsh実装（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/home-1440-light-shsh.png"
+                alt="ホーム・PC 1440×1000 / ライト・shsh実装"
+              />
+            </figure>
+            <figure>
+              <figcaption>
+                <a href="../r001/images/home-1440-light-mock.png" target="_blank" rel="noopener"
+                  >凍結モック（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/home-1440-light-mock.png"
+                alt="ホーム・PC 1440×1000 / ライト・凍結モック"
+              />
+            </figure>
+          </div>
+        </details>
+        <details>
+          <summary>PC 1440×1000 / ダーク</summary>
+          <div class="pair">
+            <figure>
+              <figcaption>
+                <a href="../r001/images/home-1440-dark-shsh.png" target="_blank" rel="noopener"
+                  >shsh実装（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/home-1440-dark-shsh.png"
+                alt="ホーム・PC 1440×1000 / ダーク・shsh実装"
+              />
+            </figure>
+            <figure>
+              <figcaption>
+                <a href="../r001/images/home-1440-dark-mock.png" target="_blank" rel="noopener"
+                  >凍結モック（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/home-1440-dark-mock.png"
+                alt="ホーム・PC 1440×1000 / ダーク・凍結モック"
+              />
+            </figure>
+          </div>
+        </details>
+        <details>
+          <summary>モバイル 390×844・タッチ / ライト</summary>
+          <div class="pair">
+            <figure>
+              <figcaption>
+                <a href="../r001/images/home-390-light-shsh.png" target="_blank" rel="noopener"
+                  >shsh実装（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/home-390-light-shsh.png"
+                alt="ホーム・モバイル 390×844・タッチ / ライト・shsh実装"
+              />
+            </figure>
+            <figure>
+              <figcaption>
+                <a href="../r001/images/home-390-light-mock.png" target="_blank" rel="noopener"
+                  >凍結モック（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/home-390-light-mock.png"
+                alt="ホーム・モバイル 390×844・タッチ / ライト・凍結モック"
+              />
+            </figure>
+          </div>
+        </details>
+        <details>
+          <summary>モバイル 390×844・タッチ / ダーク</summary>
+          <div class="pair">
+            <figure>
+              <figcaption>
+                <a href="../r001/images/home-390-dark-shsh.png" target="_blank" rel="noopener"
+                  >shsh実装（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/home-390-dark-shsh.png"
+                alt="ホーム・モバイル 390×844・タッチ / ダーク・shsh実装"
+              />
+            </figure>
+            <figure>
+              <figcaption>
+                <a href="../r001/images/home-390-dark-mock.png" target="_blank" rel="noopener"
+                  >凍結モック（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/home-390-dark-mock.png"
+                alt="ホーム・モバイル 390×844・タッチ / ダーク・凍結モック"
+              />
+            </figure>
+          </div>
+        </details>
+      </section>
+      <section id="posts">
+        <h2>記事一覧</h2>
+        <details>
+          <summary>PC 1440×1000 / ライト</summary>
+          <div class="pair">
+            <figure>
+              <figcaption>
+                <a href="../r001/images/posts-1440-light-shsh.png" target="_blank" rel="noopener"
+                  >shsh実装（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/posts-1440-light-shsh.png"
+                alt="記事一覧・PC 1440×1000 / ライト・shsh実装"
+              />
+            </figure>
+            <figure>
+              <figcaption>
+                <a href="../r001/images/posts-1440-light-mock.png" target="_blank" rel="noopener"
+                  >凍結モック（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/posts-1440-light-mock.png"
+                alt="記事一覧・PC 1440×1000 / ライト・凍結モック"
+              />
+            </figure>
+          </div>
+        </details>
+        <details>
+          <summary>PC 1440×1000 / ダーク</summary>
+          <div class="pair">
+            <figure>
+              <figcaption>
+                <a href="../r001/images/posts-1440-dark-shsh.png" target="_blank" rel="noopener"
+                  >shsh実装（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/posts-1440-dark-shsh.png"
+                alt="記事一覧・PC 1440×1000 / ダーク・shsh実装"
+              />
+            </figure>
+            <figure>
+              <figcaption>
+                <a href="../r001/images/posts-1440-dark-mock.png" target="_blank" rel="noopener"
+                  >凍結モック（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/posts-1440-dark-mock.png"
+                alt="記事一覧・PC 1440×1000 / ダーク・凍結モック"
+              />
+            </figure>
+          </div>
+        </details>
+        <details>
+          <summary>モバイル 390×844・タッチ / ライト</summary>
+          <div class="pair">
+            <figure>
+              <figcaption>
+                <a href="../r001/images/posts-390-light-shsh.png" target="_blank" rel="noopener"
+                  >shsh実装（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/posts-390-light-shsh.png"
+                alt="記事一覧・モバイル 390×844・タッチ / ライト・shsh実装"
+              />
+            </figure>
+            <figure>
+              <figcaption>
+                <a href="../r001/images/posts-390-light-mock.png" target="_blank" rel="noopener"
+                  >凍結モック（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/posts-390-light-mock.png"
+                alt="記事一覧・モバイル 390×844・タッチ / ライト・凍結モック"
+              />
+            </figure>
+          </div>
+        </details>
+        <details>
+          <summary>モバイル 390×844・タッチ / ダーク</summary>
+          <div class="pair">
+            <figure>
+              <figcaption>
+                <a href="../r001/images/posts-390-dark-shsh.png" target="_blank" rel="noopener"
+                  >shsh実装（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/posts-390-dark-shsh.png"
+                alt="記事一覧・モバイル 390×844・タッチ / ダーク・shsh実装"
+              />
+            </figure>
+            <figure>
+              <figcaption>
+                <a href="../r001/images/posts-390-dark-mock.png" target="_blank" rel="noopener"
+                  >凍結モック（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/posts-390-dark-mock.png"
+                alt="記事一覧・モバイル 390×844・タッチ / ダーク・凍結モック"
+              />
+            </figure>
+          </div>
+        </details>
+      </section>
+      <section id="article">
+        <h2>実記事</h2>
+        <details>
+          <summary>PC 1440×1000 / ライト</summary>
+          <div class="pair">
+            <figure>
+              <figcaption>
+                <a href="../r001/images/article-1440-light-shsh.png" target="_blank" rel="noopener"
+                  >shsh実装（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/article-1440-light-shsh.png"
+                alt="実記事・PC 1440×1000 / ライト・shsh実装"
+              />
+            </figure>
+            <figure>
+              <figcaption>
+                <a href="../r001/images/article-1440-light-mock.png" target="_blank" rel="noopener"
+                  >凍結モック（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/article-1440-light-mock.png"
+                alt="実記事・PC 1440×1000 / ライト・凍結モック"
+              />
+            </figure>
+          </div>
+        </details>
+        <details>
+          <summary>PC 1440×1000 / ダーク</summary>
+          <div class="pair">
+            <figure>
+              <figcaption>
+                <a href="../r001/images/article-1440-dark-shsh.png" target="_blank" rel="noopener"
+                  >shsh実装（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/article-1440-dark-shsh.png"
+                alt="実記事・PC 1440×1000 / ダーク・shsh実装"
+              />
+            </figure>
+            <figure>
+              <figcaption>
+                <a href="../r001/images/article-1440-dark-mock.png" target="_blank" rel="noopener"
+                  >凍結モック（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/article-1440-dark-mock.png"
+                alt="実記事・PC 1440×1000 / ダーク・凍結モック"
+              />
+            </figure>
+          </div>
+        </details>
+        <details>
+          <summary>モバイル 390×844・タッチ / ライト</summary>
+          <div class="pair">
+            <figure>
+              <figcaption>
+                <a href="../r001/images/article-390-light-shsh.png" target="_blank" rel="noopener"
+                  >shsh実装（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/article-390-light-shsh.png"
+                alt="実記事・モバイル 390×844・タッチ / ライト・shsh実装"
+              />
+            </figure>
+            <figure>
+              <figcaption>
+                <a href="../r001/images/article-390-light-mock.png" target="_blank" rel="noopener"
+                  >凍結モック（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/article-390-light-mock.png"
+                alt="実記事・モバイル 390×844・タッチ / ライト・凍結モック"
+              />
+            </figure>
+          </div>
+        </details>
+        <details>
+          <summary>モバイル 390×844・タッチ / ダーク</summary>
+          <div class="pair">
+            <figure>
+              <figcaption>
+                <a href="../r001/images/article-390-dark-shsh.png" target="_blank" rel="noopener"
+                  >shsh実装（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/article-390-dark-shsh.png"
+                alt="実記事・モバイル 390×844・タッチ / ダーク・shsh実装"
+              />
+            </figure>
+            <figure>
+              <figcaption>
+                <a href="../r001/images/article-390-dark-mock.png" target="_blank" rel="noopener"
+                  >凍結モック（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="../r001/images/article-390-dark-mock.png"
+                alt="実記事・モバイル 390×844・タッチ / ダーク・凍結モック"
+              />
+            </figure>
+          </div>
+        </details>
+      </section>
+      <section id="specimen">
+        <h2>本文部品</h2>
+        <details>
+          <summary>PC 1440×1000 / ライト</summary>
+          <div class="pair">
+            <figure>
+              <figcaption>
+                <a href="images/specimen-1440-light-shsh.png" target="_blank" rel="noopener"
+                  >shsh実装（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="images/specimen-1440-light-shsh.png"
+                alt="本文部品・PC 1440×1000 / ライト・shsh実装"
+              />
+            </figure>
+            <figure>
+              <figcaption>
+                <a href="images/specimen-1440-light-mock.png" target="_blank" rel="noopener"
+                  >凍結モック（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="images/specimen-1440-light-mock.png"
+                alt="本文部品・PC 1440×1000 / ライト・凍結モック"
+              />
+            </figure>
+          </div>
+        </details>
+        <details>
+          <summary>PC 1440×1000 / ダーク</summary>
+          <div class="pair">
+            <figure>
+              <figcaption>
+                <a href="images/specimen-1440-dark-shsh.png" target="_blank" rel="noopener"
+                  >shsh実装（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="images/specimen-1440-dark-shsh.png"
+                alt="本文部品・PC 1440×1000 / ダーク・shsh実装"
+              />
+            </figure>
+            <figure>
+              <figcaption>
+                <a href="images/specimen-1440-dark-mock.png" target="_blank" rel="noopener"
+                  >凍結モック（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="images/specimen-1440-dark-mock.png"
+                alt="本文部品・PC 1440×1000 / ダーク・凍結モック"
+              />
+            </figure>
+          </div>
+        </details>
+        <details open>
+          <summary>モバイル 390×844・タッチ / ライト</summary>
+          <div class="pair">
+            <figure>
+              <figcaption>
+                <a href="images/specimen-390-light-shsh.png" target="_blank" rel="noopener"
+                  >shsh実装（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="images/specimen-390-light-shsh.png"
+                alt="本文部品・モバイル 390×844・タッチ / ライト・shsh実装"
+              />
+            </figure>
+            <figure>
+              <figcaption>
+                <a href="images/specimen-390-light-mock.png" target="_blank" rel="noopener"
+                  >凍結モック（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="images/specimen-390-light-mock.png"
+                alt="本文部品・モバイル 390×844・タッチ / ライト・凍結モック"
+              />
+            </figure>
+          </div>
+        </details>
+        <details>
+          <summary>モバイル 390×844・タッチ / ダーク</summary>
+          <div class="pair">
+            <figure>
+              <figcaption>
+                <a href="images/specimen-390-dark-shsh.png" target="_blank" rel="noopener"
+                  >shsh実装（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="images/specimen-390-dark-shsh.png"
+                alt="本文部品・モバイル 390×844・タッチ / ダーク・shsh実装"
+              />
+            </figure>
+            <figure>
+              <figcaption>
+                <a href="images/specimen-390-dark-mock.png" target="_blank" rel="noopener"
+                  >凍結モック（原寸を開く）</a
+                >
+              </figcaption>
+              <img
+                loading="lazy"
+                src="images/specimen-390-dark-mock.png"
+                alt="本文部品・モバイル 390×844・タッチ / ダーク・凍結モック"
+              />
+            </figure>
+          </div>
+        </details>
+      </section>
+    </main>
+  </body>
+</html>

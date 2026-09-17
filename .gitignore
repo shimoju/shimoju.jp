@@ -3,7 +3,3 @@
 /public
 /resources
 Thumbs.db
-/node_modules
-/.cache
-/test-results
-/playwright-report

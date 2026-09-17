@@ -38,3 +38,7 @@ The input files are preserved; for example, `video.mov` produces `video.mp4`.
 ```sh
 bin/optimize-video content/posts/path/to/*.mov
 ```
+
+## Theme development
+
+See [themes/shsh/README.md](themes/shsh/README.md) for theme development and verification commands.

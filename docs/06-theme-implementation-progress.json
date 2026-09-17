@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-17T14:20:28.718945+00:00",
+  "updated_at": "2026-09-17T14:26:44.785911+00:00",
   "stage": "revision",
-  "summary": "R001で本文部品のMarkdown強調と開発ファイル配置の修正指示を受領。T020で強調入力と意味検査、T021でthemes/shshへの開発環境集約を行い再レビューする。",
+  "summary": "R001の2指摘をT020/T021で修正。本文部品の強調範囲を検査し、テーマ開発設定・依存・scripts/tests・検証資料をthemes/shshへ集約。統合102件成功。修正版の画像と説明をR003へ提出し共通設計の承認待ち。サイト本番・凍結モックは維持。",
   "latest_review_id": "R001",
   "resume": {
     "task_id": "T021",
-    "action": "テーマ開発環境をthemes/shshへ移し、統合検査と修正済み比較画像をR003へ提出する。"
+    "action": "R003の明示承認または修正指示を受ける。承認後に対象作業の完了条件を照合しT010へ展開する。開発コマンドはthemes/shshで実行する。"
   },
   "tasks": [
     {
@@ -38,8 +38,8 @@
       "verification_status": "passed",
       "artifact_refs": [
         "docs/06-theme-implementation-progress.json",
-        "docs/verification/implementation-plan.md",
-        "scripts/verify-progress.mjs"
+        "themes/shsh/docs/verification/implementation-plan.md",
+        "themes/shsh/scripts/verify-progress.mjs"
       ],
       "verification_ids": ["V001"],
       "review_ids": [],
@@ -73,10 +73,10 @@
       "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
-        "scripts/capture-migration-baseline.py",
-        "tests/baseline/migration.json",
-        "tests/fixtures/offline/layouts/_shortcodes/x.html",
-        "docs/verification/migration-baseline.md"
+        "themes/shsh/scripts/capture-migration-baseline.py",
+        "themes/shsh/tests/baseline/migration.json",
+        "themes/shsh/tests/fixtures/offline/layouts/_shortcodes/x.html",
+        "themes/shsh/docs/verification/migration-baseline.md"
       ],
       "verification_ids": ["V002"],
       "review_ids": [],
@@ -116,19 +116,19 @@
       "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
-        "package.json",
-        "pnpm-lock.yaml",
-        "tsconfig.json",
-        "playwright.config.ts",
-        "scripts/format.mjs",
-        "scripts/format-template.mjs",
-        "scripts/verify-tooling.ts",
-        "scripts/measure-checks.mjs",
-        "tests/tooling.spec.ts",
-        "docs/verification/toolchain.md",
-        "docs/verification/t003-toolchain.json"
+        "themes/shsh/package.json",
+        "themes/shsh/pnpm-lock.yaml",
+        "themes/shsh/tsconfig.json",
+        "themes/shsh/playwright.config.ts",
+        "themes/shsh/scripts/format.mjs",
+        "themes/shsh/scripts/format-template.mjs",
+        "themes/shsh/scripts/verify-tooling.ts",
+        "themes/shsh/scripts/measure-checks.mjs",
+        "themes/shsh/tests/tooling.spec.ts",
+        "themes/shsh/docs/verification/toolchain.md",
+        "themes/shsh/docs/verification/t003-toolchain.json"
       ],
-      "verification_ids": ["V005", "V006", "V009", "V013"],
+      "verification_ids": ["V005", "V006", "V009", "V013", "V025"],
       "review_ids": [],
       "blocked_by": [],
       "next_action": "T004でテーマ共通枠と配色を実装する。検査構成の変更時は型検出probeも再実行する。"
@@ -171,13 +171,13 @@
       "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/",
-        "tests/fixtures/representative/",
-        "scripts/build-fixtures.ts",
-        "scripts/serve-fixtures.mjs",
-        "scripts/verify-theme.ts",
-        "tests/theme.spec.ts",
-        "docs/verification/theme-foundation.md",
-        "docs/verification/t004-check.log"
+        "themes/shsh/tests/fixtures/representative/",
+        "themes/shsh/scripts/build-fixtures.ts",
+        "themes/shsh/scripts/serve-fixtures.mjs",
+        "themes/shsh/scripts/verify-theme.ts",
+        "themes/shsh/tests/theme.spec.ts",
+        "themes/shsh/docs/verification/theme-foundation.md",
+        "themes/shsh/docs/verification/t004-check.log"
       ],
       "verification_ids": ["V008", "V009", "V013"],
       "review_ids": ["R003"],
@@ -226,10 +226,10 @@
         "themes/shsh/layouts/_partials/pagination.html",
         "themes/shsh/layouts/alias.html",
         "themes/shsh/assets/css/list.css",
-        "scripts/verify-collections.ts",
-        "tests/collections.spec.ts",
-        "docs/verification/home-and-lists.md",
-        "docs/verification/t005-check.log"
+        "themes/shsh/scripts/verify-collections.ts",
+        "themes/shsh/tests/collections.spec.ts",
+        "themes/shsh/docs/verification/home-and-lists.md",
+        "themes/shsh/docs/verification/t005-check.log"
       ],
       "verification_ids": ["V010", "V011", "V013"],
       "review_ids": ["R003"],
@@ -276,11 +276,11 @@
         "themes/shsh/assets/css/prose.css",
         "themes/shsh/assets/css/code.css",
         "themes/shsh/assets/ts/copy.ts",
-        "scripts/verify-prose.ts",
-        "tests/prose.spec.ts",
-        "docs/verification/prose-and-code.md",
-        "docs/verification/t006-check.log",
-        "docs/verification/t006-prose-images/"
+        "themes/shsh/scripts/verify-prose.ts",
+        "themes/shsh/tests/prose.spec.ts",
+        "themes/shsh/docs/verification/prose-and-code.md",
+        "themes/shsh/docs/verification/t006-check.log",
+        "themes/shsh/docs/verification/t006-prose-images/"
       ],
       "verification_ids": ["V012", "V013"],
       "review_ids": ["R003"],
@@ -319,11 +319,11 @@
         "themes/shsh/layouts/_partials/media/",
         "themes/shsh/layouts/_shortcodes/",
         "themes/shsh/assets/css/media.css",
-        "scripts/verify-media.ts",
-        "tests/media.spec.ts",
-        "docs/verification/media.md",
-        "docs/verification/t007-check.log",
-        "docs/verification/t007-media-images/"
+        "themes/shsh/scripts/verify-media.ts",
+        "themes/shsh/tests/media.spec.ts",
+        "themes/shsh/docs/verification/media.md",
+        "themes/shsh/docs/verification/t007-check.log",
+        "themes/shsh/docs/verification/t007-media-images/"
       ],
       "verification_ids": ["V014", "V015", "V019"],
       "review_ids": ["R003"],
@@ -365,10 +365,10 @@
         "themes/shsh/layouts/_partials/sharing-head.html",
         "themes/shsh/assets/ts/sharing.ts",
         "themes/shsh/assets/css/sharing.css",
-        "scripts/verify-sharing.ts",
-        "tests/sharing.spec.ts",
-        "docs/verification/sharing.md",
-        "docs/verification/t008-check.log"
+        "themes/shsh/scripts/verify-sharing.ts",
+        "themes/shsh/tests/sharing.spec.ts",
+        "themes/shsh/docs/verification/sharing.md",
+        "themes/shsh/docs/verification/t008-check.log"
       ],
       "verification_ids": ["V016", "V017"],
       "review_ids": ["R003"],
@@ -409,12 +409,12 @@
       "status": "implemented",
       "verification_status": "passed",
       "artifact_refs": [
-        "docs/verification/r001-review.md",
-        "docs/verification/r001/index.html",
-        "docs/verification/r001/images/",
-        "docs/verification/t009-review.log",
-        "scripts/build-review-report.ts",
-        "tests/review.spec.ts"
+        "themes/shsh/docs/verification/r001-review.md",
+        "themes/shsh/docs/verification/r001/index.html",
+        "themes/shsh/docs/verification/r001/images/",
+        "themes/shsh/docs/verification/t009-review.log",
+        "themes/shsh/scripts/build-review-report.ts",
+        "themes/shsh/tests/review.spec.ts"
       ],
       "verification_ids": ["V018", "V019", "V020"],
       "review_ids": ["R003"],
@@ -491,10 +491,10 @@
         "themes/shsh/layouts/_partials/public-url.html",
         "themes/shsh/layouts/_partials/description.html",
         "themes/shsh/layouts/_partials/share-image.html",
-        "scripts/verify-metadata.ts",
-        "tests/metadata.spec.ts",
-        "docs/verification/metadata-and-feeds.md",
-        "docs/verification/t011-check.log"
+        "themes/shsh/scripts/verify-metadata.ts",
+        "themes/shsh/tests/metadata.spec.ts",
+        "themes/shsh/docs/verification/metadata-and-feeds.md",
+        "themes/shsh/docs/verification/t011-check.log"
       ],
       "verification_ids": ["V021", "V022"],
       "review_ids": ["R002"],
@@ -565,7 +565,8 @@
       "acceptance_criteria": [
         "意図しない欠落がなく、承認差分に判断IDと照合証拠がある。",
         "frozen-lockfile・型付きlint統合・strict・整形対象分離をCIで実行できる。",
-        "別サイト最小fixtureが固有著者/ドメインなしで生成できる。"
+        "別サイト最小fixtureが固有著者/ドメインなしで生成できる。",
+        "CIはthemes/shshを作業ディレクトリとし、同ディレクトリのNode版・lockfile・開発コマンドを使う。"
       ],
       "verification_plan": [
         "全生成HTML/RSSを走査しリンク先ファイルとfragment、GUID/メタ/画像寸法を検査する。",
@@ -776,11 +777,11 @@
         "themes/shsh/layouts/_markup/render-link.html",
         "themes/shsh/assets/css/media.css",
         "themes/shsh/assets/css/list.css",
-        "scripts/build-review-fixture.ts",
-        "tests/review.spec.ts",
-        "tests/media.spec.ts",
-        "docs/verification/representative-corrections.md",
-        "docs/verification/t019-check.log"
+        "themes/shsh/scripts/build-review-fixture.ts",
+        "themes/shsh/tests/review.spec.ts",
+        "themes/shsh/tests/media.spec.ts",
+        "themes/shsh/docs/verification/representative-corrections.md",
+        "themes/shsh/docs/verification/t019-check.log"
       ],
       "verification_ids": ["V019"],
       "review_ids": ["R003"],
@@ -807,9 +808,9 @@
       "status": "implemented",
       "verification_status": "passed",
       "artifact_refs": [
-        "scripts/build-review-fixture.ts",
-        "tests/review.spec.ts",
-        "docs/verification/t020-review.log"
+        "themes/shsh/scripts/build-review-fixture.ts",
+        "themes/shsh/tests/review.spec.ts",
+        "themes/shsh/docs/verification/t020-review.log"
       ],
       "verification_ids": ["V023"],
       "review_ids": ["R003"],
@@ -840,13 +841,22 @@
         "frozen-lockfile導入、型エラー検出probe、統合検査、基準JSONとモックのハッシュ維持、レビューURL/画像を検証する。"
       ],
       "commit_message": "[T021] テーマ開発環境をthemes/shshへ集約",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "status": "implemented",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/README.md",
+        "themes/shsh/package.json",
+        "themes/shsh/pnpm-lock.yaml",
+        "themes/shsh/scripts/",
+        "themes/shsh/tests/",
+        "themes/shsh/docs/verification/r003-review.md",
+        "themes/shsh/docs/verification/r003/",
+        "themes/shsh/docs/verification/t021-check.log"
+      ],
+      "verification_ids": ["V024", "V025"],
       "review_ids": ["R003"],
       "blocked_by": ["F011"],
-      "next_action": "設定・依存・検査スクリプト/fixture/baseline・検証資料をthemes/shshへ移し、実行パス・参照・文書を更新する。"
+      "next_action": "R003の明示承認または修正指示を受ける。承認後に対象作業の完了条件を照合しT010へ展開する。開発コマンドはthemes/shshで実行する。"
     }
   ],
   "findings": [
@@ -857,7 +867,7 @@
       "status": "resolved",
       "requires_user_decision": false,
       "observation": "Prettier3.9.6/Go plugin0.0.15でrender hookの2回目整形に差分。",
-      "evidence_refs": ["docs/verification/toolchain.md"],
+      "evidence_refs": ["themes/shsh/docs/verification/toolchain.md"],
       "impact": "単回整形を採用するとformat:checkの冪等性条件を満たせない。",
       "recommendation": "最大5回で固定点を得る共通formatterを使用し、未収束・振動は失敗にする。inline hookは末尾空白を出さない。",
       "decision": {
@@ -868,17 +878,17 @@
         "source": "docs/05-theme-implementation-discipline.md: Q1"
       },
       "resolution_refs": [
-        "package.json",
-        "pnpm-lock.yaml",
-        "tsconfig.json",
-        "playwright.config.ts",
-        "scripts/format.mjs",
-        "scripts/format-template.mjs",
-        "scripts/verify-tooling.ts",
-        "scripts/measure-checks.mjs",
-        "tests/tooling.spec.ts",
-        "docs/verification/toolchain.md",
-        "docs/verification/t003-toolchain.json"
+        "themes/shsh/package.json",
+        "themes/shsh/pnpm-lock.yaml",
+        "themes/shsh/tsconfig.json",
+        "themes/shsh/playwright.config.ts",
+        "themes/shsh/scripts/format.mjs",
+        "themes/shsh/scripts/format-template.mjs",
+        "themes/shsh/scripts/verify-tooling.ts",
+        "themes/shsh/scripts/measure-checks.mjs",
+        "themes/shsh/tests/tooling.spec.ts",
+        "themes/shsh/docs/verification/toolchain.md",
+        "themes/shsh/docs/verification/t003-toolchain.json"
       ],
       "verification_ids": ["V003", "V005"]
     },
@@ -889,7 +899,7 @@
       "status": "resolved",
       "requires_user_decision": false,
       "observation": "許可された起動環境でもFirefoxがprofile folderを認識できず終了。",
-      "evidence_refs": ["docs/verification/toolchain.md"],
+      "evidence_refs": ["themes/shsh/docs/verification/toolchain.md"],
       "impact": "このMacでFirefoxのPlaywright検査を実行できない。",
       "recommendation": "MOZ_APP_DATAを検査専用ディレクトリへ隔離し再実行。既存ユーザープロファイルやOS権限は変更しない。",
       "decision": {
@@ -900,17 +910,17 @@
         "source": "docs/05-theme-implementation-discipline.md: Q1"
       },
       "resolution_refs": [
-        "package.json",
-        "pnpm-lock.yaml",
-        "tsconfig.json",
-        "playwright.config.ts",
-        "scripts/format.mjs",
-        "scripts/format-template.mjs",
-        "scripts/verify-tooling.ts",
-        "scripts/measure-checks.mjs",
-        "tests/tooling.spec.ts",
-        "docs/verification/toolchain.md",
-        "docs/verification/t003-toolchain.json"
+        "themes/shsh/package.json",
+        "themes/shsh/pnpm-lock.yaml",
+        "themes/shsh/tsconfig.json",
+        "themes/shsh/playwright.config.ts",
+        "themes/shsh/scripts/format.mjs",
+        "themes/shsh/scripts/format-template.mjs",
+        "themes/shsh/scripts/verify-tooling.ts",
+        "themes/shsh/scripts/measure-checks.mjs",
+        "themes/shsh/tests/tooling.spec.ts",
+        "themes/shsh/docs/verification/toolchain.md",
+        "themes/shsh/docs/verification/t003-toolchain.json"
       ],
       "verification_ids": ["V004", "V006"]
     },
@@ -921,7 +931,10 @@
       "status": "resolved",
       "requires_user_decision": false,
       "observation": "凍結モックとの共通枠比較が全3エンジンでfont-familyの差を検出。ChromiumではBlinkMacSystemFontの特殊な解釈にも差があった。",
-      "evidence_refs": ["docs/verification/theme-foundation.md", "tests/theme.spec.ts"],
+      "evidence_refs": [
+        "themes/shsh/docs/verification/theme-foundation.md",
+        "themes/shsh/tests/theme.spec.ts"
+      ],
       "impact": "既存のフォント選択を維持する要件から外れるおそれがある。",
       "recommendation": "元のフォント名へ戻しvalue-keyword-caseから--font-*だけを除外、同じ比較を再実行する。",
       "decision": {
@@ -931,7 +944,7 @@
         "recorded_at": "2026-09-17T12:07:45.606361+00:00",
         "source": "docs/05-theme-implementation-discipline.md: Q1"
       },
-      "resolution_refs": ["themes/shsh/assets/css/tokens.css", ".stylelintrc.json"],
+      "resolution_refs": ["themes/shsh/assets/css/tokens.css", "themes/shsh/.stylelintrc.json"],
       "verification_ids": ["V007", "V008"]
     },
     {
@@ -941,7 +954,7 @@
       "status": "resolved",
       "requires_user_decision": false,
       "observation": "HTML-validateが汎用spanのaria-labelをaria-label-misuseとして検出した。",
-      "evidence_refs": ["docs/verification/home-and-lists.md"],
+      "evidence_refs": ["themes/shsh/docs/verification/home-and-lists.md"],
       "impact": "意図したページ番号の読み上げ名をアクセシビリティツリーへ提供できない。",
       "recommendation": "spanを名前付きgroupにし、表示とPage N of Mという文言を保つ。",
       "decision": {
@@ -953,7 +966,7 @@
       },
       "resolution_refs": [
         "themes/shsh/layouts/_partials/pagination.html",
-        "tests/collections.spec.ts"
+        "themes/shsh/tests/collections.spec.ts"
       ],
       "verification_ids": ["V010", "V011"]
     },
@@ -964,7 +977,7 @@
       "status": "resolved",
       "requires_user_decision": false,
       "observation": "HTML-validateのvalid-id既定設定が合法なfn:1/fnref:1を拒否。Hugo標準IDの維持要件と検査設定が一致していなかった。",
-      "evidence_refs": ["docs/verification/prose-and-code.md"],
+      "evidence_refs": ["themes/shsh/docs/verification/prose-and-code.md"],
       "impact": "標準の脚注IDを変更すると既存節リンクを壊すおそれがある。",
       "recommendation": "valid-idをHTML5準拠のrelaxed:trueとし、空文字/空白の拒否と標準IDの保持を検証する。",
       "decision": {
@@ -974,7 +987,7 @@
         "recorded_at": "2026-09-17T12:35:28.335075+00:00",
         "source": "docs/04-theme-implementation-requirements.md: Q32; docs/05-theme-implementation-discipline.md: Q1"
       },
-      "resolution_refs": [".htmlvalidate.json", "scripts/verify-prose.ts"],
+      "resolution_refs": ["themes/shsh/.htmlvalidate.json", "themes/shsh/scripts/verify-prose.ts"],
       "verification_ids": ["V012", "V013"]
     },
     {
@@ -984,7 +997,7 @@
       "status": "resolved",
       "requires_user_decision": false,
       "observation": "初回検査でバイト参照の誤用によりアニメーションが加工され、SVG寸法が欠落。CSS width:autoでは小さいカバーの読み込み前の幅が拡大した。",
-      "evidence_refs": ["docs/verification/media.md"],
+      "evidence_refs": ["themes/shsh/docs/verification/media.md"],
       "impact": "原形式維持・寸法確保・非拡大の要件に反する。",
       "recommendation": "バイト境界とSVG寸法の解決を是正し、元の画像幅をCSSへ渡して表示上限を保つ。",
       "decision": {
@@ -1007,7 +1020,7 @@
       "status": "resolved",
       "requires_user_decision": false,
       "observation": "PNG/WebPを別々に縮小するとパレット再適用が異なった。同一縮小PNGからのWebP変換でも半透明RGBには1段階の丸めと、ブラウザのunpremultiplyによる差がある。alphaと不透明RGBは一致。",
-      "evidence_refs": ["docs/verification/media.md"],
+      "evidence_refs": ["themes/shsh/docs/verification/media.md"],
       "impact": "圧縮形式、縮小、透明画素の変換を混同すると検証結果を誤判定する。",
       "recommendation": "縮小PNGから可逆WebPを生成し、実ファイルのVP8L、不透明RGB/alpha一致、8bit合成後1段階以内を分けて検証する。",
       "decision": {
@@ -1019,8 +1032,8 @@
       },
       "resolution_refs": [
         "themes/shsh/layouts/_partials/media/image-data.html",
-        "scripts/verify-media.ts",
-        "tests/media.spec.ts"
+        "themes/shsh/scripts/verify-media.ts",
+        "themes/shsh/tests/media.spec.ts"
       ],
       "verification_ids": ["V014", "V015"]
     },
@@ -1031,7 +1044,7 @@
       "status": "resolved",
       "requires_user_decision": false,
       "observation": "実記事の最初の画像ブロックで高さ約9.8pxと前後位置に差。凍結モックは単独画像をfigureへ変換していたが、themeはp内へ出していた。",
-      "evidence_refs": ["mock/build.mjs", "tests/review.spec.ts"],
+      "evidence_refs": ["mock/build.mjs", "themes/shsh/tests/review.spec.ts"],
       "impact": "本文画像の前後余白と後続ブロックの位置が一致しない。",
       "recommendation": "HugoのIsBlockとparser設定により単独画像だけfigureにする。候補画像の丸めに依存せず原寸比率で領域を確保する。",
       "decision": {
@@ -1042,7 +1055,7 @@
         "source": "mock/build.mjs: standalone Markdown images; docs/05-theme-implementation-discipline.md: Q1"
       },
       "resolution_refs": [
-        "docs/verification/representative-corrections.md",
+        "themes/shsh/docs/verification/representative-corrections.md",
         "themes/shsh/layouts/_markup/render-image.html",
         "themes/shsh/layouts/_markup/render-link.html"
       ],
@@ -1075,7 +1088,7 @@
       "status": "resolved",
       "requires_user_decision": true,
       "observation": "review fixtureが句読点を含む文字列とinline codeを**で囲み、後続日本語へ隣接させていた。生成HTMLで強調範囲が連結し**が露出。",
-      "evidence_refs": ["scripts/build-review-fixture.ts", "package.json"],
+      "evidence_refs": ["themes/shsh/scripts/build-review-fixture.ts", "themes/shsh/package.json"],
       "impact": "本文部品の強調例がモックと異なり、これまでのaxe/寸法検査では意味の崩れを検出できなかった。",
       "recommendation": "区切りが成立するMarkdown入力へ修正し、各strong/codeの範囲・文字・太さを検査する。",
       "decision": {
@@ -1086,9 +1099,9 @@
         "source": "「Markdownの『**』記号が剥き出し」「テーマの開発に関わるファイルはthemes/shshをルートディレクトリとしてそこに集約してください」"
       },
       "resolution_refs": [
-        "scripts/build-review-fixture.ts",
-        "tests/review.spec.ts",
-        "docs/verification/t020-review.log"
+        "themes/shsh/scripts/build-review-fixture.ts",
+        "themes/shsh/tests/review.spec.ts",
+        "themes/shsh/docs/verification/t020-review.log"
       ],
       "verification_ids": ["V023"]
     },
@@ -1096,10 +1109,10 @@
       "id": "F011",
       "title": "テーマ開発ファイルがサイトルートに分散",
       "task_ids": ["T003", "T021"],
-      "status": "approved",
+      "status": "resolved",
       "requires_user_decision": true,
       "observation": "package.json・lint/format/TS/Playwright設定・scripts/testsがサイトルートに置かれている。",
-      "evidence_refs": ["scripts/build-review-fixture.ts", "package.json"],
+      "evidence_refs": ["themes/shsh/scripts/build-review-fixture.ts", "themes/shsh/package.json"],
       "impact": "テーマ開発の起点とサイトのルートが混在する。",
       "recommendation": "依存・設定・scripts/tests・検証資料をthemes/shshへ集約し、テーマルートから全コマンドを実行可能にする。",
       "decision": {
@@ -1107,10 +1120,19 @@
         "reason": "本文部品の強調崩れと、テーマ開発ファイルをthemes/shshルートへ集約する修正指示。",
         "decided_by": "user",
         "recorded_at": "2026-09-17T14:18:47.855207+00:00",
-        "source": "「Markdownの『**』記号が剥き出し」「テーマの開発に関わるファイルはthemes/shshをルートディレクトリとしてそこに集約してください」"
+        "source": "「テーマの開発に関わるファイルはthemes/shshをルートディレクトリとしてそこに集約してください」"
       },
-      "resolution_refs": [],
-      "verification_ids": []
+      "resolution_refs": [
+        "themes/shsh/README.md",
+        "themes/shsh/package.json",
+        "themes/shsh/pnpm-lock.yaml",
+        "themes/shsh/scripts/",
+        "themes/shsh/tests/",
+        "themes/shsh/docs/verification/r003-review.md",
+        "themes/shsh/docs/verification/r003/",
+        "themes/shsh/docs/verification/t021-check.log"
+      ],
+      "verification_ids": ["V025"]
     }
   ],
   "reviews": [
@@ -1120,19 +1142,19 @@
       "task_ids": ["T004", "T005", "T006", "T007", "T008", "T009", "T019"],
       "status": "changes_requested",
       "artifact_refs": [
-        "docs/verification/r001-review.md",
-        "docs/verification/r001/index.html",
-        "docs/verification/r001/images/",
-        "docs/verification/t009-review.log",
-        "scripts/build-review-report.ts",
-        "tests/review.spec.ts",
-        "docs/verification/theme-foundation.md",
-        "docs/verification/home-and-lists.md",
-        "docs/verification/prose-and-code.md",
-        "docs/verification/t006-prose-images/",
-        "docs/verification/media.md",
-        "docs/verification/sharing.md",
-        "docs/verification/representative-corrections.md"
+        "themes/shsh/docs/verification/r001-review.md",
+        "themes/shsh/docs/verification/r001/index.html",
+        "themes/shsh/docs/verification/r001/images/",
+        "themes/shsh/docs/verification/t009-review.log",
+        "themes/shsh/scripts/build-review-report.ts",
+        "themes/shsh/tests/review.spec.ts",
+        "themes/shsh/docs/verification/theme-foundation.md",
+        "themes/shsh/docs/verification/home-and-lists.md",
+        "themes/shsh/docs/verification/prose-and-code.md",
+        "themes/shsh/docs/verification/t006-prose-images/",
+        "themes/shsh/docs/verification/media.md",
+        "themes/shsh/docs/verification/sharing.md",
+        "themes/shsh/docs/verification/representative-corrections.md"
       ],
       "verification_ids": ["V008", "V011", "V013", "V015", "V017", "V019", "V020"],
       "finding_ids": ["F003", "F004", "F005", "F006", "F007", "F008", "F009", "F010", "F011"],
@@ -1150,7 +1172,7 @@
       "title": "全画面の一貫性と検証結果・残件のレビュー",
       "task_ids": ["T010", "T011", "T012", "T013", "T014"],
       "status": "not_ready",
-      "artifact_refs": ["docs/verification/metadata-and-feeds.md"],
+      "artifact_refs": ["themes/shsh/docs/verification/metadata-and-feeds.md"],
       "verification_ids": ["V022"],
       "finding_ids": [],
       "decision": null,
@@ -1160,9 +1182,13 @@
       "id": "R003",
       "title": "R001指摘修正後の代表画面・共通設計再レビュー",
       "task_ids": ["T004", "T005", "T006", "T007", "T008", "T009", "T019", "T020", "T021"],
-      "status": "not_ready",
-      "artifact_refs": [],
-      "verification_ids": ["V023"],
+      "status": "requested",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/r003-review.md",
+        "themes/shsh/docs/verification/r003/index.html",
+        "themes/shsh/README.md"
+      ],
+      "verification_ids": ["V023", "V025"],
       "finding_ids": ["F010", "F011"],
       "decision": null,
       "supersedes": "R001"
@@ -1181,7 +1207,10 @@
       "subject_ref": "c266ebb + T001の進捗JSON・計画文書・検査スクリプト",
       "environment": "macOS arm64; Hugo 0.166.0; Node 24.21.0; pnpm 12.4.1",
       "procedure": "全要件本文・補足・完了条件を18タスクの完了条件へ照合。node scripts/verify-progress.mjsでQ割当・参照・循環・レビュー依存を確認。",
-      "evidence_refs": ["docs/verification/implementation-plan.md", "scripts/verify-progress.mjs"],
+      "evidence_refs": [
+        "themes/shsh/docs/verification/implementation-plan.md",
+        "themes/shsh/scripts/verify-progress.mjs"
+      ],
       "recorded_at": "2026-09-17T11:37:01.628023+00:00",
       "supersedes": null
     },
@@ -1201,10 +1230,10 @@
       "environment": "macOS arm64; Hugo 0.166.0; Python 3標準ライブラリ; 固定時計2026-09-17T12:00:00+09:00",
       "procedure": "python3 scripts/capture-migration-baseline.pyを2回実行。全61入力の出力存在・本文root、posts RSS59件、凍結モック全68ハッシュ、出力JSONのSHA-256一致を確認。",
       "evidence_refs": [
-        "scripts/capture-migration-baseline.py",
-        "tests/baseline/migration.json",
-        "tests/fixtures/offline/layouts/_shortcodes/x.html",
-        "docs/verification/migration-baseline.md"
+        "themes/shsh/scripts/capture-migration-baseline.py",
+        "themes/shsh/tests/baseline/migration.json",
+        "themes/shsh/tests/fixtures/offline/layouts/_shortcodes/x.html",
+        "themes/shsh/docs/verification/migration-baseline.md"
       ],
       "recorded_at": "2026-09-17T11:39:48.982167+00:00",
       "supersedes": null
@@ -1229,10 +1258,10 @@
       "environment": "macOS 27.0 (26A428) arm64; Node24.21.0/pnpm12.4.1/Hugo0.166.0; Playwright1.63.0",
       "procedure": "条件付き属性を含むrender-link.htmlをPrettier Go templateで2回整形した結果が一致せず、assertionが失敗。",
       "evidence_refs": [
-        "docs/verification/toolchain.md",
-        "docs/verification/t003-toolchain.json",
-        "scripts/verify-tooling.ts",
-        "tests/tooling.spec.ts"
+        "themes/shsh/docs/verification/toolchain.md",
+        "themes/shsh/docs/verification/t003-toolchain.json",
+        "themes/shsh/scripts/verify-tooling.ts",
+        "themes/shsh/tests/tooling.spec.ts"
       ],
       "recorded_at": "2026-09-17T11:52:33.098846+00:00",
       "supersedes": null
@@ -1257,10 +1286,10 @@
       "environment": "macOS 27.0 (26A428) arm64; Node24.21.0/pnpm12.4.1/Hugo0.166.0; Playwright1.63.0",
       "procedure": "ブラウザ起動を許可した環境でもFirefox155はCould not find profile folderで終了。TMPDIR変更でも同じ失敗。",
       "evidence_refs": [
-        "docs/verification/toolchain.md",
-        "docs/verification/t003-toolchain.json",
-        "scripts/verify-tooling.ts",
-        "tests/tooling.spec.ts"
+        "themes/shsh/docs/verification/toolchain.md",
+        "themes/shsh/docs/verification/t003-toolchain.json",
+        "themes/shsh/scripts/verify-tooling.ts",
+        "themes/shsh/tests/tooling.spec.ts"
       ],
       "recorded_at": "2026-09-17T11:52:33.098846+00:00",
       "supersedes": null
@@ -1285,10 +1314,10 @@
       "environment": "macOS 27.0 (26A428) arm64; Node24.21.0/pnpm12.4.1/Hugo0.166.0; Playwright1.63.0",
       "procedure": "frozen-lockfile導入、pnpm check:tooling:types、check:types、measure-checks.mjsを実行。型不一致/Promiseの正負probe、HTML/CSS負例、安定整形、Hugo前後生成と3エンジンのDOM/レイアウト/操作/axeを確認。通常CIの単独型検査重複なし。",
       "evidence_refs": [
-        "docs/verification/toolchain.md",
-        "docs/verification/t003-toolchain.json",
-        "scripts/verify-tooling.ts",
-        "tests/tooling.spec.ts"
+        "themes/shsh/docs/verification/toolchain.md",
+        "themes/shsh/docs/verification/t003-toolchain.json",
+        "themes/shsh/scripts/verify-tooling.ts",
+        "themes/shsh/tests/tooling.spec.ts"
       ],
       "recorded_at": "2026-09-17T11:52:33.098846+00:00",
       "supersedes": "V003"
@@ -1313,10 +1342,10 @@
       "environment": "macOS 27.0 (26A428) arm64; Node24.21.0/pnpm12.4.1/Hugo0.166.0; Playwright1.63.0",
       "procedure": "Mozilla bug2060476を参照しMOZ_APP_DATAを検査用.cache配下へ隔離。Chromium/Firefox/WebKitの全3テストが成功。",
       "evidence_refs": [
-        "docs/verification/toolchain.md",
-        "docs/verification/t003-toolchain.json",
-        "scripts/verify-tooling.ts",
-        "tests/tooling.spec.ts"
+        "themes/shsh/docs/verification/toolchain.md",
+        "themes/shsh/docs/verification/t003-toolchain.json",
+        "themes/shsh/scripts/verify-tooling.ts",
+        "themes/shsh/tests/tooling.spec.ts"
       ],
       "recorded_at": "2026-09-17T11:52:33.098846+00:00",
       "supersedes": "V004"
@@ -1346,10 +1375,10 @@
       "environment": "macOS27.0(26A428) arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
       "procedure": "両幅・両配色の書体比較で、StylelintによるBlinkMacSystemFont等の小文字化を検出。Chromiumではsystem-uiへの特殊解釈も異なった。",
       "evidence_refs": [
-        "docs/verification/theme-foundation.md",
-        "docs/verification/t004-check.log",
-        "tests/theme.spec.ts",
-        "scripts/verify-theme.ts"
+        "themes/shsh/docs/verification/theme-foundation.md",
+        "themes/shsh/docs/verification/t004-check.log",
+        "themes/shsh/tests/theme.spec.ts",
+        "themes/shsh/scripts/verify-theme.ts"
       ],
       "recorded_at": "2026-09-17T12:07:45.606361+00:00",
       "supersedes": null
@@ -1379,10 +1408,10 @@
       "environment": "macOS27.0(26A428) arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
       "procedure": "元のフォント名と--font-*用lint例外を適用し、モック比較・配色・キーボード・JS無効・axeを含む21テストが3エンジンで成功。Hugo単独生成、設定正負ケース、preview noindex、本番ハッシュと開発mapも検査。WebKitは標準Option-Tabで移動。",
       "evidence_refs": [
-        "docs/verification/theme-foundation.md",
-        "docs/verification/t004-check.log",
-        "tests/theme.spec.ts",
-        "scripts/verify-theme.ts"
+        "themes/shsh/docs/verification/theme-foundation.md",
+        "themes/shsh/docs/verification/t004-check.log",
+        "themes/shsh/tests/theme.spec.ts",
+        "themes/shsh/scripts/verify-theme.ts"
       ],
       "recorded_at": "2026-09-17T12:07:45.606361+00:00",
       "supersedes": "V007"
@@ -1412,10 +1441,10 @@
       "environment": "macOS27.0(26A428) arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
       "procedure": "pnpm check:tooling:typesでブラウザ/検査パスの型不一致・Promiseを検出、正常状態へ戻して成功。pnpm checkで整形・統合lint・CSS・進捗・Hugo/formatter・生成HTML・全ブラウザ検査成功。モック無変更と移行基準SHA256維持も確認。",
       "evidence_refs": [
-        "docs/verification/theme-foundation.md",
-        "docs/verification/t004-check.log",
-        "tests/theme.spec.ts",
-        "scripts/verify-theme.ts"
+        "themes/shsh/docs/verification/theme-foundation.md",
+        "themes/shsh/docs/verification/t004-check.log",
+        "themes/shsh/tests/theme.spec.ts",
+        "themes/shsh/scripts/verify-theme.ts"
       ],
       "recorded_at": "2026-09-17T12:07:45.606361+00:00",
       "supersedes": null
@@ -1438,7 +1467,7 @@
       "kind": "生成HTMLの初回検証",
       "result": "failed",
       "procedure": "ページ番号spanのaria-label-misuseと、Hugo標準page/1エイリアスのDOCTYPE/省略bodyがHTML-validateで失敗。",
-      "evidence_refs": ["docs/verification/home-and-lists.md"],
+      "evidence_refs": ["themes/shsh/docs/verification/home-and-lists.md"],
       "supersedes": null
     },
     {
@@ -1460,10 +1489,10 @@
       "result": "passed",
       "procedure": "pnpm checkが成功。隔離サイトで0/1件/既定10件/変更2件・UTC同日時・ナノ秒・予約解禁/期限/draft・summary優先順/空/エスケープ/自動140・YAML/TOML/JSON明示dateを検査。1280/400/320px両配色の凍結モックCSS比較・axe・JS無効と既存回帰を含む3エンジン全30テスト成功（10.8秒）。モック無変更と基準SHA維持を確認。",
       "evidence_refs": [
-        "docs/verification/home-and-lists.md",
-        "docs/verification/t005-check.log",
-        "scripts/verify-collections.ts",
-        "tests/collections.spec.ts"
+        "themes/shsh/docs/verification/home-and-lists.md",
+        "themes/shsh/docs/verification/t005-check.log",
+        "themes/shsh/scripts/verify-collections.ts",
+        "themes/shsh/tests/collections.spec.ts"
       ],
       "supersedes": "V010"
     },
@@ -1487,7 +1516,7 @@
       "kind": "本文/コード/実記事の初回検証",
       "result": "failed",
       "procedure": "HTML検査で標準脚注ID、tabindex重複、tbody、複数表の名前重複を検出。ブラウザ検査は進行時計の境界・引用内と本文直下の比較違いで6件失敗。実記事比較ではfixtureのlang=enによりWebKitの1段落に1行の差。",
-      "evidence_refs": ["docs/verification/prose-and-code.md"],
+      "evidence_refs": ["themes/shsh/docs/verification/prose-and-code.md"],
       "supersedes": null
     },
     {
@@ -1511,11 +1540,11 @@
       "result": "passed",
       "procedure": "pnpm checkが成功。showDates・日付補完/暦日比較・HTML・Hugo標準見出しIDを正負fixtureで検査。3エンジン48テスト成功（18.0秒）。コピー本文/番号除外/失敗再試行/3秒/Tab/Escape/タッチ/JS無効、本文部品と実記事全文の1280/400px・両配色でモック比較、axeのChroma限定例外を確認。本文画像8枚保存と目視確認。凍結モック無変更・基準SHA維持。",
       "evidence_refs": [
-        "docs/verification/prose-and-code.md",
-        "docs/verification/t006-check.log",
-        "docs/verification/t006-prose-images/",
-        "scripts/verify-prose.ts",
-        "tests/prose.spec.ts"
+        "themes/shsh/docs/verification/prose-and-code.md",
+        "themes/shsh/docs/verification/t006-check.log",
+        "themes/shsh/docs/verification/t006-prose-images/",
+        "themes/shsh/scripts/verify-prose.ts",
+        "themes/shsh/tests/prose.spec.ts"
       ],
       "supersedes": "V012"
     },
@@ -1534,7 +1563,7 @@
       "subject_ref": "T007のカバー・メディア・fixture・検査差分",
       "environment": "macOS27.0 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
       "procedure": "初回にアニメーション判定、SVG寸法、カバー読み込み前の拡大、PNGパレット再適用とalpha丸めによる画素差を検出。是正後の統合検査は59成功/1失敗、半透明比較を8bit合成値で切り分け中。",
-      "evidence_refs": ["docs/verification/media.md"],
+      "evidence_refs": ["themes/shsh/docs/verification/media.md"],
       "recorded_at": "2026-09-17T12:54:55.115028+00:00",
       "supersedes": null
     },
@@ -1554,11 +1583,11 @@
       "environment": "macOS27.0 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
       "procedure": "pnpm check成功、3エンジン60テスト（22.7秒）。静止/動画GIF境界追加後にlint/CSS/check:mediaとメディア12件（7.8秒）を再検証。カバー型の負例追加後check:media成功。可逆VP8L・原素材バイト一致・eager/lazy・外部非取得・SVG寸法・小画像・DPR1/2・JS無効・axe、1280/400px両配色とモック寸法を確認。PNG文字/写真の変換結果を目視確認。",
       "evidence_refs": [
-        "docs/verification/media.md",
-        "docs/verification/t007-check.log",
-        "docs/verification/t007-media-images/",
-        "scripts/verify-media.ts",
-        "tests/media.spec.ts"
+        "themes/shsh/docs/verification/media.md",
+        "themes/shsh/docs/verification/t007-check.log",
+        "themes/shsh/docs/verification/t007-media-images/",
+        "themes/shsh/scripts/verify-media.ts",
+        "themes/shsh/tests/media.spec.ts"
       ],
       "recorded_at": "2026-09-17T12:58:18.370933+00:00",
       "supersedes": "V014"
@@ -1576,10 +1605,10 @@
       "subject_ref": "T008の共有/スター/preview・設定・fixture・検査差分",
       "environment": "macOS27.0 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
       "evidence_refs": [
-        "docs/verification/sharing.md",
-        "docs/verification/t008-check.log",
-        "scripts/verify-sharing.ts",
-        "tests/sharing.spec.ts"
+        "themes/shsh/docs/verification/sharing.md",
+        "themes/shsh/docs/verification/t008-check.log",
+        "themes/shsh/scripts/verify-sharing.ts",
+        "themes/shsh/tests/sharing.spec.ts"
       ],
       "recorded_at": "2026-09-17T13:08:36.856140+00:00",
       "id": "V016",
@@ -1601,10 +1630,10 @@
       "subject_ref": "T008の共有/スター/preview・設定・fixture・検査差分",
       "environment": "macOS27.0 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
       "evidence_refs": [
-        "docs/verification/sharing.md",
-        "docs/verification/t008-check.log",
-        "scripts/verify-sharing.ts",
-        "tests/sharing.spec.ts"
+        "themes/shsh/docs/verification/sharing.md",
+        "themes/shsh/docs/verification/t008-check.log",
+        "themes/shsh/scripts/verify-sharing.ts",
+        "themes/shsh/tests/sharing.spec.ts"
       ],
       "recorded_at": "2026-09-17T13:08:36.856140+00:00",
       "id": "V017",
@@ -1633,7 +1662,7 @@
       "subject_ref": "21895d2 + T009の隔離レビューfixture/比較テスト",
       "environment": "macOS27.0 arm64; Hugo0.166.0; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
       "procedure": "1440/390px両配色の初回12件中6成功。実記事の単独画像ラッパーが異なること、Firefox文字拡大時のフォント量子化が理論値の0.005px閾値を超えることを検出。",
-      "evidence_refs": ["tests/review.spec.ts", "mock/build.mjs"],
+      "evidence_refs": ["themes/shsh/tests/review.spec.ts", "mock/build.mjs"],
       "recorded_at": "2026-09-17T13:16:36.112243+00:00",
       "supersedes": null
     },
@@ -1654,10 +1683,10 @@
       "environment": "macOS27.0 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
       "procedure": "pnpm check成功。3エンジン84テスト成功（37.9秒）。1440×1000/390×844両配色のホーム/一覧の共通枠と、実記事ヘッダー/全本文ブロックがモックと差0.06px未満。125/200%文字拡大で全体の横溢れなし。単独/文中/リンク内画像、原寸比率、生成HTML、axeのChroma限定例外を確認。",
       "evidence_refs": [
-        "docs/verification/representative-corrections.md",
-        "docs/verification/t019-check.log",
-        "tests/review.spec.ts",
-        "tests/media.spec.ts"
+        "themes/shsh/docs/verification/representative-corrections.md",
+        "themes/shsh/docs/verification/t019-check.log",
+        "themes/shsh/tests/review.spec.ts",
+        "themes/shsh/tests/media.spec.ts"
       ],
       "recorded_at": "2026-09-17T13:23:38.876839+00:00",
       "supersedes": "V018"
@@ -1683,12 +1712,12 @@
       "environment": "macOS27.0 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6; 1440×1000 hoverあり/390×844タッチhoverなし; DPR1",
       "procedure": "代表比較12件成功（18.2秒）。両幅・両配色のホーム/一覧/実記事/本文部品の32画像とaxe記録を保存。共通枠/記事全本文ブロックの差0.06px未満、125/200%文字拡大も成功。比較ページを4184で開き画像表示を確認、一覧・本文部品・実記事画像を目視。構造/合意済み差分/未完了範囲を説明。format:check、型統合lint、進捗検査成功。人の承認は未実施。",
       "evidence_refs": [
-        "docs/verification/r001-review.md",
-        "docs/verification/r001/index.html",
-        "docs/verification/r001/images/",
-        "docs/verification/t009-review.log",
-        "scripts/build-review-report.ts",
-        "tests/review.spec.ts"
+        "themes/shsh/docs/verification/r001-review.md",
+        "themes/shsh/docs/verification/r001/index.html",
+        "themes/shsh/docs/verification/r001/images/",
+        "themes/shsh/docs/verification/t009-review.log",
+        "themes/shsh/scripts/build-review-report.ts",
+        "themes/shsh/tests/review.spec.ts"
       ],
       "recorded_at": "2026-09-17T13:33:54.948070+00:00",
       "supersedes": null
@@ -1713,7 +1742,10 @@
       "subject_ref": "e010108 + T011のRSS/metadata・隔離fixture・検査差分",
       "environment": "macOS27.0 arm64; Hugo0.166.0; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
       "procedure": "fixture生HTML・長いalias URLタイトルを検出して入力とalias titleを是正。続く18件は9成功/9失敗。RSSの二重エスケープ、formatterによるmeta content内改行、分類fixtureの内部名と公開slugの取り違えを検出。",
-      "evidence_refs": ["scripts/verify-metadata.ts", "tests/metadata.spec.ts"],
+      "evidence_refs": [
+        "themes/shsh/scripts/verify-metadata.ts",
+        "themes/shsh/tests/metadata.spec.ts"
+      ],
       "recorded_at": "2026-09-17T13:41:12.451105+00:00",
       "supersedes": null
     },
@@ -1738,10 +1770,10 @@
       "environment": "macOS27.0 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
       "procedure": "初回是正後metadata18件成功（4.3秒）。pnpm checkで全統合102件成功（39.8秒）。別サイト/サブパス/13記事/分類/空feedのHTML/XMLと値を検証。全件RSS・順序・共通要約・GUID・Date/Lastmod・ページ送りcanonical・schema役割/JSON安全性・画像優先/既定画像のbundle隔離・preview・sitemap/robotsを確認。既存代表画面と操作も回帰成功。",
       "evidence_refs": [
-        "docs/verification/metadata-and-feeds.md",
-        "docs/verification/t011-check.log",
-        "scripts/verify-metadata.ts",
-        "tests/metadata.spec.ts"
+        "themes/shsh/docs/verification/metadata-and-feeds.md",
+        "themes/shsh/docs/verification/t011-check.log",
+        "themes/shsh/scripts/verify-metadata.ts",
+        "themes/shsh/tests/metadata.spec.ts"
       ],
       "recorded_at": "2026-09-17T13:44:02.743854+00:00",
       "supersedes": "V021"
@@ -1759,12 +1791,59 @@
       "environment": "macOS27 arm64; Hugo0.166.0; Playwright1.63.0 Chromium/Firefox/WebKit;1440/390px・両配色",
       "procedure": "修正前の生成HTMLで**露出と誤ったstrong範囲を確認。区切り空白追加後、strong4箇所の文字/範囲とstrong内code・font-weight700・**非露出を検査し、代表画面12件成功。CSS/凍結モックは無変更。",
       "evidence_refs": [
-        "scripts/build-review-fixture.ts",
-        "tests/review.spec.ts",
-        "docs/verification/t020-review.log"
+        "themes/shsh/scripts/build-review-fixture.ts",
+        "themes/shsh/tests/review.spec.ts",
+        "themes/shsh/docs/verification/t020-review.log"
       ],
       "recorded_at": "2026-09-17T14:20:28.718945+00:00",
       "supersedes": null
+    },
+    {
+      "task_ids": ["T003", "T020", "T021"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q29",
+        "docs/04-theme-implementation-requirements.md: Q30",
+        "docs/05-theme-implementation-discipline.md: Q7",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "subject_ref": "e05d511 + T021のテーマ開発環境移動・実行パス/文書/再レビュー差分",
+      "environment": "macOS27 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
+      "recorded_at": "2026-09-17T14:26:44.785911+00:00",
+      "id": "V024",
+      "kind": "開発環境移動後の初回導入・整形",
+      "result": "failed",
+      "procedure": "sandbox内offline導入はtarballキャッシュ不足。テーマルートのOxfmtへ../../docsの進捗ファイルを直接渡すとPATH must not contain ..で失敗。",
+      "evidence_refs": ["themes/shsh/docs/verification/r003-review.md"],
+      "supersedes": null
+    },
+    {
+      "task_ids": ["T003", "T020", "T021"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q29",
+        "docs/04-theme-implementation-requirements.md: Q30",
+        "docs/05-theme-implementation-discipline.md: Q7",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "subject_ref": "e05d511 + T021のテーマ開発環境移動・実行パス/文書/再レビュー差分",
+      "environment": "macOS27 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
+      "recorded_at": "2026-09-17T14:26:44.785911+00:00",
+      "id": "V025",
+      "kind": "テーマルートでの開発環境・全統合回帰と修正画像",
+      "result": "passed",
+      "procedure": "テーマルートのfrozen-lockfile導入成功（145再利用、download0）。親ディレクトリの進捗JSONはstdinで整形。型エラー/未処理Promise検出probe・正常復帰成功。pnpm check全102件成功（41.5秒）、最終format:check/lint/進捗検査成功。基準JSONバイト一致とモック68ファイルのハッシュ一致。強調部分PC/モバイル画像を目視、比較/画像/実装URLのHTTP200を確認。サイトcontent/hugo.yml・テーマCSS/layoutsは無変更。",
+      "evidence_refs": [
+        "themes/shsh/README.md",
+        "themes/shsh/package.json",
+        "themes/shsh/pnpm-lock.yaml",
+        "themes/shsh/scripts/",
+        "themes/shsh/tests/",
+        "themes/shsh/docs/verification/r003-review.md",
+        "themes/shsh/docs/verification/r003/",
+        "themes/shsh/docs/verification/t021-check.log"
+      ],
+      "supersedes": "V024"
     }
   ]
 }

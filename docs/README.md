@@ -13,7 +13,7 @@
 | [3. デザインの軸と情報設計](03-theme-visual-requirements.md) | コンセプト、情報の役割、書体・組版・配色・操作性の判断理由 |
 | [4. Hugoテーマの実装要件](04-theme-implementation-requirements.md) | 合意した対象・設定・出力・開発ツール・移行要件と、判断の依存関係 |
 | [5. Hugoテーマの実装規律](05-theme-implementation-discipline.md) | 確定（2026-09-17）。役割に基づく共通化、責務分割、レビュー・反復・進捗管理の規律 |
-| [6. テーマ実装の進捗JSON](06-theme-implementation-progress.json) | 作業・指摘・レビュー・検証結果と再開地点。現在は実装開始前の初期状態 |
+| [6. テーマ実装の進捗JSON](06-theme-implementation-progress.json) | 作業・指摘・レビュー・検証結果と再開地点 |
 | [7. テーマ実装の開始用プロンプト](07-theme-implementation-goal.md) | 確定（2026-09-17）。Codexの`/goal`へ渡す本文 |
 
 [モックREADME](../mock/README.md)には閲覧・再生成・検査方法と収録画面を記載する。寸法や配色の詳細は[モックのCSS](../mock/src/theme.css)、配置と操作は生成された画面を参照する。収録記事・件数・レビュー用UIは、デザインを確認するためのサンプルである。
@@ -24,3 +24,5 @@
 - PaperModの移行元調査：[`d3768854d00ad003b0a8dbdba254ce9224377a01`](https://github.com/adityatelange/hugo-PaperMod/tree/d3768854d00ad003b0a8dbdba254ce9224377a01)。最新リリースを意味しない。
 - Hugo・PaperModの調査は公式仕様、固定リビジョンのソース、サイト設定を照合したもの。対応バージョンを変更するときは再確認する。
 - 資料1はHugo v0.146以降のテンプレート命名を扱う。[Hugoのテンプレートシステム](https://gohugo.io/templates/new-templatesystem-overview/)
+
+テーマ開発用の設定・検査・検証資料は[themes/shsh](../themes/shsh/README.md)に集約する。このdocsはサイト全体の設計と移行の判断・進捗を扱う。
