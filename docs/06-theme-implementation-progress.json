@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-17T12:58:18.370933+00:00",
+  "updated_at": "2026-09-17T13:08:36.856140+00:00",
   "stage": "representative",
-  "summary": "T001〜T003完了。T004〜T007は実装/ローカル検証済み（R001未提出のためimplemented）。共通画像処理・カバー・video/Speaker Deckを追加し、統合60件とGIF境界追加後のメディア12件が成功。次はT008の共有・外部反応。本番PaperModと凍結モックは維持。",
+  "summary": "T001〜T003完了。T004〜T008は実装/ローカル検証済み（R001未提出のためimplemented）。共有・スター・preview分離を含む統合72ブラウザテスト成功。次はT009の代表画面比較とR001提出。本番PaperModと凍結モックは維持。",
   "latest_review_id": null,
   "resume": {
-    "task_id": "T008",
-    "action": "順序付き共有・はてなスターを設定から生成し、production/preview・JS無効・通信失敗をfixtureで検証する。完了後T009で代表画面の両幅/両配色比較と構造説明を揃えR001へ提出する。"
+    "task_id": "T009",
+    "action": "1440×1000/390×844・両配色のホーム/一覧/実記事/本文部品比較、125/200%文字拡大、責務と合意済み差分・残件の説明を用意してR001を提出する。明示承認前はT010へ展開しない。"
   },
   "tasks": [
     {
@@ -356,13 +356,24 @@
         "キーボード/JS無効/通信失敗時の可読性を確認する。"
       ],
       "commit_message": "[T008] 共有と外部反応を設定から生成",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "status": "implemented",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/layouts/_partials/engagement.html",
+        "themes/shsh/layouts/_partials/sharing-config.html",
+        "themes/shsh/layouts/_partials/share-link.html",
+        "themes/shsh/layouts/_partials/sharing-head.html",
+        "themes/shsh/assets/ts/sharing.ts",
+        "themes/shsh/assets/css/sharing.css",
+        "scripts/verify-sharing.ts",
+        "tests/sharing.spec.ts",
+        "docs/verification/sharing.md",
+        "docs/verification/t008-check.log"
+      ],
+      "verification_ids": ["V016", "V017"],
       "review_ids": ["R001"],
       "blocked_by": [],
-      "next_action": "共通アイコン・順序付き共有リンク・設定駆動のはてなスターを実装する。"
+      "next_action": "T009で代表画面全体の比較と構造説明を用意し、R001の明示承認を受ける。公式スター実接続はT017。"
     },
     {
       "id": "T009",
@@ -898,9 +909,10 @@
         "docs/verification/prose-and-code.md",
         "docs/verification/t006-prose-images/",
         "docs/verification/media.md",
-        "docs/verification/t007-media-images/"
+        "docs/verification/t007-media-images/",
+        "docs/verification/sharing.md"
       ],
-      "verification_ids": ["V008", "V011", "V013", "V015"],
+      "verification_ids": ["V008", "V011", "V013", "V015", "V017"],
       "finding_ids": ["F003", "F004", "F005", "F006", "F007"],
       "decision": null,
       "supersedes": null
@@ -1311,6 +1323,56 @@
       ],
       "recorded_at": "2026-09-17T12:58:18.370933+00:00",
       "supersedes": "V014"
+    },
+    {
+      "task_ids": ["T008"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q9",
+        "docs/04-theme-implementation-requirements.md: Q20",
+        "docs/04-theme-implementation-requirements.md: Q26",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: 合意事項を適用する際の補足: 公開URL"
+      ],
+      "subject_ref": "T008の共有/スター/preview・設定・fixture・検査差分",
+      "environment": "macOS27.0 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
+      "evidence_refs": [
+        "docs/verification/sharing.md",
+        "docs/verification/t008-check.log",
+        "scripts/verify-sharing.ts",
+        "tests/sharing.spec.ts"
+      ],
+      "recorded_at": "2026-09-17T13:08:36.856140+00:00",
+      "id": "V016",
+      "kind": "共有とJS無効時の初回検査",
+      "result": "failed",
+      "procedure": "統合69成功/3失敗。getByTextがnoscriptを見つけず、直接要素を取得する検査へ変更。その後FirefoxのJS無効環境でtoHaveJSPropertyが停止したため、可視性とDOM textContentの直接取得に分離。",
+      "supersedes": null
+    },
+    {
+      "task_ids": ["T008"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q9",
+        "docs/04-theme-implementation-requirements.md: Q20",
+        "docs/04-theme-implementation-requirements.md: Q26",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: 合意事項を適用する際の補足: 公開URL"
+      ],
+      "subject_ref": "T008の共有/スター/preview・設定・fixture・検査差分",
+      "environment": "macOS27.0 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
+      "evidence_refs": [
+        "docs/verification/sharing.md",
+        "docs/verification/t008-check.log",
+        "scripts/verify-sharing.ts",
+        "tests/sharing.spec.ts"
+      ],
+      "recorded_at": "2026-09-17T13:08:36.856140+00:00",
+      "id": "V017",
+      "kind": "共有・スター・previewと全統合回帰",
+      "result": "passed",
+      "procedure": "pnpm check成功。既定値/型/未知サービス/httpとhttps/公開previewのHTMLを検査。3エンジン72件成功（25.3秒）。日本語・記号タイトルのURL round-trip、順序、固定ページ/記事、Tab、スター固定応答/失敗、JS無効、preview外部通信なし、両幅/両配色のモック寸法とaxeを確認。実サービスへの投稿/スター追加なし。",
+      "supersedes": "V016"
     }
   ]
 }

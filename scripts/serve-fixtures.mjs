@@ -23,6 +23,8 @@ for (const [port, directory] of /** @type {[number, string][]} */ ([
   [4177, "mock/site"],
   [4178, ".cache/prose/public"],
   [4179, ".cache/media/production"],
+  [4180, ".cache/sharing/production"],
+  [4181, ".cache/sharing/preview"],
 ])) {
   const root = resolve(directory);
   const server = createServer((request, response) => {

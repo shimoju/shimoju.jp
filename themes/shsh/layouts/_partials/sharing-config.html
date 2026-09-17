@@ -1,0 +1,26 @@
+{{- $services := slice -}}
+{{- if isset site.Params "shareservices" }}
+  {{ $services = site.Params.shareServices }}
+{{ end -}}
+{{- if not (reflect.IsSlice $services) }}
+  {{ errorf "shsh: params.shareServices must be a list" }}{{ $services = slice }}
+{{ end -}}
+{{- range $services -}}
+  {{- if not (in (slice "x" "facebook" "bluesky" "hatena") .) }}
+    {{ errorf "shsh: unknown share service %v" . }}
+  {{ end -}}
+{{- end -}}
+{{- $star := dict -}}
+{{- if isset site.Params "hatenastar" }}
+  {{ $star = site.Params.hatenaStar }}
+{{ end -}}
+{{- if not (reflect.IsMap $star) }}
+  {{ errorf "shsh: params.hatenaStar must be a map" }}{{ $star = dict }}
+{{ end -}}
+{{- if and (isset $star "enabled") (ne (printf "%T" $star.enabled) "bool") }}
+  {{ errorf "shsh: hatenaStar.enabled must be boolean" }}
+{{ end -}}
+{{- if and (isset $star "author") (ne (printf "%T" $star.author) "string") }}
+  {{ errorf "shsh: hatenaStar.author must be a string" }}
+{{ end -}}
+{{- return (dict "services" $services "starEnabled" ($star.enabled | default false) "starAuthor" ($star.author | default "")) -}}

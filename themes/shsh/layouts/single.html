@@ -6,5 +6,6 @@
       {{ partial "media/cover.html" (dict "page" . "class" "article-cover" "loading" "eager") }}
     </header>
     <div class="prose">{{ .Content }}</div>
+    {{ partial "engagement.html" . }}
   </article>
 {{ end }}

@@ -27,6 +27,7 @@
       />
     {{ end }}
     {{ partialCached "assets.html" . }}
+    {{ partial "sharing-head.html" . }}
   </head>
   <body {{ if .IsHome }}class="home"{{ end }}>
     {{ partial "header.html" . }}
