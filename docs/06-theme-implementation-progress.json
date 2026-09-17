@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-17T11:37:01.628023+00:00",
+  "updated_at": "2026-09-17T11:39:48.982167+00:00",
   "stage": "planning",
-  "summary": "新規開始を確認。全要件をT001〜T018へ割当。T009の代表画面承認後にT010で全画面へ展開し、T014の全画面レビュー・実機・性能・実配信の検証後に移行完了を監査する。",
+  "summary": "T001計画とT002移行基準を完了。59記事・About/Archives・170 HTML・48 RSS・凍結モック68ファイルを記録。旧ホームRSSのAbout除外はQ8/Q19の合意差分として明記。テーマ実装と人のレビューは未実施。",
   "latest_review_id": null,
   "resume": {
-    "task_id": "T002",
-    "action": "T001の計画検証・コミット後、旧テーマの全出力と凍結モックを移行基準として記録する。"
+    "task_id": "T003",
+    "action": "品質ツールの互換版を固定し、formatter意味保存と型付き検査の対象を実証する。"
   },
   "tasks": [
     {
@@ -74,13 +74,20 @@
         "ソース・素材のSHA-256、全URL、見出しID、本文テキスト、埋め込み入力を機械抽出して件数確認する。"
       ],
       "commit_message": "[T002] 移行前の全コンテンツと公開出力を記録",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "scripts/capture-migration-baseline.py",
+        "tests/baseline/migration.json",
+        "tests/fixtures/offline/layouts/_shortcodes/x.html",
+        "docs/verification/migration-baseline.md"
+      ],
+      "verification_ids": [
+        "V002"
+      ],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "変更前コミット・全記事と固定ページ・見出しID・本文・素材・RSSの識別子を保存する。"
+      "next_action": "T013で全出力照合に使用する。元コミットを変えず基準を維持する。"
     },
     {
       "id": "T003",
@@ -788,6 +795,32 @@
         "scripts/verify-progress.mjs"
       ],
       "recorded_at": "2026-09-17T11:37:01.628023+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V002",
+      "task_ids": [
+        "T002"
+      ],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q2",
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/04-theme-implementation-requirements.md: 合意事項を適用する際の補足: 移行対象"
+      ],
+      "kind": "移行基準の隔離生成・再現性・全件照合",
+      "result": "passed",
+      "subject_ref": "c266ebb/PaperMod d3768854 + T002成果物",
+      "environment": "macOS arm64; Hugo 0.166.0; Python 3標準ライブラリ; 固定時計2026-09-17T12:00:00+09:00",
+      "procedure": "python3 scripts/capture-migration-baseline.pyを2回実行。全61入力の出力存在・本文root、posts RSS59件、凍結モック全68ハッシュ、出力JSONのSHA-256一致を確認。",
+      "evidence_refs": [
+        "scripts/capture-migration-baseline.py",
+        "tests/baseline/migration.json",
+        "tests/fixtures/offline/layouts/_shortcodes/x.html",
+        "docs/verification/migration-baseline.md"
+      ],
+      "recorded_at": "2026-09-17T11:39:48.982167+00:00",
       "supersedes": null
     }
   ]

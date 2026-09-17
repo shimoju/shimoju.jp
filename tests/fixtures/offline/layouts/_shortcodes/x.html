@@ -1,0 +1,2 @@
+{{- $url := printf "https://x.com/%s/status/%s" (.Get "user") (.Get "id") -}}
+<p data-offline-embed="x"><a href="{{ $url }}">View post on X</a></p>
