@@ -21,3 +21,13 @@
     integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous"
   {{ end }}
 />
+
+{{- $copy := resources.Get "ts/copy.ts" | js.Build (dict "targetPath" "js/copy.js" "target" "es2022" "minify" (not $dev) "sourceMap" $map) -}}
+{{- if not $dev }}{{ $copy = $copy | fingerprint }}{{ end -}}
+<script
+  defer
+  src="{{ $copy.RelPermalink }}"
+  {{ if not $dev }}
+    integrity="{{ $copy.Data.Integrity }}" crossorigin="anonymous"
+  {{ end }}
+></script>

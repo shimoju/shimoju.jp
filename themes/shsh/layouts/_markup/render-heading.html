@@ -1,0 +1,9 @@
+{{- printf "<h%d id=\"%s\">" .Level (.Anchor | htmlEscape) | safeHTML -}}
+{{ .Text }}<a
+  class="heading-anchor"
+  href="#{{ .Anchor }}"
+  aria-label="Link to {{ .PlainText }}"
+  lang="en"
+  ><span aria-hidden="true">#</span></a
+>
+{{- printf "</h%d>" .Level | safeHTML -}}

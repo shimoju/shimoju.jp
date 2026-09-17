@@ -8,6 +8,12 @@
         "style": "lowercase"
       }
     ],
-    "no-trailing-whitespace": "off"
+    "no-trailing-whitespace": "off",
+    "valid-id": [
+      "error",
+      {
+        "relaxed": true
+      }
+    ]
   }
 }

@@ -17,6 +17,7 @@ for (const [port, directory] of /** @type {[number, string][]} */ ([
   [4175, ".cache/representative/preview"],
   [4176, ".cache/representative/development"],
   [4177, "mock/site"],
+  [4178, ".cache/prose/public"],
 ])) {
   const root = resolve(directory);
   const server = createServer((request, response) => {

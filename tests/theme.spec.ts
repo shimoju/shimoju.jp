@@ -33,7 +33,7 @@ test("OS follows until a keyboard choice, persists and ignores mock query parame
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   // Safari uses Option-Tab to include links and buttons when full keyboard access is off.
   await page.keyboard.press(browserName === "webkit" ? "Alt+Tab" : "Tab");
-  await expect(page.getByRole("button")).toBeFocused();
+  await expect(page.locator(".theme-toggle")).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   expect(await page.evaluate(() => localStorage.getItem("pref-theme"))).toBe("light");
@@ -68,7 +68,7 @@ test("invalid and unavailable storage retain OS fallback and allow a page-local 
   await page.emulateMedia({ colorScheme: "dark" });
   await page.goto("/?theme=light");
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-  await page.getByRole("button").click();
+  await page.locator(".theme-toggle").click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   await page.emulateMedia({ colorScheme: "light" });
   await page.emulateMedia({ colorScheme: "dark" });
@@ -88,7 +88,7 @@ test("without JavaScript both OS palettes, navigation and subscription remain us
   const context = await browser.newContext({ javaScriptEnabled: false, colorScheme: "dark" });
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:4174/");
-  await expect(page.getByRole("button", { includeHidden: true })).toBeHidden();
+  await expect(page.locator(".theme-toggle")).toBeHidden();
   await expect(page.locator("body")).toHaveCSS("background-color", "rgb(24, 24, 37)");
   await expect(page.locator(".chroma")).toHaveCSS("background-color", "rgb(30, 30, 46)");
   await page.emulateMedia({ colorScheme: "light" });

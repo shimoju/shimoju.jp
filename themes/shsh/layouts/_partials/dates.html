@@ -1,0 +1,19 @@
+{{- $show := true -}}
+{{- if isset .Params "showdates" -}}
+  {{- if ne (printf "%T" .Params.showDates) "bool" -}}
+    {{ errorf "shsh: showDates must be boolean on %s" .Path }}
+  {{- end -}}
+  {{- if not (in site.MainSections .Section) -}}
+    {{ $show = .Params.showDates }}
+  {{- end -}}
+{{- end -}}
+{{- if and $show (not .Date.IsZero) -}}
+  {{- $date := partial "local-time.html" .Date -}}
+  {{- $lastmod := partial "local-time.html" .Lastmod -}}
+  <div class="meta">
+    {{ partial "date.html" $date }}
+    {{ if and (not $lastmod.IsZero) (ne ($date.Format "2006-01-02") ($lastmod.Format "2006-01-02")) }}
+      <span lang="en">Updated {{ partial "date.html" $lastmod }}</span>
+    {{ end }}
+  </div>
+{{- end -}}

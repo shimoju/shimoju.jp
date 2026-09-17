@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-17T12:20:57.572642+00:00",
+  "updated_at": "2026-09-17T12:35:28.335075+00:00",
   "stage": "representative",
-  "summary": "T001〜T003完了。T004・T005は実装/ローカル検証済み（R001未提出のためimplemented）。ホーム/一覧・共通記事集合・要約/日付/ページ送りと、3エンジン全30テストが成功。本番PaperModと凍結モックを維持。次はT006の本文組版・コード操作。",
+  "summary": "T001〜T003完了。T004〜T006は実装/ローカル検証済み（R001未提出のためimplemented）。一覧と本文/コードコピーを実装し、実記事の両幅/両配色のモック比較を含む全48ブラウザテスト成功。次はT007のカバー・画像・動画。本番PaperModと凍結モックは維持。",
   "latest_review_id": null,
   "resume": {
-    "task_id": "T006",
-    "action": "記事ヘッダー・日付/更新日・本文組版・コードrender hook/コピーを実装する。T005の共通日付処理を使い、本文部品と実記事のfixtureで検証。カバーはT007でカードへ統合し、T009でR001を提出する。"
+    "task_id": "T007",
+    "action": "共通画像解決・レスポンシブ処理を実装し、T005のカードとT006の記事ヘッダーへカバーを統合する。Markdown/figure、video/Speaker Deckもfixture検証し、既存一覧/本文の回帰検査を行う。T008後にT009でR001を提出する。"
   },
   "tasks": [
     {
@@ -128,7 +128,7 @@
         "docs/verification/toolchain.md",
         "docs/verification/t003-toolchain.json"
       ],
-      "verification_ids": ["V005", "V006", "V009"],
+      "verification_ids": ["V005", "V006", "V009", "V013"],
       "review_ids": [],
       "blocked_by": [],
       "next_action": "T004でテーマ共通枠と配色を実装する。検査構成の変更時は型検出probeも再実行する。"
@@ -179,7 +179,7 @@
         "docs/verification/theme-foundation.md",
         "docs/verification/t004-check.log"
       ],
-      "verification_ids": ["V008", "V009"],
+      "verification_ids": ["V008", "V009", "V013"],
       "review_ids": ["R001"],
       "blocked_by": [],
       "next_action": "T005〜T008で代表画面を揃え、T009/R001で共通設計をレビューする。承認前はimplementedを維持する。"
@@ -231,7 +231,7 @@
         "docs/verification/home-and-lists.md",
         "docs/verification/t005-check.log"
       ],
-      "verification_ids": ["V010", "V011"],
+      "verification_ids": ["V010", "V011", "V013"],
       "review_ids": ["R001"],
       "blocked_by": [],
       "next_action": "T006の本文組版へ進む。カバー組み込みはT007、完成形の視覚比較とR001承認はT009に残る。"
@@ -254,7 +254,7 @@
         "記事ヘッダー・日付・本文・Hugo標準見出しID・コードrender hookとコピーTSを実装する。",
         "本文部品fixtureと実記事で表・脚注・見出し・日本語コードを再現する。"
       ],
-      "depends_on": ["T004"],
+      "depends_on": ["T004", "T005"],
       "acceptance_criteria": [
         "モックの組版、Chroma公式Latte/Mocha、言語/filename/行番号/強調/未知言語が成立する。",
         "コピーはラベル・行番号を除き、成功/失敗/再試行/3秒復帰を扱う。",
@@ -265,13 +265,27 @@
         "specimenと実記事を両配色・PC/モバイルで比較し、見出しIDを旧出力と照合する。"
       ],
       "commit_message": "[T006] 記事の本文組版とコード操作を実装",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "status": "implemented",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/layouts/single.html",
+        "themes/shsh/layouts/_partials/dates.html",
+        "themes/shsh/layouts/_markup/render-heading.html",
+        "themes/shsh/layouts/_markup/render-table.html",
+        "themes/shsh/layouts/_markup/render-codeblock.html",
+        "themes/shsh/assets/css/prose.css",
+        "themes/shsh/assets/css/code.css",
+        "themes/shsh/assets/ts/copy.ts",
+        "scripts/verify-prose.ts",
+        "tests/prose.spec.ts",
+        "docs/verification/prose-and-code.md",
+        "docs/verification/t006-check.log",
+        "docs/verification/t006-prose-images/"
+      ],
+      "verification_ids": ["V012", "V013"],
       "review_ids": ["R001"],
       "blocked_by": [],
-      "next_action": "記事ヘッダー・日付・本文・Hugo標準見出しID・コードrender hookとコピーTSを実装する。"
+      "next_action": "T007でカバー・本文メディアを実装し、T008の共有と合わせてT009/R001へ提出する。本文部分の実記事比較は済んだが、全ページ完成形の承認は未実施。"
     },
     {
       "id": "T007",
@@ -794,6 +808,26 @@
         "tests/collections.spec.ts"
       ],
       "verification_ids": ["V010", "V011"]
+    },
+    {
+      "id": "F005",
+      "title": "HTML検査の既定ID命名規則がHugo標準脚注IDを拒否",
+      "task_ids": ["T003", "T006"],
+      "status": "resolved",
+      "requires_user_decision": false,
+      "observation": "HTML-validateのvalid-id既定設定が合法なfn:1/fnref:1を拒否。Hugo標準IDの維持要件と検査設定が一致していなかった。",
+      "evidence_refs": ["docs/verification/prose-and-code.md"],
+      "impact": "標準の脚注IDを変更すると既存節リンクを壊すおそれがある。",
+      "recommendation": "valid-idをHTML5準拠のrelaxed:trueとし、空文字/空白の拒否と標準IDの保持を検証する。",
+      "decision": {
+        "outcome": "標準HTML制約へ検査設定を是正",
+        "reason": "Q32のID維持を満たす内部検査設定の修正。表示・操作の変更やHTML構文検査の無効化をしない。",
+        "decided_by": "実装者",
+        "recorded_at": "2026-09-17T12:35:28.335075+00:00",
+        "source": "docs/04-theme-implementation-requirements.md: Q32; docs/05-theme-implementation-discipline.md: Q1"
+      },
+      "resolution_refs": [".htmlvalidate.json", "scripts/verify-prose.ts"],
+      "verification_ids": ["V012", "V013"]
     }
   ],
   "reviews": [
@@ -804,10 +838,12 @@
       "status": "not_ready",
       "artifact_refs": [
         "docs/verification/theme-foundation.md",
-        "docs/verification/home-and-lists.md"
+        "docs/verification/home-and-lists.md",
+        "docs/verification/prose-and-code.md",
+        "docs/verification/t006-prose-images/"
       ],
-      "verification_ids": ["V008", "V011"],
-      "finding_ids": ["F003", "F004"],
+      "verification_ids": ["V008", "V011", "V013"],
+      "finding_ids": ["F003", "F004", "F005"],
       "decision": null,
       "supersedes": null
     },
@@ -1121,6 +1157,58 @@
         "tests/collections.spec.ts"
       ],
       "supersedes": "V010"
+    },
+    {
+      "task_ids": ["T003", "T004", "T005", "T006"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q9",
+        "docs/04-theme-implementation-requirements.md: Q12",
+        "docs/04-theme-implementation-requirements.md: Q16",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/05-theme-implementation-discipline.md: Q2",
+        "docs/05-theme-implementation-discipline.md: Q3"
+      ],
+      "subject_ref": "T006の本文/日付/コピー・実記事fixture・HTML設定・検査差分",
+      "environment": "macOS27.0 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
+      "recorded_at": "2026-09-17T12:35:28.335075+00:00",
+      "id": "V012",
+      "kind": "本文/コード/実記事の初回検証",
+      "result": "failed",
+      "procedure": "HTML検査で標準脚注ID、tabindex重複、tbody、複数表の名前重複を検出。ブラウザ検査は進行時計の境界・引用内と本文直下の比較違いで6件失敗。実記事比較ではfixtureのlang=enによりWebKitの1段落に1行の差。",
+      "evidence_refs": ["docs/verification/prose-and-code.md"],
+      "supersedes": null
+    },
+    {
+      "task_ids": ["T003", "T004", "T005", "T006"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q9",
+        "docs/04-theme-implementation-requirements.md: Q12",
+        "docs/04-theme-implementation-requirements.md: Q16",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/05-theme-implementation-discipline.md: Q2",
+        "docs/05-theme-implementation-discipline.md: Q3"
+      ],
+      "subject_ref": "T006の本文/日付/コピー・実記事fixture・HTML設定・検査差分",
+      "environment": "macOS27.0 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
+      "recorded_at": "2026-09-17T12:35:28.335075+00:00",
+      "id": "V013",
+      "kind": "本文・コピー・実記事比較と全統合回帰",
+      "result": "passed",
+      "procedure": "pnpm checkが成功。showDates・日付補完/暦日比較・HTML・Hugo標準見出しIDを正負fixtureで検査。3エンジン48テスト成功（18.0秒）。コピー本文/番号除外/失敗再試行/3秒/Tab/Escape/タッチ/JS無効、本文部品と実記事全文の1280/400px・両配色でモック比較、axeのChroma限定例外を確認。本文画像8枚保存と目視確認。凍結モック無変更・基準SHA維持。",
+      "evidence_refs": [
+        "docs/verification/prose-and-code.md",
+        "docs/verification/t006-check.log",
+        "docs/verification/t006-prose-images/",
+        "scripts/verify-prose.ts",
+        "tests/prose.spec.ts"
+      ],
+      "supersedes": "V012"
     }
   ]
 }

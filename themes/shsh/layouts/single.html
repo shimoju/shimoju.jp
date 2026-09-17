@@ -1,1 +1,9 @@
-{{ define "main" }}<h1>{{ .Title }}</h1>{{ .Content }}{{ end }}
+{{ define "main" }}
+  <article>
+    <header class="article-header">
+      <h1>{{ .Title }}</h1>
+      {{ partial "dates.html" . }}
+    </header>
+    <div class="prose">{{ .Content }}</div>
+  </article>
+{{ end }}
