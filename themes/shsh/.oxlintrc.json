@@ -8,14 +8,5 @@
     "typescript/no-misused-promises": "error",
     "typescript/await-thenable": "error"
   },
-  "ignorePatterns": [
-    "content/**",
-    "mock/**",
-    "themes/PaperMod/**",
-    "public/**",
-    "resources/**",
-    "node_modules/**",
-    ".cache/**",
-    "tests/baseline/**"
-  ]
+  "ignorePatterns": ["content/**", "public/**", "resources/**", "node_modules/**", ".cache/**"]
 }

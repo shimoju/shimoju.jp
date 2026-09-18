@@ -13,14 +13,14 @@ for (const environment of ["production", "preview", "development"]) {
     const html = readFileSync(`${root}/${path}`, "utf8");
     const report = await validator.validateString(html);
     assert.ok(report.valid, `${path}: ${JSON.stringify(report.results)}`);
-    assert.doesNotMatch(html, /shimoju|Hiroshi|mock-theme|theme=light/);
+    assert.doesNotMatch(html, /shimoju|Hiroshi|theme=light/);
     assert.match(html, /lang="ja"/);
     if (environment === "production") assert.doesNotMatch(html, /noindex/);
     else assert.match(html, /noindex,nofollow/);
   }
   const files = readdirSync(root, { recursive: true, encoding: "utf8" });
   const html = readFileSync(`${root}/index.html`, "utf8");
-  // F025: check generated CSS too, so bundling/minification cannot drop the iOS fallback.
+  // Check generated CSS too, so bundling/minification cannot drop the iOS fallback.
   const cssPath = html.match(/href="([^"]+\.css)"/)?.[1];
   assert.ok(cssPath, `${environment}: stylesheet link is required`);
   const css = readFileSync(`${root}${cssPath}`, "utf8");

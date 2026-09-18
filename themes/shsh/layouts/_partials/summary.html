@@ -4,7 +4,7 @@
     {{- errorf "shsh: summary must be a string on %s" $.Path -}}
   {{- end -}}
 {{- end -}}
-{{- /* Q17 overrides Hugo's manual-more-before-front-matter precedence. */ -}}
+{{- /* Prefer an explicit front matter summary over the manual summary divider. */ -}}
 {{- $summary := "" -}}
 {{- if isset .Params "summary" -}}
   {{- if ne (printf "%T" .Params.summary) "string" -}}

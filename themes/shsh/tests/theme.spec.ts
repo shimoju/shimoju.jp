@@ -164,7 +164,7 @@ test("shared shell keeps readable dimensions at desktop and mobile widths in bot
           () => document.documentElement.scrollWidth <= document.documentElement.clientWidth,
         ),
       ).toBe(true);
-      // Chroma's agreed color exceptions are scoped to the highlighter only.
+      // Preserve Chroma's official palette; limit contrast exceptions to highlighted code.
       const result = await new AxeBuilder({ page }).analyze();
       for (const violation of result.violations) {
         expect(violation.id).toBe("color-contrast");

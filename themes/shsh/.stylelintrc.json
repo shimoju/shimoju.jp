@@ -1,13 +1,6 @@
 {
   "extends": ["stylelint-config-standard"],
-  "ignoreFiles": [
-    "mock/**",
-    "themes/PaperMod/**",
-    "public/**",
-    "resources/**",
-    "node_modules/**",
-    ".cache/**"
-  ],
+  "ignoreFiles": ["public/**", "resources/**", "node_modules/**", ".cache/**"],
   "rules": {
     "value-keyword-case": [
       "lower",
