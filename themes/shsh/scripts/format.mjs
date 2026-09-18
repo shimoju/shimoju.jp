@@ -24,20 +24,29 @@ const general = [
 execFileSync("pnpm", ["exec", "oxfmt", write ? "--write" : "--check", ...general], {
   stdio: "inherit",
 });
-// The site-wide progress file stays with the migration requirements. Format via
-// stdin because Oxfmt's project path arguments cannot traverse above this root.
-const progressPath = "../../docs/06-theme-implementation-progress.json";
-const progress = readFileSync(progressPath, "utf8");
-const formattedProgress = execFileSync(
-  "pnpm",
-  ["exec", "oxfmt", "--stdin-filepath", "progress.json"],
-  { input: progress, encoding: "utf8" },
-);
-if (progress !== formattedProgress) {
-  if (write) writeFileSync(progressPath, formattedProgress);
-  else {
-    console.error(`Formatting differs: ${progressPath}`);
-    process.exitCode = 1;
+// These repository-level files belong to the migration/CI. Format only the
+// explicit files via stdin, keeping content, mock and PaperMod out of scope.
+for (const path of [
+  "../../docs/06-theme-implementation-progress.json",
+  "../../.github/workflows/shsh.yml",
+].filter(existsSync)) {
+  const source = readFileSync(path, "utf8");
+  const formatted = execFileSync(
+    "pnpm",
+    [
+      "exec",
+      "oxfmt",
+      "--stdin-filepath",
+      path.endsWith(".json") ? "progress.json" : "workflow.yml",
+    ],
+    { input: source, encoding: "utf8" },
+  );
+  if (source !== formatted) {
+    if (write) writeFileSync(path, formatted);
+    else {
+      console.error(`Formatting differs: ${path}`);
+      process.exitCode = 1;
+    }
   }
 }
 /** @param {string} directory @returns {string[]} */

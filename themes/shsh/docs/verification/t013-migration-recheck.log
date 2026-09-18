@@ -1,0 +1,1178 @@
+[WebServer] (node:35132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 6 tests using 3 workers
+
+(node:35134) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35135) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35136) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [chromium] › tests/migration.spec.ts:36:3 › All migrated outputs: preview (403ms)
+(node:35147) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [chromium] › tests/migration.spec.ts:36:3 › All migrated outputs: production (1.2s)
+(node:35163) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 [firefox] › tests/migration.spec.ts:36:3 › All migrated outputs: preview (952ms)
+(node:35178) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [firefox] › tests/migration.spec.ts:36:3 › All migrated outputs: production (2.4s)
+  ✘  6 [webkit] › tests/migration.spec.ts:36:3 › All migrated outputs: preview (516ms)
+  ✘  5 [webkit] › tests/migration.spec.ts:36:3 › All migrated outputs: production (1.8s)
+
+
+  1) [chromium] › tests/migration.spec.ts:36:3 › All migrated outputs: production ──────────────────
+
+    Error: {
+      "differences": [],
+      "issues": [
+        {
+          "label": "/2026/09/01/development-environment-2026/index.html: exact fenced code",
+          "details": {
+            "blocks": 6
+          }
+        },
+        {
+          "label": "/2025/12/07/chezmoi-dotfiles-manager/index.html: exact fenced code",
+          "details": {
+            "blocks": 5
+          }
+        },
+        {
+          "label": "/2023/08/10/ruby-3-2-yjit-with-rails-6-1/index.html: exact fenced code",
+          "details": {
+            "blocks": 4
+          }
+        },
+        {
+          "label": "/2023/07/02/adjust-margin-bottom-in-nested-lists-for-hugo-papermod/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2023/06/22/hugo-and-cloudflare-pages/index.html: exact fenced code",
+          "details": {
+            "blocks": 3
+          }
+        },
+        {
+          "label": "/2018/09/17/zip-code-jp-on-heroku/index.html: exact fenced code",
+          "details": {
+            "blocks": 2
+          }
+        },
+        {
+          "label": "/2018/08/05/heroku-redis-connection-limit/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/29/heroku-release-phase/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/22/wercker-ci-rails/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/14/slow-better-errors/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2017/11/12/imagemagick/index.html: exact fenced code",
+          "details": {
+            "blocks": 30
+          }
+        },
+        {
+          "label": "/2017/10/09/busybox-crond/index.html: exact fenced code",
+          "details": {
+            "blocks": 6
+          }
+        },
+        {
+          "label": "/2016/12/04/step-by-step-code-linting/index.html: exact fenced code",
+          "details": {
+            "blocks": 3
+          }
+        }
+      ]
+    }
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 80
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 6,
+    +     },
+    +     "label": "/2026/09/01/development-environment-2026/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 5,
+    +     },
+    +     "label": "/2025/12/07/chezmoi-dotfiles-manager/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 4,
+    +     },
+    +     "label": "/2023/08/10/ruby-3-2-yjit-with-rails-6-1/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2023/07/02/adjust-margin-bottom-in-nested-lists-for-hugo-papermod/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 3,
+    +     },
+    +     "label": "/2023/06/22/hugo-and-cloudflare-pages/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 2,
+    +     },
+    +     "label": "/2018/09/17/zip-code-jp-on-heroku/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/08/05/heroku-redis-connection-limit/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/29/heroku-release-phase/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/22/wercker-ci-rails/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/14/slow-better-errors/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 30,
+    +     },
+    +     "label": "/2017/11/12/imagemagick/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 6,
+    +     },
+    +     "label": "/2017/10/09/busybox-crond/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 3,
+    +     },
+    +     "label": "/2016/12/04/step-by-step-code-linting/index.html: exact fenced code",
+    +   },
+    + ]
+
+      500 |       JSON.stringify(report, null, 2),
+      501 |     );
+    > 502 |     expect(issues, JSON.stringify({ differences, issues }, null, 2)).toEqual([]);
+          |                                                                      ^
+      503 |   });
+      504 |
+        at /Users/shimoju/dev/src/github.com/shimoju/shimoju.jp/themes/shsh/tests/migration.spec.ts:502:70
+
+    Error Context: test-results/migration-All-migrated-outputs-production-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/migration-All-migrated-outputs-production-chromium/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/migration-All-migrated-outputs-production-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/migration.spec.ts:36:3 › All migrated outputs: preview ─────────────────────
+
+    Error: {
+      "differences": [],
+      "issues": [
+        {
+          "label": "/2026/09/01/development-environment-2026/index.html: exact fenced code",
+          "details": {
+            "blocks": 6
+          }
+        },
+        {
+          "label": "/2025/12/07/chezmoi-dotfiles-manager/index.html: exact fenced code",
+          "details": {
+            "blocks": 5
+          }
+        },
+        {
+          "label": "/2023/08/10/ruby-3-2-yjit-with-rails-6-1/index.html: exact fenced code",
+          "details": {
+            "blocks": 4
+          }
+        },
+        {
+          "label": "/2023/07/02/adjust-margin-bottom-in-nested-lists-for-hugo-papermod/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2023/06/22/hugo-and-cloudflare-pages/index.html: exact fenced code",
+          "details": {
+            "blocks": 3
+          }
+        },
+        {
+          "label": "/2018/09/17/zip-code-jp-on-heroku/index.html: exact fenced code",
+          "details": {
+            "blocks": 2
+          }
+        },
+        {
+          "label": "/2018/08/05/heroku-redis-connection-limit/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/29/heroku-release-phase/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/22/wercker-ci-rails/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/14/slow-better-errors/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2017/11/12/imagemagick/index.html: exact fenced code",
+          "details": {
+            "blocks": 30
+          }
+        },
+        {
+          "label": "/2017/10/09/busybox-crond/index.html: exact fenced code",
+          "details": {
+            "blocks": 6
+          }
+        },
+        {
+          "label": "/2016/12/04/step-by-step-code-linting/index.html: exact fenced code",
+          "details": {
+            "blocks": 3
+          }
+        }
+      ]
+    }
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 80
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 6,
+    +     },
+    +     "label": "/2026/09/01/development-environment-2026/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 5,
+    +     },
+    +     "label": "/2025/12/07/chezmoi-dotfiles-manager/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 4,
+    +     },
+    +     "label": "/2023/08/10/ruby-3-2-yjit-with-rails-6-1/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2023/07/02/adjust-margin-bottom-in-nested-lists-for-hugo-papermod/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 3,
+    +     },
+    +     "label": "/2023/06/22/hugo-and-cloudflare-pages/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 2,
+    +     },
+    +     "label": "/2018/09/17/zip-code-jp-on-heroku/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/08/05/heroku-redis-connection-limit/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/29/heroku-release-phase/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/22/wercker-ci-rails/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/14/slow-better-errors/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 30,
+    +     },
+    +     "label": "/2017/11/12/imagemagick/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 6,
+    +     },
+    +     "label": "/2017/10/09/busybox-crond/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 3,
+    +     },
+    +     "label": "/2016/12/04/step-by-step-code-linting/index.html: exact fenced code",
+    +   },
+    + ]
+
+      500 |       JSON.stringify(report, null, 2),
+      501 |     );
+    > 502 |     expect(issues, JSON.stringify({ differences, issues }, null, 2)).toEqual([]);
+          |                                                                      ^
+      503 |   });
+      504 |
+        at /Users/shimoju/dev/src/github.com/shimoju/shimoju.jp/themes/shsh/tests/migration.spec.ts:502:70
+
+    Error Context: test-results/migration-All-migrated-outputs-preview-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/migration-All-migrated-outputs-preview-chromium/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/migration-All-migrated-outputs-preview-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [firefox] › tests/migration.spec.ts:36:3 › All migrated outputs: production ───────────────────
+
+    Error: {
+      "differences": [],
+      "issues": [
+        {
+          "label": "/2026/09/01/development-environment-2026/index.html: exact fenced code",
+          "details": {
+            "blocks": 6
+          }
+        },
+        {
+          "label": "/2025/12/07/chezmoi-dotfiles-manager/index.html: exact fenced code",
+          "details": {
+            "blocks": 5
+          }
+        },
+        {
+          "label": "/2023/08/10/ruby-3-2-yjit-with-rails-6-1/index.html: exact fenced code",
+          "details": {
+            "blocks": 4
+          }
+        },
+        {
+          "label": "/2023/07/02/adjust-margin-bottom-in-nested-lists-for-hugo-papermod/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2023/06/22/hugo-and-cloudflare-pages/index.html: exact fenced code",
+          "details": {
+            "blocks": 3
+          }
+        },
+        {
+          "label": "/2018/09/17/zip-code-jp-on-heroku/index.html: exact fenced code",
+          "details": {
+            "blocks": 2
+          }
+        },
+        {
+          "label": "/2018/08/05/heroku-redis-connection-limit/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/29/heroku-release-phase/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/22/wercker-ci-rails/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/14/slow-better-errors/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2017/11/12/imagemagick/index.html: exact fenced code",
+          "details": {
+            "blocks": 30
+          }
+        },
+        {
+          "label": "/2017/10/09/busybox-crond/index.html: exact fenced code",
+          "details": {
+            "blocks": 6
+          }
+        },
+        {
+          "label": "/2016/12/04/step-by-step-code-linting/index.html: exact fenced code",
+          "details": {
+            "blocks": 3
+          }
+        }
+      ]
+    }
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 80
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 6,
+    +     },
+    +     "label": "/2026/09/01/development-environment-2026/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 5,
+    +     },
+    +     "label": "/2025/12/07/chezmoi-dotfiles-manager/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 4,
+    +     },
+    +     "label": "/2023/08/10/ruby-3-2-yjit-with-rails-6-1/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2023/07/02/adjust-margin-bottom-in-nested-lists-for-hugo-papermod/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 3,
+    +     },
+    +     "label": "/2023/06/22/hugo-and-cloudflare-pages/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 2,
+    +     },
+    +     "label": "/2018/09/17/zip-code-jp-on-heroku/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/08/05/heroku-redis-connection-limit/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/29/heroku-release-phase/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/22/wercker-ci-rails/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/14/slow-better-errors/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 30,
+    +     },
+    +     "label": "/2017/11/12/imagemagick/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 6,
+    +     },
+    +     "label": "/2017/10/09/busybox-crond/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 3,
+    +     },
+    +     "label": "/2016/12/04/step-by-step-code-linting/index.html: exact fenced code",
+    +   },
+    + ]
+
+      500 |       JSON.stringify(report, null, 2),
+      501 |     );
+    > 502 |     expect(issues, JSON.stringify({ differences, issues }, null, 2)).toEqual([]);
+          |                                                                      ^
+      503 |   });
+      504 |
+        at /Users/shimoju/dev/src/github.com/shimoju/shimoju.jp/themes/shsh/tests/migration.spec.ts:502:70
+
+    Error Context: test-results/migration-All-migrated-outputs-production-firefox/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/migration-All-migrated-outputs-production-firefox/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/migration-All-migrated-outputs-production-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [firefox] › tests/migration.spec.ts:36:3 › All migrated outputs: preview ──────────────────────
+
+    Error: {
+      "differences": [],
+      "issues": [
+        {
+          "label": "/2026/09/01/development-environment-2026/index.html: exact fenced code",
+          "details": {
+            "blocks": 6
+          }
+        },
+        {
+          "label": "/2025/12/07/chezmoi-dotfiles-manager/index.html: exact fenced code",
+          "details": {
+            "blocks": 5
+          }
+        },
+        {
+          "label": "/2023/08/10/ruby-3-2-yjit-with-rails-6-1/index.html: exact fenced code",
+          "details": {
+            "blocks": 4
+          }
+        },
+        {
+          "label": "/2023/07/02/adjust-margin-bottom-in-nested-lists-for-hugo-papermod/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2023/06/22/hugo-and-cloudflare-pages/index.html: exact fenced code",
+          "details": {
+            "blocks": 3
+          }
+        },
+        {
+          "label": "/2018/09/17/zip-code-jp-on-heroku/index.html: exact fenced code",
+          "details": {
+            "blocks": 2
+          }
+        },
+        {
+          "label": "/2018/08/05/heroku-redis-connection-limit/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/29/heroku-release-phase/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/22/wercker-ci-rails/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/14/slow-better-errors/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2017/11/12/imagemagick/index.html: exact fenced code",
+          "details": {
+            "blocks": 30
+          }
+        },
+        {
+          "label": "/2017/10/09/busybox-crond/index.html: exact fenced code",
+          "details": {
+            "blocks": 6
+          }
+        },
+        {
+          "label": "/2016/12/04/step-by-step-code-linting/index.html: exact fenced code",
+          "details": {
+            "blocks": 3
+          }
+        }
+      ]
+    }
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 80
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 6,
+    +     },
+    +     "label": "/2026/09/01/development-environment-2026/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 5,
+    +     },
+    +     "label": "/2025/12/07/chezmoi-dotfiles-manager/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 4,
+    +     },
+    +     "label": "/2023/08/10/ruby-3-2-yjit-with-rails-6-1/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2023/07/02/adjust-margin-bottom-in-nested-lists-for-hugo-papermod/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 3,
+    +     },
+    +     "label": "/2023/06/22/hugo-and-cloudflare-pages/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 2,
+    +     },
+    +     "label": "/2018/09/17/zip-code-jp-on-heroku/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/08/05/heroku-redis-connection-limit/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/29/heroku-release-phase/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/22/wercker-ci-rails/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/14/slow-better-errors/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 30,
+    +     },
+    +     "label": "/2017/11/12/imagemagick/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 6,
+    +     },
+    +     "label": "/2017/10/09/busybox-crond/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 3,
+    +     },
+    +     "label": "/2016/12/04/step-by-step-code-linting/index.html: exact fenced code",
+    +   },
+    + ]
+
+      500 |       JSON.stringify(report, null, 2),
+      501 |     );
+    > 502 |     expect(issues, JSON.stringify({ differences, issues }, null, 2)).toEqual([]);
+          |                                                                      ^
+      503 |   });
+      504 |
+        at /Users/shimoju/dev/src/github.com/shimoju/shimoju.jp/themes/shsh/tests/migration.spec.ts:502:70
+
+    Error Context: test-results/migration-All-migrated-outputs-preview-firefox/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/migration-All-migrated-outputs-preview-firefox/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/migration-All-migrated-outputs-preview-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [webkit] › tests/migration.spec.ts:36:3 › All migrated outputs: production ────────────────────
+
+    Error: {
+      "differences": [],
+      "issues": [
+        {
+          "label": "/2026/09/01/development-environment-2026/index.html: exact fenced code",
+          "details": {
+            "blocks": 6
+          }
+        },
+        {
+          "label": "/2025/12/07/chezmoi-dotfiles-manager/index.html: exact fenced code",
+          "details": {
+            "blocks": 5
+          }
+        },
+        {
+          "label": "/2023/08/10/ruby-3-2-yjit-with-rails-6-1/index.html: exact fenced code",
+          "details": {
+            "blocks": 4
+          }
+        },
+        {
+          "label": "/2023/07/02/adjust-margin-bottom-in-nested-lists-for-hugo-papermod/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2023/06/22/hugo-and-cloudflare-pages/index.html: exact fenced code",
+          "details": {
+            "blocks": 3
+          }
+        },
+        {
+          "label": "/2018/09/17/zip-code-jp-on-heroku/index.html: exact fenced code",
+          "details": {
+            "blocks": 2
+          }
+        },
+        {
+          "label": "/2018/08/05/heroku-redis-connection-limit/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/29/heroku-release-phase/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/22/wercker-ci-rails/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/14/slow-better-errors/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2017/11/12/imagemagick/index.html: exact fenced code",
+          "details": {
+            "blocks": 30
+          }
+        },
+        {
+          "label": "/2017/10/09/busybox-crond/index.html: exact fenced code",
+          "details": {
+            "blocks": 6
+          }
+        },
+        {
+          "label": "/2016/12/04/step-by-step-code-linting/index.html: exact fenced code",
+          "details": {
+            "blocks": 3
+          }
+        }
+      ]
+    }
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 80
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 6,
+    +     },
+    +     "label": "/2026/09/01/development-environment-2026/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 5,
+    +     },
+    +     "label": "/2025/12/07/chezmoi-dotfiles-manager/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 4,
+    +     },
+    +     "label": "/2023/08/10/ruby-3-2-yjit-with-rails-6-1/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2023/07/02/adjust-margin-bottom-in-nested-lists-for-hugo-papermod/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 3,
+    +     },
+    +     "label": "/2023/06/22/hugo-and-cloudflare-pages/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 2,
+    +     },
+    +     "label": "/2018/09/17/zip-code-jp-on-heroku/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/08/05/heroku-redis-connection-limit/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/29/heroku-release-phase/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/22/wercker-ci-rails/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/14/slow-better-errors/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 30,
+    +     },
+    +     "label": "/2017/11/12/imagemagick/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 6,
+    +     },
+    +     "label": "/2017/10/09/busybox-crond/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 3,
+    +     },
+    +     "label": "/2016/12/04/step-by-step-code-linting/index.html: exact fenced code",
+    +   },
+    + ]
+
+      500 |       JSON.stringify(report, null, 2),
+      501 |     );
+    > 502 |     expect(issues, JSON.stringify({ differences, issues }, null, 2)).toEqual([]);
+          |                                                                      ^
+      503 |   });
+      504 |
+        at /Users/shimoju/dev/src/github.com/shimoju/shimoju.jp/themes/shsh/tests/migration.spec.ts:502:70
+
+    Error Context: test-results/migration-All-migrated-outputs-production-webkit/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/migration-All-migrated-outputs-production-webkit/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/migration-All-migrated-outputs-production-webkit/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [webkit] › tests/migration.spec.ts:36:3 › All migrated outputs: preview ───────────────────────
+
+    Error: {
+      "differences": [],
+      "issues": [
+        {
+          "label": "/2026/09/01/development-environment-2026/index.html: exact fenced code",
+          "details": {
+            "blocks": 6
+          }
+        },
+        {
+          "label": "/2025/12/07/chezmoi-dotfiles-manager/index.html: exact fenced code",
+          "details": {
+            "blocks": 5
+          }
+        },
+        {
+          "label": "/2023/08/10/ruby-3-2-yjit-with-rails-6-1/index.html: exact fenced code",
+          "details": {
+            "blocks": 4
+          }
+        },
+        {
+          "label": "/2023/07/02/adjust-margin-bottom-in-nested-lists-for-hugo-papermod/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2023/06/22/hugo-and-cloudflare-pages/index.html: exact fenced code",
+          "details": {
+            "blocks": 3
+          }
+        },
+        {
+          "label": "/2018/09/17/zip-code-jp-on-heroku/index.html: exact fenced code",
+          "details": {
+            "blocks": 2
+          }
+        },
+        {
+          "label": "/2018/08/05/heroku-redis-connection-limit/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/29/heroku-release-phase/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/22/wercker-ci-rails/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2018/07/14/slow-better-errors/index.html: exact fenced code",
+          "details": {
+            "blocks": 1
+          }
+        },
+        {
+          "label": "/2017/11/12/imagemagick/index.html: exact fenced code",
+          "details": {
+            "blocks": 30
+          }
+        },
+        {
+          "label": "/2017/10/09/busybox-crond/index.html: exact fenced code",
+          "details": {
+            "blocks": 6
+          }
+        },
+        {
+          "label": "/2016/12/04/step-by-step-code-linting/index.html: exact fenced code",
+          "details": {
+            "blocks": 3
+          }
+        }
+      ]
+    }
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 80
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 6,
+    +     },
+    +     "label": "/2026/09/01/development-environment-2026/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 5,
+    +     },
+    +     "label": "/2025/12/07/chezmoi-dotfiles-manager/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 4,
+    +     },
+    +     "label": "/2023/08/10/ruby-3-2-yjit-with-rails-6-1/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2023/07/02/adjust-margin-bottom-in-nested-lists-for-hugo-papermod/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 3,
+    +     },
+    +     "label": "/2023/06/22/hugo-and-cloudflare-pages/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 2,
+    +     },
+    +     "label": "/2018/09/17/zip-code-jp-on-heroku/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/08/05/heroku-redis-connection-limit/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/29/heroku-release-phase/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/22/wercker-ci-rails/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 1,
+    +     },
+    +     "label": "/2018/07/14/slow-better-errors/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 30,
+    +     },
+    +     "label": "/2017/11/12/imagemagick/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 6,
+    +     },
+    +     "label": "/2017/10/09/busybox-crond/index.html: exact fenced code",
+    +   },
+    +   Object {
+    +     "details": Object {
+    +       "blocks": 3,
+    +     },
+    +     "label": "/2016/12/04/step-by-step-code-linting/index.html: exact fenced code",
+    +   },
+    + ]
+
+      500 |       JSON.stringify(report, null, 2),
+      501 |     );
+    > 502 |     expect(issues, JSON.stringify({ differences, issues }, null, 2)).toEqual([]);
+          |                                                                      ^
+      503 |   });
+      504 |
+        at /Users/shimoju/dev/src/github.com/shimoju/shimoju.jp/themes/shsh/tests/migration.spec.ts:502:70
+
+    Error Context: test-results/migration-All-migrated-outputs-preview-webkit/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/migration-All-migrated-outputs-preview-webkit/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/migration-All-migrated-outputs-preview-webkit/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6 failed
+    [chromium] › tests/migration.spec.ts:36:3 › All migrated outputs: production ───────────────────
+    [chromium] › tests/migration.spec.ts:36:3 › All migrated outputs: preview ──────────────────────
+    [firefox] › tests/migration.spec.ts:36:3 › All migrated outputs: production ────────────────────
+    [firefox] › tests/migration.spec.ts:36:3 › All migrated outputs: preview ───────────────────────
+    [webkit] › tests/migration.spec.ts:36:3 › All migrated outputs: production ─────────────────────
+    [webkit] › tests/migration.spec.ts:36:3 › All migrated outputs: preview ────────────────────────
