@@ -20,6 +20,15 @@ for (const environment of ["production", "preview", "development"]) {
   }
   const files = readdirSync(root, { recursive: true, encoding: "utf8" });
   const html = readFileSync(`${root}/index.html`, "utf8");
+  // F025: check generated CSS too, so bundling/minification cannot drop the iOS fallback.
+  const cssPath = html.match(/href="([^"]+\.css)"/)?.[1];
+  assert.ok(cssPath, `${environment}: stylesheet link is required`);
+  const css = readFileSync(`${root}${cssPath}`, "utf8");
+  const bodyRule = css.match(/(?:^|})\s*body\s*\{([^}]+)}/)?.[1];
+  assert.ok(bodyRule, `${environment}: body rule is required`);
+  assert.match(bodyRule, /(?:^|;)\s*-webkit-text-size-adjust:\s*100%/);
+  assert.match(bodyRule, /(?:^|;)\s*text-size-adjust:\s*100%/);
+  assert.match(html, /<meta name="viewport" content="width=device-width, initial-scale=1"\s*\/?>/);
   if (environment === "development") {
     assert.ok(files.some((file) => file.endsWith(".css.map")));
     assert.ok(files.some((file) => file.endsWith(".js.map")));

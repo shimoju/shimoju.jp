@@ -1,0 +1,20 @@
+$ node scripts/verify-theme.ts
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /(?:^|;)\s*-webkit-text-size-adjust:\s*100%/. Input:
+
+'display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;margin:0;color:var(--text);background:var(--page);font:400 var(--body-size)/var(--leading-body) var(--font-body);font-feature-settings:"palt";overflow-wrap:anywhere;text-size-adjust:100%'
+
+    at file:///Users/shimoju/dev/src/github.com/shimoju/shimoju.jp/themes/shsh/scripts/verify-theme.ts:29:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;margin:0;color:var(--text);background:var(--page);font:400 var(--body-size)/var(--leading-body) var(--font-body);font-feature-settings:"palt";overflow-wrap:anywhere;text-size-adjust:100%',
+  expected: /(?:^|;)\s*-webkit-text-size-adjust:\s*100%/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.

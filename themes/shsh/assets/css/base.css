@@ -20,6 +20,8 @@ body {
   font: 400 var(--body-size)/var(--leading-body) var(--font-body);
   font-feature-settings: "palt";
   overflow-wrap: anywhere;
+  /* stylelint-disable-next-line property-no-vendor-prefix -- F025: iOS WebKit still requires this prefix. */
+  -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 

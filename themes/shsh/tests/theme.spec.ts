@@ -1,6 +1,52 @@
 import { test, expect } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
 
+test("portrait and landscape keep the type scale while explicit text enlargement still works", async ({
+  browser,
+  browserName,
+}) => {
+  const context = await browser.newContext({
+    viewport: { width: 390, height: 844 },
+    hasTouch: true,
+    isMobile: browserName !== "firefox",
+  });
+  const page = await context.newPage();
+  const sizes = () =>
+    page
+      .locator("body, .site-name, h1, .prose > p, .code-block pre")
+      .evaluateAll((elements) =>
+        elements.map((element) => parseFloat(getComputedStyle(element).fontSize)),
+      );
+  for (const colorScheme of ["light", "dark"] as const) {
+    await page.emulateMedia({ colorScheme });
+    await page.goto("http://127.0.0.1:4174/specimen/");
+    const baseline = await sizes();
+    for (const scale of [1, 1.25, 2]) {
+      await page.evaluate((value) => {
+        document.documentElement.style.fontSize = `${62.5 * value}%`;
+      }, scale);
+      for (const viewport of [
+        { width: 390, height: 844 },
+        { width: 844, height: 390 },
+        { width: 390, height: 844 },
+      ]) {
+        await page.setViewportSize(viewport);
+        const actual = await sizes();
+        for (const [index, size] of actual.entries())
+          expect(size).toBeCloseTo(baseline[index]! * scale, 1);
+        expect(
+          await page.evaluate(
+            () => document.documentElement.scrollWidth <= document.documentElement.clientWidth,
+          ),
+        ).toBe(true);
+      }
+    }
+  }
+  // Desktop WebKit automation does not implement iOS text autosizing.
+  // These are layout/enlargement checks; physical iPhone rotation and pinch zoom remain separate.
+  await context.close();
+});
+
 test("saved pref-theme is applied before styles load", async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem("pref-theme", "dark"));
   let release = () => {};
