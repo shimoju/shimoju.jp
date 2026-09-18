@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T08:14:08.885179+00:00",
+  "updated_at": "2026-09-18T10:33:28.079869+00:00",
   "stage": "final_verification",
-  "summary": "iPhone初回コピー不具合F021は修正・実機再確認済み。修正版preview211f19d6/05d2064でiPad Safariの表示・コピー・画像・動画・回転も問題なしとの報告を記録。GitHub統合検査243件と同一SHAのPages配信は成功。本番未移行。Windows3ブラウザ・Androidの基本確認と、各環境のフォント・文字拡大等は未確認。",
+  "summary": "Windows3ブラウザの実機結果を記録。Firefoxの見出し書体差異F022は受容。承認済みF023のコード行高1.4へ変更し関連144検査は成功。T044でpreview配信・CIを確認する。Androidと詳細実機確認、本番移行は未完了。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T015",
-    "action": "修正版preview211f19d6/05d2064でWindows Chrome/Edge/Firefox、Android Chromeの基本確認を受領する。iPhone/iPadは報告範囲を確認済み。Macを含む実フォント・文字拡大・JS無効等の未確認項目はT015で継続する。"
+    "task_id": "T044",
+    "action": "T043の行高1.4をpreview配信し、同一SHAの必須CIと配信CSSを確認する。"
   },
   "tasks": [
     {
@@ -282,10 +282,10 @@
         "themes/shsh/docs/verification/t006-check.log",
         "themes/shsh/docs/verification/t006-prose-images/"
       ],
-      "verification_ids": ["V012", "V013", "V068"],
+      "verification_ids": ["V012", "V013", "V068", "V072"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "コピー初回タップの修正、全CI、iPhone実機再確認は完了。残る実機項目はT015、本番移行はT017で継続する。"
+      "next_action": "F023の承認済み行高変更は関連144検査で再合格。配信はT044、変更後の実機確認を含む残件はT015で継続する。"
     },
     {
       "id": "T007",
@@ -470,10 +470,10 @@
         "themes/shsh/assets/css/article-end.css",
         "themes/shsh/assets/css/discovery.css"
       ],
-      "verification_ids": ["V029", "V030", "V031", "V043"],
+      "verification_ids": ["V029", "V030", "V031", "V043", "V072"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "R002承認済み。実機・実配信と移行完了の確認はT015/T017/T018で継続する。"
+      "next_action": "F023の承認済み行高変更は関連144検査で再合格。配信はT044、変更後の実機確認を含む残件はT015で継続する。"
     },
     {
       "id": "T011",
@@ -663,10 +663,10 @@
         "themes/shsh/scripts/verify-review-submission.ts",
         "themes/shsh/docs/verification/r002-verification.log"
       ],
-      "verification_ids": ["V039", "V044"],
+      "verification_ids": ["V039", "V044", "V072"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "R002承認済み。実機・実配信と移行完了の確認はT015/T017/T018で継続する。"
+      "next_action": "F023の承認済み行高変更は関連144検査で再合格。配信はT044、変更後の実機確認を含む残件はT015で継続する。"
     },
     {
       "id": "T015",
@@ -700,10 +700,10 @@
         "themes/shsh/docs/verification/real-devices.md",
         "themes/shsh/docs/verification/t015/"
       ],
-      "verification_ids": ["V040", "V045", "V046", "V049", "V063", "V067", "V069"],
+      "verification_ids": ["V040", "V045", "V046", "V049", "V063", "V067", "V069", "V070", "V071"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "修正版preview211f19d6/05d2064でWindows Chrome/Edge/Firefox、Android Chromeの基本確認を受領する。iPhone/iPadは報告範囲を確認済み。Macを含む実フォント・文字拡大・JS無効等の未確認項目はT015で継続する。"
+      "next_action": "Android Chromeの基本確認と各環境の実フォント・JS無効等の残件を継続。Windows3ブラウザは報告範囲を確認し、Firefox見出し書体差異F022は受容。行高1.4は変更後の実機確認が必要。"
     },
     {
       "id": "T016",
@@ -1644,6 +1644,73 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "ユーザー回答との照合・文書整形・進捗JSON検査・差分の空白検査は成功。報告記録は完了。残る実機確認はT015で継続する。"
+    },
+    {
+      "id": "T043",
+      "title": "Windows実機結果を反映しコード行高を1.4へ変更",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/05-theme-implementation-discipline.md: Q1",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "scope": [
+        "Windows Chrome/Edge/Firefoxの実機報告とFirefoxの書体差異を記録する。",
+        "ユーザー承認に基づきコード行高を1.3から1.4へ変更し、凍結モックとの差分と比較期待値を更新する。"
+      ],
+      "depends_on": ["T042"],
+      "acceptance_criteria": [
+        "実機報告の範囲と未取得条件、Firefoxの差異を見送る判断を残す。",
+        "コード行高1.4で組版・コピー・両配色・狭幅・拡大の関連検査が成功し、モックを変更しない。"
+      ],
+      "verification_plan": [
+        "報告原文と実機一覧・判断を照合する。",
+        "fixtureを再生成しproseとコードを含む全画面比較を3エンジンで実行する。",
+        "整形・型付きlint・CSS lint・進捗検査を実行し、差分を確認する。"
+      ],
+      "commit_message": "[T043] Windows実機結果を記録しコード行高を1.4に変更",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/assets/css/tokens.css",
+        "themes/shsh/tests/prose.spec.ts",
+        "themes/shsh/tests/full-review.spec.ts",
+        "themes/shsh/docs/verification/t043/",
+        "themes/shsh/docs/verification/real-devices.md"
+      ],
+      "verification_ids": ["V070", "V071", "V072"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "F023の承認済み行高変更は関連144検査で再合格。配信はT044、変更後の実機確認を含む残件はT015で継続する。"
+    },
+    {
+      "id": "T044",
+      "title": "コード行高変更をpreviewへ配信しCIを確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q24"
+      ],
+      "scope": [
+        "T043をhugo-themeへpushし、Pages previewとGitHub Actionsの結果を記録する。",
+        "新しい固定previewを実機確認用に案内する。"
+      ],
+      "depends_on": ["T043"],
+      "acceptance_criteria": [
+        "Pages previewの対象SHAと行高1.4の配信CSSを照合できる。",
+        "同一SHAの必須CIが成功する。"
+      ],
+      "verification_plan": [
+        "GitHub check-runsとActionsを照合する。",
+        "HTTP応答・noindex・CSSの行高トークンとfingerprintを確認する。"
+      ],
+      "commit_message": "[T044] コード行高変更の配信とCI結果を記録",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "T043コミットをpushしPages previewとCIを確認する。"
     }
   ],
   "findings": [
@@ -2195,6 +2262,51 @@
         "themes/shsh/docs/verification/t041/README.md"
       ],
       "verification_ids": ["V063", "V064", "V065", "V067", "V068"]
+    },
+    {
+      "id": "F022",
+      "title": "Windows Firefoxの見出し500がSegoe UI通常書体になる",
+      "task_ids": ["T015", "T043"],
+      "status": "resolved",
+      "requires_user_decision": false,
+      "observation": "ユーザー実機報告: Windows 11 Firefoxではfont-weight500がSegoe UI Semiboldにならず400と同じ通常書体になる。Chrome/EdgeではSemibold。サイト名300は3ブラウザともSegoe UI Light。",
+      "evidence_refs": ["themes/shsh/docs/verification/t043/windows-report.json"],
+      "impact": "Firefoxでは見出しの欧文と和文のウェイトが揃わないが、サイズによる階層は維持される。",
+      "recommendation": "ユーザーが許容した既知の差異として今回は修正を見送る。ブラウザ判定やフォント指定の追加は行わない。",
+      "decision": {
+        "outcome": "既知の差異として受容し、修正を見送る",
+        "reason": "ユーザーが見送りを許容。サイズによる見出しの識別を維持できるため、この方針を採用する。",
+        "decided_by": "ユーザー（見送り許容）、Codex（採用）",
+        "recorded_at": "2026-09-18T10:28:29.027821+00:00",
+        "source": "Windows 11のChrome/Edge/Firefox実機報告（会話）"
+      },
+      "resolution_refs": ["docs/03-theme-visual-requirements.md"],
+      "verification_ids": ["V070", "V071"]
+    },
+    {
+      "id": "F023",
+      "title": "コードブロックの行高を1.4へ広げる",
+      "task_ids": ["T015", "T043"],
+      "status": "resolved",
+      "requires_user_decision": false,
+      "observation": "ユーザー実機報告: 特にWindowsでコードの行間が詰まった印象。line-height1.4へのモック差分を明示的に承認。",
+      "evidence_refs": ["themes/shsh/docs/verification/t043/windows-report.json"],
+      "impact": "全環境でコードブロックと後続要素の縦位置が変わる。インラインコードの行高は対象外。",
+      "recommendation": "コード専用トークン--leading-codeを1.3から1.4へ変更し、承認差分として検証する。",
+      "decision": {
+        "outcome": "コードブロック行高1.4を採用",
+        "reason": "Windowsでのコードの読みやすさを改善するため、ユーザーがモックからの変更を明示承認した。",
+        "decided_by": "ユーザー",
+        "recorded_at": "2026-09-18T10:28:29.027821+00:00",
+        "source": "Windows 11のChrome/Edge/Firefox実機報告（会話）"
+      },
+      "resolution_refs": [
+        "docs/03-theme-visual-requirements.md",
+        "themes/shsh/assets/css/tokens.css",
+        "themes/shsh/tests/approved-mock.ts",
+        "themes/shsh/docs/verification/t043/README.md"
+      ],
+      "verification_ids": ["V072"]
     }
   ],
   "reviews": [
@@ -3934,6 +4046,53 @@
         "themes/shsh/docs/verification/real-devices.md"
       ],
       "recorded_at": "2026-09-18T08:13:56.494717+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V070",
+      "task_ids": ["T015", "T043"],
+      "requirement_refs": ["docs/04-theme-implementation-requirements.md: Q23"],
+      "kind": "ユーザーによるWindows実機確認",
+      "result": "passed",
+      "subject_ref": "案内済みpreview211f19d6/05d2064（今回の回答にURL再掲なし）",
+      "environment": "Windows 11 デスクトップPC / Chrome/Edge（詳細版未取得）",
+      "procedure": "ホーム・About・Archives両配色、コピー、画像、動画再生停止、Tab、文字拡大を確認。問題なし。見出し500はSegoe UI Semibold、サイト名300はLightとの報告。倍率・拡大方法・他の実フェイス等の未申告項目は未確認。",
+      "evidence_refs": ["themes/shsh/docs/verification/t043/windows-report.json"],
+      "recorded_at": "2026-09-18T10:30:02.890349+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V071",
+      "task_ids": ["T015", "T043"],
+      "requirement_refs": ["docs/04-theme-implementation-requirements.md: Q23"],
+      "kind": "ユーザーによるWindows実機確認",
+      "result": "failed",
+      "subject_ref": "案内済みpreview211f19d6/05d2064（今回の回答にURL再掲なし）",
+      "environment": "Windows 11 デスクトップPC / Firefox（詳細版未取得）",
+      "procedure": "ホーム・About・Archives両配色、コピー、画像、動画再生停止、Tab、文字拡大を確認。見出し500が通常書体になる差異を報告。サイト名300はLight。他の項目に問題申告なし。F022として修正見送りを受容したが、観察された差異はfailedの履歴に残す。倍率・拡大方法・他の実フェイス等の未申告項目は未確認。",
+      "evidence_refs": ["themes/shsh/docs/verification/t043/windows-report.json"],
+      "recorded_at": "2026-09-18T10:30:02.890349+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V072",
+      "task_ids": ["T006", "T010", "T014", "T043"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "承認済みコード行高1.4の表示・操作再検証",
+      "result": "passed",
+      "subject_ref": "ff52ca6 + T043差分（F023）",
+      "environment": "macOS / Playwright Chromium・Firefox・WebKit / Hugo0.166.0",
+      "procedure": "proseと全画面比較の144件成功（1.9m）。PC・モバイル幅、両配色、125/200%文字拡大、axe、コピー・JS無効を検査。凍結mockの1.3を検査してから比較ページにだけ承認済み1.4を適用。実記事コードの14px/19.6pxを取得し画像で欠け・重なりなしを確認。型付きlint・CSS lint・整形・進捗検査と比較レポート生成も成功。Windows変更後実機は未実施。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t043/browser-tests.log",
+        "themes/shsh/docs/verification/t043/code-metrics.json",
+        "themes/shsh/docs/verification/t043/code-light.png",
+        "themes/shsh/docs/verification/t043/code-dark.png"
+      ],
+      "recorded_at": "2026-09-18T10:33:28.079869+00:00",
       "supersedes": null
     }
   ]

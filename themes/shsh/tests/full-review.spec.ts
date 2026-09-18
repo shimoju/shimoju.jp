@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { applyApprovedCodeLeading } from "./approved-mock.js";
 
 type Screen = { name: string; title: string; mock: string; url: string };
 const cases = JSON.parse(readFileSync(".cache/full-review/cases.json", "utf8")) as Screen[];
@@ -27,6 +28,7 @@ for (const screen of cases)
         ]) {
           const response = await page.goto(url!);
           expect(response?.status()).toBe(200);
+          if (kind === "mock") await applyApprovedCodeLeading(page);
           if (screen.name === "about") {
             const headers = page.locator(".prose table, .post-content table").first().locator("th");
             if (kind === "mock") {
@@ -99,7 +101,7 @@ for (const screen of cases)
           if (browserName === "chromium") {
             mkdirSync(".cache/full-review/images", { recursive: true });
             await page.screenshot({
-              path: `.cache/full-review/images/${screen.name}-${width}-${colorScheme}-${kind === "mock" && screen.name === "about" ? "mock-approved-f014" : kind}.png`,
+              path: `.cache/full-review/images/${screen.name}-${width}-${colorScheme}-${kind === "mock" ? `mock-approved-f023${screen.name === "about" ? "-f014" : ""}` : kind}.png`,
               fullPage: true,
             });
           }

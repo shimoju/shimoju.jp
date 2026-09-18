@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
+import { applyApprovedCodeLeading } from "./approved-mock.js";
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
@@ -203,6 +204,7 @@ test("prose matches mock type and spacing; footnotes, headings, dates and JS-fre
       await page.emulateMedia({ colorScheme });
       await page.goto("/specimen/");
       await mock.goto(`http://127.0.0.1:4177/specimen.html?theme=${colorScheme}`);
+      await applyApprovedCodeLeading(mock);
       for (const selector of selectors)
         expect(await styles(page, selector), selector).toEqual(await styles(mock, selector));
       const viewport = await page.evaluate(() => ({
@@ -277,6 +279,7 @@ test("full real article preserves mock prose layout in both palettes and widths"
       await page.emulateMedia({ colorScheme });
       await page.goto("http://127.0.0.1:4178/real/");
       await mock.goto(`http://127.0.0.1:4177/article-hugo.html?theme=${colorScheme}`);
+      await applyApprovedCodeLeading(mock);
       const actual = await blocks(page);
       const expected = await blocks(mock);
       expect(actual.length).toBe(expected.length);
@@ -292,9 +295,9 @@ test("full real article preserves mock prose layout in both palettes and widths"
         await page
           .locator(".prose")
           .screenshot({ path: `.cache/prose-images/${width}-${colorScheme}-shsh.png` });
-        await mock
-          .locator(".prose")
-          .screenshot({ path: `.cache/prose-images/${width}-${colorScheme}-mock.png` });
+        await mock.locator(".prose").screenshot({
+          path: `.cache/prose-images/${width}-${colorScheme}-mock-approved-f023.png`,
+        });
       }
     }
   }

@@ -54,7 +54,7 @@
   --leading-heading: 1.5;
   --leading-label: 1.5;
   --leading-table: 1.6;
-  --leading-code: 1.3;
+  --leading-code: 1.4; /* F023: approved spacing for code readability, including Windows. */
   --content-width: 720px;
   --heading-anchor-size: var(--ui-space-6);
   --gutter: 16px;
