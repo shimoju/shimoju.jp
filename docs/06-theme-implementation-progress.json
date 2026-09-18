@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T12:47:25.138370+00:00",
+  "updated_at": "2026-09-18T12:50:14.082691+00:00",
   "stage": "final_verification",
-  "summary": "Safari回転修正は実iPhoneと全CI246検査で再合格。Mac3ブラウザのコピー、Chrome実フォント・文字設定32、Safari/ChromeのJS無効時限定操作を確認。詳細実機項目、本番移行、旧テーマ整理は未完了。",
+  "summary": "Safari回転修正は実iPhoneと全CI246検査で再合格。Windows Chromeの本文/コード実フォント・JS無効、Windows3ブラウザの文字拡大条件を追加記録。Macの追加確認も記録済み。詳細実機項目、本番移行、旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "受領したWindows追加報告を別タスクへ記録し、実機記録表の残件を更新する。"
+    "action": "Windowsの今回の追加報告は反映済み。実機記録表とT050の残件からSafari実フォント・文字拡大・動画視認/停止等の未確認項目を継続する。"
   },
   "tasks": [
     {
@@ -720,11 +720,13 @@
         "V088",
         "V089",
         "V090",
-        "V091"
+        "V091",
+        "V092",
+        "V093"
       ],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Mac Chromeの実フォント・既定文字サイズ32、Safari/ChromeのJS無効時限定操作を追加確認。未確認の詳細項目は実機記録表を参照して継続し、受領したWindows追加報告を別タスクで記録する。"
+      "next_action": "Windows Chromeの本文・コード実フォントとJS無効時の本文/ナビ/RSSを確認済み。Windows3ブラウザの文字サイズ設定も補足済み。Safari実フェイス・文字拡大・動画視認/停止、外部埋め込み等の未確認項目を実機記録表で継続し、本番の共有/スターはT017で確認する。"
     },
     {
       "id": "T016",
@@ -1699,7 +1701,7 @@
         "themes/shsh/docs/verification/t043/",
         "themes/shsh/docs/verification/real-devices.md"
       ],
-      "verification_ids": ["V070", "V071", "V072", "V076", "V077"],
+      "verification_ids": ["V070", "V071", "V072", "V076", "V077", "V093"],
       "review_ids": [],
       "blocked_by": [],
       "next_action": "F023の行高変更と関連比較検査は全CI・Pages・Windowsの読みやすさ再確認まで完了。残る実機確認はT015、本番移行はT017で継続する。"
@@ -1922,6 +1924,40 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "Safariの実フェイス・文字拡大・動画の視認と停止、各ブラウザのキーボード一式・外部埋め込み、Firefox追加項目は未確認。T015の記録表とともに継続する。"
+    },
+    {
+      "id": "T051",
+      "title": "Windowsの実フォント・文字拡大・JS無効の追加報告を記録",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "固定preview6f52990fのWindows Chromeでの本文・コードの和欧文実フォントとJS無効時のユーザー報告を記録する。",
+        "過去のWindows Chrome/Edge/Firefox試験の文字拡大方法と設定値を補足する。"
+      ],
+      "depends_on": ["T043", "T047"],
+      "acceptance_criteria": [
+        "原文・対象URL・確認者とブラウザ別の報告範囲を保存する。",
+        "過去の記録と新しい補足を対応させ、未申告の環境値や別ブラウザの結果を推定しない。"
+      ],
+      "verification_plan": [
+        "ユーザー報告と記録のPostScript名・設定値・ブラウザ範囲を照合する。",
+        "実機記録表とT015の残件を更新し、進捗検査・整形・git diff --checkで参照と差分を確認する。"
+      ],
+      "commit_message": "[T051] Windowsの実フォントと文字拡大・JS無効結果を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/t051/windows-report.json",
+        "themes/shsh/docs/verification/real-devices.md"
+      ],
+      "verification_ids": ["V092", "V093"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "Windows追加報告の記録と照合は完了。今回依頼したWindows1ブラウザの実フォント・JS無効と過去の拡大方法の報告は受領済み。その他の実機残件はT015/T050で継続する。"
     }
   ],
   "findings": [
@@ -4696,6 +4732,46 @@
         "themes/shsh/docs/verification/t050/safari-media-diagnostic.json"
       ],
       "recorded_at": "2026-09-18T12:47:25.138370+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V092",
+      "task_ids": ["T015", "T051"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "ユーザーによるWindows Chromeの本文・コード実フォントとJS無効確認",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/",
+      "environment": "Windows 11 / デスクトップPC / Chrome（詳細版未取得）",
+      "procedure": "ユーザー報告：本文は和文Noto Sans JP（Noto-Sans-JP）・欧文Segoe UI（SegoeUI）。コードは和文BIZ UDGothic（BIZ-UDGothic、ブラウザデフォルト）・欧文Consolas（Consolas）。JS無効で本文・ナビ・RSSを問題なく利用でき、配色/コピーボタン非表示。Chromeの報告範囲を確認済みとし、他ブラウザや一覧・ページ送りの個別確認へは一般化しない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t051/windows-report.json",
+        "themes/shsh/docs/verification/real-devices.md"
+      ],
+      "recorded_at": "2026-09-18T12:50:14.082691+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V093",
+      "task_ids": ["T015", "T043", "T051"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "過去のWindows実機試験の文字拡大条件補足",
+      "result": "passed",
+      "subject_ref": "T043/V070/V071等の過去のWindows報告（元の対象版は維持）",
+      "environment": "Windows 11 / デスクトップPC / Chrome・Edge・Firefox（詳細版未取得）",
+      "procedure": "ユーザーが、これまで報告したWindows試験はページズームではなくフォントサイズのみを拡大したと補足。Chrome/Edgeは「極大」、Firefoxは「32」、いずれも表示崩れなし。過去の倍率・方法未取得の記録を設定値・方法の申告で補う。Chrome/Edgeの数値や実測倍率は推定せず、現previewでの3ブラウザ再試験とも扱わない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t051/windows-report.json",
+        "themes/shsh/docs/verification/real-devices.md"
+      ],
+      "recorded_at": "2026-09-18T12:50:14.082691+00:00",
       "supersedes": null
     }
   ]
