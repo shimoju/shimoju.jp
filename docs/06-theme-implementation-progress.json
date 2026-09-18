@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T13:54:55.883257+00:00",
+  "updated_at": "2026-09-18T13:57:32.127088+00:00",
   "stage": "final_verification",
   "summary": "Draft PR #5の9f17369はCI成功（246テスト）と最新preview配信確認済み。実機用previewとCSS/JS一致。Safari YouTube・Firefox追加確認の回答待ち、他実機残件、本番移行・旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "実機環境の安定版照合と未確認項目を進め、受領した実機報告を反映する。"
+    "action": "Mac Safari実フォントと実機の未確認範囲を進める。Safari YouTube・Firefoxのユーザー回答は受領時に反映する。"
   },
   "tasks": [
     {
@@ -731,7 +731,8 @@
         "V100",
         "V101",
         "V102",
-        "V104"
+        "V104",
+        "V107"
       ],
       "review_ids": [],
       "blocked_by": [],
@@ -2273,6 +2274,40 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "9f17369のCI・preview照合は完了。実機残件をT015で継続し、PRの最終headをマージ前に再照合する。"
+    },
+    {
+      "id": "T061",
+      "title": "Mac実機のブラウザ版と現行安定版を照合",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "scope": [
+        "実機検証に使ったMac Safari/Chrome/Firefoxの版を公式リリース情報と照合し、現行安定版の確認不足を補う。"
+      ],
+      "depends_on": ["T050"],
+      "acceptance_criteria": [
+        "公式情報のURL・公開日・対象OS・版と、取得済みローカル版の対応を記録する。",
+        "未取得のWindows/モバイル版や将来の公開日の最新版を推定しない。"
+      ],
+      "verification_plan": [
+        "公式のSafari/WebKit・Chrome Releases・Firefoxリリース情報で2026-09-18時点の安定版を調べる。",
+        "既存実機証拠の版と照合し、対応範囲と未確認範囲を実機記録表に反映する。",
+        "整形・進捗参照・差分を検査する。"
+      ],
+      "commit_message": "[T061] Mac実機ブラウザの安定版照合を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/t061/README.md",
+        "themes/shsh/docs/verification/t061/local-versions.json",
+        "themes/shsh/docs/verification/real-devices.md"
+      ],
+      "verification_ids": ["V107"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "Mac公開版の照合は完了。実機の残項目とWindows/モバイル詳細版をT015で継続する。"
     }
   ],
   "findings": [
@@ -5341,6 +5376,27 @@
         "themes/shsh/docs/verification/t060/README.md"
       ],
       "recorded_at": "2026-09-18T13:54:55.883257+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V107",
+      "task_ids": ["T015", "T061"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "Mac実機の公開安定版と公式リリース情報の照合",
+      "result": "passed",
+      "subject_ref": "2026-09-18 / T048・T050以降のMac実機記録",
+      "environment": "macOS27.0(26A428) / ローカルInfo.plist・sw_vers / 公式WebKit・Chrome Releases・Firefoxサイト",
+      "procedure": "Chrome153.0.8010.53、Firefox156.0、Safari27.0をローカルで再取得し既存記録と一致。公式9/17 Chrome Stable・9/15 Firefox Release・9/17 Safari公開版と照合。各公式一覧も確認。Safari詳細build番号、Windows/モバイル未取得版、将来の公開日の最新版は判定外。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t061/README.md",
+        "themes/shsh/docs/verification/t061/local-versions.json",
+        "themes/shsh/docs/verification/real-devices.md"
+      ],
+      "recorded_at": "2026-09-18T13:57:32.127088+00:00",
       "supersedes": null
     }
   ]
