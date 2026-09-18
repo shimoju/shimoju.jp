@@ -1,0 +1,12 @@
+																	113 row (selected)    <h2 id=​"プロフィール"> ​ 開く …​ </h2> ​
+																	824 row CSS プロパティ名: font-size CSS プロパティ値: 24.752px
+																			826 container CSS プロパティ名: font-size
+																				827 テキスト font-size
+																	830 row CSS プロパティ名: font-size-adjust CSS プロパティ値: none
+																			832 container CSS プロパティ名: font-size-adjust
+																				833 テキスト font-size-adjust
+																	896 row CSS プロパティ名: font-weight CSS プロパティ値: 500
+																			898 container CSS プロパティ名: font-weight
+																				899 テキスト font-weight
+																993 text レンダリング フォント 姓 :  Hiragino Sans PostScript 名 :  HiraginoSans-W4 フォントの提供元 :  ローカル ファイル （6 件のグリフ）
+The focused UI element is 113 row (selected)    <h2 id=​"プロフィール"> ​ 開く …​ </h2> ​

@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T05:36:27.365804+00:00",
+  "updated_at": "2026-09-18T05:48:06.563825+00:00",
   "stage": "full_implementation",
-  "summary": "About列見出し承認反映後の全240テスト合格。R002全体は回答待ち。Cloudflare実設定を確認し、CI成功後配信のworkflowと環境別生成をT030で準備・ローカル検証済み。Secret登録・自動配信停止・有効化・実配信（F018）、実機残項目と旧テーマ撤去は未完了。",
+  "summary": "About承認反映後の全240テスト合格。CI成功後配信をT030で準備済み。CLOUDFLARE_API_TOKENはユーザー登録済み・Secret名で確認。R002全体は回答待ち。Chromeの和文h2 500の実フォントを追加確認。他の実機項目、自動配信停止・有効化・実配信（F018）、旧テーマ撤去は未完了。",
   "latest_review_id": "R004",
   "resume": {
     "task_id": "T017",
-    "action": "R002の明示的判断とCLOUDFLARE_API_TOKEN登録の回答を確認する。両条件が揃ったらCloudflare自動配信を停止し、有効化変数を設定して対象コミットのCI→preview配信を検証する。未回答を承認に置き換えない。"
+    "action": "Secret登録済み（2026-09-18ユーザー回答、GitHub名一覧でも確認）。R002全画面レビューの明示判断を待つ。承認後にCloudflare自動配信停止・有効化と対象コミットのCI→preview配信を検証し、HTTPS上の実機確認へ進む。"
   },
   "tasks": [
     {
@@ -700,10 +700,10 @@
         "themes/shsh/docs/verification/real-devices.md",
         "themes/shsh/docs/verification/t015/"
       ],
-      "verification_ids": ["V040", "V045", "V046"],
+      "verification_ids": ["V040", "V045", "V046", "V049"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "R002判断後にHTTPS previewと対象コミットを確定して他OS/モバイルの実機確認を依頼する。F014は反映済み。Safariの実フェイス・文字設定・コピー等は未確認として継続する。"
+      "next_action": "本文400と和文h2 500の実フェイス・配色は限定確認済み。R002判断後のHTTPS previewで、残るフォント・文字拡大・コピー・他OS/モバイル実機を確認する。"
     },
     {
       "id": "T016",
@@ -781,7 +781,7 @@
       "verification_ids": ["V042", "V045", "V047", "V048"],
       "review_ids": [],
       "blocked_by": ["F018"],
-      "next_action": "R002の明示的判断とCLOUDFLARE_API_TOKEN登録の回答を確認する。両条件が揃ったらCloudflare自動配信を停止し、有効化変数を設定して対象コミットのCI→preview配信を検証する。未回答を承認に置き換えない。"
+      "next_action": "Secret登録済み（2026-09-18ユーザー回答、GitHub名一覧でも確認）。R002全画面レビューの明示判断を待つ。承認後にCloudflare自動配信停止・有効化と対象コミットのCI→preview配信を検証し、HTTPS上の実機確認へ進む。"
     },
     {
       "id": "T018",
@@ -1172,10 +1172,10 @@
         "themes/shsh/docs/verification/t028/",
         "themes/shsh/docs/verification/real-devices.md"
       ],
-      "verification_ids": ["V046"],
+      "verification_ids": ["V046", "V049"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "本文400の実フェイスと両配色を確認済み。見出し500・サイト名300・strong/th700・コードの実フェイス、コピー内容一致を追加確認する。"
+      "next_action": "本文400と和文h2 500の実フェイス・配色は限定確認済み。R002判断後のHTTPS previewで、残るフォント・文字拡大・コピー・他OS/モバイル実機を確認する。"
     },
     {
       "id": "T029",
@@ -1250,6 +1250,38 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "準備タスクは完了。実際の有効化・CI・配信結果はT017で確認し、F018を未解決のまま追跡する。"
+    },
+    {
+      "id": "T031",
+      "title": "macOS Chromeの追加実フォントを確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "T028で未取得の見出し500・サイト名300・表見出し700・コードの実フォントをネイティブChromeで確認する。"
+      ],
+      "depends_on": ["T028"],
+      "acceptance_criteria": [
+        "対象要素・実際のRendered Fonts・計算値・環境を証拠として記録する。",
+        "取得できない項目を合格扱いせず、T015全体の未確認範囲を維持する。"
+      ],
+      "verification_plan": [
+        "専用タブのDevTools Elementsで対象を選択しComputedのRendered Fontsを読む。",
+        "必要に応じて画面画像とAX抜粋を保存し、観察対象の生成物を特定する。"
+      ],
+      "commit_message": "[T031] Chromeの追加実フォントを記録",
+      "status": "implemented",
+      "verification_status": "blocked",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/t031/",
+        "themes/shsh/docs/verification/real-devices.md"
+      ],
+      "verification_ids": ["V049"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "和文h2 500は確認済み。CUAの選択/計算値不一致が解消した環境、またはユーザーの実機確認でサイト名300・欧文見出し500・strong/th700・コードの実フェイスを取得する。"
     }
   ],
   "findings": [
@@ -1705,7 +1737,7 @@
       "task_ids": ["T017", "T030"],
       "status": "open",
       "requires_user_decision": false,
-      "observation": "Cloudflareはmaster自動配信・全非本番ブランチpreview。GitHub masterのbranch protectionなし（404）、実効rulesetなし。shsh workflowに配信依存なし。 T030でcheck依存の配信をローカル準備済み。GitHub Secret/variable一覧は空で、実設定の切替と配信は未実施。",
+      "observation": "Cloudflareはmaster自動配信・全非本番ブランチpreview。GitHub masterのbranch protectionなし（404）、実効rulesetなし。shsh workflowに配信依存なし。 T030でcheck依存の配信をローカル準備済み。GitHub Secret/variable一覧は空で、実設定の切替と配信は未実施。 その後2026-09-18T05:39:30ZにCLOUDFLARE_API_TOKENが登録されたことをSecret名/更新時刻のAPI応答とユーザーの「登録しました」で確認。有効化と実配信は未実施。",
       "evidence_refs": [
         "themes/shsh/docs/verification/t029/settings-observation.json",
         "themes/shsh/docs/verification/t029/github-ci-gates.json",
@@ -3043,6 +3075,25 @@
         ".github/workflows/shsh.yml"
       ],
       "recorded_at": "2026-09-18T05:36:27.365804+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V049",
+      "task_ids": ["T015", "T028", "T031"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "macOS Chromeの和文見出し実フォント限定確認",
+      "result": "passed",
+      "subject_ref": "2ad38fbと同じテーマ・About入力のlocalhost:4212 preview",
+      "environment": "macOS27.0 (26A428); native Google Chrome153.0.8010.48; dark; CUA DevTools",
+      "procedure": "h2#プロフィールを選択しComputed 500/24.752px、Rendered Fonts Hiragino Sans/HiraginoSans-W4 6glyphsを取得。対象選択は画面でも確認。以後のサイト名等はNative CUAのウィンドウ・要素ID不安定とAX/画面不一致で未確認。限定結果のみ合格、T031全体はblocked。検証タブを閉じた。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t031/",
+        "themes/shsh/docs/verification/real-devices.md"
+      ],
+      "recorded_at": "2026-09-18T05:48:06.563825+00:00",
       "supersedes": null
     }
   ]
