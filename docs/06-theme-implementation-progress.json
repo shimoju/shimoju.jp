@@ -1,6 +1,6 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T07:30:40.938578+00:00",
+  "updated_at": "2026-09-18T07:36:18.887228+00:00",
   "stage": "final_verification",
   "summary": "本番必須CIとPages即時previewを設定済み。6f100d5のpreviewは42秒で成功。CIは横幅の等値条件で239/240となり、T036で超過だけを失敗とする条件へ修正。局所3エンジン再検証成功、全CIはT038で再実行。本番未更新・実機未完了。",
   "latest_review_id": "R002",
@@ -1511,6 +1511,33 @@
       "review_ids": ["R002"],
       "blocked_by": [],
       "next_action": "65d32a6の全GitHub CIとPages配信を追跡する。"
+    },
+    {
+      "id": "T039",
+      "title": "HTTPSプレビューのMacコードコピーを確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "scope": [
+        "公開済み固定previewでMac Chromeのコピー内容一致を確認する。既存クリップボード内容は証拠へ記録しない。"
+      ],
+      "depends_on": ["T037"],
+      "acceptance_criteria": [
+        "実コードのコピー操作と取得できるクリップボード内容を照合し、成功または未確認の根拠を区別して記録する。"
+      ],
+      "verification_plan": [
+        "Chrome CUAでHTTPS実記事のコピーを操作する。",
+        "取得した内容はコードとの一致結果だけを記録し、不一致の内容は出力しない。"
+      ],
+      "commit_message": "[T039] HTTPSでのMacコピー確認結果を記録",
+      "status": "implemented",
+      "verification_status": "blocked",
+      "artifact_refs": ["themes/shsh/docs/verification/t039/"],
+      "verification_ids": ["V061"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "OSクリップボードを扱える実機操作またはユーザー確認で貼り付け内容の一致を確認する。通知だけでは合格にしない。"
     }
   ],
   "findings": [
@@ -3599,6 +3626,22 @@
         "themes/shsh/docs/verification/t012-live/results.json"
       ],
       "recorded_at": "2026-09-18T07:30:40.938578+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V061",
+      "task_ids": ["T015", "T039"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "HTTPSでのMac Chromeコピー実機確認",
+      "result": "blocked",
+      "subject_ref": "6f100d5 / https://59e83710.shimoju.pages.dev/2026/09/01/development-environment-2026/",
+      "environment": "macOS native Chrome / CUA browser clipboard",
+      "procedure": "最初のCopy code操作でCode copied.を確認。session clipboardは空。既存モックのローカル貼り付け欄へのショートカット操作もvirtual clipboardが空とのツール制約で未実行。OSクリップボード内容一致は未確認、テーマの失敗と帰属しない。内容はログへ出さず一時タブを閉じた。",
+      "evidence_refs": ["themes/shsh/docs/verification/t039/copy-observation.json"],
+      "recorded_at": "2026-09-18T07:36:18.887228+00:00",
       "supersedes": null
     }
   ]

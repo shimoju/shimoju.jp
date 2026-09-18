@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-09-18T07:36:18.887228+00:00",
+  "subject": "6f100d5",
+  "url": "https://59e83710.shimoju.pages.dev/2026/09/01/development-environment-2026/",
+  "environment": "macOS 27.0 (26A428); Chrome 153.0.8010.48 native / CUA",
+  "procedure": [
+    "Clicked first Copy code button on public HTTPS article",
+    "Observed Code copied.",
+    "Compared browser-session clipboard to first pre text without logging contents",
+    "Attempted keyboard paste into frozen mock localhost-only textarea; tool reported empty virtual clipboard",
+    "Closed temporary paste tab"
+  ],
+  "expected_code_length": 235,
+  "notification": "Code copied.",
+  "browser_session_clipboard_empty": true,
+  "paste_result": "Tool stopped paste because its virtual clipboard had no data",
+  "result": "blocked",
+  "scope": "Notification confirmed; OS clipboard content and paste match remain unverified. This is not evidence of a theme copy failure. No existing clipboard content was logged."
+}
