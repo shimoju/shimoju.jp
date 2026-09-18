@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T14:13:28.364293+00:00",
+  "updated_at": "2026-09-18T14:19:28.956653+00:00",
   "stage": "final_verification",
   "summary": "F026の5代表環境へ整理済み。Safari YouTube映像のユーザー確認でMac Chrome/Safariの必須実機項目は完了。代表外とSafari実フォント未取得は制約保持。Windows Chrome/iPhone/Android残件を依頼済み。本番移行・旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "Windows Chrome/iPhone Safari/Android Chromeの追加報告をT064の残件表へ反映する。PR #5の33df5feのCI run35354251910も同じIDで追跡する。"
+    "action": "Windows Chrome/iPhone Safari/Android Chromeの追加報告をT064へ反映する。T066までのpush後、PR #5の最新headと対応する必須CI実行を確認する。実機残件の解消前には本番へマージしない。"
   },
   "tasks": [
     {
@@ -2455,6 +2455,38 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "Safari YouTubeとMac代表範囲の確認は完了。Windows Chrome/iPhone/Androidの追加報告をT015で反映する。"
+    },
+    {
+      "id": "T066",
+      "title": "実機確認の承認範囲と残件をdraft PRへ同期",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "F026の5代表環境とT065のMac確認完了をPR説明へ反映し、残る3環境と承認済み制約を区別する。",
+        "T064/T065と本記録を作業ブランチへpushし、必須CIの対象headを追跡する。"
+      ],
+      "depends_on": ["T058", "T064", "T065"],
+      "acceptance_criteria": [
+        "PR #5の本文がローカルの更新原稿と一致し、draft/master向けを維持する。",
+        "CIの対象コミットと状態を区別し、実機残件や本番未完了を合格扱いしない。"
+      ],
+      "verification_plan": [
+        "既存PR本文とT064/T065の証拠を照合し、更新本文を作成する。",
+        "gh pr edit --body-fileで更新後、取得本文との一致・draft・baseを検査する。",
+        "整形・進捗・差分検査後にコミット/pushし、最新headのCI実行を確認する。"
+      ],
+      "commit_message": "[T066] 実機確認の承認範囲と残件をPRへ同期",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": ["themes/shsh/docs/verification/t066/"],
+      "verification_ids": ["V113"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "PR説明の同期は完了。T064/T065/T066をpushし、新headの必須CIを追跡する。実機残件はT015で回答を反映する。"
     }
   ],
   "findings": [
@@ -5672,6 +5704,29 @@
       "procedure": "T049/T050/T052/T055/T056/T057/T061と今回の報告を、版・OSフォント・文字拡大・コピー・キーボード・JS無効・ローカル動画・外部埋め込みへ対応付けた。F026のMac Chrome/Safari必須範囲は確認済み。各結果のページ/条件限定とSafari実フェイス・Mac Firefoxの未確認制約は維持。他のOSと本番は未完了。",
       "evidence_refs": ["themes/shsh/docs/verification/t065/README.md"],
       "recorded_at": "2026-09-18T14:13:28.364293+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V113",
+      "task_ids": ["T066"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "kind": "draft PR説明と実機確認の承認範囲の照合",
+      "result": "passed",
+      "subject_ref": "d0c3822からのT066差分 / PR #5本文",
+      "environment": "GitHub CLI / ローカル原稿 / F026・T064・T065",
+      "procedure": "PR説明を更新し取得本文と原稿の完全一致、isDraft=true、baseRefName=masterを検査。Mac確認完了と3代表環境の残件、代表外の制約を区別。観測CIは33df5feで進行中のため合格に含めない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t066/README.md",
+        "themes/shsh/docs/verification/t066/pr-body.md",
+        "themes/shsh/docs/verification/t066/pr-updated.json",
+        "themes/shsh/docs/verification/t066/ci-observed.json"
+      ],
+      "recorded_at": "2026-09-18T14:19:28.956653+00:00",
       "supersedes": null
     }
   ]
