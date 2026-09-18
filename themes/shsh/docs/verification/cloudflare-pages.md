@@ -1,6 +1,6 @@
 # Cloudflare Pages配信確認（T017）
 
-状態：F018/F019により「GitHub必須チェック → マージ → Pages自動配信」を採用。previewはCIを待たず自動配信する。T034で設定・実CI・preview配信を検証する。本番への移行は未実施。
+状態：F018/F019により「GitHub必須チェック → マージ → Pages自動配信」を採用。previewはCIを待たず自動配信する。T034で設定し、T038でGitHub統合検査の全240件成功と同一コミットの独立preview成功を確認した。本番への移行は未実施。
 
 ## 現在の配信方式（T034）
 
@@ -11,7 +11,7 @@
 - CI成功は本番へのマージ前の条件とする。previewの公開やマージ後のpush CIを待たせる構成ではない。
 - Secret `CLOUDFLARE_API_TOKEN`はこの方式では使わない。既存登録の値を取得せず、削除や失効もしていない。配信用変数は未登録のまま。
 
-設定と検証証拠は[t034](t034/)を参照する。記事執筆時は作業ブランチをpushしてpreviewを確認し、PRの`shsh-check`が成功してからmasterへマージする。masterが進んだ場合は更新して再検査する。
+設定証拠は[t034](t034/)、実CIの全240件成功と同一SHAのpreview成功は[t038](t038/)を参照する。記事執筆時は作業ブランチをpushしてpreviewを確認し、PRの`shsh-check`が成功してからmasterへマージする。masterが進んだ場合は更新して再検査する。
 
 以下のT017〜T033の記述は当時の調査・準備履歴。T030のActions配信案と有効化手順はF018/F019により不採用となり、実行しない。
 
@@ -76,12 +76,14 @@ Wranglerはアップロード専用の開発依存として4.131.2に固定し�
 
 配信の停止には`SHSH_PAGES_DEPLOY`を削除する。既存公開の切り戻しが必要なら、テーマ名だけではなく移行前の配信成果物を復元する。Cloudflareの自動配信を戻す場合はCIとの依存が再び失われるため、検査成功の保証を確認する。
 
-## 移行後の確認手順
+## 移行後の確認手順（現行方式）
 
-1. F014はT026で承認・反映済み。R002の判断後、GitHub Actionsへ送るコミットを確定する。テーマルートで`pnpm check`を通し、同じコミットのGitHub上の結果URLを記録する。
-2. Cloudflareの両環境の自動配信停止、GitHub Actionsのcheck→deployの実行順序と対象SHAを確認する。認証情報は記録しない。
-3. ActionsのビルドログでHugo 0.166.0と`build-pages.sh`の環境・baseURLを確認する。生成物は`.cache/pages/public`をアップロードし、dashboardに残る旧`hugo`コマンドは実行経路に含めない。
-4. ビルドログでHugo版・環境・警告/エラー・コミット・deployment ID・URLを記録する。外部shortcode取得の警告と入力エラーを区別する。GitHub検査が公開を止める設定になっているかも確認する。
+この節はF018/F019で採用した方式に従う。上記T030の履歴にある自動配信停止・Actions deployの手順は実行しない。
+
+1. R002は承認済み。作業ブランチの対象コミットを確定し、GitHubの`shsh-check`の成功結果URLを記録する。
+2. GitHub masterでPR・GitHub Actions由来の`shsh-check`・最新ベース・管理者適用を要求し、Pagesは本番masterと非本番ブランチpreviewの自動配信を維持する。previewはCI完了を待たない。
+3. PagesのビルドログでHugo 0.166.0と`build-pages.sh`の環境・baseURL、出力`public`を確認する。Hugoによるサイト生成はPages内で行う。GitHub Actionsで生成する検査用fixtureをアップロードする構成ではない。
+4. 対象コミット・deployment ID・URL・ビルド時刻を照合し、外部shortcode取得の警告と入力エラーを区別する。本番へのマージは必要な移行確認と必須CI成功後に行い、マージ後にPagesの実本番応答を検証する。
 5. previewのホーム・記事・About・一覧2ページ目で、HTTPのnoindex、HTMLのnoindex、preview自身のcanonical/OGP/RSS、共有無効・スターなしを確認する。存在しないURLの404とfeed.xmlの301も確認する。
 6. 本番で公開URL・RSS GUID・canonicalを照合し、共有先とスターの対象が公開URLであること、外部4サービスが表示されることを確認する。投稿確定やスター追加は行わない。
 7. 両環境で配信CSS/JSのURLにfingerprintがあり、minifyされ、source map参照も`.map`配信もないことを確認する。各レスポンスと対象ファイルのハッシュを保存する。

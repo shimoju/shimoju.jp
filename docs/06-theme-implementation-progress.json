@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T07:36:18.887228+00:00",
+  "updated_at": "2026-09-18T07:44:43.208262+00:00",
   "stage": "final_verification",
-  "summary": "本番必須CIとPages即時previewを設定済み。6f100d5のpreviewは42秒で成功。CIは横幅の等値条件で239/240となり、T036で超過だけを失敗とする条件へ修正。局所3エンジン再検証成功、全CIはT038で再実行。本番未更新・実機未完了。",
+  "summary": "本番はGitHub必須CI後のPRマージ→Pages自動配信、previewはCI待機なしの自動配信を設定・検証済み。65d32a6のGitHub統合検査は全240件成功、同一SHAのPages previewも成功。F018/F020解決。本番masterは未更新。4端末6環境の実機手順を依頼済み、実機残件・本番移行・旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T038",
-    "action": "65d32a6のGitHub run35319638046とPagesチェックを完了まで追跡。ユーザーへ実機確認の基本手順を依頼済み、回答はT015へ反映する。"
+    "task_id": "T015",
+    "action": "固定preview59e83710/6f100d5で依頼したWindows3ブラウザ・iPhone/iPad Safari・Android Chromeの実機結果を受領・記録する。Macの実フォント・拡大・コピー等も残る。実機完了後はT017本番移行確認、T018旧テーマ整理へ進む。"
   },
   "tasks": [
     {
@@ -778,10 +778,10 @@
         "themes/shsh/docs/verification/cloudflare-pages.md",
         "themes/shsh/docs/verification/t017/"
       ],
-      "verification_ids": ["V042", "V045", "V047", "V048"],
+      "verification_ids": ["V042", "V045", "V047", "V048", "V058"],
       "review_ids": [],
-      "blocked_by": ["F018"],
-      "next_action": "T034でmaster必須CIとPages自動previewを接続し実配信を確認する。本番反映・実機残項目は引き続き未完了。"
+      "blocked_by": [],
+      "next_action": "previewの実配信と本番必須CI設定は確認済み。実機確認後、必須チェック成功のPRをmasterへ統合し本番のURL・RSS・共有/スター・外部埋め込み・404/feed転送を確認する。本番未移行のため全体は未合格。"
     },
     {
       "id": "T018",
@@ -1377,13 +1377,13 @@
         "作業ブランチpush後のActions/checksとPages deploymentを追跡し、previewのnoindex・canonical・RSS・共有/スター・404/feed転送・アセットを検証する。"
       ],
       "commit_message": "[T034] 本番への必須CIとPages自動プレビューを接続",
-      "status": "implemented",
-      "verification_status": "blocked",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": ["themes/shsh/docs/verification/t034/"],
-      "verification_ids": ["V053"],
+      "verification_ids": ["V053", "V062"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "設定とローカル検証は成功。コミットを作業ブランチへpushして実GitHub CIと独立preview配信をT035で検証する。"
+      "next_action": "設定・対象修正の実CI/preview検証は完了。本番移行はT017、実機確認はT015で継続する。"
     },
     {
       "id": "T035",
@@ -1411,13 +1411,13 @@
         "CI失敗時はログに基づき修正し、該当コミットで再実行する。"
       ],
       "commit_message": "[T035] Linuxのスクロールバーを考慮しCI検査を修正",
-      "status": "implemented",
-      "verification_status": "failed",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": ["themes/shsh/docs/verification/t035/"],
-      "verification_ids": ["V054", "V055", "V056"],
+      "verification_ids": ["V054", "V055", "V056", "V062"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "修正をpushし必須CIを再実行する。preview実配信は確認済み、CI全体は再検証が必要。"
+      "next_action": "設定・対象修正の実CI/preview検証は完了。本番移行はT017、実機確認はT015で継続する。"
     },
     {
       "id": "T036",
@@ -1447,13 +1447,13 @@
         "修正後の該当テストを3エンジンで再実行し、人工的な横はみ出しを検出できることも確認する。"
       ],
       "commit_message": "[T036] 横はみ出し検査の等値条件を修正し再配信を記録",
-      "status": "implemented",
-      "verification_status": "failed",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": ["themes/shsh/docs/verification/t036/"],
-      "verification_ids": ["V057", "V058", "V059"],
+      "verification_ids": ["V057", "V058", "V059", "V062"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "修正をpushし、T038でGitHub CI全体を再検証する。"
+      "next_action": "設定・対象修正の実CI/preview検証は完了。本番移行はT017、実機確認はT015で継続する。"
     },
     {
       "id": "T037",
@@ -1493,7 +1493,10 @@
         "docs/04-theme-implementation-requirements.md: Q24",
         "docs/05-theme-implementation-discipline.md: Q6"
       ],
-      "scope": ["T036の修正コミットをpushし、全CIの結果と独立previewチェックを追跡する。"],
+      "scope": [
+        "T036の修正コミットをpushし、全CIの結果と独立previewチェックを追跡する。",
+        "現行の配信確認手順を採用済み方式と実検証結果へ揃え、旧Actions配信手順とは区別する。"
+      ],
       "depends_on": ["T036"],
       "acceptance_criteria": [
         "shsh-checkが全240件を含む統合検査に成功する。",
@@ -1504,13 +1507,13 @@
         "Pagesチェックの対象SHAと配信成功を照合する。"
       ],
       "commit_message": "[T038] 必須CIの全検査成功を記録",
-      "status": "in_progress",
-      "verification_status": "not_run",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": ["themes/shsh/docs/verification/t038/"],
-      "verification_ids": [],
+      "verification_ids": ["V062"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "65d32a6の全GitHub CIとPages配信を追跡する。"
+      "next_action": "設定・対象修正の実CI/preview検証は完了。本番移行はT017、実機確認はT015で継続する。"
     },
     {
       "id": "T039",
@@ -1989,17 +1992,17 @@
     },
     {
       "id": "F018",
-      "title": "CI合格を配信の前提にする接続が未設定",
-      "task_ids": ["T017", "T030", "T034"],
-      "status": "approved",
+      "title": "本番へのCI必須条件が未設定",
+      "task_ids": ["T017", "T030", "T034", "T038"],
+      "status": "resolved",
       "requires_user_decision": false,
-      "observation": "Cloudflareはmaster自動配信・全非本番ブランチpreview。GitHub masterのbranch protectionなし（404）、実効rulesetなし。shsh workflowに配信依存なし。 T030でcheck依存の配信をローカル準備済み。GitHub Secret/variable一覧は空で、実設定の切替と配信は未実施。 その後2026-09-18T05:39:30ZにCLOUDFLARE_API_TOKENが登録されたことをSecret名/更新時刻のAPI応答とユーザーの「登録しました」で確認。有効化と実配信は未実施。",
+      "observation": "Cloudflareはmaster自動配信・全非本番ブランチpreview。GitHub masterのbranch protectionなし（404）、実効rulesetなし。shsh workflowに配信依存なし。 T030でcheck依存の配信をローカル準備済み。GitHub Secret/variable一覧は空で、実設定の切替と配信は未実施。 その後2026-09-18T05:39:30ZにCLOUDFLARE_API_TOKENが登録されたことをSecret名/更新時刻のAPI応答とユーザーの「登録しました」で確認。有効化と実配信は未実施。 T034でmaster必須CI・PR・最新ベース・管理者適用を設定しPages自動配信を維持。T038で65d32a6の全240検査成功と、先行するPages preview成功を照合した。",
       "evidence_refs": [
         "themes/shsh/docs/verification/t029/settings-observation.json",
         "themes/shsh/docs/verification/t029/github-ci-gates.json",
         ".github/workflows/shsh.yml"
       ],
-      "impact": "GitHub検査失敗や実行中でもCloudflare側で先に公開される可能性があり、公開前CIの保証がない。",
+      "impact": "本番への変更は必須CI成功後のPRマージを要求する。previewはユーザーの選択どおりCI完了前に公開される。",
       "recommendation": "masterへのPR必須・最新masterとの検査成功必須・管理者にも適用を設定し、Pages本番/preview自動配信を維持する。",
       "decision": {
         "outcome": "本番はGitHub必須チェック後のマージとPages自動配信、previewはCI待機なしのPages自動配信を採用",
@@ -2011,9 +2014,10 @@
       "resolution_refs": [
         ".github/workflows/shsh.yml",
         "themes/shsh/scripts/build-pages.sh",
-        "themes/shsh/docs/verification/cloudflare-pages.md"
+        "themes/shsh/docs/verification/cloudflare-pages.md",
+        "themes/shsh/docs/verification/t038/README.md"
       ],
-      "verification_ids": ["V047", "V048"]
+      "verification_ids": ["V047", "V048", "V062"]
     },
     {
       "id": "F019",
@@ -2041,10 +2045,10 @@
     {
       "id": "F020",
       "title": "Linuxの縦スクロールバー幅を横はみ出しと誤判定",
-      "task_ids": ["T035", "T036"],
-      "status": "open",
+      "task_ids": ["T035", "T036", "T038"],
+      "status": "resolved",
       "requires_user_decision": false,
-      "observation": "初回GitHub CIは239成功・1失敗。prose.spec.tsがdocumentElement.scrollWidth=1265をviewport設定1280と比較した。Linux Chromiumでは通常スクロールバー15pxを除いたclientWidthが表示領域となる。 6f100d5の再検証でもscrollWidth=1265、clientWidth=1280で239/240。clientWidthへの変更だけでは不十分だった。scrollbar-gutter: stableのあるルートで内容が狭いケースを等値条件が誤判定している。",
+      "observation": "初回GitHub CIは239成功・1失敗。prose.spec.tsがdocumentElement.scrollWidth=1265をviewport設定1280と比較した。当初はclientWidthへの変更で解消すると考えたが、次の実CIでこの修正だけでは不十分と判明した。 6f100d5の再検証でもscrollWidth=1265、clientWidth=1280で239/240。clientWidthへの変更だけでは不十分だった。scrollbar-gutter: stableのあるルートで内容が狭いケースを等値条件が誤判定している。 T036でscrollWidth <= clientWidthへ修正後、65d32a6のLinux全CIが240/240で成功した。",
       "evidence_refs": [
         "themes/shsh/docs/verification/t035/initial-ci-failure.log",
         "themes/shsh/docs/verification/t036/ci-failure.log"
@@ -2058,8 +2062,11 @@
         "recorded_at": "2026-09-18T07:09:49.489298+00:00",
         "source": "docs/05-theme-implementation-discipline.md Q1; CI failure 35316825816"
       },
-      "resolution_refs": ["themes/shsh/tests/prose.spec.ts"],
-      "verification_ids": ["V054", "V057", "V059"]
+      "resolution_refs": [
+        "themes/shsh/tests/prose.spec.ts",
+        "themes/shsh/docs/verification/t038/README.md"
+      ],
+      "verification_ids": ["V054", "V057", "V059", "V062"]
     }
   ],
   "reviews": [
@@ -3643,6 +3650,32 @@
       "evidence_refs": ["themes/shsh/docs/verification/t039/copy-observation.json"],
       "recorded_at": "2026-09-18T07:36:18.887228+00:00",
       "supersedes": null
+    },
+    {
+      "id": "V062",
+      "task_ids": ["T034", "T035", "T036", "T038"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q4",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33"
+      ],
+      "kind": "必須CIの全検査成功と独立Pages previewの照合",
+      "result": "passed",
+      "subject_ref": "65d32a6861bdb5a8903bd47cd642d3fdde424017 / run 35319638046 / Pages f2132c00-5713-4b17-b768-82d0fc9d6d61",
+      "environment": "GitHub Actions ubuntu-24.04; Node24; pnpm12.4.1; Hugo0.166.0; Playwright Chromium/Firefox/WebKit; Cloudflare Pages Git integration",
+      "procedure": "GitHub統合検査の静的・生成物・全ブラウザ240件成功。ブラウザ11.0分、job13分16秒。shsh-check App15368と保護設定の提供元・名称が一致。同一SHAのPages previewはCI実行中に成功。F020の等値誤判定は解消。本番へのマージ・公開は行わず、実機確認も代替しない。後続T037/T039は文書・検証記録のみでテーマ・CI実装の変更はない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t038/ci-run.json",
+        "themes/shsh/docs/verification/t038/ci-success.log",
+        "themes/shsh/docs/verification/t038/initial-checks.json",
+        "themes/shsh/docs/verification/t038/final-checks.json",
+        "themes/shsh/docs/verification/t038/README.md",
+        "themes/shsh/docs/verification/t036/master-protection.json",
+        "https://github.com/shimoju/shimoju.jp/actions/runs/35319638046"
+      ],
+      "recorded_at": "2026-09-18T07:44:43.208262+00:00",
+      "supersedes": "V057"
     }
   ]
 }
