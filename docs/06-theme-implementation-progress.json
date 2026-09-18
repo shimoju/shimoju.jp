@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T13:39:06.044824+00:00",
+  "updated_at": "2026-09-18T13:44:17.076745+00:00",
   "stage": "final_verification",
-  "summary": "本番移行用draft PR #5を作成し、最新CI/previewを開始。Mac実機の追加確認は記録済み。Safari YouTube回答待ち・他実機残件が残り、本番移行と旧テーマ整理は未完了。",
+  "summary": "Draft PR #5の9f17369はCI実行中、Pages preview成功。Firefox追加検査は描画不一致が再現しユーザー実機確認を依頼。Safari YouTube等の回答待ちと他実機残件、本番移行・旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T017",
-    "action": "PR #5の最新headに対するGitHub CI/Pagesを追跡する。並行してT015の実機残件を解消し、マージ前条件を揃える。"
+    "action": "PR #5 / 9f17369のCI run35351594030を追跡し、最新previewを照合する。Safari/Firefox実機回答も反映する。"
   },
   "tasks": [
     {
@@ -730,7 +730,8 @@
         "V099",
         "V100",
         "V101",
-        "V102"
+        "V102",
+        "V104"
       ],
       "review_ids": [],
       "blocked_by": [],
@@ -1940,7 +1941,8 @@
         "V099",
         "V100",
         "V101",
-        "V102"
+        "V102",
+        "V104"
       ],
       "review_ids": [],
       "blocked_by": [],
@@ -2039,10 +2041,10 @@
       "status": "implemented",
       "verification_status": "blocked",
       "artifact_refs": ["themes/shsh/docs/verification/t053/"],
-      "verification_ids": ["V097"],
+      "verification_ids": ["V097", "V104"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "FirefoxのAXと画像の不一致が解消してから、未実施の文字設定・和文コード・JS無効確認を再開する。ユーザーの既存タブを伴うブラウザ再起動はしていない。"
+      "next_action": "T059でもFirefoxのUI/画像不一致を再確認。設定未変更・専用タブ閉鎖済み。文字32/和文コード/JS無効の実機確認をユーザーへ依頼した。"
     },
     {
       "id": "T054",
@@ -2201,6 +2203,40 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "Draft PR #5を作成済み。記録をpushし最新headのCI/previewを追跡する。実機残件解消後に本番移行する。"
+    },
+    {
+      "id": "T059",
+      "title": "Firefox実機の追加確認を再開",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "scope": [
+        "T053で実行できなかったFirefoxの文字設定・和文コード・JS無効と、残る操作/埋め込みをネイティブUIで確認する。"
+      ],
+      "depends_on": ["T053"],
+      "acceptance_criteria": [
+        "実行可能な項目の設定値・実結果と証拠を保存し、確認できない項目を区別する。",
+        "専用タブ・変更設定を復元する。"
+      ],
+      "verification_plan": [
+        "現在のウィンドウ画像とページ状態を照合し、新規タブの遷移が描画されることを確認する。",
+        "設定の文字サイズ32、Inspectorの和文コードFonts、JS無効時の本文/ナビ/RSSを確認し元へ戻す。",
+        "可能ならキーボード・動画・外部4サービスの実表示を確認する。",
+        "整形・進捗検査・差分確認後にコミットする。"
+      ],
+      "commit_message": "[T059] Firefox実機の追加確認結果を記録",
+      "status": "implemented",
+      "verification_status": "blocked",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/t059/observation.json",
+        "themes/shsh/docs/verification/t059/settings-mismatch.jpg"
+      ],
+      "verification_ids": ["V104"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "Firefoxの3項目（文字32/和文コード実フォント/JS無効）をユーザーへ依頼済み。ツールの描画不一致が解消するまで同じ操作を繰り返さず、回答を反映する。"
     }
   ],
   "findings": [
@@ -5205,6 +5241,25 @@
       ],
       "recorded_at": "2026-09-18T13:39:06.044824+00:00",
       "supersedes": null
+    },
+    {
+      "id": "V104",
+      "task_ids": ["T015", "T050", "T053", "T059"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "Firefox実機UI制約の再確認と実機確認依頼",
+      "result": "blocked",
+      "subject_ref": "Firefox about:preferences#general / T059",
+      "environment": "macOS / ネイティブFirefox / CUA",
+      "procedure": "開始時の画像は固定previewホームで前回と異なるため専用設定タブを開いた。AXは設定タブ・URLに更新されたが画像は元のホームのままでページ内容も取得できず。設定変更なし・サイト試験なし。専用タブ閉鎖後の最新AXで設定タブ/URL消失と元サイトタブ維持を確認。文字サイズ32/和文コード実フォント/JS無効をユーザーへ具体的に依頼。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t059/observation.json",
+        "themes/shsh/docs/verification/t059/settings-mismatch.jpg"
+      ],
+      "recorded_at": "2026-09-18T13:44:17.076745+00:00",
+      "supersedes": "V097"
     }
   ]
 }
