@@ -26,7 +26,8 @@
     "build:full-review": "node scripts/build-full-review.ts",
     "build:site-fixture": "node scripts/build-site-fixture.ts",
     "check:site-inputs": "node scripts/verify-site-inputs.ts",
-    "check:site-output": "node scripts/verify-site-output.ts"
+    "check:site-output": "node scripts/verify-site-output.ts",
+    "review:full": "pnpm build:site-fixture && node scripts/build-site-fixture.ts --live && node scripts/build-review-submission.ts && SHSH_REVIEW_SERVER=full node scripts/serve-fixtures.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

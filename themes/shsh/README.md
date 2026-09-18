@@ -39,3 +39,5 @@ pnpm review
 検証ログ中の古いパス・実行コマンドは実施時点の記録。T021でこの配置へ移動した。現在の実行手順とリンクは[開発環境](docs/verification/toolchain.md)および[修正レビュー](docs/verification/r003-review.md)に従う。
 
 全画面の途中成果は[T010の比較と残件](docs/verification/full-screen-expansion.md)を参照する。`pnpm check`後に`node scripts/build-full-review-report.ts`で40画面の提出物を生成できる。F014のAbout表見出しは判断待ちで、検査も未合格として保持している。
+
+全画面レビューR002は[レビュー手順](docs/verification/r002-review.md)と[入口](http://127.0.0.1:4210/r002/)を参照する。`pnpm review:full`で全記事の本番同等previewと、About見出しの隔離修正案を起動する。F014の判断前は実際のAboutを変更せず、統合検査の不合格3件も保持する。

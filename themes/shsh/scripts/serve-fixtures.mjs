@@ -17,32 +17,41 @@ const types = {
   ".json": "application/json",
   ".xml": "application/xml",
 };
-const directories = process.env.SHSH_REVIEW_SERVER
-  ? /** @type {[number, string][]} */ ([
-      [4184, "docs/verification"],
-      [4185, ".cache/review/production"],
-      [4186, ".cache/review/preview"],
-      [4187, "../../mock/site"],
-    ])
-  : /** @type {[number, string][]} */ ([
-      [4174, ".cache/representative/production"],
-      [4175, ".cache/representative/preview"],
-      [4176, ".cache/representative/development"],
-      [4177, "../../mock/site"],
-      [4178, ".cache/prose/public"],
-      [4179, ".cache/media/production"],
-      [4180, ".cache/sharing/production"],
-      [4181, ".cache/sharing/preview"],
-      [4182, ".cache/review/production"],
-      [4183, ".cache/review/preview"],
-      [4188, ".cache/full-review/pagination/public"],
-      [4189, ".cache/full-review/empty/public"],
-      [4195, ".cache/full-review/single/public"],
-      [4196, ".cache/site/production"],
-      [4197, ".cache/site/preview"],
-      [4198, ".cache/site-live/production"],
-      [4199, ".cache/site-live/preview"],
-    ]);
+const directories =
+  process.env.SHSH_REVIEW_SERVER === "full"
+    ? /** @type {[number, string][]} */ ([
+        [4210, "docs/verification"],
+        [4211, ".cache/site/preview"],
+        [4212, ".cache/site-live/preview"],
+        [4213, ".cache/r002/proposal"],
+        [4214, "../../mock/site"],
+      ])
+    : process.env.SHSH_REVIEW_SERVER
+      ? /** @type {[number, string][]} */ ([
+          [4184, "docs/verification"],
+          [4185, ".cache/review/production"],
+          [4186, ".cache/review/preview"],
+          [4187, "../../mock/site"],
+        ])
+      : /** @type {[number, string][]} */ ([
+          [4174, ".cache/representative/production"],
+          [4175, ".cache/representative/preview"],
+          [4176, ".cache/representative/development"],
+          [4177, "../../mock/site"],
+          [4178, ".cache/prose/public"],
+          [4179, ".cache/media/production"],
+          [4180, ".cache/sharing/production"],
+          [4181, ".cache/sharing/preview"],
+          [4182, ".cache/review/production"],
+          [4183, ".cache/review/preview"],
+          [4188, ".cache/full-review/pagination/public"],
+          [4189, ".cache/full-review/empty/public"],
+          [4195, ".cache/full-review/single/public"],
+          [4196, ".cache/site/production"],
+          [4197, ".cache/site/preview"],
+          [4198, ".cache/site-live/production"],
+          [4199, ".cache/site-live/preview"],
+        ]);
 /** @type {ReturnType<typeof createServer>[]} */
 const servers = [];
 for (const [port, directory] of directories) {

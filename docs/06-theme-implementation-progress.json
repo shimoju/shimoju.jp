@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T02:39:19.844586+00:00",
+  "updated_at": "2026-09-18T02:49:19.140338+00:00",
   "stage": "full_implementation",
-  "summary": "T012/T013の入力・全公開出力照合を実装し、T016の性能測定は全10試行で目標達成。統合検査は有効237/240、F014のAbout空th3件がユーザー判断待ち。全画面と検証・残件をT014でR002へ提出する。実機・GitHubホスト実行・Cloudflare配信は未完了。",
+  "summary": "R002の全画面レビュー入口を用意し、F014のAbout見出し修正案を隔離表示して判断を依頼。提案は3エンジン両幅/両配色でaxe違反0、本番Aboutは未変更で統合の既知3不合格を保持。移行照合・性能は記録済み。レビュー待ちに独立したT015実機確認の準備を進める。",
   "latest_review_id": "R004",
   "resume": {
-    "task_id": "T014",
-    "action": "全画面レビュー入口をまとめ、T010比較・T012/T013移行・T016性能とF014を提示する。Aboutの判断待ちと実機/配信の未実施を明記してレビューを依頼する。"
+    "task_id": "T015",
+    "action": "R002/F014の回答を優先して反映する。並行して実機のSafari・OS固有フォント・文字拡大等の手順と記録表を用意し、利用できる実環境を確認する。"
   },
   "tasks": [
     {
@@ -648,16 +648,25 @@
       ],
       "verification_plan": [
         "全画面・両配色・PC/モバイルと構造の対応表を点検する。",
-        "提出時はimplemented、承認前はcompleteにしない。"
+        "提出時はimplemented、承認前はcompleteにしない。",
+        "F014の見出し修正案を隔離fixtureで生成し、元のAboutとPC/モバイル・両配色の表画像を並べる。本番入力は判断まで変更しない。",
+        "全画面比較・移行照合・性能・残件をまとめたレビュー入口と実サービスありのpreviewをローカルで提供し、リンクと提案のaxeを確認する。"
       ],
       "commit_message": "[T014] 全画面の一貫性と残件をレビューへ提出",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "status": "implemented",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/r002/index.html",
+        "themes/shsh/docs/verification/r002-review.md",
+        "themes/shsh/docs/verification/r002/proposal-verification.json",
+        "themes/shsh/scripts/build-review-submission.ts",
+        "themes/shsh/scripts/verify-review-submission.ts",
+        "themes/shsh/docs/verification/r002-verification.log"
+      ],
+      "verification_ids": ["V039"],
       "review_ids": ["R002"],
-      "blocked_by": [],
-      "next_action": "全画面比較・検査証拠・未確認の実機/性能/配信条件を提出しR002を依頼する。"
+      "blocked_by": ["F014"],
+      "next_action": "R002の全画面とF014の隔離修正案への判断を待つ。承認後はF014を後続タスクで反映し、比較・axe・移行検査を再実行する。独立してT015の実機手順を準備する。"
     },
     {
       "id": "T015",
@@ -1360,20 +1369,22 @@
     {
       "id": "F014",
       "title": "About業務経験表の空の列見出しがアクセシビリティ検査で不合格",
-      "task_ids": ["T010", "T012", "T013"],
+      "task_ids": ["T010", "T012", "T013", "T014"],
       "status": "awaiting_decision",
       "requires_user_decision": true,
       "observation": "AboutのMarkdown表は「| 業務経験 | | |」で、生成HTMLの2つのthが空。全画面axeでempty-table-headerを検出。凍結モックにも同じ入力がある。",
       "evidence_refs": [
         "content/about.md",
         "themes/shsh/docs/verification/t010-check.log",
-        "themes/shsh/docs/verification/t010/axe.json"
+        "themes/shsh/docs/verification/t010/axe.json",
+        "themes/shsh/docs/verification/r002/index.html",
+        "themes/shsh/docs/verification/r002/proposal-verification.json"
       ],
       "impact": "コード色以外のaxe例外は認めないQ23を満たさない。列見出し追加は表示と内容を変えるためQ1のユーザー判断が必要。",
       "recommendation": "見出しを「業務経験／技術／経験年数」にする。経歴・年数は維持し、About両幅/両配色とaxeを再検証。凍結モックは更新せず承認差分として記録する。",
       "decision": null,
       "resolution_refs": [],
-      "verification_ids": ["V029", "V031", "V036"]
+      "verification_ids": ["V029", "V031", "V036", "V039"]
     },
     {
       "id": "F015",
@@ -1496,7 +1507,7 @@
       "id": "R002",
       "title": "全画面の一貫性と検証結果・残件のレビュー",
       "task_ids": ["T010", "T011", "T012", "T013", "T014"],
-      "status": "not_ready",
+      "status": "requested",
       "artifact_refs": [
         "themes/shsh/docs/verification/metadata-and-feeds.md",
         "themes/shsh/docs/verification/full-screen-expansion.md",
@@ -1505,9 +1516,15 @@
         "themes/shsh/docs/verification/t010-port-recheck.log",
         "themes/shsh/docs/verification/site-input-migration.md",
         "themes/shsh/docs/verification/output-migration.md",
-        "themes/shsh/docs/verification/mobile-performance.md"
+        "themes/shsh/docs/verification/mobile-performance.md",
+        "themes/shsh/docs/verification/r002/index.html",
+        "themes/shsh/docs/verification/r002-review.md",
+        "themes/shsh/docs/verification/r002/proposal-verification.json",
+        "themes/shsh/scripts/build-review-submission.ts",
+        "themes/shsh/scripts/verify-review-submission.ts",
+        "themes/shsh/docs/verification/r002-verification.log"
       ],
-      "verification_ids": ["V022", "V030", "V031", "V032", "V033", "V036", "V037", "V038"],
+      "verification_ids": ["V022", "V030", "V031", "V032", "V033", "V036", "V037", "V038", "V039"],
       "finding_ids": ["F014", "F015", "F016", "F017"],
       "decision": null,
       "supersedes": null
@@ -2532,6 +2549,39 @@
         "themes/shsh/docs/verification/t016-build.log"
       ],
       "recorded_at": "2026-09-18T02:39:19.844586+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V039",
+      "task_ids": ["T014"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q1",
+        "docs/05-theme-implementation-discipline.md: Q4",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q7",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "全画面レビュー提出物とF014隔離修正案の確認",
+      "result": "passed",
+      "subject_ref": "6b843b5 + T014のレビュー入口・隔離fixture・検証画像差分",
+      "environment": "macOS27 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Chromium153/Firefox155/WebKit26.6; 1440/390px・両配色",
+      "procedure": "現状/提案の24条件を確認。元のAboutはempty-table-headerを保持、隔離案12条件はaxe違反0・横溢れなし。PC/モバイル両配色の表画像8枚、レビュー全体PC/モバイル画像を保存。初回は2表を一括取得した検査セレクターを対象表へ限定して再実行。入口の28リンクはHTTP200。提案生成後も本番Aboutのバイト不変。人のR002判断・F014本番反映・実機/Cloudflare検証は未実施。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/r002/index.html",
+        "themes/shsh/docs/verification/r002-review.md",
+        "themes/shsh/docs/verification/r002/proposal-verification.json",
+        "themes/shsh/scripts/build-review-submission.ts",
+        "themes/shsh/scripts/verify-review-submission.ts",
+        "themes/shsh/docs/verification/r002-verification.log",
+        "themes/shsh/docs/verification/r002-verification-initial.log",
+        "themes/shsh/docs/verification/r002-build.log",
+        "themes/shsh/docs/verification/r002/review.png",
+        "themes/shsh/docs/verification/r002/review-mobile.png"
+      ],
+      "recorded_at": "2026-09-18T02:49:19.140338+00:00",
       "supersedes": null
     }
   ]
