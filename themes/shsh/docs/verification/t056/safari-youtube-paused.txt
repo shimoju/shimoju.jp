@@ -1,0 +1,7 @@
+The following is a diff from the previous accessibility tree for Window: "ヒップホップユニットのミュージックビデオに出演した — shimoju.diary" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 87, 97-99
+~								120 ボタン 動画を再生
+~									123 text 経過時間 35 seconds 動画の長さ 2 minutes, 49 seconds
+~								125 スライダ (settable, float) 移動スライダー, Value: 21, Details: 21%
++			139 イメージ FaviconImageView
++			140 テキスト Value: ヒップホップユニットのミュージックビデオに出演した — shimoju.diary, ID: UnifiedTabBarButton._titleTextField

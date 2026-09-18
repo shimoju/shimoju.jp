@@ -1,0 +1,123 @@
+Window: "東京都知事選挙の投票資格がない — shimoju.diary", App: Safari.
+0 標準ウインドウ 東京都知事選挙の投票資格がない — shimoju.diary, ID: SafariWindow?IsSecure=true&UUID=35DDB2E6-0C5E-4CC5-AF8B-410472F24267, Secondary Actions: Raise
+	1 グループを分割
+		2 スプリッタ (disabled, settable, float) -1
+		3 タブグループ
+			4 スクロール領域
+				5 HTMLコンテンツ Description: 東京都知事選挙の投票資格がない — shimoju.diary, URL: 6f52990f.shimoju.pages.dev/2016/07/30/tochijisen/
+					6 container
+						7 ボタン Switch to light mode
+						8 link shimoju.diary, Value: 6f52990f.shimoju.pages.dev/
+						9 container Main navigation
+							10 link About, Value: 6f52990f.shimoju.pages.dev/about/
+							11 link Archives, Value: 6f52990f.shimoju.pages.dev/archives/
+							12 link Categories, Value: 6f52990f.shimoju.pages.dev/categories/
+							13 link Tags, Value: 6f52990f.shimoju.pages.dev/tags/
+					14 container 東京都知事選挙の投票資格がない
+						15 container
+							16 見出し 東京都知事選挙の投票資格がない, Value: 1
+								17 テキスト 東京都知事選挙の投票資格がない
+							18 テキスト 2016/07/30
+						19 テキスト 東京という世間では明日は選挙のようです。 「投票所でレアポケモンが出るよ！！」って宣伝すれば投票率上がりそうな気がする。
+						20 テキスト あと、選管がTwitter広告出してて頑張ってるなあと思った。
+						21 スクロール領域
+							22 HTMLコンテンツ Description: X Post, URL: …
+								23 container
+									24 link Xでこのポストを表示する, Value: x.com/tocho_senkyo/status/759040813254844423?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E759040813254844423%7Ctwgr%5Ed34e2ed87c8dc0fe6d5987d0a311e4bbc0016ed5%7Ctwcon%5Es1_&ref_url=https%3A%2F%2F6f52990f.shimoju.pages.dev%2F2016%2F07%2F30%2Ftochijisen%2F
+									25 link Value: twitter.com/tocho_senkyo, 東京都選挙管理委員会
+認証済みアカウント
+									26 link @tocho_senkyo, Value: twitter.com/tocho_senkyo
+									27 link フォローする, Value: x.com/intent/follow?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E759040813254844423%7Ctwgr%5Ed34e2ed87c8dc0fe6d5987d0a311e4bbc0016ed5%7Ctwcon%5Es1_&ref_url=https%3A%2F%2F6f52990f.shimoju.pages.dev%2F2016%2F07%2F30%2Ftochijisen%2F&screen_name=tocho_senkyo
+									28 link Xで表示, Value: x.com/tocho_senkyo/status/759040813254844423?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E759040813254844423%7Ctwgr%5Ed34e2ed87c8dc0fe6d5987d0a311e4bbc0016ed5%7Ctwcon%5Es1_&ref_url=https%3A%2F%2F6f52990f.shimoju.pages.dev%2F2016%2F07%2F30%2Ftochijisen%2F
+									29 テキスト いよいよ明日は東京都知事選挙の投票日！
+１８歳（誕生日が８月１日以前の方）から投票ができます。
+みなさまの１票をお待ちしております。
+
+
+									30 link #東京都知事選挙, Value: x.com/hashtag/%E6%9D%B1%E4%BA%AC%E9%83%BD%E7%9F%A5%E4%BA%8B%E9%81%B8%E6%8C%99?src=hashtag_click
+									31 link #都知事選, Value: x.com/hashtag/%E9%83%BD%E7%9F%A5%E4%BA%8B%E9%81%B8?src=hashtag_click
+									32 link #７月３１日, Value: x.com/hashtag/%EF%BC%97%E6%9C%88%EF%BC%93%EF%BC%91%E6%97%A5?src=hashtag_click
+									33 link cards.twitter.com/cards/gxgszq/1, Value: t.co/d0GEeqEoZH
+									34 link 午前0:00 · 2016年7月30日, Value: x.com/tocho_senkyo/status/759040813254844423?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E759040813254844423%7Ctwgr%5Ed34e2ed87c8dc0fe6d5987d0a311e4bbc0016ed5%7Ctwcon%5Es1_&ref_url=https%3A%2F%2F6f52990f.shimoju.pages.dev%2F2016%2F07%2F30%2Ftochijisen%2F
+									35 link X広告の情報とプライバシー, Value: help.x.com/x-for-websites-ads-info-and-privacy
+									36 link いいねしましょう。このポストには158件のいいねがあります, Value: x.com/intent/like?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E759040813254844423%7Ctwgr%5Ed34e2ed87c8dc0fe6d5987d0a311e4bbc0016ed5%7Ctwcon%5Es1_&ref_url=https%3A%2F%2F6f52990f.shimoju.pages.dev%2F2016%2F07%2F30%2Ftochijisen%2F&tweet_id=759040813254844423
+									37 link Xでこのポストに返信, Value: x.com/intent/tweet?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E759040813254844423%7Ctwgr%5Ed34e2ed87c8dc0fe6d5987d0a311e4bbc0016ed5%7Ctwcon%5Es1_&ref_url=https%3A%2F%2F6f52990f.shimoju.pages.dev%2F2016%2F07%2F30%2Ftochijisen%2F&in_reply_to=759040813254844423
+									38 ボタン リンクをコピー
+									39 link 4件の返信を読む, Value: x.com/tocho_senkyo/status/759040813254844423?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E759040813254844423%7Ctwgr%5Ed34e2ed87c8dc0fe6d5987d0a311e4bbc0016ed5%7Ctwcon%5Es1_&ref_url=https%3A%2F%2F6f52990f.shimoju.pages.dev%2F2016%2F07%2F30%2Ftochijisen%2F
+						40 テキスト それはともかく、タイトルの通り東京都知事選挙の投票資格がない。なので投票所入場券も届いていない。明日は傍観である。
+						41 見出し なんで？ Link to なんで？, Value: 2
+							42 テキスト なんで？
+							43 link Link to なんで？, Value: 6f52990f.shimoju.pages.dev/2016/07/30/tochijisen/#%e3%81%aa%e3%82%93%e3%81%a7
+						44 container
+							45 テキスト 選挙権を持っていても、実際に投票するためには、市区町村の選挙管理委員会が管理する名簿に登録されていなければならない。これを選挙人名簿と呼ぶそうで、
+							46 link 総務省のページ, Value: soumu.go.jp/senkyo/senkyo_s/naruhodo/naruhodo07.html
+							47 テキスト には以下のように書いてある。
+						48 container
+							49 テキスト 選挙権を持っていても、実際に投票するためには、市区町村の選挙管理委員会が管理する名簿に登録されていなければなりません。この名簿のことを選挙人名簿といいます。選挙人名簿は、すべての選挙に共通して使われます。これは、正しい選挙を円滑に行うための大切な制度です。 ―
+							50 link 総務省｜選挙人名簿, Value: soumu.go.jp/senkyo/senkyo_s/naruhodo/naruhodo07.html
+						51 テキスト そして引っ越しのときが曲者で、転入してから3ヶ月経たないと選挙人名簿に登録されない。選挙のときだけ転入出して意図的に投票を操作する組織票対策らしい。 引っ越したのは6月なので、この時点で現住所の区での投票資格はない。
+						52 container
+							53 テキスト 選挙人名簿に登録されるのは、その市区町村に住所を持つ年齢満20歳以上の日本国民で、その住民票がつくられた日（他の市区町村からの転入者は転入届をした日）から引き続き3力月以上、その市区町村の住民基本台帳に記録されている人です。 ―
+							54 link 総務省｜選挙人名簿, Value: soumu.go.jp/senkyo/senkyo_s/naruhodo/naruhodo07.html
+						55 テキスト ここまでなら進学や就職で引っ越したときにはよくある話ではあるのだけど、実は大学も東京だったので、以前から東京に住んでいた。東京都内の引っ越しであれば以前の住所で投票できるはずだけど、なんでこんなことに？というと、就職時に手続きの都合で一旦北海道の実家の住所に戻したため。 2月まで東京、2月〜6月まで北海道、6月から東京と転出・転入している。転出から4ヶ月後に選挙人名簿から抹消されるとのことなので、恐らく以前の東京の住所からは抹消されていることだろう。
+						56 container
+							57 テキスト 選挙人名簿に登録されている人が、次の事項にあてはまった時は、その人は名簿から抹消されます。 （1）死亡、または日本国籍を喪失したとき、ただちに抹消します。 （2）転出したときはすぐには抹消せず、転出したことを表示しておいて、転出日から4カ月を経過したときに抹消します。 （3）登録の際に、登録されるべき者でなかったとき、ただちに抹消します。 ―
+							58 link 総務省｜選挙人名簿, Value: soumu.go.jp/senkyo/senkyo_s/naruhodo/naruhodo07.html
+						59 テキスト じゃあ選挙人名簿から抹消される前だったら？と思ったけど、都内であっても3か月に2回以上引っ越すとどこからも投票できないらしく、間に挟まる市町村が他県であっても同様に見える。どちらにしろ今回は投票できなかったというところだろうか。
+						60 container
+							61 テキスト 東京都知事選挙と東京都議会議員選挙 また、都内から都内への転出であっても、3か月以内に2度以上都内の他市区町村間で引っ越した(転入届や転出届を提出している)場合は、投票することができません。例えば2月に国立市から小平市へ、3月に小平市から港区に引っ越しをした場合、4月の東京都知事選挙はどこの市区町村からも投票することができません。 ―
+							62 link 選挙人名簿と選挙権について／国立市ホームページ, Value: city.kunitachi.tokyo.jp/shisei/senkyo/seido/1465447601534.html
+						63 テキスト まあ、以前の住所で投票できたところで、わざわざ2時間かけて投票所に行くかというと……。 ここらへんの制度どうにかならないものかな。
+						64 container
+							65 container Share this article
+								66 ボタン (disabled) Share on X (unavailable in preview), Help: X
+								67 ボタン (disabled) Share on Facebook (unavailable in preview), Help: Facebook
+								68 ボタン (disabled) Share on Bluesky (unavailable in preview), Help: Bluesky
+								69 ボタン (disabled) View on Hatena Bookmark (unavailable in preview), Help: Hatena Bookmark
+							70 container Adjacent posts
+								71 link Prev 棒アイス、あれば食べちゃうからよくない, Value: 6f52990f.shimoju.pages.dev/2016/07/31/ice-cream/
+								72 link Next テレビのある生活〜ついでにChromecastとFire TV, Value: 6f52990f.shimoju.pages.dev/2016/07/29/tv-life/
+					73 container
+						74 container Follow and subscribe
+							75 link X, Value: x.com/shimoju_
+							76 link Bluesky, Value: bsky.app/profile/shimoju.jp
+							77 link GitHub, Value: github.com/shimoju
+							78 link RSS, Value: 6f52990f.shimoju.pages.dev/index.xml
+						79 テキスト © 2026 Hiroshi Shimoju
+				80 スクロールバー (settable, float) 0
+	81 ツールバー
+		82 container Secondary Actions: 前に移動, 次に移動, ツールバーから削除
+			83 ボタン Description: サイドバーを表示, Help: サイドバーを表示します, ID: SidebarButton
+			84 メニューボタン Description: タブグループピッカー, ID: TabGroupPickerButton?TabGroup=
+		85 container BackForwardSegmentedControl
+			86 ボタン Description: 戻る, Help: 前のページを表示します, ID: BackButton
+			87 ボタン (disabled) Description: 進む, Help: 次のページを表示します, ID: ForwardButton
+		88 container Secondary Actions: 前に移動, 次に移動, ツールバーから削除
+			89 ボタン ページメニュー, ID: AssistantButton
+			90 ボタン ページをリーディングリストに追加します, ID: OneStepBookmarkingButton
+			91 テキストフィールド (settable) Description: スマート検索フィールド, Value: https://6f52990f.shimoju.pages.dev/2016/07/30/tochijisen/, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			92 ボタン 翻訳を利用できます, ID: TranslationButton
+			93 ボタン このページを再読み込み, ID: ReloadButton
+		94 ボタン Description: 共有, ID: ShareButton, Secondary Actions: 前に移動, 次に移動, ツールバーから削除
+		95 ボタン Description: 新規タブ, ID: NewTabButton, Secondary Actions: 前に移動, 次に移動, ツールバーから削除
+		96 ボタン Description: タブの概要, ID: TabOverviewButton, Secondary Actions: 前に移動, ツールバーから削除
+	97 タブグループ Description: タブバー、2個のタブ, ID: TabBar?isSeparate=false
+		98 タブ 2026年、開発環境を一新した。Ghostty、herdr、Neovim、mise、そして自作Zshプロンプト — shimoju.diary, Value: off, Secondary Actions: タブを閉じる, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			99 イメージ FaviconImageView
+			100 テキスト Value: 2026年、開発環境を一新した。Ghostty、herdr、Neovim、mise、そして自作Zshプロンプト — shimoju.diary, ID: UnifiedTabBarButton._titleTextField
+		101 タブ 東京都知事選挙の投票資格がない — shimoju.diary, Help: このボタンの項目を操作するには、Control+Option+Shift+下矢印キーを押します。, Value: on, Secondary Actions: タブを閉じる, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			102 イメージ FaviconImageView
+			103 テキスト Value: 東京都知事選挙の投票資格がない — shimoju.diary, ID: UnifiedTabBarButton._titleTextField
+	104 閉じるボタン
+	105 フルスクリーンボタン Help: このボタンにはウインドウを拡大する操作もあります, Secondary Actions: ウインドウを拡大
+	106 しまうボタン
+107 menu bar
+	108 Safari
+	109 ファイル
+	110 編集
+	111 表示, ID: SafariViewMenu
+	112 履歴
+	113 ブックマーク, ID: SafariBookmarksMenu
+	114 開発
+	115 ウインドウ, ID: SafariWindowMenu
+	116 ヘルプ, ID: SafariHelpMenu

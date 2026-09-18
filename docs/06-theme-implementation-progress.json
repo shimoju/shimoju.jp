@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T13:17:10.942832+00:00",
+  "updated_at": "2026-09-18T13:28:58.362551+00:00",
   "stage": "final_verification",
-  "summary": "Windows追加報告とSafariの文字拡大・キーボード・動画実機確認を反映。旧master/PaperModの復元生成と切り戻し手順も準備済み。Firefox追加検査は描画不一致で未実施。残る実機項目、本番移行、旧テーマ整理は未完了。",
+  "summary": "Macの外部埋め込みを追加確認。Chrome4サービスとSafari3サービスは表示確認済み。Safari YouTubeの映像は実画面の回答待ち。残る実機項目、本番移行、旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "Safari動画は確認済み。残る実フォント・外部埋め込み等の実機証拠と本番移行の条件を揃える。"
+    "action": "Safari YouTubeの回答を反映し、実機の残件と本番移行条件を揃える。"
   },
   "tasks": [
     {
@@ -727,11 +727,13 @@
         "V095",
         "V096",
         "V097",
-        "V099"
+        "V099",
+        "V100",
+        "V101"
       ],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Windows追加報告、Safari文字拡大・キーボード・動画の実機確認を記録済み。Safari実フェイス・外部埋め込み等の残件を継続し、Firefoxの描画不一致を解消後に追加検査する。本番共有/スターはT017で確認する。"
+      "next_action": "Mac Chromeの4サービス、SafariのX/Instagram/Speaker DeckとYouTube操作をT056で確認。Safari YouTube映像はユーザー回答待ち。実フェイス・他環境の埋め込み/操作等の残件を継続する。"
     },
     {
       "id": "T016",
@@ -1925,10 +1927,22 @@
       "status": "implemented",
       "verification_status": "blocked",
       "artifact_refs": ["themes/shsh/docs/verification/t050/"],
-      "verification_ids": ["V088", "V089", "V090", "V091", "V094", "V095", "V096", "V097", "V099"],
+      "verification_ids": [
+        "V088",
+        "V089",
+        "V090",
+        "V091",
+        "V094",
+        "V095",
+        "V096",
+        "V097",
+        "V099",
+        "V100",
+        "V101"
+      ],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Safari文字拡大・キーボードと動画の映像/再生/一時停止を確認済み。Safari実フェイス・外部埋め込み・Chrome/Firefox追加項目は継続する。FirefoxはT053の描画不一致が残る。"
+      "next_action": "Mac Chromeの4サービス、SafariのX/Instagram/Speaker DeckとYouTube操作をT056で確認。Safari YouTube映像はユーザー回答待ち。実フェイス・他環境の埋め込み/操作等の残件を継続する。"
     },
     {
       "id": "T051",
@@ -2092,6 +2106,36 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "Safari動画の確認待ちは解消。実機全体はT015の残件を継続する。"
+    },
+    {
+      "id": "T056",
+      "title": "Mac実機の外部埋め込み表示を確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "scope": [
+        "固定previewのSafari/ChromeでX・Instagram・YouTube・Speaker Deckの表示と本文の読書継続を確認する。"
+      ],
+      "depends_on": ["T050"],
+      "acceptance_criteria": [
+        "各対象の実表示・サービス制約とテーマ側の崩れを区別して証拠を残す。",
+        "使用した専用タブを閉じ、未確認の項目へ一般化しない。"
+      ],
+      "verification_plan": [
+        "実機手順の4記事をネイティブブラウザで開き、埋め込みと周囲の本文を画面・AXで確認する。",
+        "表示可能な動画/スライドは再生停止/ページ送りを確認し、外部側の制限はその表示を記録する。",
+        "整形・進捗検査・差分確認後にコミットする。"
+      ],
+      "commit_message": "[T056] Mac実機の外部埋め込み表示を記録",
+      "status": "implemented",
+      "verification_status": "blocked",
+      "artifact_refs": ["themes/shsh/docs/verification/t056/README.md"],
+      "verification_ids": ["V100", "V101"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "Chrome4サービスとSafari3サービス・YouTube再生停止を確認済み。Safari YouTubeの映像視認はユーザー回答待ち。"
     }
   ],
   "findings": [
@@ -5017,6 +5061,46 @@
       "evidence_refs": ["themes/shsh/docs/verification/t055/safari-report.json"],
       "recorded_at": "2026-09-18T13:17:10.942832+00:00",
       "supersedes": "V096"
+    },
+    {
+      "id": "V100",
+      "task_ids": ["T015", "T050", "T056"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "Mac Safari/Chromeの外部埋め込み実表示と操作",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/",
+      "environment": "macOS27.0 / Safari27.0・Chrome153.0.8010.53（T050の同一環境）/ CUAネイティブ・Chrome拡張接続",
+      "procedure": "XとInstagramのカード/写真を両ブラウザで視認。Speaker Deck表紙→次ページを両方で確認。Chrome YouTubeの映像・再生・一時停止を確認。Safari YouTubeは再生24秒→一時停止35秒の操作状態を確認。周囲の本文に重なり/横はみ出しなし。ダークの代表4記事に限定、Safari YouTube映像は除外。専用タブを閉じ設定変更なし。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t056/README.md",
+        "themes/shsh/docs/verification/t056/"
+      ],
+      "recorded_at": "2026-09-18T13:28:58.362551+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V101",
+      "task_ids": ["T015", "T050", "T056"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "Safari YouTube映像取得の制約",
+      "result": "blocked",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/2016/08/31/hiphop-music-video/",
+      "environment": "macOS Safari / CUAネイティブUI",
+      "procedure": "プレーヤーと再生時間進行・停止状態は確認したが、取得画像は黒く映像を視認できなかった。ユーザーへ実画面で映像が見えるか依頼。原因は断定せず、開発環境記事のローカルMP4のユーザー確認を別動画へ一般化しない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t056/safari-youtube-result.jpg",
+        "themes/shsh/docs/verification/t056/README.md"
+      ],
+      "recorded_at": "2026-09-18T13:28:58.362551+00:00",
+      "supersedes": null
     }
   ]
 }

@@ -1,0 +1,23 @@
+Browser tab: 1686903633, Title: "「チリチリ」という、渋谷のカレー屋 — shimoju.diary", URL: "https://6f52990f.shimoju.pages.dev/2016/08/01/tiritiri-curry/".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 19
++		43 AXWebArea Instagram, URL: instagram.com/p/BEaM_1qskRu/embed/captioned/?cr=1&v=14&wp=1080&rd=https%3A%2F%2F6f52990f.shimoju.pages.dev&rp=%2F2016%2F08%2F01%2Ftiritiri-curry%2F#%7B%22ci%22%3A0%2C%22os%22%3A540.3999999761581%2C%22ls%22%3A79.7999999821186%2C%22le%22%3A522%7D
++			44 container
++				45 link Description: shimoju_, Value: instagram.com/shimoju_/?utm_source=ig_embed&ig_rid=AejFQi3UUrdfIIkzyX1xMnF
++				46 link Description: shimoju_, Value: instagram.com/shimoju_/?utm_source=ig_embed&ig_rid=AejFQi3UUrdfIIkzyX1xMnF
++				47 link Description: カレーハウス チリチリ, Value: instagram.com/explore/locations/213495107/?utm_source=ig_embed&ig_rid=AejFQi3UUrdfIIkzyX1xMnF
++				48 link Description: プロフィールを表示, Value: instagram.com/shimoju_/?utm_source=ig_embed&ig_rid=AejFQi3UUrdfIIkzyX1xMnF
++				49 link Description: @shimoju_がシェアした投稿, Value: instagram.com/p/BEaM_1qskRu/?utm_source=ig_embed&ig_rid=AejFQi3UUrdfIIkzyX1xMnF
++				50 link Description: shimoju_ shimoju_ 投稿186件 · 110 フォロワー, Value: instagram.com/shimoju_/?utm_source=ig_embed&ig_rid=AejFQi3UUrdfIIkzyX1xMnF
++				51 link Description: Instagramでもっと見る, Value: instagram.com/shimoju_/?utm_source=ig_embed&ig_rid=AejFQi3UUrdfIIkzyX1xMnF
++				52 link Description: いいね！, Value: instagram.com/p/BEaM_1qskRu/?utm_source=ig_embed&ig_rid=AejFQi3UUrdfIIkzyX1xMnF
++				53 link Description: コメント, Value: instagram.com/p/BEaM_1qskRu/?utm_source=ig_embed&ig_rid=AejFQi3UUrdfIIkzyX1xMnF
++				54 link Description: シェア, Value: instagram.com/p/BEaM_1qskRu/?utm_source=ig_embed&ig_rid=AejFQi3UUrdfIIkzyX1xMnF
++				55 link Description: 保存, Value: instagram.com/p/BEaM_1qskRu/?utm_source=ig_embed&ig_rid=AejFQi3UUrdfIIkzyX1xMnF
++				56 link Description: 「いいね！」10件, Value: instagram.com/p/BEaM_1qskRu/?utm_source=ig_embed&ig_rid=AejFQi3UUrdfIIkzyX1xMnF
++				57 link Description: shimoju_, Value: instagram.com/shimoju_/?utm_source=ig_embed&ig_rid=AejFQi3UUrdfIIkzyX1xMnF
++				58 text ついに初チリチリ うまかった〜
++				59 text 常松マサラことチキンマサラトマトトッピング
++				60 link Description: コメントを追加..., Value: instagram.com/p/BEaM_1qskRu/?utm_source=ig_embed&ig_rid=AejFQi3UUrdfIIkzyX1xMnF
++				61 link Description: Instagram, Value: instagram.com/p/BEaM_1qskRu/?utm_source=ig_embed&ig_rid=AejFQi3UUrdfIIkzyX1xMnF
+The focused UI element is 1 AXWebArea 「チリチリ」という、渋谷のカレー屋 — shimoju.diary, URL: 6f52990f.shimoju.pages.dev/2016/08/01/tiritiri-curry/
