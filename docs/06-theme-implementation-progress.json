@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T07:09:49.489298+00:00",
+  "updated_at": "2026-09-18T07:28:32.113310+00:00",
   "stage": "final_verification",
-  "summary": "本番必須CIとPages即時previewを設定済み。18a9ab1のpreviewは49秒で公開、HTTP・基本操作確認成功。初回CIは239/240成功、Linuxのスクロールバー幅判定1件をT035で修正し再実行する（F020）。本番master未更新。",
+  "summary": "本番必須CIとPages即時previewを設定済み。6f100d5のpreviewは42秒で成功。CIは横幅の等値条件で239/240となり、T036で超過だけを失敗とする条件へ修正。局所3エンジン再検証成功、全CIはT038で再実行。本番未更新・実機未完了。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T035",
-    "action": "修正をpushし必須CIを再実行する。preview実配信は確認済み、CI全体は再検証が必要。"
+    "task_id": "T038",
+    "action": "T036をpushし全CIを追跡する。待機中にT037の実機確認手順を準備する。"
   },
   "tasks": [
     {
@@ -1418,6 +1418,99 @@
       "review_ids": ["R002"],
       "blocked_by": [],
       "next_action": "修正をpushし必須CIを再実行する。preview実配信は確認済み、CI全体は再検証が必要。"
+    },
+    {
+      "id": "T036",
+      "title": "Linux修正後の必須CIとPages配信を再検証",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "scope": [
+        "T035修正コミットの全CIをGitHubで再実行しF020を再検証する。",
+        "互換ビルドコマンドによるPages preview成功と、本番保護・本番SHA不変を確認する。",
+        "再検証でclientWidthへの変更だけでは誤判定が残ることが判明したため、内容幅が表示領域を超える場合だけ横はみ出しとして失敗させる。"
+      ],
+      "depends_on": ["T035"],
+      "acceptance_criteria": [
+        "GitHubのshsh-checkが全240件を含む統合検査に成功する。",
+        "同じコミットの独立Pages previewが成功し、本番必須チェック設定を再確認できる。",
+        "F018/F020の状態を実結果に合わせて更新し、本番移行・実機残件を明示する。"
+      ],
+      "verification_plan": [
+        "GitHub run/checksの終了結果・ログ・実行時間を取得する。",
+        "PagesチェックとpreviewのHTTPを照合し、互換コマンドの実行結果を確認する。",
+        "GitHub master保護とSHAを読み取り、進捗JSONを検証する。",
+        "修正後の該当テストを3エンジンで再実行し、人工的な横はみ出しを検出できることも確認する。"
+      ],
+      "commit_message": "[T036] 横はみ出し検査の等値条件を修正し再配信を記録",
+      "status": "implemented",
+      "verification_status": "failed",
+      "artifact_refs": ["themes/shsh/docs/verification/t036/"],
+      "verification_ids": ["V057", "V058", "V059"],
+      "review_ids": ["R002"],
+      "blocked_by": [],
+      "next_action": "修正をpushし、T038でGitHub CI全体を再検証する。"
+    },
+    {
+      "id": "T037",
+      "title": "利用可能な実機6環境の確認手順を準備",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "ユーザーが提示したWindows 11 PC、iPhone 17、iPad Pro 12.9インチ第6世代、Pocophone F1 Android 10と計6ブラウザ環境を記録する。",
+        "固定previewへのリンクと実機結果の記録方法を準備する。端末の利用可能性を実機検査の合格と扱わない。"
+      ],
+      "depends_on": ["T036"],
+      "acceptance_criteria": [
+        "4端末・6ブラウザ環境がユーザー回答と一致し、未取得の版・未実施項目を明示する。",
+        "動作中の固定previewと確認手順・結果記録欄を案内できる。"
+      ],
+      "verification_plan": [
+        "回答原文と端末・ブラウザ表を照合する。",
+        "既存HTTP検証と記事ソースで確認用パス・コード・動画・埋め込みの存在を照合する。",
+        "文書整形・進捗JSON検査を実行する。"
+      ],
+      "commit_message": "[T037] 利用可能な実機と確認手順を記録",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": ["themes/shsh/docs/verification/real-devices.md"],
+      "verification_ids": [],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "T036完了後、ユーザー回答を実機一覧と確認手順へ反映する。"
+    },
+    {
+      "id": "T038",
+      "title": "横はみ出し条件修正後の必須CIを確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": ["T036の修正コミットをpushし、全CIの結果と独立previewチェックを追跡する。"],
+      "depends_on": ["T036"],
+      "acceptance_criteria": [
+        "shsh-checkが全240件を含む統合検査に成功する。",
+        "対象SHA・チェック提供元・Pages配信結果を記録する。"
+      ],
+      "verification_plan": [
+        "GitHub run/checks/logを取得し全240件の結果を確認する。",
+        "Pagesチェックの対象SHAと配信成功を照合する。"
+      ],
+      "commit_message": "[T038] 必須CIの全検査成功を記録",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": ["themes/shsh/docs/verification/t038/"],
+      "verification_ids": [],
+      "review_ids": ["R002"],
+      "blocked_by": [],
+      "next_action": "T036をpushして全CIを追跡する。"
     }
   ],
   "findings": [
@@ -1921,13 +2014,16 @@
     {
       "id": "F020",
       "title": "Linuxの縦スクロールバー幅を横はみ出しと誤判定",
-      "task_ids": ["T035"],
+      "task_ids": ["T035", "T036"],
       "status": "open",
       "requires_user_decision": false,
-      "observation": "初回GitHub CIは239成功・1失敗。prose.spec.tsがdocumentElement.scrollWidth=1265をviewport設定1280と比較した。Linux Chromiumでは通常スクロールバー15pxを除いたclientWidthが表示領域となる。",
-      "evidence_refs": ["themes/shsh/docs/verification/t035/initial-ci-failure.log"],
+      "observation": "初回GitHub CIは239成功・1失敗。prose.spec.tsがdocumentElement.scrollWidth=1265をviewport設定1280と比較した。Linux Chromiumでは通常スクロールバー15pxを除いたclientWidthが表示領域となる。 6f100d5の再検証でもscrollWidth=1265、clientWidth=1280で239/240。clientWidthへの変更だけでは不十分だった。scrollbar-gutter: stableのあるルートで内容が狭いケースを等値条件が誤判定している。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t035/initial-ci-failure.log",
+        "themes/shsh/docs/verification/t036/ci-failure.log"
+      ],
       "impact": "テーマの横はみ出しがなくても必須CIが失敗する。",
-      "recommendation": "scrollWidthとclientWidthを比較して横はみ出しを検査する。閾値緩和や検査除外は行わない。",
+      "recommendation": "他の横はみ出し検査と同じscrollWidth <= clientWidthで判定する。超過の許容幅は設けず、実際の横はみ出しは引き続き失敗させる。",
       "decision": {
         "outcome": "表示領域の定義を修正して再検証する",
         "reason": "表示・操作を変更せず、他の横はみ出し検査と同じclientWidth基準へ合わせる内部検査修正。",
@@ -1936,7 +2032,7 @@
         "source": "docs/05-theme-implementation-discipline.md Q1; CI failure 35316825816"
       },
       "resolution_refs": ["themes/shsh/tests/prose.spec.ts"],
-      "verification_ids": ["V054"]
+      "verification_ids": ["V054", "V057", "V059"]
     }
   ],
   "reviews": [
@@ -3422,6 +3518,66 @@
         "themes/shsh/tests/prose.spec.ts"
       ],
       "recorded_at": "2026-09-18T07:10:06.087648+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V057",
+      "task_ids": ["T036"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q24"
+      ],
+      "kind": "2回目GitHub CI",
+      "result": "failed",
+      "subject_ref": "6f100d5 / run 35318217746",
+      "environment": "GitHub Actions ubuntu-24.04 / Playwright3エンジン",
+      "procedure": "静的・生成検査成功。239 passed、proseの等値条件1件失敗。scrollWidth1265/clientWidth1280。前回のclientWidth基準への変更だけでは不十分。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t036/ci-run.json",
+        "themes/shsh/docs/verification/t036/ci-failure.log",
+        "themes/shsh/docs/verification/t036/final-checks.json"
+      ],
+      "recorded_at": "2026-09-18T07:28:32.113310+00:00",
+      "supersedes": "V054"
+    },
+    {
+      "id": "V058",
+      "task_ids": ["T017", "T034", "T036"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q24"
+      ],
+      "kind": "互換ビルドコマンドによる独立preview実配信と本番保護",
+      "result": "passed",
+      "subject_ref": "6f100d5 / deployment 59e83710-7612-454c-b040-262126242fb0",
+      "environment": "Cloudflare Pages/Hugo0.166.0; HTTPS; GitHub API",
+      "procedure": "CI実行中に42秒でpreview公開。実ログで互換ビルドコマンド・preview baseURL確認。7HTML/4RSS/noindex/共有スター無効/404/feed301/robots/3assetsのfingerprint検証成功。masterはfb3a9bbのまま。必須shsh-check App15368/strict/PR/管理者適用を再確認。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t036/cloudflare-deployment.json",
+        "themes/shsh/docs/verification/t036/preview-http.json",
+        "themes/shsh/docs/verification/t036/master-protection.json",
+        "themes/shsh/docs/verification/t036/master-branch.json"
+      ],
+      "recorded_at": "2026-09-18T07:28:32.113310+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V059",
+      "task_ids": ["T036"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q24"
+      ],
+      "kind": "横はみ出し条件の修正と対照確認",
+      "result": "passed",
+      "subject_ref": "6f100d5 + T036 prose.spec.ts差分",
+      "environment": "macOS/Playwright Chromium・Firefox・WebKit",
+      "procedure": "scrollWidth <= clientWidthとし、超過の許容幅はゼロ。該当prose検査3 passed (6.3s)。幅1280に対する人工的な幅1600の要素は3エンジンとも超過を検出。全GitHub CIは次工程。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t036/prose-recheck.log",
+        "themes/shsh/docs/verification/t036/overflow-probe.json"
+      ],
+      "recorded_at": "2026-09-18T07:28:32.113310+00:00",
       "supersedes": null
     }
   ]

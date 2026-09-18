@@ -165,8 +165,9 @@ test("prose matches mock type and spacing; footnotes, headings, dates and JS-fre
         scrollWidth: document.documentElement.scrollWidth,
         clientWidth: document.documentElement.clientWidth,
       }));
-      // Classic scrollbars consume viewport width on Linux and Windows.
-      expect(viewport.scrollWidth).toBe(viewport.clientWidth);
+      // A reserved scrollbar gutter can make scrollWidth smaller than clientWidth.
+      // Only content wider than the viewport is horizontal overflow.
+      expect(viewport.scrollWidth).toBeLessThanOrEqual(viewport.clientWidth);
       if (width === 400)
         expect(
           await page
