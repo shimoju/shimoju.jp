@@ -1,0 +1,7 @@
+h1
+																	100 row (selected) <h1> ​About​ </h1> ​
+																	276 row CSS プロパティ名: font-size CSS プロパティ値: 27.2px
+																	348 row CSS プロパティ名: font-weight CSS プロパティ値: 500
+																	360 row CSS プロパティ名: line-height CSS プロパティ値: 40.8px
+																439 text レンダリング フォント 姓 :  .SF NS PostScript 名 :  .SFNS-Regular_wdth_opsz1B3333_GRAD_wght1F40000 フォントの提供元 :  ローカル ファイル （5 件のグリフ）
+The focused UI element is 100 row (selected) <h1> ​About​ </h1> ​

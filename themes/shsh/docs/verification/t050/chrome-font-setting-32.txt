@@ -1,0 +1,2 @@
+							28 スライダー: 極小 から 極大 まで フォントサイズ, Value: 32, Secondary Actions: Increment, Decrement
+							39 ポップアップ ボタン 固定幅フォント, Value: Moralerspace Argon HWJPDOC

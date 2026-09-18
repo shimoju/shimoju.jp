@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T12:20:24.591692+00:00",
+  "updated_at": "2026-09-18T12:47:25.138370+00:00",
   "stage": "final_verification",
-  "summary": "Safari回転修正は実iPhoneと全CI246検査で再合格。Mac Firefoxの実フォント・限定200%表示と、Mac3ブラウザのコピー内容一致を追加確認。詳細実機項目、本番移行、旧テーマ整理は未完了。",
+  "summary": "Safari回転修正は実iPhoneと全CI246検査で再合格。Mac3ブラウザのコピー、Chrome実フォント・文字設定32、Safari/ChromeのJS無効時限定操作を確認。詳細実機項目、本番移行、旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "Mac3ブラウザのコピー照合は完了。Windows詳細の回答を反映し、残るSafari/Chrome実フォント・文字設定変更・JS無効・埋め込みを確認する。"
+    "action": "受領したWindows追加報告を別タスクへ記録し、実機記録表の残件を更新する。"
   },
   "tasks": [
     {
@@ -716,11 +716,15 @@
         "V083",
         "V085",
         "V086",
-        "V087"
+        "V087",
+        "V088",
+        "V089",
+        "V090",
+        "V091"
       ],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Mac Firefoxの実フォント限定確認と、Mac3ブラウザのコピー内容一致を追加確認済み。未確認の実フォント・文字拡大条件・JS無効等を継続する。Windowsの詳細報告は回答待ち。"
+      "next_action": "Mac Chromeの実フォント・既定文字サイズ32、Safari/ChromeのJS無効時限定操作を追加確認。未確認の詳細項目は実機記録表を参照して継続し、受領したWindows追加報告を別タスクで記録する。"
     },
     {
       "id": "T016",
@@ -1183,16 +1187,16 @@
         "テーマ配色とコピーを操作し、結果を表示・貼り付け内容で照合する。"
       ],
       "commit_message": "[T028] macOS Chromeの実フォントと操作を記録",
-      "status": "implemented",
-      "verification_status": "blocked",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/docs/verification/t028/",
         "themes/shsh/docs/verification/real-devices.md"
       ],
-      "verification_ids": ["V046", "V049", "V086"],
+      "verification_ids": ["V046", "V049", "V086", "V088"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "本文400・和文h2 500・配色に加え、T049でコピー内容一致を確認済み。残るフォント・文字拡大等をT015で継続。"
+      "next_action": "T050のRendered Fonts取得で限定範囲の残件を解消。実機全体の残件はT015/T050で継続する。"
     },
     {
       "id": "T029",
@@ -1289,16 +1293,16 @@
         "必要に応じて画面画像とAX抜粋を保存し、観察対象の生成物を特定する。"
       ],
       "commit_message": "[T031] Chromeの追加実フォントを記録",
-      "status": "implemented",
-      "verification_status": "blocked",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/docs/verification/t031/",
         "themes/shsh/docs/verification/real-devices.md"
       ],
-      "verification_ids": ["V049"],
+      "verification_ids": ["V049", "V088"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "和文h2 500は確認済み。CUAの選択/計算値不一致が解消した環境、またはユーザーの実機確認でサイト名300・欧文見出し500・strong/th700・コードの実フェイスを取得する。"
+      "next_action": "T050のRendered Fonts取得で限定範囲の残件を解消。実機全体の残件はT015/T050で継続する。"
     },
     {
       "id": "T032",
@@ -1885,6 +1889,39 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "Mac Chrome/Safariのコピー内容照合は完了。実機の他項目はT015で継続する。"
+    },
+    {
+      "id": "T050",
+      "title": "Mac実機の残る表示・フォント・操作を確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "MacのSafari/Chrome/Firefoxに残るフォント・拡大・キーボード・JS無効・メディア確認を、ネイティブUIで進める。",
+        "既存の実機記録へ追加証拠を対応させ、ツール制約や未実施項目を区別する。"
+      ],
+      "depends_on": ["T049"],
+      "acceptance_criteria": [
+        "対象・環境・実施手順・結果の証拠があり、T015の残件を明確に更新できる。",
+        "未実施項目を合格にせず、検証中に変更した設定と専用タブを元へ戻す。"
+      ],
+      "verification_plan": [
+        "固定previewの専用タブで開発者ツールの使用フォントを確認する。",
+        "実ブラウザの文字拡大・キーボード操作とJS無効時の本文/一覧/ナビ/RSSを確認する。",
+        "既存の対象記事で動画再生停止と外部埋め込みの読込を確認する。",
+        "取得した環境値・画面・AX抜粋を保存し、文書整形・進捗検査・差分確認を実施する。"
+      ],
+      "commit_message": "[T050] Mac実機の追加表示と操作確認を記録",
+      "status": "implemented",
+      "verification_status": "blocked",
+      "artifact_refs": ["themes/shsh/docs/verification/t050/"],
+      "verification_ids": ["V088", "V089", "V090", "V091"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "Safariの実フェイス・文字拡大・動画の視認と停止、各ブラウザのキーボード一式・外部埋め込み、Firefox追加項目は未確認。T015の記録表とともに継続する。"
     }
   ],
   "findings": [
@@ -4583,6 +4620,82 @@
         "themes/shsh/docs/verification/t049/safari-copy.json"
       ],
       "recorded_at": "2026-09-18T12:20:24.591692+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V088",
+      "task_ids": ["T015", "T028", "T031", "T050"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "Chromeの和欧文実フォント追加確認",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/",
+      "environment": "macOS27.0(26A428) / Chrome153.0.8010.53 / CUAネイティブ操作",
+      "procedure": "Aboutの本文400・和欧文見出し500・サイト名300・和文th700、記事欧文strong700・欧文コードMenlo-Regular・和文コメントMoralerspaceArgonHWJPDOC-ItalicをRendered Fontsで取得。選択要素と計算値を照合。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t050/README.md",
+        "themes/shsh/docs/verification/t050/chrome-code-ja-fonts.txt"
+      ],
+      "recorded_at": "2026-09-18T12:47:25.138370+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V089",
+      "task_ids": ["T015", "T050"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "Chromeの既定文字サイズ32での限定表示確認",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/",
+      "environment": "macOS27.0(26A428) / Chrome153.0.8010.53 / CUAネイティブ操作",
+      "procedure": "既定文字サイズ16→32へ変更（ページズーム変更なし）。本文17→34px、root10→20px。Aboutダークのナビ・本文、ライトの表・実記事コードに欠けや重なりなし。測定page/2の横溢れなし。設定16・最小0へ復元、配色復元・専用タブ終了。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t050/README.md",
+        "themes/shsh/docs/verification/t050/chrome-32-metrics.txt"
+      ],
+      "recorded_at": "2026-09-18T12:47:25.138370+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V090",
+      "task_ids": ["T015", "T050"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "ChromeとSafariのJS無効時の限定操作確認",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/",
+      "environment": "macOS27.0(26A428) / Chrome153.0.8010.53 / Safari27.0(22625.1.29.11.27) / CUAネイティブ操作",
+      "procedure": "DevTools/InspectorでJS無効にして再読込。本文・コード・ナビ・ホーム一覧・RSSリンクが表示され、Nextからpage/2へ遷移。記事の配色・コピーボタン非表示。SafariはAboutからArchives遷移も確認。JS有効へ復元し配色ボタン再表示。RSSリーダー登録は未実施。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t050/README.md",
+        "themes/shsh/docs/verification/t050/safari-nojs-article.json"
+      ],
+      "recorded_at": "2026-09-18T12:47:25.138370+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V091",
+      "task_ids": ["T015", "T050"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "Safariの実フォント取得と動画表示確認の制約",
+      "result": "blocked",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/",
+      "environment": "macOS27.0(26A428) / Safari27.0(22625.1.29.11.27) / CUAネイティブ操作",
+      "procedure": "実フォントパネルで和欧文実フェイスを取得できず。動画再生操作後の診断はpaused=false、14.44秒、readyState4、1440×1076、errorなしだが、取得画像では映像を確認できず。描画・停止操作全体は未確認。テーマ不具合と断定しない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t050/README.md",
+        "themes/shsh/docs/verification/t050/safari-media-diagnostic.json"
+      ],
+      "recorded_at": "2026-09-18T12:47:25.138370+00:00",
       "supersedes": null
     }
   ]
