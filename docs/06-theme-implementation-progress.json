@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T13:28:58.362551+00:00",
+  "updated_at": "2026-09-18T13:33:57.951146+00:00",
   "stage": "final_verification",
-  "summary": "Macの外部埋め込みを追加確認。Chrome4サービスとSafari3サービスは表示確認済み。Safari YouTubeの映像は実画面の回答待ち。残る実機項目、本番移行、旧テーマ整理は未完了。",
+  "summary": "Mac Chromeのキーボード・動画・外部埋め込みを追加確認。SafariはYouTube映像の回答待ちと実フェイス等が残る。Firefox追加検査のUI制約、他実機残件、本番移行、旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "Safari YouTubeの回答を反映し、実機の残件と本番移行条件を揃える。"
+    "action": "Safari YouTubeの回答を反映し、Safari実フェイス・Firefox等の実機残件を解消する。本番移行は未実施。"
   },
   "tasks": [
     {
@@ -729,11 +729,12 @@
         "V097",
         "V099",
         "V100",
-        "V101"
+        "V101",
+        "V102"
       ],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Mac Chromeの4サービス、SafariのX/Instagram/Speaker DeckとYouTube操作をT056で確認。Safari YouTube映像はユーザー回答待ち。実フェイス・他環境の埋め込み/操作等の残件を継続する。"
+      "next_action": "Mac Chromeのフォント/拡大/JS無効/キーボード/外部埋込/ローカル動画を確認済み。Safari実フェイス・YouTube映像（回答待ち）、Firefox追加確認・他実機の残件を継続する。"
     },
     {
       "id": "T016",
@@ -1938,11 +1939,12 @@
         "V097",
         "V099",
         "V100",
-        "V101"
+        "V101",
+        "V102"
       ],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Mac Chromeの4サービス、SafariのX/Instagram/Speaker DeckとYouTube操作をT056で確認。Safari YouTube映像はユーザー回答待ち。実フェイス・他環境の埋め込み/操作等の残件を継続する。"
+      "next_action": "Mac Chromeのフォント/拡大/JS無効/キーボード/外部埋込/ローカル動画を確認済み。Safari実フェイス・YouTube映像（回答待ち）、Firefox追加確認・他実機の残件を継続する。"
     },
     {
       "id": "T051",
@@ -2136,6 +2138,33 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "Chrome4サービスとSafari3サービス・YouTube再生停止を確認済み。Safari YouTubeの映像視認はユーザー回答待ち。"
+    },
+    {
+      "id": "T057",
+      "title": "Mac Chromeのキーボードとローカル動画を確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "scope": ["Mac Chromeで残るキーボード操作と開発環境記事のローカル動画表示を確認する。"],
+      "depends_on": ["T050", "T056"],
+      "acceptance_criteria": [
+        "フォーカス移動/逆移動、配色/ナビ/コピーのキーボード操作、動画映像/再生停止の実結果を記録する。",
+        "専用タブを閉じ配色を元へ戻し、未取得の結果を合格扱いしない。"
+      ],
+      "verification_plan": [
+        "実ChromeへCUA拡張接続し、Tab/Shift+Tab・Space/Enterの操作とフォーカス輪郭を確認する。",
+        "開発環境記事の動画を画面内に表示し、再生・一時停止と実映像を確認する。",
+        "証拠と進捗を更新し、整形・進捗検査・差分確認後にコミットする。"
+      ],
+      "commit_message": "[T057] Mac Chromeのキーボードと動画確認を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": ["themes/shsh/docs/verification/t057/README.md"],
+      "verification_ids": ["V102"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "Mac Chromeのキーボード・ローカル動画確認は完了。T015の他環境・本番条件を継続する。"
     }
   ],
   "findings": [
@@ -5100,6 +5129,25 @@
         "themes/shsh/docs/verification/t056/README.md"
       ],
       "recorded_at": "2026-09-18T13:28:58.362551+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V102",
+      "task_ids": ["T015", "T050", "T057"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "Mac Chromeのキーボード操作とローカル動画",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/",
+      "environment": "macOS27.0 / Chrome153.0.8010.53（T050同一環境）/ CUA Chrome拡張接続",
+      "procedure": "AboutでTab/Shift+Tabの順方向・逆方向移動とフォーカス輪郭、Spaceでダーク→ライト、EnterでArchivesへ遷移。開発環境記事でTab12回でCopy codeに到達しEnterでCopied/Code copied.。ローカルMP4の再生映像とSpaceによる0:13での一時停止を画像で確認。ダークへ復元し専用タブ閉鎖。コピー内容一致はT049の別証拠。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t057/README.md",
+        "themes/shsh/docs/verification/t057/"
+      ],
+      "recorded_at": "2026-09-18T13:33:57.951146+00:00",
       "supersedes": null
     }
   ]
