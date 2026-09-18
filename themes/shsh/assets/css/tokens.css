@@ -12,7 +12,6 @@
   --font-body:
     -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
   --font-code: Menlo, Consolas, monospace;
-  --font-site: var(--font-body);
   --body-size: 1.7rem;
   --text-h1: calc(var(--body-size) * 1.6);
   --text-h2: calc(var(--body-size) * 1.456);

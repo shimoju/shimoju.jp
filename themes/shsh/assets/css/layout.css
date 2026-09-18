@@ -42,7 +42,6 @@
 }
 
 .site-name {
-  font-family: var(--font-site);
   font-size: var(--text-site);
   font-weight: 300;
   line-height: var(--leading-heading);
