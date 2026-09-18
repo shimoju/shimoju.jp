@@ -1,6 +1,6 @@
 # 自作テーマのドキュメント
 
-現在の表示・操作仕様は[HTMLモック](../mock/README.md)を正とし、その判断理由を資料3に記録する。資料1・2はHugoとPaperMod・現サイトの仕組みを調べた資料であり、自作テーマの採用方針とは分けて読む。実装は資料4の合意事項に基づく。移行完了後は、表示・操作仕様の正をテーマ・検査用ページ・文書へ移す。
+現在の表示・操作仕様は[shshテーマ](../themes/shsh/README.md)・検査fixture・文書を正とし、その判断理由を資料3に記録する。資料1・2はHugoとPaperMod・移行元サイトの仕組みを調べた資料であり、自作テーマの採用方針とは分けて読む。実装は資料4の合意事項に基づく。[HTMLモック](../mock/README.md)はQ34に従い実装前の比較基準を保持する参考資料とした。本番確認は[T071](../themes/shsh/docs/verification/t071/README.md)、移行監査は[T018](../themes/shsh/docs/verification/t018/README.md)を参照する。
 
 実装要件は2026-09-17に確定。記事・固定ページなどの用語は[CONTEXT.md](../CONTEXT.md)にまとめる。
 
@@ -16,7 +16,7 @@
 | [6. テーマ実装の進捗JSON](06-theme-implementation-progress.json) | 作業・指摘・レビュー・検証結果と再開地点 |
 | [7. テーマ実装の開始用プロンプト](07-theme-implementation-goal.md) | 確定（2026-09-17）。Codexの`/goal`へ渡す本文 |
 
-[モックREADME](../mock/README.md)には閲覧・再生成・検査方法と収録画面を記載する。寸法や配色の詳細は[モックのCSS](../mock/src/theme.css)、配置と操作は生成された画面を参照する。収録記事・件数・レビュー用UIは、デザインを確認するためのサンプルである。
+[モックREADME](../mock/README.md)には実装前の閲覧・再生成・検査方法と収録画面を記載する。現在の寸法・配色は[テーマCSS](../themes/shsh/assets/css/)、配置と操作は[layouts](../themes/shsh/layouts/)・[検査fixture](../themes/shsh/tests/fixtures/)を参照する。モックの収録記事・件数・レビュー用UIはデザイン検討時のサンプルであり、承認後の変更はモックへ反映しない。
 
 ## 技術情報の前提
 
