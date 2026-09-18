@@ -1,0 +1,16 @@
+{
+  "recorded_at": "2026-09-18T10:43:01.197687+00:00",
+  "commit": "a7789aab338a3aee0817a5eb84362c813b155fbf",
+  "url": "https://0b9a36a0.shimoju.pages.dev/2026/09/01/development-environment-2026/",
+  "http_status": 200,
+  "html_noindex": true,
+  "x_robots_tag": "noindex",
+  "css": [
+    {
+      "url": "https://0b9a36a0.shimoju.pages.dev/css/shsh.0eb6627a561d9bcf5cec0c660957dd3fdf0da35ec92643ffb9d5b15966d75ab3.css",
+      "sha256": "0eb6627a561d9bcf5cec0c660957dd3fdf0da35ec92643ffb9d5b15966d75ab3",
+      "matches_verified_1_4_css": true
+    }
+  ],
+  "result": "passed"
+}

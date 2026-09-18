@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T10:39:38.201450+00:00",
+  "updated_at": "2026-09-18T10:55:30.580335+00:00",
   "stage": "final_verification",
-  "summary": "Windows実機報告を記録しFirefox書体差異F022は受容。承認済みコード行高1.4へ変更し関連144検査成功。92cacd8/preview b7eecc69の配信確認済み、同一SHAのGitHub CIは実行中。Android・詳細実機確認・本番移行は未完了。",
+  "summary": "Windows3ブラウザの報告を記録し、Firefox見出し書体差異F022は受容。承認済みコード行高1.4はWindowsで読みやすくなった・問題なしと再確認済み。a7789aa/preview0b9a36a0の配信と全CI243件が成功。Androidの基本確認・各環境の未申告詳細項目・本番移行は未完了。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T044",
-    "action": "T045をpushし全CIとPagesを確認する。テーマ本体は92cacd8と同一。"
+    "task_id": "T015",
+    "action": "preview0b9a36a0/a7789aaでAndroid Chromeの基本確認と、各環境の実フォント・文字拡大条件・JS無効等の未確認項目を継続する。Windowsの報告範囲と行高1.4の読みやすさは確認済み、Firefox見出し差異F022は受容。"
   },
   "tasks": [
     {
@@ -282,10 +282,10 @@
         "themes/shsh/docs/verification/t006-check.log",
         "themes/shsh/docs/verification/t006-prose-images/"
       ],
-      "verification_ids": ["V012", "V013", "V068", "V072"],
+      "verification_ids": ["V012", "V013", "V068", "V072", "V077"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "F023の承認済み行高変更は関連144検査で再合格。配信はT044、変更後の実機確認を含む残件はT015で継続する。"
+      "next_action": "F023の行高変更と関連比較検査は全CI・Pages・Windowsの読みやすさ再確認まで完了。残る実機確認はT015、本番移行はT017で継続する。"
     },
     {
       "id": "T007",
@@ -416,10 +416,10 @@
         "themes/shsh/scripts/build-review-report.ts",
         "themes/shsh/tests/review.spec.ts"
       ],
-      "verification_ids": ["V018", "V019", "V020", "V074", "V075"],
+      "verification_ids": ["V018", "V019", "V020", "V074", "V075", "V077"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "代表画面比較はF023込みで再合格。T044で修正後のCIを確認する。"
+      "next_action": "F023の行高変更と関連比較検査は全CI・Pages・Windowsの読みやすさ再確認まで完了。残る実機確認はT015、本番移行はT017で継続する。"
     },
     {
       "id": "T010",
@@ -470,10 +470,10 @@
         "themes/shsh/assets/css/article-end.css",
         "themes/shsh/assets/css/discovery.css"
       ],
-      "verification_ids": ["V029", "V030", "V031", "V043", "V072"],
+      "verification_ids": ["V029", "V030", "V031", "V043", "V072", "V077"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "F023の承認済み行高変更は関連144検査で再合格。配信はT044、変更後の実機確認を含む残件はT015で継続する。"
+      "next_action": "F023の行高変更と関連比較検査は全CI・Pages・Windowsの読みやすさ再確認まで完了。残る実機確認はT015、本番移行はT017で継続する。"
     },
     {
       "id": "T011",
@@ -663,10 +663,10 @@
         "themes/shsh/scripts/verify-review-submission.ts",
         "themes/shsh/docs/verification/r002-verification.log"
       ],
-      "verification_ids": ["V039", "V044", "V072"],
+      "verification_ids": ["V039", "V044", "V072", "V077"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "F023の承認済み行高変更は関連144検査で再合格。配信はT044、変更後の実機確認を含む残件はT015で継続する。"
+      "next_action": "F023の行高変更と関連比較検査は全CI・Pages・Windowsの読みやすさ再確認まで完了。残る実機確認はT015、本番移行はT017で継続する。"
     },
     {
       "id": "T015",
@@ -700,10 +700,21 @@
         "themes/shsh/docs/verification/real-devices.md",
         "themes/shsh/docs/verification/t015/"
       ],
-      "verification_ids": ["V040", "V045", "V046", "V049", "V063", "V067", "V069", "V070", "V071"],
+      "verification_ids": [
+        "V040",
+        "V045",
+        "V046",
+        "V049",
+        "V063",
+        "V067",
+        "V069",
+        "V070",
+        "V071",
+        "V076"
+      ],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Android Chromeの基本確認と各環境の実フォント・JS無効等の残件を継続。Windows3ブラウザは報告範囲を確認し、Firefox見出し書体差異F022は受容。行高1.4は変更後の実機確認が必要。"
+      "next_action": "Android Chromeの基本確認と、各環境の未申告の実フォント・文字拡大条件・JS無効等を継続。Windowsのコード行高1.4は読みやすくなった・問題なしとユーザー確認済み。"
     },
     {
       "id": "T016",
@@ -1678,10 +1689,10 @@
         "themes/shsh/docs/verification/t043/",
         "themes/shsh/docs/verification/real-devices.md"
       ],
-      "verification_ids": ["V070", "V071", "V072"],
+      "verification_ids": ["V070", "V071", "V072", "V076", "V077"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "F023の承認済み行高変更は関連144検査で再合格。配信はT044、変更後の実機確認を含む残件はT015で継続する。"
+      "next_action": "F023の行高変更と関連比較検査は全CI・Pages・Windowsの読みやすさ再確認まで完了。残る実機確認はT015、本番移行はT017で継続する。"
     },
     {
       "id": "T044",
@@ -1704,13 +1715,13 @@
         "HTTP応答・noindex・CSSの行高トークンとfingerprintを確認する。"
       ],
       "commit_message": "[T044] コード行高変更の配信とCI結果を記録",
-      "status": "implemented",
-      "verification_status": "blocked",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": ["themes/shsh/docs/verification/t044/"],
-      "verification_ids": ["V073"],
+      "verification_ids": ["V073", "V076", "V077"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "比較期待値の未反映が判明した初回CI35335359283は取消要求済み。T045コミットで全CIを再実行し、同一SHAのPagesを照合する。"
+      "next_action": "F023の行高変更と関連比較検査は全CI・Pages・Windowsの読みやすさ再確認まで完了。残る実機確認はT015、本番移行はT017で継続する。"
     },
     {
       "id": "T045",
@@ -1734,10 +1745,10 @@
         "themes/shsh/scripts/build-review-report.ts",
         "themes/shsh/docs/verification/t045/"
       ],
-      "verification_ids": ["V074", "V075"],
+      "verification_ids": ["V074", "V075", "V077"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "代表画面比較はF023込みで再合格。T044で修正後のCIを確認する。"
+      "next_action": "F023の行高変更と関連比較検査は全CI・Pages・Windowsの読みやすさ再確認まで完了。残る実機確認はT015、本番移行はT017で継続する。"
     }
   ],
   "findings": [
@@ -2331,9 +2342,10 @@
         "docs/03-theme-visual-requirements.md",
         "themes/shsh/assets/css/tokens.css",
         "themes/shsh/tests/approved-mock.ts",
-        "themes/shsh/docs/verification/t043/README.md"
+        "themes/shsh/docs/verification/t043/README.md",
+        "themes/shsh/docs/verification/t044/windows-retest.json"
       ],
-      "verification_ids": ["V072"]
+      "verification_ids": ["V072", "V076", "V077"]
     },
     {
       "id": "F024",
@@ -2356,7 +2368,7 @@
         "themes/shsh/tests/review.spec.ts",
         "themes/shsh/scripts/build-review-report.ts"
       ],
-      "verification_ids": ["V074", "V075"]
+      "verification_ids": ["V074", "V075", "V077"]
     }
   ],
   "reviews": [
@@ -4189,6 +4201,48 @@
       "evidence_refs": ["themes/shsh/docs/verification/t045/after.log"],
       "recorded_at": "2026-09-18T10:39:38.201450+00:00",
       "supersedes": "V074"
+    },
+    {
+      "id": "V076",
+      "task_ids": ["T015", "T043", "T044"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "コード行高1.4のWindows実機再確認",
+      "result": "passed",
+      "subject_ref": "92cacd8 / https://b7eecc69.shimoju.pages.dev/2026/09/01/development-environment-2026/",
+      "environment": "Windows 11 デスクトップPC（先の報告）。再確認ブラウザ名の再指定なし。",
+      "procedure": "行高1.4のプレビュー確認依頼に対し、ユーザーが「読みやすくなった・問題なし」と回答。変更後の読みやすさを確認済みとする。後続a7789aa/0b9a36a0も同じCSS内容であることを照合。3ブラウザすべての再確認や未申告の実機検査へは一般化しない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t044/windows-retest.json",
+        "themes/shsh/docs/verification/t044/preview-corrected.json"
+      ],
+      "recorded_at": "2026-09-18T10:44:11.092558+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V077",
+      "task_ids": ["T006", "T009", "T010", "T014", "T043", "T044", "T045"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "コード行高変更後のGitHub全検査と同一SHAのPages照合",
+      "result": "passed",
+      "subject_ref": "a7789aab338a3aee0817a5eb84362c813b155fbf / GitHub run35335882614 / Pages0b9a36a0",
+      "environment": "GitHub Actions ubuntu-24.04 / Node24・pnpm12.4.1・Hugo0.166.0 / Playwright Chromium・Firefox・WebKit",
+      "procedure": "統合検査成功、243 passed (10.4m)、ジョブ12分36秒。同一SHAで必須shsh-check/App15368とPages/App85455が成功。preview記事HTTP200・HTTP/HTML noindexと、Windows再確認対象b7eecc69と同一の行高1.4配信CSSを照合。代表画面の期待値反映漏れF024を含め全自動検査が再合格。V076でユーザー実機の読みやすさ改善も確認済み。本番マージ未実施。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t044/ci-run.json",
+        "themes/shsh/docs/verification/t044/ci-success.log",
+        "themes/shsh/docs/verification/t044/final-checks.json",
+        "themes/shsh/docs/verification/t044/preview-corrected.json",
+        "themes/shsh/docs/verification/t044/windows-retest.json"
+      ],
+      "recorded_at": "2026-09-18T10:55:30.580335+00:00",
+      "supersedes": null
     }
   ]
 }
