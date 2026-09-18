@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T14:48:14.225848+00:00",
+  "updated_at": "2026-09-18T14:50:45.336170+00:00",
   "stage": "final_verification",
-  "summary": "F026/F027に基づくMac Chrome/SafariとAndroidの代表範囲は確認完了。Android実フォント未取得・文字のみ拡大未実施を制約として保持し150%ページズームを採用。Windows/iPhoneの残件、本番移行・旧テーマ整理は未完了。",
+  "summary": "Mac Chrome/SafariとAndroidの承認済み代表範囲は確認完了。iPhoneはiOS 27.0・150%文字拡大・埋め込み・JS無効を確認済み、実フォント未取得のF028判断待ち。Windows追加報告、本番移行・旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "受領したiPhone追加報告を記録し、未取得フォントの扱いと詳細版/JS無効ナビの補足を反映する。Windowsの追加報告も確認する。本番前に最新headのCIを照合する。"
+    "action": "F028のiPhone実フォント未取得の扱いへの判断とWindows追加報告を反映する。本番前に最新headのCIを照合する。"
   },
   "tasks": [
     {
@@ -739,11 +739,12 @@
         "V111",
         "V112",
         "V114",
-        "V115"
+        "V115",
+        "V116"
       ],
       "review_ids": [],
-      "blocked_by": [],
-      "next_action": "Mac Chrome/SafariとAndroidの承認済み代表範囲は確認完了。Windows/iPhoneの追加報告を反映する。"
+      "blocked_by": ["F028"],
+      "next_action": "Windows追加報告と、iPhone実フォント未取得の扱いF028の判断を反映する。Mac/Androidの承認済み範囲は完了。"
     },
     {
       "id": "T016",
@@ -2556,6 +2557,38 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "F027の承認とAndroid代表範囲の確認完了を反映済み。Windows/iPhoneと本番の残件はT015/T017で継続。"
+    },
+    {
+      "id": "T069",
+      "title": "iPhone追加報告と実フォント未取得を記録",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: 実機の代表環境（F026）",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "iPhoneの追加報告と詳細版/ナビ補足を原文保存し、実機記録と残件を更新する。",
+        "iPhoneの実フォント未取得に限る制約案をF028として提示する。"
+      ],
+      "depends_on": ["T064", "T068"],
+      "acceptance_criteria": [
+        "iOS 27.0・150%拡大・埋め込み表示/操作・JS無効の確認範囲が原文と対応する。",
+        "フォント未取得を合格にせず、F027をiPhoneへ自動拡張しない。"
+      ],
+      "verification_plan": [
+        "T064の依頼・T047の拡大方法と今回の数値補足を照合する。",
+        "実機記録表・残件・進捗を照合し、整形・進捗参照/DAG・差分検査を実施する。"
+      ],
+      "commit_message": "[T069] iPhone追加確認と実フォント未取得を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": ["themes/shsh/docs/verification/t069/"],
+      "verification_ids": ["V116"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "報告記録は完了。iPhone全体は実フォント未取得の扱いF028判断待ち。"
     }
   ],
   "findings": [
@@ -3260,6 +3293,23 @@
         "themes/shsh/docs/verification/t068/README.md"
       ],
       "verification_ids": ["V115"]
+    },
+    {
+      "id": "F028",
+      "title": "iPhone実フォント未取得の扱い",
+      "task_ids": ["T015", "T069"],
+      "status": "awaiting_decision",
+      "requires_user_decision": true,
+      "observation": "iPhone Safariの本文/コード和欧文実フォントをユーザーが確認できなかったと報告。F026ではiOSをOSフォント代表とし、F027の免除はAndroid限定。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t069/README.md",
+        "themes/shsh/docs/verification/t069/iphone-report.json"
+      ],
+      "impact": "操作・表示の確認はあるが選択された実フェイスとフォールバックを同定できず、iPhoneの実機完了条件が残る。",
+      "recommendation": "iPhone実フォント名の未取得に限り未確認の制約として移行必須条件から外す。合格にせず他の要件は維持。代案は取得を必須のまま継続。",
+      "decision": null,
+      "resolution_refs": [],
+      "verification_ids": []
     }
   ],
   "reviews": [
@@ -5869,6 +5919,29 @@
         "themes/shsh/docs/verification/t068/pr-updated.json"
       ],
       "recorded_at": "2026-09-18T14:48:14.225848+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V116",
+      "task_ids": ["T015", "T069"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: 実機の代表環境（F026）",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "kind": "ユーザーのiPhone実機追加報告",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/",
+      "environment": "iPhone 17（既存申告）/ iOS 27.0付属Safari最新版（今回の申告）",
+      "procedure": "T064への回答・補足を照合。iOS詳細版27.0、既存文字拡大値150%、4種埋め込み表示/YouTube再生停止/Speaker Deck送り、JS無効本文/一覧/Next/ナビ/RSS・ボタン非表示を確認済み。実フォント未取得は含めず、iPhone全体を合格にしない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t069/iphone-report.json",
+        "themes/shsh/docs/verification/t069/README.md",
+        "themes/shsh/docs/verification/t047/iphone-retest.json"
+      ],
+      "recorded_at": "2026-09-18T14:50:45.336170+00:00",
       "supersedes": null
     }
   ]
