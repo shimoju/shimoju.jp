@@ -1,0 +1,46 @@
+.prose th
+								523 切り替えボタン インスペクター, Help: DOM とスタイルシートの調査 (Cmd+Shift+C または Cmd+Opt+C), Value: on
+												557 テキスト 6 件中 1 件目
+													1713 切り替えボタン th.align-left, Value: on
+container フォント
+												1727 container
+													1728 container
+														1729 テキスト 使用中のフォント
+														1730 テキスト Hiragino Sans
+														1731 テキスト Hiragino Sans W6
+													1732 container
+														1733 container サイズ
+															1734 テキスト サイズ
+														1735 スライダ (settable, float) サイズ 15.4688 px, Help: サイズ, Value: 15
+														1736 ステッパー (settable, float) 15.4688
+															1737 テキスト 15.4688
+														1738 ポップアップボタン px
+													1739 container
+														1740 container 行の高さ
+															1741 テキスト 行の高さ
+														1742 スライダ (settable, float) 行の高さ 24.75 px, Help: 行の高さ, Value: 25
+														1743 ステッパー (settable, float) 24.75
+															1744 テキスト 24.75
+														1745 ポップアップボタン px
+													1746 container
+														1747 container 文字間隔
+															1748 テキスト 文字間隔
+														1749 スライダ (settable, float) 文字間隔 normal, Help: 文字間隔, Value: 0
+														1750 テキスト normal
+													1751 container
+														1752 container 太さ
+															1753 テキスト 太さ
+														1754 スライダ (settable, float) 太さ 700, Help: 太さ, Value: 700
+														1755 ステッパー (settable, float) 700
+															1756 テキスト 700
+													1757 container
+														1758 テキスト イタリック
+														1759 チェックボックス イタリック, Value: 0
+													1760 コンテンツリスト
+														1761 見出し Description: ページ内のすべてのフォント, Value: 2
+															1762 ボタン ページ内のすべてのフォント
+																1763 テキスト ページ内のすべてのフォント
+									1764 コンテンツリスト
+										1765 テキスト .prose th
+										1766 container
+											1767 text .prose th ead

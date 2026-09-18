@@ -1,0 +1,44 @@
+code
+								523 切り替えボタン インスペクター, Help: DOM とスタイルシートの調査 (Cmd+Shift+C または Cmd+Opt+C), Value: on
+												557 テキスト 1 件中 1 件目
+													1627 切り替えボタン code, Value: on
+container フォント
+												1639 container
+													1640 container
+														1641 テキスト 使用中のフォント
+														1642 テキスト Menlo
+														1643 テキスト Menlo Regular
+													1644 container
+														1645 container サイズ
+															1646 テキスト サイズ
+														1647 スライダ (settable, float) サイズ 0.85 em, Help: サイズ, Value: 0.9
+														1648 ステッパー (settable, float) 0.85
+															1649 テキスト 0.85
+														1650 ポップアップボタン em
+													1651 container
+														1652 container 行の高さ
+															1653 テキスト 行の高さ
+														1654 スライダ (settable, float) 行の高さ 27.4667 px, Help: 行の高さ, Value: 27
+														1655 ステッパー (settable, float) 27.4667
+															1656 テキスト 27.4667
+														1657 ポップアップボタン px
+													1658 container
+														1659 container 文字間隔
+															1660 テキスト 文字間隔
+														1661 スライダ (settable, float) 文字間隔 normal, Help: 文字間隔, Value: 0
+														1662 テキスト normal
+													1663 container
+														1664 container 太さ
+															1665 テキスト 太さ
+														1666 スライダ (settable, float) 太さ 400, Help: 太さ, Value: 400
+														1667 ステッパー (settable, float) 400
+															1668 テキスト 400
+													1669 container
+														1670 テキスト イタリック
+														1671 チェックボックス イタリック, Value: 0
+													1672 コンテンツリスト
+														1673 見出し Description: ページ内のすべてのフォント, Value: 2
+															1674 ボタン ページ内のすべてのフォント
+																1675 テキスト ページ内のすべてのフォント
+									1676 コンテンツリスト
+										1677 テキスト code

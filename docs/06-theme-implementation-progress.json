@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T11:21:25.058248+00:00",
+  "updated_at": "2026-09-18T12:12:06.281558+00:00",
   "stage": "final_verification",
-  "summary": "Androidの基本報告は問題なし。iPhone横回転F025はSafari用指定を復元し、実機で回転時の問題解消・文字拡大・ピンチズームを確認済み。preview6f52990f/268bbb0配信と全CI246検査が成功。詳細実機項目と本番移行は未完了。",
+  "summary": "Safari回転修正は実iPhoneと全CI246検査で再合格。Mac Firefoxの実フォント・コピー内容一致・限定200%表示を追加確認。詳細実機項目、本番移行、旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "利用可能な6環境の基本報告を受領済み。F025は実機で解消確認済み。実フォント・文字拡大条件・JS無効等の未確認詳細項目を継続する。"
+    "action": "Mac Firefoxの限定確認V085を反映済み。Windows詳細は回答待ち。ネイティブアプリのローカルtextarea貼付方式でMac Chrome/Safariのコピーも追加確認できる。JS無効・文字設定変更・埋め込み等の残件を継続。"
   },
   "tasks": [
     {
@@ -713,7 +713,8 @@
         "V076",
         "V078",
         "V079",
-        "V083"
+        "V083",
+        "V085"
       ],
       "review_ids": [],
       "blocked_by": [],
@@ -1820,6 +1821,37 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "配信・全CI246検査・iPhone実機再確認が成功。T015の未確認詳細項目を継続する。"
+    },
+    {
+      "id": "T048",
+      "title": "macOS Firefoxの実機表示と実フォントを確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "現在のMacのネイティブFirefoxで固定previewの表示・実フォント・操作を確認し、観察結果と残件を記録する。"
+      ],
+      "depends_on": ["T047"],
+      "acceptance_criteria": [
+        "実施したページ・環境・操作・実フォントを証拠へ記録する。",
+        "未取得項目を明示し、限定確認を実機全体の合格へ一般化しない。"
+      ],
+      "verification_plan": [
+        "専用タブで固定previewを開き、About・実記事を両配色で確認する。",
+        "Firefox開発者ツールのフォント表示で使用された実フォントを確認する。",
+        "可能な文字拡大・キーボード・コピーを操作し、検証結果とツール制約を分ける。",
+        "進捗JSON検査・文書整形・git diff --checkを実施する。"
+      ],
+      "commit_message": "[T048] macOS Firefoxの実機確認結果を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": ["themes/shsh/docs/verification/t048/"],
+      "verification_ids": ["V085"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "限定確認と証拠記録は完了。未確認の詳細項目はT015で継続し、Firefox全体の合格へ一般化しない。"
     }
   ],
   "findings": [
@@ -4460,6 +4492,26 @@
         "themes/shsh/docs/verification/t047/iphone-retest.json"
       ],
       "recorded_at": "2026-09-18T11:21:25.058248+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V085",
+      "task_ids": ["T015", "T048"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "macOS Firefoxの実フォント・表示・コピー限定確認",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/",
+      "environment": "macOS27.0(26A428)、ネイティブFirefox156.0、CUA操作。現行安定版照合・viewport/DPRは未取得。",
+      "procedure": "Aboutの両配色、選択要素を照合した使用フォント（本文400、和欧文見出し500、サイト名300、和文th700、欧文strong700、欧文コードMenlo）を記録。実記事Copy code→ローカルtextareaへCmd+Vで記事コード235文字と入力値の完全一致。ページズーム200%の限定表示を目視し100%へ復元。JS無効・外部埋込・文字設定変更・和文コード等は未確認。Firefoxのコンソール貼り付け保護は解除しない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t048/README.md",
+        "themes/shsh/docs/verification/t048/clipboard.json",
+        "themes/shsh/docs/verification/t048/"
+      ],
+      "recorded_at": "2026-09-18T12:12:06.281558+00:00",
       "supersedes": null
     }
   ]
