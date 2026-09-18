@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T14:19:28.956653+00:00",
+  "updated_at": "2026-09-18T14:43:19.042652+00:00",
   "stage": "final_verification",
-  "summary": "F026の5代表環境へ整理済み。Safari YouTube映像のユーザー確認でMac Chrome/Safariの必須実機項目は完了。代表外とSafari実フォント未取得は制約保持。Windows Chrome/iPhone/Android残件を依頼済み。本番移行・旧テーマ整理は未完了。",
+  "summary": "F026の5代表環境のうちMac Chrome/Safariは確認済み。Androidの版・コピー一致・150%ページズーム・外部埋め込み表示/操作・JS無効はT067で確認。Android実フォント未取得と文字のみ拡大設定なしはF027判断待ち。Windows/iPhone残件、本番移行・旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "Windows Chrome/iPhone Safari/Android Chromeの追加報告をT064へ反映する。T066までのpush後、PR #5の最新headと対応する必須CI実行を確認する。実機残件の解消前には本番へマージしない。"
+    "action": "F027の実フォント未取得と拡大方法の扱いへの判断、Windows/iPhoneの追加報告を反映する。最新headのCIを本番前に照合する。"
   },
   "tasks": [
     {
@@ -737,11 +737,12 @@
         "V107",
         "V108",
         "V111",
-        "V112"
+        "V112",
+        "V114"
       ],
       "review_ids": [],
-      "blocked_by": [],
-      "next_action": "Mac Chrome/Safariの代表範囲は完了。T064のWindows Chrome/iPhone Safari/Android Chrome残件をユーザーへ依頼済み。回答を反映し、本番前の条件を照合する。"
+      "blocked_by": ["F027"],
+      "next_action": "Windows/iPhoneの追加報告と、Android実フォント未取得・文字のみ拡大設定なしの扱いF027の判断を反映する。"
     },
     {
       "id": "T016",
@@ -2487,6 +2488,39 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "PR説明の同期は完了。T064/T065/T066をpushし、新headの必須CIを追跡する。実機残件はT015で回答を反映する。"
+    },
+    {
+      "id": "T067",
+      "title": "Android Chrome追加報告と未取得項目を記録",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: 実機の代表環境（F026）",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "固定previewのAndroid報告を原文とともに保存し、版・コピー・ズーム・埋め込み表示・JS無効の確認範囲を更新する。",
+        "実フォント未取得と文字のみ拡大設定なしを区別し、完了判定での扱いを判断事項として提示する。"
+      ],
+      "depends_on": ["T064"],
+      "acceptance_criteria": [
+        "ユーザー報告の対象URLと各項目が追跡でき、ページズームを文字だけの拡大に置き換えない。",
+        "補足回答も含めて操作結果を記録し、実フォント未取得・文字のみ拡大未実施の扱いは未承認の提案として記録する。"
+      ],
+      "verification_plan": [
+        "回答原文をT064の6項目と照合し、合格範囲と未確認を分ける。",
+        "実機記録表・残件一覧・進捗の対応を確認する。",
+        "テーマ配下で文書整形・進捗参照/DAG検査・差分検査を実施する。"
+      ],
+      "commit_message": "[T067] Android追加確認と実フォント未取得を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": ["themes/shsh/docs/verification/t067/"],
+      "verification_ids": ["V114"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "報告と補足回答の記録は完了。Android全体はF027判断待ち。"
     }
   ],
   "findings": [
@@ -3165,6 +3199,23 @@
         "themes/shsh/docs/verification/t064/README.md"
       ],
       "verification_ids": ["V109", "V110"]
+    },
+    {
+      "id": "F027",
+      "title": "Android実フォント未取得と文字拡大方法の扱い",
+      "task_ids": ["T015", "T067"],
+      "status": "awaiting_decision",
+      "requires_user_decision": true,
+      "observation": "Android Chromeの本文/コード和欧文実フォントはユーザーが「確認できなかった」と報告。F026は代表環境の取得不能項目を免除していない。 追加報告で文字サイズの拡大設定はなかったとの回答。ページズーム150%は確認済み。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t067/android-report.json",
+        "themes/shsh/docs/verification/t067/README.md"
+      ],
+      "impact": "表示の確認はあるが、実際に選択された書体とフォールバックを同定できず、現在の実機完了条件は未達。 文字のみの拡大への追従はこの端末では検証できない。",
+      "recommendation": "Androidの実フォント未取得を制約として移行必須条件から外し、拡大確認には提供されるページズーム150%の実測を用いる。文字のみの拡大は未実施の制約として保持し、合格としない。他環境/他項目は維持する。代案は取得と文字のみ拡大を必須のまま継続する。",
+      "decision": null,
+      "resolution_refs": [],
+      "verification_ids": []
     }
   ],
   "reviews": [
@@ -5727,6 +5778,28 @@
         "themes/shsh/docs/verification/t066/ci-observed.json"
       ],
       "recorded_at": "2026-09-18T14:19:28.956653+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V114",
+      "task_ids": ["T015", "T067"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: 実機の代表環境（F026）",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "kind": "ユーザーのAndroid実機追加報告",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/",
+      "environment": "Pocophone F1 / Android 10（前回報告から継承）、Chrome 153.0.8010.47（今回申告）",
+      "procedure": "T064への回答と追加回答を照合。版・端末での更新提供状況はユーザー申告。コピー一致、ページズーム150%で崩れなし、4種埋め込み表示とYouTube再生/一時停止・Speaker Deck次スライド、JS無効時の本文/一覧/Next/ナビ/RSSとボタン非表示を確認。実フォントは未取得、文字のみ拡大は設定がなく未実施で合格範囲に含めない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t067/android-report.json",
+        "themes/shsh/docs/verification/t067/README.md"
+      ],
+      "recorded_at": "2026-09-18T14:43:19.042652+00:00",
       "supersedes": null
     }
   ]
