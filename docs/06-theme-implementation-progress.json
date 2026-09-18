@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T13:04:01.753014+00:00",
+  "updated_at": "2026-09-18T13:09:51.164370+00:00",
   "stage": "final_verification",
   "summary": "Windows追加報告を反映し、Safariの文字のみ約207%拡大・キーボード操作を確認。動画は再生停止の状態取得済み、映像視認の回答待ち。詳細実機項目、本番移行、旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "Safari映像視認の回答を反映し、残る実フォント・外部埋め込み等の必要証拠を揃える。"
+    "action": "Firefoxの描画不一致とSafari動画の回答待ちを残し、依存しない移行監査・配信準備を進める。"
   },
   "tasks": [
     {
@@ -725,7 +725,8 @@
         "V093",
         "V094",
         "V095",
-        "V096"
+        "V096",
+        "V097"
       ],
       "review_ids": [],
       "blocked_by": [],
@@ -1923,7 +1924,7 @@
       "status": "implemented",
       "verification_status": "blocked",
       "artifact_refs": ["themes/shsh/docs/verification/t050/"],
-      "verification_ids": ["V088", "V089", "V090", "V091", "V094", "V095", "V096"],
+      "verification_ids": ["V088", "V089", "V090", "V091", "V094", "V095", "V096", "V097"],
       "review_ids": [],
       "blocked_by": [],
       "next_action": "Safari文字拡大・キーボードはT052で確認済み。動画は再生/停止状態取得済みで映像視認のユーザー回答待ち。Safari実フェイス・外部埋め込み・Chrome/Firefox追加項目は継続する。"
@@ -1993,6 +1994,38 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "文字拡大とSafariキーボード操作は確認済み。動画の映像が見えるかユーザー回答待ち。"
+    },
+    {
+      "id": "T053",
+      "title": "Firefoxの文字設定・和文コード・JS無効を追加確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "T048/T050で未確認のFirefoxの既定文字サイズ変更、和文コード実フォント、JS無効時の読書・ナビをネイティブUIで確認する。"
+      ],
+      "depends_on": ["T048", "T050"],
+      "acceptance_criteria": [
+        "対象URLと環境・実際の設定値/使用フォント/動作を記録する。",
+        "設定と専用タブを復元し、未取得項目を合格にしない。"
+      ],
+      "verification_plan": [
+        "設定UIで既定文字サイズを拡大しAboutのナビ・本文・表と記事コードを目視する。",
+        "InspectorのFontsで和文コメント要素の使用フォントを取得する。",
+        "DevToolsのJS無効設定で本文・一覧・ナビ・RSSと補助ボタンの非表示を確認し復元する。",
+        "文書整形・進捗検査・差分確認を実施する。"
+      ],
+      "commit_message": "[T053] Firefox追加確認の描画制約を記録",
+      "status": "implemented",
+      "verification_status": "blocked",
+      "artifact_refs": ["themes/shsh/docs/verification/t053/"],
+      "verification_ids": ["V097"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "FirefoxのAXと画像の不一致が解消してから、未実施の文字設定・和文コード・JS無効確認を再開する。ユーザーの既存タブを伴うブラウザ再起動はしていない。"
     }
   ],
   "findings": [
@@ -4864,6 +4897,22 @@
         "themes/shsh/docs/verification/t052/safari-video-actions.json"
       ],
       "recorded_at": "2026-09-18T13:04:01.753014+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V097",
+      "task_ids": ["T015", "T050", "T053"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "Firefox実機UIの状態と描画の不一致",
+      "result": "blocked",
+      "subject_ref": "T053のFirefox設定UI（サイト検査へ進む前）",
+      "environment": "macOS / ネイティブFirefox / CUA",
+      "procedure": "専用タブでabout:preferences#generalへ移動。AXのタブ・URLは更新されたがページ内容は取得できず、画像は前のページのまま。前面化・再読込・ウィンドウ選択・一時拡大でも解消せず。設定変更せず、ウィンドウサイズを戻し専用タブ消失を確認。文字拡大・和文コード・JS無効のサイト試験は未実施。",
+      "evidence_refs": ["themes/shsh/docs/verification/t053/observation.json"],
+      "recorded_at": "2026-09-18T13:09:51.164370+00:00",
       "supersedes": null
     }
   ]
