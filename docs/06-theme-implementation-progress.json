@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T11:06:45.588274+00:00",
+  "updated_at": "2026-09-18T11:21:25.058248+00:00",
   "stage": "final_verification",
-  "summary": "Android Chromeの基本確認は問題なし。iPhone横回転時の文字自動拡大F025はモックから欠けた-webkit-text-size-adjust:100%を復元し局所54検査成功。実iPhoneの回転・拡大操作と配信・全CIはT047で再確認する。",
+  "summary": "Androidの基本報告は問題なし。iPhone横回転F025はSafari用指定を復元し、実機で回転時の問題解消・文字拡大・ピンチズームを確認済み。preview6f52990f/268bbb0配信と全CI246検査が成功。詳細実機項目と本番移行は未完了。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T047",
-    "action": "T046をpushしてPages・CIを追跡しiPhone実機の再確認を依頼する。"
+    "task_id": "T015",
+    "action": "利用可能な6環境の基本報告を受領済み。F025は実機で解消確認済み。実フォント・文字拡大条件・JS無効等の未確認詳細項目を継続する。"
   },
   "tasks": [
     {
@@ -167,8 +167,8 @@
         "Hugo単独生成、別ドメイン・著者fixture、未知アイコン・メニュー切れ・型違いの失敗を確認する。"
       ],
       "commit_message": "[T004] 代表画面の共通枠と配色切替を実装",
-      "status": "implemented",
-      "verification_status": "blocked",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/",
         "themes/shsh/tests/fixtures/representative/",
@@ -179,10 +179,10 @@
         "themes/shsh/docs/verification/theme-foundation.md",
         "themes/shsh/docs/verification/t004-check.log"
       ],
-      "verification_ids": ["V008", "V009", "V013", "V081"],
+      "verification_ids": ["V008", "V009", "V013", "V081", "V083", "V084"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "指定復元と局所54検査は成功。T047でpreview配信・全CIとiPhone実機の回転・文字拡大・ピンチズームを再確認する。"
+      "next_action": "局所検査と実iPhoneの回転・拡大操作再確認は完了。全CIをT047で確認する。"
     },
     {
       "id": "T005",
@@ -712,11 +712,12 @@
         "V071",
         "V076",
         "V078",
-        "V079"
+        "V079",
+        "V083"
       ],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Androidの報告範囲を記録済み。iPhone横回転F025の修正後再確認と、各環境の未申告詳細項目を継続する。"
+      "next_action": "利用可能な6環境の基本報告を受領済み。F022のFirefox書体差異は受容、F025は実機で解消。実フォント・文字拡大条件・JS無効等の未確認詳細項目を継続する。"
     },
     {
       "id": "T016",
@@ -1778,18 +1779,18 @@
         "型付きlint・CSS lint・整形・進捗検査を実行する。"
       ],
       "commit_message": "[T046] Safari横回転時の文字自動拡大を抑止",
-      "status": "implemented",
-      "verification_status": "blocked",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/assets/css/base.css",
         "themes/shsh/tests/theme.spec.ts",
         "themes/shsh/docs/verification/t046/",
         "themes/shsh/docs/verification/real-devices.md"
       ],
-      "verification_ids": ["V078", "V079", "V080", "V081"],
+      "verification_ids": ["V078", "V079", "V080", "V081", "V083", "V084"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "指定復元と局所54検査は成功。T047でpreview配信・全CIとiPhone実機の回転・文字拡大・ピンチズームを再確認する。"
+      "next_action": "局所検査と実iPhoneの回転・拡大操作再確認は完了。全CIをT047で確認する。"
     },
     {
       "id": "T047",
@@ -1812,13 +1813,13 @@
         "新しい固定URLでiPhoneの縦→横→縦・文字拡大・ピンチズームを依頼し、回答範囲を記録する。"
       ],
       "commit_message": "[T047] Safari文字自動拡大修正の配信と検証結果を記録",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": ["themes/shsh/docs/verification/t047/"],
+      "verification_ids": ["V082", "V083", "V084"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "T046をpushしてPages・CIを追跡しiPhone実機の再確認を依頼する。"
+      "next_action": "配信・全CI246検査・iPhone実機再確認が成功。T015の未確認詳細項目を継続する。"
     }
   ],
   "findings": [
@@ -2444,7 +2445,7 @@
       "id": "F025",
       "title": "iPhone Safariの横回転で文字が自動拡大する",
       "task_ids": ["T004", "T015", "T046"],
-      "status": "open",
+      "status": "resolved",
       "requires_user_decision": false,
       "observation": "ユーザーがiPhone Safariで横回転時の文字拡大を報告。Android Chromeでは発生しない。凍結モックはbodyに-webkit-text-size-adjust:100%を持つが、テーマ実装は接頭辞なしのtext-size-adjust:100%のみ。WebKit現行定義に標準名のaliasはなく、unprefix課題229086もNEW。",
       "evidence_refs": [
@@ -2465,9 +2466,10 @@
       "resolution_refs": [
         "themes/shsh/assets/css/base.css",
         "themes/shsh/scripts/verify-theme.ts",
-        "themes/shsh/tests/theme.spec.ts"
+        "themes/shsh/tests/theme.spec.ts",
+        "themes/shsh/docs/verification/t047/iphone-retest.json"
       ],
-      "verification_ids": ["V079", "V080", "V081"]
+      "verification_ids": ["V079", "V080", "V081", "V083", "V084"]
     }
   ],
   "reviews": [
@@ -4401,6 +4403,64 @@
       ],
       "recorded_at": "2026-09-18T11:06:45.588274+00:00",
       "supersedes": "V080"
+    },
+    {
+      "id": "V082",
+      "task_ids": ["T047"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33"
+      ],
+      "kind": "Safari文字自動拡大修正版のPages preview配信",
+      "result": "passed",
+      "subject_ref": "268bbb0ef102f1379efbcfb62f53d2e643a7c79e / Pages6f52990f-6e96-47ef-80bd-1cf7c99f1b45",
+      "environment": "Cloudflare Pages Git連携 / HTTPS・配信CSS確認",
+      "procedure": "同一SHAのPages成功。記事HTTP200、HTML/HTTP noindex、bodyの-webkit-text-size-adjust:100%と標準名100%、CSS内容SHA256/fingerprint一致を確認。viewportはwidth=device-width,initial-scale=1。ユーザーへ縦横回転・ページ文字拡大・ピンチズームの実機再確認を依頼。CIは実行中。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t047/checks-preview.json",
+        "themes/shsh/docs/verification/t047/preview.json"
+      ],
+      "recorded_at": "2026-09-18T11:09:17.282661+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V083",
+      "task_ids": ["T004", "T015", "T046", "T047"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "ユーザーによるiPhone回転時文字サイズと拡大操作の実機再確認",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/2026/09/01/development-environment-2026/",
+      "environment": "iPhone17/iOS27 Safari（端末・OSは先の報告、詳細版未取得）",
+      "procedure": "縦→横→縦の文字サイズ、Safariのページ文字拡大・ピンチズームの依頼に対し、ユーザーが「回転時の問題は解消し、文字拡大・ピンチズームも使える」と回答。F025の指摘範囲を合格とし、未申告の実機詳細項目へ一般化しない。",
+      "evidence_refs": ["themes/shsh/docs/verification/t047/iphone-retest.json"],
+      "recorded_at": "2026-09-18T11:11:57.429438+00:00",
+      "supersedes": "V079"
+    },
+    {
+      "id": "V084",
+      "task_ids": ["T004", "T046", "T047"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "Safari文字自動拡大修正後のGitHub全検査と同一SHAのPages照合",
+      "result": "passed",
+      "subject_ref": "268bbb0ef102f1379efbcfb62f53d2e643a7c79e / GitHub run35338044497 / Pages6f52990f",
+      "environment": "GitHub Actions ubuntu-24.04 / Node24・pnpm12.4.1・Hugo0.166.0 / Playwright Chromium・Firefox・WebKit",
+      "procedure": "統合検査成功、246 passed (10.7m)、ジョブ12分50秒。同一SHAで必須shsh-check/App15368とPages/App85455が成功。V082で配信CSS・viewport、V083で実iPhoneの回転時問題解消と文字拡大・ピンチズームの利用を確認済み。Mac WebKitの幅変更検査をiOS実機検査として扱わない。本番マージ未実施。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t047/ci-run.json",
+        "themes/shsh/docs/verification/t047/ci-success.log",
+        "themes/shsh/docs/verification/t047/final-checks.json",
+        "themes/shsh/docs/verification/t047/preview.json",
+        "themes/shsh/docs/verification/t047/iphone-retest.json"
+      ],
+      "recorded_at": "2026-09-18T11:21:25.058248+00:00",
+      "supersedes": null
     }
   ]
 }
