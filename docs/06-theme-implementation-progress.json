@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T14:10:49.743790+00:00",
+  "updated_at": "2026-09-18T14:13:28.364293+00:00",
   "stage": "final_verification",
-  "summary": "F026の5代表環境案をユーザー承認、資料4・手順・進捗へ反映。代表外とMac Safari実フォント未取得は制約として保持。Safari YouTube映像の確認報告を受領し記録予定。Windows Chrome/iPhone/Androidの残件、本番移行・旧テーマ整理は未完了。",
+  "summary": "F026の5代表環境へ整理済み。Safari YouTube映像のユーザー確認でMac Chrome/Safariの必須実機項目は完了。代表外とSafari実フォント未取得は制約保持。Windows Chrome/iPhone/Android残件を依頼済み。本番移行・旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T056",
-    "action": "受領したSafari YouTube映像のユーザー報告を新タスクで記録する。続いてT064の代表実機残件を依頼する。"
+    "task_id": "T015",
+    "action": "Windows Chrome/iPhone Safari/Android Chromeの追加報告をT064の残件表へ反映する。PR #5の33df5feのCI run35354251910も同じIDで追跡する。"
   },
   "tasks": [
     {
@@ -735,11 +735,13 @@
         "V102",
         "V104",
         "V107",
-        "V108"
+        "V108",
+        "V111",
+        "V112"
       ],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "F026を反映済み。Safari YouTubeの追加報告を後続タスクで記録し、代表環境の残件をT064の手順で確認する。"
+      "next_action": "Mac Chrome/Safariの代表範囲は完了。T064のWindows Chrome/iPhone Safari/Android Chrome残件をユーザーへ依頼済み。回答を反映し、本番前の条件を照合する。"
     },
     {
       "id": "T016",
@@ -1930,8 +1932,8 @@
         "取得した環境値・画面・AX抜粋を保存し、文書整形・進捗検査・差分確認を実施する。"
       ],
       "commit_message": "[T050] Mac実機の追加表示と操作確認を記録",
-      "status": "implemented",
-      "verification_status": "blocked",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": ["themes/shsh/docs/verification/t050/"],
       "verification_ids": [
         "V088",
@@ -1947,11 +1949,13 @@
         "V101",
         "V102",
         "V104",
-        "V108"
+        "V108",
+        "V111",
+        "V112"
       ],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "F026を反映済み。Safari YouTubeの追加報告を後続タスクで記録し、代表環境の残件をT064の手順で確認する。"
+      "next_action": "T065でSafari YouTubeのユーザー報告を反映し、F026のMac代表範囲は確認済み。その他の代表環境と本番の残件はT015/T017で継続する。"
     },
     {
       "id": "T051",
@@ -2138,13 +2142,13 @@
         "整形・進捗検査・差分確認後にコミットする。"
       ],
       "commit_message": "[T056] Mac実機の外部埋め込み表示を記録",
-      "status": "implemented",
-      "verification_status": "blocked",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": ["themes/shsh/docs/verification/t056/README.md"],
-      "verification_ids": ["V100", "V101"],
+      "verification_ids": ["V100", "V101", "V111", "V112"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Chrome4サービスとSafari3サービス・YouTube再生停止を確認済み。Safari YouTubeの映像視認はユーザー回答待ち。"
+      "next_action": "T065でSafari YouTubeのユーザー報告を反映し、F026のMac代表範囲は確認済み。その他の代表環境と本番の残件はT015/T017で継続する。"
     },
     {
       "id": "T057",
@@ -2415,7 +2419,42 @@
       "verification_ids": ["V110"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "5代表環境の条件を反映済み。Safari YouTube報告を別タスクで記録し、Windows Chrome/iPhone/Androidの残件を依頼する。"
+      "next_action": "F026の条件反映と代表実機残件の依頼は完了。MacはT065で確認済み。他の3環境の報告をT015で反映する。"
+    },
+    {
+      "id": "T065",
+      "title": "Safari YouTube映像の実機報告とMac確認完了を記録",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: 実機の代表環境（F026）",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "scope": [
+        "固定previewのMac Safari YouTube映像を視認したユーザー報告を記録する。",
+        "F026適用後のMac Chrome/Safari必須項目の証拠を照合し、T050/T056の現在状態を更新する。"
+      ],
+      "depends_on": ["T056", "T064"],
+      "acceptance_criteria": [
+        "引用された対象URLと映像の回答原文を保存し、V101の確認待ちを新しい実機証拠で更新する。",
+        "Macの代表範囲の確認済み項目と制約を証拠で追え、他の実機を合格にしない。"
+      ],
+      "verification_plan": [
+        "ユーザーの「映像が見える」をT056の依頼URL/ブラウザと照合する。",
+        "T049〜T057/T061のMac必須結果とF026の範囲を監査する。",
+        "整形・進捗参照/DAG・差分を確認する。"
+      ],
+      "commit_message": "[T065] Safari YouTube映像とMac実機確認完了を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/t065/README.md",
+        "themes/shsh/docs/verification/t065/safari-youtube-report.json"
+      ],
+      "verification_ids": ["V111", "V112"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "Safari YouTubeとMac代表範囲の確認は完了。Windows Chrome/iPhone/Androidの追加報告をT015で反映する。"
     }
   ],
   "findings": [
@@ -5597,6 +5636,42 @@
         "themes/shsh/docs/verification/t064/README.md"
       ],
       "recorded_at": "2026-09-18T14:10:49.743790+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V111",
+      "task_ids": ["T015", "T050", "T056", "T065"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: 実機の代表環境（F026）",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "ユーザーによるMac Safari YouTube映像確認",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/ / F026のMac代表範囲",
+      "environment": "Mac Safari/Chromeの既存実機証拠・ユーザー回答",
+      "procedure": "ユーザーがMac Safariの対象記事で映像が見えるかの依頼を引用し「映像が見える」と回答。T056の再生/一時停止操作と組み合わせ映像視認待ちを解消。取得画像の黒い原因は断定しない。",
+      "evidence_refs": ["themes/shsh/docs/verification/t065/safari-youtube-report.json"],
+      "recorded_at": "2026-09-18T14:13:28.364293+00:00",
+      "supersedes": "V101"
+    },
+    {
+      "id": "V112",
+      "task_ids": ["T015", "T050", "T056", "T065"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: 実機の代表環境（F026）",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "F026に基づくMac代表環境の実機証拠照合",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/ / F026のMac代表範囲",
+      "environment": "Mac Safari/Chromeの既存実機証拠・ユーザー回答",
+      "procedure": "T049/T050/T052/T055/T056/T057/T061と今回の報告を、版・OSフォント・文字拡大・コピー・キーボード・JS無効・ローカル動画・外部埋め込みへ対応付けた。F026のMac Chrome/Safari必須範囲は確認済み。各結果のページ/条件限定とSafari実フェイス・Mac Firefoxの未確認制約は維持。他のOSと本番は未完了。",
+      "evidence_refs": ["themes/shsh/docs/verification/t065/README.md"],
+      "recorded_at": "2026-09-18T14:13:28.364293+00:00",
       "supersedes": null
     }
   ]

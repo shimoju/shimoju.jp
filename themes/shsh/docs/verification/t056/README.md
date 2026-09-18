@@ -1,5 +1,7 @@
 # T056 Mac実機の外部埋め込み確認
 
+現在の状態：F026適用後のMac代表範囲はT065で確認済み。Safari YouTubeの映像視認もユーザー報告で確認した。[最新の証拠対応](../t065/README.md)。以下は当初実施時点の結果・取得制約を保持する。
+
 対象は固定preview `6f52990f`（テーマ実装 `268bbb0`）。2026-09-18にCodexがこのMacで確認した。Safari 27.0 / Chrome 153.0.8010.53 / macOS 27.0（26A428）はT050で取得した同一環境。今回は詳細版・CSS viewport・DPRを再測定していない。画像寸法をCSS viewportと見なさない。配色は開始時のダークを維持した。
 
 SafariはCUAのネイティブUI、Chromeは最初に同じネイティブUIを使い、途中で `noWindowsAvailable` が返ったためCUAのChrome拡張接続で同じ実ブラウザの専用タブを継続した。Playwrightテスト用ブラウザではない。
