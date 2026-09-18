@@ -1,6 +1,6 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T04:36:22.729960+00:00",
+  "updated_at": "2026-09-18T04:37:25.003205+00:00",
   "stage": "full_implementation",
   "summary": "R002/F014の全画面・About修正案は回答待ち。Safari実機で記事の両配色・About表・Archives遷移を限定確認し、実機手順と未確認項目を記録。移行照合・性能は記録済み、統合はAbout由来の3不合格を保持。残る実フォント・他OS/モバイル・Cloudflare配信は未確認。",
   "latest_review_id": "R004",
@@ -1040,6 +1040,28 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "F016の是正完了。全公開出力の照合T013へ進む。"
+    },
+    {
+      "id": "T025",
+      "title": "Safari証拠画像の拡張子を実形式へ訂正",
+      "requirement_refs": ["docs/05-theme-implementation-discipline.md: Q6"],
+      "scope": ["T015の保存画像4枚をJPEGの実形式に合わせて改名し、参照を訂正する。"],
+      "depends_on": ["T015"],
+      "acceptance_criteria": ["画像バイトを維持して拡張子・配信MIME・文書参照が一致する。"],
+      "verification_plan": [
+        "fileで実形式と寸法を確認し、改名前後のSHA-256一致・リンク実在・進捗検査を確認する。"
+      ],
+      "commit_message": "[T025] Safari証拠画像の拡張子を実形式へ訂正",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/t015/",
+        "themes/shsh/docs/verification/real-devices.md"
+      ],
+      "verification_ids": ["V041"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "T017の配信検証準備とR002/F014の判断を待つ。"
     }
   ],
   "findings": [
@@ -2609,6 +2631,22 @@
         "themes/shsh/docs/verification/t015/"
       ],
       "recorded_at": "2026-09-18T04:36:22.729960+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V041",
+      "task_ids": ["T025"],
+      "requirement_refs": ["docs/05-theme-implementation-discipline.md: Q6"],
+      "kind": "証拠画像の形式と参照訂正",
+      "result": "passed",
+      "subject_ref": "c61acbf + T025の画像改名・文書参照差分",
+      "environment": "macOS27; file; Python3",
+      "procedure": "CUAのgetScreenshotはJPEGバイトを返していたため、4枚を.pngから.jpgへ改名。各画像の改名前後SHA-256一致をassert。fileでJPEG・1039x768を確認。再符号化・画像内容変更なし。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t015/",
+        "themes/shsh/docs/verification/real-devices.md"
+      ],
+      "recorded_at": "2026-09-18T04:37:25.003205+00:00",
       "supersedes": null
     }
   ]
