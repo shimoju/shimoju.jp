@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T08:07:49.995926+00:00",
+  "updated_at": "2026-09-18T08:14:08.885179+00:00",
   "stage": "final_verification",
-  "summary": "iPhone初回コピー不具合F021はT040で修正し、05d2064のpreviewでユーザーが初回コピーと貼り付け内容一致を確認済み。GitHub統合検査243件と同一SHAのPages配信も成功しT040/T041完了。本番未移行。他の実機・OSフォント・文字拡大等をT015で継続する。",
+  "summary": "iPhone初回コピー不具合F021は修正・実機再確認済み。修正版preview211f19d6/05d2064でiPad Safariの表示・コピー・画像・動画・回転も問題なしとの報告を記録。GitHub統合検査243件と同一SHAのPages配信は成功。本番未移行。Windows3ブラウザ・Androidの基本確認と、各環境のフォント・文字拡大等は未確認。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "残るWindows Chrome/Edge/Firefox、iPad Safari、Android ChromeとMacの未確認項目を修正版preview211f19d6/05d2064で確認し記録する。iPhoneはコピーを含む報告範囲を合格、実フォント・文字拡大・JS無効等は未確認。"
+    "action": "修正版preview211f19d6/05d2064でWindows Chrome/Edge/Firefox、Android Chromeの基本確認を受領する。iPhone/iPadは報告範囲を確認済み。Macを含む実フォント・文字拡大・JS無効等の未確認項目はT015で継続する。"
   },
   "tasks": [
     {
@@ -700,10 +700,10 @@
         "themes/shsh/docs/verification/real-devices.md",
         "themes/shsh/docs/verification/t015/"
       ],
-      "verification_ids": ["V040", "V045", "V046", "V049", "V063", "V067"],
+      "verification_ids": ["V040", "V045", "V046", "V049", "V063", "V067", "V069"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "iPhoneの初回コピー不具合は実機再確認で解消。他の実機、OSフォント・文字拡大・JS無効等の未確認項目を継続する。"
+      "next_action": "修正版preview211f19d6/05d2064でWindows Chrome/Edge/Firefox、Android Chromeの基本確認を受領する。iPhone/iPadは報告範囲を確認済み。Macを含む実フォント・文字拡大・JS無効等の未確認項目はT015で継続する。"
     },
     {
       "id": "T016",
@@ -1611,6 +1611,39 @@
       "review_ids": ["R002"],
       "blocked_by": [],
       "next_action": "コピー初回タップの修正、全CI、iPhone実機再確認は完了。残る実機項目はT015、本番移行はT017で継続する。"
+    },
+    {
+      "id": "T042",
+      "title": "iPad Safariの実機報告と対象版を記録",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "iPadの表示・コピー・画像・動画・回転の報告を、ユーザーが確認した固定previewへ結び付ける。",
+        "コピーの追加回答を原文とともに保存し、未申告の詳細検査には一般化しない。"
+      ],
+      "depends_on": ["T041"],
+      "acceptance_criteria": [
+        "報告した端末・OS・ブラウザ・対象版・実施項目を正確に記録する。",
+        "実機確認表と進捗に反映し、未確認項目を維持する。"
+      ],
+      "verification_plan": [
+        "ユーザーの報告とURL確認の回答を記録・一覧表と照合する。",
+        "文書整形、進捗JSON検査、git diff --checkを実行する。"
+      ],
+      "commit_message": "[T042] iPad Safariの実機確認結果を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/real-devices.md",
+        "themes/shsh/docs/verification/t042/ipad-report.json"
+      ],
+      "verification_ids": ["V069"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "ユーザー回答との照合・文書整形・進捗JSON検査・差分の空白検査は成功。報告記録は完了。残る実機確認はT015で継続する。"
     }
   ],
   "findings": [
@@ -3882,6 +3915,25 @@
         "https://github.com/shimoju/shimoju.jp/actions/runs/35321648185"
       ],
       "recorded_at": "2026-09-18T08:07:49.995926+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V069",
+      "task_ids": ["T015", "T042"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "ユーザーによるiPad Safariの実機確認",
+      "result": "passed",
+      "subject_ref": "05d20643cd5f8c85c10028050c1fb423d611608a / https://211f19d6.shimoju.pages.dev/",
+      "environment": "iPad Pro 12.9インチ（第6世代）、OS申告iOS 27、Safari（詳細版未取得）",
+      "procedure": "ユーザーがホーム・About・Archivesの両配色、コピーボタン、画像、動画再生・停止、縦横回転を確認し問題なしと報告。引用に旧URLがあったため照会し、修正版211f19d6と回答を得た。報告範囲のみ合格。実フォント・文字拡大・外部埋め込み・JS無効等は未確認。初回コピー・貼り付け一致の追加回答も原文保存したが、端末名再指定がないためiPadの厳密な照合へ一般化しない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t042/ipad-report.json",
+        "themes/shsh/docs/verification/real-devices.md"
+      ],
+      "recorded_at": "2026-09-18T08:13:56.494717+00:00",
       "supersedes": null
     }
   ]
