@@ -34,21 +34,40 @@
 | ビルドシステム | v3                         | v3                         |
 | ブランチ       | `master`、自動デプロイ有効 | production以外の全ブランチ |
 
-[設定のAX抜粋と観察](t029/settings-observation.json)。秘密値は取得・保存していない。Hugo版・ルート・出力は期待どおり。現在のコマンドにはminifyとpreview環境/baseURL指定がないため、配信前に次の引数を渡す必要がある。dashboardのビルド設定は「リポジトリ固有」と表示されるため、共通コマンドを使うなら以下の分岐を設定する（まだ適用していない）。
-
-```sh
-if [ "$CF_PAGES_BRANCH" = "master" ]; then bin/build --environment production --minify; else bin/build --environment preview --minify --baseURL "$CF_PAGES_URL/"; fi
-```
+[設定のAX抜粋と観察](t029/settings-observation.json)。秘密値は取得・保存していない。Hugo版・ルート・出力は期待どおり。コマンドにpreview環境/baseURL指定がないため、現状ではpreviewの出力規則を満たさない。なお`hugo.yml`には既に`minifyOutput: true`があり、`--minify`がないことだけでは非圧縮とは判定できない。T030では配信用スクリプトに環境・baseURL・minifyを明示した。
 
 GitHub APIではmasterのbranch protectionは404 `Branch not protected`、実効rulesetは空配列だった（[結果](t029/github-ci-gates.json)）。ローカルの`shsh` workflowは検査を実行するが、Cloudflareの自動配信との依存関係を定義していない。Cloudflareは[Gitへのpushを契機に自動配信する](https://developers.cloudflare.com/pages/configuration/git-integration/)ため、現在の構成だけでは「GitHub検査合格後に配信」を保証できない（F018）。
 
-次の配信前に、同一コミットのCI成功を必須とする配信経路を確定する。検査成功後にGitHub Actionsから配信し、Cloudflare側の独立した自動配信を止める構成なら、本番・preview両方で順序を保証できる。認証と配信方法の具体化が必要で、まだ変更・トークン作成・新規配信は行っていない。既存の成功deploymentをshsh移行後の合格に流用しない。
+T030で、検査成功後にGitHub Actionsから既存プロジェクトへアップロードする経路を準備した。Cloudflare側の独立した自動配信はまだ停止しておらず、認証設定・新規配信も未実施。F018は実際の経路を検証するまで未解決とする。既存の成功deploymentをshsh移行後の合格に流用しない。
+
+## CI成功後の配信準備（T030）
+
+[workflow](../../../../.github/workflows/shsh.yml)の`deploy`は`needs: check`で同一コミットの検査成功に依存する。自リポジトリのブランチへのpushまたは手動実行だけが対象で、PR・タグ・fork先・検査失敗時は配信しない。Repository variable `SHSH_PAGES_DEPLOY=enabled`がない間も配信しない。アップロード直前にリモートブランチの最新SHAと照合し、古くなった実行は失敗させる。トークンはアップロードstepだけへ渡し、GitHub権限は`contents: read`とする。
+
+[build-pages.sh](../../scripts/build-pages.sh)はHugoだけで生成する。masterはproductionと`https://shimoju.jp/`、他のブランチはpreviewと`https://preview-<40桁SHA>.shimoju.pages.dev/`を指定する。アップロード先のPagesブランチにも`preview-<SHA>`を使い、生成前から決まる[ブランチalias](https://developers.cloudflare.com/pages/configuration/preview-deployments/#preview-aliases)をcanonical・OGP・RSSに揃える。Cloudflareが別途発行するランダムなdeployment URLとaliasの対応は実配信時に確認する。出力は`.cache/pages/public`、環境・URL・SHAは`target.txt`とActions artifactへ保存する。
+
+Wranglerはアップロード専用の開発依存として4.131.2に固定した。端末のpnpm最低公開経過時間の制約により4.134.0は導入できなかったため、制約を維持して公開日2026-09-14の4.131.2を選んだ。必要なネイティブ依存のインストール処理は`pnpm-workspace.yaml`でesbuild@0.28.1とworkerd@1.20260911.1だけを許可し、未確認のビルド処理を一律許可しない。サイトのHugo生成にNode.jsは不要。
+
+本番/previewとも170 HTML・48 RSSの生成物を検査し、canonical/OGP/RSSのURL、robots、共有4サービスとスターの環境差、fingerprint・source map不出力、既存_headers/_redirectsの維持を確認した。Hugo警告・エラーなし。引数不正5条件は生成前に拒否。証拠と再現用監査は[t030](t030/)に保存した。ローカルの成功であり、GitHub上の実行・Cloudflareの配信結果はまだ未確認。
+
+### 有効化の手順
+
+既存のGit連携プロジェクトでも、自動配信を停止してWranglerからアップロードできる。プロジェクトの作り直しやドメイン移行は不要。[公式手順](https://developers.cloudflare.com/pages/configuration/git-integration/)
+
+1. R002全画面レビューの判断を記録する。
+2. Cloudflareの`shimoju` → Settings → Builds & deploymentsで、Production branchの自動配信を無効にし、Preview branchの自動配信をNoneへ変更する。最初のpushより前に両方の停止を確認する。有効化変数だけではCloudflare側の独立した配信は停止しない。
+3. ユーザーがCloudflareでAPIトークンを作成する。権限は`Account / Cloudflare Pages / Edit`、対象アカウントは`c0c39e237ef194406cb2ba4680f5d5da`に限定する。この権限はアカウント内のPages編集権限となる。作成した値をGitHubの[Repository Actions secrets](https://github.com/shimoju/shimoju.jp/settings/secrets/actions)へ`CLOUDFLARE_API_TOKEN`という名前で登録する。値を会話・ファイル・ログへ渡さない。[認証の公式手順](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/)
+4. GitHub Repository Actions variablesへ`SHSH_PAGES_DEPLOY=enabled`を登録する。上記のCloudflare自動配信停止を確認してから有効にする。
+5. 対象コミットを作業ブランチへpushし、同じSHAのcheck成功→deploy成功、target.txt、Pages deployment/aliasを確認する。失敗した場合は新しい公開を進めず原因を修正する。
+6. 下記のpreview配信・実機確認を完了させる。本番への反映はmasterへの統合時に同じcheck→deploy経路で行い、実際の本番応答も検証する。
+
+配信の停止には`SHSH_PAGES_DEPLOY`を削除する。既存公開の切り戻しが必要なら、テーマ名だけではなく移行前の配信成果物を復元する。Cloudflareの自動配信を戻す場合はCIとの依存が再び失われるため、検査成功の保証を確認する。
 
 ## 移行後の確認手順
 
 1. F014はT026で承認・反映済み。R002の判断後、GitHub Actionsへ送るコミットを確定する。テーマルートで`pnpm check`を通し、同じコミットのGitHub上の結果URLを記録する。
-2. Cloudflareの既存プロジェクトでproduction/preview各環境のビルドコマンド、ルート、出力ディレクトリ、Hugo版、環境変数を読む。認証情報は記録しない。
-3. サイト生成はHugoのみ。ルートはリポジトリルート、出力は`public`、両環境の`HUGO_VERSION`は`0.166.0`を期待する。本番は`bin/build --environment production --minify`で設定済み`https://shimoju.jp/`を使用。previewは`bin/build --environment preview --minify --baseURL "$CF_PAGES_URL/"`相当の引数を渡す。実際の設定を確認してから必要な差分を適用する。ビルドコマンドを共用する場合は環境ごとの分岐が必要で、単に`bin/build`とするだけではpreview指定にならない。
+2. Cloudflareの両環境の自動配信停止、GitHub Actionsのcheck→deployの実行順序と対象SHAを確認する。認証情報は記録しない。
+3. ActionsのビルドログでHugo 0.166.0と`build-pages.sh`の環境・baseURLを確認する。生成物は`.cache/pages/public`をアップロードし、dashboardに残る旧`hugo`コマンドは実行経路に含めない。
 4. ビルドログでHugo版・環境・警告/エラー・コミット・deployment ID・URLを記録する。外部shortcode取得の警告と入力エラーを区別する。GitHub検査が公開を止める設定になっているかも確認する。
 5. previewのホーム・記事・About・一覧2ページ目で、HTTPのnoindex、HTMLのnoindex、preview自身のcanonical/OGP/RSS、共有無効・スターなしを確認する。存在しないURLの404とfeed.xmlの301も確認する。
 6. 本番で公開URL・RSS GUID・canonicalを照合し、共有先とスターの対象が公開URLであること、外部4サービスが表示されることを確認する。投稿確定やスター追加は行わない。

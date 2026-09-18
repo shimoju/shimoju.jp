@@ -1,6 +1,7 @@
 name: shsh
 on:
   push:
+    branches: ["**"]
   pull_request:
   workflow_dispatch:
 
@@ -52,4 +53,66 @@ jobs:
             themes/shsh/.cache/migration-results/
             themes/shsh/playwright-report/
             themes/shsh/test-results/
+          retention-days: 14
+
+  deploy:
+    needs: check
+    if: >-
+      github.repository == 'shimoju/shimoju.jp' &&
+      github.event_name != 'pull_request' &&
+      startsWith(github.ref, 'refs/heads/') &&
+      vars.SHSH_PAGES_DEPLOY == 'enabled'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    concurrency:
+      group: pages-${{ github.ref }}
+      cancel-in-progress: false
+    defaults:
+      run:
+        working-directory: themes/shsh
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: themes/shsh/.node-version
+          package-manager-cache: false
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+        with:
+          package_json_file: themes/shsh/package.json
+          run_install: false
+      - uses: peaceiris/actions-hugo@6b1ee2dcc06c9b6629a5317fa0146473914d05e1 # v3
+        with:
+          hugo-version: "0.166.0"
+      - run: pnpm install --frozen-lockfile
+      - name: Build the checked commit for Pages
+        id: build
+        run: sh scripts/build-pages.sh "$GITHUB_REF" "$GITHUB_SHA"
+      - name: Deploy the verified build
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: c0c39e237ef194406cb2ba4680f5d5da
+          PAGES_BRANCH: ${{ steps.build.outputs.branch }}
+          WRANGLER_LOG_PATH: .cache/wrangler-logs
+          WRANGLER_SEND_METRICS: "false"
+        run: |
+          current_sha=$(git ls-remote origin "$GITHUB_REF" | cut -f1)
+          test "$current_sha" = "$GITHUB_SHA"
+          test -n "$CLOUDFLARE_API_TOKEN"
+          pnpm exec wrangler pages deploy .cache/pages/public \
+            --project-name shimoju --branch "$PAGES_BRANCH" \
+            --commit-hash "$GITHUB_SHA" --commit-dirty=false
+      - name: Record the deployed revision
+        env:
+          SITE_URL: ${{ steps.build.outputs.base_url }}
+        run: |
+          printf 'Commit: `%s`\n\nSite: %s\n' "$GITHUB_SHA" "$SITE_URL" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        if: always()
+        with:
+          name: shsh-pages-build
+          include-hidden-files: true
+          path: themes/shsh/.cache/pages/target.txt
           retention-days: 14

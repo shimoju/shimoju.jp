@@ -13,6 +13,7 @@ const general = [
   "README.md",
   "docs/verification",
   "package.json",
+  "pnpm-workspace.yaml",
   "tsconfig.json",
   "playwright.config.ts",
   ".oxfmtrc.json",

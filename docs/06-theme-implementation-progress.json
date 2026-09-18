@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T05:19:00.272524+00:00",
+  "updated_at": "2026-09-18T05:36:27.365804+00:00",
   "stage": "full_implementation",
-  "summary": "About列見出し承認反映後の全240テスト合格。R002全体は回答待ち。Chrome本文400の実フォント・配色を追加確認。Cloudflareログイン後の実設定は取得済み、両環境Hugo0.166.0。preview生成引数とCI成功後配信経路（F018）、実機残項目・配信・撤去は未完了。",
+  "summary": "About列見出し承認反映後の全240テスト合格。R002全体は回答待ち。Cloudflare実設定を確認し、CI成功後配信のworkflowと環境別生成をT030で準備・ローカル検証済み。Secret登録・自動配信停止・有効化・実配信（F018）、実機残項目と旧テーマ撤去は未完了。",
   "latest_review_id": "R004",
   "resume": {
     "task_id": "T017",
-    "action": "F018のCI成功後配信経路を具体化する。R002全画面レビューは承認待ち。承認後に同一コミットのCI・preview配信を検証し、他端末実機確認へ進む。"
+    "action": "R002の明示的判断とCLOUDFLARE_API_TOKEN登録の回答を確認する。両条件が揃ったらCloudflare自動配信を停止し、有効化変数を設定して対象コミットのCI→preview配信を検証する。未回答を承認に置き換えない。"
   },
   "tasks": [
     {
@@ -778,10 +778,10 @@
         "themes/shsh/docs/verification/cloudflare-pages.md",
         "themes/shsh/docs/verification/t017/"
       ],
-      "verification_ids": ["V042", "V045", "V047"],
+      "verification_ids": ["V042", "V045", "V047", "V048"],
       "review_ids": [],
       "blocked_by": ["F018"],
-      "next_action": "ログイン・実設定の読み取り済み。F018のCI成功後配信経路を具体化し、R002判断後にpreview環境/baseURL/minifyを設定して同一コミットのCI・preview・本番を検証する。"
+      "next_action": "R002の明示的判断とCLOUDFLARE_API_TOKEN登録の回答を確認する。両条件が揃ったらCloudflare自動配信を停止し、有効化変数を設定して対象コミットのCI→preview配信を検証する。未回答を承認に置き換えない。"
     },
     {
       "id": "T018",
@@ -1207,6 +1207,49 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "実設定の読み取りと差分整理は完了。T017でF018のCI成功後配信経路とpreview引数を具体化し、R002判断後に配信する。"
+    },
+    {
+      "id": "T030",
+      "title": "CI成功後のCloudflare配信を準備",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q4",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "GitHub Actionsでcheck成功後だけ同じコミットをHugoで生成し、既存Cloudflare Pagesへ配信する。",
+        "本番とpreviewの環境・baseURLを明示し、配信ツールの版を固定する。",
+        "認証情報・自動配信停止・有効化手順を具体化する。外部設定変更と実配信は今回の準備に含めない。"
+      ],
+      "depends_on": ["T013", "T029"],
+      "acceptance_criteria": [
+        "PR・検査失敗・無効化中は配信せず、配信は同一コミットのcheck成功に依存する。",
+        "生成はHugo単独、production/previewのURLとrobots・共有・スターが合意どおり。",
+        "ローカルの検証と未実施の実配信を区別し、必要な認証設定を利用者に示せる。"
+      ],
+      "verification_plan": [
+        "workflowをactionlintで検証し、配信条件・権限・未信頼入力の扱いを確認する。",
+        "本番/previewの配信用Hugo生成とメタ・RSS・robots・配信アセットを確認する。",
+        "整形・型付きlint・進捗検証と影響範囲の既存検査を実行する。"
+      ],
+      "commit_message": "[T030] CI成功後のCloudflare配信を準備",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        ".github/workflows/shsh.yml",
+        "themes/shsh/scripts/build-pages.sh",
+        "themes/shsh/package.json",
+        "themes/shsh/pnpm-lock.yaml",
+        "themes/shsh/pnpm-workspace.yaml",
+        "themes/shsh/docs/verification/cloudflare-pages.md",
+        "themes/shsh/docs/verification/t030/"
+      ],
+      "verification_ids": ["V048"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "準備タスクは完了。実際の有効化・CI・配信結果はT017で確認し、F018を未解決のまま追跡する。"
     }
   ],
   "findings": [
@@ -1659,10 +1702,10 @@
     {
       "id": "F018",
       "title": "CI合格を配信の前提にする接続が未設定",
-      "task_ids": ["T017"],
+      "task_ids": ["T017", "T030"],
       "status": "open",
       "requires_user_decision": false,
-      "observation": "Cloudflareはmaster自動配信・全非本番ブランチpreview。GitHub masterのbranch protectionなし（404）、実効rulesetなし。shsh workflowに配信依存なし。",
+      "observation": "Cloudflareはmaster自動配信・全非本番ブランチpreview。GitHub masterのbranch protectionなし（404）、実効rulesetなし。shsh workflowに配信依存なし。 T030でcheck依存の配信をローカル準備済み。GitHub Secret/variable一覧は空で、実設定の切替と配信は未実施。",
       "evidence_refs": [
         "themes/shsh/docs/verification/t029/settings-observation.json",
         "themes/shsh/docs/verification/t029/github-ci-gates.json",
@@ -1671,8 +1714,12 @@
       "impact": "GitHub検査失敗や実行中でもCloudflare側で先に公開される可能性があり、公開前CIの保証がない。",
       "recommendation": "同一コミットのCI成功後にだけCloudflareへ配信する経路を構成する。GitHub Actions経由なら独立した自動配信を停止し、必要な認証とproduction/preview環境を具体化してから適用する。",
       "decision": null,
-      "resolution_refs": [],
-      "verification_ids": ["V047"]
+      "resolution_refs": [
+        ".github/workflows/shsh.yml",
+        "themes/shsh/scripts/build-pages.sh",
+        "themes/shsh/docs/verification/cloudflare-pages.md"
+      ],
+      "verification_ids": ["V047", "V048"]
     }
   ],
   "reviews": [
@@ -2973,6 +3020,29 @@
         "themes/shsh/docs/verification/cloudflare-pages.md"
       ],
       "recorded_at": "2026-09-18T05:19:00.272524+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V048",
+      "task_ids": ["T017", "T030"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q4",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "kind": "CI成功後配信の定義と環境別Hugo生成のローカル検証",
+      "result": "passed",
+      "subject_ref": "20474f0 + T030の未コミットworkflow・生成スクリプト・固定依存・手順差分。targetのSHAはローカル監査用入力であり、実deploymentを表さない。",
+      "environment": "macOS27 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Wrangler4.131.2; actionlint1.7.12; Python3",
+      "procedure": "Hugo production/previewは警告・エラー0。各170 HTML・48 RSSと共有/スター/robots、URL、ハッシュ付きアセットとmap不出力、既存ヘッダー/転送維持を確認。入力不正5条件を拒否。actionlint、sh -n、固定依存install、整形・型付きlint・tooling・進捗検証が成功。Secret/variable名の一覧は空。実CI・自動配信停止・認証設定・アップロードは未実施。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t030/",
+        "themes/shsh/docs/verification/cloudflare-pages.md",
+        ".github/workflows/shsh.yml"
+      ],
+      "recorded_at": "2026-09-18T05:36:27.365804+00:00",
       "supersedes": null
     }
   ]

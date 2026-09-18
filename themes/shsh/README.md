@@ -43,3 +43,13 @@ pnpm review
 全画面レビューR002は[レビュー手順](docs/verification/r002-review.md)と[入口](http://127.0.0.1:4210/r002/)を参照する。`pnpm review:full`で全記事の本番同等previewと、承認後のAbout比較用fixtureを起動する。F014修正前の証拠は履歴として残し、入口に承認・反映後の結果を示す。
 
 実機確認は[確認手順と記録表](docs/verification/real-devices.md)を参照する。ネイティブSafariの限定確認と、未確認のOS・端末・実フォント・文字拡大を区別している。
+
+## Cloudflare Pagesへの配信
+
+GitHub Actionsの`check`成功後に同じコミットをHugoで生成し、固定版Wranglerで既存のPagesプロジェクトへアップロードする。初期状態では配信を無効にしている。自動配信停止・Secret・有効化変数・確認項目は[配信手順](docs/verification/cloudflare-pages.md#有効化の手順)を参照する。
+
+ローカルで配信用生成物を確認する場合は、リポジトリルートから次を実行する。`refs/heads/master`は本番、それ以外はpreviewの環境・URLを使う。生成だけでは配信しない。
+
+```sh
+sh themes/shsh/scripts/build-pages.sh refs/heads/hugo-theme "$(git rev-parse HEAD)"
+```
