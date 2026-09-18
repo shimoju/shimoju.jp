@@ -4,10 +4,10 @@ import { execFileSync } from "node:child_process";
 import { cpSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const base = resolve(".cache/review/source");
+const base = resolve(".cache/screens/source");
 const config = JSON.parse(readFileSync(`${base}/hugo.json`, "utf8")) as Record<string, unknown>;
 for (const variant of ["pagination", "empty", "single"]) {
-  const source = resolve(`.cache/full-review/${variant}/source`);
+  const source = resolve(`.cache/screen-variants/${variant}/source`);
   rmSync(source, { recursive: true, force: true });
   cpSync(base, source, { recursive: true });
   if (variant === "pagination") {
@@ -47,7 +47,7 @@ for (const variant of ["pagination", "empty", "single"]) {
       "--themesDir",
       resolve(".."),
       "--destination",
-      resolve(`.cache/full-review/${variant}/public`),
+      resolve(`.cache/screen-variants/${variant}/public`),
       "--cacheDir",
       resolve(".cache/hugo"),
       "--environment",
@@ -60,62 +60,33 @@ for (const variant of ["pagination", "empty", "single"]) {
     { stdio: "inherit" },
   );
 }
-const manifest = JSON.parse(readFileSync("../../mock/site/manifest.json", "utf8")) as {
-  pages: { file: string; title: string; review: boolean }[];
-};
-const articles: Record<string, string> = {
-  article: "/2026/09/01/development-environment-2026/",
-  "article-hugo": "/2023/06/22/hugo-and-cloudflare-pages/",
-  "article-diary": "/2016/08/17/shakai-fukki/",
-  "article-bgm": "/2016/08/14/hikikomori/",
-  "article-pasmo": "/2016/08/13/pasmo-autocharge/",
-};
-const cases = manifest.pages
-  .filter((p) => !p.review && p.file !== "specimen.html")
-  .map(({ file, title }) => {
-    const name = file.replace(/\.html$/, "");
-    let path: string;
-    let port = 4182;
-    if (articles[name]) path = articles[name];
-    else if (name === "404") path = "/404.html";
-    else if (name === "empty" || name === "single-item") {
-      port = name === "empty" ? 4189 : 4195;
-      path = "/posts/";
-    } else if (name.endsWith("-empty")) {
-      port = 4189;
-      path = `/${name.replace("-empty", "")}/`;
-    } else if (/^(tag|category)-/.test(name)) {
-      const kind = name.startsWith("tag-") ? "tags" : "categories";
-      const match = name.match(/^(?:tag|category)-(?:\d+|pagination)(?:-(\d+))?$/);
-      assert.ok(match, name);
-      if (name.includes("pagination")) port = 4188;
-      path = `/${kind}/${title.toLowerCase().replaceAll(" ", "-")}/${match[1] ? `page/${match[1]}/` : ""}`;
-    } else {
-      const match = name.match(/^(home|posts)(?:-(\d+))?$/);
-      path = match
-        ? `${match[1] === "home" ? "/" : "/posts/"}${match[2] ? `page/${match[2]}/` : ""}`
-        : `/${name}/`;
-    }
-    return { name, title, mock: file, url: `http://127.0.0.1:${port}${path}` };
-  });
-assert.equal(cases.length, 40);
-writeFileSync(".cache/full-review/cases.json", JSON.stringify(cases, null, 2));
-console.log(
-  `Full review: ${cases.length} frozen product screens mapped; specimen stays in representative suite.`,
-);
+const screens = JSON.parse(readFileSync("tests/fixtures/screens/pages.json", "utf8")) as {
+  name: string;
+  title: string;
+  variant: "standard" | "pagination" | "empty" | "single";
+  path: string;
+}[];
+const ports = { standard: 4182, pagination: 4188, empty: 4189, single: 4195 };
+const cases = screens.map(({ name, title, variant, path }) => ({
+  name,
+  title,
+  url: `http://127.0.0.1:${ports[variant]}${path}`,
+}));
+writeFileSync(".cache/screen-variants/cases.json", JSON.stringify(cases, null, 2));
+console.log(`Screen fixtures: ${cases.length} pages; specimen stays in representative suite.`);
 
 const validator = new HtmlValidate(JSON.parse(readFileSync(".htmlvalidate.json", "utf8")));
 for (const directory of [
-  ".cache/review/production",
-  ".cache/review/preview",
-  ...["pagination", "empty", "single"].map((name) => `.cache/full-review/${name}/public`),
+  ".cache/screens/production",
+  ".cache/screens/preview",
+  ...["pagination", "empty", "single"].map((name) => `.cache/screen-variants/${name}/public`),
 ]) {
   for (const file of readdirSync(directory, { recursive: true, encoding: "utf8" }).filter((file) =>
     file.endsWith(".html"),
   )) {
     const report = await validator.validateString(readFileSync(`${directory}/${file}`, "utf8"));
     const messages = report.results.flatMap((result) => result.messages);
-    // Preserve the real article title (Q2/Q20). This SEO length heuristic is not HTML invalidity.
+    // Preserve the real article title. This SEO length heuristic is not HTML invalidity.
     // Only this exact title is exempt; all other generated markup rules still apply.
     const longTitle =
       cases.find((screen) => screen.name === "article")!.title + " — " + String(config.title);
@@ -129,4 +100,4 @@ for (const directory of [
     );
   }
 }
-console.log("Full review HTML: all production, preview and boundary fixture pages valid.");
+console.log("Screen fixture HTML: all production, preview and boundary fixture pages valid.");

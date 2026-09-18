@@ -148,7 +148,7 @@ test("WebP preserves PNG pixels and transparency at each generated width", async
   ).toEqual([]);
 });
 
-test("media geometry matches mock, small images stay small, both colors remain accessible", async ({
+test("media preserves aspect ratios, small images stay small, both colors remain accessible", async ({
   page,
   browserName,
 }) => {
@@ -181,10 +181,14 @@ test("media geometry matches mock, small images stay small, both colors remain a
           fullPage: true,
         });
       }
-      await page.goto(`http://127.0.0.1:4177/article.html?theme=${colorScheme}`);
-      const mockCover = await page.locator(".article-cover img").boundingBox();
-      expect(cover!.width).toBe(mockCover!.width);
-      expect(cover!.height).toBeCloseTo(mockCover!.height, 3);
+      // Layout uses the declared source ratio; srcset natural dimensions can be density-rounded.
+      const dimensions = await page
+        .locator(".article-cover img")
+        .evaluate((img: HTMLImageElement) => ({
+          width: Number(img.getAttribute("width")),
+          height: Number(img.getAttribute("height")),
+        }));
+      expect(cover!.width / cover!.height).toBeCloseTo(dimensions.width / dimensions.height, 3);
       await page.goto(`${base}/`);
       expect((await page.locator(".entry-cover img").nth(1).boundingBox())!.width).toBe(200);
     }

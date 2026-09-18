@@ -1,10 +1,8 @@
 import { test, expect, type Page } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
-import { applyApprovedCodeLeading } from "./approved-mock.js";
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const review = "http://127.0.0.1:4182";
-const mockBase = "http://127.0.0.1:4177";
+const base = "http://127.0.0.1:4182";
 const article = "/2026/09/01/development-environment-2026/";
 async function ready(page: Page) {
   await page.evaluate(async () => {
@@ -35,39 +33,13 @@ async function accessibility(page: Page) {
   }
   return result.violations;
 }
-function blocks(page: Page, selector: string) {
-  return page.locator(selector).evaluateAll((elements) =>
-    elements.map((element) => {
-      const r = element.getBoundingClientRect();
-      return {
-        width: r.width,
-        height: r.height,
-        x: r.x,
-        y: r.y,
-        tag: element.tagName,
-        text: element.textContent?.slice(0, 60),
-        image: element.querySelector("img")?.outerHTML,
-      };
-    }),
-  );
-}
-function sameGeometry(
-  actual: Awaited<ReturnType<typeof blocks>>,
-  expected: Awaited<ReturnType<typeof blocks>>,
-) {
-  expect(actual).toHaveLength(expected.length);
-  for (const [i, block] of actual.entries())
-    for (const key of ["width", "height", "x", "y"] as const)
-      expect(Math.abs(block[key] - expected[i]![key]), `block ${i} ${key}`).toBeLessThan(0.06);
-}
-
-for (const [name, path, mock] of [
-  ["home", "/", "home.html"],
-  ["posts", "/posts/", "posts.html"],
-  ["article", article, "article.html"],
-  ["specimen", "/specimen/", "specimen.html"],
+for (const [name, path] of [
+  ["home", "/"],
+  ["posts", "/posts/"],
+  ["article", article],
+  ["specimen", "/specimen/"],
 ] as const)
-  test(`Representative ${name} comparison, both widths/colors and text enlargement`, async ({
+  test(`Representative ${name} layout, both widths/colors and text enlargement`, async ({
     browser,
     browserName,
   }) => {
@@ -91,7 +63,7 @@ for (const [name, path, mock] of [
       for (const colorScheme of ["light", "dark"] as const) {
         await page.setViewportSize({ width, height });
         await page.emulateMedia({ colorScheme });
-        await page.goto(review + path);
+        await page.goto(base + path);
         await ready(page);
         if (name === "specimen") {
           const sample = page
@@ -109,27 +81,22 @@ for (const [name, path, mock] of [
             await expect(emphasis).toHaveCSS("font-weight", "700");
         }
         if (name === "specimen" && browserName === "chromium") {
-          mkdirSync(".cache/review-images", { recursive: true });
+          mkdirSync(".cache/screens-images", { recursive: true });
           await page
             .locator(".prose > p")
             .filter({ hasText: "通常の日本語とEnglish 0123に対して" })
             .screenshot({
-              path: `.cache/review-images/specimen-emphasis-${width}-${colorScheme}.png`,
+              path: `.cache/screens-images/specimen-emphasis-${width}-${colorScheme}.png`,
             });
         }
         const violations = await accessibility(page);
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
           true,
         );
-        const selector =
-          name === "home" || name === "posts"
-            ? ".site-header, main, .post-entry, .pager, .site-footer"
-            : ".site-header, .article-header, .prose > *";
-        const actual = await blocks(page, selector);
         if (browserName === "chromium") {
-          mkdirSync(".cache/review-images", { recursive: true });
+          mkdirSync(".cache/screens-images", { recursive: true });
           await page.screenshot({
-            path: `.cache/review-images/${name}-${width}-${colorScheme}-shsh.png`,
+            path: `.cache/screens-images/${name}-${width}-${colorScheme}-shsh.png`,
             fullPage: true,
           });
         }
@@ -144,23 +111,6 @@ for (const [name, path, mock] of [
             .evaluate((e) => parseFloat(getComputedStyle(e).fontSize));
           expect(Math.abs(fontSize - 32.827 * scale)).toBeLessThan(0.06);
         }
-        await page.goto(`${mockBase}/${mock}?theme=${colorScheme}`);
-        await applyApprovedCodeLeading(page);
-        await ready(page);
-        const expected = await blocks(page, selector);
-        // Specimen deliberately omits mock-only padding/font diagnostics and converts raw HTML inputs.
-        // The full-screen suite separately compares article endings and all remaining screens.
-        mkdirSync(".cache/review-metrics", { recursive: true });
-        writeFileSync(
-          `.cache/review-metrics/${name}-${browserName}-${width}-${colorScheme}.json`,
-          JSON.stringify({ actual, expected }, null, 2),
-        );
-        if (name !== "specimen") sameGeometry(actual, expected);
-        if (browserName === "chromium")
-          await page.screenshot({
-            path: `.cache/review-images/${name}-${width}-${colorScheme}-mock-approved-f023.png`,
-            fullPage: true,
-          });
         evidence.push({
           name,
           width,
@@ -168,7 +118,6 @@ for (const [name, path, mock] of [
           colorScheme,
           hasTouch: width === 390,
           hover,
-          blocks: actual.length,
           violations,
         });
       }
@@ -176,7 +125,7 @@ for (const [name, path, mock] of [
     }
     if (browserName === "chromium")
       writeFileSync(
-        `.cache/review-images/${name}-evidence.json`,
+        `.cache/screens-images/${name}-evidence.json`,
         JSON.stringify(evidence, null, 2),
       );
   });

@@ -19,14 +19,5 @@
     "assets/ts/**/*.ts",
     "playwright.config.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "tests/baseline",
-    ".cache",
-    "mock",
-    "content",
-    "themes/PaperMod",
-    "public",
-    "resources"
-  ]
+  "exclude": ["node_modules", ".cache", "content", "public", "resources"]
 }

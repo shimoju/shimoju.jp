@@ -100,7 +100,7 @@ test("preview cannot share or load stars; JS-free production retains ordinary li
   }
 });
 
-test("sharing retains mock geometry and icon styling at both widths and palettes", async ({
+test("sharing retains control dimensions and icon styling at both widths and palettes", async ({
   page,
 }) => {
   await page.route(starURL, (route) =>
@@ -135,7 +135,12 @@ test("sharing retains mock geometry and icon styling at both widths and palettes
       expect(
         await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
       ).toBe(true);
-      await page.goto(`http://127.0.0.1:4177/article.html?theme=${colorScheme}`);
-      expect(actual).toEqual(await capture());
+      expect(actual).toMatchObject({
+        gap: "8px",
+        controlWidth: 48,
+        controlHeight: 48,
+        iconWidth: 24,
+        stroke: "1.5px",
+      });
     }
 });

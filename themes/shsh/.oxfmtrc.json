@@ -1,8 +1,6 @@
 {
   "ignorePatterns": [
     "content/**",
-    "mock/**",
-    "themes/PaperMod/**",
     "public/**",
     "resources/**",
     "node_modules/**",

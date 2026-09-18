@@ -1,8 +1,8 @@
 import { execFileSync } from "node:child_process";
-import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
-const source = resolve(".cache/review/source");
+const source = resolve(".cache/screens/source");
 rmSync(source, { recursive: true, force: true });
 mkdirSync(`${source}/content/posts`, { recursive: true });
 const articles = [
@@ -17,7 +17,7 @@ for (const path of articles) {
   mkdirSync(dirname(target), { recursive: true });
   cpSync(`../../content/posts/${path}`, target, { recursive: true });
 }
-// Current site data is input to the isolated review site, never a theme dependency.
+// Current site data is input to the isolated screen fixture, never a theme dependency.
 const current = JSON.parse(
   execFileSync("hugo", ["config", "--format", "json"], { encoding: "utf8", cwd: "../.." }),
 ) as {
@@ -34,33 +34,10 @@ writeFileSync(
   "---\ntitle: Hidden dates\ndate: 2026-01-01\nlastmod: 2026-02-01\nshowDates: false\n---\nDates remain in metadata.\n",
 );
 cpSync("tests/fixtures/offline/layouts", `${source}/layouts`, { recursive: true });
-writeFileSync(
-  `${source}/layouts/_shortcodes/x.html`,
-  '<p lang="en"><a href="https://x.com/{{ .Get "user" }}/status/{{ .Get "id" }}">View post on X</a> (embed omitted in this mock)</p>',
-);
 mkdirSync(`${source}/assets/images`, { recursive: true });
 for (const image of ["zsh-prompt-cover.png", "neovim-cheatsheet.png"])
   cpSync(`../../content/posts/${articles[0]}/${image}`, `${source}/assets/images/${image}`);
-let specimen = readFileSync("../../mock/src/specimen.md", "utf8");
-// Diagnostic controls are not product UI (Q3). Preserve ordinary content and use supported inputs.
-specimen = specimen.replace(/### インラインコードの余白確認[\s\S]*?(?=## 表と長い識別子)/, "");
-specimen = specimen.replace(
-  /### 日本語フォールバックの診断[\s\S]*?(?=### 複数行とシンタックスハイライト)/,
-  "",
-);
-specimen = specimen.replace(
-  /通常の日本語とEnglish 0123に対して、[^\n]+/,
-  "通常の日本語とEnglish 0123に対して、**重要な日本語とEnglish 0123（strong）**、**注目する日本語とEnglish 0123（b）** を同じ700で表示します。**強調の中の入れ子の太字**も700を維持し、**`inline_code`** は強調の太さを継承します。",
-);
-specimen = specimen.replace(
-  /<table class="wide-table">[\s\S]*?<\/table>/,
-  "| 設定項目 | 識別子 | 内容 | 備考 |\n| --- | --- | --- | --- |\n| **APIエンドポイント** | `GET /api/v1/projects/:project_id/deployments` | デプロイ履歴の一覧を取得 | ローカルな横スクロールの検証 |\n| **環境変数** | `APPLICATION_DATABASE_CONNECTION_TIMEOUT` | 接続を待つ最大時間 | 長い英数字を含む表 |",
-);
-specimen = specimen.replace(
-  /<figure><img src="assets\/([^"]+)"[^>]*alt="([^"]+)"[^>]*><figcaption>([^<]+)<\/figcaption><\/figure>/g,
-  '{{< figure src="images/$1" alt="$2" caption="$3" >}}',
-);
-writeFileSync(`${source}/content/specimen.md`, specimen);
+cpSync("tests/fixtures/screens/specimen.md", `${source}/content/specimen.md`);
 const config = {
   baseURL: current.baseurl,
   title: current.title,
@@ -108,7 +85,7 @@ for (const environment of ["production", "preview"])
       "--themesDir",
       resolve(".."),
       "--destination",
-      resolve(`.cache/review/${environment}`),
+      resolve(`.cache/screens/${environment}`),
       "--cacheDir",
       resolve(".cache/hugo"),
       "--environment",

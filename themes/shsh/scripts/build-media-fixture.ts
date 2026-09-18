@@ -41,7 +41,7 @@ for (const [index, cover] of [
     `---\ntitle: 記事 ${index}\ndate: 2026-09-0${4 - index}\ncover:\n  image: ${cover}\n  alt: カバー ${index}\n---\n本文と要約。\n`,
   );
 }
-// The actual cover content and caption allow a direct geometry comparison with the frozen mock.
+// Exercise the same image as a cover and a captioned figure.
 writeFileSync(
   `${root}/source/content/cover.md`,
   readFileSync(`${gallery}/index.md`, "utf8").split("\n\n")[0] +
