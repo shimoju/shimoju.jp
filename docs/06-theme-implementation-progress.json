@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T07:44:43.208262+00:00",
-  "stage": "final_verification",
-  "summary": "本番はGitHub必須CI後のPRマージ→Pages自動配信、previewはCI待機なしの自動配信を設定・検証済み。65d32a6のGitHub統合検査は全240件成功、同一SHAのPages previewも成功。F018/F020解決。本番masterは未更新。4端末6環境の実機手順を依頼済み、実機残件・本番移行・旧テーマ整理は未完了。",
+  "updated_at": "2026-09-18T07:52:56.710521+00:00",
+  "stage": "revision",
+  "summary": "iPhone17/iOS27のコピー初回タップ不具合F021をWebKitで再現しT040で修正。prose21件成功、修正preview・全CI・実iPhone再確認はT041で実施する。共有無効/スター非表示はpreview仕様どおり。本番未移行。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T015",
-    "action": "固定preview59e83710/6f100d5で依頼したWindows3ブラウザ・iPhone/iPad Safari・Android Chromeの実機結果を受領・記録する。Macの実フォント・拡大・コピー等も残る。実機完了後はT017本番移行確認、T018旧テーマ整理へ進む。"
+    "task_id": "T041",
+    "action": "T040をpushし修正previewと全CIを確認、iPhone実機で初回タップからのコピーを再依頼する。"
   },
   "tasks": [
     {
@@ -265,8 +265,8 @@
         "specimenと実記事を両配色・PC/モバイルで比較し、見出しIDを旧出力と照合する。"
       ],
       "commit_message": "[T006] 記事の本文組版とコード操作を実装",
-      "status": "complete",
-      "verification_status": "passed",
+      "status": "implemented",
+      "verification_status": "stale",
       "artifact_refs": [
         "themes/shsh/layouts/single.html",
         "themes/shsh/layouts/_partials/dates.html",
@@ -285,7 +285,7 @@
       "verification_ids": ["V012", "V013"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "代表画面・共通設計の承認をR004へ記録済み。続きの実装は別セッションのT010から再開する。"
+      "next_action": "F021のタッチコピー修正をT040/T041で再検証し、iPhone実機確認後に更新する。"
     },
     {
       "id": "T007",
@@ -695,15 +695,15 @@
       ],
       "commit_message": "[T015] Safariの限定確認と実機検証手順を記録",
       "status": "implemented",
-      "verification_status": "blocked",
+      "verification_status": "failed",
       "artifact_refs": [
         "themes/shsh/docs/verification/real-devices.md",
         "themes/shsh/docs/verification/t015/"
       ],
-      "verification_ids": ["V040", "V045", "V046", "V049"],
+      "verification_ids": ["V040", "V045", "V046", "V049", "V063"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "ユーザーが利用可能なWindows 11 Chrome/Edge/Firefox、iPhone 17 Safari、iPad Pro第6世代Safari、Pocophone F1 Android 10 Chromeで、固定preview6f100d5の確認結果を受領して記録する。Macの実フェイス・文字拡大・コピー内容等の残項目も継続する。"
+      "next_action": "iPhoneのコピー初回タップF021を修正previewで再確認する。他のOS/ブラウザ・フォント・拡大等の未確認項目も継続する。"
     },
     {
       "id": "T016",
@@ -1541,6 +1541,76 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "OSクリップボードを扱える実機操作またはユーザー確認で貼り付け内容の一致を確認する。通知だけでは合格にしない。"
+    },
+    {
+      "id": "T040",
+      "title": "iPhoneのコピー初回タップ不具合を修正",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/05-theme-implementation-discipline.md: Q1",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "scope": [
+        "iPhone17/iOS27の実機報告を記録し、コピー初回タップが反応しない原因を調査する。",
+        "合意済みのタップで表示→コピーボタン1回でコピーする操作を維持して修正する。",
+        "タッチコピー・マウス・キーボード・解除・失敗再試行を検査しpreviewを配信する。"
+      ],
+      "depends_on": ["T037", "T038"],
+      "acceptance_criteria": [
+        "表示済みボタンへの最初のタップでコピー処理が1回実行される。",
+        "既存のマウス/キーボード・表示解除・コピー失敗再試行が動作する。",
+        "修正previewと検証結果を示しiPhone実機で再確認できる。実機再確認前は解決済みにしない。"
+      ],
+      "verification_plan": [
+        "既存コードとタッチ/フォーカスイベント順を調べる。",
+        "タッチコンテキストでコード表示後の最初のコピーを回帰検査し修正前後を比較する。",
+        "3エンジンのprose・関係する表示検査、lint・整形・進捗検査を行う。",
+        "作業ブランチにpushしPages previewを確認、GitHub CIを追跡し実機再確認を依頼する。"
+      ],
+      "commit_message": "[T040] iPhoneのコードコピー初回タップを修正",
+      "status": "implemented",
+      "verification_status": "blocked",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/t040/",
+        "themes/shsh/assets/ts/copy.ts",
+        "themes/shsh/tests/prose.spec.ts"
+      ],
+      "verification_ids": ["V063", "V064", "V065"],
+      "review_ids": ["R002"],
+      "blocked_by": [],
+      "next_action": "T041で修正previewとCIを確認し、iPhoneの初回タップ再確認を依頼する。"
+    },
+    {
+      "id": "T041",
+      "title": "iPhoneコピー修正の配信とCI・実機再確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "scope": [
+        "T040の修正コミットを作業ブランチへpushし、Pages previewと必須CIを確認する。",
+        "修正URLでiPhoneの初回コピーを再確認するための手順と依頼を記録する。"
+      ],
+      "depends_on": ["T040"],
+      "acceptance_criteria": [
+        "Pages配信とGitHub統合検査243件が成功し対象SHAを照合できる。",
+        "修正previewのJSに修正が含まれ、iPhoneで初回タップからコピーできるとの実機結果を得る。"
+      ],
+      "verification_plan": [
+        "GitHub run/checksを終了まで追跡する。",
+        "preview記事の応答・JSを確認し初回タップ手順を案内する。",
+        "ユーザーの実機再確認結果を受領しF021へ記録する。"
+      ],
+      "commit_message": "[T041] iPhoneコピー修正版の配信と検証結果を記録",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": ["themes/shsh/docs/verification/t041/"],
+      "verification_ids": [],
+      "review_ids": ["R002"],
+      "blocked_by": [],
+      "next_action": "T040をpushして配信・CIを確認する。"
     }
   ],
   "findings": [
@@ -2067,6 +2137,26 @@
         "themes/shsh/docs/verification/t038/README.md"
       ],
       "verification_ids": ["V054", "V057", "V059", "V062"]
+    },
+    {
+      "id": "F021",
+      "title": "iPhoneで表示済みコピーボタンの初回タップが反応しない",
+      "task_ids": ["T015", "T040"],
+      "status": "open",
+      "requires_user_decision": false,
+      "observation": "iPhone17/iOS27。ユーザー報告: コードブロックをタップしてボタンを表示後、1回目のボタンタップではコピーが動かず2回目で動く。 WebKitのモバイルコンテキストで再現。ボタンの互換mousedownによりpreのfocusoutがrelatedTarget=nullで発火し、ボタンが消えてclickが外れる。",
+      "evidence_refs": ["themes/shsh/docs/verification/t040/iphone-report.json"],
+      "impact": "タッチ操作で余分なタップが必要となり、合意済みのコピー操作を満たさない。",
+      "recommendation": "イベント順を再現してコピー操作を阻害する処理を修正し、実機で再確認する。",
+      "decision": {
+        "outcome": "不具合として調査・修正する",
+        "reason": "合意済み操作を満たすための修正。見た目や新しい操作の追加は行わない。",
+        "decided_by": "Codex",
+        "recorded_at": "2026-09-18T07:47:54.269484+00:00",
+        "source": "ユーザーのiPhone実機報告; 資料5 Q1/Q8"
+      },
+      "resolution_refs": ["themes/shsh/assets/ts/copy.ts", "themes/shsh/tests/prose.spec.ts"],
+      "verification_ids": ["V063", "V064", "V065"]
     }
   ],
   "reviews": [
@@ -3676,6 +3766,60 @@
       ],
       "recorded_at": "2026-09-18T07:44:43.208262+00:00",
       "supersedes": "V057"
+    },
+    {
+      "id": "V063",
+      "task_ids": ["T015", "T040"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q33"
+      ],
+      "kind": "ユーザーによるiPhone実機報告",
+      "result": "failed",
+      "subject_ref": "案内済み固定preview59e83710/6f100d5（別URLの申告なし）",
+      "environment": "iPhone17/iOS27; Safari（先の対象指定、詳細版未取得）",
+      "procedure": "ホーム/About/Archivesの両配色、コピー、画像、動画再生停止、縦横回転を確認との報告。コピー初回タップ不反応F021。共有無効・スター非表示の報告はpreview仕様に一致。コピー内容の厳密一致・フォント・拡大等の未申告項目は合格にしない。",
+      "evidence_refs": ["themes/shsh/docs/verification/t040/iphone-report.json"],
+      "recorded_at": "2026-09-18T07:47:54.269484+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V064",
+      "task_ids": ["T040"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q32"
+      ],
+      "kind": "初回タップ不具合の再現",
+      "result": "failed",
+      "subject_ref": "a3bb96a + T040 regression test",
+      "environment": "macOS/Playwright Chromium・Firefox・WebKit; hasTouch true, WebKit/Chromium isMobile true; clipboard stub for invocation/content; not physical iPhone",
+      "procedure": "コードをタップして表示後にボタンを1回tapする検査でWebKitだけコピー呼び出し0回。イベントログはpointerdown/up(svg)→mousedown(svg)→focusout(pre, relatedTarget=null)→click(div)。focusoutでdata-copy-visibleを消し、クリック先が変わる。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t040/before.log",
+        "themes/shsh/docs/verification/t040/events-before.log"
+      ],
+      "recorded_at": "2026-09-18T07:52:56.710521+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V065",
+      "task_ids": ["T040"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q32"
+      ],
+      "kind": "タッチコピー修正の局所再検証",
+      "result": "passed",
+      "subject_ref": "a3bb96a + T040 copy.ts/prose.spec.ts差分",
+      "environment": "macOS/Playwright Chromium・Firefox・WebKit; hasTouch true, WebKit/Chromium isMobile true; clipboard stub for invocation/content; not physical iPhone",
+      "procedure": "タッチ由来のmousedownの既定フォーカス移動だけを抑止し、コピーは既存click処理に維持。修正後は3エンジンで初回コピーが1回、外側で閉じ再表示後も1回。全prose21件成功(11.3s)、マウス・キーボード・失敗再試行・解除・組版比較・axe含む。typed lint・整形・進捗検査成功。実iPhone再確認は未実施。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t040/events-after.log",
+        "themes/shsh/docs/verification/t040/prose-after.log"
+      ],
+      "recorded_at": "2026-09-18T07:52:56.710521+00:00",
+      "supersedes": "V064"
     }
   ]
 }

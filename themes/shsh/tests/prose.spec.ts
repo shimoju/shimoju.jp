@@ -112,6 +112,50 @@ test("touch reveals copy, outside tap and horizontal scroll dismiss it", async (
   await context.close();
 });
 
+test("the first tap on a revealed copy button copies exactly once", async ({
+  browser,
+  browserName,
+}) => {
+  const context = await browser.newContext({
+    hasTouch: true,
+    isMobile: browserName !== "firefox",
+    viewport: { width: 400, height: 800 },
+  });
+  await context.addInitScript(() => {
+    Object.defineProperty(navigator, "clipboard", {
+      value: {
+        writeText(text: string) {
+          const data = document.documentElement.dataset;
+          data.copied = text;
+          data.copyCalls = String(Number(data.copyCalls ?? 0) + 1);
+          return Promise.resolve();
+        },
+      },
+    });
+  });
+  const page = await context.newPage();
+  await page.goto("http://127.0.0.1:4174/specimen/");
+  const block = page.locator(".code-block").first();
+  const pre = block.locator("pre");
+  const button = block.getByRole("button");
+  await pre.tap();
+  await expect(button).toHaveCSS("opacity", "1");
+  await button.tap();
+  await expect(page.locator("html")).toHaveAttribute("data-copy-calls", "1");
+  await expect(page.locator("html")).toHaveAttribute(
+    "data-copied",
+    '# 日本語コメント\nputs "Hello & <world>"',
+  );
+  await expect(button).toHaveAccessibleName("Copied");
+  await page.locator("h1").tap();
+  await expect(button).toHaveCSS("opacity", "0");
+  await pre.tap();
+  await button.tap();
+  await expect(page.locator("html")).toHaveAttribute("data-copy-calls", "2");
+  await expect(button).toHaveAccessibleName("Copied");
+  await context.close();
+});
+
 test("prose matches mock type and spacing; footnotes, headings, dates and JS-free reading work", async ({
   page,
   context,

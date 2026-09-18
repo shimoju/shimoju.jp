@@ -1,0 +1,46 @@
+$ node scripts/build-fixtures.ts
+Start building sites …
+hugo v0.166.0+extended+withdeploy darwin/arm64 BuildDate=2026-09-09T14:45:02Z VendorInfo=Homebrew
+
+
+                  │ JA
+──────────────────┼────
+ Pages            │ 16
+ Paginator pages  │  4
+ Non-page files   │  0
+ Static files     │  0
+ Processed images │  0
+ Aliases          │  2
+ Cleaned          │  0
+
+Total in 29 ms
+Start building sites …
+hugo v0.166.0+extended+withdeploy darwin/arm64 BuildDate=2026-09-09T14:45:02Z VendorInfo=Homebrew
+
+
+                  │ JA
+──────────────────┼────
+ Pages            │ 16
+ Paginator pages  │  4
+ Non-page files   │  0
+ Static files     │  0
+ Processed images │  0
+ Aliases          │  2
+ Cleaned          │  0
+
+Total in 27 ms
+Start building sites …
+hugo v0.166.0+extended+withdeploy darwin/arm64 BuildDate=2026-09-09T14:45:02Z VendorInfo=Homebrew
+
+
+                  │ JA
+──────────────────┼────
+ Pages            │ 16
+ Paginator pages  │  4
+ Non-page files   │  0
+ Static files     │  0
+ Processed images │  0
+ Aliases          │  2
+ Cleaned          │  0
+
+Total in 29 ms

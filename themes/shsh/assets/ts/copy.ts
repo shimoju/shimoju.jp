@@ -66,6 +66,15 @@ for (const button of document.querySelectorAll<HTMLButtonElement>(".copy")) {
       button.disabled = false;
     }
   };
+  let touchActivation = false;
+  button.addEventListener("pointerdown", (event) => {
+    touchActivation = event.pointerType === "touch";
+  });
+  button.addEventListener("mousedown", (event) => {
+    // Safari blurs the code without focusing a tapped button. Prevent that
+    // compatibility mousedown from hiding the button before its click arrives.
+    if (touchActivation) event.preventDefault();
+  });
   button.addEventListener("click", () => {
     void copy();
   });

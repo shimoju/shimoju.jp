@@ -1,0 +1,43 @@
+[WebServer] (node:18265) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 3 workers
+
+(node:18287) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18286) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+copy-trace pointerdown SPAN null false
+copy-trace pointerup SPAN null false
+copy-trace mousedown SPAN null false
+copy-trace focusin PRE null false
+copy-trace click SPAN null true
+copy-trace pointerdown svg null true
+copy-trace pointerup svg null true
+copy-trace mousedown svg null true
+copy-trace click svg null true
+  ✓  2 [chromium] › tests/prose.spec.ts:115:1 › the first tap on a revealed copy button copies once after code loses focus (305ms)
+copy-trace pointerdown SPAN null false
+copy-trace pointerup SPAN null false
+copy-trace mousedown SPAN null false
+copy-trace focusin PRE null false
+copy-trace click SPAN null true
+copy-trace pointerdown svg null true
+copy-trace pointerup svg null true
+copy-trace mousedown svg null true
+copy-trace click svg null true
+  ✓  3 [webkit] › tests/prose.spec.ts:115:1 › the first tap on a revealed copy button copies once after code loses focus (598ms)
+copy-trace pointerdown SPAN null false
+copy-trace pointerup SPAN null false
+copy-trace mousedown SPAN null false
+copy-trace focusin PRE null false
+copy-trace click SPAN null true
+copy-trace pointerdown svg null true
+copy-trace pointerup svg null true
+copy-trace mousedown svg null true
+copy-trace click svg null true
+  ✓  1 [firefox] › tests/prose.spec.ts:115:1 › the first tap on a revealed copy button copies once after code loses focus (941ms)
+
+  3 passed (2.1s)
