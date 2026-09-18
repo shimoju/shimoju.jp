@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T06:17:29.257894+00:00",
+  "updated_at": "2026-09-18T06:29:29.562152+00:00",
   "stage": "final_verification",
-  "summary": "R002全画面レビューをユーザーが承認。About承認差分を含む全240テスト合格。Secret登録済み。CI成功後の実preview配信、自動配信停止・有効化、実機残項目、旧テーマ撤去と最終監査へ進む。",
+  "summary": "R002承認・Secret登録済み。T033のローカル静的検査と3エンジン240テストは成功。自動承認レビューの設定保存拒否後、ユーザーの依頼によりPages/WorkersのCI待機方式を調査。標準の外部CI待機設定は確認できず、Pages継続で実現する選択肢を提示。設定変更はキャンセル、push・実配信は未実施。実機・実配信・旧テーマ整理は残件。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T017",
-    "action": "Cloudflare両環境の独立自動配信を停止し、SHSH_PAGES_DEPLOYを有効化する。承認記録を含む作業ブランチの同一SHAでCI→preview配信を検証する。"
+    "task_id": "T033",
+    "action": "配信方式の比較結果についてユーザーの判断を待つ。Actionsから既存Pagesへ配信する案は、本番・previewの自動配信停止への明示承認後に設定する。Workers移行は未決定。"
   },
   "tasks": [
     {
@@ -1311,6 +1311,42 @@
       "review_ids": ["R002"],
       "blocked_by": [],
       "next_action": "承認記録は完了。実CI・配信検証へ進む。"
+    },
+    {
+      "id": "T033",
+      "title": "GitHub検査後のCloudflareプレビュー配信を検証",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "ユーザーの追加依頼により、Pages/Workers標準設定での外部CI待機と代替方式を比較する。設定切替は判断まで保留する。",
+        "配信方式の判断と設定変更への明示承認が得られた場合に、Cloudflareの独立したproduction/preview自動配信を停止し、準備済みGitHub Actions配信を有効にする。",
+        "R002承認済みの作業ブランチをpushし、同一SHAのcheck→deployとpreview実レスポンスを確認する。",
+        "本番への統合は今回のpreview確認に含めず、実機確認用URLとSHAを用意する。"
+      ],
+      "depends_on": ["T030", "T032"],
+      "acceptance_criteria": [
+        "Cloudflare両環境の自動配信停止とGitHub配信変数の有効化を確認する。",
+        "同一SHAのCI成功後にのみpreview配信が成功し、run/deployment/URLを記録する。",
+        "実previewのnoindex・canonical/OGP/RSS・共有/スター・404/feed転送・CSS/JSを確認する。"
+      ],
+      "verification_plan": [
+        "公式のGit連携・ビルド設定・API項目と実dashboardを照合し、外部CI待機とマージ前検査の違いを記録する。",
+        "変更前後のdashboard表示を取得し、設定の保存を確認する。",
+        "ghでrunを追跡し失敗時は原因・配信抑止を記録する。",
+        "実URLのHTTPとブラウザ・生成物の対応を検査し、本番配信と区別する。"
+      ],
+      "commit_message": "[T033] 配信方式の比較と切替保留を記録",
+      "status": "in_progress",
+      "verification_status": "blocked",
+      "artifact_refs": ["themes/shsh/docs/verification/t033/"],
+      "verification_ids": ["V051", "V052"],
+      "review_ids": ["R002"],
+      "blocked_by": ["F019"],
+      "next_action": "配信方式の比較結果についてユーザーの判断を待つ。Actionsから既存Pagesへ配信する案は、本番・previewの自動配信停止への明示承認後に設定する。Workers移行は未決定。"
     }
   ],
   "findings": [
@@ -1781,6 +1817,23 @@
         "themes/shsh/docs/verification/cloudflare-pages.md"
       ],
       "verification_ids": ["V047", "V048"]
+    },
+    {
+      "id": "F019",
+      "title": "Cloudflare自動配信停止への明示許可が必要",
+      "task_ids": ["T033"],
+      "status": "awaiting_decision",
+      "requires_user_decision": true,
+      "observation": "本番・preview自動配信停止の設定を選択後、保存操作を自動承認レビューが拒否した。R002承認とSecret登録だけでは本番影響のある設定変更への明示許可にならないという理由。保存・有効化・pushは未実施。 ユーザーは切替を承認せず、Pagesで外部CI待機設定が可能か、Workersなら可能かの調査を依頼した。未保存ダイアログをキャンセルし、dashboardで本番自動デプロイ有効を確認した。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t033/deployment-switch.json",
+        "themes/shsh/docs/verification/t033/ci-gate-options.md"
+      ],
+      "impact": "CI成功後配信への切替を保存できず、独立したCloudflare配信が有効なため新コミットのpushを進めていない。",
+      "recommendation": "比較結果を提示し配信方式の判断を待つ。既存PagesへのActions配信なら自動配信停止の明示承認後に設定する。本番のマージ前検査だけを目的とする場合はGitHubの必須チェックという選択肢もある。",
+      "decision": null,
+      "resolution_refs": [],
+      "verification_ids": ["V052"]
     }
   ],
   "reviews": [
@@ -3148,6 +3201,45 @@
         "themes/shsh/docs/verification/r002/index.html"
       ],
       "recorded_at": "2026-09-18T06:17:29.257894+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V051",
+      "task_ids": ["T033"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q30"
+      ],
+      "kind": "配信前ローカル統合検査",
+      "result": "passed",
+      "subject_ref": "b6eca0aのテーマ・サイト入力、T033進捗記録差分",
+      "environment": "macOS; Node24/pnpm12.4.1/Hugo0.166.0; Playwright Chromium/Firefox/WebKit",
+      "procedure": "pnpm checkのformat・typed lint・CSS・進捗・tooling・fixtures・入出力・340 HTML検査は成功。Playwright webServerだけsandboxのlisten EPERMで停止したため、権限を付けてpnpm testを実行し240 passed (3.1m)。GitHub CIや実配信の合格ではない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t033/local-check.log",
+        "themes/shsh/docs/verification/t033/local-browser-check.log"
+      ],
+      "recorded_at": "2026-09-18T06:29:29.562152+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V052",
+      "task_ids": ["T033"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q4",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "kind": "外部CI待機の公式設定調査と未保存変更の取消",
+      "result": "passed",
+      "subject_ref": "Cloudflare Pages/Workers公式資料、Pages shimoju dashboard設定（変更なし）",
+      "environment": "2026-09-18; Cloudflare/GitHub公式ドキュメント; Chrome CUA",
+      "procedure": "Git連携・branch controls・Pages API・Workers Builds設定を調査。標準の外部CI待機設定は確認できず、マージ前必須チェック、ActionsからPagesへupload、Deploy Hook、build commandの選択肢を区別。未保存変更をキャンセルし本番自動デプロイ有効の表示を確認。設定保存・push・新規deploymentなし。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t033/ci-gate-options.md",
+        "themes/shsh/docs/verification/t033/deployment-switch.json"
+      ],
+      "recorded_at": "2026-09-18T06:29:29.562152+00:00",
       "supersedes": null
     }
   ]
