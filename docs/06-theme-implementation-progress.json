@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T14:50:45.336170+00:00",
+  "updated_at": "2026-09-18T14:58:26.644234+00:00",
   "stage": "final_verification",
-  "summary": "Mac Chrome/SafariとAndroidの承認済み代表範囲は確認完了。iPhoneはiOS 27.0・150%文字拡大・埋め込み・JS無効を確認済み、実フォント未取得のF028判断待ち。Windows追加報告、本番移行・旧テーマ整理は未完了。",
+  "summary": "F026/F027/F028の5代表環境の実機確認は完了。未取得フォント・Android文字のみ拡大未実施と補助環境の未確認は制約保持。T017の本番配信確認、T018の旧テーマ整理・最終監査へ進む。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T015",
-    "action": "F028のiPhone実フォント未取得の扱いへの判断とWindows追加報告を反映する。本番前に最新headのCIを照合する。"
+    "task_id": "T017",
+    "action": "最新headの必須CIと切り戻し先の現行productionを照合し、PR #5をマージしてPages本番ビルド・HTTP・共有/スター/埋め込みを確認する。その後T018の旧テーマ整理と最終監査を実施する。"
   },
   "tasks": [
     {
@@ -680,11 +680,11 @@
       ],
       "scope": [
         "F026で承認したMac Chrome/Mac Safari/Windows Chrome/iPhone Safari/Android Chromeの代表5環境で実機結果を集める。",
-        "OS固有フォントはMac Chrome/Windows Chrome/iOS Safariで確認。Android実フェイス未取得と文字のみ拡大未実施はF027に従い制約として保持し、拡大確認に150%ページズームを採用。代表外とMac Safari実フェイス未取得も制約として保持する。"
+        "OS固有実フォントはMac Chrome/Windows Chromeの実測を保持。Mac Safari/Android/iPhoneの未取得とAndroid文字のみ拡大未実施はF026/F027/F028の制約として保持し合格にしない。Android拡大は150%ページズームを採用。"
       ],
       "depends_on": ["T014"],
       "acceptance_criteria": [
-        "F026/F027の代表5環境でOS/ブラウザ/端末/表示条件/文字設定と確認者を記録し、承認済み範囲のOS代表実フォントを確認する。Androidの未確認を合格にしない。",
+        "F026/F027/F028の5代表環境で報告されたOS/ブラウザ/端末/表示条件/拡大設定と確認者を記録し、承認済み範囲の実フォントを確認する。未取得を合格にしない。",
         "代表環境の本文・コード・画像・タッチ・コピー・キーボード・外部埋め込み・JS無効の残件を確認する。本番共有/スターはT017で確認する。",
         "代表外の未確認を合格にせず制約として残す。代表環境の取得不能な必須項目は別途判断する。"
       ],
@@ -696,8 +696,8 @@
         "F026/T064の残件表に従い、確認済み項目の再試験は影響する変更がある場合に限る。"
       ],
       "commit_message": "[T015] Safariの限定確認と実機検証手順を記録",
-      "status": "implemented",
-      "verification_status": "blocked",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/docs/verification/real-devices.md",
         "themes/shsh/docs/verification/t015/"
@@ -740,11 +740,13 @@
         "V112",
         "V114",
         "V115",
-        "V116"
+        "V116",
+        "V117",
+        "V118"
       ],
       "review_ids": [],
-      "blocked_by": ["F028"],
-      "next_action": "Windows追加報告と、iPhone実フォント未取得の扱いF028の判断を反映する。Mac/Androidの承認済み範囲は完了。"
+      "blocked_by": [],
+      "next_action": "5代表環境の承認済み範囲は確認完了。T017の本番配信とT018の最終監査へ進む。"
     },
     {
       "id": "T016",
@@ -2588,7 +2590,42 @@
       "verification_ids": ["V116"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "報告記録は完了。iPhone全体は実フォント未取得の扱いF028判断待ち。"
+      "next_action": "F028はT070で承認反映済み。iPhoneの承認済み範囲は確認完了、実フォント未取得は制約保持。"
+    },
+    {
+      "id": "T070",
+      "title": "iPhone制約承認と5代表環境の実機確認完了を記録",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "scope": [
+        "F028の明示承認を要件・実機記録・進捗へ反映する。",
+        "Windowsの最終報告を保存し、Mac/Windows/iPhone/Androidの証拠を承認済み条件と照合してT015を完了判定する。",
+        "PR説明を実機確認完了と本番移行の残件へ同期する。"
+      ],
+      "depends_on": ["T068", "T069"],
+      "acceptance_criteria": [
+        "F028の未取得は制約のまま保持し、承認原文と適用範囲を追跡できる。",
+        "5代表環境の必須範囲に証拠があり、本番未検証と旧テーマ整理を残件として維持する。"
+      ],
+      "verification_plan": [
+        "F028原文、Windows最終報告、既存T051/T065/T068/T069等の各項目を照合する。",
+        "実機記録・T015完了条件・PR本文の一致を確認する。",
+        "文書整形・進捗参照/DAG・差分検査を実施しコミットする。"
+      ],
+      "commit_message": "[T070] 5代表環境の実機確認完了と制約を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": ["themes/shsh/docs/verification/t070/"],
+      "verification_ids": ["V117", "V118"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "5代表環境の確認記録とPR説明を同期済み。T017の必須CI・切り戻し先照合と本番移行へ進む。"
     }
   ],
   "findings": [
@@ -3297,8 +3334,8 @@
     {
       "id": "F028",
       "title": "iPhone実フォント未取得の扱い",
-      "task_ids": ["T015", "T069"],
-      "status": "awaiting_decision",
+      "task_ids": ["T015", "T069", "T070"],
+      "status": "resolved",
       "requires_user_decision": true,
       "observation": "iPhone Safariの本文/コード和欧文実フォントをユーザーが確認できなかったと報告。F026ではiOSをOSフォント代表とし、F027の免除はAndroid限定。",
       "evidence_refs": [
@@ -3307,9 +3344,18 @@
       ],
       "impact": "操作・表示の確認はあるが選択された実フェイスとフォールバックを同定できず、iPhoneの実機完了条件が残る。",
       "recommendation": "iPhone実フォント名の未取得に限り未確認の制約として移行必須条件から外す。合格にせず他の要件は維持。代案は取得を必須のまま継続。",
-      "decision": null,
-      "resolution_refs": [],
-      "verification_ids": []
+      "decision": {
+        "outcome": "iPhone実フォント未取得を制約として保持し必須条件から除外",
+        "reason": "F028の具体案を引用したユーザーの明示承認。未取得を合格にせず他項目を維持。",
+        "decided_by": "ユーザー",
+        "recorded_at": "2026-09-18T14:58:26.644234+00:00",
+        "source": "実フォント未取得を制約として残す（推奨）"
+      },
+      "resolution_refs": [
+        "docs/04-theme-implementation-requirements.md",
+        "themes/shsh/docs/verification/t070/README.md"
+      ],
+      "verification_ids": ["V118"]
     }
   ],
   "reviews": [
@@ -5942,6 +5988,49 @@
         "themes/shsh/docs/verification/t047/iphone-retest.json"
       ],
       "recorded_at": "2026-09-18T14:50:45.336170+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V117",
+      "task_ids": ["T015", "T070"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "ユーザーのWindows最終追加報告",
+      "result": "passed",
+      "subject_ref": "5de3fdaからのT070差分 / 固定preview268bbb0と各実機記録の対象版",
+      "environment": "ユーザーのWindows/iPhone報告・判断、5代表環境の既存証拠",
+      "procedure": "固定previewへの依頼回答を照合。Chrome詳細版と利用可能な最新版、コピー貼り付け一致、外部4種表示/動画再生停止/スライド送り、JS無効Nextとヘッダーナビの正常動作を確認。",
+      "evidence_refs": ["themes/shsh/docs/verification/t070/windows-report.json"],
+      "recorded_at": "2026-09-18T14:58:26.644234+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V118",
+      "task_ids": ["T015", "T070"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "F028承認と5代表環境の必須範囲監査",
+      "result": "passed",
+      "subject_ref": "5de3fdaからのT070差分 / 固定preview268bbb0と各実機記録の対象版",
+      "environment": "ユーザーのWindows/iPhone報告・判断、5代表環境の既存証拠",
+      "procedure": "F028承認を反映し、T065/T068/T069とWindows既存/追加報告を5代表環境の必須範囲へ対応付け。未取得と未実施はF026/F027/F028の制約として保持し合格に変更しない。本番検証・旧テーマ整理は別途未完了。 PR本文の同期後に取得本文の完全一致・draft/base masterを確認。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t070/README.md",
+        "themes/shsh/docs/verification/t070/pr-updated.json"
+      ],
+      "recorded_at": "2026-09-18T14:58:26.644234+00:00",
       "supersedes": null
     }
   ]
