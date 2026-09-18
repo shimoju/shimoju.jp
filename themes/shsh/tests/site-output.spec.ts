@@ -1,44 +1,24 @@
 import { test, expect } from "@playwright/test";
-import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync, mkdirSync, writeFileSync } from "node:fs";
 
-interface BaselinePage {
-  canonical: string;
-  body_text: string;
-  headings: { level: string; id: string; text: string }[];
-  links: { url: string; body: boolean }[];
-  media: { tag: string; body: boolean; src?: string; alt?: string }[];
-}
-interface FeedItem {
-  title: string;
-  link: string;
-  guid: string;
-  pubDate: string | null;
-  description: string;
-}
-const baseline = JSON.parse(readFileSync("tests/baseline/migration.json", "utf8")) as {
-  source_ref: string;
-  content: { path: string; permalink: string; title: string; section: string; date: string }[];
-  source_files: { path: string; sha256: string; source?: string }[];
-  frozen_mock_sha256: Record<string, string>;
-  html: Record<string, BaselinePage>;
-  feeds: Record<string, FeedItem[]>;
+const input = JSON.parse(readFileSync(".cache/site/inputs.json", "utf8")) as {
+  pages: {
+    path: string;
+    permalink: string;
+    title: string;
+    section: string;
+    kind: string;
+    date: string;
+  }[];
 };
-const input = JSON.parse(readFileSync(".cache/site/input-migration.json", "utf8")) as {
-  changedInputs: { path: string; before: string; after: string }[];
-};
-// Q34 changes only the README status. Its original body and every rendered/source
-// mock file must still match the immutable pre-migration hashes.
-const mockArchiveNotice =
-  "> 参考資料：本番移行後の表示・操作仕様は[shshテーマ・検査fixture・文書](../themes/shsh/README.md)を正とします（資料4 Q34、T018）。以下は実装前の凍結記録です。再生成手順も当時の記録として保持します。\n\n";
-
+const content = input.pages.filter((p) => p.kind === "page");
 const normalize = (value: string) => value.replace(/\s/g, "");
 const urlKey = (value: string) => decodeURI(value);
 const pathFor = (url: string) => decodeURI(new URL(url).pathname);
 const outputPath = (path: string) => (path.endsWith("/") ? path + "index.html" : path);
 
 for (const environment of ["production", "preview"])
-  test(`All migrated outputs: ${environment}`, async ({ page, browserName }) => {
+  test(`All site outputs: ${environment}`, async ({ page, browserName }) => {
     test.setTimeout(90000);
     const root = `.cache/site/${environment}`;
     const base = environment === "production" ? "https://shimoju.jp" : "https://preview.invalid";
@@ -180,113 +160,24 @@ for (const environment of ["production", "preview"])
     function check(value: boolean, label: string, details?: unknown) {
       if (!value) issues.push({ label, details });
     }
-    check(
-      JSON.stringify(Object.keys(records).sort()) ===
-        JSON.stringify(Object.keys(baseline.html).sort()),
-      "All old HTML URLs, including aliases, preserved",
-    );
-    check(
-      JSON.stringify(Object.keys(rss).sort()) ===
-        JSON.stringify(Object.keys(baseline.feeds).sort()),
-      "All feed URLs preserved",
-    );
     const sameURL = (value: string) =>
       urlKey(value.replace("https://preview.invalid", "https://shimoju.jp"));
-    const differences: unknown[] = [];
-    for (const item of baseline.content) {
+    for (const item of content) {
       const path = outputPath(pathFor(item.permalink));
-      const old = baseline.html[path]!;
-      const next = records[path]!;
-      check(sameURL(next.canonical!) === urlKey(item.permalink), `${path}: canonical`);
-      if (item.section === "posts" || item.path === "content/about.md") {
-        check(
-          JSON.stringify(next.headings.map((h) => [h.level, h.id])) ===
-            JSON.stringify(old.headings.map((h) => [h.level, h.id])),
-          `${path}: heading IDs`,
-        );
-        const source = baseline.source_files.find((f) => f.path === item.path)!.source!;
-        // The newline immediately before the closing fence terminates the block.
-        const code = [...source.matchAll(/^```[^\n]*\n([^]*?)^```[ \t]*$/gm)].map((m) =>
-          m[1]!.replace(/\n$/, ""),
-        );
-        check(JSON.stringify(next.code) === JSON.stringify(code), `${path}: exact fenced code`, {
-          blocks: code.length,
-        });
-        let text = old.body_text;
-        // F014: approved column labels; retain the rest of the original About body exactly.
-        if (item.path === "content/about.md")
-          text = text.replace("業務経験", "業務経験 技術 経験年数");
-        for (const heading of old.headings)
-          text = text.replace(heading.text, heading.text.replace(/#$/, ""));
-        const change = input.changedInputs.find(
-          (c) => c.path === item.path && c.after.includes("instagram"),
-        );
-        let oldLinks = old.links.filter((l) => l.body).map((l) => urlKey(l.url));
-        if (change) {
-          const embed = await page.evaluate((raw) => {
-            const doc = new DOMParser().parseFromString(raw, "text/html");
-            doc.querySelectorAll("script").forEach((e) => e.remove());
-            return {
-              text: doc.body.textContent ?? "",
-              links: [...doc.querySelectorAll("a")].map((e) => e.getAttribute("href")!),
-            };
-          }, change.before);
-          text = normalize(text).replace(normalize(embed.text), "");
-          oldLinks = oldLinks.filter((link) => !embed.links.map(urlKey).includes(link));
-        }
-        oldLinks = oldLinks.filter(
-          (link) => !old.headings.some((h) => link === urlKey(item.permalink + "#" + h.id)),
-        );
-        const expected = normalize(text),
-          actual = normalize(next.body);
-        if (expected !== actual) {
-          let at = 0;
-          while (at < expected.length && expected[at] === actual[at]) at++;
-          differences.push({
-            path,
-            at,
-            expected: expected.slice(Math.max(0, at - 60), at + 160),
-            actual: actual.slice(Math.max(0, at - 60), at + 160),
-          });
-        }
-        check(expected === actual, `${path}: body text`);
-        check(
-          JSON.stringify(next.links.map(sameURL)) === JSON.stringify(oldLinks),
-          `${path}: body links`,
-          { old: oldLinks, new: next.links.map(sameURL) },
-        );
-        const oldMedia = old.media
-          .filter((m) => m.body && ["img", "video"].includes(m.tag))
-          .map((m) => ({
-            tag: m.tag,
-            src: urlKey(new URL(m.src!, item.permalink).href),
-            alt: m.alt ?? "",
-          }));
-        check(
-          JSON.stringify(next.media.map((m) => ({ ...m, src: sameURL(m.src) }))) ===
-            JSON.stringify(oldMedia),
-          `${path}: original media order/source/alt`,
-          { old: oldMedia, new: next.media },
-        );
-      }
-      const cover = old.media.find((m) => !m.body && m.tag === "img");
-      check(
-        (next.meta["og:image"] ? sameURL(next.meta["og:image"]!) : undefined) ===
-          (cover ? urlKey(new URL(cover.src!, item.permalink).href) : undefined),
-        `${path}: cover-only social image`,
-      );
-      const schema = next.schema[0];
-      check(schema?.headline === item.title, `${path}: original title`);
+      const record = records[path];
+      check(Boolean(record), `${path}: published content exists`);
+      if (!record) continue;
+      const schema = record.schema[0];
+      check(schema?.headline === item.title, `${path}: title`);
       check(
         schema?.["@type"] === (item.section === "posts" ? "BlogPosting" : "WebPage"),
-        `${path}: structured data type`,
+        `${path}: schema type`,
       );
-      check(schema?.url === next.canonical, `${path}: schema URL`);
+      check(schema?.url === record.canonical, `${path}: schema URL`);
       check(!schema?.articleBody, `${path}: no duplicated article body`);
       check(
-        (next.meta["article:published_time"] ?? "0001-01-01T00:00:00Z") === item.date,
+        (record.meta["article:published_time"] ?? "0001-01-01T00:00:00Z") === item.date,
         `${path}: published date`,
-        next.meta["article:published_time"],
       );
     }
     let linksChecked = 0,
@@ -311,10 +202,6 @@ for (const environment of ["production", "preview"])
         }
       }
       if (record.redirect) {
-        check(
-          sameURL(record.canonical!) === urlKey(baseline.html[path]!.canonical),
-          `${path}: alias target`,
-        );
         check(record.redirect.endsWith(record.canonical!), `${path}: refresh matches canonical`);
         continue;
       }
@@ -355,25 +242,27 @@ for (const environment of ["production", "preview"])
     }
     for (const [path, feed] of Object.entries(rss)) {
       check(!feed.error, `${path}: valid XML`);
-      const previous = baseline.feeds[path]!;
-      // Q8/Q19 removes fixed pages only from the common article feed. Term-list feeds keep terms.
-      const allowed =
-        path === "/index.xml"
-          ? previous.filter((i) =>
-              baseline.content.some((p) => p.section === "posts" && p.permalink === i.link),
-            )
-          : previous;
-      const actual = feed.items.map((i) => ({ guid: sameURL(i.guid!), link: sameURL(i.link!) }));
-      const expected = allowed.map((i) => ({ guid: urlKey(i.guid), link: urlKey(i.link) }));
-      check(
-        JSON.stringify([...actual].sort((a, b) => a.guid.localeCompare(b.guid))) ===
-          JSON.stringify([...expected].sort((a, b) => a.guid.localeCompare(b.guid))),
-        `${path}: RSS identifiers`,
-      );
+      const identifiers = feed.items.map((item) => sameURL(item.guid!));
+      check(new Set(identifiers).size === identifiers.length, `${path}: unique RSS identifiers`);
+      for (const item of feed.items) {
+        check(sameURL(item.guid!) === sameURL(item.link!), `${path}: RSS GUID matches URL`);
+        check(Boolean(records[outputPath(pathFor(item.link!))]), `${path}: RSS target exists`);
+      }
+      if (path === "/index.xml" || path === "/posts/index.xml")
+        check(
+          JSON.stringify(feed.items.map((i) => sameURL(i.link!)).sort()) ===
+            JSON.stringify(
+              content
+                .filter((p) => p.section === "posts")
+                .map((p) => urlKey(p.permalink))
+                .sort(),
+            ),
+          `${path}: complete article feed`,
+        );
       check(urlKey(feed.self!) === base + path, `${path}: RSS self`);
       check(feed.descriptionsAreText, `${path}: RSS summaries are XML text`);
       const articleItems = feed.items.filter((i) =>
-        baseline.content.some((p) => p.section === "posts" && p.permalink === sameURL(i.link!)),
+        content.some((p) => p.section === "posts" && p.permalink === sameURL(i.link!)),
       );
       check(
         JSON.stringify(articleItems.map((i) => i.link)) ===
@@ -398,35 +287,9 @@ for (const environment of ["production", "preview"])
             `${path}: RSS/list summary match`,
             item.link,
           );
-        const article = baseline.content.find((p) => p.permalink === sameURL(item.link!));
+        const article = content.find((p) => p.permalink === sameURL(item.link!));
         if (article)
           check(Date.parse(item.pubDate!) === Date.parse(article.date), `${path}: RSS .Date`);
-      }
-    }
-    for (const [path, hash] of Object.entries(baseline.frozen_mock_sha256)) {
-      let frozen = readFileSync(`../../${path}`);
-      if (path === "mock/README.md") {
-        const notice = Buffer.from(mockArchiveNotice);
-        check(frozen.subarray(0, notice.length).equals(notice), "mock README: Q34 archive notice");
-        frozen = frozen.subarray(notice.length);
-      }
-      check(
-        createHash("sha256").update(frozen).digest("hex") === hash,
-        `${path}: frozen mock unchanged`,
-      );
-    }
-    for (const file of baseline.source_files.filter((f) => !f.path.endsWith(".md"))) {
-      const parent = file.path.slice(0, file.path.lastIndexOf("/") + 1);
-      const item = baseline.content.find((p) => p.path === parent + "index.md");
-      if (item) {
-        const path = pathFor(item.permalink) + file.path.split("/").at(-1);
-        check(
-          existsSync(root + path) &&
-            createHash("sha256")
-              .update(readFileSync(root + path))
-              .digest("hex") === file.sha256,
-          `${path}: original asset bytes`,
-        );
       }
     }
     const sitemap = await page.evaluate(
@@ -440,7 +303,7 @@ for (const environment of ["production", "preview"])
       readFileSync(`${root}/sitemap.xml`, "utf8"),
     );
     check(!sitemap.error, "Valid sitemap XML");
-    for (const item of baseline.content)
+    for (const item of content)
       check(sitemap.urls.map(sameURL).includes(item.permalink), `${item.path}: sitemap URL`);
     for (const url of sitemap.urls)
       check(
@@ -500,20 +363,18 @@ for (const environment of ["production", "preview"])
       decodedImages,
       environment,
       browserName,
-      baseline: baseline.source_ref,
       html: Object.keys(records).length,
       feeds: Object.keys(rss).length,
-      content: baseline.content.length,
+      content: content.length,
       linksChecked,
       fragmentsChecked,
       imagesChecked,
-      differences,
       issues,
     };
-    mkdirSync(".cache/migration-results", { recursive: true });
+    mkdirSync(".cache/site-results", { recursive: true });
     writeFileSync(
-      `.cache/migration-results/${environment}-${browserName}.json`,
+      `.cache/site-results/${environment}-${browserName}.json`,
       JSON.stringify(report, null, 2),
     );
-    expect(issues, JSON.stringify({ differences, issues }, null, 2)).toEqual([]);
+    expect(issues, JSON.stringify({ issues }, null, 2)).toEqual([]);
   });

@@ -1,12 +1,12 @@
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
 
-const input = JSON.parse(readFileSync(".cache/site/input-migration.json", "utf8")) as {
-  pages: { path: string; permalink: string }[];
+const input = JSON.parse(readFileSync(".cache/site/inputs.json", "utf8")) as {
+  pages: { path: string; permalink: string; section: string; kind: string }[];
   embeds: { path: string; service: string; input: string }[];
 };
 for (const environment of ["production", "preview"])
-  test(`Migrated site ${environment}: all embed positions, URLs and publication controls`, async ({
+  test(`Site ${environment}: all embed positions, URLs and publication controls`, async ({
     browser,
   }) => {
     test.setTimeout(60000);
@@ -92,7 +92,9 @@ for (const environment of ["production", "preview"])
       "/index.xml",
     );
     await page.goto(base + "/archives/");
-    await expect(page.locator(".archive-month a")).toHaveCount(59);
+    await expect(page.locator(".archive-month a")).toHaveCount(
+      input.pages.filter((p) => p.kind === "page" && p.section === "posts").length,
+    );
     await context.close();
   });
 

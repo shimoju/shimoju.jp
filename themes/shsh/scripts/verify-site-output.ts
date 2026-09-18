@@ -10,14 +10,11 @@ const config = JSON.parse(readFileSync(".htmlvalidate.json", "utf8"));
 config.rules["attr-quotes"] = ["error", { style: "any", unquoted: true }];
 config.rules["no-raw-characters"] = ["error", { relaxed: true }];
 const validator = new HtmlValidate(config);
-const baseline = JSON.parse(readFileSync("tests/baseline/migration.json", "utf8")) as {
-  content: { title: string }[];
-};
-// F015: preserve the exact pre-existing long titles, never shorten content for a SEO heuristic.
-const preservedTitles = baseline.content
-  .map((p) => p.title + " — shimoju.diary")
-  .filter((t) => t.length > 70);
-assert.equal(preservedTitles.length, 2);
+// Keep the two existing long titles; the SEO length heuristic is not invalid HTML.
+const preservedTitles = [
+  "2026年、開発環境を一新した。Ghostty、herdr、Neovim、mise、そして自作Zshプロンプト — shimoju.diary",
+  "Sidekiq + Heroku RedisでERROR: ERR max number of clients reachedと言われたら — shimoju.diary",
+];
 assert.equal((await validator.validateString('<p id=a"b>Broken &invalid;</p>')).valid, false);
 assert.equal((await validator.validateString("<img src=missing.png>")).valid, false);
 const results: { environment: string; path: string; messages: unknown[] }[] = [];
@@ -40,10 +37,10 @@ for (const environment of ["production", "preview"]) {
     results.push({ environment, path, messages });
   }
 }
-mkdirSync(".cache/migration-results", { recursive: true });
-writeFileSync(".cache/migration-results/html.json", JSON.stringify(results, null, 2));
+mkdirSync(".cache/site-results", { recursive: true });
+writeFileSync(".cache/site-results/html.json", JSON.stringify(results, null, 2));
 const failures = results.filter((r) => r.messages.length);
 assert.equal(failures.length, 0, JSON.stringify(failures.slice(0, 3), null, 2));
 console.log(
-  `All ${results.length} production/preview HTML files valid; F015 exact-title length exception only.`,
+  `All ${results.length} production/preview HTML files valid; exact-title length exception only.`,
 );

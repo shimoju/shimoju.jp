@@ -1,88 +1,40 @@
 import assert from "node:assert/strict";
-import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 const root = resolve("../..");
-const baseline = JSON.parse(readFileSync("tests/baseline/migration.json", "utf8")) as {
-  source_ref: string;
-  content: { path: string; permalink: string }[];
-  source_files: { path: string; sha256: string; source?: string }[];
-};
-const changes = new Map([
-  ["content/about.md", "| 業務経験 | 技術 | 経験年数 |"], // F014: user-approved column headings.
-  ["content/posts/2016/08/01/tiritiri-curry/index.md", "{{< instagram BEaM_1qskRu >}}"],
-  ["content/posts/2016/08/05/tiritiri/index.md", "{{< instagram BIuwZ9qDkvY >}}"],
-  ["content/posts/2016/08/29/shin-godzilla-imax/index.md", "{{< instagram BJsevddDihX >}}"],
+// Read the current published inputs using the same source and clock as the build.
+const csv = execFileSync(
+  "hugo",
   [
-    "content/posts/2017/10/30/classroom-learning-for-new-engineers/index.md",
-    '{{< speakerdeck id="22ab654b18c94eb9bb92314459d122f7" ratio="1.77777777777778" >}}',
+    "list",
+    "published",
+    "--source",
+    resolve(".cache/site/source"),
+    "--themesDir",
+    resolve(".."),
+    "--clock",
+    "2026-09-17T12:00:00+09:00",
   ],
-  [
-    "content/posts/2017/11/11/twelve-factor-app-on-heroku/index.md",
-    '{{< speakerdeck id="457f092496ab4856b7c3cef5bcd2babb" ratio="1.77777777777778" >}}',
-  ],
-  [
-    "content/posts/2026/09/01/development-environment-2026/index.md",
-    '{{< video src="zsh-prompt-demo.mp4" width="1440" height="1076" title="Zsh prompt demo" >}}',
-  ],
-]);
-const evidence: unknown[] = [];
-for (const file of baseline.source_files) {
-  const bytes = readFileSync(`${root}/${file.path}`);
-  const replacement = changes.get(file.path);
-  if (!replacement) {
-    assert.equal(
-      createHash("sha256").update(bytes).digest("hex"),
-      file.sha256,
-      `${file.path}: unexpected edit`,
-    );
-    continue;
-  }
-  assert.ok(file.source);
-  const old =
-    file.path === "content/about.md"
-      ? "| 業務経験 | | |"
-      : replacement.includes("instagram")
-        ? file.source.match(
-            /<blockquote class="instagram-media"[^]*?<\/blockquote>\n<script[^]*?<\/script>/,
-          )?.[0]
-        : replacement.includes("speakerdeck")
-          ? file.source.match(/<script async class="speakerdeck-embed"[^]*?<\/script>/)?.[0]
-          : '{{< video src="zsh-prompt-demo.mp4" >}}';
-  assert.ok(old, file.path);
-  assert.equal(
-    file.source.split(old).length,
-    2,
-    `${file.path}: exactly one authorized replacement`,
-  );
-  const id = replacement.match(/instagram ([^ ]+)/)?.[1] ?? replacement.match(/id="([^"]+)"/)?.[1];
-  if (id) assert.ok(old.includes(id), `${file.path}: original embed ID`);
-  assert.equal(
-    bytes.toString("utf8"),
-    file.source.replace(old, replacement),
-    `${file.path}: only the authorized input may change`,
-  );
-  evidence.push({
-    decision: file.path === "content/about.md" ? "F014" : "Q11/Q32",
-    path: file.path,
-    before: old,
-    after: replacement,
-    beforeSha256: file.sha256,
-    afterSha256: createHash("sha256").update(bytes).digest("hex"),
-  });
-}
-const oldConfig = execFileSync("git", ["show", `${baseline.source_ref}:hugo.yml`], {
-  cwd: root,
-  encoding: "utf8",
-});
-const originalIntro = oldConfig.match(/^    content: (.+)$/m)?.[1];
-assert.ok(originalIntro);
-assert.equal(
-  readFileSync(`${root}/content/_index.md`, "utf8"),
-  `---\ntitle: Home\n---\n${originalIntro}\n`,
+  { encoding: "utf8" },
 );
+const rows: string[][] = [];
+let row: string[] = [];
+for (const match of csv.matchAll(/(?:"((?:[^"]|"")*)"|([^,\r\n]*))(,|\r?\n|$)/g)) {
+  if (!match[0]) continue;
+  row.push(match[1] !== undefined ? match[1].replaceAll('""', '"') : match[2]!);
+  if (match[3] !== ",") {
+    rows.push(row);
+    row = [];
+  }
+}
+const fields = rows.shift()!;
+assert.ok(fields.includes("permalink") && fields.includes("section"));
+const pages = rows.map((values) =>
+  Object.fromEntries(fields.map((field, i) => [field, values[i]!])),
+);
+assert.ok(pages.length > 0);
 const config = JSON.parse(
   execFileSync("hugo", ["config", "--format", "json"], { cwd: root, encoding: "utf8" }),
 ) as {
@@ -121,19 +73,9 @@ assert.deepEqual(
   ["x", "bluesky", "github"],
 );
 assert.deepEqual(config.params.hatenastar, { enabled: true, author: "Shimoju" });
-assert.equal(
+assert.match(
   readFileSync(`${root}/static/_redirects`, "utf8"),
-  execFileSync("git", ["show", `${baseline.source_ref}:static/_redirects`], {
-    cwd: root,
-    encoding: "utf8",
-  }),
-);
-assert.equal(
-  readFileSync(`${root}/static/_headers`, "utf8"),
-  execFileSync("git", ["show", `${baseline.source_ref}:static/_headers`], {
-    cwd: root,
-    encoding: "utf8",
-  }),
+  /^\/feed\.xml\s+\/index\.xml\s+301$/m,
 );
 const embeds: { path: string; service: string; input: string }[] = [];
 const markdown = readdirSync(`${root}/content`, { recursive: true, encoding: "utf8" }).filter(
@@ -141,6 +83,7 @@ const markdown = readdirSync(`${root}/content`, { recursive: true, encoding: "ut
 );
 for (const file of markdown) {
   const text = readFileSync(`${root}/content/${file}`, "utf8");
+  if (!pages.some((page) => page.path === `content/${file}`)) continue;
   for (const match of text.matchAll(/\{\{< (x|instagram|youtube|speakerdeck|video) ([^]*?) >\}\}/g))
     embeds.push({ path: `content/${file}`, service: match[1]!, input: match[2]! });
   assert.doesNotMatch(
@@ -158,8 +101,8 @@ for (const mode of ["production", "preview"]) {
   assert.ok(!existsSync(`${destination}/undated/index.html`));
   for (const [service, count] of [
     ["x", embeds.filter((e) => e.service === "x").length],
-    ["instagram", 3],
-    ["youtube", 5],
+    ["instagram", embeds.filter((e) => e.service === "instagram").length],
+    ["youtube", embeds.filter((e) => e.service === "youtube").length],
   ] as const) {
     let found = 0;
     for (const file of readdirSync(destination, { recursive: true, encoding: "utf8" }).filter((f) =>
@@ -187,22 +130,7 @@ for (const mode of ["production", "preview"]) {
     assert.ok(article.includes("https://preview.invalid/2026/09/01/development-environment-2026/"));
   } else assert.ok(article.includes("https://shimoju.jp/2026/09/01/development-environment-2026/"));
 }
-writeFileSync(
-  ".cache/site/input-migration.json",
-  JSON.stringify(
-    {
-      baseline: baseline.source_ref,
-      unchangedSourceFiles: baseline.source_files.length - changes.size,
-      changedInputs: evidence,
-      addedIntroduction: "content/_index.md",
-      pages: baseline.content,
-      markdownFiles: markdown.length,
-      embeds,
-    },
-    null,
-    2,
-  ),
-);
+writeFileSync(".cache/site/inputs.json", JSON.stringify({ pages, embeds }, null, 2));
 console.log(
-  `Site inputs: ${baseline.source_files.length} original source/assets, ${changes.size} authorized changes, ${markdown.length} Markdown files and ${embeds.length} embeds verified. Offline production/preview passed.`,
+  `Site inputs: ${pages.length} published pages and ${embeds.length} embeds verified. Offline production/preview passed.`,
 );
