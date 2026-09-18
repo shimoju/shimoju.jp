@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T14:06:32.321801+00:00",
+  "updated_at": "2026-09-18T14:10:49.743790+00:00",
   "stage": "final_verification",
-  "summary": "PR #5の9f17369はCI246件成功・preview確認済み。実機手順の全9環境と要件上の代表範囲を整理し、F026で5代表環境案/全組合せ継続の判断を依頼。既存の合否は維持。実機回答、本番移行・旧テーマ整理は未完了。",
+  "summary": "F026の5代表環境案をユーザー承認、資料4・手順・進捗へ反映。代表外とMac Safari実フォント未取得は制約として保持。Safari YouTube映像の確認報告を受領し記録予定。Windows Chrome/iPhone/Androidの残件、本番移行・旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T063",
-    "action": "F026のユーザー判断と実機回答を反映する。判断までは全組合せの既存条件を維持し、未確認を合格にしない。"
+    "task_id": "T056",
+    "action": "受領したSafari YouTube映像のユーザー報告を新タスクで記録する。続いてT064の代表実機残件を依頼する。"
   },
   "tasks": [
     {
@@ -679,19 +679,21 @@
         "docs/05-theme-implementation-discipline.md: Q5"
       ],
       "scope": [
-        "PC/モバイル主要安定版とOS固有フォントの確認手順・対象URL・記録表を用意する。",
-        "macOS Safari/Chrome/Firefox・Windows Edge/Chromeの和欧文・iOS Safari/Android Chromeの実機結果を集める。"
+        "F026で承認したMac Chrome/Mac Safari/Windows Chrome/iPhone Safari/Android Chromeの代表5環境で実機結果を集める。",
+        "OS固有フォントはMac Chrome/Windows Chrome/iOS Safari/Android Chromeで確認。代表外の結果と未確認、Mac Safari実フェイス未取得は補助証拠・制約として保持する。"
       ],
       "depends_on": ["T014"],
       "acceptance_criteria": [
-        "OS/ブラウザ/端末/実フォント/表示幅/配色/文字設定と確認者を記録する。",
-        "本文・コード・画像・タッチ・コピー・キーボード・共有/スターを確認し残る問題を解消する。"
+        "F026の代表5環境でOS/ブラウザ/端末/表示条件/文字設定と確認者を記録し、OS代表の本文・コード実フォントを確認する。",
+        "代表環境の本文・コード・画像・タッチ・コピー・キーボード・外部埋め込み・JS無効の残件を確認する。本番共有/スターはT017で確認する。",
+        "代表外の未確認を合格にせず制約として残す。代表環境の取得不能な必須項目は別途判断する。"
       ],
       "verification_plan": [
         "実機で代表ページを両配色・標準/拡大文字で表示し、OS固有フォントの実フェイスを確認する。",
         "手元で実行できない環境はユーザーに具体的手順を依頼し、未確認のまま合格にしない。",
         "現在のMacで利用できるネイティブSafariを確認し、扱える範囲を実施する。Playwright WebKitとの違いを記録する。",
-        "他OS/モバイル実機にはレビューpreviewの公開後に使う手順・対象画面・フォント実フェイス/文字拡大/操作/埋め込みの記録表を準備する。"
+        "他OS/モバイル実機にはレビューpreviewの公開後に使う手順・対象画面・フォント実フェイス/文字拡大/操作/埋め込みの記録表を準備する。",
+        "F026/T064の残件表に従い、確認済み項目の再試験は影響する変更がある場合に限る。"
       ],
       "commit_message": "[T015] Safariの限定確認と実機検証手順を記録",
       "status": "implemented",
@@ -736,8 +738,8 @@
         "V108"
       ],
       "review_ids": [],
-      "blocked_by": ["F026"],
-      "next_action": "F026の実機範囲判断を待ち、代表環境または全組合せの残件を確認する。既に依頼済みのSafari/Firefox実機報告も受領時に反映する。"
+      "blocked_by": [],
+      "next_action": "F026を反映済み。Safari YouTubeの追加報告を後続タスクで記録し、代表環境の残件をT064の手順で確認する。"
     },
     {
       "id": "T016",
@@ -835,7 +837,7 @@
       ],
       "depends_on": ["T013", "T014", "T015", "T016", "T017", "T054"],
       "acceptance_criteria": [
-        "全要件・補足・規律の成果物/検証/レビュー判断を監査し未解決・未確認なし。",
+        "全要件・補足・規律の成果物/検証/レビュー判断を監査し、F026を含む承認済み範囲に必要な未解決・未確認がない。必須対象外の未確認と承認済み制約は明記する。",
         "設定/コンテンツを含む変更前コミットまたは配信成果物から切戻せる。",
         "最終報告に実装結果・証拠・承認モック差分・制約を明記する。"
       ],
@@ -1913,8 +1915,8 @@
         "docs/05-theme-implementation-discipline.md: Q6"
       ],
       "scope": [
-        "MacのSafari/Chrome/Firefoxに残るフォント・拡大・キーボード・JS無効・メディア確認を、ネイティブUIで進める。",
-        "既存の実機記録へ追加証拠を対応させ、ツール制約や未実施項目を区別する。"
+        "F026の代表Mac Chrome/Safariに必要なフォント（OS代表はChrome）・拡大・キーボード・JS無効・メディア確認を進める。",
+        "Mac Firefoxの既存記録は補助証拠、Safari実フェイス未取得は制約として保持する。未確認を合格にはしない。"
       ],
       "depends_on": ["T049"],
       "acceptance_criteria": [
@@ -1948,8 +1950,8 @@
         "V108"
       ],
       "review_ids": [],
-      "blocked_by": ["F026"],
-      "next_action": "F026の実機範囲判断を待ち、代表環境または全組合せの残件を確認する。既に依頼済みのSafari/Firefox実機報告も受領時に反映する。"
+      "blocked_by": [],
+      "next_action": "F026を反映済み。Safari YouTubeの追加報告を後続タスクで記録し、代表環境の残件をT064の手順で確認する。"
     },
     {
       "id": "T051",
@@ -2047,7 +2049,7 @@
       "verification_ids": ["V097", "V104"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "T059でもFirefoxのUI/画像不一致を再確認。設定未変更・専用タブ閉鎖済み。文字32/和文コード/JS無効の実機確認をユーザーへ依頼した。"
+      "next_action": "F026によりMac Firefoxの追加確認は移行必須から外れた。未取得と描画制約の履歴を保持し、合格には変更しない。追加回答は不要、得られた場合は補助証拠として記録する。"
     },
     {
       "id": "T054",
@@ -2239,7 +2241,7 @@
       "verification_ids": ["V104"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Firefoxの3項目（文字32/和文コード実フォント/JS無効）をユーザーへ依頼済み。ツールの描画不一致が解消するまで同じ操作を繰り返さず、回答を反映する。"
+      "next_action": "F026によりMac Firefoxの追加確認は移行必須から外れた。未取得と描画制約の履歴を保持し、合格には変更しない。追加回答は不要、得られた場合は補助証拠として記録する。"
     },
     {
       "id": "T060",
@@ -2341,7 +2343,7 @@
       "verification_ids": ["V108"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Safariの実フォントをユーザーへ依頼済み。パネル空白が続くため同じ取得操作を繰り返さず、回答または取得手段の変化を待つ。"
+      "next_action": "F026によりMac Safari実フェイス取得は移行必須から外れた。OSフォントはMac Chromeを代表とし、Safariの未取得は制約として保持する。追加回答は不要。"
     },
     {
       "id": "T063",
@@ -2369,13 +2371,51 @@
         "文書整形・進捗の参照/DAG・差分を確認する。"
       ],
       "commit_message": "[T063] 実機確認範囲の対応と判断事項を整理",
-      "status": "implemented",
-      "verification_status": "blocked",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": ["themes/shsh/docs/verification/t063/README.md"],
-      "verification_ids": ["V109"],
+      "verification_ids": ["V109", "V110"],
       "review_ids": [],
-      "blocked_by": ["F026"],
-      "next_action": "F026の範囲判断をユーザーへ依頼済み。回答後に対象条件と残件依頼を更新する。判断前に既存の必須条件・合否を変更しない。"
+      "blocked_by": [],
+      "next_action": "ユーザーが5代表環境案を承認。F026の条件反映はT064で実施。"
+    },
+    {
+      "id": "T064",
+      "title": "承認された5代表環境と実機残件を反映",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "scope": [
+        "F026の5代表環境案をユーザー承認どおり資料4・実機手順・進捗へ反映する。",
+        "代表外の未確認を制約として保持し、代表環境に残る具体的手順をまとめて依頼する。"
+      ],
+      "depends_on": ["T063"],
+      "acceptance_criteria": [
+        "承認原文と採用範囲・残る必須項目が対応し、未確認を合格に変更しない。",
+        "旧全組合せ手順と現在の完了判定を区別し、不要になった追加確認依頼を明示する。"
+      ],
+      "verification_plan": [
+        "ユーザーの「5代表環境で進める（推奨）」とT063の案を照合する。",
+        "資料4・実機記録表・関連タスクの対象を点検し、判断待ちF026を解消する。",
+        "文書整形・進捗参照とDAG・差分を検査する。"
+      ],
+      "commit_message": "[T064] 実機5代表環境の承認と残件を反映",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "docs/04-theme-implementation-requirements.md",
+        "themes/shsh/docs/verification/real-devices.md",
+        "themes/shsh/docs/verification/t064/README.md"
+      ],
+      "verification_ids": ["V110"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "5代表環境の条件を反映済み。Safari YouTube報告を別タスクで記録し、Windows Chrome/iPhone/Androidの残件を依頼する。"
     }
   ],
   "findings": [
@@ -3031,7 +3071,7 @@
       "id": "F026",
       "title": "実機確認の全組合せ手順と要件上の代表範囲の判断",
       "task_ids": ["T015", "T050", "T063"],
-      "status": "awaiting_decision",
+      "status": "resolved",
       "requires_user_decision": true,
       "observation": "資料4 Q5/Q23は主要安定版PC/モバイル・3エンジン自動検査・Safari/OS固有フォントの実機確認を要求。実装時のreal-devices.mdは9環境すべてに詳細手順1〜8を展開しており、全組合せを移行条件とするか明示的な整理がない。既存のレビュー承認は実機残件免除ではない。",
       "evidence_refs": [
@@ -3041,9 +3081,19 @@
       ],
       "impact": "同じOS/エンジンの追加環境にも全項目の取得を要求し続ける一方、手順を独断で狭めると未確認を隠した完了判定になる。",
       "recommendation": "Mac Chrome/Mac Safari/Windows Chrome/iPhone Safari/Android Chromeの5代表環境を実機完了判定に用い、残る必須項目を表のとおり確認する。その他の環境の結果と未確認は補助証拠・制約として保持。自動3エンジン、本番配信、移行照合の要件は維持。全組合せ継続も選択肢として提示する。",
-      "decision": null,
-      "resolution_refs": [],
-      "verification_ids": ["V109"]
+      "decision": {
+        "outcome": "5代表環境案を採用",
+        "reason": "代表環境の残件は確認し、代表外とSafari実フォント未取得は合格にせず制約として残す案をユーザーが明示選択。",
+        "decided_by": "ユーザー",
+        "recorded_at": "2026-09-18T14:08:35.483055+00:00",
+        "source": "T063/README.mdの5代表環境案を提示した依頼を引用し、「5代表環境で進める（推奨）」と回答。"
+      },
+      "resolution_refs": [
+        "docs/04-theme-implementation-requirements.md",
+        "themes/shsh/docs/verification/real-devices.md",
+        "themes/shsh/docs/verification/t064/README.md"
+      ],
+      "verification_ids": ["V109", "V110"]
     }
   ],
   "reviews": [
@@ -5523,6 +5573,30 @@
       "procedure": "Q5/Q23/Q34とreal-devices.mdの全9環境・詳細1〜8を照合。5代表環境案の既存証拠/残件、必須から外れる範囲を明記し全組合せ案と比較。F026として明示判断を依頼。実機の合否・要件本文・本番条件は変更していない。",
       "evidence_refs": ["themes/shsh/docs/verification/t063/README.md"],
       "recorded_at": "2026-09-18T14:06:32.321801+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V110",
+      "task_ids": ["T063", "T064"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "F026のユーザー承認と実機対象の文書照合",
+      "result": "passed",
+      "subject_ref": "33df5feからのT064差分",
+      "environment": "ユーザー回答 / 資料4・実機手順・進捗JSON",
+      "procedure": "ユーザーが「5代表環境で進める（推奨）」と回答。5代表環境とOSフォントの代表、補助環境の未確認保持を資料4/実機手順/関連タスクに反映。代表環境の追加手順をT064に整理。旧検証の合否は変更なし。",
+      "evidence_refs": [
+        "docs/04-theme-implementation-requirements.md",
+        "themes/shsh/docs/verification/real-devices.md",
+        "themes/shsh/docs/verification/t064/README.md"
+      ],
+      "recorded_at": "2026-09-18T14:10:49.743790+00:00",
       "supersedes": null
     }
   ]
