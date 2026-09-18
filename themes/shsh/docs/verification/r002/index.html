@@ -90,12 +90,15 @@
     </header>
     <main>
       <nav aria-label="レビュー内容">
-        <a href="#screens">画面</a><a href="#about">About修正案</a><a href="#verification">検証</a
+        <a href="#screens">画面</a><a href="#about">About修正結果</a><a href="#verification">検証</a
         ><a href="#remaining">残件・判断</a>
       </nav>
       <section id="screens">
         <h2>全画面と共通構造</h2>
-        <p><a href="../t010/">凍結モックとの40画面比較（PC／モバイル・両配色、320画像）</a></p>
+        <p>
+          <a href="../t010/">T010時点の40画面比較（PC／モバイル・両配色、320画像）</a
+          >。Aboutの最新表示は下のF014修正結果を参照してください。
+        </p>
         <nav aria-label="実装プレビュー">
           <a href="http://127.0.0.1:4212/">全記事を含むプレビュー</a
           ><a href="http://127.0.0.1:4212/about/">About</a
@@ -116,16 +119,16 @@
         </p>
       </section>
       <section id="about">
-        <h2>判断待ち：Aboutの列見出し（F014）</h2>
+        <h2>承認・反映済み：Aboutの列見出し（F014）</h2>
         <p class="note">
-          現状の表には空の見出しが2つあり、axe検査で不合格です。「業務経験／技術／経験年数」への変更を提案します。経歴・技術・年数は維持します。修正案は3エンジン・両幅・両配色でaxe違反0件、横溢れなしを確認済みです。下の修正案は隔離fixtureで、本番入力と凍結モックは変更していません。
+          2026-09-18にユーザーが「業務経験／技術／経験年数」を承認し、About入力へ反映しました。経歴・技術・年数は維持し、凍結モックは変更していません。修正前の画像を履歴として残し、承認後の表示と比較できます。再検証はT026に記録します。
         </p>
-        <p><a href="http://127.0.0.1:4213/about/">修正案のAboutを開く</a></p>
+        <p><a href="http://127.0.0.1:4213/about/">承認後のAboutを開く</a></p>
         <details>
           <summary>1440px・light</summary>
           <div class="pair">
             <figure>
-              <figcaption>現状</figcaption>
+              <figcaption>修正前（履歴）</figcaption>
               <a href="images/about-1440-light-before.png"
                 ><img
                   src="images/about-1440-light-before.png"
@@ -134,10 +137,10 @@
               /></a>
             </figure>
             <figure>
-              <figcaption>修正案（未反映）</figcaption>
-              <a href="images/about-1440-light-proposal.png"
+              <figcaption>承認・反映後（F014）</figcaption>
+              <a href="../t026/images/about-1440-light-current.png"
                 ><img
-                  src="images/about-1440-light-proposal.png"
+                  src="../t026/images/about-1440-light-current.png"
                   alt="About表 1440px light proposal"
                   loading="lazy"
               /></a>
@@ -148,7 +151,7 @@
           <summary>1440px・dark</summary>
           <div class="pair">
             <figure>
-              <figcaption>現状</figcaption>
+              <figcaption>修正前（履歴）</figcaption>
               <a href="images/about-1440-dark-before.png"
                 ><img
                   src="images/about-1440-dark-before.png"
@@ -157,10 +160,10 @@
               /></a>
             </figure>
             <figure>
-              <figcaption>修正案（未反映）</figcaption>
-              <a href="images/about-1440-dark-proposal.png"
+              <figcaption>承認・反映後（F014）</figcaption>
+              <a href="../t026/images/about-1440-dark-current.png"
                 ><img
-                  src="images/about-1440-dark-proposal.png"
+                  src="../t026/images/about-1440-dark-current.png"
                   alt="About表 1440px dark proposal"
                   loading="lazy"
               /></a>
@@ -171,7 +174,7 @@
           <summary>390px・light</summary>
           <div class="pair">
             <figure>
-              <figcaption>現状</figcaption>
+              <figcaption>修正前（履歴）</figcaption>
               <a href="images/about-390-light-before.png"
                 ><img
                   src="images/about-390-light-before.png"
@@ -180,10 +183,10 @@
               /></a>
             </figure>
             <figure>
-              <figcaption>修正案（未反映）</figcaption>
-              <a href="images/about-390-light-proposal.png"
+              <figcaption>承認・反映後（F014）</figcaption>
+              <a href="../t026/images/about-390-light-current.png"
                 ><img
-                  src="images/about-390-light-proposal.png"
+                  src="../t026/images/about-390-light-current.png"
                   alt="About表 390px light proposal"
                   loading="lazy"
               /></a>
@@ -194,7 +197,7 @@
           <summary>390px・dark</summary>
           <div class="pair">
             <figure>
-              <figcaption>現状</figcaption>
+              <figcaption>修正前（履歴）</figcaption>
               <a href="images/about-390-dark-before.png"
                 ><img
                   src="images/about-390-dark-before.png"
@@ -203,10 +206,10 @@
               /></a>
             </figure>
             <figure>
-              <figcaption>修正案（未反映）</figcaption>
-              <a href="images/about-390-dark-proposal.png"
+              <figcaption>承認・反映後（F014）</figcaption>
+              <a href="../t026/images/about-390-dark-current.png"
                 ><img
-                  src="images/about-390-dark-proposal.png"
+                  src="../t026/images/about-390-dark-current.png"
                   alt="About表 390px dark proposal"
                   loading="lazy"
               /></a>
@@ -227,7 +230,9 @@
             <tr>
               <th scope="row">画面・操作</th>
               <td>
-                3エンジン、有効237/240成功。残る3件はAboutの空th。40画面の480条件で寸法一致、125/200%文字拡大も確認。
+                T026で承認済みF014を期待値へ反映して統合検査を再実行。<a href="../about-headings.md"
+                  >最新結果とログ</a
+                >を参照。40画面の比較と125/200%文字拡大を検査。
               </td>
             </tr>
             <tr>
@@ -262,10 +267,10 @@
       <section id="remaining">
         <h2>残件と今回の判断</h2>
         <p>
-          全画面の表示・操作・構造と、F014の見出し修正案について承認または修正点をお願いします。F014は判断後に本番入力へ反映して再検証します。
+          全画面の表示・操作・構造について承認または修正点をお願いします。F014の見出し案は承認済みで、R002全体の判断とは分けて記録しています。
         </p>
         <p>
-          実機Safari・OS固有フォント、GitHub上のCI実行、Cloudflareのプレビュー／本番レスポンスは未確認です。今回の画面レビューと移行完了の判定を分けて記録します。
+          Safariの限定確認とCloudflareの既存配信調査は記録済みです。実フォント・他端末、GitHub上のCI、移行後のCloudflare配信は未確認です。今回の画面レビューと移行完了の判定を分けて記録します。
         </p>
       </section>
     </main>

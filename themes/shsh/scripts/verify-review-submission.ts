@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
-import { writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 import { chromium, firefox, webkit } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
 import { resolve } from "node:path";
 
+mkdirSync("docs/verification/t026/images", { recursive: true });
 const results: unknown[] = [];
 for (const [name, engine] of [
   ["chromium", chromium],
@@ -34,35 +35,27 @@ for (const [name, engine] of [
         const page = await context.newPage();
         await page.route("https://**/*", (route) => route.abort());
         for (const [side, port] of [
-          ["before", 4211],
-          ["proposal", 4213],
+          ["current", 4211],
+          ["approved", 4213],
         ] as const) {
           await page.goto(`http://127.0.0.1:${port}/about/`);
           await page.evaluate(() => document.fonts.ready);
           const table = page.locator(".prose table").first();
           const headers = await table.locator("th").allTextContents();
-          assert.deepEqual(
-            headers,
-            side === "before" ? ["業務経験", "", ""] : ["業務経験", "技術", "経験年数"],
-          );
+          assert.deepEqual(headers, ["業務経験", "技術", "経験年数"]);
           const axe = await new AxeBuilder({ page }).analyze();
           const violations = axe.violations.map((v) => ({
             id: v.id,
             nodes: v.nodes.map((n) => n.target),
           }));
-          if (side === "proposal") assert.deepEqual(violations, []);
-          else
-            assert.deepEqual(
-              violations.map((v) => v.id),
-              ["empty-table-header"],
-            );
+          assert.deepEqual(violations, []);
           const overflow = await page.evaluate(
             () => document.documentElement.scrollWidth > innerWidth,
           );
           assert.equal(overflow, false);
           if (name === "chromium")
             await table.screenshot({
-              path: `docs/verification/r002/images/about-${width}-${color}-${side}.png`,
+              path: `docs/verification/t026/images/about-${width}-${color}-${side}.png`,
             });
           results.push({ browser: name, width, color, side, headers, violations, overflow });
         }
@@ -75,17 +68,14 @@ for (const [name, engine] of [
         .locator("a")
         .evaluateAll((nodes) => nodes.map((n) => (n as HTMLAnchorElement).href));
       for (const url of links) assert.equal((await page.request.get(url)).status(), 200, url);
-      await page.screenshot({ path: "docs/verification/r002/review.png", fullPage: true });
+      await page.screenshot({ path: "docs/verification/t026/review.png", fullPage: true });
       results.push({ reportLinks: links.length, status: "all 200" });
     }
   } finally {
     await browser.close();
   }
 }
-writeFileSync(
-  "docs/verification/r002/proposal-verification.json",
-  JSON.stringify(results, null, 2),
-);
+writeFileSync("docs/verification/t026/review-verification.json", JSON.stringify(results, null, 2));
 console.log(
-  "R002: 24 before/proposal browser conditions checked; proposal axe zero, original F014 retained; review links reachable.",
+  "R002: 24 current/approved browser conditions checked; F014 headings and zero axe violations; review links reachable.",
 );

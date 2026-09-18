@@ -27,6 +27,18 @@ for (const screen of cases)
         ]) {
           const response = await page.goto(url!);
           expect(response?.status()).toBe(200);
+          if (screen.name === "about") {
+            const headers = page.locator(".prose table, .post-content table").first().locator("th");
+            if (kind === "mock") {
+              await expect(headers).toHaveText(["業務経験", "", ""]);
+              // F014: apply only the approved labels in memory; frozen mock files stay untouched.
+              await headers.evaluateAll((nodes) => {
+                nodes[1]!.textContent = "技術";
+                nodes[2]!.textContent = "経験年数";
+              });
+            }
+            await expect(headers).toHaveText(["業務経験", "技術", "経験年数"]);
+          }
           await page.evaluate(async () => {
             await Promise.all(
               [...document.images].map(async (img) => {
@@ -87,7 +99,7 @@ for (const screen of cases)
           if (browserName === "chromium") {
             mkdirSync(".cache/full-review/images", { recursive: true });
             await page.screenshot({
-              path: `.cache/full-review/images/${screen.name}-${width}-${colorScheme}-${kind}.png`,
+              path: `.cache/full-review/images/${screen.name}-${width}-${colorScheme}-${kind === "mock" && screen.name === "about" ? "mock-approved-f014" : kind}.png`,
               fullPage: true,
             });
           }

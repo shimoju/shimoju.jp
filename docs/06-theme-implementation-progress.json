@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T04:42:13.805614+00:00",
+  "updated_at": "2026-09-18T04:50:24.123749+00:00",
   "stage": "full_implementation",
-  "summary": "R002/F014の全画面・About修正案は回答待ち。Safari実機で記事の両配色・About表・Archives遷移を限定確認し、実機手順と未確認項目を記録。移行照合・性能は記録済み、統合はAbout由来の3不合格を保持。残る実フォント・他OS/モバイル・Cloudflare配信は未確認。",
+  "summary": "F014のAbout列見出しをユーザー承認どおり反映し、全統合240件合格。本文・素材・凍結モック不変、修正後24条件のaxe違反0。R002全体は回答待ち。実フォント・他端末、GitHub CI、移行後Cloudflare配信は未確認。",
   "latest_review_id": "R004",
   "resume": {
     "task_id": "T014",
-    "action": "ユーザーがF014の「業務経験／技術／経験年数」を承認したため、次の後続タスクで判断記録・About入力・期待値・レビュー入口を更新して再検証する。R002全体は承認待ち。"
+    "action": "更新したR002入口で全画面レビューの判断を待つ。F014は修正・再検証済み。独立してT015/T017の利用可能な実機・接続確認を進め、配信変更はレビュー判断後に行う。"
   },
   "tasks": [
     {
@@ -450,7 +450,7 @@
       ],
       "commit_message": "[T010] 承認済み共通設計を全画面へ展開",
       "status": "implemented",
-      "verification_status": "failed",
+      "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/docs/verification/full-screen-expansion.md",
         "themes/shsh/docs/verification/t010/",
@@ -470,10 +470,10 @@
         "themes/shsh/assets/css/article-end.css",
         "themes/shsh/assets/css/discovery.css"
       ],
-      "verification_ids": ["V029", "V030", "V031"],
+      "verification_ids": ["V029", "V030", "V031", "V043"],
       "review_ids": ["R002"],
-      "blocked_by": ["F014"],
-      "next_action": "F014のAbout表見出しの判断後、後続タスクで修正・期待値更新・両幅/両配色とaxeの再検証を行う。独立したT012のサイト入力移行は進行可能。R002はT014で提出する。"
+      "blocked_by": [],
+      "next_action": "F014をT026で反映・全統合240件合格。R002の全画面レビュー判断を待つ。"
     },
     {
       "id": "T011",
@@ -571,10 +571,10 @@
         "themes/shsh/docs/verification/t012/",
         "themes/shsh/docs/verification/t012-live/"
       ],
-      "verification_ids": ["V032", "V033"],
+      "verification_ids": ["V032", "V033", "V043"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "R002で入力移行と証拠をレビューする。全公開出力の照合はT013、media fixtureの実寸訂正はT024。F014のAbout入力は判断待ちで保持。"
+      "next_action": "F014をT026で反映・全統合240件合格。R002の全画面レビュー判断を待つ。"
     },
     {
       "id": "T013",
@@ -612,7 +612,7 @@
       ],
       "commit_message": "[T013] 全公開出力の移行照合とCI検査を完成",
       "status": "implemented",
-      "verification_status": "failed",
+      "verification_status": "passed",
       "artifact_refs": [
         ".github/workflows/shsh.yml",
         "themes/shsh/scripts/verify-site-output.ts",
@@ -622,10 +622,10 @@
         "themes/shsh/docs/verification/t013-check.log",
         "themes/shsh/docs/verification/t013-migration-final.log"
       ],
-      "verification_ids": ["V035", "V036", "V037"],
+      "verification_ids": ["V035", "V036", "V037", "V043"],
       "review_ids": ["R002"],
-      "blocked_by": ["F014"],
-      "next_action": "F014の判断・後続修正後にAboutを再検証し、R002へ提出する。GitHub上のworkflow実行は未実施。独立してT016の性能測定を進める。"
+      "blocked_by": [],
+      "next_action": "F014をT026で反映・全統合240件合格。R002の全画面レビュー判断を待つ。"
     },
     {
       "id": "T014",
@@ -663,10 +663,10 @@
         "themes/shsh/scripts/verify-review-submission.ts",
         "themes/shsh/docs/verification/r002-verification.log"
       ],
-      "verification_ids": ["V039"],
+      "verification_ids": ["V039", "V044"],
       "review_ids": ["R002"],
-      "blocked_by": ["F014"],
-      "next_action": "R002の全画面とF014の隔離修正案への判断を待つ。承認後はF014を後続タスクで反映し、比較・axe・移行検査を再実行する。独立してT015の実機手順を準備する。"
+      "blocked_by": [],
+      "next_action": "F014の採用・反映は完了。R002全体の表示・操作・構造への明示判断を待つ。"
     },
     {
       "id": "T015",
@@ -1067,6 +1067,48 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "T017の配信検証準備とR002/F014の判断を待つ。"
+    },
+    {
+      "id": "T026",
+      "title": "承認済みAbout列見出しを反映し再検証",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q2",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q1",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "scope": [
+        "Aboutの表見出しだけを承認した3列へ変更し、要件・移行期待値・全画面比較・レビュー入口へF014を対応付ける。",
+        "凍結モックと過去の不合格証拠を保持し、現状の全統合検査とAbout両幅/両配色を再検証する。"
+      ],
+      "depends_on": ["T010", "T013", "T014"],
+      "acceptance_criteria": [
+        "経歴・技術・年数はバイト不変、見出しだけ「業務経験／技術／経験年数」になる。",
+        "Aboutの3エンジン・PC/モバイル・両配色のaxe違反0、全統合検査合格。",
+        "F014の承認・修正証拠を記録し、R002全体は明示承認までrequestedのまま保持する。"
+      ],
+      "verification_plan": [
+        "入力監査にF014の厳密な1行置換を加え、全公開出力の本文照合も承認見出し2項目だけ加える。",
+        "凍結Aboutのブラウザ内比較基準へF014見出しだけ適用し、共通寸法比較とアクセシビリティ・文字拡大を再実行する。凍結ファイルは不変照合する。",
+        "pnpm checkとレビュー入口の全リンク・現状About検査を実施し、修正後の画像・JSON・ログをt026へ保存する。"
+      ],
+      "commit_message": "[T026] 承認済みAbout列見出しを反映し再検証",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "content/about.md",
+        "themes/shsh/docs/verification/about-headings.md",
+        "themes/shsh/docs/verification/t026/",
+        "themes/shsh/scripts/verify-site-inputs.ts",
+        "themes/shsh/tests/full-review.spec.ts",
+        "themes/shsh/tests/migration.spec.ts",
+        "themes/shsh/docs/verification/r002/index.html"
+      ],
+      "verification_ids": ["V043", "V044"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "F014を解消済みとしてR002全体の判断を待つ。実機・配信検証はT015/T017で継続する。"
     }
   ],
   "findings": [
@@ -1401,8 +1443,8 @@
     {
       "id": "F014",
       "title": "About業務経験表の空の列見出しがアクセシビリティ検査で不合格",
-      "task_ids": ["T010", "T012", "T013", "T014"],
-      "status": "awaiting_decision",
+      "task_ids": ["T010", "T012", "T013", "T014", "T026"],
+      "status": "resolved",
       "requires_user_decision": true,
       "observation": "AboutのMarkdown表は「| 業務経験 | | |」で、生成HTMLの2つのthが空。全画面axeでempty-table-headerを検出。凍結モックにも同じ入力がある。",
       "evidence_refs": [
@@ -1414,9 +1456,23 @@
       ],
       "impact": "コード色以外のaxe例外は認めないQ23を満たさない。列見出し追加は表示と内容を変えるためQ1のユーザー判断が必要。",
       "recommendation": "見出しを「業務経験／技術／経験年数」にする。経歴・年数は維持し、About両幅/両配色とaxeを再検証。凍結モックは更新せず承認差分として記録する。",
-      "decision": null,
-      "resolution_refs": [],
-      "verification_ids": ["V029", "V031", "V036", "V039"]
+      "decision": {
+        "outcome": "approved",
+        "reason": "空の列見出しを具体的な名称へ変更する案をユーザーが採用。経歴・技術・年数は維持。",
+        "decided_by": "user",
+        "recorded_at": "2026-09-18T04:43:31.861993+00:00",
+        "source": "「『業務経験／技術／経験年数』を採用する（推奨）」"
+      },
+      "resolution_refs": [
+        "content/about.md",
+        "themes/shsh/docs/verification/about-headings.md",
+        "themes/shsh/docs/verification/t026/",
+        "themes/shsh/scripts/verify-site-inputs.ts",
+        "themes/shsh/tests/full-review.spec.ts",
+        "themes/shsh/tests/migration.spec.ts",
+        "themes/shsh/docs/verification/r002/index.html"
+      ],
+      "verification_ids": ["V029", "V031", "V036", "V039", "V043", "V044"]
     },
     {
       "id": "F015",
@@ -1554,9 +1610,23 @@
         "themes/shsh/docs/verification/r002/proposal-verification.json",
         "themes/shsh/scripts/build-review-submission.ts",
         "themes/shsh/scripts/verify-review-submission.ts",
-        "themes/shsh/docs/verification/r002-verification.log"
+        "themes/shsh/docs/verification/r002-verification.log",
+        "themes/shsh/docs/verification/about-headings.md",
+        "themes/shsh/docs/verification/t026/"
       ],
-      "verification_ids": ["V022", "V030", "V031", "V032", "V033", "V036", "V037", "V038", "V039"],
+      "verification_ids": [
+        "V022",
+        "V030",
+        "V031",
+        "V032",
+        "V033",
+        "V036",
+        "V037",
+        "V038",
+        "V039",
+        "V043",
+        "V044"
+      ],
       "finding_ids": ["F014", "F015", "F016", "F017"],
       "decision": null,
       "supersedes": null
@@ -2677,6 +2747,56 @@
       ],
       "recorded_at": "2026-09-18T04:42:13.805614+00:00",
       "supersedes": null
+    },
+    {
+      "id": "V043",
+      "task_ids": ["T010", "T012", "T013", "T026"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q2",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q1",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "F014承認差分適用後の全統合・入力/出力照合・本番同等生成",
+      "result": "passed",
+      "subject_ref": "672522a + T026の承認済みAbout見出し1行・期待値・要件差分",
+      "environment": "macOS27 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Chromium153/Firefox155/WebKit26.6",
+      "procedure": "pnpm checkは静的検査・生成・全240ブラウザテスト合格（2.4分）。Aboutの両幅/両配色・拡大と寸法比較を含む。80元入力/素材は73バイト不変、既存6変換とF014の厳密1行変更だけ許可。170HTML/48RSS/64コード/142画像と凍結モック68SHAを再照合。本番同等Hugo production/preview再生成も警告/エラー0。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t026/check.log",
+        "themes/shsh/docs/verification/t026/input-migration.json",
+        "themes/shsh/docs/verification/t026/migration/",
+        "themes/shsh/docs/verification/t026/metrics/",
+        "themes/shsh/docs/verification/t026/axe/",
+        "themes/shsh/docs/verification/t026/live-build.log"
+      ],
+      "recorded_at": "2026-09-18T04:50:24.123749+00:00",
+      "supersedes": "V036"
+    },
+    {
+      "id": "V044",
+      "task_ids": ["T014", "T026"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q2",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q1",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "承認後Aboutのレビュー入口と24条件のアクセシビリティ再検証",
+      "result": "passed",
+      "subject_ref": "672522a + T026のAbout反映とR002入口更新",
+      "environment": "macOS27; Chromium153/Firefox155/WebKit26.6; 1440/390px; light/dark",
+      "procedure": "現状/比較用fixtureの24条件で見出し3項目一致、axe違反0、横溢れなし。PC/モバイル両配色の表画像を保存し目視。旧before/proposal画像・V039結果は履歴として保持し、R002には承認・反映後を表示。全画面レビュー承認は未取得。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t026/review-verification.json",
+        "themes/shsh/docs/verification/t026/review-check.log",
+        "themes/shsh/docs/verification/t026/images/",
+        "themes/shsh/docs/verification/r002/index.html"
+      ],
+      "recorded_at": "2026-09-18T04:50:24.123749+00:00",
+      "supersedes": "V039"
     }
   ]
 }

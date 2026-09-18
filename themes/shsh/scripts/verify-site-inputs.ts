@@ -11,6 +11,7 @@ const baseline = JSON.parse(readFileSync("tests/baseline/migration.json", "utf8"
   source_files: { path: string; sha256: string; source?: string }[];
 };
 const changes = new Map([
+  ["content/about.md", "| 業務経験 | 技術 | 経験年数 |"], // F014: user-approved column headings.
   ["content/posts/2016/08/01/tiritiri-curry/index.md", "{{< instagram BEaM_1qskRu >}}"],
   ["content/posts/2016/08/05/tiritiri/index.md", "{{< instagram BIuwZ9qDkvY >}}"],
   ["content/posts/2016/08/29/shin-godzilla-imax/index.md", "{{< instagram BJsevddDihX >}}"],
@@ -40,22 +41,31 @@ for (const file of baseline.source_files) {
     continue;
   }
   assert.ok(file.source);
-  const old = replacement.includes("instagram")
-    ? file.source.match(
-        /<blockquote class="instagram-media"[^]*?<\/blockquote>\n<script[^]*?<\/script>/,
-      )?.[0]
-    : replacement.includes("speakerdeck")
-      ? file.source.match(/<script async class="speakerdeck-embed"[^]*?<\/script>/)?.[0]
-      : '{{< video src="zsh-prompt-demo.mp4" >}}';
+  const old =
+    file.path === "content/about.md"
+      ? "| 業務経験 | | |"
+      : replacement.includes("instagram")
+        ? file.source.match(
+            /<blockquote class="instagram-media"[^]*?<\/blockquote>\n<script[^]*?<\/script>/,
+          )?.[0]
+        : replacement.includes("speakerdeck")
+          ? file.source.match(/<script async class="speakerdeck-embed"[^]*?<\/script>/)?.[0]
+          : '{{< video src="zsh-prompt-demo.mp4" >}}';
   assert.ok(old, file.path);
+  assert.equal(
+    file.source.split(old).length,
+    2,
+    `${file.path}: exactly one authorized replacement`,
+  );
   const id = replacement.match(/instagram ([^ ]+)/)?.[1] ?? replacement.match(/id="([^"]+)"/)?.[1];
   if (id) assert.ok(old.includes(id), `${file.path}: original embed ID`);
   assert.equal(
     bytes.toString("utf8"),
     file.source.replace(old, replacement),
-    `${file.path}: only the authorized embed input may change`,
+    `${file.path}: only the authorized input may change`,
   );
   evidence.push({
+    decision: file.path === "content/about.md" ? "F014" : "Q11/Q32",
     path: file.path,
     before: old,
     after: replacement,

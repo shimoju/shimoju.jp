@@ -208,6 +208,9 @@ for (const environment of ["production", "preview"])
           blocks: code.length,
         });
         let text = old.body_text;
+        // F014: approved column labels; retain the rest of the original About body exactly.
+        if (item.path === "content/about.md")
+          text = text.replace("業務経験", "業務経験 技術 経験年数");
         for (const heading of old.headings)
           text = text.replace(heading.text, heading.text.replace(/#$/, ""));
         const change = input.changedInputs.find(
