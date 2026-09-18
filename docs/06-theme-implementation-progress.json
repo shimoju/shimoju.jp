@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T07:52:56.710521+00:00",
-  "stage": "revision",
-  "summary": "iPhone17/iOS27のコピー初回タップ不具合F021をWebKitで再現しT040で修正。prose21件成功、修正preview・全CI・実iPhone再確認はT041で実施する。共有無効/スター非表示はpreview仕様どおり。本番未移行。",
+  "updated_at": "2026-09-18T08:07:49.995926+00:00",
+  "stage": "final_verification",
+  "summary": "iPhone初回コピー不具合F021はT040で修正し、05d2064のpreviewでユーザーが初回コピーと貼り付け内容一致を確認済み。GitHub統合検査243件と同一SHAのPages配信も成功しT040/T041完了。本番未移行。他の実機・OSフォント・文字拡大等をT015で継続する。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T041",
-    "action": "T040をpushし修正previewと全CIを確認、iPhone実機で初回タップからのコピーを再依頼する。"
+    "task_id": "T015",
+    "action": "残るWindows Chrome/Edge/Firefox、iPad Safari、Android ChromeとMacの未確認項目を修正版preview211f19d6/05d2064で確認し記録する。iPhoneはコピーを含む報告範囲を合格、実フォント・文字拡大・JS無効等は未確認。"
   },
   "tasks": [
     {
@@ -265,8 +265,8 @@
         "specimenと実記事を両配色・PC/モバイルで比較し、見出しIDを旧出力と照合する。"
       ],
       "commit_message": "[T006] 記事の本文組版とコード操作を実装",
-      "status": "implemented",
-      "verification_status": "stale",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/layouts/single.html",
         "themes/shsh/layouts/_partials/dates.html",
@@ -282,10 +282,10 @@
         "themes/shsh/docs/verification/t006-check.log",
         "themes/shsh/docs/verification/t006-prose-images/"
       ],
-      "verification_ids": ["V012", "V013"],
+      "verification_ids": ["V012", "V013", "V068"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "F021のタッチコピー修正をT040/T041で再検証し、iPhone実機確認後に更新する。"
+      "next_action": "コピー初回タップの修正、全CI、iPhone実機再確認は完了。残る実機項目はT015、本番移行はT017で継続する。"
     },
     {
       "id": "T007",
@@ -695,15 +695,15 @@
       ],
       "commit_message": "[T015] Safariの限定確認と実機検証手順を記録",
       "status": "implemented",
-      "verification_status": "failed",
+      "verification_status": "blocked",
       "artifact_refs": [
         "themes/shsh/docs/verification/real-devices.md",
         "themes/shsh/docs/verification/t015/"
       ],
-      "verification_ids": ["V040", "V045", "V046", "V049", "V063"],
+      "verification_ids": ["V040", "V045", "V046", "V049", "V063", "V067"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "iPhoneのコピー初回タップF021を修正previewで再確認する。他のOS/ブラウザ・フォント・拡大等の未確認項目も継続する。"
+      "next_action": "iPhoneの初回コピー不具合は実機再確認で解消。他の実機、OSフォント・文字拡大・JS無効等の未確認項目を継続する。"
     },
     {
       "id": "T016",
@@ -1569,17 +1569,17 @@
         "作業ブランチにpushしPages previewを確認、GitHub CIを追跡し実機再確認を依頼する。"
       ],
       "commit_message": "[T040] iPhoneのコードコピー初回タップを修正",
-      "status": "implemented",
-      "verification_status": "blocked",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/docs/verification/t040/",
         "themes/shsh/assets/ts/copy.ts",
         "themes/shsh/tests/prose.spec.ts"
       ],
-      "verification_ids": ["V063", "V064", "V065"],
+      "verification_ids": ["V063", "V064", "V065", "V067", "V068"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "T041で修正previewとCIを確認し、iPhoneの初回タップ再確認を依頼する。"
+      "next_action": "コピー初回タップの修正、全CI、iPhone実機再確認は完了。残る実機項目はT015、本番移行はT017で継続する。"
     },
     {
       "id": "T041",
@@ -1604,13 +1604,13 @@
         "ユーザーの実機再確認結果を受領しF021へ記録する。"
       ],
       "commit_message": "[T041] iPhoneコピー修正版の配信と検証結果を記録",
-      "status": "not_started",
-      "verification_status": "not_run",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": ["themes/shsh/docs/verification/t041/"],
-      "verification_ids": [],
+      "verification_ids": ["V066", "V067", "V068"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "T040をpushして配信・CIを確認する。"
+      "next_action": "コピー初回タップの修正、全CI、iPhone実機再確認は完了。残る実機項目はT015、本番移行はT017で継続する。"
     }
   ],
   "findings": [
@@ -2142,9 +2142,9 @@
       "id": "F021",
       "title": "iPhoneで表示済みコピーボタンの初回タップが反応しない",
       "task_ids": ["T015", "T040"],
-      "status": "open",
+      "status": "resolved",
       "requires_user_decision": false,
-      "observation": "iPhone17/iOS27。ユーザー報告: コードブロックをタップしてボタンを表示後、1回目のボタンタップではコピーが動かず2回目で動く。 WebKitのモバイルコンテキストで再現。ボタンの互換mousedownによりpreのfocusoutがrelatedTarget=nullで発火し、ボタンが消えてclickが外れる。",
+      "observation": "iPhone17/iOS27。ユーザー報告: コードブロックをタップしてボタンを表示後、1回目のボタンタップではコピーが動かず2回目で動く。 WebKitのモバイルコンテキストで再現。ボタンの互換mousedownによりpreのfocusoutがrelatedTarget=nullで発火し、ボタンが消えてclickが外れる。 ユーザーが修正preview211f19d6/05d2064で初回タップからのコピー成功と貼り付け内容一致を確認した。",
       "evidence_refs": ["themes/shsh/docs/verification/t040/iphone-report.json"],
       "impact": "タッチ操作で余分なタップが必要となり、合意済みのコピー操作を満たさない。",
       "recommendation": "イベント順を再現してコピー操作を阻害する処理を修正し、実機で再確認する。",
@@ -2155,8 +2155,13 @@
         "recorded_at": "2026-09-18T07:47:54.269484+00:00",
         "source": "ユーザーのiPhone実機報告; 資料5 Q1/Q8"
       },
-      "resolution_refs": ["themes/shsh/assets/ts/copy.ts", "themes/shsh/tests/prose.spec.ts"],
-      "verification_ids": ["V063", "V064", "V065"]
+      "resolution_refs": [
+        "themes/shsh/assets/ts/copy.ts",
+        "themes/shsh/tests/prose.spec.ts",
+        "themes/shsh/docs/verification/t041/iphone-retest.json",
+        "themes/shsh/docs/verification/t041/README.md"
+      ],
+      "verification_ids": ["V063", "V064", "V065", "V067", "V068"]
     }
   ],
   "reviews": [
@@ -3820,6 +3825,64 @@
       ],
       "recorded_at": "2026-09-18T07:52:56.710521+00:00",
       "supersedes": "V064"
+    },
+    {
+      "id": "V066",
+      "task_ids": ["T041"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33"
+      ],
+      "kind": "iPhoneコピー修正版のPages preview実配信",
+      "result": "passed",
+      "subject_ref": "05d20643cd5f8c85c10028050c1fb423d611608a / Pages 211f19d6-636d-4b9f-a7fc-4b1d9edcdf15",
+      "environment": "Cloudflare Pages Git integration; HTTPS HTTP/JavaScript確認",
+      "procedure": "GitHub checksで同一SHAのPages成功とCI実行中を確認。記事HTTP200、HTTP/HTML noindex、copy.jsのpointerdown/mousedown/touch判定/preventDefault、配信内容SHA256とfingerprint一致を確認。固定URLで初回タップと貼り付け内容一致をユーザーへ依頼した。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t041/checks-after-preview.json",
+        "themes/shsh/docs/verification/t041/preview-fix.json"
+      ],
+      "recorded_at": "2026-09-18T07:57:18.493727+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V067",
+      "task_ids": ["T015", "T040", "T041"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q32"
+      ],
+      "kind": "ユーザーによるiPhoneコピー修正版の実機再確認",
+      "result": "passed",
+      "subject_ref": "05d2064 / https://211f19d6.shimoju.pages.dev/",
+      "environment": "iPhone17/iOS27、Safari（既定の確認対象）",
+      "procedure": "ユーザーが修正版で1回目のタップからコピーでき、貼り付け内容も一致することを確認した。共有無効・スター非表示の仕様理解も回答。コピーの指摘範囲を合格に更新し、他端末・フォント・拡大等には一般化しない。",
+      "evidence_refs": ["themes/shsh/docs/verification/t041/iphone-retest.json"],
+      "recorded_at": "2026-09-18T08:03:10.517118+00:00",
+      "supersedes": "V063"
+    },
+    {
+      "id": "V068",
+      "task_ids": ["T006", "T040", "T041"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q32"
+      ],
+      "kind": "iPhoneコピー修正のGitHub全検査とPages照合",
+      "result": "passed",
+      "subject_ref": "05d20643cd5f8c85c10028050c1fb423d611608a / GitHub run35321648185 / Pages211f19d6",
+      "environment": "GitHub Actions ubuntu-24.04; Node24/pnpm12.4.1/Hugo0.166.0; Playwright Chromium/Firefox/WebKit",
+      "procedure": "統合検査成功、回帰テスト追加後の243 passed (10.0m)。ジョブ12分4秒。shsh-check/App15368とPages/App85455が同一SHAで成功。V067でユーザーの実iPhone初回コピー・貼り付け一致も確認済み。テーマの他機能を含む全自動検査は再合格。本番マージは未実施。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t041/ci-run.json",
+        "themes/shsh/docs/verification/t041/ci-success.log",
+        "themes/shsh/docs/verification/t041/final-checks.json",
+        "themes/shsh/docs/verification/t041/iphone-retest.json",
+        "https://github.com/shimoju/shimoju.jp/actions/runs/35321648185"
+      ],
+      "recorded_at": "2026-09-18T08:07:49.995926+00:00",
+      "supersedes": null
     }
   ]
 }
