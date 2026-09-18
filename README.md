@@ -18,7 +18,7 @@ bin/build
 bin/build --environment preview --baseURL https://example.pages.dev/
 ```
 
-Preview output has noindex metadata and disabled sharing / Hatena Star. External content embeds still load. See the [production verification](themes/shsh/docs/verification/t071/README.md) and [migration audit](themes/shsh/docs/verification/t018/README.md).
+Preview output has noindex metadata and disabled sharing / Hatena Star. External content embeds still load. See the [theme documentation](themes/shsh/README.md).
 
 ## Create new post
 

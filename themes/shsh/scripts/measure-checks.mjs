@@ -6,7 +6,6 @@ const commands = [
   ["format", "pnpm", ["format:check"]],
   ["lint-and-types", "pnpm", ["lint"]],
   ["css-lint", "pnpm", ["lint:css"]],
-  ["progress", "pnpm", ["check:progress"]],
   ["hugo-and-format-semantics", "pnpm", ["check:tooling"]],
   ["browser", "pnpm", ["test"]],
 ];

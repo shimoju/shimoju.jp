@@ -25,23 +25,13 @@ const general = [
 execFileSync("pnpm", ["exec", "oxfmt", write ? "--write" : "--check", ...general], {
   stdio: "inherit",
 });
-// These repository-level files belong to the migration/CI. Format only the
-// explicit files via stdin, keeping content, mock and PaperMod out of scope.
-for (const path of [
-  "../../docs/06-theme-implementation-progress.json",
-  "../../.github/workflows/shsh.yml",
-].filter(existsSync)) {
+// Format the CI workflow without touching site content.
+for (const path of ["../../.github/workflows/shsh.yml"].filter(existsSync)) {
   const source = readFileSync(path, "utf8");
-  const formatted = execFileSync(
-    "pnpm",
-    [
-      "exec",
-      "oxfmt",
-      "--stdin-filepath",
-      path.endsWith(".json") ? "progress.json" : "workflow.yml",
-    ],
-    { input: source, encoding: "utf8" },
-  );
+  const formatted = execFileSync("pnpm", ["exec", "oxfmt", "--stdin-filepath", "workflow.yml"], {
+    input: source,
+    encoding: "utf8",
+  });
   if (source !== formatted) {
     if (write) writeFileSync(path, formatted);
     else {
