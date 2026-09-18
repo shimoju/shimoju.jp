@@ -1,0 +1,4 @@
++																	2745 row CSS プロパティ名: font-family CSS プロパティ値: -apple-system, "system-ui", "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif
++																	2785 row CSS プロパティ名: font-size CSS プロパティ値: 17px
++																	2857 row CSS プロパティ名: font-weight CSS プロパティ値: 400
++																2948 text レンダリング フォント 姓 :  Hiragino Sans PostScript 名 :  HiraginoSans-W3 フォントの提供元 :  ローカル ファイル （121 件のグリフ） 姓 :  .SF NS PostScript 名 :  .SFNS-Regular_wdth_opsz110000_GRAD_wght フォントの提供元 :  ローカル ファイル （45 件のグリフ）

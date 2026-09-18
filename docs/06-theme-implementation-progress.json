@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T05:02:21.963779+00:00",
+  "updated_at": "2026-09-18T05:17:04.345563+00:00",
   "stage": "full_implementation",
   "summary": "F014のAbout列見出しをユーザー承認どおり反映し、全統合240件合格。本文・素材・凍結モック不変、修正後24条件のaxe違反0。R002全体は回答待ち。実フォント・他端末、GitHub CI、移行後Cloudflare配信は未確認。",
   "latest_review_id": "R004",
   "resume": {
     "task_id": "T017",
-    "action": "Cloudflareログインの回答後、production/previewの実設定を読み取る。R002全画面レビューは承認待ち。Safari実フェイス・他OS/モバイル・CI・配信確認と旧テーマ撤去は残件。"
+    "action": "Cloudflareにログイン済み。読み取った実設定とGitHubの公開前CI条件をT029へ記録する。R002全体は承認待ち。"
   },
   "tasks": [
     {
@@ -700,7 +700,7 @@
         "themes/shsh/docs/verification/real-devices.md",
         "themes/shsh/docs/verification/t015/"
       ],
-      "verification_ids": ["V040", "V045"],
+      "verification_ids": ["V040", "V045", "V046"],
       "review_ids": [],
       "blocked_by": [],
       "next_action": "R002判断後にHTTPS previewと対象コミットを確定して他OS/モバイルの実機確認を依頼する。F014は反映済み。Safariの実フェイス・文字設定・コピー等は未確認として継続する。"
@@ -1144,6 +1144,38 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "追加観察と接続条件の記録を完了。実機全体はT015、Cloudflareの認証後確認はT017へ継続する。"
+    },
+    {
+      "id": "T028",
+      "title": "macOS Chromeの実フォントと操作を確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "macOS Chromeの実フォント・配色・コードコピーを実際のブラウザで確認し、未取得項目を区別して記録する。"
+      ],
+      "depends_on": ["T015", "T026"],
+      "acceptance_criteria": [
+        "実施した対象・ブラウザ・操作と結果を記録する。",
+        "実機全体の未確認範囲を限定確認の合格で置き換えない。"
+      ],
+      "verification_plan": [
+        "専用タブのDevToolsで本文・見出し・コードのRendered Fontsを確認する。",
+        "テーマ配色とコピーを操作し、結果を表示・貼り付け内容で照合する。"
+      ],
+      "commit_message": "[T028] macOS Chromeの実フォントと操作を記録",
+      "status": "implemented",
+      "verification_status": "blocked",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/t028/",
+        "themes/shsh/docs/verification/real-devices.md"
+      ],
+      "verification_ids": ["V046"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "本文400の実フェイスと両配色を確認済み。見出し500・サイト名300・strong/th700・コードの実フェイス、コピー内容一致を追加確認する。"
     }
   ],
   "findings": [
@@ -2853,6 +2885,25 @@
         "themes/shsh/docs/verification/cloudflare-pages.md"
       ],
       "recorded_at": "2026-09-18T05:02:21.963779+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V046",
+      "task_ids": ["T015", "T028"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "macOS Chromeの本文実フォントと配色の限定確認",
+      "result": "passed",
+      "subject_ref": "e504778のテーマ・サイト入力と同じpreview生成物",
+      "environment": "macOS27.0; Google Chrome153.0.8010.48（Info.plistで取得）; CUA native DevToolsと接続ブラウザ",
+      "procedure": "About最初の本文段落をDevToolsで選択。Rendered FontsはHiraginoSans-W3 121glyphsと.SFNS-Regular_wdth_opsz110000_GRAD_wght 45glyphs、computed400/17px。開発環境記事のdark→light→darkを操作し画像を確認。コピー通知Code copied.は取得したが、セッションクリップボードが空でOS貼付も内容一致を確認できず、コピーは未確認。見出し・コードの実フェイスも未確認。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t028/",
+        "themes/shsh/docs/verification/real-devices.md"
+      ],
+      "recorded_at": "2026-09-18T05:17:04.345563+00:00",
       "supersedes": null
     }
   ]
