@@ -1,7 +1,0 @@
-comment containing herdrを起動
-																				619 row (selected) <span class=​"c1"> ​# ctrl-s: herdrを起動​ </span> ​
-																	1593 row CSS プロパティ名: font-size CSS プロパティ値: 14px
-																	1665 row CSS プロパティ名: font-weight CSS プロパティ値: 400
-																	1677 row CSS プロパティ名: line-height CSS プロパティ値: 19.6px
-																1720 text レンダリング フォント 姓 :  Menlo PostScript 名 :  Menlo-Italic フォントの提供元 :  ローカル ファイル （15 件のグリフ） 姓 :  Moralerspace Argon HWJPDOC PostScript 名 :  MoralerspaceArgonHWJPDOC-Italic フォントの提供元 :  ローカル ファイル （3 件のグリフ）
-The focused UI element is 619 row (selected) <span class=​"c1"> ​# ctrl-s: herdrを起動​ </span> ​

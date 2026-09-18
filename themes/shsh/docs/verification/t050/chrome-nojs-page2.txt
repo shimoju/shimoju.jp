@@ -1,3 +1,0 @@
-					9 テキストフィールド (settable) アドレス検索バー, Value: https://6f52990f.shimoju.pages.dev/page/2/, Placeholder: Google で検索または URL を入力
-							191 link Next , Value: 6f52990f.shimoju.pages.dev/page/3/
-							197 link RSS, Value: 6f52990f.shimoju.pages.dev/index.xml

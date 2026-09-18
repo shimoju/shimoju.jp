@@ -1,6 +1,0 @@
-The following is a diff from the previous accessibility tree for Window: "shimoju.diary" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
-+													138 container
-+														139 text JSON . stringify ({ root : getComputedStyle ( document . documentElement ). fontSize , body : getComputedStyle ( document . body ). fontSize , viewport :[ innerWidth , innerHeight ], dpr : devicePixelRatio , overflow : document . documentElement . scrollWidth > document . documentElement . clientWidth })
-+													140 container '{"root":"20px","body":"34px","viewport":[855,688],"dpr":2,"overflow":false}' スタック テーブルが閉じられています
-+														141 テキスト '{"root":"20px","body":"34px","viewport":[855,688],"dpr":2,"overflow":false}'
-The focused UI element is 80 テキスト入力領域 (settable) コンソールのプロンプト, Value:

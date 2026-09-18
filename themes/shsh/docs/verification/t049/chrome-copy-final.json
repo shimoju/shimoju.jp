@@ -1,7 +1,0 @@
-{
-  "method": "copy -> prepared local textarea, native actions in one tool call",
-  "exactInputValueMatch": true,
-  "expectedLength": 235,
-  "actualLength": 235,
-  "recordedAt": "2026-09-18T12:17:22.856Z"
-}

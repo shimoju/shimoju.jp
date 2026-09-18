@@ -1,8 +1,0 @@
-{
-  "url": "https://6f52990f.shimoju.pages.dev/2026/09/01/development-environment-2026/",
-  "method": "Native Chrome Copy code -> local file textarea -> native Cmd+V; compare AX input value with first fenced block in article",
-  "expectedLength": 235,
-  "actualLength": 77,
-  "exactInputValueMatch": false,
-  "recordedAt": "2026-09-18T12:15:12.354Z"
-}

@@ -1,2 +1,0 @@
-						7 ボタン Switch to light mode
-			59 テキストフィールド (settable) Description: スマート検索フィールド, Value: https://6f52990f.shimoju.pages.dev/page/2/, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD

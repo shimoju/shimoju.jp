@@ -11,7 +11,6 @@ const general = [
   "assets",
   "theme.toml",
   "README.md",
-  "docs/verification",
   "package.json",
   "pnpm-workspace.yaml",
   "tsconfig.json",

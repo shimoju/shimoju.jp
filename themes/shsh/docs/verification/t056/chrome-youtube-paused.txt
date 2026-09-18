@@ -1,5 +1,0 @@
-Browser tab: 1686903633, Title: "ヒップホップユニットのミュージックビデオに出演した — shimoju.diary", URL: "https://6f52990f.shimoju.pages.dev/2016/08/31/hiphop-music-video/".
-The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
-~								74 button 動画を再生
-~							80 slider Description: 移動スライダー, Value: 24
-The focused UI element is 74 button 動画を再生

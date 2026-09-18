@@ -1,1 +1,0 @@
-			416 テキストフィールド (settable) Description: スマート検索フィールド, Value: https://6f52990f.shimoju.pages.dev/about/, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD

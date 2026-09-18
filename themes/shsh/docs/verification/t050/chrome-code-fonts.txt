@@ -1,7 +1,0 @@
-.highlight code .cl
-																			243 row (selected) <span class=​"cl"> ​copy-on-select = clipboard ​ </span> ​
-																	1205 row CSS プロパティ名: font-size CSS プロパティ値: 14px
-																	1277 row CSS プロパティ名: font-weight CSS プロパティ値: 400
-																	1289 row CSS プロパティ名: line-height CSS プロパティ値: 19.6px
-																1332 text レンダリング フォント 姓 :  Menlo PostScript 名 :  Menlo-Regular フォントの提供元 :  ローカル ファイル （26 件のグリフ）
-The focused UI element is 243 row (selected) <span class=​"cl"> ​copy-on-select = clipboard ​ </span> ​

@@ -1,3 +1,0 @@
-Browser tab: 1686903637, Title: "2026年、開発環境を一新した。Ghostty、herdr、Neovim、mise、そして自作Zshプロンプト — shimoju.diary", URL: "https://6f52990f.shimoju.pages.dev/2026/09/01/development-environment-2026/".
-There has been no change in the accessibility tree.
-The focused UI element is 164 container Zsh prompt demo

@@ -1,4 +1,0 @@
-							315 link Prev, Value: 6f52990f.shimoju.pages.dev/
-							318 link Next, Value: 6f52990f.shimoju.pages.dev/page/3/
-							324 link RSS, Value: 6f52990f.shimoju.pages.dev/index.xml
-			337 テキストフィールド (settable) Description: スマート検索フィールド, Value: https://6f52990f.shimoju.pages.dev/page/2/, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
