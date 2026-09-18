@@ -1,0 +1,46 @@
+[WebServer] (node:28747) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 21 tests using 3 workers
+
+(node:28748) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28750) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28749) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 [chromium] › tests/media.spec.ts:10:1 › responsive candidates, originals, dimensions, loading and figure semantics (376ms)
+  ✓   4 [chromium] › tests/media.spec.ts:193:1 › DPR chooses fitting candidates and JavaScript-free media remain usable (272ms)
+  ✓   1 [chromium] › tests/media.spec.ts:88:1 › WebP preserves PNG pixels and transparency at each generated width (1.1s)
+  ✓   5 [chromium] › tests/site.spec.ts:9:3 › Migrated site production: all embed positions, URLs and publication controls (1.3s)
+  ✓   7 [chromium] › tests/site.spec.ts:99:1 › real video reserves its intrinsic ratio before loading; native playback dimensions agree (214ms)
+  ✓   6 [chromium] › tests/site.spec.ts:9:3 › Migrated site preview: all embed positions, URLs and publication controls (1.2s)
+(node:28774) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [chromium] › tests/media.spec.ts:151:1 › media geometry matches mock, small images stay small, both colors remain accessible (2.6s)
+(node:28776) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28785) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [firefox] › tests/media.spec.ts:10:1 › responsive candidates, originals, dimensions, loading and figure semantics (1.3s)
+  ✓  11 [firefox] › tests/media.spec.ts:193:1 › DPR chooses fitting candidates and JavaScript-free media remain usable (654ms)
+  ✓   9 [firefox] › tests/media.spec.ts:88:1 › WebP preserves PNG pixels and transparency at each generated width (1.6s)
+  ✓  12 [firefox] › tests/site.spec.ts:9:3 › Migrated site production: all embed positions, URLs and publication controls (2.1s)
+  ✓  13 [firefox] › tests/site.spec.ts:9:3 › Migrated site preview: all embed positions, URLs and publication controls (2.0s)
+  ✓  14 [firefox] › tests/site.spec.ts:99:1 › real video reserves its intrinsic ratio before loading; native playback dimensions agree (345ms)
+  ✓  10 [firefox] › tests/media.spec.ts:151:1 › media geometry matches mock, small images stay small, both colors remain accessible (4.2s)
+(node:28827) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28836) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  15 [webkit] › tests/media.spec.ts:10:1 › responsive candidates, originals, dimensions, loading and figure semantics (1.0s)
+  ✓  16 [webkit] › tests/media.spec.ts:88:1 › WebP preserves PNG pixels and transparency at each generated width (1.4s)
+  ✓  18 [webkit] › tests/media.spec.ts:193:1 › DPR chooses fitting candidates and JavaScript-free media remain usable (856ms)
+  ✓  19 [webkit] › tests/site.spec.ts:9:3 › Migrated site production: all embed positions, URLs and publication controls (1.9s)
+  ✓  17 [webkit] › tests/media.spec.ts:151:1 › media geometry matches mock, small images stay small, both colors remain accessible (3.2s)
+  ✓  20 [webkit] › tests/site.spec.ts:9:3 › Migrated site preview: all embed positions, URLs and publication controls (1.8s)
+  ✓  21 [webkit] › tests/site.spec.ts:99:1 › real video reserves its intrinsic ratio before loading; native playback dimensions agree (393ms)
+
+  21 passed (12.2s)

@@ -38,7 +38,7 @@ cover:
 
 {{< figure src="https://external.invalid/image.png" alt="外部画像" width="640" height="320" >}}
 
-{{< video src="demo.mp4" width="1600" height="900" title="ターミナルの操作" >}}
+{{< video src="demo.mp4" width="1440" height="1076" title="ターミナルの操作" >}}
 
 {{< speakerdeck id="457f092496ab4856b7c3cef5bcd2babb" ratio="1.77777777777778" >}}
 

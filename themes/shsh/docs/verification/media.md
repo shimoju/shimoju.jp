@@ -27,3 +27,7 @@ videoは著者のwidth/heightを必須とし、controls・playsinline・preload=
 半透明の実スクリーンショットでは、WebKitのCanvas出力は一致し、Chromium/Firefoxにはunpremultiply後のRGB差があった。ImageMagickによる追加切り分けでもalphaは一致し、透明でない画素のRGB差は最大1、完全透明部分は非表示RGBが変わっていた。可逆形式であることは実ファイルのVP8Lチャンクを独立に検査している。画素全体を無条件に許容する検査にはせず、不透明RGB・alphaの完全一致と半透明の合成後の上限を検査する。
 
 比較画像は`t007-media-images/`、統合結果は`t007-check.log`を参照。PNG文字と写真の表示、縦横比、キャプション、両配色を目視確認した。外部画像の失敗はfixtureで意図的に発生させている。Speaker Deckの実通信と動画の配信環境・実機確認は後続の外部接続／配信検証に残る。この検証は全画面の完成・R001承認を意味しない。
+
+## T024: 動画fixtureの実寸訂正（F016）
+
+T012で実MP4を調べると1440×1076だったため、media fixtureの仮指定1600×900と対応する期待値を訂正した。素材とテーマのコードは不変。読み込みを一度遮断した状態の縦横比、再読み込み後の`videoWidth/videoHeight`、前後の高さ差0.06px未満を検査する。`check:media`が成功し、media/siteの3エンジン21件も12.2秒で成功。[静的結果](t024-media.log)・[ブラウザ結果](t024-browser.log)。T007の動画寸法検証を更新し、F016を解消した。

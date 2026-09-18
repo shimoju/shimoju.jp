@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T02:08:53.285832+00:00",
+  "updated_at": "2026-09-18T02:11:11.157593+00:00",
   "stage": "full_implementation",
-  "summary": "T012のサイト設定・6入力移行と本番/preview・46埋め込み対応を検証。21ブラウザ検査成功、代表4サービスの実接続証拠を保存。About空th F014は判断待ち。動画fixtureの仮寸法F016をT024で是正し、T013全公開出力照合へ進む。",
+  "summary": "T012のサイト設定・入力移行とT024の動画fixture実寸訂正を検証済み。F016解消、F014のAbout空thはユーザー判断待ち。次はT013で全公開出力の照合とCIを組み込む。R002と実機・性能・配信は未完了。",
   "latest_review_id": "R004",
   "resume": {
-    "task_id": "T024",
-    "action": "動画fixtureの寸法と検査を訂正し、T007の該当検証を更新する。続いてT013の全公開出力照合。"
+    "task_id": "T013",
+    "action": "基準HTML/RSSと全生成出力を照合し、内部リンク・fragment・メタ・画像検査とGitHub Actionsを追加する。F014は回答待ちで保持。"
   },
   "tasks": [
     {
@@ -313,8 +313,8 @@
         "T005で検証済みのテキストカード・ページ送りを回帰確認し、カバー有無の両方をモックと比較する。"
       ],
       "commit_message": "[T007] カバーと本文メディアの共通配信処理を実装",
-      "status": "implemented",
-      "verification_status": "stale",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/layouts/_partials/media/",
         "themes/shsh/layouts/_shortcodes/",
@@ -325,10 +325,10 @@
         "themes/shsh/docs/verification/t007-check.log",
         "themes/shsh/docs/verification/t007-media-images/"
       ],
-      "verification_ids": ["V014", "V015", "V019"],
+      "verification_ids": ["V014", "V015", "V019", "V034"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "F016の動画fixture寸法と検査をT024で是正・再検証する。他の画像配信・共通設計の承認は維持。"
+      "next_action": "動画fixtureはT024で実寸へ訂正・再検証済み。実機/配信はT015/T017で扱う。"
     },
     {
       "id": "T008",
@@ -994,13 +994,19 @@
         "check:mediaおよびmedia/siteの3エンジン検査を実行する。"
       ],
       "commit_message": "[T024] 動画検査fixtureを実素材の寸法へ是正",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/tests/fixtures/media/content/gallery/index.md",
+        "themes/shsh/tests/media.spec.ts",
+        "themes/shsh/docs/verification/media.md",
+        "themes/shsh/docs/verification/t024-browser.log",
+        "themes/shsh/docs/verification/t024-media.log"
+      ],
+      "verification_ids": ["V034"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "仮寸法1600×900を1440×1076へ訂正して再検証する。"
+      "next_action": "F016の是正完了。全公開出力の照合T013へ進む。"
     }
   ],
   "findings": [
@@ -1380,7 +1386,7 @@
       "id": "F016",
       "title": "動画fixtureの著者指定寸法が実素材と不一致",
       "task_ids": ["T007", "T012", "T024"],
-      "status": "open",
+      "status": "resolved",
       "requires_user_decision": false,
       "observation": "実記事のMP4はffprobeとブラウザで1440×1076。T007のmedia fixtureと旧review fixtureは1600×900を仮指定しており、読込前の領域が不正確。T012で実記事入力とreview fixtureは実寸へ移行した。",
       "evidence_refs": [
@@ -1397,8 +1403,15 @@
         "recorded_at": "2026-09-18T02:08:53.285832+00:00",
         "source": "ffprobeと3エンジンのvideoWidth/videoHeightによる1440×1076の確認"
       },
-      "resolution_refs": ["themes/shsh/tests/site.spec.ts"],
-      "verification_ids": ["V032"]
+      "resolution_refs": [
+        "themes/shsh/tests/site.spec.ts",
+        "themes/shsh/tests/fixtures/media/content/gallery/index.md",
+        "themes/shsh/tests/media.spec.ts",
+        "themes/shsh/docs/verification/media.md",
+        "themes/shsh/docs/verification/t024-browser.log",
+        "themes/shsh/docs/verification/t024-media.log"
+      ],
+      "verification_ids": ["V032", "V034"]
     }
   ],
   "reviews": [
@@ -2336,6 +2349,26 @@
         "themes/shsh/docs/verification/t012-live-browser.log"
       ],
       "recorded_at": "2026-09-18T02:08:53.285832+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V034",
+      "task_ids": ["T024", "T007"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/05-theme-implementation-discipline.md: Q4"
+      ],
+      "kind": "実素材と一致する動画fixtureとメディア回帰",
+      "result": "passed",
+      "subject_ref": "9f03c1b + T024のmedia fixture・検査・記録差分",
+      "environment": "macOS27 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6",
+      "procedure": "check:mediaでproduction/previewのHTML・入力負例・素材バイト一致を検査。mediaとsiteの21件が3エンジン成功（12.2秒）。fixtureと実記事の読み込み前1440/1076比率、読込後intrinsic寸法1440×1076、高さ差0.06px未満を検査。画像候補・可逆PNG/WebP・DPR・JS無効・axeの既存検査も成功。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t024-media.log",
+        "themes/shsh/docs/verification/t024-browser.log"
+      ],
+      "recorded_at": "2026-09-18T02:11:11.157593+00:00",
       "supersedes": null
     }
   ]

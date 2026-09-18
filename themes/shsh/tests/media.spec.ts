@@ -10,6 +10,7 @@ test.beforeEach(async ({ page }) => {
 test("responsive candidates, originals, dimensions, loading and figure semantics", async ({
   page,
 }) => {
+  await page.route("**/*.mp4", (route) => route.abort());
   await page.goto(`${base}/gallery/`);
   const terminal = page.getByRole("img", { name: "ターミナルの文字", exact: true });
   const candidates = (value: string | null) =>
@@ -58,8 +59,20 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   for (const flag of ["controls", "playsinline"]) await expect(video).toHaveAttribute(flag, "");
   for (const flag of ["muted", "autoplay", "loop"]) await expect(video).not.toHaveAttribute(flag);
   await expect(video).toHaveAttribute("preload", "metadata");
-  await expect(video).toHaveAttribute("width", "1600");
-  await expect(video).toHaveAttribute("height", "900");
+  await expect(video).toHaveAttribute("width", "1440");
+  await expect(video).toHaveAttribute("height", "1076");
+  const before = await video.boundingBox();
+  expect(Math.abs(before!.width / before!.height - 1440 / 1076)).toBeLessThan(0.001);
+  await page.unroute("**/*.mp4");
+  await video.evaluate((element: HTMLVideoElement) => element.load());
+  await expect
+    .poll(() => video.evaluate((element: HTMLVideoElement) => element.readyState))
+    .toBeGreaterThanOrEqual(1);
+  expect(
+    await video.evaluate((element: HTMLVideoElement) => [element.videoWidth, element.videoHeight]),
+  ).toEqual([1440, 1076]);
+  const after = await video.boundingBox();
+  expect(Math.abs(after!.height - before!.height)).toBeLessThan(0.06);
   await expect(page.locator(".speakerdeck-embed")).toHaveAttribute(
     "data-id",
     "457f092496ab4856b7c3cef5bcd2babb",
