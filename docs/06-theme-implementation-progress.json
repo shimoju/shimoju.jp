@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T02:28:10.611098+00:00",
+  "updated_at": "2026-09-18T02:39:19.844586+00:00",
   "stage": "full_implementation",
-  "summary": "T013で170 HTML・48 RSS・全61入力の移行照合と142画像実寸・64コードを3エンジンで検証。CIを追加し、統合の有効結果237/240。残る3件はF014のAbout空thで判断待ち。全画面レビューR002とGitHubホスト実行・実機・性能・配信は未完了。独立したT016性能測定へ進む。",
+  "summary": "T012/T013の入力・全公開出力照合を実装し、T016の性能測定は全10試行で目標達成。統合検査は有効237/240、F014のAbout空th3件がユーザー判断待ち。全画面と検証・残件をT014でR002へ提出する。実機・GitHubホスト実行・Cloudflare配信は未完了。",
   "latest_review_id": "R004",
   "resume": {
-    "task_id": "T016",
-    "action": "代表記事の外部埋め込みあり/なしを同じモバイル条件で各5回測定する。F014のAbout表見出しは回答待ちを保持し、回答後に後続タスクで修正する。"
+    "task_id": "T014",
+    "action": "全画面レビュー入口をまとめ、T010比較・T012/T013移行・T016性能とF014を提示する。Aboutの判断待ちと実機/配信の未実施を明記してレビューを依頼する。"
   },
   "tasks": [
     {
@@ -709,16 +709,25 @@
       ],
       "verification_plan": [
         "Chromium CDPで390×844、DPR3、CPU4倍低速、RTT150ms、下り1.6Mbps/上り750Kbps、cold cacheで各5回。",
-        "各試行の値とtraceを保存し全試行と中央値を報告。実ユーザー保証と区別する。"
+        "各試行の値とtraceを保存し全試行と中央値を報告。実ユーザー保証と区別する。",
+        "実rootソースの本番同等ビルドをlocalhostで配信し、2026年開発環境記事（本文に外部埋め込みなし）と東京都知事選記事（先頭画面内にX埋め込み）の2記事を各5回。はてなスターは双方で通常の本番動作を維持する。",
+        "各試行は新規ブラウザ・cookie/cacheなし、同時測定なし、遷移開始から20秒・スクロール/操作なし。LCP候補とCLS session window、ネットワークエラー、CDP traceを保存する。測定中に外部widgetが読めない試行は合格扱いにしない。"
       ],
       "commit_message": "[T016] モバイル性能を測定し影響を検証",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/scripts/measure-performance.ts",
+        "themes/shsh/docs/verification/mobile-performance.md",
+        "themes/shsh/docs/verification/t016/",
+        "themes/shsh/docs/verification/t016-pilot/",
+        "themes/shsh/docs/verification/t016-measure.log",
+        "themes/shsh/docs/verification/t016-build.log"
+      ],
+      "verification_ids": ["V038"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "代表記事の外部埋め込みあり/なしでLCP/CLSを測定し、必要な改善と再測定を行う。"
+      "next_action": "固定したモバイルlab条件で全10試行が目標達成。結果をR002へ提示し、実機・Cloudflare配信はT015/T017で確認する。"
     },
     {
       "id": "T017",
@@ -1495,9 +1504,10 @@
         "themes/shsh/docs/verification/t010-check.log",
         "themes/shsh/docs/verification/t010-port-recheck.log",
         "themes/shsh/docs/verification/site-input-migration.md",
-        "themes/shsh/docs/verification/output-migration.md"
+        "themes/shsh/docs/verification/output-migration.md",
+        "themes/shsh/docs/verification/mobile-performance.md"
       ],
-      "verification_ids": ["V022", "V030", "V031", "V032", "V033", "V036", "V037"],
+      "verification_ids": ["V022", "V030", "V031", "V032", "V033", "V036", "V037", "V038"],
       "finding_ids": ["F014", "F015", "F016", "F017"],
       "decision": null,
       "supersedes": null
@@ -2497,6 +2507,32 @@
         "themes/shsh/docs/verification/output-migration.md"
       ],
       "supersedes": "V035"
+    },
+    {
+      "id": "V038",
+      "task_ids": ["T016"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q14",
+        "docs/04-theme-implementation-requirements.md: Q21",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/04-theme-implementation-requirements.md: 実装開始時の確認と完了判定"
+      ],
+      "kind": "本番同等ビルドと固定モバイル条件のLCP/CLS測定",
+      "result": "passed",
+      "subject_ref": "ce10836の本番同等生成物 + T016の測定スクリプト・証拠",
+      "environment": "macOS27 darwin/arm64 Apple M4; Chromium153; Hugo0.166.0; 390×844 DPR3; Android13/Pixel7 mobile UA emulation; page CPU4x; latency150ms; down1.6Mbps/up750Kbps; localhost非圧縮; fresh browser/cache disabled; 20秒×各5回",
+      "procedure": "予備各1回で観測を確認後、モバイルUAを明示して本測定2記事各5回。埋め込みなしLCP1180/1196/1196/1188/1196ms（中央値1196、最大1196）、Xあり524/528/536/532/552ms（中央値532、最大552）。CLSは前者全0、後者全0.0063968372。全10試行が目標を満たし、X5回すべて実投稿表示を確認。LCP候補、全フレームweighted CLS session window、主frame/observer照合、通信、gzip trace10件と画像を保存。Hugo再生成は警告・入力エラー0。実機／Cloudflare／実ユーザーの達成は未検証。",
+      "evidence_refs": [
+        "themes/shsh/scripts/measure-performance.ts",
+        "themes/shsh/docs/verification/mobile-performance.md",
+        "themes/shsh/docs/verification/t016/",
+        "themes/shsh/docs/verification/t016-pilot/",
+        "themes/shsh/docs/verification/t016-measure.log",
+        "themes/shsh/docs/verification/t016-build.log"
+      ],
+      "recorded_at": "2026-09-18T02:39:19.844586+00:00",
+      "supersedes": null
     }
   ]
 }

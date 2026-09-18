@@ -1,0 +1,33 @@
+{
+  "targets": {
+    "lcpMilliseconds": 2500,
+    "cls": 0.1
+  },
+  "groups": {
+    "without-embed": {
+      "trials": 5,
+      "lcpMilliseconds": [1180, 1196, 1196, 1188, 1196],
+      "lcpMedianMilliseconds": 1196,
+      "lcpMaxMilliseconds": 1196,
+      "cls": [0, 0, 0, 0, 0],
+      "clsMedian": 0,
+      "clsMax": 0,
+      "allValid": true,
+      "allMeetTargets": true
+    },
+    "with-x-embed": {
+      "trials": 5,
+      "lcpMilliseconds": [524, 528, 536, 532, 552],
+      "lcpMedianMilliseconds": 532,
+      "lcpMaxMilliseconds": 552,
+      "cls": [
+        0.006396837217124272, 0.006396837217124272, 0.006396837217124272, 0.006396837217124272,
+        0.006396837217124272
+      ],
+      "clsMedian": 0.006396837217124272,
+      "clsMax": 0.006396837217124272,
+      "allValid": true,
+      "allMeetTargets": true
+    }
+  }
+}
