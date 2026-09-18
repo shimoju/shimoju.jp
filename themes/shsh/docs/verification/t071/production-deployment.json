@@ -1,0 +1,26 @@
+{
+  "observed_at": "2026-09-18T15:16:58.500817+00:00",
+  "source": "Cloudflare dashboardの本番デプロイ詳細とビルドログ、CUA読み取り",
+  "deployment_id": "a880fe98-4cac-4c20-a5c2-ad6b9e0cd77b",
+  "commit": "a442780f8644ba32f88fb31b58dde192502c99d1",
+  "branch": "master",
+  "environment": "production",
+  "baseURL": "https://shimoju.jp/",
+  "alias": "shimoju.jp",
+  "deployment_url": "https://a880fe98.shimoju.pages.dev/",
+  "status": "success",
+  "completed_at": "2026-09-18T15:14:13.940666Z",
+  "duration_seconds": 51,
+  "hugo": "v0.166.0-78400b4de8adc99273d3e674ed6c4d14c3bdf669+extended linux/amd64",
+  "build_command": "if [ -f themes/shsh/scripts/build-pages.sh ]; then sh themes/shsh/scripts/build-pages.sh; else hugo; fi",
+  "output": {
+    "pages": 160,
+    "paginator_pages": 14,
+    "processed_images": 124,
+    "aliases": 46,
+    "uploaded_assets": 371,
+    "redirect_rules": 1,
+    "header_rules": 1
+  },
+  "warnings_or_errors_observed": []
+}
