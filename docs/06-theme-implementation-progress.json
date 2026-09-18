@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T12:12:06.281558+00:00",
+  "updated_at": "2026-09-18T12:20:24.591692+00:00",
   "stage": "final_verification",
-  "summary": "Safari回転修正は実iPhoneと全CI246検査で再合格。Mac Firefoxの実フォント・コピー内容一致・限定200%表示を追加確認。詳細実機項目、本番移行、旧テーマ整理は未完了。",
+  "summary": "Safari回転修正は実iPhoneと全CI246検査で再合格。Mac Firefoxの実フォント・限定200%表示と、Mac3ブラウザのコピー内容一致を追加確認。詳細実機項目、本番移行、旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "Mac Firefoxの限定確認V085を反映済み。Windows詳細は回答待ち。ネイティブアプリのローカルtextarea貼付方式でMac Chrome/Safariのコピーも追加確認できる。JS無効・文字設定変更・埋め込み等の残件を継続。"
+    "action": "Mac3ブラウザのコピー照合は完了。Windows詳細の回答を反映し、残るSafari/Chrome実フォント・文字設定変更・JS無効・埋め込みを確認する。"
   },
   "tasks": [
     {
@@ -714,11 +714,13 @@
         "V078",
         "V079",
         "V083",
-        "V085"
+        "V085",
+        "V086",
+        "V087"
       ],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "利用可能な6環境の基本報告を受領済み。F022のFirefox書体差異は受容、F025は実機で解消。実フォント・文字拡大条件・JS無効等の未確認詳細項目を継続する。"
+      "next_action": "Mac Firefoxの実フォント限定確認と、Mac3ブラウザのコピー内容一致を追加確認済み。未確認の実フォント・文字拡大条件・JS無効等を継続する。Windowsの詳細報告は回答待ち。"
     },
     {
       "id": "T016",
@@ -1187,10 +1189,10 @@
         "themes/shsh/docs/verification/t028/",
         "themes/shsh/docs/verification/real-devices.md"
       ],
-      "verification_ids": ["V046", "V049"],
+      "verification_ids": ["V046", "V049", "V086"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "本文400と和文h2 500の実フェイス・配色は限定確認済み。R002判断後のHTTPS previewで、残るフォント・文字拡大・コピー・他OS/モバイル実機を確認する。"
+      "next_action": "本文400・和文h2 500・配色に加え、T049でコピー内容一致を確認済み。残るフォント・文字拡大等をT015で継続。"
     },
     {
       "id": "T029",
@@ -1549,13 +1551,13 @@
         "取得した内容はコードとの一致結果だけを記録し、不一致の内容は出力しない。"
       ],
       "commit_message": "[T039] HTTPSでのMacコピー確認結果を記録",
-      "status": "implemented",
-      "verification_status": "blocked",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": ["themes/shsh/docs/verification/t039/"],
-      "verification_ids": ["V061"],
+      "verification_ids": ["V061", "V086"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "OSクリップボードを扱える実機操作またはユーザー確認で貼り付け内容の一致を確認する。通知だけでは合格にしない。"
+      "next_action": "T049のネイティブ貼り付けで235文字の完全一致を確認。コピー内容未確認は解消した。"
     },
     {
       "id": "T040",
@@ -1852,6 +1854,37 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "限定確認と証拠記録は完了。未確認の詳細項目はT015で継続し、Firefox全体の合格へ一般化しない。"
+    },
+    {
+      "id": "T049",
+      "title": "Mac ChromeとSafariでコピーの貼り付け内容を照合",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "T028/T039で未取得だったOSクリップボードの内容一致を、ネイティブアプリの貼り付け操作で確認する。",
+        "Safariにも同じ操作を適用し、コピー結果と未確認項目を記録する。"
+      ],
+      "depends_on": ["T048"],
+      "acceptance_criteria": [
+        "固定previewのコードコピーとローカルtextareaへの貼り付けを行い、原文のコードとの完全一致を判定する。",
+        "端末・版・対象URL・操作と結果を記録し、コピー以外の実機項目へ一般化しない。"
+      ],
+      "verification_plan": [
+        "ネイティブChrome/Safariの専用タブでCopy codeを操作する。",
+        "送信のないローカルHTMLへネイティブCmd+Vし、値を原文と比較する。クリップボードの内容をログへ出さない。",
+        "専用タブ・一時HTMLを片付け、文書整形・進捗検査・差分確認を実施する。"
+      ],
+      "commit_message": "[T049] Mac ChromeとSafariのコピー内容一致を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": ["themes/shsh/docs/verification/t049/"],
+      "verification_ids": ["V086", "V087"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "Mac Chrome/Safariのコピー内容照合は完了。実機の他項目はT015で継続する。"
     }
   ],
   "findings": [
@@ -4512,6 +4545,44 @@
         "themes/shsh/docs/verification/t048/"
       ],
       "recorded_at": "2026-09-18T12:12:06.281558+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V086",
+      "task_ids": ["T015", "T028", "T039", "T049"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "ネイティブMacブラウザのコードコピーと貼り付け内容一致",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/2026/09/01/development-environment-2026/",
+      "environment": "macOS27.0(26A428) / Chrome153.0.8010.53 / CUAネイティブアプリ操作",
+      "procedure": "表示されたCopy codeをクリックしCode copied.通知を確認。送信のない一時ローカルtextareaへネイティブCmd+Vし、入力値と記事のコード235文字の完全一致を確認。Chromeは初回2回の不一致後、連続操作で再検証。専用タブと一時HTMLを片付けた。コピー以外へ一般化しない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t049/README.md",
+        "themes/shsh/docs/verification/t049/chrome-copy-final.json"
+      ],
+      "recorded_at": "2026-09-18T12:20:24.591692+00:00",
+      "supersedes": "V061"
+    },
+    {
+      "id": "V087",
+      "task_ids": ["T015", "T049"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "ネイティブMacブラウザのコードコピーと貼り付け内容一致",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/2026/09/01/development-environment-2026/",
+      "environment": "macOS27.0(26A428) / Safari27.0(22625.1.29.11.27) / CUAネイティブアプリ操作",
+      "procedure": "表示されたCopy codeをクリックしCode copied.通知を確認。送信のない一時ローカルtextareaへネイティブCmd+Vし、入力値と記事のコード235文字の完全一致を確認。Chromeは初回2回の不一致後、連続操作で再検証。専用タブと一時HTMLを片付けた。コピー以外へ一般化しない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t049/README.md",
+        "themes/shsh/docs/verification/t049/safari-copy.json"
+      ],
+      "recorded_at": "2026-09-18T12:20:24.591692+00:00",
       "supersedes": null
     }
   ]
