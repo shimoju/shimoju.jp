@@ -1,6 +1,6 @@
 # Cloudflare Pages配信確認（T017）
 
-状態：既存配信の読み取り調査まで。移行後の配信・CI・dashboardのビルド設定は未確認。R002の判断後に対象コミットを確定して再検証する。
+状態：既存配信とdashboard実設定の読み取りまで確認済み。移行後の配信・GitHub CI実行は未確認。R002の判断後に対象コミットを確定して再検証する。
 
 ## 既存配信の証拠
 
@@ -19,7 +19,30 @@
 
 2026-09-18、Chromeのブラウザ接続が利用可能になったため、既存previewのCloudflare dashboard URLを専用タブで開いた。Safariでも確認したが、両方ともログイン画面へ移動し、ビルド設定は読めなかった。認証情報の入力や設定変更は行っていない。
 
-Chromeに開いたCloudflare管理画面へのログインをユーザーへ依頼済みで、回答待ち。ログイン後はプロジェクト`shimoju`のproduction/preview設定を読み取る。本人が確認する場合も、以下の手順2〜4の設定・版・コミット対応が必要。パスワード等を会話や検証資料へ記録しない。
+この時点ではChromeに開いたCloudflare管理画面へのログインをユーザーへ依頼した。その後、下記T029でログインを確認済み。ログイン後はプロジェクト`shimoju`のproduction/preview設定を読み取る。本人が確認する場合も、以下の手順2〜4の設定・版・コミット対応が必要。パスワード等を会話や検証資料へ記録しない。
+
+## ログイン後の実設定（T029）
+
+2026-09-18、ユーザーから「ログイン済み」の回答を得て、プロジェクト`shimoju`の設定を読み取った。以下が最後に取得した値。初回の本番表示はHUGO_VERSION 0.165.0だったが、再取得時は両環境とも0.166.0だった。エージェントは設定を保存していない。ビルド構成ダイアログは項目を確認後にキャンセルした。
+
+| 項目           | production                 | preview                    |
+| -------------- | -------------------------- | -------------------------- |
+| ビルドコマンド | `hugo`                     | `hugo`                     |
+| 出力           | `public`                   | `public`                   |
+| ルート         | 空欄（リポジトリルート）   | 空欄（リポジトリルート）   |
+| HUGO_VERSION   | `0.166.0`                  | `0.166.0`                  |
+| ビルドシステム | v3                         | v3                         |
+| ブランチ       | `master`、自動デプロイ有効 | production以外の全ブランチ |
+
+[設定のAX抜粋と観察](t029/settings-observation.json)。秘密値は取得・保存していない。Hugo版・ルート・出力は期待どおり。現在のコマンドにはminifyとpreview環境/baseURL指定がないため、配信前に次の引数を渡す必要がある。dashboardのビルド設定は「リポジトリ固有」と表示されるため、共通コマンドを使うなら以下の分岐を設定する（まだ適用していない）。
+
+```sh
+if [ "$CF_PAGES_BRANCH" = "master" ]; then bin/build --environment production --minify; else bin/build --environment preview --minify --baseURL "$CF_PAGES_URL/"; fi
+```
+
+GitHub APIではmasterのbranch protectionは404 `Branch not protected`、実効rulesetは空配列だった（[結果](t029/github-ci-gates.json)）。ローカルの`shsh` workflowは検査を実行するが、Cloudflareの自動配信との依存関係を定義していない。Cloudflareは[Gitへのpushを契機に自動配信する](https://developers.cloudflare.com/pages/configuration/git-integration/)ため、現在の構成だけでは「GitHub検査合格後に配信」を保証できない（F018）。
+
+次の配信前に、同一コミットのCI成功を必須とする配信経路を確定する。検査成功後にGitHub Actionsから配信し、Cloudflare側の独立した自動配信を止める構成なら、本番・preview両方で順序を保証できる。認証と配信方法の具体化が必要で、まだ変更・トークン作成・新規配信は行っていない。既存の成功deploymentをshsh移行後の合格に流用しない。
 
 ## 移行後の確認手順
 

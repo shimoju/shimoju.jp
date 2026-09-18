@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T05:17:04.345563+00:00",
+  "updated_at": "2026-09-18T05:19:00.272524+00:00",
   "stage": "full_implementation",
-  "summary": "F014のAbout列見出しをユーザー承認どおり反映し、全統合240件合格。本文・素材・凍結モック不変、修正後24条件のaxe違反0。R002全体は回答待ち。実フォント・他端末、GitHub CI、移行後Cloudflare配信は未確認。",
+  "summary": "About列見出し承認反映後の全240テスト合格。R002全体は回答待ち。Chrome本文400の実フォント・配色を追加確認。Cloudflareログイン後の実設定は取得済み、両環境Hugo0.166.0。preview生成引数とCI成功後配信経路（F018）、実機残項目・配信・撤去は未完了。",
   "latest_review_id": "R004",
   "resume": {
     "task_id": "T017",
-    "action": "Cloudflareにログイン済み。読み取った実設定とGitHubの公開前CI条件をT029へ記録する。R002全体は承認待ち。"
+    "action": "F018のCI成功後配信経路を具体化する。R002全画面レビューは承認待ち。承認後に同一コミットのCI・preview配信を検証し、他端末実機確認へ進む。"
   },
   "tasks": [
     {
@@ -778,10 +778,10 @@
         "themes/shsh/docs/verification/cloudflare-pages.md",
         "themes/shsh/docs/verification/t017/"
       ],
-      "verification_ids": ["V042", "V045"],
+      "verification_ids": ["V042", "V045", "V047"],
       "review_ids": [],
-      "blocked_by": [],
-      "next_action": "Cloudflareのユーザーログイン回答後にdashboard設定を読む。R002判断後、同一コミットのCI・preview・本番を配信検証する。F014は反映済み。"
+      "blocked_by": ["F018"],
+      "next_action": "ログイン・実設定の読み取り済み。F018のCI成功後配信経路を具体化し、R002判断後にpreview環境/baseURL/minifyを設定して同一コミットのCI・preview・本番を検証する。"
     },
     {
       "id": "T018",
@@ -1176,6 +1176,37 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "本文400の実フェイスと両配色を確認済み。見出し500・サイト名300・strong/th700・コードの実フェイス、コピー内容一致を追加確認する。"
+    },
+    {
+      "id": "T029",
+      "title": "Cloudflareの実設定と移行差分を確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "scope": [
+        "ログイン後のCloudflare production/previewのビルド・版・ブランチ設定を読み取り、合意済み条件との差分を記録する。"
+      ],
+      "depends_on": ["T017"],
+      "acceptance_criteria": [
+        "実設定を画面から取得し、期待値との差分と適用手順を明記する。",
+        "設定変更・配信はR002判断後に継続し、読み取りだけで配信合格にしない。"
+      ],
+      "verification_plan": [
+        "既存プロジェクトの設定画面でproduction/previewを切り替え、コマンド・出力・版・自動配信の条件を読む。"
+      ],
+      "commit_message": "[T029] Cloudflareの実設定と移行差分を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/cloudflare-pages.md",
+        "themes/shsh/docs/verification/t029/"
+      ],
+      "verification_ids": ["V047"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "実設定の読み取りと差分整理は完了。T017でF018のCI成功後配信経路とpreview引数を具体化し、R002判断後に配信する。"
     }
   ],
   "findings": [
@@ -1624,6 +1655,24 @@
         "themes/shsh/docs/verification/output-migration.md"
       ],
       "verification_ids": ["V035", "V037"]
+    },
+    {
+      "id": "F018",
+      "title": "CI合格を配信の前提にする接続が未設定",
+      "task_ids": ["T017"],
+      "status": "open",
+      "requires_user_decision": false,
+      "observation": "Cloudflareはmaster自動配信・全非本番ブランチpreview。GitHub masterのbranch protectionなし（404）、実効rulesetなし。shsh workflowに配信依存なし。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t029/settings-observation.json",
+        "themes/shsh/docs/verification/t029/github-ci-gates.json",
+        ".github/workflows/shsh.yml"
+      ],
+      "impact": "GitHub検査失敗や実行中でもCloudflare側で先に公開される可能性があり、公開前CIの保証がない。",
+      "recommendation": "同一コミットのCI成功後にだけCloudflareへ配信する経路を構成する。GitHub Actions経由なら独立した自動配信を停止し、必要な認証とproduction/preview環境を具体化してから適用する。",
+      "decision": null,
+      "resolution_refs": [],
+      "verification_ids": ["V047"]
     }
   ],
   "reviews": [
@@ -2904,6 +2953,26 @@
         "themes/shsh/docs/verification/real-devices.md"
       ],
       "recorded_at": "2026-09-18T05:17:04.345563+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V047",
+      "task_ids": ["T017", "T029"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "Cloudflare実設定とGitHub CI前提条件の読み取り",
+      "result": "passed",
+      "subject_ref": "既存Cloudflare shimoju設定とGitHub masterの保護/rules API。テーマの新規配信ではない。",
+      "environment": "ログイン済みChrome dashboard/CUA; gh API; 2026-09-18",
+      "procedure": "production/preview両方のhugo/public/ルート空欄/Hugo0.166.0/v3を確認。master自動配信、preview全非本番ブランチ。ビルド構成ダイアログはキャンセル。GitHub保護404/rules空配列から公開前CI接続未設定F018を記録。設定・認証情報・配信の変更なし。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t029/",
+        "themes/shsh/docs/verification/cloudflare-pages.md"
+      ],
+      "recorded_at": "2026-09-18T05:19:00.272524+00:00",
       "supersedes": null
     }
   ]

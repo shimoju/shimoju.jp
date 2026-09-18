@@ -1,0 +1,16 @@
+{
+  "observed_at": "2026-09-18T05:19:00.272524+00:00",
+  "repository": "shimoju/shimoju.jp",
+  "branch": "master",
+  "branch_protection": {
+    "command": "gh api repos/shimoju/shimoju.jp/branches/master/protection",
+    "http_status": 404,
+    "message": "Branch not protected"
+  },
+  "effective_rules": {
+    "command": "gh api repos/shimoju/shimoju.jp/rules/branches/master",
+    "response": []
+  },
+  "local_workflow": ".github/workflows/shsh.yml",
+  "workflow_behavior": "push/pull_request/workflow_dispatch run check only; no deployment job or Cloudflare dependency"
+}
