@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T02:49:19.140338+00:00",
+  "updated_at": "2026-09-18T04:36:22.729960+00:00",
   "stage": "full_implementation",
-  "summary": "R002の全画面レビュー入口を用意し、F014のAbout見出し修正案を隔離表示して判断を依頼。提案は3エンジン両幅/両配色でaxe違反0、本番Aboutは未変更で統合の既知3不合格を保持。移行照合・性能は記録済み。レビュー待ちに独立したT015実機確認の準備を進める。",
+  "summary": "R002/F014の全画面・About修正案は回答待ち。Safari実機で記事の両配色・About表・Archives遷移を限定確認し、実機手順と未確認項目を記録。移行照合・性能は記録済み、統合はAbout由来の3不合格を保持。残る実フォント・他OS/モバイル・Cloudflare配信は未確認。",
   "latest_review_id": "R004",
   "resume": {
-    "task_id": "T015",
-    "action": "R002/F014の回答を優先して反映する。並行して実機のSafari・OS固有フォント・文字拡大等の手順と記録表を用意し、利用できる実環境を確認する。"
+    "task_id": "T017",
+    "action": "R002/F014の回答が来たら後続タスクで反映・再検証する。回答待ちの間はCloudflareの既存設定と利用可能な接続を読み取り、具体的な配信確認手順を準備する。実配信の変更はレビュー判断と依存関係を守る。"
   },
   "tasks": [
     {
@@ -689,16 +689,21 @@
       ],
       "verification_plan": [
         "実機で代表ページを両配色・標準/拡大文字で表示し、OS固有フォントの実フェイスを確認する。",
-        "手元で実行できない環境はユーザーに具体的手順を依頼し、未確認のまま合格にしない。"
+        "手元で実行できない環境はユーザーに具体的手順を依頼し、未確認のまま合格にしない。",
+        "現在のMacで利用できるネイティブSafariを確認し、扱える範囲を実施する。Playwright WebKitとの違いを記録する。",
+        "他OS/モバイル実機にはレビューpreviewの公開後に使う手順・対象画面・フォント実フェイス/文字拡大/操作/埋め込みの記録表を準備する。"
       ],
-      "commit_message": "[T015] 主要実機の操作とフォントを確認",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "commit_message": "[T015] Safariの限定確認と実機検証手順を記録",
+      "status": "implemented",
+      "verification_status": "blocked",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/real-devices.md",
+        "themes/shsh/docs/verification/t015/"
+      ],
+      "verification_ids": ["V040"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "PC/モバイル主要安定版とOS固有フォントの確認手順・対象URL・記録表を用意する。"
+      "next_action": "R002/F014の判断後、HTTPS previewと対象コミットを確定して他OS/モバイルの実機確認を依頼する。Safariも実フェイス・文字設定・コピー等の残項目を確認し、結果を後続タスクへ記録する。"
     },
     {
       "id": "T016",
@@ -2582,6 +2587,28 @@
         "themes/shsh/docs/verification/r002/review-mobile.png"
       ],
       "recorded_at": "2026-09-18T02:49:19.140338+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V040",
+      "task_ids": ["T015"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/04-theme-implementation-requirements.md: 実装開始時の確認と完了判定",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "ネイティブSafariの限定表示・配色・画面遷移と実機手順の準備",
+      "result": "passed",
+      "subject_ref": "8003c26のテーマ・サイト入力から生成した.cache/site-live/preview。T015は証拠と手順のみ追加。",
+      "environment": "macOS27.0 (26A428); native Safari27.0 (22625.1.29.11.27); CUA; window image1039x768。CSS viewport/DPR/倍率/既定文字サイズ未取得、現行安定版との照合未実施。",
+      "procedure": "専用タブで開発環境記事のダーク表示からライトへ切替、Aboutの表と配色保持、ヘッダーナビからArchivesへの遷移を確認。保存した4画像を目視確認。preview共有4サービスのdisabledをAXで確認。初回空白は前面化・再読み込みで解消し原因未特定。コピー内容一致・実フェイス・拡大・他OS/モバイルは未確認のためT015全体はblockedのまま。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/real-devices.md",
+        "themes/shsh/docs/verification/t015/"
+      ],
+      "recorded_at": "2026-09-18T04:36:22.729960+00:00",
       "supersedes": null
     }
   ]
