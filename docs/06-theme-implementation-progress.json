@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T13:57:32.127088+00:00",
+  "updated_at": "2026-09-18T14:02:12.555243+00:00",
   "stage": "final_verification",
-  "summary": "Draft PR #5の9f17369はCI成功（246テスト）と最新preview配信確認済み。実機用previewとCSS/JS一致。Safari YouTube・Firefox追加確認の回答待ち、他実機残件、本番移行・旧テーマ整理は未完了。",
+  "summary": "PR #5の9f17369はCI246件成功・preview配信確認済み。Macブラウザの公開安定版を公式情報と照合。Safari実フォント・YouTube映像、Firefox追加確認はユーザー回答待ち。他実機残件、本番移行・旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "Mac Safari実フォントと実機の未確認範囲を進める。Safari YouTube・Firefoxのユーザー回答は受領時に反映する。"
+    "action": "実機報告の回答を反映し、Windows/モバイルの残件を確認する。Safari Fonts空白・Firefox描画不一致は取得手段の変化なしに繰り返さない。"
   },
   "tasks": [
     {
@@ -732,7 +732,8 @@
         "V101",
         "V102",
         "V104",
-        "V107"
+        "V107",
+        "V108"
       ],
       "review_ids": [],
       "blocked_by": [],
@@ -1943,7 +1944,8 @@
         "V100",
         "V101",
         "V102",
-        "V104"
+        "V104",
+        "V108"
       ],
       "review_ids": [],
       "blocked_by": [],
@@ -2308,6 +2310,38 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "Mac公開版の照合は完了。実機の残項目とWindows/モバイル詳細版をT015で継続する。"
+    },
+    {
+      "id": "T062",
+      "title": "Safari Inspectorの実フォント取得可否を確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "scope": [
+        "Safariの実フォント未取得について、対象テキストを選択したInspectorの表示を再確認し取得可能な範囲を記録する。"
+      ],
+      "depends_on": ["T050"],
+      "acceptance_criteria": [
+        "実フェイスと候補CSSを区別して記録し、取得できない場合は具体的な操作制約とユーザーへの確認手順を残す。",
+        "専用タブ・Inspectorを閉じて元の閲覧状態を維持する。"
+      ],
+      "verification_plan": [
+        "専用Aboutタブの本文要素を選択し、Fontsパネルの表示と選択要素を照合する。",
+        "情報が得られれば本文・コードの和欧文を取得し、得られなければ試行を繰り返さず制約を記録する。",
+        "整形・進捗・差分検査を実施する。"
+      ],
+      "commit_message": "[T062] Safariの実フォント取得状況を記録",
+      "status": "implemented",
+      "verification_status": "blocked",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/t062/README.md",
+        "themes/shsh/docs/verification/t062/observation.json"
+      ],
+      "verification_ids": ["V108"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "Safariの実フォントをユーザーへ依頼済み。パネル空白が続くため同じ取得操作を繰り返さず、回答または取得手段の変化を待つ。"
     }
   ],
   "findings": [
@@ -5397,6 +5431,26 @@
         "themes/shsh/docs/verification/real-devices.md"
       ],
       "recorded_at": "2026-09-18T13:57:32.127088+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V108",
+      "task_ids": ["T015", "T050", "T062"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "Safari実フォントパネルの取得制約再確認",
+      "result": "blocked",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/about/",
+      "environment": "macOS27.0 / Safari27.0(22625.1.29.11.27) / CUAネイティブ",
+      "procedure": "職務要約の本文pをInspector選択、Fontsが空であることをAX/画像で確認。テキストノードはノードパネルへ切替、親pへ戻ってもFonts空。実フォント未取得、コード追加検査なし。Inspector/専用タブを閉じ元の開発環境記事URLへ復帰。ユーザーへ本文/コード和欧文実フェイスを依頼。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t062/observation.json",
+        "themes/shsh/docs/verification/t062/fonts-panel.txt",
+        "themes/shsh/docs/verification/t062/fonts-panel.jpg"
+      ],
+      "recorded_at": "2026-09-18T14:02:12.555243+00:00",
       "supersedes": null
     }
   ]

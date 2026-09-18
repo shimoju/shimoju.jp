@@ -1,0 +1,12 @@
+{
+  "recorded_at": "2026-09-18T14:02:12.555243+00:00",
+  "url": "https://6f52990f.shimoju.pages.dev/about/",
+  "commit": "268bbb0ef102f1379efbcfb62f53d2e643a7c79e",
+  "result": "blocked",
+  "actual_fonts_obtained": false,
+  "selected_element": "div.prose > p（職務要約の最初の段落）",
+  "fonts_panel": "選択済み、内容空",
+  "text_node_selection": "ノードパネルへ切替、親pへ戻るとFontsは空",
+  "cleanup": "Inspectorと専用Aboutタブを閉じ、元の開発環境記事タイトル/URLを確認",
+  "user_request": "Mac SafariのAbout本文・開発環境記事コードの和欧文実フォント名。Fonts欄が空の場合はその旨。"
+}
