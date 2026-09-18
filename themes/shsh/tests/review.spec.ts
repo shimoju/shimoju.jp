@@ -147,7 +147,7 @@ for (const [name, path, mock] of [
         await ready(page);
         const expected = await blocks(page, selector);
         // Specimen deliberately omits mock-only padding/font diagnostics and converts raw HTML inputs.
-        // Full article comparison ends at prose: tags/adjacent posts are T010, after approval.
+        // The full-screen suite separately compares article endings and all remaining screens.
         mkdirSync(".cache/review-metrics", { recursive: true });
         writeFileSync(
           `.cache/review-metrics/${name}-${browserName}-${width}-${colorScheme}.json`,

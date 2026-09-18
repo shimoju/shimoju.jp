@@ -1,7 +1,3 @@
-.article-end {
-  margin-top: var(--space-end);
-}
-
 .engagement {
   display: flex;
   flex-wrap: wrap;

@@ -37,12 +37,18 @@ writeFileSync(
   `${source}/content/_index.md`,
   `---\ntitle: Home\n---\n${current.params.homeinfoparams.content}\n`,
 );
-for (const page of ["about", "archives"])
-  writeFileSync(
-    `${source}/content/${page}.md`,
-    `---\ntitle: ${page === "about" ? "About" : "Archives"}\n---\nReview of this page is scheduled after R001.\n`,
-  );
+cpSync("../../content/about.md", `${source}/content/about.md`);
+cpSync("../../content/archives.md", `${source}/content/archives.md`);
+writeFileSync(`${source}/content/undated.md`, "---\ntitle: Undated\n---\nNo date.\n");
+writeFileSync(
+  `${source}/content/hidden-dates.md`,
+  "---\ntitle: Hidden dates\ndate: 2026-01-01\nlastmod: 2026-02-01\nshowDates: false\n---\nDates remain in metadata.\n",
+);
 cpSync("tests/fixtures/offline/layouts", `${source}/layouts`, { recursive: true });
+writeFileSync(
+  `${source}/layouts/_shortcodes/x.html`,
+  '<p lang="en"><a href="https://x.com/{{ .Get "user" }}/status/{{ .Get "id" }}">View post on X</a> (embed omitted in this mock)</p>',
+);
 mkdirSync(`${source}/assets/images`, { recursive: true });
 for (const image of ["zsh-prompt-cover.png", "neovim-cheatsheet.png"])
   cpSync(`../../content/posts/${articles[0]}/${image}`, `${source}/assets/images/${image}`);

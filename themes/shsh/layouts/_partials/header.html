@@ -16,9 +16,15 @@
   {{ with site.Menus.main }}
     <nav class="site-nav" lang="en" aria-label="Main navigation">
       {{ range . }}
+        {{ $current := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
+        {{ if and (eq $.Kind "term") .Page }}
+          {{ $current = or $current (eq .Page.RelPermalink ($.Site.GetPage $.Data.Plural).RelPermalink) }}
+        {{ end }}
         <a
           href="{{ .URL }}"
-          {{ if $.IsMenuCurrent "main" . }}aria-current="page"{{ end }}
+          {{ if $current }}
+            aria-current="page"
+          {{ end }}
           >{{ .Name }}</a
         >
       {{ end }}

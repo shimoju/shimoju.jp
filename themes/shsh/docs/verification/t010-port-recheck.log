@@ -1,0 +1,25 @@
+[WebServer] (node:23694) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 6 tests using 3 workers
+
+(node:23697) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23695) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23696) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/full-review.spec.ts:124:1 › discovery semantics, keyboard, fixed pages and JavaScript-disabled navigation (1.9s)
+  ✓  2 [chromium] › tests/full-review.spec.ts:8:3 › Full screen single-item (1.9s)
+(node:23728) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23729) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [firefox] › tests/full-review.spec.ts:8:3 › Full screen single-item (3.7s)
+(node:23760) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 [webkit] › tests/full-review.spec.ts:8:3 › Full screen single-item (2.6s)
+  ✓  4 [firefox] › tests/full-review.spec.ts:124:1 › discovery semantics, keyboard, fixed pages and JavaScript-disabled navigation (3.8s)
+  ✓  6 [webkit] › tests/full-review.spec.ts:124:1 › discovery semantics, keyboard, fixed pages and JavaScript-disabled navigation (2.5s)
+
+  6 passed (7.8s)

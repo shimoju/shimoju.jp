@@ -1,0 +1,27 @@
+{{- $current := . -}}
+{{- $posts := partialCached "posts.html" . -}}
+{{- $newer := false -}}{{- $older := false -}}
+{{- range $index, $page := $posts -}}
+  {{- if eq $page.RelPermalink $current.RelPermalink -}}
+    {{- if gt $index 0 }}{{ $newer = index $posts (sub $index 1) }}{{ end -}}
+    {{- if lt (add $index 1) (len $posts) }}
+      {{ $older = index $posts (add $index 1) }}
+    {{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- if or $newer $older -}}
+  <nav class="post-nav" id="post-navigation" aria-label="Adjacent posts">
+    {{ with $newer }}
+      <a rel="prev" href="{{ .RelPermalink }}"
+        ><small lang="en">{{ partial "navigation-label.html" "prev" }}</small
+        ><span class="post-nav-title link-title">{{ .Title }}</span></a
+      >
+    {{ end }}
+    {{ with $older }}
+      <a rel="next" href="{{ .RelPermalink }}"
+        ><small lang="en">{{ partial "navigation-label.html" "next" }}</small
+        ><span class="post-nav-title link-title">{{ .Title }}</span></a
+      >
+    {{ end }}
+  </nav>
+{{- end -}}

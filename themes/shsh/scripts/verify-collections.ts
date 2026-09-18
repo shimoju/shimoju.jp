@@ -136,3 +136,39 @@ assert.match(invalidFormat.stdout + invalidFormat.stderr, /dateFormat must be a 
 console.log(
   "Collections: empty/single/default10/custom2, UTC ties, mainSections, publication filters, summaries, dates and invalid inputs passed.",
 );
+
+// All discovery surfaces share the filtered collection, including multiple mainSections and UTC ties.
+pass({
+  archives: "---\ntitle: Archives\nlayout: archives\n---\n",
+  "posts/z": post({
+    title: "Later path",
+    tags: ["lowerCase", "日本語"],
+    date: "2025-12-31T15:30:00Z",
+  }),
+  "posts/a": post({
+    title: "Earlier path",
+    tags: ["lowerCase"],
+    date: "2026-01-01T00:30:00+09:00",
+  }),
+  "notes/newest": post({ title: "Newest", tags: ["lowerCase"], date: "2026-09-01T00:00:00+09:00" }),
+  "posts/draft": post({ title: "Excluded", draft: true, tags: ["lowerCase"] }),
+  about: post({ title: "Fixed", tags: ["lowerCase", "Fixed only"] }),
+});
+const output = (path: string) => readFileSync(`${source}/public/${path}`, "utf8");
+const archives = output("archives/index.html");
+assert.match(archives, /<h2>2026<\/h2>/);
+assert.doesNotMatch(archives, /<h2>2025<\/h2>|Fixed|Excluded/);
+assert.ok(archives.indexOf("Newest") < archives.indexOf("Earlier path"));
+assert.ok(archives.indexOf("Earlier path") < archives.indexOf("Later path"));
+assert.match(output("posts/a/index.html"), /rel="prev" href="\/notes\/newest\/"/);
+assert.match(output("posts/a/index.html"), /rel="next" href="\/posts\/z\/"/);
+assert.doesNotMatch(output("about/index.html"), /class="article-tags"|class="post-nav"/);
+assert.match(output("tags/index.html"), /lowerCase<\/span\s*>\s*<small>3<\/small>/);
+assert.doesNotMatch(output("tags/index.html"), /Fixed only/);
+assert.match(output("tags/lowercase/index.html"), /<h1>lowerCase<\/h1\s*>/);
+assert.match(output("tags/lowercase/index.html"), /<title>lowerCase — Collection test<\/title>/);
+assert.match(output("tags/lowercase/index.xml"), /<title>lowerCase on Collection test<\/title>/);
+assert.doesNotMatch(output("tags/lowercase/index.html").split("<body")[1]!, /Fixed|Excluded/);
+console.log(
+  "Discovery: local year/month, all-section order, tie navigation, fixed-page exclusion, original term case and HTML/feed title consistency passed.",
+);

@@ -35,7 +35,12 @@ const directories = process.env.SHSH_REVIEW_SERVER
       [4181, ".cache/sharing/preview"],
       [4182, ".cache/review/production"],
       [4183, ".cache/review/preview"],
+      [4188, ".cache/full-review/pagination/public"],
+      [4189, ".cache/full-review/empty/public"],
+      [4195, ".cache/full-review/single/public"],
     ]);
+/** @type {ReturnType<typeof createServer>[]} */
+const servers = [];
 for (const [port, directory] of directories) {
   const root = resolve(directory);
   const server = createServer((request, response) => {
@@ -80,6 +85,10 @@ for (const [port, directory] of directories) {
     });
   });
   server.listen(port, "127.0.0.1");
-  process.once("SIGTERM", () => server.close());
-  process.once("SIGINT", () => server.close());
+  servers.push(server);
 }
+
+for (const signal of ["SIGTERM", "SIGINT"])
+  process.once(signal, () => {
+    for (const server of servers) server.close();
+  });

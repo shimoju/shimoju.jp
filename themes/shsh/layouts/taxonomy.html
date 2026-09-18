@@ -1,0 +1,27 @@
+{{ define "main" }}
+  <header class="page-heading"
+    ><h1>{{ partial "page-title.html" . }}</h1>{{ .Content }}</header
+  >
+  {{ $terms := slice }}
+  {{ range .Pages.ByTitle }}
+    {{ $posts := partial "list-pages.html" . }}
+    {{ if $posts }}
+      {{ $terms = $terms | append (dict "page" . "count" (len $posts)) }}
+    {{ end }}
+  {{ end }}
+  {{ if $terms }}
+    <ul class="terms">
+      {{ range $terms }}
+        <li
+          ><a href="{{ .page.RelPermalink }}"
+            ><span class="term-name link-title"
+              >{{ partial "page-title.html" .page }}</span
+            ><small>{{ .count }}</small></a
+          ></li
+        >
+      {{ end }}
+    </ul>
+  {{ else }}
+    <p class="empty" lang="en">No {{ .Data.Plural }} yet.</p>
+  {{ end }}
+{{ end }}

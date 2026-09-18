@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T01:27:19.354771+00:00",
-  "stage": "representative",
-  "summary": "R001で提示した代表4画面のPC/モバイル・両配色と共通設計を、ユーザーが残りの画面へ展開する土台として明示承認。修正履歴を保持して最新R004へ記録し、対象10作業を完了へ更新。移行完了は未承認。ユーザー指示により承認記録だけで終了し、T010以降は別セッションで再開する。",
+  "updated_at": "2026-09-18T01:51:20.126658+00:00",
+  "stage": "full_implementation",
+  "summary": "T010の全画面展開を実装。凍結40画面の480条件の寸法一致と320画像を保存し、3エンジンの有効結果222/225成功。Aboutの空の列見出し（F014）はユーザー判断待ちでaxe不合格を保持。R002は移行照合後に提出する。独立したT012からサイト入力移行を続ける。",
   "latest_review_id": "R004",
   "resume": {
-    "task_id": "T010",
-    "action": "別セッションで資料3〜6と実際のリポジトリを照合し、承認済み共通設計を残りの画面へ展開する。今回のセッションでは実装を開始しない。開発コマンドはthemes/shshで実行する。"
+    "task_id": "T012",
+    "action": "T010差分と検証結果をコミット後、独立したサイト設定・全埋め込み入力移行を進める。F014の回答が来たら後続修正タスクでAboutと比較期待値を更新・再検証する。"
   },
   "tasks": [
     {
@@ -430,7 +430,10 @@
         "docs/04-theme-implementation-requirements.md: Q9",
         "docs/04-theme-implementation-requirements.md: Q16",
         "docs/04-theme-implementation-requirements.md: Q18",
-        "docs/04-theme-implementation-requirements.md: Q32"
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q20",
+        "docs/04-theme-implementation-requirements.md: Q23"
       ],
       "scope": [
         "About/通常固定ページ・Archives・分類一覧/個別分類・404・記事タグ/前後記事へ展開する。"
@@ -441,16 +444,36 @@
         "Archivesは年/月の全記事、固定ページはタグ/前後なしで日付非表示設定が効く。"
       ],
       "verification_plan": [
-        "全画面対応表と両配色PC/モバイル比較、0/1件・全分類・前後方向・キーボードを検査する。"
+        "凍結モックの全40製品画面（診断専用specimenと入口を除く）とfixture URLの対応を記録し、両配色・1440/390pxで寸法/画像を比較する。",
+        "3エンジンでArchivesの年/月/順序、分類件数/ページ送り、空/1記事、固定ページ日付/タグ不在、前後方向、キーボードとJS無効、axeを検査する。",
+        "既存のpnpm checkを実行し、共通構造の回帰を確認する。"
       ],
       "commit_message": "[T010] 承認済み共通設計を全画面へ展開",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "status": "implemented",
+      "verification_status": "failed",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/full-screen-expansion.md",
+        "themes/shsh/docs/verification/t010/",
+        "themes/shsh/docs/verification/t010-check.log",
+        "themes/shsh/docs/verification/t010-port-recheck.log",
+        "themes/shsh/scripts/build-full-review.ts",
+        "themes/shsh/scripts/build-full-review-report.ts",
+        "themes/shsh/tests/full-review.spec.ts",
+        "themes/shsh/scripts/verify-collections.ts",
+        "themes/shsh/layouts/archives.html",
+        "themes/shsh/layouts/taxonomy.html",
+        "themes/shsh/layouts/term.html",
+        "themes/shsh/layouts/404.html",
+        "themes/shsh/layouts/_partials/article-end.html",
+        "themes/shsh/layouts/_partials/post-navigation.html",
+        "themes/shsh/layouts/_partials/page-title.html",
+        "themes/shsh/assets/css/article-end.css",
+        "themes/shsh/assets/css/discovery.css"
+      ],
+      "verification_ids": ["V029", "V030", "V031"],
       "review_ids": ["R002"],
-      "blocked_by": [],
-      "next_action": "別セッションで再開する。R004で承認された共通設計をAbout/通常固定ページ・Archives・分類一覧/個別分類・404・記事タグ/前後記事へ展開する。今回は未着手のまま終了する。"
+      "blocked_by": ["F014"],
+      "next_action": "F014のAbout表見出しの判断後、後続タスクで修正・期待値更新・両幅/両配色とaxeの再検証を行う。独立したT012のサイト入力移行は進行可能。R002はT014で提出する。"
     },
     {
       "id": "T011",
@@ -1267,6 +1290,50 @@
         "themes/shsh/docs/verification/r004-review.md"
       ],
       "verification_ids": ["V026", "V027"]
+    },
+    {
+      "id": "F014",
+      "title": "About業務経験表の空の列見出しがアクセシビリティ検査で不合格",
+      "task_ids": ["T010", "T012"],
+      "status": "awaiting_decision",
+      "requires_user_decision": true,
+      "observation": "AboutのMarkdown表は「| 業務経験 | | |」で、生成HTMLの2つのthが空。全画面axeでempty-table-headerを検出。凍結モックにも同じ入力がある。",
+      "evidence_refs": [
+        "content/about.md",
+        "themes/shsh/docs/verification/t010-check.log",
+        "themes/shsh/docs/verification/t010/axe.json"
+      ],
+      "impact": "コード色以外のaxe例外は認めないQ23を満たさない。列見出し追加は表示と内容を変えるためQ1のユーザー判断が必要。",
+      "recommendation": "見出しを「業務経験／技術／経験年数」にする。経歴・年数は維持し、About両幅/両配色とaxeを再検証。凍結モックは更新せず承認差分として記録する。",
+      "decision": null,
+      "resolution_refs": [],
+      "verification_ids": ["V029", "V031"]
+    },
+    {
+      "id": "F015",
+      "title": "既存の長い記事タイトルとHTML検査のSEO目安",
+      "task_ids": ["T010"],
+      "status": "resolved",
+      "requires_user_decision": false,
+      "observation": "全画面の生成HTML検査で、既存の2026年開発環境記事のtitleが70文字を超え、HTML-validateのlong-titleに該当。HTMLの構文エラーではなくSEOの目安。",
+      "evidence_refs": [
+        "content/posts/2026/09/01/development-environment-2026/index.md",
+        "themes/shsh/scripts/build-full-review.ts"
+      ],
+      "impact": "記事のタイトル保持（Q2/Q20）とツール既定の長さ目安を混同すると、公開内容を検査に合わせて改変してしまう。",
+      "recommendation": "正確な既存記事タイトル＋サイト名に一致するlong-titleだけを許容し、他のタイトル・構造エラーは失敗させる。",
+      "decision": {
+        "outcome": "表示と内容を維持する検査適用範囲の明確化",
+        "reason": "Q2/Q20はタイトルの短縮を要求せず、HTML-validateのSEO目安はHTML構文の妥当性とは異なる。検査結果と限定条件を公開し、axeの例外は追加しない。",
+        "decided_by": "assistant",
+        "recorded_at": "2026-09-18T01:46:34.406570+00:00",
+        "source": "docs/04-theme-implementation-requirements.md: Q2/Q20/Q23; 全画面の生成HTML検査結果"
+      },
+      "resolution_refs": [
+        "themes/shsh/scripts/build-full-review.ts",
+        "themes/shsh/docs/verification/full-screen-expansion.md"
+      ],
+      "verification_ids": ["V029", "V031"]
     }
   ],
   "reviews": [
@@ -1306,9 +1373,15 @@
       "title": "全画面の一貫性と検証結果・残件のレビュー",
       "task_ids": ["T010", "T011", "T012", "T013", "T014"],
       "status": "not_ready",
-      "artifact_refs": ["themes/shsh/docs/verification/metadata-and-feeds.md"],
-      "verification_ids": ["V022"],
-      "finding_ids": [],
+      "artifact_refs": [
+        "themes/shsh/docs/verification/metadata-and-feeds.md",
+        "themes/shsh/docs/verification/full-screen-expansion.md",
+        "themes/shsh/docs/verification/t010/",
+        "themes/shsh/docs/verification/t010-check.log",
+        "themes/shsh/docs/verification/t010-port-recheck.log"
+      ],
+      "verification_ids": ["V022", "V030", "V031"],
+      "finding_ids": ["F014", "F015"],
       "decision": null,
       "supersedes": null
     },
@@ -2070,6 +2143,80 @@
       ],
       "recorded_at": "2026-09-18T01:27:19.354771+00:00",
       "supersedes": null
+    },
+    {
+      "id": "V029",
+      "task_ids": ["T010"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q8",
+        "docs/04-theme-implementation-requirements.md: Q9",
+        "docs/04-theme-implementation-requirements.md: Q16",
+        "docs/04-theme-implementation-requirements.md: Q18",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q20",
+        "docs/04-theme-implementation-requirements.md: Q23"
+      ],
+      "kind": "全画面比較と統合検査の初回",
+      "result": "failed",
+      "subject_ref": "c3748dc + T010の全画面テンプレート・CSS・fixture・検査・記録差分",
+      "environment": "macOS27 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6; 1440×1000/390×844・両配色・DPR1",
+      "procedure": "初回生成のArchives keys呼出しを辞書構造で是正。分類自動大文字化・親ナビの現在位置・タグ列のaria-labelを修正。Chromium比較は44成功/1失敗（About空th）。全統合は静的検査成功、225件中218成功/7失敗（About3件、4190ポートによるFirefox/WebKitの1記事/操作4件）。formatter後HTMLの改行を静的検査へ反映。HTML長タイトルはF015の正確な入力へ限定して扱う。",
+      "evidence_refs": ["themes/shsh/docs/verification/t010-check.log"],
+      "recorded_at": "2026-09-18T01:51:20.126658+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V030",
+      "task_ids": ["T010"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q8",
+        "docs/04-theme-implementation-requirements.md: Q9",
+        "docs/04-theme-implementation-requirements.md: Q16",
+        "docs/04-theme-implementation-requirements.md: Q18",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q20",
+        "docs/04-theme-implementation-requirements.md: Q23"
+      ],
+      "kind": "検証用ポート修正後の1記事画面と導線",
+      "result": "passed",
+      "subject_ref": "c3748dc + T010の全画面テンプレート・CSS・fixture・検査・記録差分",
+      "environment": "macOS27 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6; 1440×1000/390×844・両配色・DPR1",
+      "procedure": "1記事fixtureを4190から4195へ変更。3エンジンの1記事・両配色/幅比較とJS有無/キーボード/前後/分類/404操作の6件成功（7.8秒）。Aboutの既知問題は解消していない。",
+      "evidence_refs": ["themes/shsh/docs/verification/t010-port-recheck.log"],
+      "recorded_at": "2026-09-18T01:51:20.126658+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V031",
+      "task_ids": ["T010"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q3",
+        "docs/04-theme-implementation-requirements.md: Q8",
+        "docs/04-theme-implementation-requirements.md: Q9",
+        "docs/04-theme-implementation-requirements.md: Q16",
+        "docs/04-theme-implementation-requirements.md: Q18",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q20",
+        "docs/04-theme-implementation-requirements.md: Q23"
+      ],
+      "kind": "全画面の寸法・画像・生成HTMLと残るaxe不合格",
+      "result": "failed",
+      "subject_ref": "c3748dc + T010の全画面テンプレート・CSS・fixture・検査・記録差分",
+      "environment": "macOS27 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6; 1440×1000/390×844・両配色・DPR1",
+      "procedure": "40画面×両幅×両配色×3エンジンの480寸法記録は全件対応し最大差0.03418px。320画像保存。125/200%文字拡大の横溢れなし。axeはAboutのempty-table-headerが12条件で不合格、他はChroma限定の合意例外のみ。既存102件の回帰成功、追加123件のうちAbout3件のみ未合格（ポート修正6件の再検証を含む有効結果は222/225成功）。全fixtureのHTML構造、別サイト/複数mainSections/UTC日付境界/同日時順・分類原表記のHTML/RSS・固定ページ除外を検査。代表新画面画像を目視。モック68ファイルのハッシュ不変。人のR002承認と実機/配信検証は未実施。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/full-screen-expansion.md",
+        "themes/shsh/docs/verification/t010/",
+        "themes/shsh/docs/verification/t010-check.log",
+        "themes/shsh/docs/verification/t010-port-recheck.log"
+      ],
+      "recorded_at": "2026-09-18T01:51:20.126658+00:00",
+      "supersedes": "V029"
     }
   ]
 }

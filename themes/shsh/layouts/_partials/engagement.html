@@ -1,35 +1,33 @@
 {{- $config := partialCached "sharing-config.html" . -}}
 {{- $star := and $config.starEnabled (eq hugo.Environment "production") -}}
 {{- if or $config.services $star -}}
-  <footer class="article-end">
-    <div class="engagement" id="engagement">
-      {{- with $config.services -}}
+  <div class="engagement" id="engagement">
+    {{- with $config.services -}}
+      <div
+        class="share-mount"
+        role="group"
+        aria-label="Share this article"
+        lang="en"
+      >
+        <div class="share-icons">
+          {{- range . }}
+            {{ partial "share-link.html" (dict "service" . "page" $) }}
+          {{ end -}}
+        </div>
+      </div>
+    {{- end -}}
+    {{- if $star -}}
+      <div class="star-widget" role="group" aria-label="Hatena Star">
         <div
-          class="share-mount"
-          role="group"
-          aria-label="Share this article"
-          lang="en"
-        >
-          <div class="share-icons">
-            {{- range . }}
-              {{ partial "share-link.html" (dict "service" . "page" $) }}
-            {{ end -}}
-          </div>
-        </div>
-      {{- end -}}
-      {{- if $star -}}
-        <div class="star-widget" role="group" aria-label="Hatena Star">
-          <div
-            data-hatena-star-container
-            data-hatena-star-url="{{ .Permalink }}"
-            data-hatena-star-title="{{ .Title }}"
-            data-hatena-star-variant="profile-icon"
-            data-hatena-star-profile-url-template="https://blog.hatena.ne.jp/{username}/"
-          ></div>
-          <noscript lang="en">Hatena Star requires JavaScript.</noscript>
-        </div>
-        <p class="widget-status" role="status" lang="en"></p>
-      {{- end -}}
-    </div>
-  </footer>
+          data-hatena-star-container
+          data-hatena-star-url="{{ .Permalink }}"
+          data-hatena-star-title="{{ .Title }}"
+          data-hatena-star-variant="profile-icon"
+          data-hatena-star-profile-url-template="https://blog.hatena.ne.jp/{username}/"
+        ></div>
+        <noscript lang="en">Hatena Star requires JavaScript.</noscript>
+      </div>
+      <p class="widget-status" role="status" lang="en"></p>
+    {{- end -}}
+  </div>
 {{- end -}}

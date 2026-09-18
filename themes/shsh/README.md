@@ -37,3 +37,5 @@ pnpm review
 実記事を使う検査だけは、サイトルートの`content/`・`hugo.yml`を読み取る。凍結比較用の`mock/`も読み取り専用。サイト全体の設計・移行要件・規律・進捗は[サイトの資料](../../docs/README.md)を参照する。サイトの設定や記事を検査中に書き換えない。
 
 検証ログ中の古いパス・実行コマンドは実施時点の記録。T021でこの配置へ移動した。現在の実行手順とリンクは[開発環境](docs/verification/toolchain.md)および[修正レビュー](docs/verification/r003-review.md)に従う。
+
+全画面の途中成果は[T010の比較と残件](docs/verification/full-screen-expansion.md)を参照する。`pnpm check`後に`node scripts/build-full-review-report.ts`で40画面の提出物を生成できる。F014のAbout表見出しは判断待ちで、検査も未合格として保持している。

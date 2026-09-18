@@ -1,14 +1,17 @@
 {{- $config := partialCached "config.html" . -}}
 {{- $url := partial "public-url.html" . -}}
+{{- $pageTitle := partial "page-title.html" . -}}
 {{- $title := site.Title -}}
-{{- if not .IsHome }}{{ $title = printf "%s — %s" .Title site.Title }}{{ end -}}
+{{- if not .IsHome }}
+  {{ $title = printf "%s — %s" $pageTitle site.Title }}
+{{ end -}}
 {{- $description := partial "description.html" . -}}
 {{- $image := partial "share-image.html" . -}}
 {{- $ogType := "website" -}}
 {{- if .IsPage }}{{ $ogType = "article" }}{{ end -}}
 {{- $card := "summary" -}}
 {{- if $image }}{{ $card = "summary_large_image" }}{{ end -}}
-{{- $socialTitle := .Title -}}
+{{- $socialTitle := $pageTitle -}}
 {{- if .IsHome }}{{ $socialTitle = site.Title }}{{ end -}}
 <title>{{ $title }}</title>
 <link rel="canonical" href="{{ $url }}" />
@@ -42,7 +45,7 @@
 {{ else if .IsPage }}
   {{ $type := "WebPage" }}
   {{ if in site.MainSections .Section }}{{ $type = "BlogPosting" }}{{ end }}
-  {{ $schema = dict "@context" "https://schema.org" "@type" $type "url" $url "name" .Title "headline" .Title "mainEntityOfPage" (dict "@type" "WebPage" "@id" $url) "author" $person "inLanguage" site.Language.Locale }}
+  {{ $schema = dict "@context" "https://schema.org" "@type" $type "url" $url "name" $pageTitle "headline" $pageTitle "mainEntityOfPage" (dict "@type" "WebPage" "@id" $url) "author" $person "inLanguage" site.Language.Locale }}
   {{ with $description }}
     {{ $schema = merge $schema (dict "description" .) }}
   {{ end }}
