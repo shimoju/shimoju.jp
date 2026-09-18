@@ -15,7 +15,7 @@
 
 masterと照合基準の間で`hugo.yml`・`content`・`static`・`assets`・`layouts`・PaperModに差分がないことをGitで確認した。照合基準は資料を含む後続コミット、本番復元対象は上記masterであり、混同しない。
 
-本番移行直前に、PagesのDeploymentsでこのSHA・成功したproduction環境・deployment IDを再照合し、実際の配信元を記録する。GitHub成功チェックだけでは、現在本番ドメインがその成果物を配信していることまで証明しない。
+T071の本番移行直前に、PagesのDeploymentsでこのSHA・成功したproduction環境・deployment IDを再照合し、実際の配信元を[記録した](t071/pre-production.json)。GitHub成功チェックだけでは、現在本番ドメインがその成果物を配信していることまで証明しない。
 
 ## 配信成果物を戻す場合
 

@@ -1,0 +1,9 @@
+{
+  "baseRefName": "master",
+  "headRefOid": "6b82005621a408526365fb9327f8478599f3be2c",
+  "mergeCommit": { "oid": "bc14804d245f811723777c23740aa9a52647c67d" },
+  "mergedAt": "2026-09-18T15:45:09Z",
+  "number": 6,
+  "state": "MERGED",
+  "url": "https://github.com/shimoju/shimoju.jp/pull/6"
+}

@@ -1,0 +1,19 @@
+{
+  "observed_at": "2026-09-18T15:34:40.107756+00:00",
+  "source": "Cloudflare dashboard / CUA AXのビルドログ",
+  "deployment_id": "2d53dd57-0367-4b2d-bc54-18ddf3a26c26",
+  "commit": "6b82005621a408526365fb9327f8478599f3be2c",
+  "environment": "preview",
+  "branch": "shsh-migration-final",
+  "baseURL": "https://2d53dd57.shimoju.pages.dev/",
+  "status": "success",
+  "completed_at": "2026-09-18T15:31:59.383245Z",
+  "duration_seconds": 55,
+  "hugo": "v0.166.0 extended linux/amd64",
+  "pages": 160,
+  "paginator_pages": 14,
+  "processed_images": 124,
+  "assets_uploaded": 370,
+  "papermod_submodule_clone": false,
+  "warnings_or_errors_observed": []
+}

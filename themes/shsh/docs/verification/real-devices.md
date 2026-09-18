@@ -1,10 +1,10 @@
 # 実機確認（T015）
 
-状態：一部確認済み。R002承認済み。iPhoneのコピー初回タップ不具合F021はT040で修正し、[修正版preview](https://211f19d6.shimoju.pages.dev/)（05d2064、T041）でユーザーが初回コピーと貼り付け内容一致を再確認済み。現在の確認用は[Safari文字自動拡大修正preview](https://6f52990f.shimoju.pages.dev/)（268bbb0、T047）。実機確認全体は未合格。過去の対象URL/SHAは各記録に残す。
+状態：F026/F027/F028の5代表環境の必須範囲はT070で確認完了。未取得・未実施は承認済み制約として保持する。固定確認用は[preview 6f52990f](https://6f52990f.shimoju.pages.dev/)（268bbb0）。iPhoneコピーF021・Safari文字自動拡大F025は修正後の実機再確認済み。以下の報告は当時の対象URL/SHAと条件を保持した履歴である。
 
 ## 現在の完了判定範囲（F026/F027/F028）
 
-5代表環境の承認済み必須範囲はT070で確認完了。[証拠対応と制約](t070/README.md)。本番配信・共有/スターと旧テーマ整理は未完了。
+5代表環境の承認済み必須範囲はT070で確認完了。[証拠対応と制約](t070/README.md)。本番配信・共有/スターは[T071](t071/README.md)、旧テーマ整理・全要件監査は[T018](t018/README.md)で確認。
 
 2026-09-18にユーザーが5代表環境案を承認。Mac Chrome・Mac Safari・Windows Chrome・iPhone Safari・Android Chromeを実機の必須対象とする。[追加確認の一覧・手順](t064/README.md)。OSフォントはMac ChromeをMac代表として扱い、Safari実フォント未取得は制約として残す。
 

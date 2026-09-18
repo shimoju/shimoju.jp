@@ -1,0 +1,11 @@
+{
+  "recorded_at": "2026-09-18T15:48:17.430788+00:00",
+  "url": "https://shimoju.jp/about/",
+  "sha256": [
+    "feb238648c89bd8ed1c0af0b95403ee128f8274a473ed98c9c3381b0860853b4",
+    "655141f9d1d83e3600b5d47047057995612c88623ebc891674947748660d24c1"
+  ],
+  "same_raw": false,
+  "same_after_email_token_normalization": true,
+  "email_token_counts": [1, 1]
+}

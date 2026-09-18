@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T15:30:42.357074+00:00",
-  "stage": "final_verification",
-  "summary": "本番移行・5代表実機・旧テーマ整理と全要件監査が完了。撤去後246テスト成功。T072で整理後の必須CI・master統合と最終配信を確認する。承認済みの未確認制約は維持。",
+  "updated_at": "2026-09-18T15:47:39.853223+00:00",
+  "stage": "complete",
+  "summary": "shshへの移行完了。レビュー承認、全移行照合、5代表実機の承認済み必須範囲、性能、本番/preview配信、旧テーマ整理と最終246テストを確認。PR #5/#6を必須CI成功後に統合し、本番bc14804を照合。F026/F027/F028等の未取得・未実施制約と不採用/blockedの履歴は保持。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T072",
-    "action": "T071/T018の後続PRを作成し、必須CI成功後に統合して最終配信を照合する。"
+    "task_id": null,
+    "action": "移行完了。最終監査はT018、本番配信証拠はT071/T072、切り戻しはrollback.mdを参照。"
   },
   "tasks": [
     {
@@ -2709,13 +2709,13 @@
         "進捗JSON/文書を整形・参照検査し、最終報告に本番URL・証拠・承認差分・制約を示す。"
       ],
       "commit_message": "[T072] 整理後の本番配信と移行完了を記録",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": ["themes/shsh/docs/verification/t072/"],
+      "verification_ids": ["V125", "V126"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "T018の撤去後検査成功後、後続PRの必須CIと本番配信を確認する。"
+      "next_action": "移行完了。将来の変更時は現行仕様・検査・承認済み制約に基づき検証する。"
     }
   ],
   "findings": [
@@ -6260,6 +6260,55 @@
         "themes/shsh/docs/verification/t018/integrity.json"
       ],
       "recorded_at": "2026-09-18T15:30:42.357074+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V125",
+      "task_ids": ["T072"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "kind": "整理後PRの必須CI・master統合とPages最終配信",
+      "result": "passed",
+      "subject_ref": "6b82005 → PR #6 merge bc14804 / 本番0057adc1",
+      "environment": "GitHub Actions Ubuntu24.04 / Cloudflare dashboard CUA / curl・Python",
+      "procedure": "6b82005のCI成功/246テスト・base a442780/CLEANを確認しPR #6を通常マージ。merge bc14804のproduction成功、Hugo0.166.0/本番URL、旧テーマcloneなし、371アセット既存一致をDashboardで確認。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t072/ci-pr.json",
+        "themes/shsh/docs/verification/t072/ci-check.log",
+        "themes/shsh/docs/verification/t072/pr-before-merge.json",
+        "themes/shsh/docs/verification/t072/pr-merged.json",
+        "themes/shsh/docs/verification/t072/production-deployment.json"
+      ],
+      "recorded_at": "2026-09-18T15:47:39.853223+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V126",
+      "task_ids": ["T072"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "kind": "整理後の全本番HTTP照合と移行完了監査",
+      "result": "passed",
+      "subject_ref": "6b82005 → PR #6 merge bc14804 / 本番0057adc1",
+      "environment": "GitHub Actions Ubuntu24.04 / Cloudflare dashboard CUA / curl・Python",
+      "procedure": "previewの隔離/アセット一致と本番170 HTML/48 RSS/テーマ4アセット/feed301/不存在404の全検査合格。T018の全要件監査・R004/R002承認・F026/F027/F028の制約保持を再照合。必須残件なし。 About生応答のみSHA不同を検出し、追加2応答がCloudflareメール保護トークン除去後に完全一致することを確認した。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t072/README.md",
+        "themes/shsh/docs/verification/t072/preview-deployment.json",
+        "themes/shsh/docs/verification/t072/preview.json",
+        "themes/shsh/docs/verification/t072/production-http.json",
+        "themes/shsh/docs/verification/t072/production-comparison.json",
+        "themes/shsh/docs/verification/t072/about-edge-transformation.json"
+      ],
+      "recorded_at": "2026-09-18T15:47:39.853223+00:00",
       "supersedes": null
     }
   ]

@@ -1,0 +1,191 @@
+{
+  "recorded_at": "2026-09-18T15:34:43.951503+00:00",
+  "commit": "6b82005621a408526365fb9327f8478599f3be2c",
+  "base": "https://2d53dd57.shimoju.pages.dev",
+  "device_preview": "https://6f52990f.shimoju.pages.dev",
+  "pages": [
+    {
+      "url": "https://2d53dd57.shimoju.pages.dev/",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "x_robots_tag": "noindex",
+      "location": null,
+      "bytes": 20245,
+      "sha256": "a4425a3b8d61050cf016109e0bbaecaf6f393a247ff97583656d22329a313487",
+      "canonical": ["https://2d53dd57.shimoju.pages.dev/"],
+      "og_url": ["https://2d53dd57.shimoju.pages.dev/"],
+      "html_robots": ["noindex,nofollow"],
+      "share_count": 0,
+      "star_container": false,
+      "checks": {
+        "status_200": true,
+        "http_noindex": true,
+        "html_noindex": true,
+        "canonical": true,
+        "og_url": true,
+        "star_absent": true
+      }
+    },
+    {
+      "url": "https://2d53dd57.shimoju.pages.dev/about/",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "x_robots_tag": "noindex",
+      "location": null,
+      "bytes": 34818,
+      "sha256": "85b80ef9fa48d0fcee87bf8faa485e57cc78463e453556e08feececa5ea59e0f",
+      "canonical": ["https://2d53dd57.shimoju.pages.dev/about/"],
+      "og_url": ["https://2d53dd57.shimoju.pages.dev/about/"],
+      "html_robots": ["noindex,nofollow"],
+      "share_count": 4,
+      "star_container": false,
+      "checks": {
+        "status_200": true,
+        "http_noindex": true,
+        "html_noindex": true,
+        "canonical": true,
+        "og_url": true,
+        "star_absent": true,
+        "shares_disabled": true
+      }
+    },
+    {
+      "url": "https://2d53dd57.shimoju.pages.dev/page/2/",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "x_robots_tag": "noindex",
+      "location": null,
+      "bytes": 17762,
+      "sha256": "d051cdd903beb805c6f0417d7a8aef71b6a1a46624aa694e9a35e109f6993252",
+      "canonical": ["https://2d53dd57.shimoju.pages.dev/page/2/"],
+      "og_url": ["https://2d53dd57.shimoju.pages.dev/page/2/"],
+      "html_robots": ["noindex,nofollow"],
+      "share_count": 0,
+      "star_container": false,
+      "checks": {
+        "status_200": true,
+        "http_noindex": true,
+        "html_noindex": true,
+        "canonical": true,
+        "og_url": true,
+        "star_absent": true
+      }
+    },
+    {
+      "url": "https://2d53dd57.shimoju.pages.dev/2026/09/01/development-environment-2026/",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "x_robots_tag": "noindex",
+      "location": null,
+      "bytes": 56469,
+      "sha256": "535b850f471cf4c80310682ff06468c6109fe60e0829ff42aec73746d177d936",
+      "canonical": ["https://2d53dd57.shimoju.pages.dev/2026/09/01/development-environment-2026/"],
+      "og_url": ["https://2d53dd57.shimoju.pages.dev/2026/09/01/development-environment-2026/"],
+      "html_robots": ["noindex,nofollow"],
+      "share_count": 4,
+      "star_container": false,
+      "checks": {
+        "status_200": true,
+        "http_noindex": true,
+        "html_noindex": true,
+        "canonical": true,
+        "og_url": true,
+        "star_absent": true,
+        "shares_disabled": true
+      }
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://2d53dd57.shimoju.pages.dev/css/shsh.737641fc277a9ef219fa855094fd9ac0593b48c351f73307f28260a0101b41f9.css",
+      "status": 200,
+      "content_type": "text/css; charset=utf-8",
+      "x_robots_tag": "noindex",
+      "location": null,
+      "bytes": 24490,
+      "sha256": "737641fc277a9ef219fa855094fd9ac0593b48c351f73307f28260a0101b41f9",
+      "device_sha256": "737641fc277a9ef219fa855094fd9ac0593b48c351f73307f28260a0101b41f9",
+      "map_status": 404,
+      "checks": {
+        "status_200": true,
+        "fingerprint": true,
+        "device_preview_identical": true,
+        "no_source_map_reference": true,
+        "no_source_map_response": true
+      }
+    },
+    {
+      "url": "https://2d53dd57.shimoju.pages.dev/js/copy.9a4830a2295aae57f3f57429e3a3b88cd3099e10cb5e1f4fca48b990b0d4fa2d.js",
+      "status": 200,
+      "content_type": "application/javascript",
+      "x_robots_tag": "noindex",
+      "location": null,
+      "bytes": 2072,
+      "sha256": "9a4830a2295aae57f3f57429e3a3b88cd3099e10cb5e1f4fca48b990b0d4fa2d",
+      "device_sha256": "9a4830a2295aae57f3f57429e3a3b88cd3099e10cb5e1f4fca48b990b0d4fa2d",
+      "map_status": 404,
+      "checks": {
+        "status_200": true,
+        "fingerprint": true,
+        "device_preview_identical": true,
+        "no_source_map_reference": true,
+        "no_source_map_response": true
+      }
+    },
+    {
+      "url": "https://2d53dd57.shimoju.pages.dev/js/theme.fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2.js",
+      "status": 200,
+      "content_type": "application/javascript",
+      "x_robots_tag": "noindex",
+      "location": null,
+      "bytes": 738,
+      "sha256": "fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2",
+      "device_sha256": "fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2",
+      "map_status": 404,
+      "checks": {
+        "status_200": true,
+        "fingerprint": true,
+        "device_preview_identical": true,
+        "no_source_map_reference": true,
+        "no_source_map_response": true
+      }
+    }
+  ],
+  "checks": {
+    "pages": true,
+    "assets": true,
+    "rss": true,
+    "feed_301": true,
+    "http_404": true
+  },
+  "rss": {
+    "url": "https://2d53dd57.shimoju.pages.dev/index.xml",
+    "status": 200,
+    "content_type": "application/xml",
+    "x_robots_tag": "noindex",
+    "location": null,
+    "bytes": 58536,
+    "sha256": "cd0b8f892d260d7cd7178323fd030b915c417c7e633409d305eb5ed52f070255",
+    "item_count": 59,
+    "urls_use_preview": true
+  },
+  "feed_redirect": {
+    "url": "https://2d53dd57.shimoju.pages.dev/feed.xml",
+    "status": 301,
+    "content_type": "text/plain;charset=UTF-8",
+    "x_robots_tag": null,
+    "location": "/index.xml",
+    "bytes": 25,
+    "sha256": "25d2bbeef7ae051ccc00be3923ed98ef3ef1ae9e90c098cc1d8a501588142b21"
+  },
+  "missing_page": {
+    "url": "https://2d53dd57.shimoju.pages.dev/t071-deliberately-missing-page/",
+    "status": 404,
+    "content_type": "text/html; charset=utf-8",
+    "x_robots_tag": null,
+    "location": null,
+    "bytes": 4689,
+    "sha256": "3225e8bdf543fdd51eb35427e9781ecbd1766de31026d052742d4a91823ef4ab"
+  },
+  "result": "passed"
+}
