@@ -1,0 +1,8 @@
+{
+  "recorded_at": "2026-09-18T07:09:49.489298+00:00",
+  "build_command": "if [ -f themes/shsh/scripts/build-pages.sh ]; then sh themes/shsh/scripts/build-pages.sh; else hugo; fi",
+  "saved_and_verified": true,
+  "reason": "Existing master and other pre-migration branches do not contain the new script; preserve their previous hugo build.",
+  "production_auto_deploy": true,
+  "preview_auto_deploy": "all non-production branches"
+}

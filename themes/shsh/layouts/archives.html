@@ -1,0 +1,38 @@
+{{ define "main" }}
+  <header class="page-heading"><h1>{{ .Title }}</h1>{{ .Content }}</header>
+  {{ $years := dict }}
+  {{ range partialCached "posts.html" . }}
+    {{ $date := partial "local-time.html" .Date }}
+    {{ $year := $date.Format "2006" }}
+    {{ $month := $date.Format "01" }}
+    {{ $yearGroup := index $years $year | default (dict "year" $year "months" dict) }}
+    {{ $months := $yearGroup.months }}
+    {{ $group := index $months $month | default (dict "number" $month "label" ($date.Format "Jan") "pages" slice) }}
+    {{ $months = merge $months (dict $month (dict "number" $month "label" $group.label "pages" ($group.pages | append .))) }}
+    {{ $years = merge $years (dict $year (dict "year" $year "months" $months)) }}
+  {{ end }}
+  {{ range sort $years "year" "desc" }}
+    <section class="archive-year"
+      ><h2>{{ .year }}</h2>
+      {{ range sort .months "number" "desc" }}
+        <div class="archive-month"
+          ><h3 lang="en">{{ .label }}</h3
+          ><ul>
+            {{ range .pages }}
+              {{ $id := printf "archive-%s" (crypto.MD5 .RelPermalink) }}
+              <li
+                ><a href="{{ .RelPermalink }}" aria-labelledby="{{ $id }}"
+                  ><span class="archive-title link-title" id="{{ $id }}"
+                    >{{ .Title }}</span
+                  >{{ partial "date.html" (partial "local-time.html" .Date) }}</a
+                ></li
+              >
+            {{ end }}
+          </ul></div
+        >
+      {{ end }}
+    </section>
+  {{ else }}
+    <p class="empty" lang="en">No posts yet.</p>
+  {{ end }}
+{{ end }}

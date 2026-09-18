@@ -1,0 +1,14 @@
+{
+  "recorded_at": "2026-09-18T06:59:05.723128+00:00",
+  "environment": "native Google Chrome via CUA",
+  "base_url": "https://2f9d9a6b.shimoju.pages.dev/",
+  "actions": [
+    "home rendered",
+    "clicked Switch to light mode",
+    "clicked About navigation",
+    "About retained light mode; Switch to dark mode visible",
+    "table headings 業務経験/技術/経験年数 visible",
+    "four preview share controls disabled"
+  ],
+  "scope": "Basic HTTPS navigation and color operation only; does not complete font/device verification"
+}

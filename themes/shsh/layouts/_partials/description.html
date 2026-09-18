@@ -1,0 +1,15 @@
+{{- $front := partialCached "front-matter.html" . .RelPermalink -}}
+{{- range $key, $value := $front -}}
+  {{- if and (eq (lower $key) "description") (ne (printf "%T" $value) "string") -}}
+    {{- errorf "shsh: description must be a string on %s" $.Path -}}
+  {{- end -}}
+{{- end -}}
+{{- $description := "" -}}
+{{- if isset .Params "description" -}}
+  {{- $description = .Description -}}
+{{- else if and .IsHome (isset site.Params "description") -}}
+  {{- $description = site.Params.description -}}
+{{- else -}}
+  {{- $description = partial "summary.html" . -}}
+{{- end -}}
+{{- return (strings.TrimSpace ($description | plainify | htmlUnescape)) -}}

@@ -1,0 +1,22 @@
+{
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0\nBuildVersion:\t\t26A428\n",
+  "apps": {
+    "Safari": {
+      "path": "/Applications/Safari.app/Contents/Info.plist",
+      "version": "27.0",
+      "build": "22625.1.29.11.27"
+    },
+    "Google Chrome": {
+      "path": "/Applications/Google Chrome.app/Contents/Info.plist",
+      "version": "153.0.8010.53",
+      "build": "8010.53"
+    },
+    "Firefox": {
+      "path": "/Applications/Firefox.app/Contents/Info.plist",
+      "version": "156.0",
+      "build": "15626.9.9"
+    }
+  },
+  "recorded_at": "2026-09-18T13:57:32.127088+00:00",
+  "method": "sw_vers、各アプリContents/Info.plistのCFBundleShortVersionString/CFBundleVersionを読み取り。起動・設定変更なし。"
+}

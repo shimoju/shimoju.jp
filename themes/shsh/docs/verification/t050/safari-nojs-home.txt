@@ -1,0 +1,10 @@
+									182 見出し 疑似要素 ::selection, Value: 2
+									192 見出し 継承元 header.site-header.shell, Value: 2
+									203 見出し 継承元 body, Value: 2
+									218 見出し 継承元 html, Value: 2
+					337 見出し コア機能, Value: 1
+					348 見出し メディア, Value: 1
+						363 見出し shimoju.diary, Value: 1
+							396 link Next, Value: 6f52990f.shimoju.pages.dev/page/2/
+							402 link RSS, Value: 6f52990f.shimoju.pages.dev/index.xml
+			415 テキストフィールド (settable) Description: スマート検索フィールド, Value: https://6f52990f.shimoju.pages.dev, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD

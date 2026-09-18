@@ -1,0 +1,20 @@
+[
+  {
+    "app_id": 85455,
+    "conclusion": "success",
+    "details_url": "https://dash.cloudflare.com/?to=/c0c39e237ef194406cb2ba4680f5d5da/pages/view/shimoju/0b9a36a0-5296-428a-a238-4cac5567954f",
+    "external_id": "0b9a36a0-5296-428a-a238-4cac5567954f",
+    "head_sha": "a7789aab338a3aee0817a5eb84362c813b155fbf",
+    "name": "Cloudflare Pages",
+    "status": "completed"
+  },
+  {
+    "app_id": 15368,
+    "conclusion": "success",
+    "details_url": "https://github.com/shimoju/shimoju.jp/actions/runs/35335882614/job/105570487670",
+    "external_id": "2da8b782-5fb1-5933-b172-91b2c883acd4",
+    "head_sha": "a7789aab338a3aee0817a5eb84362c813b155fbf",
+    "name": "shsh-check",
+    "status": "completed"
+  }
+]

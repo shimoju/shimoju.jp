@@ -1,0 +1,115 @@
+{
+  "recorded_at": "2026-09-18T04:40:47.646917+00:00",
+  "production_commit": "fb3a9bb0b0a943afb5e666520f82be7414c2fd75",
+  "preview_commit": "c3748dcbeebaac5bf4c07a512c7c58224c01b3df",
+  "results": [
+    {
+      "label": "existing-production",
+      "url": "https://shimoju.jp/",
+      "status": "200",
+      "exit_code": 0,
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Fri, 18 Sep 2026 04:40:45 GMT\ncontent-type: text/html; charset=utf-8\nx-content-type-options: nosniff\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=BSkXxMByVfk%2Bm8b%2FL%2F%2BKFl0YWWZHI3i3xxyEgBMP978nfD6n%2BbFQ0QxkqM5XfiTdvIgaiDGHDIqy%2BlPYbVZaSJ69AV3unyDxedoEq8VXgougk6fBe3mXwd37VHpq%2BThioEgMH3l25jv6\"}]}\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\naccess-control-allow-origin: *\ncache-control: public, max-age=0, must-revalidate\nreferrer-policy: strict-origin-when-cross-origin\nstrict-transport-security: max-age=31536000\nserver: cloudflare\ncf-cache-status: DYNAMIC\ncf-ray: a3cdaca64867b662-NRT\nalt-svc: h3=\":443\"; ma=86400\n\n",
+      "body_sha256": "036f0b3d5754ad4fc4260e344ee661ade6c347106d5b2207c0ab80273eb07799",
+      "canonical": ["<link rel=canonical href=https://shimoju.jp/>"],
+      "robots": ["<meta name=robots content=\"index, follow\">"],
+      "theme": "unclassified",
+      "hatena_script": false
+    },
+    {
+      "label": "existing-production",
+      "url": "https://shimoju.jp/2026/09/01/development-environment-2026/",
+      "status": "200",
+      "exit_code": 0,
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Fri, 18 Sep 2026 04:40:45 GMT\ncontent-type: text/html; charset=utf-8\nx-content-type-options: nosniff\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=eGlwsf08sNsAIVUfH29amsgR2eU2pOMo3n1b2vTPtCQfzhu5bbjZ2vLbWoAmUG33PRYvEds2CtutLmsVQZl1KGUm%2FWmZ2nMU4ZP35%2FbHyAJdi0V%2Fvev9ZkgUJZTWNk%2FvGKaHzTu6ZfHZ\"}]}\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\naccess-control-allow-origin: *\ncache-control: public, max-age=0, must-revalidate\nreferrer-policy: strict-origin-when-cross-origin\nstrict-transport-security: max-age=31536000\nserver: cloudflare\ncf-cache-status: DYNAMIC\ncf-ray: a3cdaca70ad2d53e-NRT\nalt-svc: h3=\":443\"; ma=86400\n\n",
+      "body_sha256": "3df25e578a87ad6bff30b43cc377ac68d97870ecc43a081efcc3cc885d34bf3c",
+      "canonical": [
+        "<link rel=canonical href=https://shimoju.jp/2026/09/01/development-environment-2026/>"
+      ],
+      "robots": ["<meta name=robots content=\"index, follow\">"],
+      "theme": "unclassified",
+      "hatena_script": true
+    },
+    {
+      "label": "existing-production",
+      "url": "https://shimoju.jp/feed.xml",
+      "status": "301",
+      "exit_code": 0,
+      "error": "",
+      "headers": "HTTP/2 301 \ndate: Fri, 18 Sep 2026 04:40:46 GMT\ncontent-type: text/plain;charset=UTF-8\ncontent-length: 25\nx-content-type-options: nosniff\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=hDIjrdgbhZHnz6%2FrQZcZnKwqLls9u%2BJiyNgpRiX70CXuUIZIiHueLG2zpccO2thL1YPrtXbEvZw8gNMMACP2RJZTBeZuudua5kuRg%2Boqh925sPTzGP25P99JohLehY2gO2zFRTHWAyO%2B\"}]}\nlocation: /index.xml\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\naccess-control-allow-origin: *\nreferrer-policy: strict-origin-when-cross-origin\nstrict-transport-security: max-age=31536000\nserver: cloudflare\ncf-cache-status: DYNAMIC\ncf-ray: a3cdaca7dc5dd534-NRT\nalt-svc: h3=\":443\"; ma=86400\n\n",
+      "body_sha256": "25d2bbeef7ae051ccc00be3923ed98ef3ef1ae9e90c098cc1d8a501588142b21",
+      "canonical": [],
+      "robots": [],
+      "theme": "unclassified",
+      "hatena_script": false
+    },
+    {
+      "label": "existing-production",
+      "url": "https://shimoju.jp/__shsh_migration_probe_20260918__/",
+      "status": "404",
+      "exit_code": 0,
+      "error": "",
+      "headers": "HTTP/2 404 \ndate: Fri, 18 Sep 2026 04:40:46 GMT\ncontent-type: text/html; charset=utf-8\nx-content-type-options: nosniff\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=ZXaw9lZ%2BatLU0pDVlNvu7Dzg4M29AmjJkm8L2I1UadvyS0S50DEjUq8Jctp6nDTg0WyYNoIrfYMwoUwnDnjyVtW2HWQNHgdF6l8fUswjoYozjE0blJBdyyR%2BHDC%2BiDM%2BxnQzigtogDgE\"}]}\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\naccess-control-allow-origin: *\ncache-control: no-store\nreferrer-policy: strict-origin-when-cross-origin\nstrict-transport-security: max-age=31536000\nserver: cloudflare\ncf-cache-status: DYNAMIC\ncf-ray: a3cdaca8a88757c0-NRT\nalt-svc: h3=\":443\"; ma=86400\n\n",
+      "body_sha256": "e61263ddebf69eb9c27fac26c51efd2a0c131a2a3b57e72aec90a69bd139bab6",
+      "canonical": ["<link rel=canonical href=https://shimoju.jp/404.html>"],
+      "robots": ["<meta name=robots content=\"index, follow\">"],
+      "theme": "unclassified",
+      "hatena_script": false
+    },
+    {
+      "label": "existing-preview",
+      "url": "https://bd0b6c0f.shimoju.pages.dev/",
+      "status": "200",
+      "exit_code": 0,
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Fri, 18 Sep 2026 04:40:46 GMT\ncontent-type: text/html; charset=utf-8\naccess-control-allow-origin: *\ncache-control: public, max-age=0, must-revalidate\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\nreferrer-policy: strict-origin-when-cross-origin\nx-content-type-options: nosniff\nx-robots-tag: noindex\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=typMsxhMpmAw402M5NNWQUnVzThvMlj2cjrGjPJzrVZOhtvqphR8uqGV9jvULpYG7veMyYUoVmSqbeJBwMuPvKYXpeiArvOnROZT2%2FUACzcs0t3VhHTvnrUOkUFuG0WsJqteIWExYHMaVHXMySGNM4UMgy4gu4L5ig%3D%3D\"}]}\nserver: cloudflare\ncf-ray: a3cdaca99ddf78bd-NRT\nalt-svc: h3=\":443\"; ma=86400\n\n",
+      "body_sha256": "ec71720550e228861b97abe8a9f2179d8b93841ca0dd8603b661edad5efd7cc1",
+      "canonical": ["<link rel=canonical href=https://shimoju.jp/>"],
+      "robots": ["<meta name=robots content=\"index, follow\">"],
+      "theme": "unclassified",
+      "hatena_script": false
+    },
+    {
+      "label": "existing-preview",
+      "url": "https://bd0b6c0f.shimoju.pages.dev/2026/09/01/development-environment-2026/",
+      "status": "200",
+      "exit_code": 0,
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Fri, 18 Sep 2026 04:40:47 GMT\ncontent-type: text/html; charset=utf-8\naccess-control-allow-origin: *\ncache-control: public, max-age=0, must-revalidate\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\nreferrer-policy: strict-origin-when-cross-origin\nx-content-type-options: nosniff\nx-robots-tag: noindex\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=FAAuGZyBZYZe0FaO02ay45W%2BLqOSHopeqFad9LEbeAaOjD1lXk08Euy9RiBI7vVZVyKY%2FRfJR8Kp3H0IRcVk0JZWRR86R1uYFEy4niJOuzqoHfr2UwOOIyzAnTztdqxQaCMfyhyhD8wJiUVrxDi5FlciMaPKRkHovQ%3D%3D\"}]}\nserver: cloudflare\ncf-ray: a3cdacad4f1a817d-NRT\nalt-svc: h3=\":443\"; ma=86400\n\n",
+      "body_sha256": "2422a96b830166c27cf1646ac4ea66cef89b722b1b17a0427bef8cd31357e8f6",
+      "canonical": [
+        "<link rel=canonical href=https://shimoju.jp/2026/09/01/development-environment-2026/>"
+      ],
+      "robots": ["<meta name=robots content=\"index, follow\">"],
+      "theme": "unclassified",
+      "hatena_script": false
+    },
+    {
+      "label": "existing-preview",
+      "url": "https://bd0b6c0f.shimoju.pages.dev/feed.xml",
+      "status": "301",
+      "exit_code": 0,
+      "error": "",
+      "headers": "HTTP/2 301 \ndate: Fri, 18 Sep 2026 04:40:47 GMT\ncontent-type: text/plain;charset=UTF-8\ncontent-length: 25\nlocation: /index.xml\naccess-control-allow-origin: *\nreferrer-policy: strict-origin-when-cross-origin\nx-content-type-options: nosniff\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=emqamrcW%2B%2BtuImwyl9bnN3OEkvXGfZE4Ptjaa3YhvJeONSBVUpJf86Y0IldsUiTRejguH9rjhB7ozM1dTYqGZBwmNOgJuiDRLUITyBdBBEfIPP%2BtNAilevlfb0ITr7eRs5gs5tpmuS%2BYkP4wWCtwIZJi65J77TZkOg%3D%3D\"}]}\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\nserver: cloudflare\ncf-ray: a3cdacaf6ab6546d-NRT\nalt-svc: h3=\":443\"; ma=86400\n\n",
+      "body_sha256": "25d2bbeef7ae051ccc00be3923ed98ef3ef1ae9e90c098cc1d8a501588142b21",
+      "canonical": [],
+      "robots": [],
+      "theme": "unclassified",
+      "hatena_script": false
+    },
+    {
+      "label": "existing-preview",
+      "url": "https://bd0b6c0f.shimoju.pages.dev/__shsh_migration_probe_20260918__/",
+      "status": "404",
+      "exit_code": 0,
+      "error": "",
+      "headers": "HTTP/2 404 \ndate: Fri, 18 Sep 2026 04:40:47 GMT\ncontent-type: text/html; charset=utf-8\naccess-control-allow-origin: *\ncache-control: no-store\nreferrer-policy: strict-origin-when-cross-origin\nx-content-type-options: nosniff\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=wUBI8hYoYWbr5z7Xofv4N%2FEIMyTnBWeiSrwSdwn32pg9Bjr%2F7%2F%2BKMWmjBavpxeFK3fKFWZDFp%2BPCThW88bu2i8Th7XkocNHv5a%2BC1ALghzLwkYzPwDIeCuaRp071F00XjoWgqyPcGvd5162rtJD2OysVWtNCqIdvZg%3D%3D\"}]}\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\nserver: cloudflare\ncf-ray: a3cdacafd89d781f-NRT\nalt-svc: h3=\":443\"; ma=86400\n\n",
+      "body_sha256": "5a5eab62d3c0f0dae4f4aedf49ee1e9938667d837c8bb3a092f1aade7ec7f572",
+      "canonical": ["<link rel=canonical href=https://shimoju.jp/404.html>"],
+      "robots": ["<meta name=robots content=\"index, follow\">"],
+      "theme": "unclassified",
+      "hatena_script": false
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+h1
+								523 切り替えボタン インスペクター, Help: DOM とスタイルシートの調査 (Cmd+Shift+C または Cmd+Opt+C), Value: on
+												557 テキスト 5 件中 1 件目
+													883 切り替えボタン h1, Value: on
+container フォント
+												895 container
+													896 container
+														897 テキスト 使用中のフォント
+														898 テキスト .SF NS
+														899 テキスト System Font
+													900 container
+														901 テキスト インスタンス
+														902 ポップアップボタン カスタム
+													903 container
+														904 container サイズ
+															905 テキスト サイズ
+														906 スライダ (settable, float) サイズ 27.1875 px, Help: サイズ, Value: 27
+														907 ステッパー (settable, float) 27.1875
+															908 テキスト 27.1875
+														909 ポップアップボタン px
+													910 container
+														911 container 行の高さ
+															912 テキスト 行の高さ
+														913 スライダ (settable, float) 行の高さ 40.7833 px, Help: 行の高さ, Value: 41
+														914 ステッパー (settable, float) 40.7833
+															915 テキスト 40.7833
+														916 ポップアップボタン px
+													917 container
+														918 container 文字間隔
+															919 テキスト 文字間隔
+														920 スライダ (settable, float) 文字間隔 normal, Help: 文字間隔, Value: 0
+														921 テキスト normal
+													922 container
+														923 テキスト イタリック
+														924 チェックボックス イタリック, Value: 0
+													925 container
+														926 container Width
+															927 テキスト Width
+															928 テキスト wdth
+														929 スライダ (settable, float) Width wdth 100, Help: Width, Value: 100
+														930 ステッパー (settable, float) 100
+															931 テキスト 100
+													932 container
+														933 container Optical Size
+															934 テキスト Optical Size
+															935 テキスト opsz
+														936 スライダ (settable, float) Optical Size opsz 28, Help: Optical Size, Value: 28
+														937 ステッパー (settable, float) 28
+															938 テキスト 28
+													939 container
+														940 container Weight
+															941 テキスト Weight
+															942 テキスト wght
+														943 スライダ (settable, float) Weight wght 500, Help: Weight, Value: 500
+														944 ステッパー (settable, float) 500
+															945 テキスト 500
+													946 コンテンツリスト
+														947 見出し Description: ページ内のすべてのフォント, Value: 2
+															948 ボタン ページ内のすべてのフォント
+																949 テキスト ページ内のすべてのフォント
+									950 コンテンツリスト
+										951 テキスト h1
+										952 テキスト h1
+										953 テキスト h1
+										954 テキスト h1
+										955 container
+											956 text h1 ad
+										957 container
+											958 text h1 ader
+										959 container
+											960 text h1 ml
+										961 container
+											962 text .h1 tena
+										963 container
+											964 text .h1 ading-anchor
+										965 container
+											966 text #h1 roku-enterpriseからamazon-eksへの移設2024年

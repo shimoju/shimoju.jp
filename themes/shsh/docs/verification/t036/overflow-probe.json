@@ -1,0 +1,41 @@
+{
+  "purpose": "No-overflow condition rejects artificial 1600px content at viewport 1280px without tolerance",
+  "results": [
+    {
+      "engine": "chromium",
+      "normal": {
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "overflowing": {
+        "scrollWidth": 1600,
+        "clientWidth": 1280
+      },
+      "result": "passed"
+    },
+    {
+      "engine": "firefox",
+      "normal": {
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "overflowing": {
+        "scrollWidth": 1600,
+        "clientWidth": 1280
+      },
+      "result": "passed"
+    },
+    {
+      "engine": "webkit",
+      "normal": {
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "overflowing": {
+        "scrollWidth": 1600,
+        "clientWidth": 1280
+      },
+      "result": "passed"
+    }
+  ]
+}

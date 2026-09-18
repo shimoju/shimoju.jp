@@ -1,0 +1,25 @@
+{
+  "command": [
+    "hugo",
+    "--source",
+    "/Users/shimoju/dev/src/github.com/shimoju/shimoju.jp/themes/shsh/.cache/site/source",
+    "--themesDir",
+    "/Users/shimoju/dev/src/github.com/shimoju/shimoju.jp/themes",
+    "--destination",
+    "/Users/shimoju/dev/src/github.com/shimoju/shimoju.jp/themes/shsh/.cache/site/production",
+    "--cacheDir",
+    "/Users/shimoju/dev/src/github.com/shimoju/shimoju.jp/themes/shsh/.cache/site/hugo-cache",
+    "--environment",
+    "production",
+    "--clock",
+    "2026-09-17T12:00:00+09:00",
+    "--cleanDestinationDir",
+    "--panicOnWarning"
+  ],
+  "live": false,
+  "environment": "production",
+  "exitCode": 0,
+  "seconds": 5.464055749999999,
+  "stdout": "Start building sites … \nhugo v0.166.0+extended+withdeploy darwin/arm64 BuildDate=2026-09-09T14:45:02Z VendorInfo=Homebrew\n\n\n                  │ JA  \n──────────────────┼─────\n Pages            │ 160 \n Paginator pages  │  14 \n Non-page files   │  19 \n Static files     │   6 \n Processed images │ 124 \n Aliases          │  46 \n Cleaned          │   0 \n\nTotal in 5437 ms\n",
+  "stderr": ""
+}

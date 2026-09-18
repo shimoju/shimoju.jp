@@ -1,0 +1,7 @@
+.prose th
+																			215 row (selected) <th scope=​"col" class=​"align-left"> ​業務経験​ </th> ​
+																	990 row CSS プロパティ名: font-size CSS プロパティ値: 15.47px
+																	1062 row CSS プロパティ名: font-weight CSS プロパティ値: 700
+																	1074 row CSS プロパティ名: line-height CSS プロパティ値: 24.752px
+																1165 text レンダリング フォント 姓 :  Hiragino Sans PostScript 名 :  HiraginoSans-W6 フォントの提供元 :  ローカル ファイル （4 件のグリフ）
+The focused UI element is 215 row (selected) <th scope=​"col" class=​"align-left"> ​業務経験​ </th> ​

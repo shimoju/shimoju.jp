@@ -1,0 +1,11 @@
+{{ define "main" }}
+  {{ $pages := partial "list-pages.html" . }}
+  <header class="page-heading"
+    ><h1>{{ partial "page-title.html" . }}</h1
+    ><p lang="en"
+      >{{ len $pages }}
+      {{ if eq (len $pages) 1 }}post{{ else }}posts{{ end }}</p
+    >{{ .Content }}</header
+  >
+  {{ partial "post-list.html" (.Paginate $pages) }}
+{{ end }}

@@ -1,0 +1,112 @@
+{
+  "override_comparison": {
+    "identical": true,
+    "files": 129,
+    "manifest_sha256": {
+      "with-overrides": "d8ac07471c02c73dd5ffe9f3017174a09c25b2edc2f27bd3734c2775cd284326",
+      "without-overrides": "d8ac07471c02c73dd5ffe9f3017174a09c25b2edc2f27bd3734c2775cd284326"
+    }
+  },
+  "browsers": [
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "checks": [
+        {
+          "width": 390,
+          "clippedHeight": 88.171875,
+          "lineHeight": 29.393,
+          "fullHeight": 2645.15625,
+          "clamp": "3",
+          "minHeight": "900px",
+          "dvh": true,
+          "prefixedClamp": true,
+          "unprefixedClamp": false,
+          "boxOrient": true
+        },
+        {
+          "width": 1440,
+          "clippedHeight": 88.171875,
+          "lineHeight": 29.393,
+          "fullHeight": 1116.84375,
+          "clamp": "3",
+          "minHeight": "900px",
+          "dvh": true,
+          "prefixedClamp": true,
+          "unprefixedClamp": false,
+          "boxOrient": true
+        }
+      ]
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "checks": [
+        {
+          "width": 390,
+          "clippedHeight": 88.15000915527344,
+          "lineHeight": 29.3833,
+          "fullHeight": 2350.666748046875,
+          "clamp": "3",
+          "minHeight": "900px",
+          "dvh": true,
+          "prefixedClamp": true,
+          "unprefixedClamp": false,
+          "boxOrient": true
+        },
+        {
+          "width": 1440,
+          "clippedHeight": 88.15000915527344,
+          "lineHeight": 29.3833,
+          "fullHeight": 1116.566650390625,
+          "clamp": "3",
+          "minHeight": "900px",
+          "dvh": true,
+          "prefixedClamp": true,
+          "unprefixedClamp": false,
+          "boxOrient": true
+        }
+      ]
+    },
+    {
+      "browser": "webkit",
+      "version": "26.6",
+      "checks": [
+        {
+          "width": 390,
+          "clippedHeight": 88.171875,
+          "lineHeight": 29.393,
+          "fullHeight": 2351.25,
+          "clamp": "3",
+          "minHeight": "900px",
+          "dvh": true,
+          "prefixedClamp": true,
+          "unprefixedClamp": false,
+          "boxOrient": true
+        },
+        {
+          "width": 1440,
+          "clippedHeight": 88.171875,
+          "lineHeight": 29.393,
+          "fullHeight": 1058.0625,
+          "clamp": "3",
+          "minHeight": "900px",
+          "dvh": true,
+          "prefixedClamp": true,
+          "unprefixedClamp": false,
+          "boxOrient": true
+        }
+      ]
+    }
+  ],
+  "template_lookup": {
+    "single-only": {
+      "posts/example/index.html": "SINGLE page Article",
+      "about/index.html": "SINGLE page About"
+    },
+    "with-page": {
+      "posts/example/index.html": "PAGE page Article",
+      "about/index.html": "PAGE page About"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+baseURL = 'https://media.invalid/'
+title = 'Media fixture'
+theme = 'shsh'
+defaultContentLanguage = 'ja'
+locale = 'ja'
+timeZone = 'Asia/Tokyo'
+mainSections = ['posts']
+hasCJKLanguage = true
+summaryLength = 140
+[pagination]
+pagerSize = 2
+[params.author]
+name = 'Example author'
+[markup.highlight]
+noClasses = false
+[markup.goldmark.parser.attribute]
+block = true
+
+[markup.goldmark.parser]
+wrapStandAloneImageWithinParagraph = false

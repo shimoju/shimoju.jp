@@ -1,0 +1,31 @@
+<section
+  class="table-scroll"
+  tabindex="0"
+  aria-label="Table {{ add .Ordinal 1 }}, horizontally scrollable"
+>
+  <table
+    class="{{ .Attributes.class | default "" }}"
+    {{ with .Attributes.id }}id="{{ . }}"{{ end }}
+  >
+    <thead>
+      {{ range .THead }}
+        <tr
+          >{{ range . }}
+            <th scope="col" class="align-{{ .Alignment | default "left" }}"
+              >{{ .Text }}</th
+            >
+          {{ end }}</tr
+        >
+      {{ end }}
+    </thead>
+    <tbody>
+      {{ range .TBody }}
+        <tr
+          >{{ range . }}
+            <td class="align-{{ .Alignment | default "left" }}">{{ .Text }}</td>
+          {{ end }}</tr
+        >
+      {{ end }}
+    </tbody>
+  </table>
+</section>

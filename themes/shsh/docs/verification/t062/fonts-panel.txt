@@ -1,0 +1,1399 @@
+Window: "About — shimoju.diary", App: Safari.
+0 標準ウインドウ About — shimoju.diary, ID: SafariWindow?IsSecure=true&UUID=35DDB2E6-0C5E-4CC5-AF8B-410472F24267, Secondary Actions: Raise
+	1 グループを分割
+		2 スプリッタ (disabled, settable, float) -1
+		3 タブグループ
+			4 スクロール領域
+				5 HTMLコンテンツ …
+					6 ボタン 閉じる
+					7 ボタン ウインドウの左にドッキング
+					8 ボタン ウインドウの右にドッキング
+					9 ボタン 別のウインドウに切り離す
+					10 ボタン 要素選択を開始（⇧⌘C）
+					11 ボタン デバイスの設定
+					12 タブグループ (selectable)
+						13 タブ (selected) 要素
+						14 タブ (selectable) コンソール
+						15 タブ (selectable) ソース
+						16 タブ (selectable) ネットワーク
+						17 タブ (selectable) タイムライン
+						18 タブ (selectable) ストレージ
+						19 タブ (selectable) グラフィックス
+						20 タブ (selectable) レイヤー
+						21 タブ (selectable) 監査
+						22 タブ (selectable) 検索（⇧⌘F）
+						23 タブ (selectable) 設定（⌘,）
+					24 container 要素
+						25 イメージ
+						26 テキスト html
+						27 ポップアップボタン (collapsed) Secondary Actions: Expand
+						28 イメージ
+							29 イメージ
+							30 イメージ
+						31 テキスト body
+						32 ポップアップボタン (collapsed) Secondary Actions: Expand
+						33 イメージ
+						34 テキスト main.shell
+						35 ポップアップボタン (collapsed) Secondary Actions: Expand
+						36 イメージ
+						37 テキスト article
+						38 ポップアップボタン (collapsed) Secondary Actions: Expand
+						39 イメージ
+						40 テキスト div.prose
+						41 ポップアップボタン (collapsed) Secondary Actions: Expand
+						42 イメージ
+						43 テキスト p
+						44 ポップアップボタン (collapsed) Secondary Actions: Expand
+						45 ボタン バッジ, Help: DOMツリー内に表示されているバッジを選択
+						46 切り替えボタン ルーラを表示, Value: off
+						47 切り替えボタン メディアスタイルを強制プリント, Value: off
+						48 切り替えボタン ユーザ環境設定を上書き, Value: off
+						49 切り替えボタン 合成の境界線を表示, Value: off
+						50 切り替えボタン ペイントフラッシュを有効にする, Value: off
+						51 切り替えボタン 詳細サイドバーを非表示（⌥⌘0）, Value: on
+						52 アウトライン (selectable)
+							53 row (selectable) Description: <!DOCTYPE html>, Value: <!DOCTYPE html>
+<!DOCTYPE html>
+>
+							54 row (selectable, expanded) Description: <html lang=​"ja" data-theme=​"dark">​スクロール, Secondary Actions: Collapse, Value: <html lang=​"ja" data-theme=​"dark">​スクロール
+<html lang=​"ja" data-theme=​"dark">
+html
+lang
+=
+"
+ja
+"
+data-theme
+=
+"
+dark
+"
+>
+スクロール
+							55 row (selectable) Description: <head>​…​</head>, Value: <head>​…​</head>
+<head>​…​</head>
+head
+>
+…
+<
+/head
+>
+							56 row (selectable, expanded) Description: <body>​flex, Secondary Actions: Collapse, Value: <body>​flex
+<body>
+body
+>
+flex
+							57 row (selectable) Description: <header class=​"site-header shell">​…​</header>, Value: <header class=​"site-header shell">​…​</header>
+<header class=​"site-header shell">​…​</header>
+header
+class
+=
+"
+site-header shell
+"
+>
+…
+<
+/header
+>
+							58 row (selectable) Description: <main class=​"shell">, Value: <main class=​"shell">
+<main class=​"shell">
+main
+class
+=
+"
+shell
+"
+>
+							59 row (selectable) Description: <article>, Value: <article>
+<article>
+article
+>
+							60 row (selectable) Description: <header class=​"article-header">​…​</header>, Value: <header class=​"article-header">​…​</header>
+<header class=​"article-header">​…​</header>
+header
+class
+=
+"
+article-header
+"
+>
+…
+<
+/header
+>
+							61 row (selectable) Description: <div class=​"prose">, Value: <div class=​"prose">
+<div class=​"prose">
+div
+class
+=
+"
+prose
+"
+>
+							62 row (selectable) Description: <h2 id=​"プロフィール">​…​</h2>, Value: <h2 id=​"プロフィール">​…​</h2>
+<h2 id=​"プロフィール">​…​</h2>
+h2
+id
+=
+"
+プロフィール
+"
+>
+…
+<
+/h2
+>
+							63 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							64 row (selectable) Description: <h2 id=​"職務要約">​…​</h2>, Value: <h2 id=​"職務要約">​…​</h2>
+<h2 id=​"職務要約">​…​</h2>
+h2
+id
+=
+"
+職務要約
+"
+>
+…
+<
+/h2
+>
+							65 row (selected, expanded) Description: <p>​ = $0, Secondary Actions: Collapse
+								66 テキスト <p>​
+								67 テキスト p
+								68 テキスト >
+								69 テキスト  =
+								70 テキスト $
+								71 テキスト 0
+							72 row (selectable) Description: "2016年にGMOペパボ株式会社に入社し、9年間に渡りオリジナルグッズ作成サービス「", Value: "2016年にGMOペパボ株式会社に入社し、9年間に渡りオリジナルグッズ作成サービス「"
+"2016年にGMOペパボ株式会社に入社し、9年間に渡りオリジナルグッズ作成サービス「"
+2016年にGMOペパボ株式会社に入社し、9年間に渡りオリジナルグッズ作成サービス「
+"
+							73 row (selectable) https:​/​/​suzuri.jp/, Description: <a href=​"https:​/​/​suzuri.jp/​">​SUZURI​</a>, Value: <a href=​"">​SUZURI​</a>
+<a href=​"
+a
+href
+=
+"
+https:​/​/​suzuri.jp/
+">​SUZURI​</a>
+>
+SUZURI
+<
+/a
+>
+							74 row (selectable) Description: "」の開発に従事。 主にRuby on Railsを用いたWebアプリケーション開発を担当しています。2020年以降はSLI/SLOの策定・運用、パフォーマンス改善やインフラの構築といったSRE活動や、セキュリティ対策にも携わっています。", Value: "」の開発に従事。 主にRuby on Railsを用いたWebアプリケーション開発を担当しています。2020年以降はSLI/SLOの策定・運用、パフォーマンス改善やインフラの構築といったSRE活動や、セキュリティ対策にも携わっています。"
+"」の開発に従事。 主にRuby on Railsを用いたWebアプリケーション開発を担当しています。2020年以降はSLI/SLOの策定・運用、パフォーマンス改善やインフラの構築といったSRE活動や、セキュリティ対策にも携わっています。"
+」の開発に従事。 主にRuby on Railsを用いたWebアプリケーション開発を担当しています。2020年以降はSLI/SLOの策定・運用、パフォーマンス改善やインフラの構築といったSRE活動や、セキュリティ対策にも携わっています。
+"
+							75 row (selectable) Description: </p>, Value: </p>
+</p>
+/p
+>
+							76 row (selectable) Description: <p>​2025年9月に株式会社SmartHRに入社。主に課金基盤の開発を担当しています。​</p>, Value: <p>​2025年9月に株式会社SmartHRに入社。主に課金基盤の開発を担当しています。​</p>
+<p>​2025年9月に株式会社SmartHRに入社。主に課金基盤の開発を担当しています。​</p>
+p
+>
+2025年9月に株式会社SmartHRに入社。主に課金基盤の開発を担当しています。
+<
+/p
+>
+							77 row (selectable) Description: <h2 id=​"スキルセット">​…​</h2>, Value: <h2 id=​"スキルセット">​…​</h2>
+<h2 id=​"スキルセット">​…​</h2>
+h2
+id
+=
+"
+スキルセット
+"
+>
+…
+<
+/h2
+>
+							78 row (selectable) Description: <h3 id=​"ソフトウェア開発">​…​</h3>, Value: <h3 id=​"ソフトウェア開発">​…​</h3>
+<h3 id=​"ソフトウェア開発">​…​</h3>
+h3
+id
+=
+"
+ソフトウェア開発
+"
+>
+…
+<
+/h3
+>
+							79 row (selectable) Description: <p>​…​</p>, Value: <p>​…​</p>
+<p>​…​</p>
+p
+>
+…
+<
+/p
+>
+							80 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							81 row (selectable) Description: <section class=​"table-scroll" tabindex=​"0" aria-label=​"Table 1, horizontally scrollable">​…​</section>, Value: <section class=​"table-scroll" tabindex=​"0" aria-label=​"Table 1, horizontally scrollable">​…​</section>
+<section class=​"table-scroll" tabindex=​"0" aria-label=​"Table 1, horizontally scrollable">​…​</section>
+section
+class
+=
+"
+table-scroll
+"
+tabindex
+=
+"
+0
+"
+aria-label
+=
+"
+Table 1, horizontally scrollable
+"
+>
+…
+<
+/section
+>
+							82 row (selectable) Description: <h3 id=​"採用教育">​…​</h3>, Value: <h3 id=​"採用教育">​…​</h3>
+<h3 id=​"採用教育">​…​</h3>
+h3
+id
+=
+"
+採用教育
+"
+>
+…
+<
+/h3
+>
+							83 row (selectable) Description: <p>​…​</p>, Value: <p>​…​</p>
+<p>​…​</p>
+p
+>
+…
+<
+/p
+>
+							84 row (selectable) Description: <p>​また、マネジメントを専門とする役職についたことはないものの、評価者として複数名のエンジニアの評価を担当した経験があります。​</p>, Value: <p>​また、マネジメントを専門とする役職についたことはないものの、評価者として複数名のエンジニアの評価を担当した経験があります。​</p>
+<p>​また、マネジメントを専門とする役職についたことはないものの、評価者として複数名のエンジニアの評価を担当した経験があります。​</p>
+p
+>
+また、マネジメントを専門とする役職についたことはないものの、評価者として複数名のエンジニアの評価を担当した経験があります。
+<
+/p
+>
+							85 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							86 row (selectable) Description: <h2 id=​"職務経歴">​…​</h2>, Value: <h2 id=​"職務経歴">​…​</h2>
+<h2 id=​"職務経歴">​…​</h2>
+h2
+id
+=
+"
+職務経歴
+"
+>
+…
+<
+/h2
+>
+							87 row (selectable) Description: <section class=​"table-scroll" tabindex=​"0" aria-label=​"Table 2, horizontally scrollable">​…​</section>, Value: <section class=​"table-scroll" tabindex=​"0" aria-label=​"Table 2, horizontally scrollable">​…​</section>
+<section class=​"table-scroll" tabindex=​"0" aria-label=​"Table 2, horizontally scrollable">​…​</section>
+section
+class
+=
+"
+table-scroll
+"
+tabindex
+=
+"
+0
+"
+aria-label
+=
+"
+Table 2, horizontally scrollable
+"
+>
+…
+<
+/section
+>
+							88 row (selectable) Description: <h3 id=​"株式会社smarthr2025年9月現在">​…​</h3>, Value: <h3 id=​"株式会社smarthr2025年9月現在">​…​</h3>
+<h3 id=​"株式会社smarthr2025年9月現在">​…​</h3>
+h3
+id
+=
+"
+株式会社smarthr2025年9月現在
+"
+>
+…
+<
+/h3
+>
+							89 row (selectable) Description: <h3 id=​"gmoペパボ株式会社2016年4月2025年8月">​…​</h3>, Value: <h3 id=​"gmoペパボ株式会社2016年4月2025年8月">​…​</h3>
+<h3 id=​"gmoペパボ株式会社2016年4月2025年8月">​…​</h3>
+h3
+id
+=
+"
+gmoペパボ株式会社2016年4月2025年8月
+"
+>
+…
+<
+/h3
+>
+							90 row (selectable) Description: <p>​…​</p>, Value: <p>​…​</p>
+<p>​…​</p>
+p
+>
+…
+<
+/p
+>
+							91 row (selectable) Description: <p>​…​</p>, Value: <p>​…​</p>
+<p>​…​</p>
+p
+>
+…
+<
+/p
+>
+							92 row (selectable) Description: <h4 id=​"主な実績">​…​</h4>, Value: <h4 id=​"主な実績">​…​</h4>
+<h4 id=​"主な実績">​…​</h4>
+h4
+id
+=
+"
+主な実績
+"
+>
+…
+<
+/h4
+>
+							93 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							94 row (selectable) Description: <h4 id=​"クレジットカード決済における3dセキュアの導入2025年">​…​</h4>, Value: <h4 id=​"クレジットカード決済における3dセキュアの導入2025年">​…​</h4>
+<h4 id=​"クレジットカード決済における3dセキュアの導入2025年">​…​</h4>
+h4
+id
+=
+"
+クレジットカード決済における3dセキュアの導入2025年
+"
+>
+…
+<
+/h4
+>
+							95 row (selectable) Description: <p>​…​</p>, Value: <p>​…​</p>
+<p>​…​</p>
+p
+>
+…
+<
+/p
+>
+							96 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							97 row (selectable) Description: <h4 id=​"プレゼント機能の開発2024年">​…​</h4>, Value: <h4 id=​"プレゼント機能の開発2024年">​…​</h4>
+<h4 id=​"プレゼント機能の開発2024年">​…​</h4>
+h4
+id
+=
+"
+プレゼント機能の開発2024年
+"
+>
+…
+<
+/h4
+>
+							98 row (selectable) Description: <p>​…​</p>, Value: <p>​…​</p>
+<p>​…​</p>
+p
+>
+…
+<
+/p
+>
+							99 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							100 row (selectable) Description: <h4 id=​"heroku-enterpriseからamazon-eksへの移設2024年">​…​</h4>, Value: <h4 id=​"heroku-enterpriseからamazon-eksへの移設2024年">​…​</h4>
+<h4 id=​"heroku-enterpriseからamazon-eksへの移設2024年">​…​</h4>
+h4
+id
+=
+"
+heroku-enterpriseからamazon-eksへの移設2024年
+"
+>
+…
+<
+/h4
+>
+							101 row (selectable) Description: <p>​…​</p>, Value: <p>​…​</p>
+<p>​…​</p>
+p
+>
+…
+<
+/p
+>
+							102 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							103 row (selectable) Description: <h4 id=​"rails-61のままruby-32にアップデートしyjitを有効化2023年">​…​</h4>, Value: <h4 id=​"rails-61のままruby-32にアップデートしyjitを有効化2023年">​…​</h4>
+<h4 id=​"rails-61のままruby-32にアップデートしyjitを有効化2023年">​…​</h4>
+h4
+id
+=
+"
+rails-61のままruby-32にアップデートしyjitを有効化2023年
+"
+>
+…
+<
+/h4
+>
+							104 row (selectable) Description: <p>​…​</p>, Value: <p>​…​</p>
+<p>​…​</p>
+p
+>
+…
+<
+/p
+>
+							105 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							106 row (selectable) Description: <h4 id=​"samlによるシングルサインオンの実装2020年">​…​</h4>, Value: <h4 id=​"samlによるシングルサインオンの実装2020年">​…​</h4>
+<h4 id=​"samlによるシングルサインオンの実装2020年">​…​</h4>
+h4
+id
+=
+"
+samlによるシングルサインオンの実装2020年
+"
+>
+…
+<
+/h4
+>
+							107 row (selectable) Description: <p>​…​</p>, Value: <p>​…​</p>
+<p>​…​</p>
+p
+>
+…
+<
+/p
+>
+							108 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							109 row (selectable) Description: <h4 id=​"canvathの事業譲受2018年">​…​</h4>, Value: <h4 id=​"canvathの事業譲受2018年">​…​</h4>
+<h4 id=​"canvathの事業譲受2018年">​…​</h4>
+h4
+id
+=
+"
+canvathの事業譲受2018年
+"
+>
+…
+<
+/h4
+>
+							110 row (selectable) Description: <p>​…​</p>, Value: <p>​…​</p>
+<p>​…​</p>
+p
+>
+…
+<
+/p
+>
+							111 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							112 row (selectable) Description: <h4 id=​"新卒エンジニア研修の設計運営2017年">​…​</h4>, Value: <h4 id=​"新卒エンジニア研修の設計運営2017年">​…​</h4>
+<h4 id=​"新卒エンジニア研修の設計運営2017年">​…​</h4>
+h4
+id
+=
+"
+新卒エンジニア研修の設計運営2017年
+"
+>
+…
+<
+/h4
+>
+							113 row (selectable) Description: <p>​…​</p>, Value: <p>​…​</p>
+<p>​…​</p>
+p
+>
+…
+<
+/p
+>
+							114 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							115 row (selectable) Description: <h4 id=​"利用技術">​…​</h4>, Value: <h4 id=​"利用技術">​…​</h4>
+<h4 id=​"利用技術">​…​</h4>
+h4
+id
+=
+"
+利用技術
+"
+>
+…
+<
+/h4
+>
+							116 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							117 row (selectable) Description: <h2 id=​"興味関心">​…​</h2>, Value: <h2 id=​"興味関心">​…​</h2>
+<h2 id=​"興味関心">​…​</h2>
+h2
+id
+=
+"
+興味関心
+"
+>
+…
+<
+/h2
+>
+							118 row (selectable) Description: <p>​…​</p>, Value: <p>​…​</p>
+<p>​…​</p>
+p
+>
+…
+<
+/p
+>
+							119 row (selectable) Description: <p>​…​</p>, Value: <p>​…​</p>
+<p>​…​</p>
+p
+>
+…
+<
+/p
+>
+							120 row (selectable) Description: <h2 id=​"業務外活動">​…​</h2>, Value: <h2 id=​"業務外活動">​…​</h2>
+<h2 id=​"業務外活動">​…​</h2>
+h2
+id
+=
+"
+業務外活動
+"
+>
+…
+<
+/h2
+>
+							121 row (selectable) Description: <h3 id=​"アウトプット">​…​</h3>, Value: <h3 id=​"アウトプット">​…​</h3>
+<h3 id=​"アウトプット">​…​</h3>
+h3
+id
+=
+"
+アウトプット
+"
+>
+…
+<
+/h3
+>
+							122 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							123 row (selectable) Description: <h3 id=​"著作">​…​</h3>, Value: <h3 id=​"著作">​…​</h3>
+<h3 id=​"著作">​…​</h3>
+h3
+id
+=
+"
+著作
+"
+>
+…
+<
+/h3
+>
+							124 row (selectable) Description: <h4 id=​"2024年">​…​</h4>, Value: <h4 id=​"2024年">​…​</h4>
+<h4 id=​"2024年">​…​</h4>
+h4
+id
+=
+"
+2024年
+"
+>
+…
+<
+/h4
+>
+							125 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							126 row (selectable) Description: <h3 id=​"プレゼンテーション">​…​</h3>, Value: <h3 id=​"プレゼンテーション">​…​</h3>
+<h3 id=​"プレゼンテーション">​…​</h3>
+h3
+id
+=
+"
+プレゼンテーション
+"
+>
+…
+<
+/h3
+>
+							127 row (selectable) Description: <h4 id=​"2025年">​…​</h4>, Value: <h4 id=​"2025年">​…​</h4>
+<h4 id=​"2025年">​…​</h4>
+h4
+id
+=
+"
+2025年
+"
+>
+…
+<
+/h4
+>
+							128 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							129 row (selectable) Description: <h4 id=​"2024年-1">​…​</h4>, Value: <h4 id=​"2024年-1">​…​</h4>
+<h4 id=​"2024年-1">​…​</h4>
+h4
+id
+=
+"
+2024年-1
+"
+>
+…
+<
+/h4
+>
+							130 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							131 row (selectable) Description: <h4 id=​"2023年">​…​</h4>, Value: <h4 id=​"2023年">​…​</h4>
+<h4 id=​"2023年">​…​</h4>
+h4
+id
+=
+"
+2023年
+"
+>
+…
+<
+/h4
+>
+							132 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							133 row (selectable) Description: <h4 id=​"2020年">​…​</h4>, Value: <h4 id=​"2020年">​…​</h4>
+<h4 id=​"2020年">​…​</h4>
+h4
+id
+=
+"
+2020年
+"
+>
+…
+<
+/h4
+>
+							134 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							135 row (selectable) Description: <h4 id=​"2019年">​…​</h4>, Value: <h4 id=​"2019年">​…​</h4>
+<h4 id=​"2019年">​…​</h4>
+h4
+id
+=
+"
+2019年
+"
+>
+…
+<
+/h4
+>
+							136 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							137 row (selectable) Description: <h3 id=​"イベント運営">​…​</h3>, Value: <h3 id=​"イベント運営">​…​</h3>
+<h3 id=​"イベント運営">​…​</h3>
+h3
+id
+=
+"
+イベント運営
+"
+>
+…
+<
+/h3
+>
+							138 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							139 row (selectable) Description: <h3 id=​"oss">​…​</h3>, Value: <h3 id=​"oss">​…​</h3>
+<h3 id=​"oss">​…​</h3>
+h3
+id
+=
+"
+oss
+"
+>
+…
+<
+/h3
+>
+							140 row (selectable) Description: <ul>​…​</ul>, Value: <ul>​…​</ul>
+<ul>​…​</ul>
+ul
+>
+…
+<
+/ul
+>
+							141 row (selectable) Description: </div>, Value: </div>
+</div>
+/div
+>
+							142 row (selectable) Description: <footer class=​"article-end">​…​</footer>, Value: <footer class=​"article-end">​…​</footer>
+<footer class=​"article-end">​…​</footer>
+footer
+class
+=
+"
+article-end
+"
+>
+…
+<
+/footer
+>
+							143 row (selectable) Description: </article>, Value: </article>
+</article>
+/article
+>
+							144 row (selectable) Description: </main>, Value: </main>
+</main>
+/main
+>
+							145 row (selectable) Description: <footer class=​"site-footer shell" lang=​"en">​…​</footer>​flex, Value: <footer class=​"site-footer shell" lang=​"en">​…​</footer>​flex
+<footer class=​"site-footer shell" lang=​"en">​…​</footer>
+footer
+class
+=
+"
+site-footer shell
+"
+lang
+=
+"
+en
+"
+>
+…
+<
+/footer
+>
+flex
+							146 row (selectable) Description: </body>, Value: </body>
+</body>
+/body
+>
+							147 row (selectable) Description: </html>, Value: </html>
+</html>
+/html
+>
+						148 link ?, Help: https://webkit.org/web-inspector/elements-tab/#dom-tree, Value: webkit.org/web-inspector/elements-tab/#dom-tree
+						149 container 詳細
+							150 container 詳細
+								151 タブグループ (selectable)
+									152 タブ (selectable) 計算済み
+									153 タブ (selectable) レイアウト
+									154 タブ (selected) フォント
+									155 タブ (selectable) 変更
+									156 タブ (selectable) ノード
+									157 タブ (selectable) レイヤー
+								158 container フォント
+							159 container スタイル
+					160 テキスト入力領域 (settable) コンソールプロンプト
+					161 container
+					162 container $0の実行コンテキスト
+						163 テキスト 自動 — about
+			164 スクロール領域
+				165 HTMLコンテンツ Description: About — shimoju.diary, URL: …
+					166 container
+						167 ボタン Switch to light mode
+						168 link shimoju.diary, Value: 6f52990f.shimoju.pages.dev/
+						169 container Main navigation
+							170 link About, Value: 6f52990f.shimoju.pages.dev/about/
+							171 link Archives, Value: 6f52990f.shimoju.pages.dev/archives/
+							172 link Categories, Value: 6f52990f.shimoju.pages.dev/categories/
+							173 link Tags, Value: 6f52990f.shimoju.pages.dev/tags/
+					174 container About
+						175 container
+							176 見出し About, Value: 1
+								177 テキスト About
+							178 テキスト 2025/11/16
+						179 見出し プロフィール Link to プロフィール, Value: 2
+							180 テキスト プロフィール
+							181 link Link to プロフィール, Value: 6f52990f.shimoju.pages.dev/about/#%e3%83%97%e3%83%ad%e3%83%95%e3%82%a3%e3%83%bc%e3%83%ab
+						182 コンテンツリスト
+							183 container 氏名 : 下重博資（Hiroshi Shimoju）
+								184 テキスト • 氏名 : 下重博資（Hiroshi Shimoju）
+							185 container 生年月日 : 1991年5月22日
+								186 テキスト • 生年月日 : 1991年5月22日
+							187 container メールアドレス :
+								188 テキスト • メールアドレス :
+								189 link hiroshi.shimoju@gmail.com, Value: mailto:hiroshi.shimoju@gmail.com
+						190 見出し 職務要約 Link to 職務要約, Value: 2
+							191 テキスト 職務要約
+							192 link Link to 職務要約, Value: 6f52990f.shimoju.pages.dev/about/#%e8%81%b7%e5%8b%99%e8%a6%81%e7%b4%84
+						193 container
+							194 テキスト 2016年にGMOペパボ株式会社に入社し、9年間に渡りオリジナルグッズ作成サービス「
+							195 link SUZURI, Value: suzuri.jp/
+							196 テキスト 」の開発に従事。 主にRuby on Railsを用いたWebアプリケーション開発を担当しています。2020年以降はSLI/SLOの策定・運用、パフォーマンス改善やインフラの構築といったSRE活動や、セキュリティ対策にも携わっています。
+						197 テキスト 2025年9月に株式会社SmartHRに入社。主に課金基盤の開発を担当しています。
+						198 見出し スキルセット Link to スキルセット, Value: 2
+							199 テキスト スキルセット
+							200 link Link to スキルセット, Value: 6f52990f.shimoju.pages.dev/about/#%e3%82%b9%e3%82%ad%e3%83%ab%e3%82%bb%e3%83%83%e3%83%88
+						201 見出し ソフトウェア開発 Link to ソフトウェア開発, Value: 3
+							202 テキスト ソフトウェア開発
+							203 link Link to ソフトウェア開発, Value: 6f52990f.shimoju.pages.dev/about/#%e3%82%bd%e3%83%95%e3%83%88%e3%82%a6%e3%82%a7%e3%82%a2%e9%96%8b%e7%99%ba
+						204 テキスト Ruby on Railsを用いたWebアプリケーションのバックエンド開発を専門領域としています。 フロントエンドはReact/GraphQLを使用した開発経験があります。パフォーマンス改善、インフラの構築・運用に携わったこともあり、必要に応じて幅広い技術領域に取り組んでいます。
+						205 コンテンツリスト
+							206 container Webアプリケーションの設計・開発・運用
+								207 テキスト • Webアプリケーションの設計・開発・運用
+							208 container リアーキテクティング・パフォーマンス改善（大規模なデータ移行、APMを利用したボトルネックの特定、クエリチューニング）
+								209 テキスト • リアーキテクティング・パフォーマンス改善（大規模なデータ移行、APMを利用したボトルネックの特定、クエリチューニング）
+							210 container 開発基盤の整備（開発環境やCI/CDパイプラインの構築）
+								211 テキスト • 開発基盤の整備（開発環境やCI/CDパイプラインの構築）
+							212 container インフラの構築・運用（IaaS上でのインフラ構築、TerraformによるIaC）
+								213 テキスト • インフラの構築・運用（IaaS上でのインフラ構築、TerraformによるIaC）
+							214 container セキュリティ対策（言語処理系・フレームワークのアップデート、脆弱性の修正、内部統制の整備）
+								215 テキスト • セキュリティ対策（言語処理系・フレームワークのアップデート、脆弱性の修正、内部統制の整備）
+						216 container Table 1, horizontally scrollable
+							217 ひょう
+								218 row (selectable) 業務経験
+技術
+経験年数
+								219 row (selectable)
+									220 セル (selectable) バックエンド
+									221 セル (selectable) Ruby
+									222 セル (selectable) 9年
+								223 row (selectable)
+									224 セル (selectable)
+									225 セル (selectable) Ruby on Rails
+									226 セル (selectable) 9年
+								227 row (selectable)
+									228 セル (selectable)
+									229 セル (selectable) GraphQL
+									230 セル (selectable) 3年
+								231 row (selectable)
+									232 セル (selectable)
+									233 セル (selectable) Rust
+									234 セル (selectable) 1年未満
+								235 row (selectable)
+									236 セル (selectable) フロントエンド
+									237 セル (selectable) JavaScript
+									238 セル (selectable) 9年
+								239 row (selectable)
+									240 セル (selectable)
+									241 セル (selectable) TypeScript
+									242 セル (selectable) 3年
+								243 row (selectable)
+									244 セル (selectable)
+									245 セル (selectable) React
+									246 セル (selectable) 3年
+								247 row (selectable)
+									248 セル (selectable) クラウド
+									249 セル (selectable) Amazon Web Services
+									250 セル (selectable) 9年
+								251 row (selectable)
+									252 セル (selectable)
+									253 セル (selectable) Heroku
+									254 セル (selectable) 9年
+								255 row (selectable)
+									256 セル (selectable) インフラ
+									257 セル (selectable) Docker
+									258 セル (selectable) 9年
+								259 row (selectable)
+									260 セル (selectable)
+									261 セル (selectable) Kubernetes
+									262 セル (selectable) 3年
+								263 row (selectable)
+									264 セル (selectable)
+									265 セル (selectable) Terraform
+									266 セル (selectable) 2年
+								267 row (selectable)
+									268 セル (selectable) CI/CD
+									269 セル (selectable) GitHub Actions
+									270 セル (selectable) 5年
+						271 見出し 採用・教育 Link to 採用・教育, Value: 3
+							272 テキスト 採用・教育
+							273 link Link to 採用・教育, Value: 6f52990f.shimoju.pages.dev/about/#%e6%8e%a1%e7%94%a8%e6%95%99%e8%82%b2
+						274 テキスト 中途および新卒エンジニアの採用に長く取り組んでおり、書類選考・面接の経験があります。新卒エンジニアの研修を計画し、運営した実績があるほか、新入社員のオンボーディング業務も複数回担当しました。
+						275 テキスト また、マネジメントを専門とする役職についたことはないものの、評価者として複数名のエンジニアの評価を担当した経験があります。
+						276 コンテンツリスト
+							277 container エンジニア採用（書類選考・面接、採用イベントへの参加やインターンの受け入れ）
+								278 テキスト • エンジニア採用（書類選考・面接、採用イベントへの参加やインターンの受け入れ）
+							279 container 新卒エンジニア研修の設計・運営（GMOペパボ株式会社、2017年）
+								280 テキスト • 新卒エンジニア研修の設計・運営（GMOペパボ株式会社、2017年）
+							281 container オンボーディング（1on1やペアプログラミング、コードレビューを通した成長支援）
+								282 テキスト • オンボーディング（1on1やペアプログラミング、コードレビューを通した成長支援）
+						283 見出し 職務経歴 Link to 職務経歴, Value: 2
+							284 テキスト 職務経歴
+							285 link Link to 職務経歴, Value: 6f52990f.shimoju.pages.dev/about/#%e8%81%b7%e5%8b%99%e7%b5%8c%e6%ad%b4
+						286 container Table 2, horizontally scrollable
+							287 ひょう
+								288 row (selectable) 所属
+時期
+職種
+								289 row (selectable)
+									290 セル (selectable) 株式会社SmartHR
+									291 セル (selectable) 2025年9月〜現在
+									292 セル (selectable) プロダクトエンジニア
+								293 row (selectable)
+									294 セル (selectable) GMOペパボ株式会社
+									295 セル (selectable) 2019年7月〜2025年8月
+									296 セル (selectable) Webアプリケーションエンジニア（シニア）
+								297 row (selectable)
+									298 セル (selectable) GMOペパボ株式会社
+									299 セル (selectable) 2016年4月〜2019年6月
+									300 セル (selectable) Webアプリケーションエンジニア
+						301 見出し 株式会社SmartHR（2025年9月〜現在） Link to 株式会社SmartHR（2025年9月〜現在）, Value: 3
+							302 テキスト 株式会社SmartHR（2025年9月〜現在）
+							303 link Link to 株式会社SmartHR（2025年9月〜現在）, Value: 6f52990f.shimoju.pages.dev/about/#%e6%a0%aa%e5%bc%8f%e4%bc%9a%e7%a4%besmarthr2025%e5%b9%b49%e6%9c%88%e7%8f%be%e5%9c%a8
+						304 見出し GMOペパボ株式会社（2016年4月〜2025年8月） Link to GMOペパボ株式会社（2016年4月〜2025年8月）, Value: 3
+							305 テキスト GMOペパボ株式会社（2016年4月〜2025年8月）
+							306 link Link to GMOペパボ株式会社（2016年4月〜2025年8月）, Value: 6f52990f.shimoju.pages.dev/about/#gmo%e3%83%9a%e3%83%91%e3%83%9c%e6%a0%aa%e5%bc%8f%e4%bc%9a%e7%a4%be2016%e5%b9%b44%e6%9c%882025%e5%b9%b48%e6%9c%88
+						307 container
+							308 テキスト 2016年に入社し、9年間に渡りオリジナルグッズ作成サービス「
+							309 link SUZURI, Value: suzuri.jp/
+							310 テキスト 」の開発に従事。 主にRuby on Railsを用いたWebアプリケーション開発を担当しています。
+						311 テキスト 2019年からはシニアエンジニアとして、技術選定やセキュリティ対策をリードする立場となりました。事業部CTO（エンジニアリングマネージャー）と連携し、技術方針を策定したり、部署のエンジニア（10名ほど）の成長支援を通したチームビルディングに取り組んでいます。 2020年以降はSLI/SLOの策定・運用、パフォーマンス改善やインフラの構築といったSRE活動にも携わっています。
+						312 見出し 主な実績 Link to 主な実績, Value: 4
+							313 テキスト 主な実績
+							314 link Link to 主な実績, Value: 6f52990f.shimoju.pages.dev/about/#%e4%b8%bb%e3%81%aa%e5%ae%9f%e7%b8%be
+						315 コンテンツリスト
+							316 container クレジットカード決済における3Dセキュアの導入（2025年）
+								317 テキスト • クレジットカード決済における3Dセキュアの導入（2025年）
+							318 container プレゼント機能の開発（2024年）
+								319 テキスト • プレゼント機能の開発（2024年）
+							320 container Heroku EnterpriseからAmazon EKSへの移設（2024年）
+								321 テキスト • Heroku EnterpriseからAmazon EKSへの移設（2024年）
+							322 container Rails 6.1のままRuby 3.2にアップデートし、YJITを有効化（2023年）
+								323 テキスト • Rails 6.1のままRuby 3.2にアップデートし、YJITを有効化（2023年）
+							324 container SAMLによるシングルサインオンの実装（2020年）
+								325 テキスト • SAMLによるシングルサインオンの実装（2020年）
+							326 container Canvathの事業譲受（2018年）
+								327 テキスト • Canvathの事業譲受（2018年）
+							328 container 新卒エンジニア研修の設計・運営（2017年）
+								329 テキスト • 新卒エンジニア研修の設計・運営（2017年）
+						330 見出し クレジットカード決済における3Dセキュアの導入（2025年） Link to クレジットカード決済における3Dセキュアの導入（2025年）, Value: 4
+							331 テキスト クレジットカード決済における3Dセキュアの導入（2025年）
+							332 link Link to クレジットカード決済における3Dセキュアの導入（2025年）, Value: 6f52990f.shimoju.pages.dev/about/#%e3%82%af%e3%83%ac%e3%82%b8%e3%83%83%e3%83%88%e3%82%ab%e3%83%bc%e3%83%89%e6%b1%ba%e6%b8%88%e3%81%ab%e3%81%8a%e3%81%91%e3%82%8b3d%e3%82%bb%e3%82%ad%e3%83%a5%e3%82%a2%e3%81%ae%e5%b0%8e%e5%85%a52025%e5%b9%b4
+						333 テキスト 2025年3月末までに原則導入が求められている3Dセキュアについて、SUZURIではすでに導入していたものの一部経路では利用されていない状態でした。 未対応だった3つの経路を3名のエンジニアで手分けして実装を進めました。未対応箇所の洗い出しや、誰がどの部分を担当するかの判断、コードレビューなどを行い、プロジェクトを主導しました。
+						334 コンテンツリスト
+							335 container チーム構成 : エンジニア3名
+								336 テキスト • チーム構成 : エンジニア3名
+							337 container 利用技術 : Ruby, Ruby on Rails, TypeScript, React, Vue.js
+								338 テキスト • 利用技術 : Ruby, Ruby on Rails, TypeScript, React, Vue.js
+						339 見出し プレゼント機能の開発（2024年） Link to プレゼント機能の開発（2024年）, Value: 4
+							340 テキスト プレゼント機能の開発（2024年）
+							341 link Link to プレゼント機能の開発（2024年）, Value: 6f52990f.shimoju.pages.dev/about/#%e3%83%97%e3%83%ac%e3%82%bc%e3%83%b3%e3%83%88%e6%a9%9f%e8%83%bd%e3%81%ae%e9%96%8b%e7%99%ba2024%e5%b9%b4
+						342 テキスト ある動画配信サービスと連携し、SUZURIのグッズをプレゼントとして他者に贈れる「プレゼント機能」をリリースしました。 当初はMinimum Viable Productとして請求書による決済を検討していましたが、価値が届くのが結果的に遅くなることから、クレジットカード決済も初期要件に盛り込みました。さらに配信者にヒアリングを行い、料金がネックになる可能性が想定されたことから、初回限定割引の機能も追加で実装しました。 その結果、利用した配信者の方からは非常に便利だとの声をいただいています。
+						343 コンテンツリスト
+							344 container チーム構成 : エンジニア1名、デザイナー1名、プロダクトマネージャー1名
+								345 テキスト • チーム構成 : エンジニア1名、デザイナー1名、プロダクトマネージャー1名
+							346 container 利用技術 : Ruby, Ruby on Rails, TypeScript, React, GraphQL
+								347 テキスト • 利用技術 : Ruby, Ruby on Rails, TypeScript, React, GraphQL
+						348 見出し Heroku EnterpriseからAmazon EKSへの移設（2024年） Link to Heroku EnterpriseからAmazon EKSへの移設（2024年）, Value: 4
+							349 テキスト Heroku EnterpriseからAmazon EKSへの移設（2024年）
+							350 link Link to Heroku EnterpriseからAmazon EKSへの移設（2024年）, Value: 6f52990f.shimoju.pages.dev/about/#heroku-enterprise%e3%81%8b%e3%82%89amazon-eks%e3%81%b8%e3%81%ae%e7%a7%bb%e8%a8%ad2024%e5%b9%b4
+						351 テキスト SUZURIではこれまでHeroku Enterpriseを利用していましたが、別サービスへの移設を検討した結果、最終的にAmazon EKSを採用することに決定しました。その移設作業をインフラの専門部署である技術部のメンバーと共同で実施しました。 移設作業は技術部が行い、私は事業部のWebアプリケーションエンジニアとして、コードの修正やビルドパイプラインの変更、ドキュメントの作成を担当しました。 また、SUZURIのメインアプリケーション以外の小規模なアプリは通常版Heroku（Common Runtime）に移設しました。
+						352 コンテンツリスト
+							353 container チーム構成 : エンジニア3名
+								354 テキスト • チーム構成 : エンジニア3名
+							355 container 利用技術 : Ruby, Ruby on Rails, Heroku, Docker, Kubernetes, Amazon Web Services
+								356 テキスト • 利用技術 : Ruby, Ruby on Rails, Heroku, Docker, Kubernetes, Amazon Web Services
+							357 container 記事 :
+								358 テキスト • 記事 :
+								359 link SUZURIをHerokuからAmazon EKSに移設するためにやったこと, Value: 6f52990f.shimoju.pages.dev/2024/12/15/suzuri-heroku-to-amazon-eks/
+						360 見出し Rails 6.1のままRuby 3.2にアップデートし、YJITを有効化（2023年） Link to Rails 6.1のままRuby 3.2にアップデートし、YJITを有効化（2023年）, Value: 4
+							361 テキスト Rails 6.1のままRuby 3.2にアップデートし、YJITを有効化（2023年）
+							362 link Link to Rails 6.1のままRuby 3.2にアップデートし、YJITを有効化（2023年）, Value: 6f52990f.shimoju.pages.dev/about/#rails-61%e3%81%ae%e3%81%be%e3%81%beruby-32%e3%81%ab%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88%e3%81%97yjit%e3%82%92%e6%9c%89%e5%8a%b9%e5%8c%962023%e5%b9%b4
+						363 テキスト Rails 6.1はRuby 3.2に対応していないため、通常の手法ではRails 7.0へアップデートしてからRuby 3.2にアップデートすることになります。 しかしYJITによる高速化の恩恵をいち早く受けるため、Rails 6.1のままRuby 3.2へのアップデートを実施しました。 理由としては、YJITにより現実のRailsアプリが高速化できることはわかっていて、かつ言語処理系のアップデートだけで大きな効果を得られるタイミングはめったにないので、できるだけ早くリリースしてビジネス的な価値を出したいと判断したためです。 この戦略をとったことで大規模キャンペーンの前に無事アップデートを完了でき、多くのユーザーに高速化したサービスを届けることができました。 その後、2024年にはRuby 3.3とRails 7.0へのアップデートを完了しています。
+						364 コンテンツリスト
+							365 container チーム構成 : エンジニア1名
+								366 テキスト • チーム構成 : エンジニア1名
+							367 container 利用技術 : Ruby, Ruby on Rails, Docker
+								368 テキスト • 利用技術 : Ruby, Ruby on Rails, Docker
+							369 container 記事 :
+								370 テキスト • 記事 :
+								371 link Rails 6.1のままRuby 3.2にアップデートし、YJITの恩恵を受ける, Value: 6f52990f.shimoju.pages.dev/2023/08/10/ruby-3-2-yjit-with-rails-6-1/
+						372 見出し SAMLによるシングルサインオンの実装（2020年） Link to SAMLによるシングルサインオンの実装（2020年）, Value: 4
+							373 テキスト SAMLによるシングルサインオンの実装（2020年）
+							374 link Link to SAMLによるシングルサインオンの実装（2020年）, Value: 6f52990f.shimoju.pages.dev/about/#saml%e3%81%ab%e3%82%88%e3%82%8b%e3%82%b7%e3%83%b3%e3%82%b0%e3%83%ab%e3%82%b5%e3%82%a4%e3%83%b3%e3%82%aa%e3%83%b3%e3%81%ae%e5%ae%9f%e8%a3%852020%e5%b9%b4
+						375 テキスト COVID-19の拡大に伴い在宅勤務に切り替えたことで、IPアドレスで制限している管理画面や社内サービスへのアクセスが不便になる問題が起こりました。 その対策として、SUZURI・CanvathにSAMLによるシングルサインオンを実装してIPアドレス制限を撤廃しました。さらに、コードの改変が難しい一部のサービスでは、oauth2-proxyを用いてアプリケーションの外側でアクセス制御を実現しました。実装にあたってはセキュリティや内部統制上の要件も検討し、セキュリティを保ちながら快適にリモートワークを行えるようになりました。
+						376 コンテンツリスト
+							377 container チーム構成 : エンジニア1名
+								378 テキスト • チーム構成 : エンジニア1名
+							379 container 利用技術 : Ruby, Ruby on Rails, Nginx, oauth2-proxy
+								380 テキスト • 利用技術 : Ruby, Ruby on Rails, Nginx, oauth2-proxy
+							381 container 記事 :
+								382 テキスト • 記事 :
+								383 link 快適なリモートワークを実現するために〜RailsでSSOを実現する3パターン, Value: scrapbox.io/shimoju/%E5%BF%AB%E9%81%A9%E3%81%AA%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%92%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AB%E3%80%9CRails%E3%81%A7SSO%E3%82%92%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8B3%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3
+						384 見出し Canvathの事業譲受（2018年） Link to Canvathの事業譲受（2018年）, Value: 4
+							385 テキスト Canvathの事業譲受（2018年）
+							386 link Link to Canvathの事業譲受（2018年）, Value: 6f52990f.shimoju.pages.dev/about/#canvath%e3%81%ae%e4%ba%8b%e6%a5%ad%e8%ad%b2%e5%8f%972018%e5%b9%b4
+						387 テキスト 他社より譲り受けたグッズ作成サービス「Canvath」（2023年サービス終了）の引き継ぎを担当しました。 譲受した時点のCanvathの環境はAWS上に構築されていましたが、当時はSUZURIに専任のインフラエンジニアがおらず、アプリケーションエンジニアだけで運用を続けるのはセキュリティを担保できないと判断しました。そのため、SUZURIで培った知見を活用でき、プラットフォーム側で一定のセキュリティ対策を行ってくれるHerokuへの移設を決定しました。 Herokuに移設するためにログを標準出力に書き出す、環境変数を使う、リクエスト契機の処理をやめて非同期化するなどの対応を行いました。その他にもパフォーマンス改善やセキュリティ対策、問い合わせの調査対応を進め、自社で運用が完結できるようにしました。
+						388 コンテンツリスト
+							389 container チーム構成 : エンジニア1名、プロダクトマネージャー1名、デザイナー1名
+								390 テキスト • チーム構成 : エンジニア1名、プロダクトマネージャー1名、デザイナー1名
+							391 container 利用技術 : Ruby, Ruby on Rails, JavaScript, Heroku, Amazon Web Services
+								392 テキスト • 利用技術 : Ruby, Ruby on Rails, JavaScript, Heroku, Amazon Web Services
+						393 見出し 新卒エンジニア研修の設計・運営（2017年） Link to 新卒エンジニア研修の設計・運営（2017年）, Value: 4
+							394 テキスト 新卒エンジニア研修の設計・運営（2017年）
+							395 link Link to 新卒エンジニア研修の設計・運営（2017年）, Value: 6f52990f.shimoju.pages.dev/about/#%e6%96%b0%e5%8d%92%e3%82%a8%e3%83%b3%e3%82%b8%e3%83%8b%e3%82%a2%e7%a0%94%e4%bf%ae%e3%81%ae%e8%a8%ad%e8%a8%88%e9%81%8b%e5%96%b62017%e5%b9%b4
+						396 container
+							397 テキスト 2017年の新卒エンジニア研修の担当者として、研修の設計と運営を行いました。まずやってみよう、挑戦してみようという気持ちを後押しできるような研修を目指して「ナイストライ！」というコンセプトを打ち出しました。 この時作成した:nicetry:の絵文字はSlackで定期的に使われており、チャレンジを称賛する文化として全社に定着させることができました。また、研修担当者としてだけではなく、座学では自身も講師として登壇し、SUZURIでのOJTの受け入れも行いました。
+						398 コンテンツリスト
+							399 container チーム構成 : エンジニア2名
+								400 テキスト • チーム構成 : エンジニア2名
+							401 container 記事 :
+								402 リストメーカー •
+								403 テキスト 記事 :
+								404 コンテンツリスト
+									405 container
+										406 リストメーカー ◦
+										407 link ペパボの新卒エンジニア研修2017 Vol.1, Value: tech.pepabo.com/2017/08/08/engineer-training-2017-vol1/
+									408 container
+										409 リストメーカー ◦
+										410 link ペパボの新卒エンジニア研修2017 Vol.2, Value: tech.pepabo.com/2017/11/08/engineer-training-2017-vol2/
+									411 container
+										412 リストメーカー ◦
+										413 link 新卒エンジニア研修の座学でImageMagickと画像加工の話をした, Value: 6f52990f.shimoju.pages.dev/2017/10/30/classroom-learning-for-new-engineers/
+						414 見出し 利用技術 Link to 利用技術, Value: 4
+							415 テキスト 利用技術
+							416 link Link to 利用技術, Value: 6f52990f.shimoju.pages.dev/about/#%e5%88%a9%e7%94%a8%e6%8a%80%e8%a1%93
+						417 コンテンツリスト
+							418 container バックエンド : Ruby, Ruby on Rails, Node.js, Rust, GraphQL
+								419 テキスト • バックエンド : Ruby, Ruby on Rails, Node.js, Rust, GraphQL
+							420 container フロントエンド : JavaScript, TypeScript, CoffeeScript, React, Vue.js, Backbone.js, Apollo Client
+								421 テキスト • フロントエンド : JavaScript, TypeScript, CoffeeScript, React, Vue.js, Backbone.js, Apollo Client
+							422 container クラウド : OpenStack, Amazon Web Services, Google Cloud, Heroku
+								423 テキスト • クラウド : OpenStack, Amazon Web Services, Google Cloud, Heroku
+							424 container インフラ : Docker, Kubernetes, Ansible, Terraform
+								425 テキスト • インフラ : Docker, Kubernetes, Ansible, Terraform
+							426 container データベース : PostgreSQL, Amazon Aurora
+								427 テキスト • データベース : PostgreSQL, Amazon Aurora
+							428 container ミドルウェア : Redis, Sidekiq, Elasticsearch
+								429 テキスト • ミドルウェア : Redis, Sidekiq, Elasticsearch
+							430 container モニタリング : Datadog, Sentry, Grafana, Mackerel
+								431 テキスト • モニタリング : Datadog, Sentry, Grafana, Mackerel
+							432 container CI/CD : GitHub Actions, Argo CD
+								433 テキスト • CI/CD : GitHub Actions, Argo CD
+							434 container データ分析 : Metabase, BigQuery
+								435 テキスト • データ分析 : Metabase, BigQuery
+						436 見出し 興味・関心 Link to 興味・関心, Value: 2
+							437 テキスト 興味・関心
+							438 link Link to 興味・関心, Value: 6f52990f.shimoju.pages.dev/about/#%e8%88%88%e5%91%b3%e9%96%a2%e5%bf%83
+						439 テキスト 社会をより良くし、誇りを持てるプロダクトを作ることを理想としています。 また、「本当に良いもの」を作るためにそれぞれの職種やロールの専門性をもって意見を交わせる環境であることを好みます。ユーザーヒアリングや商談の場に同席したり、機能要件から一緒に考えていけるチームだと良いです。
+						440 テキスト 特定の技術へのこだわりはそこまでなく、必要に応じて幅広い技術領域に取り組んできました。 しかしRuby on Railsを用いたWebアプリケーション開発の経験が長く、もっとも事業に貢献できるであろうことと、Rubyコミュニティに愛着がありコミュニティへの貢献を続けたいことから、今後のキャリアでもRubyを中心に据えたいと考えています。
+						441 見出し 業務外活動 Link to 業務外活動, Value: 2
+							442 テキスト 業務外活動
+							443 link Link to 業務外活動, Value: 6f52990f.shimoju.pages.dev/about/#%e6%a5%ad%e5%8b%99%e5%a4%96%e6%b4%bb%e5%8b%95
+						444 見出し アウトプット Link to アウトプット, Value: 3
+							445 テキスト アウトプット
+							446 link Link to アウトプット, Value: 6f52990f.shimoju.pages.dev/about/#%e3%82%a2%e3%82%a6%e3%83%88%e3%83%97%e3%83%83%e3%83%88
+						447 コンテンツリスト
+							448 container Blog :
+								449 テキスト • Blog :
+								450 link https://shimoju.jp/, Value: shimoju.jp/
+							451 container Cosense :
+								452 テキスト • Cosense :
+								453 link https://scrapbox.io/shimoju/, Value: scrapbox.io/shimoju/
+							454 container GitHub :
+								455 テキスト • GitHub :
+								456 link https://github.com/shimoju, Value: github.com/shimoju
+						457 見出し 著作 Link to 著作, Value: 3
+							458 テキスト 著作
+							459 link Link to 著作, Value: 6f52990f.shimoju.pages.dev/about/#%e8%91%97%e4%bd%9c
+						460 見出し 2024年 Link to 2024年, Value: 4
+							461 テキスト 2024年
+							462 link Link to 2024年, Value: 6f52990f.shimoju.pages.dev/about/#2024%e5%b9%b4
+						463 コンテンツリスト
+							464 container （技術評論社、3名による共著）
+								465 リストメーカー •
+								466 link Ruby コードレシピ集, Value: gihyo.jp/book/2024/978-4-297-14403-6
+								467 テキスト （技術評論社、3名による共著）
+						468 見出し プレゼンテーション Link to プレゼンテーション, Value: 3
+							469 テキスト プレゼンテーション
+							470 link Link to プレゼンテーション, Value: 6f52990f.shimoju.pages.dev/about/#%e3%83%97%e3%83%ac%e3%82%bc%e3%83%b3%e3%83%86%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3
+						471 見出し 2025年 Link to 2025年, Value: 4
+							472 テキスト 2025年
+							473 link Link to 2025年, Value: 6f52990f.shimoju.pages.dev/about/#2025%e5%b9%b4
+						474 コンテンツリスト
+							475 container （）
+								476 リストメーカー •
+								477 link ojからjsonに移行する, Value: scrapbox.io/shimoju/oj%E3%81%8B%E3%82%89json%E3%81%AB%E7%A7%BB%E8%A1%8C%E3%81%99%E3%82%8B
+								478 テキスト （
+								479 link Shibuya.rb[:20250219], Value: shibuyarb.connpass.com/event/342987/
+								480 テキスト ）
+						481 見出し 2024年 Link to 2024年, Value: 4
+							482 テキスト 2024年
+							483 link Link to 2024年, Value: 6f52990f.shimoju.pages.dev/about/#2024%e5%b9%b4-1
+						484 コンテンツリスト
+							485 container （）
+								486 リストメーカー •
+								487 link Redisを用いたキューのパフォーマンス改善, Value: scrapbox.io/shimoju/Redis%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E3%82%AD%E3%83%A5%E3%83%BC%E3%81%AE%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9%E6%94%B9%E5%96%84
+								488 テキスト （
+								489 link Shibuya.rb[:20240717], Value: shibuyarb.connpass.com/event/324064/
+								490 テキスト ）
+							491 container （）
+								492 リストメーカー •
+								493 link grpc ruby：プロセスをフォークした後GCが走るとSEGVする, Value: …
+								494 テキスト （
+								495 link Shibuya.rb[:20240619], Value: shibuyarb.connpass.com/event/285788/
+								496 テキスト ）
+						497 見出し 2023年 Link to 2023年, Value: 4
+							498 テキスト 2023年
+							499 link Link to 2023年, Value: 6f52990f.shimoju.pages.dev/about/#2023%e5%b9%b4
+						500 コンテンツリスト
+							501 container （）
+								502 リストメーカー •
+								503 link プロダクト開発エンジニアからSREへの挑戦, Value: …
+								504 テキスト （
+								505 link Pepabo Tech Conference #20 春のSREまつり, Value: …
+								506 テキスト ）
+						507 見出し 2020年 Link to 2020年, Value: 4
+							508 テキスト 2020年
+							509 link Link to 2020年, Value: …
+						510 コンテンツリスト
+							511 container （）
+								512 リストメーカー •
+								513 link 快適なリモートワークを実現するために〜RailsでSSOを実現する3パターン, Value: …
+								514 テキスト （
+								515 link Kaigi on Rails 2020, Value: …
+								516 テキスト ）
+						517 見出し 2019年 Link to 2019年, Value: 4
+							518 テキスト 2019年
+							519 link Link to 2019年, Value: …
+						520 コンテンツリスト
+							521 container （）
+								522 リストメーカー •
+								523 link 実践 Heroku Enterprise, Value: …
+								524 テキスト （
+								525 link Heroku Meetup #26, Value: …
+								526 テキスト ）
+							527 container （Salesforce Webinar）
+								528 リストメーカー •
+								529 link GMOペパボのエンジニアが語るHeroku活用ノウハウ, Value: …
+								530 テキスト （Salesforce Webinar）
+						531 見出し イベント運営 Link to イベント運営, Value: 3
+							532 テキスト イベント運営
+							533 link Link to イベント運営, Value: …
+						534 コンテンツリスト
+							535 container : オーガナイザーとして2021年から活動
+								536 リストメーカー •
+								537 link Kaigi on Rails, Value: …
+								538 テキスト  : オーガナイザーとして2021年から活動
+							539 container : コーチとして2018年から活動
+								540 リストメーカー •
+								541 link Rails Girls, Value: …
+								542 テキスト  : コーチとして2018年から活動
+						543 見出し OSS Link to OSS, Value: 3
+							544 テキスト OSS
+							545 link Link to OSS, Value: …
+						546 コンテンツリスト
+							547 container : のAPIクライアント
+								548 リストメーカー •
+								549 link metabase-ruby, Value: …
+								550 テキスト  :
+								551 link Metabase, Value: …
+								552 テキスト のAPIクライアント
+						553 container Share this article
+							554 ボタン (disabled) Share on X (unavailable in preview), Help: X
+							555 ボタン (disabled) Share on Facebook (unavailable in preview), Help: Facebook
+							556 ボタン (disabled) Share on Bluesky (unavailable in preview), Help: Bluesky
+							557 ボタン (disabled) View on Hatena Bookmark (unavailable in preview), Help: Hatena Bookmark
+					558 container
+						559 container Follow and subscribe
+							560 link X, Value: …
+							561 link Bluesky, Value: …
+							562 link GitHub, Value: …
+							563 link RSS, Value: …
+						564 テキスト © 2026 Hiroshi Shimoju
+				565 スクロールバー (settable, float) 0
+	566 ツールバー
+		567 container Secondary Actions: 前に移動, 次に移動, ツールバーから削除
+			568 ボタン Description: サイドバーを表示, Help: サイドバーを表示します, ID: SidebarButton
+			569 メニューボタン Description: タブグループピッカー, ID: TabGroupPickerButton?TabGroup=
+		570 container BackForwardSegmentedControl
+			571 ボタン Description: 戻る, Help: 前のページを表示します, ID: BackButton
+			572 ボタン (disabled) Description: 進む, Help: 次のページを表示します, ID: ForwardButton
+		573 container Secondary Actions: 前に移動, 次に移動, ツールバーから削除
+			574 ボタン ページメニュー, ID: AssistantButton
+			575 ボタン ページをリーディングリストに追加します, ID: OneStepBookmarkingButton
+			576 テキストフィールド (settable) Description: スマート検索フィールド, Value: https://6f52990f.shimoju.pages.dev/about/, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			577 ボタン 翻訳を利用できます, ID: TranslationButton
+			578 ボタン このページを再読み込み, ID: ReloadButton
+		579 ボタン Description: 共有, ID: ShareButton, Secondary Actions: 前に移動, 次に移動, ツールバーから削除
+		580 ボタン Description: 新規タブ, ID: NewTabButton, Secondary Actions: 前に移動, 次に移動, ツールバーから削除
+		581 ボタン Description: タブの概要, ID: TabOverviewButton, Secondary Actions: 前に移動, ツールバーから削除
+	582 タブグループ Description: タブバー、2個のタブ, ID: TabBar?isSeparate=false
+		583 タブ 2026年、開発環境を一新した。Ghostty、herdr、Neovim、mise、そして自作Zshプロンプト — shimoju.diary, Value: off, Secondary Actions: タブを閉じる, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			584 イメージ FaviconImageView
+			585 テキスト Value: 2026年、開発環境を一新した。Ghostty、herdr、Neovim、mise、そして自作Zshプロンプト — shimoju.diary, ID: UnifiedTabBarButton._titleTextField
+		586 タブ About — shimoju.diary, Help: このボタンの項目を操作するには、Control+Option+Shift+下矢印キーを押します。, Value: on, Secondary Actions: タブを閉じる, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			587 イメージ FaviconImageView
+			588 テキスト Value: About — shimoju.diary, ID: UnifiedTabBarButton._titleTextField
+	589 閉じるボタン
+	590 フルスクリーンボタン Help: このボタンにはウインドウを拡大する操作もあります, Secondary Actions: ウインドウを拡大
+	591 しまうボタン
+592 menu bar
+	593 Safari
+	594 ファイル
+	595 編集
+	596 表示, ID: SafariViewMenu
+	597 履歴
+	598 ブックマーク, ID: SafariBookmarksMenu
+	599 開発
+	600 ウインドウ, ID: SafariWindowMenu
+	601 ヘルプ, ID: SafariHelpMenu

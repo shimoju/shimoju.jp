@@ -1,0 +1,2 @@
+		8 チェックボックス Tabキーを押したときにウェブページ上の各項目を強調表示, Value: 0, ID: TabToHighlightEachItem
+		9 text Option+Tabキーで各項目を強調表示します。 プライバシー:

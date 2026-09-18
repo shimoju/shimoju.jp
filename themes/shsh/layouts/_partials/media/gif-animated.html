@@ -1,0 +1,32 @@
+{{- $bytes := .bytes -}}
+{{- $offset := .offset | default 13 -}}
+{{- $frames := .frames | default 0 -}}
+{{- if not .offset -}}
+  {{- $packed := int (index $bytes 10) -}}
+  {{- if ge $packed 128 }}
+    {{ $offset = add $offset (mul 3 (math.Pow 2 (add 1 (mod $packed 8)))) | int }}
+  {{ end -}}
+{{- end -}}
+{{- $animated := false -}}
+{{- if lt $offset (len $bytes) -}}
+  {{- $kind := int (index $bytes $offset) -}}
+  {{- if eq $kind 33 -}}
+    {{- $offset = partial "media/gif-subblocks-end.html" (dict "bytes" $bytes "offset" (add $offset 2)) -}}
+  {{- else if and (eq $kind 44) (lt (add $offset 9) (len $bytes)) -}}
+    {{- $frames = add $frames 1 -}}
+    {{- $packed := int (index $bytes (add $offset 9)) -}}
+    {{- $offset = add $offset 10 -}}
+    {{- if ge $packed 128 }}
+      {{ $offset = add $offset (mul 3 (math.Pow 2 (add 1 (mod $packed 8)))) | int }}
+    {{ end -}}
+    {{- $offset = partial "media/gif-subblocks-end.html" (dict "bytes" $bytes "offset" (add $offset 1)) -}}
+  {{- else -}}
+    {{- $offset = len $bytes -}}
+  {{- end -}}
+  {{- if ge $frames 2 -}}
+    {{- $animated = true -}}
+  {{- else if lt $offset (len $bytes) -}}
+    {{- $animated = partial "media/gif-animated.html" (dict "bytes" $bytes "offset" $offset "frames" $frames) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $animated -}}

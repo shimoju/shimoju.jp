@@ -1,0 +1,74 @@
+.prose > p
+								523 切り替えボタン インスペクター, Help: DOM とスタイルシートの調査 (Cmd+Shift+C または Cmd+Opt+C), Value: on
+												557 テキスト 16 件中 1 件目
+													1615 切り替えボタン p, Value: on
+container フォント
+												1627 container
+													1628 container
+														1629 テキスト 使用中のフォント
+														1630 テキスト .SF NS
+														1631 テキスト System Font
+														1632 テキスト Hiragino Sans
+														1633 テキスト Hiragino Sans W3
+													1634 container
+														1635 テキスト インスタンス
+														1636 ポップアップボタン カスタム
+													1637 container
+														1638 container サイズ
+															1639 テキスト サイズ
+														1640 スライダ (settable, float) サイズ 17 px, Help: サイズ, Value: 17
+														1641 ステッパー (settable, float) 17
+															1642 テキスト 17
+														1643 ポップアップボタン px
+													1644 container
+														1645 container 行の高さ
+															1646 テキスト 行の高さ
+														1647 スライダ (settable, float) 行の高さ 32.3 px, Help: 行の高さ, Value: 32
+														1648 ステッパー (settable, float) 32.3
+															1649 テキスト 32.3
+														1650 ポップアップボタン px
+													1651 container
+														1652 container 文字間隔
+															1653 テキスト 文字間隔
+														1654 スライダ (settable, float) 文字間隔 normal, Help: 文字間隔, Value: 0
+														1655 テキスト normal
+													1656 container
+														1657 テキスト イタリック
+														1658 チェックボックス イタリック, Value: 0
+													1659 container
+														1660 container Width
+															1661 テキスト Width
+															1662 テキスト wdth
+														1663 スライダ (settable, float) Width wdth 100, Help: Width, Value: 100
+														1664 ステッパー (settable, float) 100
+															1665 テキスト 100
+													1666 container
+														1667 container Optical Size
+															1668 テキスト Optical Size
+															1669 テキスト opsz
+														1670 スライダ (settable, float) Optical Size opsz 28, Help: Optical Size, Value: 28
+														1671 ステッパー (settable, float) 28
+															1672 テキスト 28
+													1673 container
+														1674 container Weight
+															1675 テキスト Weight
+															1676 テキスト wght
+														1677 スライダ (settable, float) Weight wght 400, Help: Weight, Value: 400
+														1678 ステッパー (settable, float) 400
+															1679 テキスト 400
+													1680 コンテンツリスト
+														1681 見出し Description: ページ内のすべてのフォント, Value: 2
+															1682 ボタン ページ内のすべてのフォント
+																1683 テキスト ページ内のすべてのフォント
+									1684 コンテンツリスト
+										1685 container
+											1686 text .prose > p 2
+										1687 container
+											1688 text .prose > p 3
+										1689 container
+											1690 text .prose > p 4
+										1691 テキスト .prose > p
+										1692 container
+											1693 text .prose > p ection
+										1694 container
+											1695 text .prose > p l

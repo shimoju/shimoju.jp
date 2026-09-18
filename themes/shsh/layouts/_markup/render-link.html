@@ -1,0 +1,10 @@
+{{- /* Goldmark also marks linked standalone images as IsBlock, but keeps the outer paragraph.
+  Keep those images phrasing content inside the link instead of nesting figure in p. */
+-}}
+{{- $text := replaceRE `(?s)^<figure>(.*)</figure>$` "$1" .Text -}}
+<a
+  href="{{ .Destination }}"
+  {{ with .Title }}title="{{ . }}"{{ end }}
+  >{{ $text | safeHTML }}</a
+>
+{{- /* Preserve the author's surrounding inline whitespace. */ -}}

@@ -1,0 +1,7 @@
+.prose strong
+																		152 row (selected)    <strong> ​ 開く …​ </strong> ​
+																	1069 row CSS プロパティ名: font-size CSS プロパティ値: 17px
+																	1141 row CSS プロパティ名: font-weight CSS プロパティ値: 700
+																	1153 row CSS プロパティ名: line-height CSS プロパティ値: 32.3px
+																1184 text レンダリング フォント 姓 :  .SF NS PostScript 名 :  .SFNS-Regular_wdth_opsz110000_GRAD_wght2BC0000 フォントの提供元 :  ローカル ファイル （23 件のグリフ）
+The focused UI element is 152 row (selected)    <strong> ​ 開く …​ </strong> ​

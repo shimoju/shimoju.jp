@@ -10,6 +10,17 @@ git submodule update --init --recursive
 bin/dev
 ```
 
+## Build
+
+The shsh theme uses Hugo **0.166.0**. Site generation requires Hugo only; Node.js and pnpm are development and verification tools.
+
+```sh
+bin/build
+bin/build --environment preview --baseURL https://example.pages.dev/
+```
+
+Preview output has noindex metadata and disabled sharing / Hatena Star. External content embeds still load. The Cloudflare Pages production and preview configuration is verified separately as part of the migration.
+
 ## Create new post
 
 ```sh
@@ -38,3 +49,7 @@ The input files are preserved; for example, `video.mov` produces `video.mp4`.
 ```sh
 bin/optimize-video content/posts/path/to/*.mov
 ```
+
+## Theme development
+
+See [themes/shsh/README.md](themes/shsh/README.md) for theme development and verification commands.

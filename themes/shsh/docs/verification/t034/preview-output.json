@@ -1,0 +1,28 @@
+{
+  "target": {
+    "environment": "preview",
+    "base_url": "https://t034.shimoju.pages.dev/"
+  },
+  "html_count": 170,
+  "alias_count": 46,
+  "rss_count": 48,
+  "assets": [
+    {
+      "path": "css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css",
+      "bytes": 24460,
+      "sha256": "c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863"
+    },
+    {
+      "path": "js/copy.3fdb33a914767047bb6de682a958c124f971c44972d26f8c4a266204999a72f5.js",
+      "bytes": 1943,
+      "sha256": "3fdb33a914767047bb6de682a958c124f971c44972d26f8c4a266204999a72f5"
+    },
+    {
+      "path": "js/theme.fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2.js",
+      "bytes": 738,
+      "sha256": "fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2"
+    }
+  ],
+  "share_count": 4,
+  "result": "passed"
+}

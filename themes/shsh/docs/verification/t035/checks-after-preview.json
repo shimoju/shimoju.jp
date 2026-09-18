@@ -1,0 +1,25 @@
+[
+  {
+    "app": { "id": 85455, "slug": "cloudflare-workers-and-pages" },
+    "completed_at": "2026-09-18T06:53:37Z",
+    "conclusion": "success",
+    "details_url": "https://dash.cloudflare.com/?to=/c0c39e237ef194406cb2ba4680f5d5da/pages/view/shimoju/2f9d9a6b-5b9d-4caa-833a-f5f92c856916",
+    "name": "Cloudflare Pages",
+    "output": {
+      "summary": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003e\u003cstrong\u003eLatest commit:\u003c/strong\u003e \u003c/td\u003e\u003ctd\u003e\n\u003ccode\u003e18a9ab1\u003c/code\u003e\n\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e\u003cstrong\u003eStatus:\u003c/strong\u003e\u003c/td\u003e\u003ctd\u003e\u0026nbsp;✅\u0026nbsp; Deploy successful!\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e\u003cstrong\u003ePreview URL:\u003c/strong\u003e\u003c/td\u003e\u003ctd\u003e\n\u003ca href='https://2f9d9a6b.shimoju.pages.dev'\u003ehttps://2f9d9a6b.shimoju.pages.dev\u003c/a\u003e\n\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e\u003cstrong\u003eBranch Preview URL:\u003c/strong\u003e\u003c/td\u003e\u003ctd\u003e\n\u003ca href='https://hugo-theme.shimoju.pages.dev'\u003ehttps://hugo-theme.shimoju.pages.dev\u003c/a\u003e\n\u003c/td\u003e\u003c/tr\u003e\n\u003c/table\u003e\n\n[View logs](https://dash.cloudflare.com/?to=/c0c39e237ef194406cb2ba4680f5d5da/pages/view/shimoju/2f9d9a6b-5b9d-4caa-833a-f5f92c856916)\n",
+      "title": "Deployed successfully"
+    },
+    "started_at": "2026-09-18T06:53:37Z",
+    "status": "completed"
+  },
+  {
+    "app": { "id": 15368, "slug": "github-actions" },
+    "completed_at": null,
+    "conclusion": null,
+    "details_url": "https://github.com/shimoju/shimoju.jp/actions/runs/35316825816/job/105510190794",
+    "name": "shsh-check",
+    "output": { "summary": null, "title": null },
+    "started_at": "2026-09-18T06:52:55Z",
+    "status": "in_progress"
+  }
+]

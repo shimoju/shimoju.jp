@@ -1,0 +1,1826 @@
+{
+  "conditions": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "deviceScaleFactor": 3,
+    "cpuSlowdown": 4,
+    "latency": 150,
+    "downloadThroughput": 200000,
+    "uploadThroughput": 93750,
+    "observationMilliseconds": 20000,
+    "colorScheme": "light",
+    "userAgent": "Android 13 / Pixel 7 / Chromium version of the running binary; mobile emulation",
+    "cache": "new browser/context per run; cache disabled",
+    "host": "darwin/arm64 27.0.0 Apple M4"
+  },
+  "runs": 5,
+  "results": [
+    {
+      "scenario": "without-embed",
+      "path": "/2026/09/01/development-environment-2026/",
+      "trial": 1,
+      "recordedAt": "2026-09-18T02:35:01.041Z",
+      "browser": "153.0.8010.12",
+      "status": 200,
+      "valid": true,
+      "meetsTarget": true,
+      "lcpMilliseconds": 1180,
+      "cls": 0,
+      "mainFrameCLS": 0,
+      "observerCLS": 0,
+      "metrics": {
+        "lcp": [
+          {
+            "startTime": 908,
+            "size": 65156,
+            "url": "",
+            "element": "p."
+          },
+          {
+            "startTime": 1180,
+            "size": 67164,
+            "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-cover_hu_72ef437bf7873340.webp",
+            "element": "img."
+          }
+        ],
+        "shifts": []
+      },
+      "traceShifts": [],
+      "navigation": {
+        "name": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1449.7999999970198,
+        "navigationId": 9252,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.20000000298023224,
+        "domainLookupStart": 0.5999999940395355,
+        "domainLookupEnd": 0.7999999970197678,
+        "connectStart": 0.7999999970197678,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.9000000059604645,
+        "requestStart": 1,
+        "responseStart": 1.5999999940395355,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 1.5999999940395355,
+        "responseEnd": 728.2000000029802,
+        "transferSize": 58348,
+        "encodedBodySize": 58048,
+        "decodedBodySize": 58048,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 730,
+        "domContentLoadedEventStart": 901.2000000029802,
+        "domContentLoadedEventEnd": 901.2999999970198,
+        "domComplete": 1449.7999999970198,
+        "loadEventStart": 1449.7999999970198,
+        "loadEventEnd": 1449.7999999970198,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "widgetVisible": false,
+      "widgetText": "",
+      "responses": [
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/theme.fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-cover_hu_72ef437bf7873340.webp",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/sharing.b2307592a9d5c70c2311bcaaec9d1afb547f7fb425380e99fb24856e48346e4b.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-demo.mp4",
+          "status": 206
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/copy.3fdb33a914767047bb6de682a958c124f971c44972d26f8c4a266204999a72f5.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/star.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.04f6ca61943cbece506d.css",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.69b8c7f0d2e2a866ae5a.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/entries.json",
+          "status": 200
+        }
+      ],
+      "errors": [
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-demo.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ]
+    },
+    {
+      "scenario": "with-x-embed",
+      "path": "/2016/07/30/tochijisen/",
+      "trial": 1,
+      "recordedAt": "2026-09-18T02:35:21.380Z",
+      "browser": "153.0.8010.12",
+      "status": 200,
+      "valid": true,
+      "meetsTarget": true,
+      "lcpMilliseconds": 524,
+      "cls": 0.006396837217124272,
+      "mainFrameCLS": 0.006396837217124272,
+      "observerCLS": 0.006396837217124272,
+      "metrics": {
+        "lcp": [
+          {
+            "startTime": 524,
+            "size": 60424,
+            "url": "",
+            "element": "p."
+          }
+        ],
+        "shifts": [
+          {
+            "startTime": 2296.7000000029802,
+            "value": 0.006396837217124272,
+            "recentInput": false,
+            "nodes": ["blockquote.twitter-tweet"]
+          }
+        ]
+      },
+      "traceShifts": [
+        {
+          "time": 119545208.312,
+          "value": 0.006396837217124272,
+          "mainFrame": true,
+          "recentInput": false
+        }
+      ],
+      "navigation": {
+        "name": "http://127.0.0.1:4198/2016/07/30/tochijisen/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1923.1000000089407,
+        "navigationId": 3401,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000000894069672,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 0.7000000029802322,
+        "connectStart": 0.7000000029802322,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.800000011920929,
+        "requestStart": 0.800000011920929,
+        "responseStart": 1.4000000059604645,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 1.4000000059604645,
+        "responseEnd": 247.6000000089407,
+        "transferSize": 18533,
+        "encodedBodySize": 18233,
+        "decodedBodySize": 18233,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 348,
+        "domContentLoadedEventStart": 519.6000000089407,
+        "domContentLoadedEventEnd": 520.5,
+        "domComplete": 1923.1000000089407,
+        "loadEventStart": 1923.1000000089407,
+        "loadEventEnd": 1923.1000000089407,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "widgetVisible": true,
+      "widgetText": "東京都選挙管理委員会\n@tocho_senkyo\n·\nフォローする\nいよいよ明日は東京都知事選挙の投票日！\n１８歳（誕生日が８月１日以前の方）から投票ができます。\nみなさまの１票をお待ちしております。\n\n#東京都知事選挙　#都知事選　#７月３１日 https://cards.twitter.com/cards/gxgszq/1y2a1…\n午前0:00 · 2016年7月30日\n158\n返信\nリンクをコピー\n4件の返信を読む",
+      "responses": [
+        {
+          "url": "http://127.0.0.1:4198/2016/07/30/tochijisen/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/theme.fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/sharing.b2307592a9d5c70c2311bcaaec9d1afb547f7fb425380e99fb24856e48346e4b.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/copy.3fdb33a914767047bb6de682a958c124f971c44972d26f8c4a266204999a72f5.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.x.com/widgets.js",
+          "status": 302
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/star.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/widgets.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/widgets/widget_iframe.1227a5674072e080ffb1ba14ac0c1079.html",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.04f6ca61943cbece506d.css",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.69b8c7f0d2e2a866ae5a.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/entries.json",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.twitter.com/settings",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/js/tweet.7a6003258de838c35e66fd0f50ebdb0f.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/Tweet.html",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.runtime.3b19346e5d08b0b587c7.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.Tweet.70198ef24afe05adbecf.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.9449.78398904051446294e3d.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.i18n.ja-js.bbb87a39beaaf9d63501.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.749.467388cca0b3fe9c3291.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.horizon-web.i18n.ja-js.64cc5e4ed22967fb4840.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.Tweet.81f6f5a50fbfe5bd028c.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.9203.1b3edf1dee6d205547e0.js",
+          "status": 200
+        },
+        {
+          "url": "https://cdn.syndication.twimg.com/tweet-result",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://pbs.twimg.com/profile_images/1924394251661578240/sbkl0MCR_x96.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scenario": "without-embed",
+      "path": "/2026/09/01/development-environment-2026/",
+      "trial": 2,
+      "recordedAt": "2026-09-18T02:35:41.676Z",
+      "browser": "153.0.8010.12",
+      "status": 200,
+      "valid": true,
+      "meetsTarget": true,
+      "lcpMilliseconds": 1196,
+      "cls": 0,
+      "mainFrameCLS": 0,
+      "observerCLS": 0,
+      "metrics": {
+        "lcp": [
+          {
+            "startTime": 904,
+            "size": 65156,
+            "url": "",
+            "element": "p."
+          },
+          {
+            "startTime": 1196,
+            "size": 67164,
+            "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-cover_hu_72ef437bf7873340.webp",
+            "element": "img."
+          }
+        ],
+        "shifts": []
+      },
+      "traceShifts": [],
+      "navigation": {
+        "name": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1451.5,
+        "navigationId": 1138,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.09999999403953552,
+        "domainLookupStart": 0.5999999940395355,
+        "domainLookupEnd": 0.699999988079071,
+        "connectStart": 0.699999988079071,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.7999999970197678,
+        "requestStart": 0.8999999910593033,
+        "responseStart": 1.2999999970197678,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 1.2999999970197678,
+        "responseEnd": 727.5,
+        "transferSize": 58348,
+        "encodedBodySize": 58048,
+        "decodedBodySize": 58048,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 728.8999999910593,
+        "domContentLoadedEventStart": 897.5,
+        "domContentLoadedEventEnd": 897.5999999940395,
+        "domComplete": 1451.5,
+        "loadEventStart": 1451.5,
+        "loadEventEnd": 1451.5,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "widgetVisible": false,
+      "widgetText": "",
+      "responses": [
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/theme.fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-cover_hu_72ef437bf7873340.webp",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/sharing.b2307592a9d5c70c2311bcaaec9d1afb547f7fb425380e99fb24856e48346e4b.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-demo.mp4",
+          "status": 206
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/copy.3fdb33a914767047bb6de682a958c124f971c44972d26f8c4a266204999a72f5.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/star.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.04f6ca61943cbece506d.css",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.69b8c7f0d2e2a866ae5a.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/entries.json",
+          "status": 200
+        }
+      ],
+      "errors": [
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-demo.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ]
+    },
+    {
+      "scenario": "with-x-embed",
+      "path": "/2016/07/30/tochijisen/",
+      "trial": 2,
+      "recordedAt": "2026-09-18T02:36:02.020Z",
+      "browser": "153.0.8010.12",
+      "status": 200,
+      "valid": true,
+      "meetsTarget": true,
+      "lcpMilliseconds": 528,
+      "cls": 0.006396837217124272,
+      "mainFrameCLS": 0.006396837217124272,
+      "observerCLS": 0.006396837217124272,
+      "metrics": {
+        "lcp": [
+          {
+            "startTime": 528,
+            "size": 60424,
+            "url": "",
+            "element": "p."
+          }
+        ],
+        "shifts": [
+          {
+            "startTime": 2310.7999999970198,
+            "value": 0.006396837217124272,
+            "recentInput": false,
+            "nodes": ["blockquote.twitter-tweet"]
+          }
+        ]
+      },
+      "traceShifts": [
+        {
+          "time": 119585868.651,
+          "value": 0.006396837217124272,
+          "mainFrame": true,
+          "recentInput": false
+        }
+      ],
+      "navigation": {
+        "name": "http://127.0.0.1:4198/2016/07/30/tochijisen/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1939.7999999970198,
+        "navigationId": 3559,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.20000000298023224,
+        "domainLookupStart": 0.6000000089406967,
+        "domainLookupEnd": 0.7000000029802322,
+        "connectStart": 0.7000000029802322,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.9000000059604645,
+        "requestStart": 0.9000000059604645,
+        "responseStart": 1.4000000059604645,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 1.4000000059604645,
+        "responseEnd": 256.20000000298023,
+        "transferSize": 18533,
+        "encodedBodySize": 18233,
+        "decodedBodySize": 18233,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 349.20000000298023,
+        "domContentLoadedEventStart": 521.4000000059605,
+        "domContentLoadedEventEnd": 521.9000000059605,
+        "domComplete": 1939.7999999970198,
+        "loadEventStart": 1939.7999999970198,
+        "loadEventEnd": 1939.7999999970198,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "widgetVisible": true,
+      "widgetText": "東京都選挙管理委員会\n@tocho_senkyo\n·\nフォローする\nいよいよ明日は東京都知事選挙の投票日！\n１８歳（誕生日が８月１日以前の方）から投票ができます。\nみなさまの１票をお待ちしております。\n\n#東京都知事選挙　#都知事選　#７月３１日 https://cards.twitter.com/cards/gxgszq/1y2a1…\n午前0:00 · 2016年7月30日\n158\n返信\nリンクをコピー\n4件の返信を読む",
+      "responses": [
+        {
+          "url": "http://127.0.0.1:4198/2016/07/30/tochijisen/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/theme.fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/sharing.b2307592a9d5c70c2311bcaaec9d1afb547f7fb425380e99fb24856e48346e4b.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/copy.3fdb33a914767047bb6de682a958c124f971c44972d26f8c4a266204999a72f5.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.x.com/widgets.js",
+          "status": 302
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/star.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/widgets.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/widgets/widget_iframe.1227a5674072e080ffb1ba14ac0c1079.html",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.04f6ca61943cbece506d.css",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.69b8c7f0d2e2a866ae5a.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/entries.json",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.twitter.com/settings",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/js/tweet.7a6003258de838c35e66fd0f50ebdb0f.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/Tweet.html",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.runtime.3b19346e5d08b0b587c7.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.Tweet.70198ef24afe05adbecf.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.9449.78398904051446294e3d.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.i18n.ja-js.bbb87a39beaaf9d63501.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.749.467388cca0b3fe9c3291.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.horizon-web.i18n.ja-js.64cc5e4ed22967fb4840.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.Tweet.81f6f5a50fbfe5bd028c.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.9203.1b3edf1dee6d205547e0.js",
+          "status": 200
+        },
+        {
+          "url": "https://cdn.syndication.twimg.com/tweet-result",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://pbs.twimg.com/profile_images/1924394251661578240/sbkl0MCR_x96.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scenario": "without-embed",
+      "path": "/2026/09/01/development-environment-2026/",
+      "trial": 3,
+      "recordedAt": "2026-09-18T02:36:22.331Z",
+      "browser": "153.0.8010.12",
+      "status": 200,
+      "valid": true,
+      "meetsTarget": true,
+      "lcpMilliseconds": 1196,
+      "cls": 0,
+      "mainFrameCLS": 0,
+      "observerCLS": 0,
+      "metrics": {
+        "lcp": [
+          {
+            "startTime": 904,
+            "size": 65156,
+            "url": "",
+            "element": "p."
+          },
+          {
+            "startTime": 1196,
+            "size": 67164,
+            "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-cover_hu_72ef437bf7873340.webp",
+            "element": "img."
+          }
+        ],
+        "shifts": []
+      },
+      "traceShifts": [],
+      "navigation": {
+        "name": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1450.4000000059605,
+        "navigationId": 779,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000000894069672,
+        "domainLookupStart": 0.7000000029802322,
+        "domainLookupEnd": 0.800000011920929,
+        "connectStart": 0.800000011920929,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.9000000059604645,
+        "requestStart": 0.9000000059604645,
+        "responseStart": 1.4000000059604645,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 1.4000000059604645,
+        "responseEnd": 727.4000000059605,
+        "transferSize": 58348,
+        "encodedBodySize": 58048,
+        "decodedBodySize": 58048,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 728.7000000029802,
+        "domContentLoadedEventStart": 897.5,
+        "domContentLoadedEventEnd": 898,
+        "domComplete": 1450.4000000059605,
+        "loadEventStart": 1450.4000000059605,
+        "loadEventEnd": 1450.4000000059605,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "widgetVisible": false,
+      "widgetText": "",
+      "responses": [
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/theme.fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-cover_hu_72ef437bf7873340.webp",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/sharing.b2307592a9d5c70c2311bcaaec9d1afb547f7fb425380e99fb24856e48346e4b.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-demo.mp4",
+          "status": 206
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/copy.3fdb33a914767047bb6de682a958c124f971c44972d26f8c4a266204999a72f5.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/star.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.04f6ca61943cbece506d.css",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.69b8c7f0d2e2a866ae5a.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/entries.json",
+          "status": 200
+        }
+      ],
+      "errors": [
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-demo.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ]
+    },
+    {
+      "scenario": "with-x-embed",
+      "path": "/2016/07/30/tochijisen/",
+      "trial": 3,
+      "recordedAt": "2026-09-18T02:36:42.668Z",
+      "browser": "153.0.8010.12",
+      "status": 200,
+      "valid": true,
+      "meetsTarget": true,
+      "lcpMilliseconds": 536,
+      "cls": 0.006396837217124272,
+      "mainFrameCLS": 0.006396837217124272,
+      "observerCLS": 0.006396837217124272,
+      "metrics": {
+        "lcp": [
+          {
+            "startTime": 536,
+            "size": 60424,
+            "url": "",
+            "element": "p."
+          }
+        ],
+        "shifts": [
+          {
+            "startTime": 2307.7999999970198,
+            "value": 0.006396837217124272,
+            "recentInput": false,
+            "nodes": ["blockquote.twitter-tweet"]
+          }
+        ]
+      },
+      "traceShifts": [
+        {
+          "time": 119626515.323,
+          "value": 0.006396837217124272,
+          "mainFrame": true,
+          "recentInput": false
+        }
+      ],
+      "navigation": {
+        "name": "http://127.0.0.1:4198/2016/07/30/tochijisen/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1932.2999999970198,
+        "navigationId": 4981,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.20000000298023224,
+        "domainLookupStart": 0.5999999940395355,
+        "domainLookupEnd": 0.7000000029802322,
+        "connectStart": 0.7000000029802322,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.9000000059604645,
+        "requestStart": 0.9000000059604645,
+        "responseStart": 1.4000000059604645,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 1.4000000059604645,
+        "responseEnd": 255.70000000298023,
+        "transferSize": 18533,
+        "encodedBodySize": 18233,
+        "decodedBodySize": 18233,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 355.5,
+        "domContentLoadedEventStart": 531.2000000029802,
+        "domContentLoadedEventEnd": 532.4000000059605,
+        "domComplete": 1932.2999999970198,
+        "loadEventStart": 1932.2999999970198,
+        "loadEventEnd": 1932.2999999970198,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "widgetVisible": true,
+      "widgetText": "東京都選挙管理委員会\n@tocho_senkyo\n·\nフォローする\nいよいよ明日は東京都知事選挙の投票日！\n１８歳（誕生日が８月１日以前の方）から投票ができます。\nみなさまの１票をお待ちしております。\n\n#東京都知事選挙　#都知事選　#７月３１日 https://cards.twitter.com/cards/gxgszq/1y2a1…\n午前0:00 · 2016年7月30日\n158\n返信\nリンクをコピー\n4件の返信を読む",
+      "responses": [
+        {
+          "url": "http://127.0.0.1:4198/2016/07/30/tochijisen/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/theme.fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/sharing.b2307592a9d5c70c2311bcaaec9d1afb547f7fb425380e99fb24856e48346e4b.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/copy.3fdb33a914767047bb6de682a958c124f971c44972d26f8c4a266204999a72f5.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.x.com/widgets.js",
+          "status": 302
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/star.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/widgets.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/widgets/widget_iframe.1227a5674072e080ffb1ba14ac0c1079.html",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.04f6ca61943cbece506d.css",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.69b8c7f0d2e2a866ae5a.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/entries.json",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.twitter.com/settings",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/js/tweet.7a6003258de838c35e66fd0f50ebdb0f.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/Tweet.html",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.runtime.3b19346e5d08b0b587c7.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.Tweet.70198ef24afe05adbecf.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.9449.78398904051446294e3d.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.i18n.ja-js.bbb87a39beaaf9d63501.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.749.467388cca0b3fe9c3291.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.horizon-web.i18n.ja-js.64cc5e4ed22967fb4840.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.Tweet.81f6f5a50fbfe5bd028c.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.9203.1b3edf1dee6d205547e0.js",
+          "status": 200
+        },
+        {
+          "url": "https://cdn.syndication.twimg.com/tweet-result",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://pbs.twimg.com/profile_images/1924394251661578240/sbkl0MCR_x96.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scenario": "without-embed",
+      "path": "/2026/09/01/development-environment-2026/",
+      "trial": 4,
+      "recordedAt": "2026-09-18T02:37:02.977Z",
+      "browser": "153.0.8010.12",
+      "status": 200,
+      "valid": true,
+      "meetsTarget": true,
+      "lcpMilliseconds": 1188,
+      "cls": 0,
+      "mainFrameCLS": 0,
+      "observerCLS": 0,
+      "metrics": {
+        "lcp": [
+          {
+            "startTime": 896,
+            "size": 65156,
+            "url": "",
+            "element": "p."
+          },
+          {
+            "startTime": 1188,
+            "size": 67164,
+            "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-cover_hu_72ef437bf7873340.webp",
+            "element": "img."
+          }
+        ],
+        "shifts": []
+      },
+      "traceShifts": [],
+      "navigation": {
+        "name": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1437.7000000029802,
+        "navigationId": 4331,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000000894069672,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 0.6000000089406967,
+        "connectStart": 0.6000000089406967,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.800000011920929,
+        "requestStart": 0.800000011920929,
+        "responseStart": 1.4000000059604645,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 1.4000000059604645,
+        "responseEnd": 721.2000000029802,
+        "transferSize": 58348,
+        "encodedBodySize": 58048,
+        "decodedBodySize": 58048,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 722.8000000119209,
+        "domContentLoadedEventStart": 891.1000000089407,
+        "domContentLoadedEventEnd": 891.2000000029802,
+        "domComplete": 1437.7000000029802,
+        "loadEventStart": 1437.7000000029802,
+        "loadEventEnd": 1437.7000000029802,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "widgetVisible": false,
+      "widgetText": "",
+      "responses": [
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/theme.fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-cover_hu_72ef437bf7873340.webp",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/sharing.b2307592a9d5c70c2311bcaaec9d1afb547f7fb425380e99fb24856e48346e4b.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-demo.mp4",
+          "status": 206
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/copy.3fdb33a914767047bb6de682a958c124f971c44972d26f8c4a266204999a72f5.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/star.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.04f6ca61943cbece506d.css",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.69b8c7f0d2e2a866ae5a.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/entries.json",
+          "status": 200
+        }
+      ],
+      "errors": [
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-demo.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ]
+    },
+    {
+      "scenario": "with-x-embed",
+      "path": "/2016/07/30/tochijisen/",
+      "trial": 4,
+      "recordedAt": "2026-09-18T02:37:23.337Z",
+      "browser": "153.0.8010.12",
+      "status": 200,
+      "valid": true,
+      "meetsTarget": true,
+      "lcpMilliseconds": 532,
+      "cls": 0.006396837217124272,
+      "mainFrameCLS": 0.006396837217124272,
+      "observerCLS": 0.006396837217124272,
+      "metrics": {
+        "lcp": [
+          {
+            "startTime": 532,
+            "size": 60424,
+            "url": "",
+            "element": "p."
+          }
+        ],
+        "shifts": [
+          {
+            "startTime": 2314.300000011921,
+            "value": 0.006396837217124272,
+            "recentInput": false,
+            "nodes": ["blockquote.twitter-tweet"]
+          }
+        ]
+      },
+      "traceShifts": [
+        {
+          "time": 119667181.457,
+          "value": 0.006396837217124272,
+          "mainFrame": true,
+          "recentInput": false
+        }
+      ],
+      "navigation": {
+        "name": "http://127.0.0.1:4198/2016/07/30/tochijisen/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1941.5,
+        "navigationId": 6717,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000000894069672,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 0.7000000029802322,
+        "connectStart": 0.7000000029802322,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.800000011920929,
+        "requestStart": 0.9000000059604645,
+        "responseStart": 1.300000011920929,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 1.300000011920929,
+        "responseEnd": 247.30000001192093,
+        "transferSize": 18533,
+        "encodedBodySize": 18233,
+        "decodedBodySize": 18233,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 348.90000000596046,
+        "domContentLoadedEventStart": 525.5,
+        "domContentLoadedEventEnd": 526.4000000059605,
+        "domComplete": 1941.5,
+        "loadEventStart": 1941.5,
+        "loadEventEnd": 1941.5,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "widgetVisible": true,
+      "widgetText": "東京都選挙管理委員会\n@tocho_senkyo\n·\nフォローする\nいよいよ明日は東京都知事選挙の投票日！\n１８歳（誕生日が８月１日以前の方）から投票ができます。\nみなさまの１票をお待ちしております。\n\n#東京都知事選挙　#都知事選　#７月３１日 https://cards.twitter.com/cards/gxgszq/1y2a1…\n午前0:00 · 2016年7月30日\n158\n返信\nリンクをコピー\n4件の返信を読む",
+      "responses": [
+        {
+          "url": "http://127.0.0.1:4198/2016/07/30/tochijisen/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/theme.fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/sharing.b2307592a9d5c70c2311bcaaec9d1afb547f7fb425380e99fb24856e48346e4b.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/copy.3fdb33a914767047bb6de682a958c124f971c44972d26f8c4a266204999a72f5.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.x.com/widgets.js",
+          "status": 302
+        },
+        {
+          "url": "https://platform.twitter.com/widgets.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/star.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/widgets/widget_iframe.1227a5674072e080ffb1ba14ac0c1079.html",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.04f6ca61943cbece506d.css",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.69b8c7f0d2e2a866ae5a.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/entries.json",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.twitter.com/settings",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/js/tweet.7a6003258de838c35e66fd0f50ebdb0f.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/Tweet.html",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.runtime.3b19346e5d08b0b587c7.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.Tweet.70198ef24afe05adbecf.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.9449.78398904051446294e3d.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.i18n.ja-js.bbb87a39beaaf9d63501.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.749.467388cca0b3fe9c3291.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.horizon-web.i18n.ja-js.64cc5e4ed22967fb4840.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.Tweet.81f6f5a50fbfe5bd028c.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.9203.1b3edf1dee6d205547e0.js",
+          "status": 200
+        },
+        {
+          "url": "https://cdn.syndication.twimg.com/tweet-result",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://pbs.twimg.com/profile_images/1924394251661578240/sbkl0MCR_x96.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scenario": "without-embed",
+      "path": "/2026/09/01/development-environment-2026/",
+      "trial": 5,
+      "recordedAt": "2026-09-18T02:37:43.622Z",
+      "browser": "153.0.8010.12",
+      "status": 200,
+      "valid": true,
+      "meetsTarget": true,
+      "lcpMilliseconds": 1196,
+      "cls": 0,
+      "mainFrameCLS": 0,
+      "observerCLS": 0,
+      "metrics": {
+        "lcp": [
+          {
+            "startTime": 904,
+            "size": 65156,
+            "url": "",
+            "element": "p."
+          },
+          {
+            "startTime": 1196,
+            "size": 67164,
+            "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-cover_hu_72ef437bf7873340.webp",
+            "element": "img."
+          }
+        ],
+        "shifts": []
+      },
+      "traceShifts": [],
+      "navigation": {
+        "name": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1451.9000000059605,
+        "navigationId": 9448,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000000894069672,
+        "domainLookupStart": 0.4000000059604645,
+        "domainLookupEnd": 0.6000000089406967,
+        "connectStart": 0.6000000089406967,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.7999999970197678,
+        "requestStart": 0.7999999970197678,
+        "responseStart": 1.2000000029802322,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 1.2000000029802322,
+        "responseEnd": 728,
+        "transferSize": 58348,
+        "encodedBodySize": 58048,
+        "decodedBodySize": 58048,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 729.4000000059605,
+        "domContentLoadedEventStart": 897.7999999970198,
+        "domContentLoadedEventEnd": 897.9000000059605,
+        "domComplete": 1451.9000000059605,
+        "loadEventStart": 1451.9000000059605,
+        "loadEventEnd": 1451.9000000059605,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "widgetVisible": false,
+      "widgetText": "",
+      "responses": [
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/theme.fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-cover_hu_72ef437bf7873340.webp",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/sharing.b2307592a9d5c70c2311bcaaec9d1afb547f7fb425380e99fb24856e48346e4b.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-demo.mp4",
+          "status": 206
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/copy.3fdb33a914767047bb6de682a958c124f971c44972d26f8c4a266204999a72f5.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/star.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.04f6ca61943cbece506d.css",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.69b8c7f0d2e2a866ae5a.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/entries.json",
+          "status": 200
+        }
+      ],
+      "errors": [
+        {
+          "url": "http://127.0.0.1:4198/2026/09/01/development-environment-2026/zsh-prompt-demo.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ]
+    },
+    {
+      "scenario": "with-x-embed",
+      "path": "/2016/07/30/tochijisen/",
+      "trial": 5,
+      "recordedAt": "2026-09-18T02:38:03.973Z",
+      "browser": "153.0.8010.12",
+      "status": 200,
+      "valid": true,
+      "meetsTarget": true,
+      "lcpMilliseconds": 552,
+      "cls": 0.006396837217124272,
+      "mainFrameCLS": 0.006396837217124272,
+      "observerCLS": 0.006396837217124272,
+      "metrics": {
+        "lcp": [
+          {
+            "startTime": 552,
+            "size": 60424,
+            "url": "",
+            "element": "p."
+          }
+        ],
+        "shifts": [
+          {
+            "startTime": 2317.7999999970198,
+            "value": 0.006396837217124272,
+            "recentInput": false,
+            "nodes": ["blockquote.twitter-tweet"]
+          }
+        ]
+      },
+      "traceShifts": [
+        {
+          "time": 119707819.623,
+          "value": 0.006396837217124272,
+          "mainFrame": true,
+          "recentInput": false
+        }
+      ],
+      "navigation": {
+        "name": "http://127.0.0.1:4198/2016/07/30/tochijisen/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1948.2000000029802,
+        "navigationId": 2066,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000000894069672,
+        "domainLookupStart": 0.6000000089406967,
+        "domainLookupEnd": 0.7000000029802322,
+        "connectStart": 0.7000000029802322,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.7999999970197678,
+        "requestStart": 0.9000000059604645,
+        "responseStart": 1.2999999970197678,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 1.2999999970197678,
+        "responseEnd": 246.79999999701977,
+        "transferSize": 18533,
+        "encodedBodySize": 18233,
+        "decodedBodySize": 18233,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 349.1000000089407,
+        "domContentLoadedEventStart": 533.2000000029802,
+        "domContentLoadedEventEnd": 533.2999999970198,
+        "domComplete": 1948.2000000029802,
+        "loadEventStart": 1948.2000000029802,
+        "loadEventEnd": 1948.2000000029802,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "widgetVisible": true,
+      "widgetText": "東京都選挙管理委員会\n@tocho_senkyo\n·\nフォローする\nいよいよ明日は東京都知事選挙の投票日！\n１８歳（誕生日が８月１日以前の方）から投票ができます。\nみなさまの１票をお待ちしております。\n\n#東京都知事選挙　#都知事選　#７月３１日 https://cards.twitter.com/cards/gxgszq/1y2a1…\n午前0:00 · 2016年7月30日\n158\n返信\nリンクをコピー\n4件の返信を読む",
+      "responses": [
+        {
+          "url": "http://127.0.0.1:4198/2016/07/30/tochijisen/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/theme.fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/sharing.b2307592a9d5c70c2311bcaaec9d1afb547f7fb425380e99fb24856e48346e4b.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4198/js/copy.3fdb33a914767047bb6de682a958c124f971c44972d26f8c4a266204999a72f5.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.x.com/widgets.js",
+          "status": 302
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/star.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/widgets.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/widgets/widget_iframe.1227a5674072e080ffb1ba14ac0c1079.html",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.04f6ca61943cbece506d.css",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.69b8c7f0d2e2a866ae5a.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/entries.json",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.twitter.com/settings",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/js/tweet.7a6003258de838c35e66fd0f50ebdb0f.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/Tweet.html",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.runtime.3b19346e5d08b0b587c7.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.Tweet.70198ef24afe05adbecf.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.9449.78398904051446294e3d.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.i18n.ja-js.bbb87a39beaaf9d63501.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.749.467388cca0b3fe9c3291.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.horizon-web.i18n.ja-js.64cc5e4ed22967fb4840.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.Tweet.81f6f5a50fbfe5bd028c.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.9203.1b3edf1dee6d205547e0.js",
+          "status": 200
+        },
+        {
+          "url": "https://cdn.syndication.twimg.com/tweet-result",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://pbs.twimg.com/profile_images/1924394251661578240/sbkl0MCR_x96.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

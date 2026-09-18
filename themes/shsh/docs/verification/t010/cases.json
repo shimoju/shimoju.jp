@@ -1,0 +1,242 @@
+[
+  {
+    "name": "home",
+    "title": "Home",
+    "mock": "home.html",
+    "url": "http://127.0.0.1:4182/"
+  },
+  {
+    "name": "home-2",
+    "title": "Home",
+    "mock": "home-2.html",
+    "url": "http://127.0.0.1:4182/page/2/"
+  },
+  {
+    "name": "home-3",
+    "title": "Home",
+    "mock": "home-3.html",
+    "url": "http://127.0.0.1:4182/page/3/"
+  },
+  {
+    "name": "posts",
+    "title": "Posts",
+    "mock": "posts.html",
+    "url": "http://127.0.0.1:4182/posts/"
+  },
+  {
+    "name": "posts-2",
+    "title": "Posts",
+    "mock": "posts-2.html",
+    "url": "http://127.0.0.1:4182/posts/page/2/"
+  },
+  {
+    "name": "posts-3",
+    "title": "Posts",
+    "mock": "posts-3.html",
+    "url": "http://127.0.0.1:4182/posts/page/3/"
+  },
+  {
+    "name": "tags",
+    "title": "Tags",
+    "mock": "tags.html",
+    "url": "http://127.0.0.1:4182/tags/"
+  },
+  {
+    "name": "tags-empty",
+    "title": "Tags",
+    "mock": "tags-empty.html",
+    "url": "http://127.0.0.1:4189/tags/"
+  },
+  {
+    "name": "tag-1",
+    "title": "chezmoi",
+    "mock": "tag-1.html",
+    "url": "http://127.0.0.1:4182/tags/chezmoi/"
+  },
+  {
+    "name": "tag-2",
+    "title": "Cloudflare",
+    "mock": "tag-2.html",
+    "url": "http://127.0.0.1:4182/tags/cloudflare/"
+  },
+  {
+    "name": "tag-3",
+    "title": "dotfiles",
+    "mock": "tag-3.html",
+    "url": "http://127.0.0.1:4182/tags/dotfiles/"
+  },
+  {
+    "name": "tag-4",
+    "title": "Ghostty",
+    "mock": "tag-4.html",
+    "url": "http://127.0.0.1:4182/tags/ghostty/"
+  },
+  {
+    "name": "tag-5",
+    "title": "herdr",
+    "mock": "tag-5.html",
+    "url": "http://127.0.0.1:4182/tags/herdr/"
+  },
+  {
+    "name": "tag-6",
+    "title": "Hugo",
+    "mock": "tag-6.html",
+    "url": "http://127.0.0.1:4182/tags/hugo/"
+  },
+  {
+    "name": "tag-7",
+    "title": "mise",
+    "mock": "tag-7.html",
+    "url": "http://127.0.0.1:4182/tags/mise/"
+  },
+  {
+    "name": "tag-8",
+    "title": "Neovim",
+    "mock": "tag-8.html",
+    "url": "http://127.0.0.1:4182/tags/neovim/"
+  },
+  {
+    "name": "tag-9",
+    "title": "PaperMod",
+    "mock": "tag-9.html",
+    "url": "http://127.0.0.1:4182/tags/papermod/"
+  },
+  {
+    "name": "tag-10",
+    "title": "Zsh",
+    "mock": "tag-10.html",
+    "url": "http://127.0.0.1:4182/tags/zsh/"
+  },
+  {
+    "name": "tag-11",
+    "title": "開発環境",
+    "mock": "tag-11.html",
+    "url": "http://127.0.0.1:4182/tags/開発環境/"
+  },
+  {
+    "name": "categories",
+    "title": "Categories",
+    "mock": "categories.html",
+    "url": "http://127.0.0.1:4182/categories/"
+  },
+  {
+    "name": "categories-empty",
+    "title": "Categories",
+    "mock": "categories-empty.html",
+    "url": "http://127.0.0.1:4189/categories/"
+  },
+  {
+    "name": "category-1",
+    "title": "技術",
+    "mock": "category-1.html",
+    "url": "http://127.0.0.1:4182/categories/技術/"
+  },
+  {
+    "name": "category-2",
+    "title": "日記",
+    "mock": "category-2.html",
+    "url": "http://127.0.0.1:4182/categories/日記/"
+  },
+  {
+    "name": "category-2-2",
+    "title": "日記",
+    "mock": "category-2-2.html",
+    "url": "http://127.0.0.1:4182/categories/日記/page/2/"
+  },
+  {
+    "name": "tag-pagination",
+    "title": "Sample tag",
+    "mock": "tag-pagination.html",
+    "url": "http://127.0.0.1:4188/tags/sample-tag/"
+  },
+  {
+    "name": "tag-pagination-2",
+    "title": "Sample tag",
+    "mock": "tag-pagination-2.html",
+    "url": "http://127.0.0.1:4188/tags/sample-tag/page/2/"
+  },
+  {
+    "name": "tag-pagination-3",
+    "title": "Sample tag",
+    "mock": "tag-pagination-3.html",
+    "url": "http://127.0.0.1:4188/tags/sample-tag/page/3/"
+  },
+  {
+    "name": "category-pagination",
+    "title": "Sample category",
+    "mock": "category-pagination.html",
+    "url": "http://127.0.0.1:4188/categories/sample-category/"
+  },
+  {
+    "name": "category-pagination-2",
+    "title": "Sample category",
+    "mock": "category-pagination-2.html",
+    "url": "http://127.0.0.1:4188/categories/sample-category/page/2/"
+  },
+  {
+    "name": "category-pagination-3",
+    "title": "Sample category",
+    "mock": "category-pagination-3.html",
+    "url": "http://127.0.0.1:4188/categories/sample-category/page/3/"
+  },
+  {
+    "name": "article",
+    "title": "2026年、開発環境を一新した。Ghostty、herdr、Neovim、mise、そして自作Zshプロンプト",
+    "mock": "article.html",
+    "url": "http://127.0.0.1:4182/2026/09/01/development-environment-2026/"
+  },
+  {
+    "name": "article-hugo",
+    "title": "HugoとCloudflare Pagesでブログを作り直した",
+    "mock": "article-hugo.html",
+    "url": "http://127.0.0.1:4182/2023/06/22/hugo-and-cloudflare-pages/"
+  },
+  {
+    "name": "article-diary",
+    "title": "社会復帰するぞ",
+    "mock": "article-diary.html",
+    "url": "http://127.0.0.1:4182/2016/08/17/shakai-fukki/"
+  },
+  {
+    "name": "article-bgm",
+    "title": "BGMには困らない",
+    "mock": "article-bgm.html",
+    "url": "http://127.0.0.1:4182/2016/08/14/hikikomori/"
+  },
+  {
+    "name": "article-pasmo",
+    "title": "PASMOをオートチャージにした",
+    "mock": "article-pasmo.html",
+    "url": "http://127.0.0.1:4182/2016/08/13/pasmo-autocharge/"
+  },
+  {
+    "name": "about",
+    "title": "About",
+    "mock": "about.html",
+    "url": "http://127.0.0.1:4182/about/"
+  },
+  {
+    "name": "archives",
+    "title": "Archives",
+    "mock": "archives.html",
+    "url": "http://127.0.0.1:4182/archives/"
+  },
+  {
+    "name": "404",
+    "title": "404 — Page not found",
+    "mock": "404.html",
+    "url": "http://127.0.0.1:4182/404.html"
+  },
+  {
+    "name": "empty",
+    "title": "Posts",
+    "mock": "empty.html",
+    "url": "http://127.0.0.1:4189/posts/"
+  },
+  {
+    "name": "single-item",
+    "title": "Posts",
+    "mock": "single-item.html",
+    "url": "http://127.0.0.1:4195/posts/"
+  }
+]

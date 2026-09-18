@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-09-18T06:51:07.013561+00:00",
+  "project": "shimoju",
+  "build_command": "sh themes/shsh/scripts/build-pages.sh",
+  "output": "public",
+  "root": "",
+  "hugo_version": "0.166.0",
+  "build_system": "v3",
+  "production": {
+    "branch": "master",
+    "automatic_deployments": true
+  },
+  "preview": {
+    "automatic_deployments": "all non-production branches"
+  },
+  "verification": "Chrome dashboard production and preview; saved build command visible; branch controls unchanged"
+}

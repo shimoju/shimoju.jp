@@ -1,0 +1,7 @@
+/node_modules
+/.cache
+/test-results
+/playwright-report
+/public
+/resources
+/.pnpm-store

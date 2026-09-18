@@ -1,0 +1,207 @@
+{
+  "recorded_at": "2026-09-18T07:12:44.063328+00:00",
+  "commit": "6f100d5e2c9f585d4117755966528bf542b39455",
+  "base_url": "https://59e83710.shimoju.pages.dev/",
+  "result": "passed",
+  "responses": [
+    {
+      "url": "https://59e83710.shimoju.pages.dev/",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex"
+      },
+      "bytes": 20245,
+      "sha256": "e63e217fc3ecc10ffc784d96813a733ea3cace2af0fcd26ad969bcd4b345e748",
+      "canonical": "https://59e83710.shimoju.pages.dev/",
+      "disabled_shares": 0
+    },
+    {
+      "url": "https://59e83710.shimoju.pages.dev/about/",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex"
+      },
+      "bytes": 34818,
+      "sha256": "bff1a0047873259dac2c1632bb65fd9330e096bd1d74fbdf642dbe0676c9a776",
+      "canonical": "https://59e83710.shimoju.pages.dev/about/",
+      "disabled_shares": 4
+    },
+    {
+      "url": "https://59e83710.shimoju.pages.dev/archives/",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex"
+      },
+      "bytes": 25356,
+      "sha256": "ed8cceca961d519fb7650f37da50017e80d53eb3ddbc3a19da0311b7085bf535",
+      "canonical": "https://59e83710.shimoju.pages.dev/archives/",
+      "disabled_shares": 0
+    },
+    {
+      "url": "https://59e83710.shimoju.pages.dev/posts/",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex"
+      },
+      "bytes": 19252,
+      "sha256": "8dd045e8174f59f4940bb9f45da80d1742a62e4a07ec0444fc0f98f763f364d6",
+      "canonical": "https://59e83710.shimoju.pages.dev/posts/",
+      "disabled_shares": 0
+    },
+    {
+      "url": "https://59e83710.shimoju.pages.dev/page/2/",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex"
+      },
+      "bytes": 17762,
+      "sha256": "6535f99202ee06794ad3e08be072ca935913c1495218037efd8b110b4ecc5791",
+      "canonical": "https://59e83710.shimoju.pages.dev/page/2/",
+      "disabled_shares": 0
+    },
+    {
+      "url": "https://59e83710.shimoju.pages.dev/tags/",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex"
+      },
+      "bytes": 8747,
+      "sha256": "fc336ef8ad985ae7cc8de61737a93fd4398eea5b7ef5034df188ab0b47a15218",
+      "canonical": "https://59e83710.shimoju.pages.dev/tags/",
+      "disabled_shares": 0
+    },
+    {
+      "url": "https://59e83710.shimoju.pages.dev/2026/09/01/development-environment-2026/",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex"
+      },
+      "bytes": 56469,
+      "sha256": "3fe8a34e5950b2a0c4fdcb94e546203373dbbad89a0376066475138dd2de2485",
+      "canonical": "https://59e83710.shimoju.pages.dev/2026/09/01/development-environment-2026/",
+      "disabled_shares": 4
+    },
+    {
+      "url": "https://59e83710.shimoju.pages.dev/index.xml",
+      "status": 200,
+      "headers": {
+        "content-type": "application/xml",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex"
+      },
+      "bytes": 58536,
+      "sha256": "3e094082ded16181127518bed9e3000e076401f906b09b76d496dfb88726d103"
+    },
+    {
+      "url": "https://59e83710.shimoju.pages.dev/posts/index.xml",
+      "status": 200,
+      "headers": {
+        "content-type": "application/xml",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex"
+      },
+      "bytes": 58517,
+      "sha256": "38174a4cde2717c68d7dbdebd668e61f185e536a836c8d8d9a01165bae660080"
+    },
+    {
+      "url": "https://59e83710.shimoju.pages.dev/tags/index.xml",
+      "status": 200,
+      "headers": {
+        "content-type": "application/xml",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex"
+      },
+      "bytes": 9997,
+      "sha256": "b50d918ddc9bc79ecdbbe01286d79c19bf65da39bd876cdcac31df5ee1badb14"
+    },
+    {
+      "url": "https://59e83710.shimoju.pages.dev/categories/index.xml",
+      "status": 200,
+      "headers": {
+        "content-type": "application/xml",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex"
+      },
+      "bytes": 2056,
+      "sha256": "a8df1924c009de1dc55e32382e924a3699007597ba95af5088b954013c774055"
+    },
+    {
+      "url": "https://59e83710.shimoju.pages.dev/feed.xml",
+      "status": 301,
+      "headers": {
+        "content-type": "text/plain;charset=UTF-8",
+        "location": "/index.xml"
+      },
+      "bytes": 25,
+      "sha256": "25d2bbeef7ae051ccc00be3923ed98ef3ef1ae9e90c098cc1d8a501588142b21"
+    },
+    {
+      "url": "https://59e83710.shimoju.pages.dev/__shsh_t035_missing__/",
+      "status": 404,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store"
+      },
+      "bytes": 4689,
+      "sha256": "e4892866356a46acd3ccc25a5285143a38eaa1a5079886cd0b627c540c9ca6f4"
+    },
+    {
+      "url": "https://59e83710.shimoju.pages.dev/robots.txt",
+      "status": 200,
+      "headers": {
+        "content-type": "text/plain; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex"
+      },
+      "bytes": 26,
+      "sha256": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1"
+    },
+    {
+      "url": "https://59e83710.shimoju.pages.dev/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css",
+      "status": 200,
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex"
+      },
+      "bytes": 24460,
+      "sha256": "c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863"
+    },
+    {
+      "url": "https://59e83710.shimoju.pages.dev/js/copy.3fdb33a914767047bb6de682a958c124f971c44972d26f8c4a266204999a72f5.js",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex"
+      },
+      "bytes": 1943,
+      "sha256": "3fdb33a914767047bb6de682a958c124f971c44972d26f8c4a266204999a72f5"
+    },
+    {
+      "url": "https://59e83710.shimoju.pages.dev/js/theme.fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2.js",
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex"
+      },
+      "bytes": 738,
+      "sha256": "fd6a258dffdec93881ba5d427e554cf1ce2c3966646663b35d6432ff0ae89be2"
+    }
+  ]
+}

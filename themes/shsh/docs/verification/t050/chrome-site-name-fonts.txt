@@ -1,0 +1,7 @@
+.site-name
+																93 row (selected) <a class=​"site-name" href=​"/​"> ​shimoju.diary​ </a> ​ フレックス モードを有効にする
+																	268 row CSS プロパティ名: font-size CSS プロパティ値: 32.827px
+																	340 row CSS プロパティ名: font-weight CSS プロパティ値: 300
+																	364 row CSS プロパティ名: line-height CSS プロパティ値: 49.2405px
+																437 text レンダリング フォント 姓 :  .SF NS PostScript 名 :  .SFNS-Regular_wdth_opsz20D3AF_GRAD_wght12C0000 フォントの提供元 :  ローカル ファイル （13 件のグリフ）
+The focused UI element is 93 row (selected) <a class=​"site-name" href=​"/​"> ​shimoju.diary​ </a> ​ フレックス モードを有効にする

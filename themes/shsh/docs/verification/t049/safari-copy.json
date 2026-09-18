@@ -1,0 +1,7 @@
+{
+  "method": "Native Safari visible Copy code -> pre-open local textarea -> native Cmd+V",
+  "expectedLength": 235,
+  "actualLength": 235,
+  "exactInputValueMatch": true,
+  "recordedAt": "2026-09-18T12:18:57.724Z"
+}

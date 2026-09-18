@@ -1,0 +1,37 @@
+{
+  "recorded_at": "2026-09-18T06:21:35.345574+00:00",
+  "project": "shimoju",
+  "production_branch": "master",
+  "before": {
+    "production_automatic_deployments": true,
+    "preview_automatic_deployments": "all non-production branches"
+  },
+  "proposed": {
+    "production_automatic_deployments": false,
+    "preview_automatic_deployments": "none"
+  },
+  "saved": false,
+  "automatic_approval_review": {
+    "action": "Save Cloudflare branch controls",
+    "result": "rejected",
+    "reason": "This saves a persistent Cloudflare change disabling automatic production and preview deployments, which can disrupt service and was not explicitly authorized by the user; token registration and R002 approval do not authorize this exact production-impacting setting change."
+  },
+  "user_question": "Cloudflareプロジェクトshimojuの本番・preview自動配信を停止し、GitHub検査成功後の配信へ切り替えてよいか。",
+  "github": {
+    "secret": "CLOUDFLARE_API_TOKEN",
+    "secret_registered_at": "2026-09-18T05:39:30Z",
+    "variables": [],
+    "remote_hugo_theme": "c3748dcbeebaac5bf4c07a512c7c58224c01b3df",
+    "remote_master": "fb3a9bb0b0a943afb5e666520f82be7414c2fd75"
+  },
+  "push_performed": false,
+  "new_deployment_performed": false,
+  "followup": {
+    "recorded_at": "2026-09-18T06:29:29.562152+00:00",
+    "user_request": "Pages側でGitHub CI成功を待てるか、Workers Static Assetsなら可能か調査し、切替の必然性を確認する。",
+    "unsaved_dialog": "cancelled",
+    "dashboard_after_cancel": "production branch master; automatic deployments enabled",
+    "settings_changed": false,
+    "route_decision": "pending"
+  }
+}

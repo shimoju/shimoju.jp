@@ -1,0 +1,128 @@
+$ pnpm format:check && pnpm lint && pnpm lint:css && pnpm check:progress && pnpm check:tooling && pnpm build:fixtures && pnpm check:theme && pnpm check:collections && pnpm test
+$ node scripts/format.mjs
+Checking formatting...
+
+All matched files use the correct format.
+Finished in 120ms on 48 files using 10 threads.
+Go templates: 21 checked, 0 differ.
+$ oxlint --type-aware --type-check --deny-warnings scripts tests themes playwright.config.ts
+$ stylelint "themes/shsh/assets/css/**/*.css" "tests/fixtures/**/*.css" --allow-empty-input
+$ node scripts/verify-progress.mjs
+Progress valid: 18 tasks; requirements Q1–Q34; discipline Q1–Q9; references and DAG checked. Human evidence still requires review.
+$ node --experimental-strip-types scripts/verify-tooling.ts
+Toolchain probes passed. Hugo/formatter output is ready for three-engine browser comparison.
+{ hugo_before_ms: 29, template_format_ms: 34, hugo_after_ms: 29 }
+$ node scripts/build-fixtures.ts
+Start building sites …
+hugo v0.166.0+extended+withdeploy darwin/arm64 BuildDate=2026-09-09T14:45:02Z VendorInfo=Homebrew
+
+
+                  │ JA
+──────────────────┼────
+ Pages            │ 14
+ Paginator pages  │  4
+ Non-page files   │  0
+ Static files     │  0
+ Processed images │  0
+ Aliases          │  2
+ Cleaned          │  0
+
+Total in 15 ms
+Start building sites …
+hugo v0.166.0+extended+withdeploy darwin/arm64 BuildDate=2026-09-09T14:45:02Z VendorInfo=Homebrew
+
+
+                  │ JA
+──────────────────┼────
+ Pages            │ 14
+ Paginator pages  │  4
+ Non-page files   │  0
+ Static files     │  0
+ Processed images │  0
+ Aliases          │  2
+ Cleaned          │  0
+
+Total in 15 ms
+Start building sites …
+hugo v0.166.0+extended+withdeploy darwin/arm64 BuildDate=2026-09-09T14:45:02Z VendorInfo=Homebrew
+
+
+                  │ JA
+──────────────────┼────
+ Pages            │ 14
+ Paginator pages  │  4
+ Non-page files   │  0
+ Static files     │  0
+ Processed images │  0
+ Aliases          │  2
+ Cleaned          │  0
+
+Total in 14 ms
+$ node scripts/verify-theme.ts
+Theme foundation: HTML, production/preview/development assets, invalid configuration and minimal alternative site passed.
+$ node scripts/verify-collections.ts
+Collections: empty/single/default10/custom2, UTC ties, mainSections, publication filters, summaries, dates and invalid inputs passed.
+$ playwright test
+[WebServer] (node:46794) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 30 tests using 5 workers
+
+(node:46797) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:46798) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:46796) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:46795) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:46799) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 [chromium] › tests/theme.spec.ts:4:1 › saved pref-theme is applied before styles load (223ms)
+  ✓   5 [chromium] › tests/collections.spec.ts:87:1 › pagination and whole-card links work without JavaScript (349ms)
+  ✓   4 [chromium] › tests/theme.spec.ts:25:1 › OS follows until a keyboard choice, persists and ignores mock query parameters (394ms)
+  ✓   6 [chromium] › tests/theme.spec.ts:53:1 › invalid and unavailable storage retain OS fallback and allow a page-local choice (175ms)
+  ✓   7 [chromium] › tests/theme.spec.ts:78:1 › invalid saved value uses OS preference (141ms)
+  ✓   8 [chromium] › tests/theme.spec.ts:85:1 › without JavaScript both OS palettes, navigation and subscription remain usable (267ms)
+  ✓   2 [chromium] › tests/collections.spec.ts:4:1 › home and section pagination retain newer-left/older-right and first-page introduction (781ms)
+(node:46835) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:46836) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  10 [chromium] › tests/tooling.spec.ts:5:1 › Hugo formatting preserves inline spaces, attributes, render hooks and compiled assets (654ms)
+(node:46844) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [chromium] › tests/theme.spec.ts:102:1 › shared shell keeps mock dimensions at desktop and mobile widths in both palettes (1.4s)
+(node:46851) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/collections.spec.ts:29:1 › list text, separators and pager preserve frozen mock styles in both widths and palettes (2.5s)
+(node:46870) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [firefox] › tests/collections.spec.ts:87:1 › pagination and whole-card links work without JavaScript (1.4s)
+  ✓  11 [firefox] › tests/collections.spec.ts:4:1 › home and section pagination retain newer-left/older-right and first-page introduction (2.2s)
+  ✓  16 [firefox] › tests/theme.spec.ts:53:1 › invalid and unavailable storage retain OS fallback and allow a page-local choice (417ms)
+  ✓  17 [firefox] › tests/theme.spec.ts:78:1 › invalid saved value uses OS preference (290ms)
+  ✓  14 [firefox] › tests/theme.spec.ts:4:1 › saved pref-theme is applied before styles load (1.4s)
+  ✓  18 [firefox] › tests/theme.spec.ts:85:1 › without JavaScript both OS palettes, navigation and subscription remain usable (532ms)
+(node:46913) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  15 [firefox] › tests/theme.spec.ts:25:1 › OS follows until a keyboard choice, persists and ignores mock query parameters (1.5s)
+(node:46927) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  20 [firefox] › tests/tooling.spec.ts:5:1 › Hugo formatting preserves inline spaces, attributes, render hooks and compiled assets (1.5s)
+  ✓  21 [webkit] › tests/collections.spec.ts:4:1 › home and section pagination retain newer-left/older-right and first-page introduction (865ms)
+  ✓  23 [webkit] › tests/theme.spec.ts:4:1 › saved pref-theme is applied before styles load (294ms)
+(node:46946) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  24 [webkit] › tests/theme.spec.ts:25:1 › OS follows until a keyboard choice, persists and ignores mock query parameters (371ms)
+  ✓  26 [webkit] › tests/theme.spec.ts:53:1 › invalid and unavailable storage retain OS fallback and allow a page-local choice (349ms)
+  ✓  25 [webkit] › tests/collections.spec.ts:87:1 › pagination and whole-card links work without JavaScript (584ms)
+  ✓  27 [webkit] › tests/theme.spec.ts:78:1 › invalid saved value uses OS preference (237ms)
+  ✓  28 [webkit] › tests/theme.spec.ts:85:1 › without JavaScript both OS palettes, navigation and subscription remain usable (364ms)
+  ✓  19 [firefox] › tests/theme.spec.ts:102:1 › shared shell keeps mock dimensions at desktop and mobile widths in both palettes (4.1s)
+  ✓  30 [webkit] › tests/tooling.spec.ts:5:1 › Hugo formatting preserves inline spaces, attributes, render hooks and compiled assets (1.0s)
+  ✓  29 [webkit] › tests/theme.spec.ts:102:1 › shared shell keeps mock dimensions at desktop and mobile widths in both palettes (2.4s)
+  ✓  12 [firefox] › tests/collections.spec.ts:29:1 › list text, separators and pager preserve frozen mock styles in both widths and palettes (7.2s)
+  ✓  22 [webkit] › tests/collections.spec.ts:29:1 › list text, separators and pager preserve frozen mock styles in both widths and palettes (4.1s)
+
+  30 passed (10.8s)

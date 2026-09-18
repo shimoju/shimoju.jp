@@ -1,0 +1,15 @@
+{
+  "recorded_at": "2026-09-18T11:11:57.429438+00:00",
+  "source": "ユーザーによるiPhone Safari実機再確認",
+  "commit": "268bbb0ef102f1379efbcfb62f53d2e643a7c79e",
+  "url": "https://6f52990f.shimoju.pages.dev/2026/09/01/development-environment-2026/",
+  "environment": "iPhone17/iOS27 Safari（端末・OSは先の申告、詳細版未取得）",
+  "requested_checks": [
+    "縦→横→縦で意図せず文字が大きくならない",
+    "Safariのページ文字拡大が使える",
+    "ピンチズームが使える"
+  ],
+  "reply": "回転時の問題は解消し、文字拡大・ピンチズームも使える",
+  "result": "passed",
+  "scope_note": "今回の指摘F025の再確認。未申告の実フォント・外部埋め込み・JS無効等へ一般化しない。"
+}

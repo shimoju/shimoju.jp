@@ -1,0 +1,1016 @@
+{
+  "baseline": "c266ebb0f6c198053ab6c7e7974a1916a5524f5f",
+  "unchangedSourceFiles": 74,
+  "changedInputs": [
+    {
+      "path": "content/posts/2016/08/01/tiritiri-curry/index.md",
+      "before": "<blockquote class=\"instagram-media\" data-instgrm-captioned data-instgrm-version=\"7\" style=\" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);\"><div style=\"padding:8px;\"> <div style=\" background:#F8F8F8; line-height:0; margin-top:40px; padding:50.0% 0; text-align:center; width:100%;\"> <div style=\" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;\"></div></div> <p style=\" margin:8px 0 0 0; padding:0 4px;\"> <a href=\"https://www.instagram.com/p/BEaM_1qskRu/\" style=\" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;\" target=\"_blank\">ついに初チリチリ うまかった〜 常松マサラことチキンマサラトマトトッピング</a></p> <p style=\" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;\">Hiroshi Shimojuさん(@shimoju_)がシェアした投稿 - <time style=\" font-family:Arial,sans-serif; font-size:14px; line-height:17px;\" datetime=\"2016-04-20T04:55:39+00:00\">2016  4月 19 9:55午後 PDT</time></p></div></blockquote>\n<script async defer src=\"//platform.instagram.com/en_US/embeds.js\"></script>",
+      "after": "{{< instagram BEaM_1qskRu >}}",
+      "beforeSha256": "d798f19d584c3c57afebe9b19404666532087324cc90631012cff3787ac4bd7d",
+      "afterSha256": "70f54eabf5d57fa5486de41017d3d75c63756f410dc586333bec5602328aafa8"
+    },
+    {
+      "path": "content/posts/2016/08/05/tiritiri/index.md",
+      "before": "<blockquote class=\"instagram-media\" data-instgrm-captioned data-instgrm-version=\"7\" style=\" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);\"><div style=\"padding:8px;\"> <div style=\" background:#F8F8F8; line-height:0; margin-top:40px; padding:50.0% 0; text-align:center; width:100%;\"> <div style=\" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;\"></div></div> <p style=\" margin:8px 0 0 0; padding:0 4px;\"> <a href=\"https://www.instagram.com/p/BIuwZ9qDkvY/\" style=\" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;\" target=\"_blank\">この前混んでて断念したのでチリチリ飢餓状態だった。やっぱりうまい。 ほうれん草トッピングすると彩りがいい感じ。ポークもいいけどやっぱりチキンかな〜</a></p> <p style=\" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;\">Hiroshi Shimojuさん(@shimoju_)がシェアした投稿 - <time style=\" font-family:Arial,sans-serif; font-size:14px; line-height:17px;\" datetime=\"2016-08-05T14:35:26+00:00\">2016  8月 5 7:35午前 PDT</time></p></div></blockquote>\n<script async defer src=\"//platform.instagram.com/en_US/embeds.js\"></script>",
+      "after": "{{< instagram BIuwZ9qDkvY >}}",
+      "beforeSha256": "d47161b688f70d44fea0b4963a4d0cb21d0a4cfe39720dd3c893efc5936cf886",
+      "afterSha256": "a3dc2aa52a33a974c739e82607e048f7265eceee3eccfa119e84d198a0cd95ed"
+    },
+    {
+      "path": "content/posts/2016/08/29/shin-godzilla-imax/index.md",
+      "before": "<blockquote class=\"instagram-media\" data-instgrm-captioned data-instgrm-version=\"7\" style=\" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);\"><div style=\"padding:8px;\"> <div style=\" background:#F8F8F8; line-height:0; margin-top:40px; padding:50.0% 0; text-align:center; width:100%;\"> <div style=\" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;\"></div></div> <p style=\" margin:8px 0 0 0; padding:0 4px;\"> <a href=\"https://www.instagram.com/p/BJsevddDihX/\" style=\" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;\" target=\"_blank\">3回目のシン・ゴジラはIMAXでした</a></p> <p style=\" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;\">Hiroshi Shimojuさん(@shimoju_)がシェアした投稿 - <time style=\" font-family:Arial,sans-serif; font-size:14px; line-height:17px;\" datetime=\"2016-08-29T13:54:00+00:00\">2016  8月 29 6:54午前 PDT</time></p></div></blockquote>\n<script async defer src=\"//platform.instagram.com/en_US/embeds.js\"></script>",
+      "after": "{{< instagram BJsevddDihX >}}",
+      "beforeSha256": "205c1e575c008d4b45cb14acec8169cf56953d11d20cecc7c1725e6d727d4e0f",
+      "afterSha256": "e26965749c5be715ba46e089011f9771fa1aae5f8c5d3d18a79f45268dcb696b"
+    },
+    {
+      "path": "content/posts/2017/10/30/classroom-learning-for-new-engineers/index.md",
+      "before": "<script async class=\"speakerdeck-embed\" data-id=\"22ab654b18c94eb9bb92314459d122f7\" data-ratio=\"1.77777777777778\" src=\"//speakerdeck.com/assets/embed.js\"></script>",
+      "after": "{{< speakerdeck id=\"22ab654b18c94eb9bb92314459d122f7\" ratio=\"1.77777777777778\" >}}",
+      "beforeSha256": "a404877556043cc279998407af0b7ed4e540c3aa782cf3057be0b6dffcadb4b9",
+      "afterSha256": "a0b06f7e7ea0332c5a443b29267b91aa50a497ee82b4dafb4261376c2cb4b122"
+    },
+    {
+      "path": "content/posts/2017/11/11/twelve-factor-app-on-heroku/index.md",
+      "before": "<script async class=\"speakerdeck-embed\" data-id=\"457f092496ab4856b7c3cef5bcd2babb\" data-ratio=\"1.77777777777778\" src=\"//speakerdeck.com/assets/embed.js\"></script>",
+      "after": "{{< speakerdeck id=\"457f092496ab4856b7c3cef5bcd2babb\" ratio=\"1.77777777777778\" >}}",
+      "beforeSha256": "f53d33cc08cbf995ade80ce87926d8f431b3aefb890ac6aa5ee2dad898031f45",
+      "afterSha256": "80e703f32a5d6bbb93c2ef0c1ec31b1f6a534c11f142b935faf4da0cb19aaed4"
+    },
+    {
+      "path": "content/posts/2026/09/01/development-environment-2026/index.md",
+      "before": "{{< video src=\"zsh-prompt-demo.mp4\" >}}",
+      "after": "{{< video src=\"zsh-prompt-demo.mp4\" width=\"1440\" height=\"1076\" title=\"Zsh prompt demo\" >}}",
+      "beforeSha256": "913dd009ba937843646a4840272a4a4fa4ff8eea7264f2240309aaebcddfc380",
+      "afterSha256": "bf099112f606f93031feead328b8e79e2c95fdef1e340c61430c4f9fb013ef2e"
+    }
+  ],
+  "addedIntroduction": "content/_index.md",
+  "pages": [
+    {
+      "path": "content/posts/2026/09/01/development-environment-2026/index.md",
+      "slug": "",
+      "title": "2026年、開発環境を一新した。Ghostty、herdr、Neovim、mise、そして自作Zshプロンプト",
+      "date": "2026-09-01T09:00:00+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2026-09-01T09:00:00+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2026/09/01/development-environment-2026/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2025/12/07/chezmoi-dotfiles-manager/index.md",
+      "slug": "",
+      "title": "chezmoiでdotfilesを簡潔に管理する",
+      "date": "2025-12-07T22:10:12+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2025-12-07T22:10:12+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2025/12/07/chezmoi-dotfiles-manager/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2025/11/16/building-my-first-gaming-pc-part2/index.md",
+      "slug": "",
+      "title": "はじめてのゲーミングPC自作記：組み立て編",
+      "date": "2025-11-16T18:00:00+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2025-11-16T18:00:00+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2025/11/16/building-my-first-gaming-pc-part2/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/about.md",
+      "slug": "",
+      "title": "About",
+      "date": "2025-11-16T00:00:00+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2025-11-16T00:00:00+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/about/",
+      "kind": "page",
+      "section": ""
+    },
+    {
+      "path": "content/posts/2025/06/05/building-my-first-gaming-pc/index.md",
+      "slug": "",
+      "title": "はじめてのゲーミングPC自作記：パーツ選定編",
+      "date": "2025-06-05T20:30:00+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2025-06-05T20:30:00+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2025/06/05/building-my-first-gaming-pc/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2024/12/15/suzuri-heroku-to-amazon-eks/index.md",
+      "slug": "",
+      "title": "SUZURIをHerokuからAmazon EKSに移設するためにやったこと",
+      "date": "2024-12-15T23:58:00+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2024-12-15T23:58:00+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2024/12/15/suzuri-heroku-to-amazon-eks/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2024/08/26/ruby-code-recipe/index.md",
+      "slug": "",
+      "title": "『Ruby コードレシピ集』の執筆で工夫したポイント",
+      "date": "2024-08-26T08:00:00+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2024-08-26T08:00:00+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2024/08/26/ruby-code-recipe/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2024/01/07/add-bluesky-icon-to-hugo-papermod/index.md",
+      "slug": "",
+      "title": "Hugo PaperModにBlueskyのアイコンを追加した",
+      "date": "2024-01-07T23:37:25+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2024-01-07T23:37:25+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2024/01/07/add-bluesky-icon-to-hugo-papermod/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2023/08/10/ruby-3-2-yjit-with-rails-6-1/index.md",
+      "slug": "",
+      "title": "Rails 6.1のままRuby 3.2にアップデートし、YJITの恩恵を受ける",
+      "date": "2023-08-10T18:02:00+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2023-08-10T18:02:00+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2023/08/10/ruby-3-2-yjit-with-rails-6-1/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2023/07/07/iijmio-type-a/index.md",
+      "slug": "",
+      "title": "IIJmio タイプA（au網）に変更した",
+      "date": "2023-07-07T22:51:24+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2023-07-07T22:51:24+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2023/07/07/iijmio-type-a/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2023/07/02/adjust-margin-bottom-in-nested-lists-for-hugo-papermod/index.md",
+      "slug": "",
+      "title": "Hugo PaperModでネストしたリストのマージンが不揃いなのを調整する",
+      "date": "2023-07-02T14:21:50+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2023-07-02T14:21:50+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2023/07/02/adjust-margin-bottom-in-nested-lists-for-hugo-papermod/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2023/06/26/bluesky-handle-custom-domain/index.md",
+      "slug": "",
+      "title": "Blueskyのハンドルネームにカスタムドメインを設定する",
+      "date": "2023-06-26T22:30:43+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2023-06-26T22:30:43+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2023/06/26/bluesky-handle-custom-domain/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2023/06/22/hugo-and-cloudflare-pages/index.md",
+      "slug": "",
+      "title": "HugoとCloudflare Pagesでブログを作り直した",
+      "date": "2023-06-22T22:38:09+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2023-06-22T22:38:09+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2023/06/22/hugo-and-cloudflare-pages/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2020/10/24/kaigi-on-rails/index.md",
+      "slug": "",
+      "title": "Kaigi on Railsでリモートワークについて発表しました",
+      "date": "2020-10-24T17:47:48+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2020-10-24T17:47:48+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2020/10/24/kaigi-on-rails/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2019/12/07/games-2019/index.md",
+      "slug": "",
+      "title": "2019年にやったゲーム：ポケモン、モンハン、そしてスマブラ",
+      "date": "2019-12-07T23:44:14+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2019-12-07T23:44:14+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2019/12/07/games-2019/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2019/12/06/suzuri-2019/index.md",
+      "slug": "",
+      "title": "2019年、SUZURIの怪事件",
+      "date": "2019-12-06T02:01:08+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2019-12-06T02:01:08+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2019/12/06/suzuri-2019/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2018/09/17/zip-code-jp-on-heroku/index.md",
+      "slug": "",
+      "title": "Herokuでzip_code_jp gemの郵便番号データを定期更新したい",
+      "date": "2018-09-17T22:50:34+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2018-09-17T22:50:34+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2018/09/17/zip-code-jp-on-heroku/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2018/08/05/heroku-redis-connection-limit/index.md",
+      "slug": "",
+      "title": "Sidekiq + Heroku RedisでERROR: ERR max number of clients reachedと言われたら",
+      "date": "2018-08-05T23:41:33+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2018-08-05T23:41:33+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2018/08/05/heroku-redis-connection-limit/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2018/07/29/heroku-release-phase/index.md",
+      "slug": "",
+      "title": "HerokuのRelease PhaseでDBマイグレーション忘れを防ぐ",
+      "date": "2018-07-29T21:46:04+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2018-07-29T21:46:04+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2018/07/29/heroku-release-phase/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2018/07/22/wercker-ci-rails/index.md",
+      "slug": "",
+      "title": "WerckerでRailsアプリをCIしてSlack通知する",
+      "date": "2018-07-22T22:07:55+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2018-07-22T22:07:55+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2018/07/22/wercker-ci-rails/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2018/07/14/slow-better-errors/index.md",
+      "slug": "",
+      "title": "better_errorsがやたら遅いときは最新版にアップデートするとよい",
+      "date": "2018-07-14T19:18:49+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2018-07-14T19:18:49+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2018/07/14/slow-better-errors/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2017/12/31/scrapbox-nippo/index.md",
+      "slug": "",
+      "title": "Scrapboxでリアルタイム共同日報をやってみた",
+      "date": "2017-12-31T08:00:00+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2017-12-31T08:00:00+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2017/12/31/scrapbox-nippo/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2017/11/12/imagemagick/index.md",
+      "slug": "",
+      "title": "ImageMagickで画像処理に入門する",
+      "date": "2017-11-12T13:56:10+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2017-11-12T13:56:10+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2017/11/12/imagemagick/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2017/11/11/twelve-factor-app-on-heroku/index.md",
+      "slug": "",
+      "title": "Herokuはスケーラブルなアプリ養成ギプス",
+      "date": "2017-11-11T22:39:05+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2017-11-11T22:39:05+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2017/11/11/twelve-factor-app-on-heroku/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2017/10/30/classroom-learning-for-new-engineers/index.md",
+      "slug": "",
+      "title": "新卒エンジニア研修の座学でImageMagickと画像加工の話をした",
+      "date": "2017-10-30T00:41:38+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2017-10-30T00:41:38+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2017/10/30/classroom-learning-for-new-engineers/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2017/10/09/busybox-crond/index.md",
+      "slug": "",
+      "title": "DockerでcronしたいときはBusyBox crondが便利",
+      "date": "2017-10-09T20:45:52+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2017-10-09T20:45:52+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2017/10/09/busybox-crond/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2017/09/26/hello-hexo-netlify/index.md",
+      "slug": "",
+      "title": "ブログをHexoで作り直してNetlifyにデプロイした",
+      "date": "2017-09-26T23:59:59+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2017-09-26T23:59:59+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2017/09/26/hello-hexo-netlify/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/12/04/step-by-step-code-linting/index.md",
+      "slug": "",
+      "title": "コーディング規約チェックを日常に〜無理なくチーム全員で取り組める仕組みを作ろう",
+      "date": "2016-12-04T23:34:56+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-12-04T23:34:56+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/12/04/step-by-step-code-linting/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/10/10/anime-2016autumn/index.md",
+      "slug": "",
+      "title": "2016年秋アニメ：1話の感想をざっと",
+      "date": "2016-10-10T17:39:03+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-10-10T17:39:03+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/10/10/anime-2016autumn/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/09/21/osan-week/index.md",
+      "slug": "",
+      "title": "研修で1週間でWebサービスをつくった話",
+      "date": "2016-09-21T19:00:32+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-09-21T19:00:32+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/09/21/osan-week/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/31/hiphop-music-video/index.md",
+      "slug": "",
+      "title": "ヒップホップユニットのミュージックビデオに出演した",
+      "date": "2016-08-31T23:13:39+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-31T23:13:39+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/31/hiphop-music-video/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/31/pepabo-isucon/index.md",
+      "slug": "",
+      "title": "ペパボ社内ISUCONで撃沈しました",
+      "date": "2016-08-31T01:04:51+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-31T01:04:51+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/31/pepabo-isucon/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/29/shin-godzilla-imax/index.md",
+      "slug": "",
+      "title": "3回目のシン・ゴジラはIMAXで",
+      "date": "2016-08-29T23:22:56+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-29T23:22:56+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/29/shin-godzilla-imax/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/25/7th/index.md",
+      "slug": "",
+      "title": "内定者が来た",
+      "date": "2016-08-25T23:59:22+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-25T23:59:22+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/25/7th/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/24/infra-ganbaru/index.md",
+      "slug": "",
+      "title": "Webオペレーション(インフラ)研修が佳境に入りました",
+      "date": "2016-08-24T23:59:56+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-24T23:59:56+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/24/infra-ganbaru/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/23/re-diary/index.md",
+      "slug": "",
+      "title": "日記復帰〜シン・ゴジラ〜BBQ〜自宅勤務",
+      "date": "2016-08-23T23:36:40+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-23T23:36:40+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/23/re-diary/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/18/this-is-shakai/index.md",
+      "slug": "",
+      "title": "無事に社会復帰に成功、しかし",
+      "date": "2016-08-18T23:59:55+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-18T23:59:55+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/18/this-is-shakai/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/17/shakai-fukki/index.md",
+      "slug": "",
+      "title": "社会復帰するぞ",
+      "date": "2016-08-17T22:42:23+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-17T22:42:23+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/17/shakai-fukki/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/16/table-tennis/index.md",
+      "slug": "",
+      "title": "卓球が緊張感ありすぎて胃が痛い",
+      "date": "2016-08-16T23:59:30+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-16T23:59:30+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/16/table-tennis/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/15/anime-soundtrack/index.md",
+      "slug": "",
+      "title": "テレビ番組のBGMにアニメ劇伴はどれくらい使われているのだろうか",
+      "date": "2016-08-15T23:58:40+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-15T23:58:40+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/15/anime-soundtrack/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/14/hikikomori/index.md",
+      "slug": "",
+      "title": "BGMには困らない",
+      "date": "2016-08-14T23:06:30+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-14T23:06:30+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/14/hikikomori/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/13/pasmo-autocharge/index.md",
+      "slug": "",
+      "title": "PASMOをオートチャージにした",
+      "date": "2016-08-13T23:44:02+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-13T23:44:02+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/13/pasmo-autocharge/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/12/driver-license/index.md",
+      "slug": "",
+      "title": "運転免許証の住所を変更した",
+      "date": "2016-08-12T23:22:51+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-12T23:22:51+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/12/driver-license/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/11/yamanohi/index.md",
+      "slug": "",
+      "title": "山の日",
+      "date": "2016-08-11T23:55:45+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-11T23:55:45+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/11/yamanohi/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/10/takunomi/index.md",
+      "slug": "",
+      "title": "友達が家に来た",
+      "date": "2016-08-10T23:45:27+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-10T23:45:27+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/10/takunomi/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/09/web-ops-training/index.md",
+      "slug": "",
+      "title": "Webオペレーション研修、そして夏季休暇",
+      "date": "2016-08-09T23:45:52+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-09T23:45:52+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/09/web-ops-training/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/08/pokemon-go/index.md",
+      "slug": "",
+      "title": "ポケモンGO レベル14",
+      "date": "2016-08-08T23:58:23+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-08T23:58:23+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/08/pokemon-go/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/07/lostorage-incited-wixoss/index.md",
+      "slug": "",
+      "title": "アニメ『Lostorage incited WIXOSS』発表会",
+      "date": "2016-08-07T22:07:56+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-07T22:07:56+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/07/lostorage-incited-wixoss/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/06/rio-opening-ceremony/index.md",
+      "slug": "",
+      "title": "リオデジャネイロオリンピック 開会式",
+      "date": "2016-08-06T23:55:09+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-06T23:55:09+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/06/rio-opening-ceremony/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/05/tiritiri/index.md",
+      "slug": "",
+      "title": "チリチリでポークマサラ+ほうれん草トッピングを食べた",
+      "date": "2016-08-05T23:59:47+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-05T23:59:47+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/05/tiritiri/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/04/anime/index.md",
+      "slug": "",
+      "title": "アニメを見始めて3年強が過ぎました",
+      "date": "2016-08-04T23:59:37+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-04T23:59:37+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/04/anime/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/03/san/index.md",
+      "slug": "",
+      "title": "自分にさん付け",
+      "date": "2016-08-03T23:58:35+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-03T23:58:35+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/03/san/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/02/morning/index.md",
+      "slug": "",
+      "title": "朝に弱い",
+      "date": "2016-08-02T23:43:20+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-02T23:43:20+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/02/morning/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/08/01/tiritiri-curry/index.md",
+      "slug": "",
+      "title": "「チリチリ」という、渋谷のカレー屋",
+      "date": "2016-08-01T21:59:57+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-08-01T21:59:57+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/08/01/tiritiri-curry/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/07/31/ice-cream/index.md",
+      "slug": "",
+      "title": "棒アイス、あれば食べちゃうからよくない",
+      "date": "2016-07-31T21:38:00+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-07-31T21:38:00+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/07/31/ice-cream/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/07/30/tochijisen/index.md",
+      "slug": "",
+      "title": "東京都知事選挙の投票資格がない",
+      "date": "2016-07-30T22:18:36+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-07-30T22:18:36+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/07/30/tochijisen/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/07/29/tv-life/index.md",
+      "slug": "",
+      "title": "テレビのある生活〜ついでにChromecastとFire TV",
+      "date": "2016-07-29T22:45:49+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-07-29T22:45:49+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/07/29/tv-life/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/07/29/expression/index.md",
+      "slug": "",
+      "title": "自分の考えを表現することには恐怖が伴うし、そもそも面倒くさい",
+      "date": "2016-07-29T00:36:01+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-07-29T00:36:01+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/07/29/expression/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/07/28/keep-a-diary/index.md",
+      "slug": "",
+      "title": "日記を書くことにする",
+      "date": "2016-07-28T23:56:51+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-07-28T23:56:51+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/07/28/keep-a-diary/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/posts/2016/05/02/hello-world/index.md",
+      "slug": "",
+      "title": "Hello world!",
+      "date": "2016-05-02T10:38:31+09:00",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "2016-05-02T10:38:31+09:00",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/2016/05/02/hello-world/",
+      "kind": "page",
+      "section": "posts"
+    },
+    {
+      "path": "content/archives.md",
+      "slug": "",
+      "title": "Archives",
+      "date": "0001-01-01T00:00:00Z",
+      "expiryDate": "0001-01-01T00:00:00Z",
+      "publishDate": "0001-01-01T00:00:00Z",
+      "draft": "false",
+      "permalink": "https://shimoju.jp/archives/",
+      "kind": "page",
+      "section": ""
+    }
+  ],
+  "markdownFiles": 62,
+  "embeds": [
+    {
+      "path": "content/posts/2016/07/29/tv-life/index.md",
+      "service": "x",
+      "input": "user=\"docomo_cs\" id=\"740741467329597441\""
+    },
+    {
+      "path": "content/posts/2016/07/29/tv-life/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"749599441225519104\""
+    },
+    {
+      "path": "content/posts/2016/07/30/tochijisen/index.md",
+      "service": "x",
+      "input": "user=\"tocho_senkyo\" id=\"759040813254844423\""
+    },
+    {
+      "path": "content/posts/2016/07/31/ice-cream/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"759635807082651648\""
+    },
+    {
+      "path": "content/posts/2016/08/01/tiritiri-curry/index.md",
+      "service": "instagram",
+      "input": "BEaM_1qskRu"
+    },
+    {
+      "path": "content/posts/2016/08/05/tiritiri/index.md",
+      "service": "instagram",
+      "input": "BIuwZ9qDkvY"
+    },
+    {
+      "path": "content/posts/2016/08/07/lostorage-incited-wixoss/index.md",
+      "service": "x",
+      "input": "user=\"wixoss_anime\" id=\"762153069207363585\""
+    },
+    {
+      "path": "content/posts/2016/08/07/lostorage-incited-wixoss/index.md",
+      "service": "youtube",
+      "input": "id=\"WK0KjP10b5A\" title=\"TVアニメ『Lostorage incited WIXOSS』ティザーPV\""
+    },
+    {
+      "path": "content/posts/2016/08/07/lostorage-incited-wixoss/index.md",
+      "service": "x",
+      "input": "user=\"tak_tea3\" id=\"762171577521741826\""
+    },
+    {
+      "path": "content/posts/2016/08/07/lostorage-incited-wixoss/index.md",
+      "service": "youtube",
+      "input": "id=\"_3nMqPA6nmc\" title=\"オリジナルTVアニメ『selector infected WIXOSS』 プロモーションムービー\""
+    },
+    {
+      "path": "content/posts/2016/08/07/lostorage-incited-wixoss/index.md",
+      "service": "youtube",
+      "input": "id=\"xpy8joNsPcg\" title=\"オリジナルTVアニメ『selector spread WIXOSS』コミックマーケット86公開PV\""
+    },
+    {
+      "path": "content/posts/2016/08/07/lostorage-incited-wixoss/index.md",
+      "service": "youtube",
+      "input": "id=\"mWKqrgiyQOo\" title=\"『劇場版selector destructed WIXOSS』本予告PV\""
+    },
+    {
+      "path": "content/posts/2016/08/13/pasmo-autocharge/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"742144683384655872\""
+    },
+    {
+      "path": "content/posts/2016/08/15/anime-soundtrack/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"765141839364157440\""
+    },
+    {
+      "path": "content/posts/2016/08/15/anime-soundtrack/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"765142300804517889\""
+    },
+    {
+      "path": "content/posts/2016/08/15/anime-soundtrack/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"713704194201374720\""
+    },
+    {
+      "path": "content/posts/2016/08/16/table-tennis/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"765011237885194240\""
+    },
+    {
+      "path": "content/posts/2016/08/18/this-is-shakai/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"766062842768347137\""
+    },
+    {
+      "path": "content/posts/2016/08/18/this-is-shakai/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"766233852771610624\""
+    },
+    {
+      "path": "content/posts/2016/08/23/re-diary/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"766620504144748544\""
+    },
+    {
+      "path": "content/posts/2016/08/23/re-diary/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"766655612620935168\""
+    },
+    {
+      "path": "content/posts/2016/08/23/re-diary/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"766879860836925440\""
+    },
+    {
+      "path": "content/posts/2016/08/23/re-diary/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"767115093934911488\""
+    },
+    {
+      "path": "content/posts/2016/08/23/re-diary/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"767164717827751938\""
+    },
+    {
+      "path": "content/posts/2016/08/23/re-diary/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"767520900165931008\""
+    },
+    {
+      "path": "content/posts/2016/08/25/7th/index.md",
+      "service": "x",
+      "input": "user=\"kentarow\" id=\"768705550590676992\""
+    },
+    {
+      "path": "content/posts/2016/08/25/7th/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"768676243470331904\""
+    },
+    {
+      "path": "content/posts/2016/08/25/7th/index.md",
+      "service": "x",
+      "input": "user=\"pb_recruit\" id=\"768745317684551680\""
+    },
+    {
+      "path": "content/posts/2016/08/29/shin-godzilla-imax/index.md",
+      "service": "instagram",
+      "input": "BJsevddDihX"
+    },
+    {
+      "path": "content/posts/2016/08/29/shin-godzilla-imax/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"769754089684996098\""
+    },
+    {
+      "path": "content/posts/2016/08/31/hiphop-music-video/index.md",
+      "service": "youtube",
+      "input": "id=\"BdQVd1uybCg\" title=\"GMOペパボ『採用目的』 / PEPABO HEADZ with 上鈴木兄弟(P.O.P)\""
+    },
+    {
+      "path": "content/posts/2016/10/10/anime-2016autumn/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"782398466416713728\""
+    },
+    {
+      "path": "content/posts/2016/10/10/anime-2016autumn/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"785374703527440384\""
+    },
+    {
+      "path": "content/posts/2016/10/10/anime-2016autumn/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"785375242776485888\""
+    },
+    {
+      "path": "content/posts/2016/10/10/anime-2016autumn/index.md",
+      "service": "x",
+      "input": "user=\"MJP_anime\" id=\"781494211040256001\""
+    },
+    {
+      "path": "content/posts/2016/10/10/anime-2016autumn/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"783674184169697280\""
+    },
+    {
+      "path": "content/posts/2017/10/30/classroom-learning-for-new-engineers/index.md",
+      "service": "speakerdeck",
+      "input": "id=\"22ab654b18c94eb9bb92314459d122f7\" ratio=\"1.77777777777778\""
+    },
+    {
+      "path": "content/posts/2017/11/11/twelve-factor-app-on-heroku/index.md",
+      "service": "speakerdeck",
+      "input": "id=\"457f092496ab4856b7c3cef5bcd2babb\" ratio=\"1.77777777777778\""
+    },
+    {
+      "path": "content/posts/2019/12/07/games-2019/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"1197099339375501312\""
+    },
+    {
+      "path": "content/posts/2019/12/07/games-2019/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"1197099615528443904\""
+    },
+    {
+      "path": "content/posts/2019/12/07/games-2019/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"1172469316375257089\""
+    },
+    {
+      "path": "content/posts/2019/12/07/games-2019/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"1170360677996695553\""
+    },
+    {
+      "path": "content/posts/2019/12/07/games-2019/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"1170361260078034945\""
+    },
+    {
+      "path": "content/posts/2023/08/10/ruby-3-2-yjit-with-rails-6-1/index.md",
+      "service": "x",
+      "input": "user=\"shimoju_\" id=\"1681662811389190147\""
+    },
+    {
+      "path": "content/posts/2024/08/26/ruby-code-recipe/index.md",
+      "service": "x",
+      "input": "user=\"gihyo_hansoku\" id=\"1820654494742708370\""
+    },
+    {
+      "path": "content/posts/2026/09/01/development-environment-2026/index.md",
+      "service": "video",
+      "input": "src=\"zsh-prompt-demo.mp4\" width=\"1440\" height=\"1076\" title=\"Zsh prompt demo\""
+    }
+  ]
+}

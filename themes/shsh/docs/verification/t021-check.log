@@ -1,0 +1,273 @@
+$ pnpm format:check && pnpm lint && pnpm lint:css && pnpm check:progress && pnpm check:tooling && pnpm build:fixtures && pnpm check:theme && pnpm check:collections && pnpm check:prose && pnpm check:media && pnpm check:sharing && pnpm check:metadata && pnpm build:review && pnpm test
+$ node scripts/format.mjs
+Checking formatting...
+
+All matched files use the correct format.
+Finished in 217ms on 80 files using 10 threads.
+Go templates: 48 checked, 0 differ.
+$ oxlint --type-aware --type-check --deny-warnings scripts tests assets playwright.config.ts
+$ stylelint "assets/css/**/*.css" "tests/fixtures/**/*.css" --allow-empty-input
+$ node scripts/verify-progress.mjs
+Progress valid: 21 tasks; requirements Q1–Q34; discipline Q1–Q9; references and DAG checked. Human evidence still requires review.
+$ node --experimental-strip-types scripts/verify-tooling.ts
+Toolchain probes passed. Hugo/formatter output is ready for three-engine browser comparison.
+{ hugo_before_ms: 30, template_format_ms: 34, hugo_after_ms: 30 }
+$ node scripts/build-fixtures.ts
+Start building sites …
+hugo v0.166.0+extended+withdeploy darwin/arm64 BuildDate=2026-09-09T14:45:02Z VendorInfo=Homebrew
+
+
+                  │ JA
+──────────────────┼────
+ Pages            │ 15
+ Paginator pages  │  4
+ Non-page files   │  0
+ Static files     │  0
+ Processed images │  0
+ Aliases          │  2
+ Cleaned          │  0
+
+Total in 29 ms
+Start building sites …
+hugo v0.166.0+extended+withdeploy darwin/arm64 BuildDate=2026-09-09T14:45:02Z VendorInfo=Homebrew
+
+
+                  │ JA
+──────────────────┼────
+ Pages            │ 15
+ Paginator pages  │  4
+ Non-page files   │  0
+ Static files     │  0
+ Processed images │  0
+ Aliases          │  2
+ Cleaned          │  0
+
+Total in 28 ms
+Start building sites …
+hugo v0.166.0+extended+withdeploy darwin/arm64 BuildDate=2026-09-09T14:45:02Z VendorInfo=Homebrew
+
+
+                  │ JA
+──────────────────┼────
+ Pages            │ 15
+ Paginator pages  │  4
+ Non-page files   │  0
+ Static files     │  0
+ Processed images │  0
+ Aliases          │  2
+ Cleaned          │  0
+
+Total in 26 ms
+$ node scripts/verify-theme.ts
+Theme foundation: HTML, production/preview/development assets, invalid configuration and minimal alternative site passed.
+$ node scripts/verify-collections.ts
+Collections: empty/single/default10/custom2, UTC ties, mainSections, publication filters, summaries, dates and invalid inputs passed.
+$ node scripts/verify-prose.ts
+Prose: date fallback/day boundaries/visibility/types, legal footnote IDs, full real article HTML and native heading IDs passed.
+$ node scripts/verify-media.ts
+Start building sites …
+hugo v0.166.0+extended+withdeploy darwin/arm64 BuildDate=2026-09-09T14:45:02Z VendorInfo=Homebrew
+
+
+                  │ JA
+──────────────────┼────
+ Pages            │ 14
+ Paginator pages  │  2
+ Non-page files   │ 13
+ Static files     │  4
+ Processed images │ 46
+ Aliases          │  2
+ Cleaned          │  0
+
+Total in 2357 ms
+Start building sites …
+hugo v0.166.0+extended+withdeploy darwin/arm64 BuildDate=2026-09-09T14:45:02Z VendorInfo=Homebrew
+
+
+                  │ JA
+──────────────────┼────
+ Pages            │ 14
+ Paginator pages  │  2
+ Non-page files   │ 13
+ Static files     │  4
+ Processed images │ 46
+ Aliases          │  2
+ Cleaned          │  0
+
+Total in 33 ms
+Media: production/preview HTML, unchanged original media, unavailable external URL and invalid inputs passed.
+$ node scripts/verify-sharing.ts
+Sharing: defaults, ordered services, fixed pages/posts, escaped title/URLs, author setting, invalid inputs and preview isolation passed.
+$ node scripts/verify-metadata.ts
+Metadata fixtures: all HTML valid; asset/static/external defaults, bundle isolation, input failures, preview and empty feed built. XML/head assertions run in metadata.spec.ts.
+$ node scripts/build-review-fixture.ts
+Start building sites …
+hugo v0.166.0+extended+withdeploy darwin/arm64 BuildDate=2026-09-09T14:45:02Z VendorInfo=Homebrew
+
+
+                  │ JA
+──────────────────┼────
+ Pages            │ 43
+ Paginator pages  │  5
+ Non-page files   │  6
+ Static files     │  0
+ Processed images │ 54
+ Aliases          │ 15
+ Cleaned          │  0
+
+Total in 4366 ms
+Start building sites …
+hugo v0.166.0+extended+withdeploy darwin/arm64 BuildDate=2026-09-09T14:45:02Z VendorInfo=Homebrew
+
+
+                  │ JA
+──────────────────┼────
+ Pages            │ 43
+ Paginator pages  │  5
+ Non-page files   │  6
+ Static files     │  0
+ Processed images │ 54
+ Aliases          │ 15
+ Cleaned          │  0
+
+Total in 42 ms
+$ playwright test
+[WebServer] (node:90330) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 102 tests using 5 workers
+
+(node:90332) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:90334) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:90335) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:90333) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:90331) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓    5 [chromium] › tests/collections.spec.ts:87:1 › pagination and whole-card links work without JavaScript (431ms)
+  ✓    2 [chromium] › tests/media.spec.ts:10:1 › responsive candidates, originals, dimensions, loading and figure semantics (648ms)
+  ✓    3 [chromium] › tests/collections.spec.ts:4:1 › home and section pagination retain newer-left/older-right and first-page introduction (759ms)
+  ✓    8 [chromium] › tests/metadata.spec.ts:52:1 › RSS uses all ordered articles, plain common summaries and stable document GUIDs (107ms)
+  ✓    9 [chromium] › tests/metadata.spec.ts:79:1 › taxonomy feeds contain term pages, term feeds filter posts, empty feeds have no fake dates (89ms)
+  ✓    7 [chromium] › tests/media.spec.ts:180:1 › DPR chooses fitting candidates and JavaScript-free media remain usable (447ms)
+  ✓   10 [chromium] › tests/metadata.spec.ts:109:1 › canonical and discovery URLs follow the active pager and build baseURL (146ms)
+  ✓   11 [chromium] › tests/metadata.spec.ts:135:1 › description, dates and JSON-LD preserve page roles and safe text (84ms)
+  ✓   12 [chromium] › tests/metadata.spec.ts:170:1 › SNS images use cover, global assets/static/external defaults or none, never body images (106ms)
+  ✓    1 [chromium] › tests/media.spec.ts:75:1 › WebP preserves PNG pixels and transparency at each generated width (1.3s)
+  ✓   13 [chromium] › tests/metadata.spec.ts:193:1 › all XML parses, sitemap and robots follow production and preview (151ms)
+  ✓   15 [chromium] › tests/prose.spec.ts:46:1 › failed copy announces manual fallback, permits retry, and resets success after three seconds (343ms)
+  ✓   16 [chromium] › tests/prose.spec.ts:73:1 › keyboard reveals copy and Escape returns focus to selectable code (354ms)
+  ✓   14 [chromium] › tests/prose.spec.ts:18:1 › copy preserves code with Japanese, inline/table numbers, unknown language and no label (662ms)
+  ✓   17 [chromium] › tests/prose.spec.ts:94:1 › touch reveals copy, outside tap and horizontal scroll dismiss it (426ms)
+  ✓    4 [chromium] › tests/collections.spec.ts:29:1 › list text, separators and pager preserve frozen mock styles in both widths and palettes (3.3s)
+  ✓    6 [chromium] › tests/media.spec.ts:138:1 › media geometry matches mock, small images stay small, both colors remain accessible (3.1s)
+  ✓   19 [chromium] › tests/prose.spec.ts:204:1 › full real article preserves mock prose layout in both palettes and widths (1.8s)
+  ✓   20 [chromium] › tests/review.spec.ts:69:3 › Representative home comparison, both widths/colors and text enlargement (2.9s)
+  ✓   18 [chromium] › tests/prose.spec.ts:115:1 › prose matches mock type and spacing; footnotes, headings, dates and JS-free reading work (3.7s)
+  ✓   25 [chromium] › tests/sharing.spec.ts:59:1 › failed star download preserves reading and share links and announces failure (418ms)
+  ✓   24 [chromium] › tests/sharing.spec.ts:14:1 › shared document URLs, encoded titles, service order and keyboard navigation (959ms)
+  ✓   21 [chromium] › tests/review.spec.ts:69:3 › Representative posts comparison, both widths/colors and text enlargement (2.8s)
+  ✓   26 [chromium] › tests/sharing.spec.ts:72:1 › preview cannot share or load stars; JS-free production retains ordinary links (257ms)
+  ✓   28 [chromium] › tests/theme.spec.ts:4:1 › saved pref-theme is applied before styles load (136ms)
+  ✓   29 [chromium] › tests/theme.spec.ts:25:1 › OS follows until a keyboard choice, persists and ignores mock query parameters (289ms)
+  ✓   30 [chromium] › tests/theme.spec.ts:53:1 › invalid and unavailable storage retain OS fallback and allow a page-local choice (225ms)
+  ✓   31 [chromium] › tests/theme.spec.ts:78:1 › invalid saved value uses OS preference (184ms)
+  ✓   27 [chromium] › tests/sharing.spec.ts:103:1 › sharing retains mock geometry and icon styling at both widths and palettes (731ms)
+  ✓   32 [chromium] › tests/theme.spec.ts:85:1 › without JavaScript both OS palettes, navigation and subscription remain usable (300ms)
+(node:90502) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   34 [chromium] › tests/tooling.spec.ts:5:1 › Hugo formatting preserves inline spaces, attributes, render hooks and compiled assets (680ms)
+(node:90509) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   33 [chromium] › tests/theme.spec.ts:102:1 › shared shell keeps mock dimensions at desktop and mobile widths in both palettes (1.5s)
+(node:90523) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   23 [chromium] › tests/review.spec.ts:69:3 › Representative specimen comparison, both widths/colors and text enlargement (6.8s)
+  ✓   35 [firefox] › tests/collections.spec.ts:4:1 › home and section pagination retain newer-left/older-right and first-page introduction (2.4s)
+(node:90548) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   37 [firefox] › tests/collections.spec.ts:87:1 › pagination and whole-card links work without JavaScript (1.5s)
+  ✓   38 [firefox] › tests/media.spec.ts:75:1 › WebP preserves PNG pixels and transparency at each generated width (1.5s)
+  ✓   22 [chromium] › tests/review.spec.ts:69:3 › Representative article comparison, both widths/colors and text enlargement (9.5s)
+  ✓   41 [firefox] › tests/media.spec.ts:180:1 › DPR chooses fitting candidates and JavaScript-free media remain usable (1.1s)
+(node:90576) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   39 [firefox] › tests/media.spec.ts:10:1 › responsive candidates, originals, dimensions, loading and figure semantics (1.9s)
+  ✓   42 [firefox] › tests/metadata.spec.ts:79:1 › taxonomy feeds contain term pages, term feeds filter posts, empty feeds have no fake dates (201ms)
+  ✓   45 [firefox] › tests/metadata.spec.ts:135:1 › description, dates and JSON-LD preserve page roles and safe text (225ms)
+  ✓   43 [firefox] › tests/metadata.spec.ts:109:1 › canonical and discovery URLs follow the active pager and build baseURL (311ms)
+  ✓   46 [firefox] › tests/metadata.spec.ts:170:1 › SNS images use cover, global assets/static/external defaults or none, never body images (264ms)
+  ✓   47 [firefox] › tests/metadata.spec.ts:193:1 › all XML parses, sitemap and robots follow production and preview (304ms)
+  ✓   49 [firefox] › tests/prose.spec.ts:46:1 › failed copy announces manual fallback, permits retry, and resets success after three seconds (670ms)
+  ✓   44 [firefox] › tests/metadata.spec.ts:52:1 › RSS uses all ordered articles, plain common summaries and stable document GUIDs (1.1s)
+  ✓   48 [firefox] › tests/prose.spec.ts:18:1 › copy preserves code with Japanese, inline/table numbers, unknown language and no label (1.3s)
+  ✓   50 [firefox] › tests/prose.spec.ts:73:1 › keyboard reveals copy and Escape returns focus to selectable code (1.1s)
+  ✓   40 [firefox] › tests/media.spec.ts:138:1 › media geometry matches mock, small images stay small, both colors remain accessible (4.8s)
+  ✓   36 [firefox] › tests/collections.spec.ts:29:1 › list text, separators and pager preserve frozen mock styles in both widths and palettes (7.3s)
+  ✓   51 [firefox] › tests/prose.spec.ts:94:1 › touch reveals copy, outside tap and horizontal scroll dismiss it (1.1s)
+  ✓   53 [firefox] › tests/prose.spec.ts:204:1 › full real article preserves mock prose layout in both palettes and widths (1.7s)
+  ✓   54 [firefox] › tests/review.spec.ts:69:3 › Representative home comparison, both widths/colors and text enlargement (4.7s)
+  ✓   55 [firefox] › tests/review.spec.ts:69:3 › Representative posts comparison, both widths/colors and text enlargement (4.9s)
+  ✓   59 [firefox] › tests/sharing.spec.ts:59:1 › failed star download preserves reading and share links and announces failure (736ms)
+  ✓   58 [firefox] › tests/sharing.spec.ts:14:1 › shared document URLs, encoded titles, service order and keyboard navigation (1.6s)
+  ✓   60 [firefox] › tests/sharing.spec.ts:72:1 › preview cannot share or load stars; JS-free production retains ordinary links (564ms)
+  ✓   62 [firefox] › tests/theme.spec.ts:4:1 › saved pref-theme is applied before styles load (302ms)
+  ✓   63 [firefox] › tests/theme.spec.ts:25:1 › OS follows until a keyboard choice, persists and ignores mock query parameters (536ms)
+  ✓   52 [firefox] › tests/prose.spec.ts:115:1 › prose matches mock type and spacing; footnotes, headings, dates and JS-free reading work (7.8s)
+  ✓   64 [firefox] › tests/theme.spec.ts:53:1 › invalid and unavailable storage retain OS fallback and allow a page-local choice (327ms)
+  ✓   61 [firefox] › tests/sharing.spec.ts:103:1 › sharing retains mock geometry and icon styling at both widths and palettes (1.3s)
+  ✓   65 [firefox] › tests/theme.spec.ts:78:1 › invalid saved value uses OS preference (281ms)
+  ✓   68 [firefox] › tests/tooling.spec.ts:5:1 › Hugo formatting preserves inline spaces, attributes, render hooks and compiled assets (1.2s)
+  ✓   66 [firefox] › tests/theme.spec.ts:85:1 › without JavaScript both OS palettes, navigation and subscription remain usable (1.6s)
+(node:90679) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:90689) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   57 [firefox] › tests/review.spec.ts:69:3 › Representative specimen comparison, both widths/colors and text enlargement (8.8s)
+  ✓   69 [webkit] › tests/collections.spec.ts:4:1 › home and section pagination retain newer-left/older-right and first-page introduction (1.2s)
+(node:90717) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   67 [firefox] › tests/theme.spec.ts:102:1 › shared shell keeps mock dimensions at desktop and mobile widths in both palettes (3.7s)
+  ✓   71 [webkit] › tests/media.spec.ts:10:1 › responsive candidates, originals, dimensions, loading and figure semantics (935ms)
+  ✓   72 [webkit] › tests/collections.spec.ts:87:1 › pagination and whole-card links work without JavaScript (573ms)
+(node:90733) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   56 [firefox] › tests/review.spec.ts:69:3 › Representative article comparison, both widths/colors and text enlargement (12.0s)
+(node:90752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   74 [webkit] › tests/media.spec.ts:180:1 › DPR chooses fitting candidates and JavaScript-free media remain usable (1.2s)
+  ✓   76 [webkit] › tests/metadata.spec.ts:79:1 › taxonomy feeds contain term pages, term feeds filter posts, empty feeds have no fake dates (240ms)
+  ✓   78 [webkit] › tests/metadata.spec.ts:109:1 › canonical and discovery URLs follow the active pager and build baseURL (397ms)
+  ✓   77 [webkit] › tests/metadata.spec.ts:52:1 › RSS uses all ordered articles, plain common summaries and stable document GUIDs (383ms)
+  ✓   79 [webkit] › tests/metadata.spec.ts:135:1 › description, dates and JSON-LD preserve page roles and safe text (238ms)
+  ✓   80 [webkit] › tests/metadata.spec.ts:170:1 › SNS images use cover, global assets/static/external defaults or none, never body images (279ms)
+  ✓   75 [webkit] › tests/media.spec.ts:75:1 › WebP preserves PNG pixels and transparency at each generated width (1.9s)
+  ✓   81 [webkit] › tests/metadata.spec.ts:193:1 › all XML parses, sitemap and robots follow production and preview (358ms)
+  ✓   83 [webkit] › tests/prose.spec.ts:46:1 › failed copy announces manual fallback, permits retry, and resets success after three seconds (547ms)
+  ✓   82 [webkit] › tests/prose.spec.ts:18:1 › copy preserves code with Japanese, inline/table numbers, unknown language and no label (888ms)
+  ✓   84 [webkit] › tests/prose.spec.ts:73:1 › keyboard reveals copy and Escape returns focus to selectable code (738ms)
+  ✓   70 [webkit] › tests/collections.spec.ts:29:1 › list text, separators and pager preserve frozen mock styles in both widths and palettes (5.4s)
+  ✓   85 [webkit] › tests/prose.spec.ts:94:1 › touch reveals copy, outside tap and horizontal scroll dismiss it (771ms)
+  ✓   73 [webkit] › tests/media.spec.ts:138:1 › media geometry matches mock, small images stay small, both colors remain accessible (4.2s)
+  ✓   87 [webkit] › tests/prose.spec.ts:204:1 › full real article preserves mock prose layout in both palettes and widths (1.7s)
+  ✓   88 [webkit] › tests/review.spec.ts:69:3 › Representative home comparison, both widths/colors and text enlargement (4.2s)
+  ✓   89 [webkit] › tests/review.spec.ts:69:3 › Representative posts comparison, both widths/colors and text enlargement (4.2s)
+  ✓   93 [webkit] › tests/sharing.spec.ts:59:1 › failed star download preserves reading and share links and announces failure (747ms)
+  ✓   92 [webkit] › tests/sharing.spec.ts:14:1 › shared document URLs, encoded titles, service order and keyboard navigation (1.5s)
+  ✓   94 [webkit] › tests/sharing.spec.ts:72:1 › preview cannot share or load stars; JS-free production retains ordinary links (606ms)
+  ✓   96 [webkit] › tests/theme.spec.ts:4:1 › saved pref-theme is applied before styles load (309ms)
+  ✓   86 [webkit] › tests/prose.spec.ts:115:1 › prose matches mock type and spacing; footnotes, headings, dates and JS-free reading work (6.8s)
+  ✓   97 [webkit] › tests/theme.spec.ts:25:1 › OS follows until a keyboard choice, persists and ignores mock query parameters (470ms)
+  ✓   98 [webkit] › tests/theme.spec.ts:53:1 › invalid and unavailable storage retain OS fallback and allow a page-local choice (314ms)
+  ✓   99 [webkit] › tests/theme.spec.ts:78:1 › invalid saved value uses OS preference (265ms)
+  ✓   95 [webkit] › tests/sharing.spec.ts:103:1 › sharing retains mock geometry and icon styling at both widths and palettes (1.4s)
+  ✓  100 [webkit] › tests/theme.spec.ts:85:1 › without JavaScript both OS palettes, navigation and subscription remain usable (381ms)
+  ✓  102 [webkit] › tests/tooling.spec.ts:5:1 › Hugo formatting preserves inline spaces, attributes, render hooks and compiled assets (1.1s)
+  ✓   91 [webkit] › tests/review.spec.ts:69:3 › Representative specimen comparison, both widths/colors and text enlargement (7.0s)
+  ✓   90 [webkit] › tests/review.spec.ts:69:3 › Representative article comparison, both widths/colors and text enlargement (8.8s)
+  ✓  101 [webkit] › tests/theme.spec.ts:102:1 › shared shell keeps mock dimensions at desktop and mobile widths in both palettes (2.6s)
+
+  102 passed (41.5s)

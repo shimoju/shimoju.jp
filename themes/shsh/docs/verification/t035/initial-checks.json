@@ -1,0 +1,30 @@
+{
+  "check_runs": [
+    {
+      "name": "Cloudflare Pages",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "18a9ab1c1928e12409ac0381f8063e0b4b6d13fd",
+      "started_at": "2026-09-18T06:53:37Z",
+      "completed_at": "2026-09-18T06:53:37Z",
+      "details_url": "https://dash.cloudflare.com/?to=/c0c39e237ef194406cb2ba4680f5d5da/pages/view/shimoju/2f9d9a6b-5b9d-4caa-833a-f5f92c856916",
+      "app": {
+        "id": 85455,
+        "slug": "cloudflare-workers-and-pages"
+      }
+    },
+    {
+      "name": "shsh-check",
+      "status": "in_progress",
+      "conclusion": null,
+      "head_sha": "18a9ab1c1928e12409ac0381f8063e0b4b6d13fd",
+      "started_at": "2026-09-18T06:52:55Z",
+      "completed_at": null,
+      "details_url": "https://github.com/shimoju/shimoju.jp/actions/runs/35316825816/job/105510190794",
+      "app": {
+        "id": 15368,
+        "slug": "github-actions"
+      }
+    }
+  ]
+}

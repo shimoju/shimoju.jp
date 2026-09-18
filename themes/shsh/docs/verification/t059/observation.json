@@ -1,0 +1,12 @@
+{
+  "recordedAt": "2026-09-18T13:42:57.696Z",
+  "target": "about:preferences#general",
+  "result": "blocked",
+  "observation": "新しい専用設定タブとURLはAXで確認できるが、ページ内容がAXに現れず、取得画像は元のshimoju.diaryのまま。前回T053と同じ不一致。",
+  "settingsChanged": false,
+  "siteTestsRun": false,
+  "cleanupSettingsTabAbsent": true,
+  "cleanupSettingsURLAbsent": true,
+  "originalSiteTabPresent": true,
+  "cleanupNote": "閉じた直後のAXには設定タブとURLが残ったため、最新全体状態で消失を確認。"
+}

@@ -10,7 +10,7 @@ tags:
 社内勉強会でHerokuでの本番運用について発表しました。
 いま携わっている[SUZURI](https://suzuri.jp/)はHerokuで運用しており、個人でもHerokuで運用しているアプリがあります。その中で経験したことや知見を話しました。
 
-<script async class="speakerdeck-embed" data-id="457f092496ab4856b7c3cef5bcd2babb" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+{{< speakerdeck id="457f092496ab4856b7c3cef5bcd2babb" ratio="1.77777777777778" >}}
 
 [Herokuで本番運用する技術](https://speakerdeck.com/shimoju/heroku-production)
 

@@ -1,0 +1,30 @@
+{
+  "recorded_at": "2026-09-18T14:50:45.336170+00:00",
+  "verified_by": "ユーザー",
+  "source": "T064のiPhone残件依頼を引用した会話の回答と追加照会への回答",
+  "requested_url": "https://6f52990f.shimoju.pages.dev/",
+  "requested_commit": "268bbb0ef102f1379efbcfb62f53d2e643a7c79e",
+  "environment": "iPhone 17（先の報告から継承）、iOS 27.0付属Safari最新版とのユーザー報告。Safari独立buildは未取得。",
+  "source_quotes": {
+    "version": "iOS 27に付属のSafari最新版",
+    "enlargement": "150%",
+    "fonts": "確認できなかった",
+    "embeds": "4種ともカード/写真/映像/スライドが見え、周囲の本文を読めることを確認した。\nYouTubeの再生停止・Speaker Deckのページ送りも確認した。",
+    "no_js": "本文・一覧が見れ、Nextで2ページ目に進めることを確認した。\nRSSも閲覧でき、配色・コピーボタンは非表示になった。"
+  },
+  "followup": {
+    "question": "JS無効時のヘッダーナビ移動も確認済みか。設定→一般→情報のiOS詳細値は何か。",
+    "source_quote": "確認済みです。iOS 27.0"
+  },
+  "confirmed": [
+    "iOS 27.0付属Safari最新版（ユーザー申告）",
+    "T047で報告したSafariページ文字拡大の値は150%",
+    "外部4種表示と本文可読性、YouTube再生停止、Speaker Deckページ送り",
+    "JS無効で本文・一覧・Nextで2ページ目・ヘッダーナビ・RSS利用可、配色/コピー非表示"
+  ],
+  "unverified": ["本文/コードの和文・欧文実フォント名（取得できなかった）"],
+  "limits": [
+    "150%はT047の文字拡大の設定値補足。測定CSSピクセルの倍率とは主張しない。",
+    "フォント候補CSSや他のApple端末のフォントを実フェイスの代用としない。"
+  ]
+}

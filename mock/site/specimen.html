@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="color-scheme" content="light dark"><title>日本語の技術文書を読むための組版サンプル — 見出し、リンク、表とコードの調和 — shimoju.diary</title><link rel="icon" href="data:,"><link rel="alternate" type="application/rss+xml" title="shimoju.diary RSS" href="https://shimoju.jp/index.xml"><script src="assets/theme.js"></script><link rel="stylesheet" href="assets/syntax.css"><link rel="stylesheet" href="assets/theme.css"></head>
+<body class="">
+<header class="site-header shell"><button class="theme-toggle" type="button" lang="en" aria-label="Switch color mode"><svg class="moon" viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><path d="M22.7456 14.2095 A10.8723 10.8723 0 0 1 9.6729 1.1368 A11.0017 11.0017 0 1 0 22.875 14.2095 Z"/></svg><svg class="sun" viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3.8667"/><path d="M12 1.125 V4.2667 M12 19.7333 V22.875 M1.125 12 H4.2667 M19.7333 12 H22.875 M4.2667 4.2667 L6.6833 6.6833 M17.3167 17.3167 L19.7333 19.7333 M4.2667 19.7333 L6.6833 17.3167 M17.3167 6.6833 L19.7333 4.2667"/></svg></button><a class="site-name" href="home.html">shimoju.diary</a><nav class="site-nav" lang="en" aria-label="Main navigation"><a href="about.html">About</a><a href="archives.html">Archives</a><a href="categories.html">Categories</a><a href="tags.html">Tags</a></nav></header>
+<main class="shell"><article><header class="article-header"><h1>日本語の技術文書を読むための組版サンプル — 見出し、リンク、表とコードの調和</h1><div class="meta"><span><time datetime="2026-09-05">2026/09/05</time></span><span lang="en">Updated <time datetime="2026-09-06">2026/09/06</time></span></div></header><div class="prose"><p>このページはモックの部品確認用です。実記事とは別に、深い見出しや長い表などの境界条件をまとめています。日本語の文章にRuby、PostgreSQL、HTTP/3、2026年といった英数字が混ざったときも、字面やベースラインが自然につながることを目指します。</p>
+<h2 id="reading">文章とリンクの読みやすさ<a class="heading-anchor" href="#reading" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
+<p>「日本語」、カタカナ。（括弧の余白）を確認します。本文・見出しは<code>palt</code>を有効にし、欧文のRuby on Rails、HTTP/3と自然につながる組版を比較します。括弧と句読点だけでなく、仮名の字幅も変わり得るため、長文で読み心地を確認してください。</p>
+<p>技術記事では、<a href="https://gohugo.io/documentation/">Hugoのドキュメント</a>、<a href="https://catppuccin.com/palette/">Catppuccinのパレット</a>、<a href="https://docs.ruby-lang.org/ja/">Rubyのリファレンス</a>のように、根拠や背景へのリンクが連続します。リンクを発見できることと、文章全体に落ち着きがあることの両方を確認します。</p>
+<p><code>config.toml</code>を編集して<code>hugo server</code>を実行する。日本語の中に<code>very_long_configuration_identifier_without_spaces</code>が入っても、文章全体の行間は変えません。<strong>大切な語句は太字</strong>にし、<em>補足的な強調</em>も同じ階調で扱います。脚注は本文の流れを妨げない位置に置きます。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>通常の日本語とEnglish 0123に対して、<strong>重要な日本語とEnglish 0123（strong）</strong>、<b>注目する日本語とEnglish 0123（b）</b>を同じ700で表示します。<strong>強調の中の<b>入れ子の太字</b></strong>も700を維持し、<strong><code>inline_code</code></strong>は強調の太さを継承します。</p>
+<blockquote>
+<p>読みやすさは文字サイズだけでは決まらない。行の長さ、前後の余白、見出しの強さが揃って、長い文章を読み進められる。</p>
+<p>これは表示確認のための例文です。</p>
+</blockquote>
+<h3 id="heading-three">設定を小さく分ける<a class="heading-anchor" href="#heading-three" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h3>
+<p>見出しの前には十分な余白を取り、続く本文との間は狭くします。背景や下線を付けず、文字そのものの強さで構造を表現します。</p>
+<h4 id="heading-four">フォントと文字サイズを定義する<a class="heading-anchor" href="#heading-four" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h4>
+<p>欧文と和文の候補を順番に指定します。端末ごとに異なる書体が選ばれても、本文以上のサイズで見出しの階層を維持します。</p>
+<h5 id="heading-five">H5：日本語コメントのある場合<a class="heading-anchor" href="#heading-five" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h5>
+<p>小さな階層でも、本文より文字を小さくしません。H5は本文の1.099倍、太さ500です。この段落と次のH6を続けて読み、差が十分かを確認します。</p>
+<h6 id="heading-six">H6：折り返した行の扱いと、長い日本語見出しが続くときの読みやすさ<a class="heading-anchor" href="#heading-six" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h6>
+<p>H6は本文と同じサイズで、太さ500です。わずかなサイズ差だけで十分かどうかは継続検討の対象です。通常の段落と混同しないことも確認します。</p>
+<h2 id="consecutive-headings">連続する見出しの余白確認<a class="heading-anchor" href="#consecutive-headings" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
+<h3 id="本文を挟まないh3">本文を挟まないH3<a class="heading-anchor" href="#本文を挟まないh3" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h3>
+<h4 id="続けて配置したh4">続けて配置したH4<a class="heading-anchor" href="#続けて配置したh4" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h4>
+<p>見出しは基本の前2.121em・後0.687emに対し、連続する下位見出しの前を0.910emにします。直後の段落の上marginは0とし、見出しの下marginで距離を決めます。親子の階層と続く本文のまとまりを確認します。</p>
+<h2 id="lists">リストと手順<a class="heading-anchor" href="#lists" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
+<ul>
+<li>本文に集中できる一列構成
+<ul>
+<li>ナビゲーションは折り返して表示する</li>
+<li>コードブロックは内側で横スクロールする
+<ul>
+<li>日本語コメントを含める</li>
+<li>コピー操作はホバー・フォーカス・タップで表示する</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>写真やスクリーンショットは切り抜かない</li>
+</ul>
+<ol>
+<li>色と文字サイズの基本案を確認する。</li>
+<li>同じ文章で比較案を確認する。
+<ol>
+<li>一度に変える項目を絞る。</li>
+<li>モバイルでも読み比べる。</li>
+</ol>
+</li>
+<li>気になった点をMarkdownに記録する。</li>
+</ol>
+<p>複数桁の番号も同じ字下げで確認します。</p>
+<ol start="9">
+<li>一桁の番号と本文の間隔を確認する。</li>
+<li>二桁になっても番号がガターにはみ出さず、本文と重ならないことを確認する。</li>
+<li>折り返した行の開始位置が、同じ項目の本文と揃うことを確認する。</li>
+</ol>
+<h3 id="combinations">本文部品の組み合わせ<a class="heading-anchor" href="#combinations" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h3>
+<h4 id="複数段落を含むリスト項目">複数段落を含むリスト項目<a class="heading-anchor" href="#複数段落を含むリスト項目" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h4>
+<ul>
+<li>
+<p>最初の段落では、手順の目的を説明します。項目内の文章が複数行に折り返す場合も、字下げと行間を確認します。</p>
+<p>同じ項目の補足段落です。通常の本文段落の3/8に当たる0.375emの間隔で、同じ手順に属することを示します。</p>
+<ul>
+<li>補足の入れ子リストです。</li>
+<li><code>config.toml</code>などのインラインコードも確認します。</li>
+</ul>
+</li>
+<li>
+<p>次の項目です。段落間隔と項目間隔が重なったときのまとまりを確認します。</p>
+</li>
+</ul>
+<h4 id="引用内のリストとコード">引用内のリストとコード<a class="heading-anchor" href="#引用内のリストとコード" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h4>
+<blockquote>
+<p>引用の中にも、複数の段落とリストが含まれます。</p>
+<ul>
+<li>最初の項目は通常の文章です。</li>
+<li>次の項目には<code>bundle exec</code>というインラインコードがあります。
+<ul>
+<li>入れ子でも本文幅の内側に収まることを確認します。</li>
+</ul>
+</li>
+</ul>
+<div class="code-block"><span class="code-label" lang="en">RUBY</span><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># 引用の字下げ・コードの左右余白・局所スクロールを確認</span>
+</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="s2">&#34;日本語のコメントとRubyのコード&#34;</span></span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
+</div>
+<p>コードの後に続く段落です。引用の左罫線が全体をまとめ、コピー操作とフォーカス枠も利用できます。</p>
+</blockquote>
+<h3 id="inline-spacing">インラインコードの余白確認<a class="heading-anchor" href="#inline-spacing" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h3>
+<p>上下のpaddingを増やしても、以下の改行位置を揃えた2段落で行送りが変わらないことを確認します。最初が採用案、次がpaddingなしの診断用です。通常の本文には採用案だけを使います。</p>
+<p class="inline-probe">本文と<code>config.toml</code>を読む。<br>本文と<code>日本語の設定</code>を読む。<br>続く行にも十分な余白を残す。</p>
+<p class="inline-probe unpadded">本文と<code>config.toml</code>を読む。<br>本文と<code>日本語の設定</code>を読む。<br>続く行にも十分な余白を残す。</p>
+<h2 id="tables">表と長い識別子<a class="heading-anchor" href="#tables" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
+<p>ブラウザの既定文字サイズが16pxの場合の換算値です。既定サイズを変えると文字・余白・操作部品も追従し、本文の最大幅720pxは維持します。</p>
+<div class="table-scroll" role="region" aria-label="Table, horizontally scrollable" tabindex="0"><table>
+	<thead>
+			<tr>
+					<th>項目</th>
+					<th>デスクトップ</th>
+					<th>モバイル</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>ルート</td>
+					<td>62.5%（10px）</td>
+					<td>62.5%（10px）</td>
+			</tr>
+			<tr>
+					<td>本文</td>
+					<td>1.7rem（17px）</td>
+					<td>1.7rem（17px）</td>
+			</tr>
+			<tr>
+					<td>記事タイトル</td>
+					<td>本文×1.6（27.2px）</td>
+					<td>本文×1.6（27.2px）</td>
+			</tr>
+			<tr>
+					<td>H2</td>
+					<td>本文×1.456（約24.75px）</td>
+					<td>本文×1.456（約24.75px）</td>
+			</tr>
+			<tr>
+					<td>H3</td>
+					<td>本文×1.326（約22.54px）</td>
+					<td>本文×1.326（約22.54px）</td>
+			</tr>
+			<tr>
+					<td>H4</td>
+					<td>本文×1.207（約20.52px）</td>
+					<td>本文×1.207（約20.52px）</td>
+			</tr>
+			<tr>
+					<td>H5</td>
+					<td>本文×1.099（約18.68px）</td>
+					<td>本文×1.099（約18.68px）</td>
+			</tr>
+			<tr>
+					<td>H6</td>
+					<td>1.7rem（17px）</td>
+					<td>1.7rem（17px）</td>
+			</tr>
+			<tr>
+					<td>サイト名</td>
+					<td>本文×1.931（約32.83px）</td>
+					<td>本文×1.931（約32.83px）</td>
+			</tr>
+			<tr>
+					<td>一覧タイトル</td>
+					<td>本文×1.207</td>
+					<td>本文×1.207</td>
+			</tr>
+			<tr>
+					<td>補助文字・小</td>
+					<td>本文×0.910</td>
+					<td>本文×0.910</td>
+			</tr>
+			<tr>
+					<td>日付・タグ</td>
+					<td>本文×0.829</td>
+					<td>本文×0.829</td>
+			</tr>
+			<tr>
+					<td>小さなラベル</td>
+					<td>本文×0.754</td>
+					<td>本文×0.754</td>
+			</tr>
+			<tr>
+					<td>行高</td>
+					<td>1.9</td>
+					<td>1.9</td>
+			</tr>
+			<tr>
+					<td>コード</td>
+					<td>1.4rem（14px） / 1.3</td>
+					<td>1.4rem（14px） / 1.3</td>
+			</tr>
+	</tbody>
+</table></div>
+<div class="table-scroll" role="region" aria-label="Table, horizontally scrollable" tabindex="0"><table class="wide-table"><thead><tr><th scope="col">設定項目</th><th scope="col">識別子</th><th scope="col">内容</th><th scope="col">備考</th></tr></thead><tbody><tr><th scope="row">APIエンドポイント</th><td><code>GET /api/v1/projects/:project_id/deployments</code></td><td>デプロイ履歴の一覧を取得</td><td>ローカルな横スクロールの検証</td></tr><tr><th scope="row">環境変数</th><td><code>APPLICATION_DATABASE_CONNECTION_TIMEOUT</code></td><td>接続を待つ最大時間</td><td>長い英数字を含む表</td></tr></tbody></table></div>
+<h2 id="code">コードと日本語コメント<a class="heading-anchor" href="#code" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
+<h3 id="日本語フォールバックの診断">日本語フォールバックの診断<a class="heading-anchor" href="#日本語フォールバックの診断" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h3>
+<p>採用した指定はMenlo, Consolas, monospaceです。欧文はMacでMenlo、WindowsでConsolasを優先し、その他の環境と和文はブラウザのmonospace・不足文字のフォールバックに委ねます。本文との書体の統一は求めず、palt・合字・自動カーニングは無効にします。欧文のiiii／WWWW／0000が同じ幅であること、日本語と約物の字幅・混植の読みやすさを確認します。和欧文の厳密な2:1の幅比や、字幅だけからの実フォントの特定は保証しません。</p>
+<div class="font-probe-scroll">
+<p>採用：<code data-code-probe="adopted"><span>日本語あいうえお「設定」、。</span> <span>iiWW00 // config.toml</span></code></p>
+<p>欧文の字幅：<code data-code-probe="width"><span>iiii</span> <span>WWWW</span> <span>0000</span></code></p>
+</div>
+<h3 id="複数行とシンタックスハイライト">複数行とシンタックスハイライト<a class="heading-anchor" href="#複数行とシンタックスハイライト" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h3>
+<p>行番号なしを基本とし、指定されたブロックだけ行番号と強調行を表示します。配色のトークンとBase背景はHugo付属のCatppuccinから生成しています。</p>
+<div class="code-block"><span class="code-label" lang="en">RUBY</span><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># 日本語コメントと英数字のベースラインを確認する</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Article</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="ss">title</span><span class="p">:,</span> <span class="ss">tags</span><span class="p">:</span> <span class="o">[]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="vi">@title</span> <span class="o">=</span> <span class="n">title</span>
+</span></span><span class="line"><span class="cl">    <span class="vi">@tags</span> <span class="o">=</span> <span class="n">tags</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">summary</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;</span><span class="si">#{</span><span class="vi">@title</span><span class="si">}</span><span class="s2"> — </span><span class="si">#{</span><span class="vi">@tags</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="no">Article</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">title</span><span class="p">:</span> <span class="s2">&#34;技術と日々の記録&#34;</span><span class="p">,</span> <span class="ss">tags</span><span class="p">:</span> <span class="o">[</span><span class="s2">&#34;Ruby&#34;</span><span class="p">,</span> <span class="s2">&#34;日本語&#34;</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">summary</span></span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
+</div>
+<div class="code-block"><span class="code-label" lang="en">TOML · config.toml</span><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight" filename="config.toml"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="ln">1</span><span class="cl"><span class="c"># config.toml — 行番号と強調行の確認</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="p">[</span><span class="nx">tools</span><span class="p">]</span>
+</span></span><span class="line hl"><span class="ln">3</span><span class="cl"><span class="nx">ruby</span> <span class="p">=</span> <span class="s2">&#34;3.4&#34;</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nx">node</span> <span class="p">=</span> <span class="s2">&#34;24&#34;</span></span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
+</div>
+<div class="code-block unlabelled"><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">言語指定なし / plain text
+</span></span><span class="line"><span class="cl">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789
+</span></span><span class="line"><span class="cl">長い行：abcdefghijklmnopqrstuvwxyz/abcdefghijklmnopqrstuvwxyz/abcdefghijklmnopqrstuvwxyz/abcdefghijklmnopqrstuvwxyz/abcdefghijklmnopqrstuvwxyz</span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
+</div>
+<p>言語名とファイル名は、コード本文から推測せず、コードフェンスに指定した値をHugoで取得します。次は未対応の言語指定でも内容をプレーンテキストとして表示する例です。</p>
+<div class="code-block"><span class="code-label" lang="en">EXAMPLE-UNKNOWN · example.txt</span><button class="copy" type="button" aria-label="Copy code" title="Copy code" lang="en" data-copy-state="idle" hidden>
+    <svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6"/>
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19"/></g>
+    </svg>
+  </button><div class="highlight" filename="example.txt"><pre aria-label="Code, horizontally scrollable" tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">This language has no highlighter.
+</span></span><span class="line"><span class="cl">日本語の内容とファイル名は、そのまま表示します。</span></span></code></pre></div><span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
+</div>
+<h2 id="images">画像とキャプション<a class="heading-anchor" href="#images" aria-label="Link to this section" title="Link to this section" lang="en"><span aria-hidden="true">#</span></a></h2>
+<figure><img src="assets/zsh-prompt-cover.png" width="1200" height="630" alt="自作Zshプロンプトを表示したターミナルの画面"><figcaption>幅1200 × 高さ630の元画像。本文幅720pxでは高さ378pxとなり、高さを制限しません。</figcaption></figure>
+<figure><img src="assets/neovim-cheatsheet.png" alt="Neovimの操作一覧をまとめた縦長のチートシート"><figcaption>標準比率とは異なる画像も、縦横比をそのまま保ちます。</figcaption></figure>
+<hr>
+<p>本文末では脚注と、記事周辺の情報との余白を確認します。</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>脚注から参照元へ戻れます。長い補足であっても、本文と同じフォントを用いて整合性を保ちます。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+</div><footer class="article-end"><div class="article-tags" aria-label="Tags"><a href="tag-6.html">#Hugo</a></div><nav class="post-nav" id="post-navigation" aria-label="Adjacent posts"><a rel="next" href="article.html"><small lang="en"><span class="nav-label">Next <span aria-hidden="true">»</span></span></small><span class="post-nav-title">2026年、開発環境を一新した。Ghostty、herdr、Neovim、mise、そして自作Zshプロンプト</span></a></nav></footer></article></main>
+<footer class="site-footer shell" lang="en"><nav class="footer-links" aria-label="Follow and subscribe"><a class="icon-link" href="https://x.com/shimoju_" aria-label="X" title="X"><svg class="x" viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><path d="M1.7728 0.75 H5.8637 L22.2272 23.25 H18.1363 Z M22.2272 0.75 L13.4829 10.9262 M10.5171 13.0738 L1.7728 23.25"/></svg></a><a class="icon-link" href="https://bsky.app/profile/shimoju.jp" aria-label="Bluesky" title="Bluesky"><svg class="bluesky" viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><path d="M12 10.165 C8.9443 5.0723 2.833 0.4887 1.3052 2.0166 C0.2867 3.0351 0.7959 8.1278 1.8144 10.6743 C2.833 13.2207 5.8887 13.7299 8.9443 13.2207 C4.8701 14.2391 1.8144 15.767 3.8516 19.332 C6.9073 24.4247 9.9629 22.3876 12 17.2948 C14.0371 22.3876 17.0927 24.4247 20.1484 19.332 C22.1856 15.767 19.1299 14.2391 15.0557 13.2207 C18.1113 13.7299 21.167 13.2207 22.1856 10.6743 C23.2041 8.1278 23.7133 3.0351 22.6948 2.0166 C21.167 0.4887 15.0557 5.0723 12 10.165 Z"/></svg></a><a class="icon-link" href="https://github.com/shimoju" aria-label="GitHub" title="GitHub"><svg class="github" viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><path d="M9.9546 23.25 V19.1591 C9.9546 17.625 10.4659 16.6022 10.9772 16.0909 C5.8637 15.5796 3.8182 13.5341 3.8182 9.4432 C3.8182 7.3978 4.3296 6.375 5.3522 5.3522 C4.8409 3.8182 4.8409 2.2841 5.3522 0.75 C7.3978 0.75 8.9318 1.7728 9.9546 2.7954 C12 2.2841 14.0454 2.2841 16.0909 2.7954 C17.1137 1.7728 18.6478 0.75 20.6932 0.75 C21.2046 2.2841 21.2046 3.8182 20.6932 5.3522 C21.7159 6.375 22.2272 7.3978 22.2272 9.4432 C22.2272 13.5341 20.1818 15.5796 15.0682 16.0909 C15.5796 16.6022 16.0909 17.625 16.0909 19.1591 V23.25 M9.9546 20.1818 C6.8863 21.2046 5.3522 19.6704 4.3296 17.625 C3.8182 16.6022 2.7954 16.0909 1.7728 16.0909"/></svg></a><a class="icon-link" href="https://shimoju.jp/index.xml" aria-label="RSS" title="RSS"><svg class="rss" viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><circle cx="2.2841" cy="21.7159" r="1.5341"/><path d="M0.75 0.75 A22.5 22.5 0 0 1 23.25 23.25 M0.75 8.9318 A14.3182 14.3182 0 0 1 15.0682 23.25"/></svg></a></nav><span>© 2026 Hiroshi Shimoju</span></footer>
+</body></html>
