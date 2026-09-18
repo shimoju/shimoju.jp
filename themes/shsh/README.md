@@ -2,6 +2,8 @@
 
 Hugo 0.166.0で生成する日本語ブログテーマ。テーマの開発・検査はこのディレクトリをルートに行う。サイト生成そのものはHugoだけで完結する。
 
+本番移行後の表示・操作仕様は、このテーマの実装・検査fixture・文書を正とする。`mock/`は実装前の比較基準を保持する参考資料。[本番検証](docs/verification/t071/README.md)・[移行監査と制約](docs/verification/t018/README.md)・[切り戻し手順](docs/verification/rollback.md)を参照する。旧PaperModのライセンス表示は[MIT全文](licenses/PaperMod-MIT.txt)に保持する。
+
 ## 開発
 
 リポジトリのルートから移動する。
@@ -42,7 +44,7 @@ pnpm review
 
 全画面レビューR002は[レビュー手順](docs/verification/r002-review.md)と[入口](http://127.0.0.1:4210/r002/)を参照する。`pnpm review:full`で全記事の本番同等previewと、承認後のAbout比較用fixtureを起動する。F014修正前の証拠は履歴として残し、入口に承認・反映後の結果を示す。
 
-実機確認は[確認手順と記録表](docs/verification/real-devices.md)を参照する。ネイティブSafariの限定確認と、未確認のOS・端末・実フォント・文字拡大を区別している。
+実機確認は[確認手順と記録表](docs/verification/real-devices.md)を参照する。承認された5代表環境の必須範囲は確認済み。実フォント未取得、Android文字のみ拡大未実施、補助環境の未確認は制約として保持する。
 
 ## Cloudflare Pagesへの配信
 

@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T14:58:26.644234+00:00",
+  "updated_at": "2026-09-18T15:30:42.357074+00:00",
   "stage": "final_verification",
-  "summary": "F026/F027/F028の5代表環境の実機確認は完了。未取得フォント・Android文字のみ拡大未実施と補助環境の未確認は制約保持。T017の本番配信確認、T018の旧テーマ整理・最終監査へ進む。",
+  "summary": "本番移行・5代表実機・旧テーマ整理と全要件監査が完了。撤去後246テスト成功。T072で整理後の必須CI・master統合と最終配信を確認する。承認済みの未確認制約は維持。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T017",
-    "action": "最新headの必須CIと切り戻し先の現行productionを照合し、PR #5をマージしてPages本番ビルド・HTTP・共有/スター/埋め込みを確認する。その後T018の旧テーマ整理と最終監査を実施する。"
+    "task_id": "T072",
+    "action": "T071/T018の後続PRを作成し、必須CI成功後に統合して最終配信を照合する。"
   },
   "tasks": [
     {
@@ -815,16 +815,30 @@
         "接続可能ならCloudflare dashboardの既存ビルド設定を読み取り、production/preview環境とbaseURLを照合する。設定変更・新規配信はR002の判断後に行う。"
       ],
       "commit_message": "[T017] 既存配信の応答とCloudflare検証手順を記録",
-      "status": "implemented",
-      "verification_status": "blocked",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/docs/verification/cloudflare-pages.md",
-        "themes/shsh/docs/verification/t017/"
+        "themes/shsh/docs/verification/t017/",
+        "themes/shsh/docs/verification/t071/README.md"
       ],
-      "verification_ids": ["V042", "V045", "V047", "V048", "V058", "V103", "V105", "V106"],
+      "verification_ids": [
+        "V042",
+        "V045",
+        "V047",
+        "V048",
+        "V058",
+        "V103",
+        "V105",
+        "V106",
+        "V119",
+        "V120",
+        "V121",
+        "V122"
+      ],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "PR #5の9f17369はCI/preview確認済み。T015の実機残件を解消後、最終headの必須CI・切り戻し点を照合し本番移行する。"
+      "next_action": "T018で旧テーマを整理し最終監査する。"
     },
     {
       "id": "T018",
@@ -840,7 +854,9 @@
       ],
       "scope": [
         "照合完了後にPaperMod submodule・更新スクリプトを整理しライセンス表示を保持する。専用上書きはF012のユーザー承認によりT022で先行撤去。",
-        "仕様の正をテーマ/fixture/文書へ移し、モックを参考資料とし、切戻し手順と最終証拠をまとめる。"
+        "仕様の正をテーマ/fixture/文書へ移し、モックを参考資料とし、切戻し手順と最終証拠をまとめる。",
+        "README/資料3/4/docs入口の仕様参照先をテーマ・fixture・文書へ移す。mock READMEに参考資料の注記のみ追記し、凍結本文・描画ソースのハッシュ検査を保持する。",
+        "旧基準再取得スクリプトはPaperModの別checkoutを指定可能にして撤去後の再現性を維持する。"
       ],
       "depends_on": ["T013", "T014", "T015", "T016", "T017", "T054"],
       "acceptance_criteria": [
@@ -850,16 +866,22 @@
       ],
       "verification_plan": [
         "撤去後にHugo単独生成・全品質/移行/ブラウザ検査を再実行する。",
-        "全要件を現在の成果物と有効な検証結果に照合し、R001/R002と追加レビューの承認を確認する。"
+        "全要件を現在の成果物と有効な検証結果に照合し、R001/R002と追加レビューの承認を確認する。",
+        "既存検査の凍結README判定は明示した注記だけを除去して旧ハッシュと照合。他のmockファイル/基準データは不変を確認する。",
+        "本番検証記録と撤去を後続PRへまとめ、必須CI成功後に統合する。生成ソース/設定/記事/素材の不変性と最終配信を照合する。"
       ],
       "commit_message": "[T018] 旧テーマを整理し移行完了を監査",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": ["themes/shsh/docs/verification/rollback.md"],
-      "verification_ids": ["V098"],
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/rollback.md",
+        "themes/shsh/docs/verification/t018/README.md",
+        "themes/shsh/licenses/PaperMod-MIT.txt"
+      ],
+      "verification_ids": ["V098", "V123", "V124"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "T054で旧ソースの隔離復元生成と切り戻し手順を準備済み。実機・本番確認後にPaperModと更新スクリプトを整理し、全要件を最終監査する。"
+      "next_action": "T072で整理後の必須CI・master統合と最終配信を確認する。"
     },
     {
       "id": "T019",
@@ -2626,6 +2648,74 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "5代表環境の確認記録とPR説明を同期済み。T017の必須CI・切り戻し先照合と本番移行へ進む。"
+    },
+    {
+      "id": "T071",
+      "title": "必須CI通過後の本番移行と実配信を検証",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "T015完了と最新headの必須CI・切り戻し先を照合し、PR #5をmasterへ統合してPages本番配信する。",
+        "本番のHTTP/URL/RSS/配信アセット/共有/スター/外部埋め込みとPagesビルドを確認し証拠を保存する。"
+      ],
+      "depends_on": ["T070", "T054"],
+      "acceptance_criteria": [
+        "マージ対象headの必須CI成功とPR・merge SHA・production deploymentが対応する。",
+        "旧production切り戻し先、Hugo版/環境/出力と実応答を記録し、本番共有/スター/埋め込みを実ブラウザで確認する。"
+      ],
+      "verification_plan": [
+        "CloudflareのProduction表示と旧SHA/deploymentを取得しGitHub baseと照合する。",
+        "最新headのCI成功後に通常のPR mergeを行い、Pagesビルドログとproductionの対象SHAを確認する。",
+        "HTTPで代表ページcanonical/OGP・全RSS識別子/記事URL・feed301/404/noindex・fingerprint/map不出力を検査する。",
+        "Chromeで共有先URLとスター表示/対象、外部4種を確認。投稿確定・スター追加はしない。",
+        "整形・進捗・差分検査を実施して結果をコミットし、T018へ引き継ぐ。"
+      ],
+      "commit_message": "[T071] 必須CI通過後の本番移行と配信検証を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": ["themes/shsh/docs/verification/t071/"],
+      "verification_ids": ["V119", "V120", "V121", "V122"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "T018で旧テーマを整理し最終監査する。"
+    },
+    {
+      "id": "T072",
+      "title": "整理後の必須CI・本番配信と移行完了を記録",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "T071/T018の記録と旧テーマ整理を後続PRで必須CI成功後にmasterへ統合する。",
+        "整理後のPages本番ビルドと配信ソース/アセットの一致を確認し、最終進捗・監査結果を記録する。"
+      ],
+      "depends_on": ["T018", "T071"],
+      "acceptance_criteria": [
+        "整理後のPRの必須CI成功・merge SHA・Pages本番成功が対応する。",
+        "要件の必須残件がなく、承認済み制約と履歴を保持した最終完了記録がある。"
+      ],
+      "verification_plan": [
+        "GitHubで対象headの必須CI成功と最新baseを確認し通常mergeを行う。",
+        "Cloudflareでmerge SHAのproduction成功を確認し、本番HTTP/アセットをT071結果と照合する。",
+        "進捗JSON/文書を整形・参照検査し、最終報告に本番URL・証拠・承認差分・制約を示す。"
+      ],
+      "commit_message": "[T072] 整理後の本番配信と移行完了を記録",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "T018の撤去後検査成功後、後続PRの必須CIと本番配信を確認する。"
     }
   ],
   "findings": [
@@ -6031,6 +6121,145 @@
         "themes/shsh/docs/verification/t070/pr-updated.json"
       ],
       "recorded_at": "2026-09-18T14:58:26.644234+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V119",
+      "task_ids": ["T017", "T071"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q20",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "必須CIと保護されたPR統合・Pages本番配信",
+      "result": "passed",
+      "subject_ref": "7b55a99 → PR #5 merge a442780 / https://shimoju.jp/",
+      "environment": "Ubuntu Actions / GitHub CLI / Cloudflare dashboard",
+      "procedure": "head7b55a99のCI成功・246テスト・PR CLEAN・base旧masterを確認し通常マージ。merge a442780とproduction deploymentのSHA、Hugo版、環境、URL、ビルド成功を照合。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t071/ci-pr.json",
+        "themes/shsh/docs/verification/t071/ci-check.log",
+        "themes/shsh/docs/verification/t071/pr-before-merge.json",
+        "themes/shsh/docs/verification/t071/pr-merged.json",
+        "themes/shsh/docs/verification/t071/pre-production.json",
+        "themes/shsh/docs/verification/t071/production-deployment.json"
+      ],
+      "recorded_at": "2026-09-18T15:20:20.222961+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V120",
+      "task_ids": ["T017", "T071"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q20",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "本番HTTP検査の初回期待値不整合",
+      "result": "failed",
+      "subject_ref": "7b55a99 → PR #5 merge a442780 / https://shimoju.jp/",
+      "environment": "curl/Python / https://shimoju.jp/",
+      "procedure": "旧canonical、実在404ファイル、Cloudflare注入JS、page/1エイリアスの期待値不整合を検出。配信の不具合と区別し、合意Q20と既存Hugo/Pages応答に合わせ検査のみ是正。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t071/production-http-initial.json",
+        "themes/shsh/docs/verification/t071/production-http-alias-check.json"
+      ],
+      "recorded_at": "2026-09-18T15:20:20.222961+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V121",
+      "task_ids": ["T017", "T071"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q20",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "本番とpreviewのHTTP配信検証",
+      "result": "passed",
+      "subject_ref": "7b55a99 → PR #5 merge a442780 / https://shimoju.jp/",
+      "environment": "curl/Python / Pages本番a880fe98・preview24b23fc4",
+      "procedure": "本番170 HTML・48RSS識別子・テーマ4アセットのfingerprint/同一バイト/mapなし・feed301・不存在404を確認。preview noindex・共有無効・スターなし。初回検査の誤期待値はREADMEに明記。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t071/production-http.json",
+        "themes/shsh/docs/verification/t071/preview.json",
+        "themes/shsh/docs/verification/t071/verify-production.py",
+        "themes/shsh/docs/verification/t071/README.md"
+      ],
+      "recorded_at": "2026-09-18T15:20:20.222961+00:00",
+      "supersedes": "V120"
+    },
+    {
+      "id": "V122",
+      "task_ids": ["T017", "T071"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q20",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "本番共有・スター・外部埋め込み実接続",
+      "result": "passed",
+      "subject_ref": "7b55a99 → PR #5 merge a442780 / https://shimoju.jp/",
+      "environment": "Mac Chrome / CUA AXとスクリーンショット",
+      "procedure": "ホーム、About/記事の共有先とスター対象URL・既存反応、Xカード、Instagram写真、YouTube映像/再生停止、Speaker Deck送りと本文視認を確認。共有投稿・スター追加なし。",
+      "evidence_refs": ["themes/shsh/docs/verification/t071/production-browser.json"],
+      "recorded_at": "2026-09-18T15:20:20.222961+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V123",
+      "task_ids": ["T018"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "旧テーマ撤去後の全統合検査・Hugo単独生成",
+      "result": "passed",
+      "subject_ref": "49db712からのT018整理差分",
+      "environment": "macOS arm64 / Node24.21.0 / pnpm12.4.1 / Hugo0.166.0 / Chromium・Firefox・WebKit",
+      "procedure": "pnpm checkの整形・統合lint・CSS・進捗・tooling・各fixture・入力/生成物検査・3エンジン246テストが合格。Hugo本番同等生成は組込埋め込みのまま成功、stderr空。既存取得キャッシュ使用。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t018/check.log",
+        "themes/shsh/docs/verification/t018/live-build.json"
+      ],
+      "recorded_at": "2026-09-18T15:30:42.357074+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V124",
+      "task_ids": ["T018"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "Q34旧テーマ整理・ライセンス・全要件と承認範囲の監査",
+      "result": "passed",
+      "subject_ref": "49db712からのT018整理差分",
+      "environment": "macOS arm64 / Node24.21.0 / pnpm12.4.1 / Hugo0.166.0 / Chromium・Firefox・WebKit",
+      "procedure": "全Q1〜34/規律Q1〜9と証拠・レビュー承認を対応付け。モックREADMEの固定注記以外68ファイルの旧ハッシュ、基準JSONと生成ソース不変、MIT原文一致、旧テーマ/更新スクリプト/gitmodules撤去を確認。未取得/未実施・不採用の履歴を保持。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t018/README.md",
+        "themes/shsh/docs/verification/t018/integrity.json"
+      ],
+      "recorded_at": "2026-09-18T15:30:42.357074+00:00",
       "supersedes": null
     }
   ]

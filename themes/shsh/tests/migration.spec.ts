@@ -27,6 +27,11 @@ const baseline = JSON.parse(readFileSync("tests/baseline/migration.json", "utf8"
 const input = JSON.parse(readFileSync(".cache/site/input-migration.json", "utf8")) as {
   changedInputs: { path: string; before: string; after: string }[];
 };
+// Q34 changes only the README status. Its original body and every rendered/source
+// mock file must still match the immutable pre-migration hashes.
+const mockArchiveNotice =
+  "> 参考資料：本番移行後の表示・操作仕様は[shshテーマ・検査fixture・文書](../themes/shsh/README.md)を正とします（資料4 Q34、T018）。以下は実装前の凍結記録です。再生成手順も当時の記録として保持します。\n\n";
+
 const normalize = (value: string) => value.replace(/\s/g, "");
 const urlKey = (value: string) => decodeURI(value);
 const pathFor = (url: string) => decodeURI(new URL(url).pathname);
@@ -398,13 +403,18 @@ for (const environment of ["production", "preview"])
           check(Date.parse(item.pubDate!) === Date.parse(article.date), `${path}: RSS .Date`);
       }
     }
-    for (const [path, hash] of Object.entries(baseline.frozen_mock_sha256))
+    for (const [path, hash] of Object.entries(baseline.frozen_mock_sha256)) {
+      let frozen = readFileSync(`../../${path}`);
+      if (path === "mock/README.md") {
+        const notice = Buffer.from(mockArchiveNotice);
+        check(frozen.subarray(0, notice.length).equals(notice), "mock README: Q34 archive notice");
+        frozen = frozen.subarray(notice.length);
+      }
       check(
-        createHash("sha256")
-          .update(readFileSync(`../../${path}`))
-          .digest("hex") === hash,
+        createHash("sha256").update(frozen).digest("hex") === hash,
         `${path}: frozen mock unchanged`,
       );
+    }
     for (const file of baseline.source_files.filter((f) => !f.path.endsWith(".md"))) {
       const parent = file.path.slice(0, file.path.lastIndexOf("/") + 1);
       const item = baseline.content.find((p) => p.path === parent + "index.md");

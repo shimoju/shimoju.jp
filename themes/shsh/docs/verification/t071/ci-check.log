@@ -1,0 +1,505 @@
+﻿2026-09-18T15:00:30.8651047Z ##[group]Run mkdir -p .cache/ci
+2026-09-18T15:00:30.8651406Z ^[[36;1mmkdir -p .cache/ci^[[0m
+2026-09-18T15:00:30.8651655Z ^[[36;1mstart=$(date +%s)^[[0m
+2026-09-18T15:00:30.8651883Z ^[[36;1mset +e^[[0m
+2026-09-18T15:00:30.8652122Z ^[[36;1mpnpm check 2>&1 | tee .cache/ci/check.log^[[0m
+2026-09-18T15:00:30.8652627Z ^[[36;1mresult=${PIPESTATUS[0]}^[[0m
+2026-09-18T15:00:30.8652978Z ^[[36;1mprintf '%s\n' "$(( $(date +%s) - start ))" > .cache/ci/seconds.txt^[[0m
+2026-09-18T15:00:30.8653347Z ^[[36;1mexit "$result"^[[0m
+2026-09-18T15:00:30.8690467Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-18T15:00:30.8690822Z env:
+2026-09-18T15:00:30.8691075Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-09-18T15:00:30.8691390Z ##[endgroup]
+2026-09-18T15:00:30.8942540Z $ pnpm format:check && pnpm lint && pnpm lint:css && pnpm check:progress && pnpm check:tooling && pnpm build:fixtures && pnpm check:theme && pnpm check:collections && pnpm check:prose && pnpm check:media && pnpm check:sharing && pnpm check:metadata && pnpm build:review && pnpm build:full-review && pnpm build:site-fixture && pnpm check:site-inputs && pnpm check:site-output && pnpm test
+2026-09-18T15:00:30.9115393Z $ node scripts/format.mjs
+2026-09-18T15:00:31.0458085Z Checking formatting...
+2026-09-18T15:00:31.0530313Z
+2026-09-18T15:00:32.6040169Z All matched files use the correct format.
+2026-09-18T15:00:32.6107753Z Finished in 1563ms on 298 files using 4 threads.
+2026-09-18T15:00:33.4423781Z Go templates: 58 checked, 0 differ.
+2026-09-18T15:00:33.4697966Z $ oxlint --type-aware --type-check --deny-warnings scripts tests assets playwright.config.ts
+2026-09-18T15:00:34.0087115Z Found 0 warnings and 0 errors.
+2026-09-18T15:00:34.0087732Z Finished in 501ms on 42 files with 112 rules using 4 threads.
+2026-09-18T15:00:34.0278352Z $ stylelint "assets/css/**/*.css" "tests/fixtures/**/*.css" --allow-empty-input
+2026-09-18T15:00:34.7417958Z $ node scripts/verify-progress.mjs
+2026-09-18T15:00:39.6444674Z Progress valid: 70 tasks; requirements Q1–Q34; discipline Q1–Q9; references and DAG checked. Human evidence still requires review.
+2026-09-18T15:00:39.6910647Z $ node --experimental-strip-types scripts/verify-tooling.ts
+2026-09-18T15:00:40.6997632Z Toolchain probes passed. Hugo/formatter output is ready for three-engine browser comparison.
+2026-09-18T15:00:40.7001771Z { hugo_before_ms: 55, template_format_ms: 108, hugo_after_ms: 55 }
+2026-09-18T15:00:40.7369619Z $ node scripts/build-fixtures.ts
+2026-09-18T15:00:40.8448743Z Start building sites …
+2026-09-18T15:00:40.9221517Z hugo v0.166.0-78400b4de8adc99273d3e674ed6c4d14c3bdf669 linux/amd64 BuildDate=2026-09-09T14:45:02Z VendorInfo=gohugoio
+2026-09-18T15:00:40.9222205Z
+2026-09-18T15:00:40.9222216Z
+2026-09-18T15:00:40.9222802Z                   │ JA
+2026-09-18T15:00:40.9223459Z ──────────────────┼────
+2026-09-18T15:00:40.9224097Z  Pages            │ 16
+2026-09-18T15:00:40.9224762Z  Paginator pages  │  4
+2026-09-18T15:00:40.9225419Z  Non-page files   │  0
+2026-09-18T15:00:40.9226067Z  Static files     │  0
+2026-09-18T15:00:40.9226941Z  Processed images │  0
+2026-09-18T15:00:40.9227558Z  Aliases          │  2
+2026-09-18T15:00:40.9227943Z  Cleaned          │  0
+2026-09-18T15:00:40.9228120Z
+2026-09-18T15:00:40.9228229Z Total in 83 ms
+2026-09-18T15:00:40.9607619Z Start building sites …
+2026-09-18T15:00:40.9608410Z hugo v0.166.0-78400b4de8adc99273d3e674ed6c4d14c3bdf669 linux/amd64 BuildDate=2026-09-09T14:45:02Z VendorInfo=gohugoio
+2026-09-18T15:00:40.9608895Z
+2026-09-18T15:00:41.0267639Z
+2026-09-18T15:00:41.0270134Z                   │ JA
+2026-09-18T15:00:41.0270616Z ──────────────────┼────
+2026-09-18T15:00:41.0271032Z  Pages            │ 16
+2026-09-18T15:00:41.0271491Z  Paginator pages  │  4
+2026-09-18T15:00:41.0271932Z  Non-page files   │  0
+2026-09-18T15:00:41.0272398Z  Static files     │  0
+2026-09-18T15:00:41.0272830Z  Processed images │  0
+2026-09-18T15:00:41.0273250Z  Aliases          │  2
+2026-09-18T15:00:41.0273630Z  Cleaned          │  0
+2026-09-18T15:00:41.0273773Z
+2026-09-18T15:00:41.0274170Z Total in 67 ms
+2026-09-18T15:00:41.0649549Z Start building sites …
+2026-09-18T15:00:41.0650857Z hugo v0.166.0-78400b4de8adc99273d3e674ed6c4d14c3bdf669 linux/amd64 BuildDate=2026-09-09T14:45:02Z VendorInfo=gohugoio
+2026-09-18T15:00:41.0651697Z
+2026-09-18T15:00:41.1309597Z
+2026-09-18T15:00:41.1316009Z                   │ JA
+2026-09-18T15:00:41.1317044Z ──────────────────┼────
+2026-09-18T15:00:41.1317665Z  Pages            │ 16
+2026-09-18T15:00:41.1318261Z  Paginator pages  │  4
+2026-09-18T15:00:41.1318856Z  Non-page files   │  0
+2026-09-18T15:00:41.1319440Z  Static files     │  0
+2026-09-18T15:00:41.1320056Z  Processed images │  0
+2026-09-18T15:00:41.1320666Z  Aliases          │  2
+2026-09-18T15:00:41.1321262Z  Cleaned          │  0
+2026-09-18T15:00:41.1321582Z
+2026-09-18T15:00:41.1321786Z Total in 67 ms
+2026-09-18T15:00:41.1560212Z $ node scripts/verify-theme.ts
+2026-09-18T15:00:43.0807644Z Theme foundation: HTML, production/preview/development assets, invalid configuration and minimal alternative site passed.
+2026-09-18T15:00:43.1116253Z $ node scripts/verify-collections.ts
+2026-09-18T15:00:44.8787869Z Collections: empty/single/default10/custom2, UTC ties, mainSections, publication filters, summaries, dates and invalid inputs passed.
+2026-09-18T15:00:44.9654390Z Discovery: local year/month, all-section order, tie navigation, fixed-page exclusion, original term case and HTML/feed title consistency passed.
+2026-09-18T15:00:44.9885534Z $ node scripts/verify-prose.ts
+2026-09-18T15:00:45.7452794Z Prose: date fallback/day boundaries/visibility/types, legal footnote IDs, full real article HTML and native heading IDs passed.
+2026-09-18T15:00:45.7744828Z $ node scripts/verify-media.ts
+2026-09-18T15:00:46.0353585Z Start building sites …
+2026-09-18T15:00:46.0354794Z hugo v0.166.0-78400b4de8adc99273d3e674ed6c4d14c3bdf669 linux/amd64 BuildDate=2026-09-09T14:45:02Z VendorInfo=gohugoio
+2026-09-18T15:00:53.0724127Z
+2026-09-18T15:00:53.0724196Z
+2026-09-18T15:00:53.0727778Z                   │ JA
+2026-09-18T15:00:53.0728361Z ──────────────────┼────
+2026-09-18T15:00:53.0728792Z  Pages            │ 15
+2026-09-18T15:00:53.0729196Z  Paginator pages  │  2
+2026-09-18T15:00:53.0729604Z  Non-page files   │ 13
+2026-09-18T15:00:53.0729995Z  Static files     │  4
+2026-09-18T15:00:53.0730417Z  Processed images │ 46
+2026-09-18T15:00:53.0730807Z  Aliases          │  2
+2026-09-18T15:00:53.0731176Z  Cleaned          │  0
+2026-09-18T15:00:53.0731382Z
+2026-09-18T15:00:53.0731517Z Total in 7038 ms
+2026-09-18T15:00:53.1186154Z Start building sites …
+2026-09-18T15:00:53.1187511Z hugo v0.166.0-78400b4de8adc99273d3e674ed6c4d14c3bdf669 linux/amd64 BuildDate=2026-09-09T14:45:02Z VendorInfo=gohugoio
+2026-09-18T15:00:53.1188378Z
+2026-09-18T15:00:53.1955412Z
+2026-09-18T15:00:53.1957045Z                   │ JA
+2026-09-18T15:00:53.1957750Z ──────────────────┼────
+2026-09-18T15:00:53.1958224Z  Pages            │ 15
+2026-09-18T15:00:53.1958563Z  Paginator pages  │  2
+2026-09-18T15:00:53.1958860Z  Non-page files   │ 13
+2026-09-18T15:00:53.1959193Z  Static files     │  4
+2026-09-18T15:00:53.1959468Z  Processed images │ 46
+2026-09-18T15:00:53.1959740Z  Aliases          │  2
+2026-09-18T15:00:53.1959996Z  Cleaned          │  0
+2026-09-18T15:00:53.1960143Z
+2026-09-18T15:00:53.1960493Z Total in 78 ms
+2026-09-18T15:00:54.8394849Z Media: production/preview HTML, unchanged original media, unavailable external URL and invalid inputs passed.
+2026-09-18T15:00:54.8695172Z $ node scripts/verify-sharing.ts
+2026-09-18T15:00:56.2485761Z Sharing: defaults, ordered services, fixed pages/posts, escaped title/URLs, author setting, invalid inputs and preview isolation passed.
+2026-09-18T15:00:56.2770884Z $ node scripts/verify-metadata.ts
+2026-09-18T15:01:01.4747908Z Metadata fixtures: all HTML valid; asset/static/external defaults, bundle isolation, input failures, preview and empty feed built. XML/head assertions run in metadata.spec.ts.
+2026-09-18T15:01:01.5201550Z $ node scripts/build-review-fixture.ts
+2026-09-18T15:01:01.6890850Z Start building sites …
+2026-09-18T15:01:01.6892224Z hugo v0.166.0-78400b4de8adc99273d3e674ed6c4d14c3bdf669 linux/amd64 BuildDate=2026-09-09T14:45:02Z VendorInfo=gohugoio
+2026-09-18T15:01:01.6892734Z
+2026-09-18T15:01:17.0730643Z
+2026-09-18T15:01:17.0732443Z                   │ JA
+2026-09-18T15:01:17.0733072Z ──────────────────┼────
+2026-09-18T15:01:17.0733462Z  Pages            │ 46
+2026-09-18T15:01:17.0733751Z  Paginator pages  │  5
+2026-09-18T15:01:17.0734061Z  Non-page files   │  6
+2026-09-18T15:01:17.0734341Z  Static files     │  0
+2026-09-18T15:01:17.0734619Z  Processed images │ 54
+2026-09-18T15:01:17.0734889Z  Aliases          │ 15
+2026-09-18T15:01:17.0735140Z  Cleaned          │  0
+2026-09-18T15:01:17.0735281Z
+2026-09-18T15:01:17.0735391Z Total in 15385 ms
+2026-09-18T15:01:17.1154901Z Start building sites …
+2026-09-18T15:01:17.1155795Z hugo v0.166.0-78400b4de8adc99273d3e674ed6c4d14c3bdf669 linux/amd64 BuildDate=2026-09-09T14:45:02Z VendorInfo=gohugoio
+2026-09-18T15:01:17.1156350Z
+2026-09-18T15:01:17.2391061Z
+2026-09-18T15:01:17.2391895Z                   │ JA
+2026-09-18T15:01:17.2392328Z ──────────────────┼────
+2026-09-18T15:01:17.2392620Z  Pages            │ 46
+2026-09-18T15:01:17.2392886Z  Paginator pages  │  5
+2026-09-18T15:01:17.2393200Z  Non-page files   │  6
+2026-09-18T15:01:17.2393452Z  Static files     │  0
+2026-09-18T15:01:17.2393711Z  Processed images │ 54
+2026-09-18T15:01:17.2393972Z  Aliases          │ 15
+2026-09-18T15:01:17.2394213Z  Cleaned          │  0
+2026-09-18T15:01:17.2394342Z
+2026-09-18T15:01:17.2394438Z Total in 124 ms
+2026-09-18T15:01:17.2655554Z $ node scripts/build-full-review.ts
+2026-09-18T15:01:17.5270531Z Start building sites …
+2026-09-18T15:01:17.5271702Z hugo v0.166.0-78400b4de8adc99273d3e674ed6c4d14c3bdf669 linux/amd64 BuildDate=2026-09-09T14:45:02Z VendorInfo=gohugoio
+2026-09-18T15:01:17.5272221Z
+2026-09-18T15:01:17.6402449Z
+2026-09-18T15:01:17.6408200Z                   │ JA
+2026-09-18T15:01:17.6408773Z ──────────────────┼────
+2026-09-18T15:01:17.6409213Z  Pages            │ 24
+2026-09-18T15:01:17.6409688Z  Paginator pages  │  8
+2026-09-18T15:01:17.6410105Z  Non-page files   │  6
+2026-09-18T15:01:17.6410512Z  Static files     │  0
+2026-09-18T15:01:17.6410940Z  Processed images │ 54
+2026-09-18T15:01:17.6411377Z  Aliases          │  4
+2026-09-18T15:01:17.6411775Z  Cleaned          │  0
+2026-09-18T15:01:17.6411996Z
+2026-09-18T15:01:17.6412143Z Total in 114 ms
+2026-09-18T15:01:17.6882226Z Start building sites …
+2026-09-18T15:01:17.6883852Z hugo v0.166.0-78400b4de8adc99273d3e674ed6c4d14c3bdf669 linux/amd64 BuildDate=2026-09-09T14:45:02Z VendorInfo=gohugoio
+2026-09-18T15:01:17.6884577Z
+2026-09-18T15:01:17.7616470Z
+2026-09-18T15:01:17.7620056Z                   │ JA
+2026-09-18T15:01:17.7620567Z ──────────────────┼────
+2026-09-18T15:01:17.7620940Z  Pages            │ 15
+2026-09-18T15:01:17.7621274Z  Paginator pages  │  0
+2026-09-18T15:01:17.7621599Z  Non-page files   │  0
+2026-09-18T15:01:17.7621933Z  Static files     │  0
+2026-09-18T15:01:17.7622296Z  Processed images │ 15
+2026-09-18T15:01:17.7622631Z  Aliases          │  2
+2026-09-18T15:01:17.7622911Z  Cleaned          │  0
+2026-09-18T15:01:17.7623070Z
+2026-09-18T15:01:17.7623178Z Total in 75 ms
+2026-09-18T15:01:17.8089696Z Start building sites …
+2026-09-18T15:01:17.8091319Z hugo v0.166.0-78400b4de8adc99273d3e674ed6c4d14c3bdf669 linux/amd64 BuildDate=2026-09-09T14:45:02Z VendorInfo=gohugoio
+2026-09-18T15:01:17.8092118Z
+2026-09-18T15:01:17.8845019Z
+2026-09-18T15:01:17.8847617Z                   │ JA
+2026-09-18T15:01:17.8848237Z ──────────────────┼────
+2026-09-18T15:01:17.8848675Z  Pages            │ 16
+2026-09-18T15:01:17.8849094Z  Paginator pages  │  0
+2026-09-18T15:01:17.8849518Z  Non-page files   │  0
+2026-09-18T15:01:17.8849921Z  Static files     │  0
+2026-09-18T15:01:17.8850316Z  Processed images │ 15
+2026-09-18T15:01:17.8850706Z  Aliases          │  2
+2026-09-18T15:01:17.8851097Z  Cleaned          │  0
+2026-09-18T15:01:17.8851308Z
+2026-09-18T15:01:17.8851444Z Total in 77 ms
+2026-09-18T15:01:17.8898725Z Full review: 40 frozen product screens mapped; specimen stays in representative suite.
+2026-09-18T15:01:19.7905386Z Full review HTML: all production, preview and boundary fixture pages valid.
+2026-09-18T15:01:19.8352943Z $ node scripts/build-site-fixture.ts
+2026-09-18T15:01:38.9145395Z {
+2026-09-18T15:01:38.9145696Z   "command": [
+2026-09-18T15:01:38.9145929Z     "hugo",
+2026-09-18T15:01:38.9146128Z     "--source",
+2026-09-18T15:01:38.9146784Z     "/home/runner/work/shimoju.jp/shimoju.jp/themes/shsh/.cache/site/source",
+2026-09-18T15:01:38.9147308Z     "--themesDir",
+2026-09-18T15:01:38.9147633Z     "/home/runner/work/shimoju.jp/shimoju.jp/themes",
+2026-09-18T15:01:38.9147943Z     "--destination",
+2026-09-18T15:01:38.9148346Z     "/home/runner/work/shimoju.jp/shimoju.jp/themes/shsh/.cache/site/production",
+2026-09-18T15:01:38.9148765Z     "--cacheDir",
+2026-09-18T15:01:38.9149145Z     "/home/runner/work/shimoju.jp/shimoju.jp/themes/shsh/.cache/site/hugo-cache",
+2026-09-18T15:01:38.9149551Z     "--environment",
+2026-09-18T15:01:38.9149799Z     "production",
+2026-09-18T15:01:38.9149999Z     "--clock",
+2026-09-18T15:01:38.9150233Z     "2026-09-17T12:00:00+09:00",
+2026-09-18T15:01:38.9150487Z     "--cleanDestinationDir",
+2026-09-18T15:01:38.9150956Z     "--panicOnWarning"
+2026-09-18T15:01:38.9151310Z   ],
+2026-09-18T15:01:38.9151615Z   "live": false,
+2026-09-18T15:01:38.9152003Z   "environment": "production",
+2026-09-18T15:01:38.9152404Z   "exitCode": 0,
+2026-09-18T15:01:38.9152728Z   "seconds": 18.996933613,
+2026-09-18T15:01:38.9155914Z   "stdout": "Start building sites … \nhugo v0.166.0-78400b4de8adc99273d3e674ed6c4d14c3bdf669 linux/amd64 BuildDate=2026-09-09T14:45:02Z VendorInfo=gohugoio\n\n\n                  │ JA  \n──────────────────┼─────\n Pages            │ 160 \n Paginator pages  │  14 \n Non-page files   │  19 \n Static files     │   6 \n Processed images │ 124 \n Aliases          │  46 \n Cleaned          │   0 \n\nTotal in 18947 ms\n",
+2026-09-18T15:01:38.9157566Z   "stderr": ""
+2026-09-18T15:01:38.9157805Z }
+2026-09-18T15:01:39.2402036Z {
+2026-09-18T15:01:39.2402473Z   "command": [
+2026-09-18T15:01:39.2402725Z     "hugo",
+2026-09-18T15:01:39.2402944Z     "--source",
+2026-09-18T15:01:39.2403362Z     "/home/runner/work/shimoju.jp/shimoju.jp/themes/shsh/.cache/site/source",
+2026-09-18T15:01:39.2403812Z     "--themesDir",
+2026-09-18T15:01:39.2404106Z     "/home/runner/work/shimoju.jp/shimoju.jp/themes",
+2026-09-18T15:01:39.2404407Z     "--destination",
+2026-09-18T15:01:39.2404793Z     "/home/runner/work/shimoju.jp/shimoju.jp/themes/shsh/.cache/site/preview",
+2026-09-18T15:01:39.2405217Z     "--cacheDir",
+2026-09-18T15:01:39.2405596Z     "/home/runner/work/shimoju.jp/shimoju.jp/themes/shsh/.cache/site/hugo-cache",
+2026-09-18T15:01:39.2405999Z     "--environment",
+2026-09-18T15:01:39.2406201Z     "preview",
+2026-09-18T15:01:39.2406397Z     "--clock",
+2026-09-18T15:01:39.2406908Z     "2026-09-17T12:00:00+09:00",
+2026-09-18T15:01:39.2407174Z     "--cleanDestinationDir",
+2026-09-18T15:01:39.2407429Z     "--panicOnWarning",
+2026-09-18T15:01:39.2407673Z     "--baseURL",
+2026-09-18T15:01:39.2407918Z     "https://preview.invalid/"
+2026-09-18T15:01:39.2408167Z   ],
+2026-09-18T15:01:39.2408357Z   "live": false,
+2026-09-18T15:01:39.2408835Z   "environment": "preview",
+2026-09-18T15:01:39.2409082Z   "exitCode": 0,
+2026-09-18T15:01:39.2409362Z   "seconds": 0.32513492899999985,
+2026-09-18T15:01:39.2411493Z   "stdout": "Start building sites … \nhugo v0.166.0-78400b4de8adc99273d3e674ed6c4d14c3bdf669 linux/amd64 BuildDate=2026-09-09T14:45:02Z VendorInfo=gohugoio\n\n\n                  │ JA  \n──────────────────┼─────\n Pages            │ 160 \n Paginator pages  │  14 \n Non-page files   │  19 \n Static files     │   6 \n Processed images │ 124 \n Aliases          │  46 \n Cleaned          │   0 \n\nTotal in 286 ms\n",
+2026-09-18T15:01:39.2415747Z   "stderr": ""
+2026-09-18T15:01:39.2416120Z }
+2026-09-18T15:01:39.2621806Z $ node scripts/verify-site-inputs.ts
+2026-09-18T15:01:39.5354673Z Site inputs: 80 original source/assets, 7 authorized changes, 62 Markdown files and 46 embeds verified. Offline production/preview passed.
+2026-09-18T15:01:39.5628177Z $ node scripts/verify-site-output.ts
+2026-09-18T15:01:43.6549344Z All 340 production/preview HTML files valid; F015 exact-title length exception only.
+2026-09-18T15:01:43.7005826Z $ playwright test
+2026-09-18T15:01:45.5034190Z
+2026-09-18T15:01:45.5035242Z Running 246 tests using 2 workers
+2026-09-18T15:01:45.5035942Z
+2026-09-18T15:01:47.7359611Z   ✓    1 [chromium] › tests/collections.spec.ts:4:1 › home and section pagination retain newer-left/older-right and first-page introduction (1.4s)
+2026-09-18T15:01:48.1594600Z   ✓    3 [chromium] › tests/collections.spec.ts:91:1 › pagination and whole-card links work without JavaScript (410ms)
+2026-09-18T15:01:53.2014026Z   ✓    2 [chromium] › tests/collections.spec.ts:29:1 › list text, separators and pager preserve frozen mock styles in both widths and palettes (6.9s)
+2026-09-18T15:01:53.9988502Z   ✓    4 [chromium] › tests/full-review.spec.ts:9:3 › Full screen home (5.8s)
+2026-09-18T15:01:58.4062859Z   ✓    5 [chromium] › tests/full-review.spec.ts:9:3 › Full screen home-2 (5.2s)
+2026-09-18T15:01:58.7300588Z   ✓    6 [chromium] › tests/full-review.spec.ts:9:3 › Full screen home-3 (4.7s)
+2026-09-18T15:02:03.7517528Z   ✓    8 [chromium] › tests/full-review.spec.ts:9:3 › Full screen posts-2 (5.0s)
+2026-09-18T15:02:03.9428298Z   ✓    7 [chromium] › tests/full-review.spec.ts:9:3 › Full screen posts (5.5s)
+2026-09-18T15:02:08.4139569Z   ✓    9 [chromium] › tests/full-review.spec.ts:9:3 › Full screen posts-3 (4.6s)
+2026-09-18T15:02:08.7808495Z   ✓   10 [chromium] › tests/full-review.spec.ts:9:3 › Full screen tags (4.8s)
+2026-09-18T15:02:12.8872267Z   ✓   11 [chromium] › tests/full-review.spec.ts:9:3 › Full screen tags-empty (4.5s)
+2026-09-18T15:02:13.8674444Z   ✓   12 [chromium] › tests/full-review.spec.ts:9:3 › Full screen tag-1 (5.1s)
+2026-09-18T15:02:17.5716071Z   ✓   13 [chromium] › tests/full-review.spec.ts:9:3 › Full screen tag-2 (4.7s)
+2026-09-18T15:02:19.1046718Z   ✓   14 [chromium] › tests/full-review.spec.ts:9:3 › Full screen tag-3 (5.2s)
+2026-09-18T15:02:22.7785739Z   ✓   15 [chromium] › tests/full-review.spec.ts:9:3 › Full screen tag-4 (5.2s)
+2026-09-18T15:02:24.2918508Z   ✓   16 [chromium] › tests/full-review.spec.ts:9:3 › Full screen tag-5 (5.2s)
+2026-09-18T15:02:27.4011403Z   ✓   17 [chromium] › tests/full-review.spec.ts:9:3 › Full screen tag-6 (4.6s)
+2026-09-18T15:02:29.5063327Z   ✓   18 [chromium] › tests/full-review.spec.ts:9:3 › Full screen tag-7 (5.2s)
+2026-09-18T15:02:32.5689569Z   ✓   19 [chromium] › tests/full-review.spec.ts:9:3 › Full screen tag-8 (5.2s)
+2026-09-18T15:02:34.1704583Z   ✓   20 [chromium] › tests/full-review.spec.ts:9:3 › Full screen tag-9 (4.6s)
+2026-09-18T15:02:37.7431924Z   ✓   21 [chromium] › tests/full-review.spec.ts:9:3 › Full screen tag-10 (5.2s)
+2026-09-18T15:02:39.3682118Z   ✓   22 [chromium] › tests/full-review.spec.ts:9:3 › Full screen tag-11 (5.2s)
+2026-09-18T15:02:42.2069948Z   ✓   23 [chromium] › tests/full-review.spec.ts:9:3 › Full screen categories (4.5s)
+2026-09-18T15:02:43.7529079Z   ✓   24 [chromium] › tests/full-review.spec.ts:9:3 › Full screen categories-empty (4.3s)
+2026-09-18T15:02:47.5694498Z   ✓   25 [chromium] › tests/full-review.spec.ts:9:3 › Full screen category-1 (5.3s)
+2026-09-18T15:02:48.8827092Z   ✓   26 [chromium] › tests/full-review.spec.ts:9:3 › Full screen category-2 (5.1s)
+2026-09-18T15:02:52.3661390Z   ✓   27 [chromium] › tests/full-review.spec.ts:9:3 › Full screen category-2-2 (4.8s)
+2026-09-18T15:02:54.3077376Z   ✓   28 [chromium] › tests/full-review.spec.ts:9:3 › Full screen tag-pagination (5.4s)
+2026-09-18T15:02:57.5459977Z   ✓   29 [chromium] › tests/full-review.spec.ts:9:3 › Full screen tag-pagination-2 (5.2s)
+2026-09-18T15:02:59.0495981Z   ✓   30 [chromium] › tests/full-review.spec.ts:9:3 › Full screen tag-pagination-3 (4.7s)
+2026-09-18T15:03:03.0341914Z   ✓   31 [chromium] › tests/full-review.spec.ts:9:3 › Full screen category-pagination (5.5s)
+2026-09-18T15:03:04.1813294Z   ✓   32 [chromium] › tests/full-review.spec.ts:9:3 › Full screen category-pagination-2 (5.1s)
+2026-09-18T15:03:07.4893590Z   ✓   33 [chromium] › tests/full-review.spec.ts:9:3 › Full screen category-pagination-3 (4.4s)
+2026-09-18T15:03:17.2578378Z   ✓   35 [chromium] › tests/full-review.spec.ts:9:3 › Full screen article-hugo (9.8s)
+2026-09-18T15:03:22.8429475Z   ✓   36 [chromium] › tests/full-review.spec.ts:9:3 › Full screen article-diary (5.5s)
+2026-09-18T15:03:27.7555050Z   ✓   37 [chromium] › tests/full-review.spec.ts:9:3 › Full screen article-bgm (4.9s)
+2026-09-18T15:03:29.6858384Z   ✓   34 [chromium] › tests/full-review.spec.ts:9:3 › Full screen article (25.5s)
+2026-09-18T15:03:33.2970726Z   ✓   38 [chromium] › tests/full-review.spec.ts:9:3 › Full screen article-pasmo (5.5s)
+2026-09-18T15:03:38.2528785Z   ✓   40 [chromium] › tests/full-review.spec.ts:9:3 › Full screen archives (4.9s)
+2026-09-18T15:03:42.3629865Z   ✓   41 [chromium] › tests/full-review.spec.ts:9:3 › Full screen 404 (4.1s)
+2026-09-18T15:03:44.1577559Z   ✓   39 [chromium] › tests/full-review.spec.ts:9:3 › Full screen about (14.5s)
+2026-09-18T15:03:46.5282553Z   ✓   42 [chromium] › tests/full-review.spec.ts:9:3 › Full screen empty (4.1s)
+2026-09-18T15:03:48.7183606Z   ✓   43 [chromium] › tests/full-review.spec.ts:9:3 › Full screen single-item (4.5s)
+2026-09-18T15:03:49.7109304Z   ✓   45 [chromium] › tests/media.spec.ts:10:1 › responsive candidates, originals, dimensions, loading and figure semantics (964ms)
+2026-09-18T15:03:51.3608230Z   ✓   44 [chromium] › tests/full-review.spec.ts:138:1 › discovery semantics, keyboard, fixed pages and JavaScript-disabled navigation (4.8s)
+2026-09-18T15:03:52.6207043Z   ✓   46 [chromium] › tests/media.spec.ts:88:1 › WebP preserves PNG pixels and transparency at each generated width (2.9s)
+2026-09-18T15:03:53.3202063Z   ✓   48 [chromium] › tests/media.spec.ts:193:1 › DPR chooses fitting candidates and JavaScript-free media remain usable (681ms)
+2026-09-18T15:03:53.4725043Z   ✓   49 [chromium] › tests/metadata.spec.ts:52:1 › RSS uses all ordered articles, plain common summaries and stable document GUIDs (129ms)
+2026-09-18T15:03:53.6273523Z   ✓   50 [chromium] › tests/metadata.spec.ts:79:1 › taxonomy feeds contain term pages, term feeds filter posts, empty feeds have no fake dates (141ms)
+2026-09-18T15:03:53.8202574Z   ✓   51 [chromium] › tests/metadata.spec.ts:109:1 › canonical and discovery URLs follow the active pager and build baseURL (179ms)
+2026-09-18T15:03:53.9459217Z   ✓   52 [chromium] › tests/metadata.spec.ts:135:1 › description, dates and JSON-LD preserve page roles and safe text (110ms)
+2026-09-18T15:03:54.1028554Z   ✓   53 [chromium] › tests/metadata.spec.ts:170:1 › SNS images use cover, global assets/static/external defaults or none, never body images (139ms)
+2026-09-18T15:03:54.2662765Z   ✓   54 [chromium] › tests/metadata.spec.ts:193:1 › all XML parses, sitemap and robots follow production and preview (154ms)
+2026-09-18T15:03:57.0248124Z   ✓   55 [chromium] › tests/migration.spec.ts:36:3 › All migrated outputs: production (2.7s)
+2026-09-18T15:03:57.7704233Z   ✓   47 [chromium] › tests/media.spec.ts:151:1 › media geometry matches mock, small images stay small, both colors remain accessible (6.4s)
+2026-09-18T15:03:57.8058413Z   ✓   56 [chromium] › tests/migration.spec.ts:36:3 › All migrated outputs: preview (758ms)
+2026-09-18T15:03:58.2672614Z   ✓   58 [chromium] › tests/prose.spec.ts:47:1 › failed copy announces manual fallback, permits retry, and resets success after three seconds (440ms)
+2026-09-18T15:03:58.5817056Z   ✓   57 [chromium] › tests/prose.spec.ts:19:1 › copy preserves code with Japanese, inline/table numbers, unknown language and no label (790ms)
+2026-09-18T15:03:59.0272448Z   ✓   59 [chromium] › tests/prose.spec.ts:74:1 › keyboard reveals copy and Escape returns focus to selectable code (747ms)
+2026-09-18T15:03:59.2170495Z   ✓   60 [chromium] › tests/prose.spec.ts:95:1 › touch reveals copy, outside tap and horizontal scroll dismiss it (622ms)
+2026-09-18T15:03:59.7258704Z   ✓   61 [chromium] › tests/prose.spec.ts:116:1 › the first tap on a revealed copy button copies exactly once (685ms)
+2026-09-18T15:04:03.9478849Z   ✓   63 [chromium] › tests/prose.spec.ts:256:1 › full real article preserves mock prose layout in both palettes and widths (4.2s)
+2026-09-18T15:04:07.0892064Z   ✓   62 [chromium] › tests/prose.spec.ts:160:1 › prose matches mock type and spacing; footnotes, headings, dates and JS-free reading work (7.9s)
+2026-09-18T15:04:09.6398327Z   ✓   64 [chromium] › tests/review.spec.ts:70:3 › Representative home comparison, both widths/colors and text enlargement (5.7s)
+2026-09-18T15:04:12.3209678Z   ✓   65 [chromium] › tests/review.spec.ts:70:3 › Representative posts comparison, both widths/colors and text enlargement (5.2s)
+2026-09-18T15:04:27.1377532Z   ✓   67 [chromium] › tests/review.spec.ts:70:3 › Representative specimen comparison, both widths/colors and text enlargement (14.8s)
+2026-09-18T15:04:29.0994028Z   ✓   68 [chromium] › tests/sharing.spec.ts:14:1 › shared document URLs, encoded titles, service order and keyboard navigation (1.9s)
+2026-09-18T15:04:29.9100874Z   ✓   69 [chromium] › tests/sharing.spec.ts:59:1 › failed star download preserves reading and share links and announces failure (798ms)
+2026-09-18T15:04:30.3625412Z   ✓   70 [chromium] › tests/sharing.spec.ts:72:1 › preview cannot share or load stars; JS-free production retains ordinary links (440ms)
+2026-09-18T15:04:31.9079839Z   ✓   71 [chromium] › tests/sharing.spec.ts:103:1 › sharing retains mock geometry and icon styling at both widths and palettes (1.5s)
+2026-09-18T15:04:33.4908943Z   ✓   66 [chromium] › tests/review.spec.ts:70:3 › Representative article comparison, both widths/colors and text enlargement (23.8s)
+2026-09-18T15:04:35.5260750Z   ✓   72 [chromium] › tests/site.spec.ts:9:3 › Migrated site production: all embed positions, URLs and publication controls (3.6s)
+2026-09-18T15:04:36.1532362Z   ✓   74 [chromium] › tests/site.spec.ts:99:1 › real video reserves its intrinsic ratio before loading; native playback dimensions agree (612ms)
+2026-09-18T15:04:37.1058520Z   ✓   73 [chromium] › tests/site.spec.ts:9:3 › Migrated site preview: all embed positions, URLs and publication controls (3.6s)
+2026-09-18T15:04:37.2218268Z   ✓   75 [chromium] › tests/theme.spec.ts:4:1 › portrait and landscape keep the type scale while explicit text enlargement still works (1.0s)
+2026-09-18T15:04:37.3897702Z   ✓   76 [chromium] › tests/theme.spec.ts:50:1 › saved pref-theme is applied before styles load (237ms)
+2026-09-18T15:04:37.7730488Z   ✓   78 [chromium] › tests/theme.spec.ts:99:1 › invalid and unavailable storage retain OS fallback and allow a page-local choice (362ms)
+2026-09-18T15:04:37.7789754Z   ✓   77 [chromium] › tests/theme.spec.ts:71:1 › OS follows until a keyboard choice, persists and ignores mock query parameters (538ms)
+2026-09-18T15:04:38.0088238Z   ✓   79 [chromium] › tests/theme.spec.ts:124:1 › invalid saved value uses OS preference (224ms)
+2026-09-18T15:04:38.1910954Z   ✓   80 [chromium] › tests/theme.spec.ts:131:1 › without JavaScript both OS palettes, navigation and subscription remain usable (397ms)
+2026-09-18T15:04:39.5744847Z   ✓   82 [chromium] › tests/tooling.spec.ts:5:1 › Hugo formatting preserves inline spaces, attributes, render hooks and compiled assets (1.4s)
+2026-09-18T15:04:41.7579237Z   ✓   81 [chromium] › tests/theme.spec.ts:148:1 › shared shell keeps mock dimensions at desktop and mobile widths in both palettes (3.7s)
+2026-09-18T15:04:44.4852886Z   ✓   83 [firefox] › tests/collections.spec.ts:4:1 › home and section pagination retain newer-left/older-right and first-page introduction (3.5s)
+2026-09-18T15:04:45.3853538Z   ✓   85 [firefox] › tests/collections.spec.ts:91:1 › pagination and whole-card links work without JavaScript (864ms)
+2026-09-18T15:04:53.3284963Z   ✓   86 [firefox] › tests/full-review.spec.ts:9:3 › Full screen home (7.9s)
+2026-09-18T15:04:55.5796172Z   ✓   84 [firefox] › tests/collections.spec.ts:29:1 › list text, separators and pager preserve frozen mock styles in both widths and palettes (12.5s)
+2026-09-18T15:05:00.5515060Z   ✓   87 [firefox] › tests/full-review.spec.ts:9:3 › Full screen home-2 (7.2s)
+2026-09-18T15:05:02.4092586Z   ✓   88 [firefox] › tests/full-review.spec.ts:9:3 › Full screen home-3 (6.8s)
+2026-09-18T15:05:07.7863674Z   ✓   89 [firefox] › tests/full-review.spec.ts:9:3 › Full screen posts (7.2s)
+2026-09-18T15:05:09.5249566Z   ✓   90 [firefox] › tests/full-review.spec.ts:9:3 › Full screen posts-2 (7.1s)
+2026-09-18T15:05:16.5020444Z   ✓   92 [firefox] › tests/full-review.spec.ts:9:3 › Full screen tags (7.0s)
+2026-09-18T15:05:16.5971590Z   ✓   91 [firefox] › tests/full-review.spec.ts:9:3 › Full screen posts-3 (8.8s)
+2026-09-18T15:05:23.2701433Z   ✓   93 [firefox] › tests/full-review.spec.ts:9:3 › Full screen tags-empty (6.8s)
+2026-09-18T15:05:23.5583623Z   ✓   94 [firefox] › tests/full-review.spec.ts:9:3 › Full screen tag-1 (6.9s)
+2026-09-18T15:05:30.1958397Z   ✓   96 [firefox] › tests/full-review.spec.ts:9:3 › Full screen tag-3 (6.6s)
+2026-09-18T15:05:32.9050551Z   ✓   95 [firefox] › tests/full-review.spec.ts:9:3 › Full screen tag-2 (9.6s)
+2026-09-18T15:05:37.1348698Z   ✓   97 [firefox] › tests/full-review.spec.ts:9:3 › Full screen tag-4 (6.9s)
+2026-09-18T15:05:39.9698178Z   ✓   98 [firefox] › tests/full-review.spec.ts:9:3 › Full screen tag-5 (7.0s)
+2026-09-18T15:05:44.3677532Z   ✓   99 [firefox] › tests/full-review.spec.ts:9:3 › Full screen tag-6 (7.2s)
+2026-09-18T15:05:47.1351320Z   ✓  100 [firefox] › tests/full-review.spec.ts:9:3 › Full screen tag-7 (7.2s)
+2026-09-18T15:05:53.6242821Z   ✓  102 [firefox] › tests/full-review.spec.ts:9:3 › Full screen tag-9 (6.5s)
+2026-09-18T15:05:54.3857676Z   ✓  101 [firefox] › tests/full-review.spec.ts:9:3 › Full screen tag-8 (10.0s)
+2026-09-18T15:06:01.1162957Z   ✓  103 [firefox] › tests/full-review.spec.ts:9:3 › Full screen tag-10 (7.5s)
+2026-09-18T15:06:01.7084760Z   ✓  104 [firefox] › tests/full-review.spec.ts:9:3 › Full screen tag-11 (7.3s)
+2026-09-18T15:06:07.9181556Z   ✓  106 [firefox] › tests/full-review.spec.ts:9:3 › Full screen categories-empty (6.2s)
+2026-09-18T15:06:10.4655383Z   ✓  105 [firefox] › tests/full-review.spec.ts:9:3 › Full screen categories (9.3s)
+2026-09-18T15:06:15.0854301Z   ✓  107 [firefox] › tests/full-review.spec.ts:9:3 › Full screen category-1 (7.2s)
+2026-09-18T15:06:17.8639363Z   ✓  108 [firefox] › tests/full-review.spec.ts:9:3 › Full screen category-2 (7.4s)
+2026-09-18T15:06:22.5105907Z   ✓  109 [firefox] › tests/full-review.spec.ts:9:3 › Full screen category-2-2 (7.4s)
+2026-09-18T15:06:25.3802063Z   ✓  110 [firefox] › tests/full-review.spec.ts:9:3 › Full screen tag-pagination (7.5s)
+2026-09-18T15:06:31.9594804Z   ✓  112 [firefox] › tests/full-review.spec.ts:9:3 › Full screen tag-pagination-3 (6.6s)
+2026-09-18T15:06:32.7049614Z   ✓  111 [firefox] › tests/full-review.spec.ts:9:3 › Full screen tag-pagination-2 (10.2s)
+2026-09-18T15:06:39.6386227Z   ✓  113 [firefox] › tests/full-review.spec.ts:9:3 › Full screen category-pagination (7.7s)
+2026-09-18T15:06:39.9745519Z   ✓  114 [firefox] › tests/full-review.spec.ts:9:3 › Full screen category-pagination-2 (7.3s)
+2026-09-18T15:06:48.7823046Z   ✓  115 [firefox] › tests/full-review.spec.ts:9:3 › Full screen category-pagination-3 (9.1s)
+2026-09-18T15:06:59.9631450Z   ✓  117 [firefox] › tests/full-review.spec.ts:9:3 › Full screen article-hugo (11.2s)
+2026-09-18T15:07:00.5528615Z   ✓  116 [firefox] › tests/full-review.spec.ts:9:3 › Full screen article (20.6s)
+2026-09-18T15:07:07.6696502Z   ✓  118 [firefox] › tests/full-review.spec.ts:9:3 › Full screen article-diary (7.7s)
+2026-09-18T15:07:08.2813714Z   ✓  119 [firefox] › tests/full-review.spec.ts:9:3 › Full screen article-bgm (7.7s)
+2026-09-18T15:07:15.6267749Z   ✓  120 [firefox] › tests/full-review.spec.ts:9:3 › Full screen article-pasmo (7.9s)
+2026-09-18T15:07:22.0927788Z   ✓  121 [firefox] › tests/full-review.spec.ts:9:3 › Full screen about (13.8s)
+2026-09-18T15:07:24.1242667Z   ✓  122 [firefox] › tests/full-review.spec.ts:9:3 › Full screen archives (8.5s)
+2026-09-18T15:07:29.9841123Z   ✓  123 [firefox] › tests/full-review.spec.ts:9:3 › Full screen 404 (7.9s)
+2026-09-18T15:07:31.5803144Z   ✓  124 [firefox] › tests/full-review.spec.ts:9:3 › Full screen empty (7.4s)
+2026-09-18T15:07:36.8679790Z   ✓  125 [firefox] › tests/full-review.spec.ts:9:3 › Full screen single-item (6.9s)
+2026-09-18T15:07:38.7492267Z   ✓  127 [firefox] › tests/media.spec.ts:10:1 › responsive candidates, originals, dimensions, loading and figure semantics (1.8s)
+2026-09-18T15:07:39.7908730Z   ✓  126 [firefox] › tests/full-review.spec.ts:138:1 › discovery semantics, keyboard, fixed pages and JavaScript-disabled navigation (8.2s)
+2026-09-18T15:07:41.6118659Z   ✓  128 [firefox] › tests/media.spec.ts:88:1 › WebP preserves PNG pixels and transparency at each generated width (2.8s)
+2026-09-18T15:07:43.4007549Z   ✓  130 [firefox] › tests/media.spec.ts:193:1 › DPR chooses fitting candidates and JavaScript-free media remain usable (1.8s)
+2026-09-18T15:07:43.8661470Z   ✓  131 [firefox] › tests/metadata.spec.ts:52:1 › RSS uses all ordered articles, plain common summaries and stable document GUIDs (440ms)
+2026-09-18T15:07:44.3229204Z   ✓  132 [firefox] › tests/metadata.spec.ts:79:1 › taxonomy feeds contain term pages, term feeds filter posts, empty feeds have no fake dates (434ms)
+2026-09-18T15:07:46.3007482Z   ✓  133 [firefox] › tests/metadata.spec.ts:109:1 › canonical and discovery URLs follow the active pager and build baseURL (2.0s)
+2026-09-18T15:07:46.6634580Z   ✓  134 [firefox] › tests/metadata.spec.ts:135:1 › description, dates and JSON-LD preserve page roles and safe text (348ms)
+2026-09-18T15:07:47.0642669Z   ✓  135 [firefox] › tests/metadata.spec.ts:170:1 › SNS images use cover, global assets/static/external defaults or none, never body images (387ms)
+2026-09-18T15:07:47.5458977Z   ✓  136 [firefox] › tests/metadata.spec.ts:193:1 › all XML parses, sitemap and robots follow production and preview (465ms)
+2026-09-18T15:07:47.6238938Z   ✓  129 [firefox] › tests/media.spec.ts:151:1 › media geometry matches mock, small images stay small, both colors remain accessible (7.8s)
+2026-09-18T15:07:48.5788641Z   ✓  138 [firefox] › tests/migration.spec.ts:36:3 › All migrated outputs: preview (916ms)
+2026-09-18T15:07:49.8489783Z   ✓  139 [firefox] › tests/prose.spec.ts:19:1 › copy preserves code with Japanese, inline/table numbers, unknown language and no label (1.2s)
+2026-09-18T15:07:50.5258463Z   ✓  137 [firefox] › tests/migration.spec.ts:36:3 › All migrated outputs: production (2.9s)
+2026-09-18T15:07:50.6663571Z   ✓  140 [firefox] › tests/prose.spec.ts:47:1 › failed copy announces manual fallback, permits retry, and resets success after three seconds (799ms)
+2026-09-18T15:07:51.7865926Z   ✓  141 [firefox] › tests/prose.spec.ts:74:1 › keyboard reveals copy and Escape returns focus to selectable code (1.2s)
+2026-09-18T15:07:51.9249432Z   ✓  142 [firefox] › tests/prose.spec.ts:95:1 › touch reveals copy, outside tap and horizontal scroll dismiss it (1.2s)
+2026-09-18T15:07:53.0761485Z   ✓  143 [firefox] › tests/prose.spec.ts:116:1 › the first tap on a revealed copy button copies exactly once (1.3s)
+2026-09-18T15:07:56.9771404Z   ✓  145 [firefox] › tests/prose.spec.ts:256:1 › full real article preserves mock prose layout in both palettes and widths (3.9s)
+2026-09-18T15:08:05.5252337Z   ✓  146 [firefox] › tests/review.spec.ts:70:3 › Representative home comparison, both widths/colors and text enlargement (8.5s)
+2026-09-18T15:08:06.6096462Z   ✓  144 [firefox] › tests/prose.spec.ts:160:1 › prose matches mock type and spacing; footnotes, headings, dates and JS-free reading work (14.7s)
+2026-09-18T15:08:12.7124437Z   ✓  147 [firefox] › tests/review.spec.ts:70:3 › Representative posts comparison, both widths/colors and text enlargement (7.2s)
+2026-09-18T15:08:27.4330609Z   ✓  148 [firefox] › tests/review.spec.ts:70:3 › Representative article comparison, both widths/colors and text enlargement (20.8s)
+2026-09-18T15:08:27.8843720Z   ✓  149 [firefox] › tests/review.spec.ts:70:3 › Representative specimen comparison, both widths/colors and text enlargement (15.2s)
+2026-09-18T15:08:29.2865433Z   ✓  151 [firefox] › tests/sharing.spec.ts:59:1 › failed star download preserves reading and share links and announces failure (1.4s)
+2026-09-18T15:08:30.3504545Z   ✓  152 [firefox] › tests/sharing.spec.ts:72:1 › preview cannot share or load stars; JS-free production retains ordinary links (1.1s)
+2026-09-18T15:08:30.9502012Z   ✓  150 [firefox] › tests/sharing.spec.ts:14:1 › shared document URLs, encoded titles, service order and keyboard navigation (3.5s)
+2026-09-18T15:08:33.1622684Z   ✓  153 [firefox] › tests/sharing.spec.ts:103:1 › sharing retains mock geometry and icon styling at both widths and palettes (2.8s)
+2026-09-18T15:08:37.1963785Z   ✓  154 [firefox] › tests/site.spec.ts:9:3 › Migrated site production: all embed positions, URLs and publication controls (6.2s)
+2026-09-18T15:08:38.3940700Z   ✓  156 [firefox] › tests/site.spec.ts:99:1 › real video reserves its intrinsic ratio before loading; native playback dimensions agree (1.2s)
+2026-09-18T15:08:39.0849551Z   ✓  155 [firefox] › tests/site.spec.ts:9:3 › Migrated site preview: all embed positions, URLs and publication controls (5.9s)
+2026-09-18T15:08:40.2421722Z   ✓  157 [firefox] › tests/theme.spec.ts:4:1 › portrait and landscape keep the type scale while explicit text enlargement still works (1.8s)
+2026-09-18T15:08:41.0288570Z   ✓  159 [firefox] › tests/theme.spec.ts:71:1 › OS follows until a keyboard choice, persists and ignores mock query parameters (768ms)
+2026-09-18T15:08:41.0355988Z   ✓  158 [firefox] › tests/theme.spec.ts:50:1 › saved pref-theme is applied before styles load (1.9s)
+2026-09-18T15:08:41.6110368Z   ✓  161 [firefox] › tests/theme.spec.ts:124:1 › invalid saved value uses OS preference (555ms)
+2026-09-18T15:08:41.6243574Z   ✓  160 [firefox] › tests/theme.spec.ts:99:1 › invalid and unavailable storage retain OS fallback and allow a page-local choice (577ms)
+2026-09-18T15:08:42.3783826Z   ✓  162 [firefox] › tests/theme.spec.ts:131:1 › without JavaScript both OS palettes, navigation and subscription remain usable (750ms)
+2026-09-18T15:08:44.6797348Z   ✓  164 [firefox] › tests/tooling.spec.ts:5:1 › Hugo formatting preserves inline spaces, attributes, render hooks and compiled assets (2.3s)
+2026-09-18T15:08:49.1268448Z   ✓  163 [firefox] › tests/theme.spec.ts:148:1 › shared shell keeps mock dimensions at desktop and mobile widths in both palettes (7.5s)
+2026-09-18T15:08:50.0010933Z   ✓  165 [webkit] › tests/collections.spec.ts:4:1 › home and section pagination retain newer-left/older-right and first-page introduction (3.6s)
+2026-09-18T15:08:51.0166392Z   ✓  166 [webkit] › tests/collections.spec.ts:91:1 › pagination and whole-card links work without JavaScript (995ms)
+2026-09-18T15:08:58.7232068Z   ✓  168 [webkit] › tests/full-review.spec.ts:9:3 › Full screen home (7.6s)
+2026-09-18T15:08:59.6279054Z   ✓  167 [webkit] › tests/collections.spec.ts:29:1 › list text, separators and pager preserve frozen mock styles in both widths and palettes (9.3s)
+2026-09-18T15:09:05.7077537Z   ✓  169 [webkit] › tests/full-review.spec.ts:9:3 › Full screen home-2 (7.0s)
+2026-09-18T15:09:06.5470043Z   ✓  170 [webkit] › tests/full-review.spec.ts:9:3 › Full screen home-3 (6.9s)
+2026-09-18T15:09:12.8008486Z   ✓  171 [webkit] › tests/full-review.spec.ts:9:3 › Full screen posts (7.1s)
+2026-09-18T15:09:13.5888586Z   ✓  172 [webkit] › tests/full-review.spec.ts:9:3 › Full screen posts-2 (7.0s)
+2026-09-18T15:09:19.2183209Z   ✓  173 [webkit] › tests/full-review.spec.ts:9:3 › Full screen posts-3 (6.4s)
+2026-09-18T15:09:20.3122850Z   ✓  174 [webkit] › tests/full-review.spec.ts:9:3 › Full screen tags (6.7s)
+2026-09-18T15:09:25.3728600Z   ✓  175 [webkit] › tests/full-review.spec.ts:9:3 › Full screen tags-empty (6.1s)
+2026-09-18T15:09:27.1711237Z   ✓  176 [webkit] › tests/full-review.spec.ts:9:3 › Full screen tag-1 (6.8s)
+2026-09-18T15:09:32.1054125Z   ✓  177 [webkit] › tests/full-review.spec.ts:9:3 › Full screen tag-2 (6.7s)
+2026-09-18T15:09:34.0588162Z   ✓  178 [webkit] › tests/full-review.spec.ts:9:3 › Full screen tag-3 (6.9s)
+2026-09-18T15:09:38.9647505Z   ✓  179 [webkit] › tests/full-review.spec.ts:9:3 › Full screen tag-4 (6.8s)
+2026-09-18T15:09:40.9394942Z   ✓  180 [webkit] › tests/full-review.spec.ts:9:3 › Full screen tag-5 (6.9s)
+2026-09-18T15:09:45.5532023Z   ✓  181 [webkit] › tests/full-review.spec.ts:9:3 › Full screen tag-6 (6.6s)
+2026-09-18T15:09:47.8748038Z   ✓  182 [webkit] › tests/full-review.spec.ts:9:3 › Full screen tag-7 (6.9s)
+2026-09-18T15:09:52.4883162Z   ✓  183 [webkit] › tests/full-review.spec.ts:9:3 › Full screen tag-8 (6.9s)
+2026-09-18T15:09:54.3168297Z   ✓  184 [webkit] › tests/full-review.spec.ts:9:3 › Full screen tag-9 (6.4s)
+2026-09-18T15:09:59.4739561Z   ✓  185 [webkit] › tests/full-review.spec.ts:9:3 › Full screen tag-10 (6.9s)
+2026-09-18T15:10:01.4734983Z   ✓  186 [webkit] › tests/full-review.spec.ts:9:3 › Full screen tag-11 (7.1s)
+2026-09-18T15:10:05.7519436Z   ✓  187 [webkit] › tests/full-review.spec.ts:9:3 › Full screen categories (6.3s)
+2026-09-18T15:10:07.5198508Z   ✓  188 [webkit] › tests/full-review.spec.ts:9:3 › Full screen categories-empty (6.0s)
+2026-09-18T15:10:12.7849136Z   ✓  189 [webkit] › tests/full-review.spec.ts:9:3 › Full screen category-1 (7.0s)
+2026-09-18T15:10:14.5545850Z   ✓  190 [webkit] › tests/full-review.spec.ts:9:3 › Full screen category-2 (7.0s)
+2026-09-18T15:10:19.6905473Z   ✓  191 [webkit] › tests/full-review.spec.ts:9:3 › Full screen category-2-2 (6.9s)
+2026-09-18T15:10:22.0172251Z   ✓  192 [webkit] › tests/full-review.spec.ts:9:3 › Full screen tag-pagination (7.4s)
+2026-09-18T15:10:26.4960681Z   ✓  193 [webkit] › tests/full-review.spec.ts:9:3 › Full screen tag-pagination-2 (6.8s)
+2026-09-18T15:10:29.0283563Z   ✓  194 [webkit] › tests/full-review.spec.ts:9:3 › Full screen tag-pagination-3 (7.0s)
+2026-09-18T15:10:33.7522750Z   ✓  195 [webkit] › tests/full-review.spec.ts:9:3 › Full screen category-pagination (7.2s)
+2026-09-18T15:10:36.1352993Z   ✓  196 [webkit] › tests/full-review.spec.ts:9:3 › Full screen category-pagination-2 (7.1s)
+2026-09-18T15:10:40.3806475Z   ✓  197 [webkit] › tests/full-review.spec.ts:9:3 › Full screen category-pagination-3 (6.6s)
+2026-09-18T15:10:51.1597348Z   ✓  199 [webkit] › tests/full-review.spec.ts:9:3 › Full screen article-hugo (10.8s)
+2026-09-18T15:10:56.7334924Z   ✓  198 [webkit] › tests/full-review.spec.ts:9:3 › Full screen article (20.6s)
+2026-09-18T15:10:57.7067396Z   ✓  200 [webkit] › tests/full-review.spec.ts:9:3 › Full screen article-diary (6.5s)
+2026-09-18T15:11:03.6742838Z   ✓  201 [webkit] › tests/full-review.spec.ts:9:3 › Full screen article-bgm (6.9s)
+2026-09-18T15:11:04.9548025Z   ✓  202 [webkit] › tests/full-review.spec.ts:9:3 › Full screen article-pasmo (7.2s)
+2026-09-18T15:11:11.8792534Z   ✓  204 [webkit] › tests/full-review.spec.ts:9:3 › Full screen archives (6.9s)
+2026-09-18T15:11:16.1507609Z   ✓  203 [webkit] › tests/full-review.spec.ts:9:3 › Full screen about (12.5s)
+2026-09-18T15:11:17.7283508Z   ✓  205 [webkit] › tests/full-review.spec.ts:9:3 › Full screen 404 (5.8s)
+2026-09-18T15:11:22.1201173Z   ✓  206 [webkit] › tests/full-review.spec.ts:9:3 › Full screen empty (6.0s)
+2026-09-18T15:11:23.7138495Z   ✓  207 [webkit] › tests/full-review.spec.ts:9:3 › Full screen single-item (6.0s)
+2026-09-18T15:11:25.9038363Z   ✓  209 [webkit] › tests/media.spec.ts:10:1 › responsive candidates, originals, dimensions, loading and figure semantics (2.2s)
+2026-09-18T15:11:29.8038556Z   ✓  210 [webkit] › tests/media.spec.ts:88:1 › WebP preserves PNG pixels and transparency at each generated width (3.9s)
+2026-09-18T15:11:30.1768545Z   ✓  208 [webkit] › tests/full-review.spec.ts:138:1 › discovery semantics, keyboard, fixed pages and JavaScript-disabled navigation (8.0s)
+2026-09-18T15:11:32.5549081Z   ✓  212 [webkit] › tests/media.spec.ts:193:1 › DPR chooses fitting candidates and JavaScript-free media remain usable (2.3s)
+2026-09-18T15:11:32.9403155Z   ✓  213 [webkit] › tests/metadata.spec.ts:52:1 › RSS uses all ordered articles, plain common summaries and stable document GUIDs (362ms)
+2026-09-18T15:11:33.4023963Z   ✓  214 [webkit] › tests/metadata.spec.ts:79:1 › taxonomy feeds contain term pages, term feeds filter posts, empty feeds have no fake dates (443ms)
+2026-09-18T15:11:33.9873592Z   ✓  215 [webkit] › tests/metadata.spec.ts:109:1 › canonical and discovery URLs follow the active pager and build baseURL (570ms)
+2026-09-18T15:11:34.3398527Z   ✓  216 [webkit] › tests/metadata.spec.ts:135:1 › description, dates and JSON-LD preserve page roles and safe text (332ms)
+2026-09-18T15:11:34.7402807Z   ✓  217 [webkit] › tests/metadata.spec.ts:170:1 › SNS images use cover, global assets/static/external defaults or none, never body images (382ms)
+2026-09-18T15:11:35.2900150Z   ✓  218 [webkit] › tests/metadata.spec.ts:193:1 › all XML parses, sitemap and robots follow production and preview (531ms)
+2026-09-18T15:11:38.6300360Z   ✓  219 [webkit] › tests/migration.spec.ts:36:3 › All migrated outputs: production (3.3s)
+2026-09-18T15:11:39.2828775Z   ✓  211 [webkit] › tests/media.spec.ts:151:1 › media geometry matches mock, small images stay small, both colors remain accessible (9.5s)
+2026-09-18T15:11:39.6144037Z   ✓  220 [webkit] › tests/migration.spec.ts:36:3 › All migrated outputs: preview (969ms)
+2026-09-18T15:11:40.8209746Z   ✓  222 [webkit] › tests/prose.spec.ts:47:1 › failed copy announces manual fallback, permits retry, and resets success after three seconds (1.2s)
+2026-09-18T15:11:41.4326500Z   ✓  221 [webkit] › tests/prose.spec.ts:19:1 › copy preserves code with Japanese, inline/table numbers, unknown language and no label (2.1s)
+2026-09-18T15:11:42.5418894Z   ✓  223 [webkit] › tests/prose.spec.ts:74:1 › keyboard reveals copy and Escape returns focus to selectable code (1.7s)
+2026-09-18T15:11:42.9015035Z   ✓  224 [webkit] › tests/prose.spec.ts:95:1 › touch reveals copy, outside tap and horizontal scroll dismiss it (1.4s)
+2026-09-18T15:11:44.0725685Z   ✓  225 [webkit] › tests/prose.spec.ts:116:1 › the first tap on a revealed copy button copies exactly once (1.5s)
+2026-09-18T15:11:48.0459117Z   ✓  227 [webkit] › tests/prose.spec.ts:256:1 › full real article preserves mock prose layout in both palettes and widths (4.0s)
+2026-09-18T15:11:54.7019633Z   ✓  226 [webkit] › tests/prose.spec.ts:160:1 › prose matches mock type and spacing; footnotes, headings, dates and JS-free reading work (11.8s)
+2026-09-18T15:11:55.3309451Z   ✓  228 [webkit] › tests/review.spec.ts:70:3 › Representative home comparison, both widths/colors and text enlargement (7.3s)
+2026-09-18T15:12:01.9152282Z   ✓  229 [webkit] › tests/review.spec.ts:70:3 › Representative posts comparison, both widths/colors and text enlargement (7.2s)
+2026-09-18T15:12:15.5126026Z   ✓  230 [webkit] › tests/review.spec.ts:70:3 › Representative article comparison, both widths/colors and text enlargement (20.2s)
+2026-09-18T15:12:17.0820018Z   ✓  231 [webkit] › tests/review.spec.ts:70:3 › Representative specimen comparison, both widths/colors and text enlargement (15.1s)
+2026-09-18T15:12:18.3891451Z   ✓  232 [webkit] › tests/sharing.spec.ts:14:1 › shared document URLs, encoded titles, service order and keyboard navigation (2.9s)
+2026-09-18T15:12:18.5150008Z   ✓  233 [webkit] › tests/sharing.spec.ts:59:1 › failed star download preserves reading and share links and announces failure (1.4s)
+2026-09-18T15:12:19.6796938Z   ✓  234 [webkit] › tests/sharing.spec.ts:72:1 › preview cannot share or load stars; JS-free production retains ordinary links (1.3s)
+2026-09-18T15:12:21.9355647Z   ✓  235 [webkit] › tests/sharing.spec.ts:103:1 › sharing retains mock geometry and icon styling at both widths and palettes (3.4s)
+2026-09-18T15:12:26.5053273Z   ✓  236 [webkit] › tests/site.spec.ts:9:3 › Migrated site production: all embed positions, URLs and publication controls (6.8s)
+2026-09-18T15:12:27.9906525Z   ✓  238 [webkit] › tests/site.spec.ts:99:1 › real video reserves its intrinsic ratio before loading; native playback dimensions agree (1.5s)
+2026-09-18T15:12:28.3140200Z   ✓  237 [webkit] › tests/site.spec.ts:9:3 › Migrated site preview: all embed positions, URLs and publication controls (6.4s)
+2026-09-18T15:12:28.8930105Z   ✓  240 [webkit] › tests/theme.spec.ts:50:1 › saved pref-theme is applied before styles load (559ms)
+2026-09-18T15:12:29.8009973Z   ✓  241 [webkit] › tests/theme.spec.ts:71:1 › OS follows until a keyboard choice, persists and ignores mock query parameters (890ms)
+2026-09-18T15:12:30.5720491Z   ✓  242 [webkit] › tests/theme.spec.ts:99:1 › invalid and unavailable storage retain OS fallback and allow a page-local choice (755ms)
+2026-09-18T15:12:30.7189347Z   ✓  239 [webkit] › tests/theme.spec.ts:4:1 › portrait and landscape keep the type scale while explicit text enlargement still works (2.7s)
+2026-09-18T15:12:31.1078767Z   ✓  243 [webkit] › tests/theme.spec.ts:124:1 › invalid saved value uses OS preference (516ms)
+2026-09-18T15:12:31.6358438Z   ✓  244 [webkit] › tests/theme.spec.ts:131:1 › without JavaScript both OS palettes, navigation and subscription remain usable (905ms)
+2026-09-18T15:12:33.8080200Z   ✓  246 [webkit] › tests/tooling.spec.ts:5:1 › Hugo formatting preserves inline spaces, attributes, render hooks and compiled assets (2.2s)
+2026-09-18T15:12:35.9844995Z   ✓  245 [webkit] › tests/theme.spec.ts:148:1 › shared shell keeps mock dimensions at desktop and mobile widths in both palettes (4.9s)
+2026-09-18T15:12:36.1362137Z
+2026-09-18T15:12:36.1369574Z   246 passed (10.9m)

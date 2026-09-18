@@ -4,6 +4,7 @@ Python's standard library is used only for this development audit. Site builds
 remain Hugo-only. The generated data is evidence, not an expected-output update
 command: retain the fixed source ref when rerunning after migration.
 """
+import argparse
 import csv
 import hashlib
 import io
@@ -92,11 +93,15 @@ class Page(HTMLParser):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--papermod-repository', type=Path, default=ROOT / 'themes/PaperMod',
+                        help='Checkout containing the immutable pre-migration PaperMod commit')
+    args = parser.parse_args()
     with tempfile.TemporaryDirectory(prefix='shsh-baseline-') as directory:
         scratch = Path(directory)
         extract_archive(ROOT, REF, scratch, ['hugo.yml', 'content', 'static', 'assets', 'layouts', 'mock'])
         theme_ref = run('git', 'rev-parse', f'{REF}:themes/PaperMod').strip()
-        extract_archive(ROOT / 'themes/PaperMod', theme_ref, scratch / 'themes/PaperMod')
+        extract_archive(args.papermod_repository, theme_ref, scratch / 'themes/PaperMod')
         override = scratch / 'layouts/_shortcodes/x.html'
         override.parent.mkdir(parents=True, exist_ok=True)
         override.write_bytes((THEME / 'tests/fixtures/offline/layouts/_shortcodes/x.html').read_bytes())

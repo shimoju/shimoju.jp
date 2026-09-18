@@ -6,7 +6,6 @@ My website: https://shimoju.jp/
 brew install hugo imagemagick pngquant oxipng ffmpeg
 git clone https://github.com/shimoju/shimoju.jp.git
 cd shimoju.jp
-git submodule update --init --recursive
 bin/dev
 ```
 
@@ -19,7 +18,7 @@ bin/build
 bin/build --environment preview --baseURL https://example.pages.dev/
 ```
 
-Preview output has noindex metadata and disabled sharing / Hatena Star. External content embeds still load. The Cloudflare Pages production and preview configuration is verified separately as part of the migration.
+Preview output has noindex metadata and disabled sharing / Hatena Star. External content embeds still load. See the [production verification](themes/shsh/docs/verification/t071/README.md) and [migration audit](themes/shsh/docs/verification/t018/README.md).
 
 ## Create new post
 

@@ -4,7 +4,7 @@
 
 ## 参照する仕様
 
-- [HTMLモック](../mock/README.md)：表示・操作仕様の正。レビュー入口、診断UI、検証用件数・分類は本番機能と区別する。
+- [shshテーマ](../themes/shsh/README.md)・検査fixture・文書：本番移行後の表示・操作仕様の正（Q34）。[HTMLモック](../mock/README.md)は実装前の比較基準を保持する参考資料。レビュー入口、診断UI、検証用件数・分類は本番機能と区別する。
 - [デザインの軸と情報設計](03-theme-visual-requirements.md)：視覚・操作・情報設計の判断理由。既存の購読先と記事への参照を引き継ぐ方針を含む。
 - [実装規律](05-theme-implementation-discipline.md)：実装・レビュー・進捗管理の進め方。実装中は凍結モックに加えて本資料の合意と、その後に承認した変更を比較基準にする。
 - [Hugoのテーマ構造と責務](01-hugo-theme-structure.md)、[PaperModと現サイトの調査](02-papermod-analysis.md)：仕組みと移行元の調査。自作テーマへの採用決定ではない。
