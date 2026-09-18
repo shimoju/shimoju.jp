@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T13:33:57.951146+00:00",
+  "updated_at": "2026-09-18T13:39:06.044824+00:00",
   "stage": "final_verification",
-  "summary": "Mac Chromeのキーボード・動画・外部埋め込みを追加確認。SafariはYouTube映像の回答待ちと実フェイス等が残る。Firefox追加検査のUI制約、他実機残件、本番移行、旧テーマ整理は未完了。",
+  "summary": "本番移行用draft PR #5を作成し、最新CI/previewを開始。Mac実機の追加確認は記録済み。Safari YouTube回答待ち・他実機残件が残り、本番移行と旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T015",
-    "action": "Safari YouTubeの回答を反映し、Safari実フェイス・Firefox等の実機残件を解消する。本番移行は未実施。"
+    "task_id": "T017",
+    "action": "PR #5の最新headに対するGitHub CI/Pagesを追跡する。並行してT015の実機残件を解消し、マージ前条件を揃える。"
   },
   "tasks": [
     {
@@ -809,10 +809,10 @@
         "themes/shsh/docs/verification/cloudflare-pages.md",
         "themes/shsh/docs/verification/t017/"
       ],
-      "verification_ids": ["V042", "V045", "V047", "V048", "V058"],
+      "verification_ids": ["V042", "V045", "V047", "V048", "V058", "V103"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "previewの実配信と本番必須CI設定は確認済み。実機確認後、必須チェック成功のPRをmasterへ統合し本番のURL・RSS・共有/スター・外部埋め込み・404/feed転送を確認する。本番未移行のため全体は未合格。"
+      "next_action": "Draft PR #5（hugo-theme→master）を作成済み。最新headの必須CIとpreviewを追跡し、実機残件解消後に統合する。本番未移行のため全体は未合格。"
     },
     {
       "id": "T018",
@@ -2165,6 +2165,42 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "Mac Chromeのキーボード・ローカル動画確認は完了。T015の他環境・本番条件を継続する。"
+    },
+    {
+      "id": "T058",
+      "title": "本番移行用のdraft PRを準備",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "承認済みの移行差分と検証済み/未確認の範囲をまとめ、hugo-themeからmasterへのdraft PRを作成する。",
+        "作業ブランチの証拠をpushし、最新のGitHub CIとpreview配信を開始する。本番マージは実機残件の解消後。"
+      ],
+      "depends_on": ["T054", "T057"],
+      "acceptance_criteria": [
+        "draft PRがmasterを対象とし、変更・承認済み差分・検証証拠・実機残件・公開後確認と切り戻しを説明している。",
+        "PRのURL・draft状態・ベースを取得し、本番マージ未実施を区別する。"
+      ],
+      "verification_plan": [
+        "既存PR・ブランチ・差分を読み取り、push前に進捗/整形/差分検査を実施する。",
+        "draft PRを作成し、GitHubのPRメタデータを取得して記録する。",
+        "記録のコミットをpushし最新CIの実行を確認する。CI結果と本番移行はT017の後続確認へ引き継ぐ。"
+      ],
+      "commit_message": "[T058] 本番移行用draft PRと残件を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/t058/README.md",
+        "themes/shsh/docs/verification/t058/pr-created.json",
+        "themes/shsh/docs/verification/t058/pr-body.md"
+      ],
+      "verification_ids": ["V103"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "Draft PR #5を作成済み。記録をpushし最新headのCI/previewを追跡する。実機残件解消後に本番移行する。"
     }
   ],
   "findings": [
@@ -5148,6 +5184,26 @@
         "themes/shsh/docs/verification/t057/"
       ],
       "recorded_at": "2026-09-18T13:33:57.951146+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V103",
+      "task_ids": ["T017", "T058"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "本番移行用draft PRの作成と状態確認",
+      "result": "passed",
+      "subject_ref": "https://github.com/shimoju/shimoju.jp/pull/5 / 作成時head 0c344a5a93cd385b2156cd93ed733238c8efe9f4",
+      "environment": "GitHub / gh CLI / 2026-09-18",
+      "procedure": "既存PRがないことを確認し検証記録を作業ブランチへpush。変更・証拠・未確認範囲と切り戻しを説明したdraft PRを作成。APIでOPEN/isDraft true/master対象を確認。shsh-checkとPagesは実行中であり成功とは扱わない。本番マージ未実施。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t058/pr-created.json",
+        "themes/shsh/docs/verification/t058/pr-body.md"
+      ],
+      "recorded_at": "2026-09-18T13:39:06.044824+00:00",
       "supersedes": null
     }
   ]

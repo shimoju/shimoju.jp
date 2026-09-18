@@ -1,0 +1,30 @@
+{
+  "observed_at": "2026-09-18T13:39:06.044824+00:00",
+  "url": "https://github.com/shimoju/shimoju.jp/pull/5",
+  "number": 5,
+  "title": "Hugoテーマをshshへ移行する",
+  "state": "OPEN",
+  "isDraft": true,
+  "baseRefName": "master",
+  "headRefOid": "0c344a5a93cd385b2156cd93ed733238c8efe9f4",
+  "mergeStateStatus": "BLOCKED",
+  "checks_observed": [
+    {
+      "name": "shsh-check",
+      "run_id": 35351330954,
+      "status": "IN_PROGRESS"
+    },
+    {
+      "name": "shsh-check",
+      "run_id": 35351294534,
+      "status": "IN_PROGRESS"
+    },
+    {
+      "name": "Cloudflare Pages",
+      "deployment_id": "fe6327c3-2643-4d55-af45-51a8d33326a7",
+      "status": "IN_PROGRESS"
+    }
+  ],
+  "merged": false,
+  "note": "作成直後の読取記録。T058の記録コミットをpushした後の最新head・CIは別途追跡する。"
+}
