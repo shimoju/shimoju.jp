@@ -77,7 +77,11 @@ test("list text, separators and pager preserve frozen mock styles in both widths
           await styles(mock, selector),
         );
       }
-      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(width);
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= document.documentElement.clientWidth,
+        ),
+      ).toBe(true);
       expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
     }
   }

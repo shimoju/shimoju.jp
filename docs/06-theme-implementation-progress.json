@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-17T14:26:44.785911+00:00",
+  "updated_at": "2026-09-18T01:04:55.523262+00:00",
   "stage": "revision",
-  "summary": "R001の2指摘をT020/T021で修正。本文部品の強調範囲を検査し、テーマ開発設定・依存・scripts/tests・検証資料をthemes/shshへ集約。統合102件成功。修正版の画像と説明をR003へ提出し共通設計の承認待ち。サイト本番・凍結モックは維持。",
-  "latest_review_id": "R001",
+  "summary": "T022で旧PaperMod上書きと不要なコメントを削除。shsh生成129ファイル一致、CSS/Hugoの互換性を実測。スクロールバー領域の検査誤判定を是正し39件成功。R004へ追加指摘対応を提出し、代表画面・共通設計全体の明示承認待ち。",
+  "latest_review_id": "R003",
   "resume": {
-    "task_id": "T021",
-    "action": "R003の明示承認または修正指示を受ける。承認後に対象作業の完了条件を照合しT010へ展開する。開発コマンドはthemes/shshで実行する。"
+    "task_id": "T022",
+    "action": "追加指摘への回答と差分をR004へ提出済み。代表画面・共通設計の明示承認後にT010へ展開する。"
   },
   "tasks": [
     {
@@ -180,7 +180,7 @@
         "themes/shsh/docs/verification/t004-check.log"
       ],
       "verification_ids": ["V008", "V009", "V013"],
-      "review_ids": ["R003"],
+      "review_ids": ["R004"],
       "blocked_by": [],
       "next_action": "T005〜T008で代表画面を揃え、T009/R001で共通設計をレビューする。承認前はimplementedを維持する。"
     },
@@ -232,7 +232,7 @@
         "themes/shsh/docs/verification/t005-check.log"
       ],
       "verification_ids": ["V010", "V011", "V013"],
-      "review_ids": ["R003"],
+      "review_ids": ["R004"],
       "blocked_by": [],
       "next_action": "T006の本文組版へ進む。カバー組み込みはT007、完成形の視覚比較とR001承認はT009に残る。"
     },
@@ -283,7 +283,7 @@
         "themes/shsh/docs/verification/t006-prose-images/"
       ],
       "verification_ids": ["V012", "V013"],
-      "review_ids": ["R003"],
+      "review_ids": ["R004"],
       "blocked_by": [],
       "next_action": "T007でカバー・本文メディアを実装し、T008の共有と合わせてT009/R001へ提出する。本文部分の実記事比較は済んだが、全ページ完成形の承認は未実施。"
     },
@@ -326,7 +326,7 @@
         "themes/shsh/docs/verification/t007-media-images/"
       ],
       "verification_ids": ["V014", "V015", "V019"],
-      "review_ids": ["R003"],
+      "review_ids": ["R004"],
       "blocked_by": [],
       "next_action": "T008で共有・外部反応を実装し、T009/R001で代表画面全体と共通設計の承認を受ける。"
     },
@@ -371,7 +371,7 @@
         "themes/shsh/docs/verification/t008-check.log"
       ],
       "verification_ids": ["V016", "V017"],
-      "review_ids": ["R003"],
+      "review_ids": ["R004"],
       "blocked_by": [],
       "next_action": "T009で代表画面全体の比較と構造説明を用意し、R001の明示承認を受ける。公式スター実接続はT017。"
     },
@@ -417,7 +417,7 @@
         "themes/shsh/tests/review.spec.ts"
       ],
       "verification_ids": ["V018", "V019", "V020"],
-      "review_ids": ["R003"],
+      "review_ids": ["R004"],
       "blocked_by": [],
       "next_action": "R001の明示判断を受け、承認または指摘・修正・再検証を記録する。承認待ちは完了にしない。"
     },
@@ -722,7 +722,7 @@
         "docs/05-theme-implementation-discipline.md: Q9"
       ],
       "scope": [
-        "照合完了後にPaperMod submodule・専用上書き・更新スクリプトを整理しライセンス表示を保持する。",
+        "照合完了後にPaperMod submodule・更新スクリプトを整理しライセンス表示を保持する。専用上書きはF012のユーザー承認によりT022で先行撤去。",
         "仕様の正をテーマ/fixture/文書へ移し、モックを参考資料とし、切戻し手順と最終証拠をまとめる。"
       ],
       "depends_on": ["T013", "T014", "T015", "T016", "T017"],
@@ -742,7 +742,7 @@
       "verification_ids": [],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "照合完了後にPaperMod submodule・専用上書き・更新スクリプトを整理しライセンス表示を保持する。"
+      "next_action": "照合完了後にPaperMod submodule・更新スクリプトを整理しライセンス表示を保持する。専用上書きはF012のユーザー承認によりT022で先行撤去。"
     },
     {
       "id": "T019",
@@ -784,7 +784,7 @@
         "themes/shsh/docs/verification/t019-check.log"
       ],
       "verification_ids": ["V019"],
-      "review_ids": ["R003"],
+      "review_ids": ["R004"],
       "blocked_by": [],
       "next_action": "T009で代表画面の比較画像・構造説明をまとめ、R001の明示承認を受ける。"
     },
@@ -813,9 +813,9 @@
         "themes/shsh/docs/verification/t020-review.log"
       ],
       "verification_ids": ["V023"],
-      "review_ids": ["R003"],
+      "review_ids": ["R004"],
       "blocked_by": ["F010"],
-      "next_action": "T021で開発環境を集約し、修正済み画像と構造をR003へ提出する。"
+      "next_action": "T021で開発環境を集約し、修正済み画像と構造をR004へ提出する。"
     },
     {
       "id": "T021",
@@ -854,9 +854,55 @@
         "themes/shsh/docs/verification/t021-check.log"
       ],
       "verification_ids": ["V024", "V025"],
-      "review_ids": ["R003"],
+      "review_ids": ["R004"],
       "blocked_by": ["F011"],
-      "next_action": "R003の明示承認または修正指示を受ける。承認後に対象作業の完了条件を照合しT010へ展開する。開発コマンドはthemes/shshで実行する。"
+      "next_action": "R004の明示承認または修正指示を受ける。承認後に対象作業の完了条件を照合しT010へ展開する。開発コマンドはthemes/shshで実行する。"
+    },
+    {
+      "id": "T022",
+      "title": "PaperMod上書きの撤去と実装レビュー指摘の確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q12",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q7",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "scope": [
+        "ユーザーが先行撤去を承認したPaperMod専用CSS/partialと更新スクリプトの参照を削除する。",
+        "theme.tsのモックに関する補足を削除し、vh/dvh・行数制限・single.htmlの適合性を確認する。",
+        "回帰検査で判明したスクロールバー領域による幅検査の誤判定を、横溢れの有無を測る条件へ修正する。"
+      ],
+      "depends_on": ["T021"],
+      "acceptance_criteria": [
+        "旧上書きを置いたshsh生成と撤去後の生成結果が同一で、削除先の実行時参照が残らない。",
+        "3エンジンで要約が3行に制限され、Hugo基準版でsingle.htmlの適用とpage.htmlの優先を確認する。",
+        "確認根拠・先行撤去の判断・レビュー残件を記録する。"
+      ],
+      "verification_plan": [
+        "代表fixtureに旧上書きを加えた出力と削除後の全ファイルハッシュを比較する。",
+        "Chromium/Firefox/WebKitで長い要約の実寸とCSS.supportsを確認する。",
+        "Hugo 0.166.0のスケルトンと最小サイトでテンプレート選択を検証する。",
+        "整形/lint/進捗検査、テーマ/一覧/代表画面の既存検査を実行する。"
+      ],
+      "commit_message": "[T022] PaperMod上書きを撤去し実装レビューの互換性を確認",
+      "status": "implemented",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/r004-review.md",
+        "themes/shsh/docs/verification/t022-probes.json",
+        "themes/shsh/docs/verification/t022-check-initial.log",
+        "themes/shsh/docs/verification/t022-check.log",
+        "themes/shsh/assets/ts/theme.ts",
+        "themes/shsh/tests/theme.spec.ts",
+        "themes/shsh/tests/collections.spec.ts",
+        "bin/update-theme"
+      ],
+      "verification_ids": ["V026", "V027"],
+      "review_ids": ["R004"],
+      "blocked_by": [],
+      "next_action": "追加指摘への回答と差分をR004へ提出済み。代表画面・共通設計の明示承認後にT010へ展開する。"
     }
   ],
   "findings": [
@@ -1133,6 +1179,60 @@
         "themes/shsh/docs/verification/t021-check.log"
       ],
       "verification_ids": ["V025"]
+    },
+    {
+      "id": "F012",
+      "title": "PaperMod専用上書きの先行撤去と実装補足の整理",
+      "task_ids": ["T018", "T022"],
+      "status": "resolved",
+      "requires_user_decision": true,
+      "observation": "サイトルートに旧CSSとpartialが残り、theme.tsにモック不採用の補足がある。CSS互換性とsingle.htmlの適合性について確認依頼。",
+      "evidence_refs": [
+        "assets/css/extended/override.css",
+        "layouts/_partials/extend_head.html",
+        "layouts/_partials/share_icons.html",
+        "themes/shsh/assets/ts/theme.ts"
+      ],
+      "impact": "現shshは旧上書きを参照していないが、将来の同名partial追加等で意図しない上書きが起き得る。",
+      "recommendation": "明示承認に従い専用上書きを先行撤去し、不要な補足を削除する。CSSとテンプレートは基準環境・公式仕様に照合する。",
+      "decision": {
+        "outcome": "approved",
+        "reason": "移行確認後の整理予定を変更し、専用上書きは今回先行撤去する。",
+        "decided_by": "user",
+        "recorded_at": "2026-09-18T00:58:55.868883+00:00",
+        "source": "「意図しない影響を避けるため削除して実装を進めてOKです」「モックに関することを実装中に補足コメントとして書く必要はありません。削除してください。」"
+      },
+      "resolution_refs": [
+        "themes/shsh/docs/verification/r004-review.md",
+        "themes/shsh/docs/verification/t022-probes.json",
+        "themes/shsh/docs/verification/t022-check-initial.log",
+        "themes/shsh/docs/verification/t022-check.log"
+      ],
+      "verification_ids": ["V027"]
+    },
+    {
+      "id": "F013",
+      "title": "スクロールバー領域を幅不足として誤判定する回帰検査",
+      "task_ids": ["T022"],
+      "status": "resolved",
+      "requires_user_decision": false,
+      "observation": "ChromiumでinnerWidth/clientWidthが1440px、scrollWidthが1425pxになり、完全一致を要求した2件が失敗。CSSのscrollbar-gutter: stableが15pxを確保していた。",
+      "evidence_refs": ["themes/shsh/docs/verification/t022-check-initial.log"],
+      "impact": "横溢れがない正常表示を回帰失敗として扱っていた。",
+      "recommendation": "横溢れ検査をscrollWidth <= clientWidthにし、意図的な横溢れも検出できることを確認する。",
+      "decision": {
+        "outcome": "approved",
+        "reason": "資料5 Q1に従い表示を変えず、本来の横溢れ検査へ是正する。表示比較の期待値は変更しない。",
+        "decided_by": "assistant",
+        "recorded_at": "2026-09-18T01:04:55.523262+00:00",
+        "source": "実測値1440/1425pxと、2000pxの要素を追加した負例で検出条件を確認。"
+      },
+      "resolution_refs": [
+        "themes/shsh/tests/theme.spec.ts",
+        "themes/shsh/tests/collections.spec.ts",
+        "themes/shsh/docs/verification/r004-review.md"
+      ],
+      "verification_ids": ["V026", "V027"]
     }
   ],
   "reviews": [
@@ -1182,16 +1282,37 @@
       "id": "R003",
       "title": "R001指摘修正後の代表画面・共通設計再レビュー",
       "task_ids": ["T004", "T005", "T006", "T007", "T008", "T009", "T019", "T020", "T021"],
-      "status": "requested",
+      "status": "changes_requested",
       "artifact_refs": [
         "themes/shsh/docs/verification/r003-review.md",
         "themes/shsh/docs/verification/r003/index.html",
         "themes/shsh/README.md"
       ],
       "verification_ids": ["V023", "V025"],
-      "finding_ids": ["F010", "F011"],
-      "decision": null,
+      "finding_ids": ["F010", "F011", "F012"],
+      "decision": {
+        "outcome": "changes_requested",
+        "reason": "旧上書きと不要な補足の削除、およびCSS/Hugo互換性の確認依頼。共通設計全体への明示承認ではない。",
+        "decided_by": "user",
+        "recorded_at": "2026-09-18T01:04:55.523262+00:00",
+        "source": "「削除して実装を進めてOKです」「補足コメントとして書く必要はありません。削除してください」「同時に指定しているのはなぜですか」「他のブラウザで問題ありませんか」「single.htmlを使うのは適切ですか」"
+      },
       "supersedes": "R001"
+    },
+    {
+      "id": "R004",
+      "title": "旧上書き撤去・CSS互換性・Hugoテンプレートの追加指摘対応",
+      "task_ids": ["T004", "T005", "T006", "T007", "T008", "T009", "T019", "T020", "T021", "T022"],
+      "status": "requested",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/r004-review.md",
+        "themes/shsh/docs/verification/r003/index.html",
+        "themes/shsh/docs/verification/r001-review.md"
+      ],
+      "verification_ids": ["V027"],
+      "finding_ids": ["F012", "F013"],
+      "decision": null,
+      "supersedes": "R003"
     }
   ],
   "verifications": [
@@ -1844,6 +1965,51 @@
         "themes/shsh/docs/verification/t021-check.log"
       ],
       "supersedes": "V024"
+    },
+    {
+      "task_ids": ["T022"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q12",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q7",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "subject_ref": "55ce274 + T022の旧上書き撤去・コメント整理・回帰検査是正差分",
+      "environment": "macOS27 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153.0.8010.12/Firefox155.0/WebKit26.6",
+      "recorded_at": "2026-09-18T01:04:55.523262+00:00",
+      "id": "V026",
+      "kind": "追加指摘対応の初回回帰検査",
+      "result": "failed",
+      "procedure": "Hugo生成・テーマ/一覧の静的検証・整形/lint成功。ブラウザ39件のうち37件成功、Chromiumの幅完全一致2件が15pxのスクロールバー領域で誤判定。",
+      "evidence_refs": ["themes/shsh/docs/verification/t022-check-initial.log"],
+      "supersedes": null
+    },
+    {
+      "task_ids": ["T022"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q12",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q7",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "subject_ref": "55ce274 + T022の旧上書き撤去・コメント整理・回帰検査是正差分",
+      "environment": "macOS27 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153.0.8010.12/Firefox155.0/WebKit26.6",
+      "recorded_at": "2026-09-18T01:04:55.523262+00:00",
+      "id": "V027",
+      "kind": "旧上書き影響・CSS/Hugo互換性・回帰検査の再確認",
+      "result": "passed",
+      "procedure": "旧上書き有無で生成129ファイルのパス/ハッシュ一致。3エンジン・390/1440pxで要約実寸が3行となり、dvhと接頭辞付き指定の対応、接頭辞なしline-clampの未対応を確認。Hugoスケルトンと記事/固定ページのsingle/page優先を照合。横溢れ検査はclientWidth以下へ是正し、2000px負例の検出も確認。配色・一覧・代表画面39件成功（30.2秒）。sh -n成功、更新スクリプトは実行していない。CSS・テンプレート・凍結モック・公開サイト設定/コンテンツに変更なし。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/r004-review.md",
+        "themes/shsh/docs/verification/t022-probes.json",
+        "themes/shsh/docs/verification/t022-check-initial.log",
+        "themes/shsh/docs/verification/t022-check.log"
+      ],
+      "supersedes": "V026"
     }
   ]
 }

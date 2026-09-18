@@ -140,7 +140,11 @@ test("shared shell keeps mock dimensions at desktop and mobile widths in both pa
       await expect(page.locator(".theme-toggle")).toHaveCSS("height", "32px");
       const shell = await page.locator("main").boundingBox();
       expect(shell?.width).toBeLessThanOrEqual(720);
-      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(width);
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= document.documentElement.clientWidth,
+        ),
+      ).toBe(true);
       await mock.setViewportSize({ width, height: 1000 });
       await mock.goto(`http://127.0.0.1:4177/home.html?theme=${colorScheme}`);
       expect(await shellStyles(page)).toEqual(await shellStyles(mock));

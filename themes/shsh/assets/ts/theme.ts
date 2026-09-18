@@ -1,5 +1,5 @@
 // Loaded synchronously in <head>, before CSS. Keep first paint and live changes
-// on the same selection rule; no mock query parameters or key migration.
+// on the same selection rule.
 const root = document.documentElement;
 const os = matchMedia("(prefers-color-scheme: dark)");
 type ColorMode = "light" | "dark";
