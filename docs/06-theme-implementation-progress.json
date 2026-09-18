@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T01:51:20.126658+00:00",
+  "updated_at": "2026-09-18T02:08:53.285832+00:00",
   "stage": "full_implementation",
-  "summary": "T010の全画面展開を実装。凍結40画面の480条件の寸法一致と320画像を保存し、3エンジンの有効結果222/225成功。Aboutの空の列見出し（F014）はユーザー判断待ちでaxe不合格を保持。R002は移行照合後に提出する。独立したT012からサイト入力移行を続ける。",
+  "summary": "T012のサイト設定・6入力移行と本番/preview・46埋め込み対応を検証。21ブラウザ検査成功、代表4サービスの実接続証拠を保存。About空th F014は判断待ち。動画fixtureの仮寸法F016をT024で是正し、T013全公開出力照合へ進む。",
   "latest_review_id": "R004",
   "resume": {
-    "task_id": "T012",
-    "action": "T010差分と検証結果をコミット後、独立したサイト設定・全埋め込み入力移行を進める。F014の回答が来たら後続修正タスクでAboutと比較期待値を更新・再検証する。"
+    "task_id": "T024",
+    "action": "動画fixtureの寸法と検査を訂正し、T007の該当検証を更新する。続いてT013の全公開出力照合。"
   },
   "tasks": [
     {
@@ -313,8 +313,8 @@
         "T005で検証済みのテキストカード・ページ送りを回帰確認し、カバー有無の両方をモックと比較する。"
       ],
       "commit_message": "[T007] カバーと本文メディアの共通配信処理を実装",
-      "status": "complete",
-      "verification_status": "passed",
+      "status": "implemented",
+      "verification_status": "stale",
       "artifact_refs": [
         "themes/shsh/layouts/_partials/media/",
         "themes/shsh/layouts/_shortcodes/",
@@ -328,7 +328,7 @@
       "verification_ids": ["V014", "V015", "V019"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "代表画面・共通設計の承認をR004へ記録済み。続きの実装は別セッションのT010から再開する。"
+      "next_action": "F016の動画fixture寸法と検査をT024で是正・再検証する。他の画像配信・共通設計の承認は維持。"
     },
     {
       "id": "T008",
@@ -551,17 +551,30 @@
         "HugoのenableRobotsTXT: trueを明示してrobots.txtを生成する。"
       ],
       "verification_plan": [
-        "元入力と新入力の対応一覧を全件照合し、通常CI固定応答と実接続ビルドを別実行する。",
-        "Hugo単独で本番/previewを生成し、外部通信制限時の未実施を明記する。"
+        "基準コミットの全61入力と現入力を比較し、Instagram3件・Speaker Deck2件・動画1件の変換以外がバイト一致することを検査する。埋め込み順序/ID/URL/動画ファイルSHA-256を記録する。",
+        "通常CI用にX・Instagram・YouTubeだけを隔離fixtureへ置換し、production/previewの全サイトをHugoで生成して設定・件数・本文の埋め込み位置を検証する。",
+        "本番と同じ組込shortcodeでHugo単独production/previewビルドを行い、外部取得警告と入力エラーを区別する。ブラウザで実サービス接続を別途確認し、失敗/制限を明記する。",
+        "サイト設定移行に影響する既存レビューfixtureを新設定形式に更新し、代表比較と公開/preview生成の回帰を確認する。F014のAbout本文は変更しない。"
       ],
       "commit_message": "[T012] サイト設定と全記事の埋め込み入力を移行",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "status": "implemented",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "hugo.yml",
+        "content/_index.md",
+        "bin/build",
+        "themes/shsh/scripts/build-site-fixture.ts",
+        "themes/shsh/scripts/verify-site-inputs.ts",
+        "themes/shsh/scripts/verify-live-embeds.ts",
+        "themes/shsh/tests/site.spec.ts",
+        "themes/shsh/docs/verification/site-input-migration.md",
+        "themes/shsh/docs/verification/t012/",
+        "themes/shsh/docs/verification/t012-live/"
+      ],
+      "verification_ids": ["V032", "V033"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "hugo.ymlをshsh設定に移し、紹介をMarkdownへ、raw埋め込みをshortcodeへ変換してunsafe=falseにする。"
+      "next_action": "R002で入力移行と証拠をレビューする。全公開出力の照合はT013、media fixtureの実寸訂正はT024。F014のAbout入力は判断待ちで保持。"
     },
     {
       "id": "T013",
@@ -960,6 +973,34 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "承認記録を完了。ユーザー指示に従い、このセッションでは続きの実装を行わない。"
+    },
+    {
+      "id": "T024",
+      "title": "動画検査fixtureを実素材の寸法へ是正",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/05-theme-implementation-discipline.md: Q4"
+      ],
+      "scope": [
+        "T007のmedia fixtureに残る仮寸法を実素材の1440×1076へ合わせ、読込前後の縦横比と既存メディア検査を再検証する。"
+      ],
+      "depends_on": ["T007", "T012"],
+      "acceptance_criteria": [
+        "fixtureの寸法が動画実寸と一致し、読込前後の領域が安定する。テーマと動画素材は変更しない。"
+      ],
+      "verification_plan": [
+        "ffprobeの寸法とブラウザvideoWidth/videoHeightを照合する。",
+        "check:mediaおよびmedia/siteの3エンジン検査を実行する。"
+      ],
+      "commit_message": "[T024] 動画検査fixtureを実素材の寸法へ是正",
+      "status": "not_started",
+      "verification_status": "not_run",
+      "artifact_refs": [],
+      "verification_ids": [],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "仮寸法1600×900を1440×1076へ訂正して再検証する。"
     }
   ],
   "findings": [
@@ -1334,6 +1375,30 @@
         "themes/shsh/docs/verification/full-screen-expansion.md"
       ],
       "verification_ids": ["V029", "V031"]
+    },
+    {
+      "id": "F016",
+      "title": "動画fixtureの著者指定寸法が実素材と不一致",
+      "task_ids": ["T007", "T012", "T024"],
+      "status": "open",
+      "requires_user_decision": false,
+      "observation": "実記事のMP4はffprobeとブラウザで1440×1076。T007のmedia fixtureと旧review fixtureは1600×900を仮指定しており、読込前の領域が不正確。T012で実記事入力とreview fixtureは実寸へ移行した。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t012/video-probe.json",
+        "themes/shsh/tests/fixtures/media/content/gallery/index.md",
+        "themes/shsh/tests/media.spec.ts"
+      ],
+      "impact": "素材読み込み前後の縦横比とCLSに影響し、誤った仮指定を検査の期待値としていた。動画素材やテーマのレイアウト仕様を変更する問題ではない。",
+      "recommendation": "Q32の著者指定寸法を実寸へ訂正し、読み込み前後とintrinsic寸法を独立に検証する。既存media fixtureは後続T024で修正。",
+      "decision": {
+        "outcome": "実寸へ訂正する",
+        "reason": "Q32の入力要件を満たす検査素材の訂正。凍結モックとテーマの表示規則は維持する。",
+        "decided_by": "assistant",
+        "recorded_at": "2026-09-18T02:08:53.285832+00:00",
+        "source": "ffprobeと3エンジンのvideoWidth/videoHeightによる1440×1076の確認"
+      },
+      "resolution_refs": ["themes/shsh/tests/site.spec.ts"],
+      "verification_ids": ["V032"]
     }
   ],
   "reviews": [
@@ -1378,9 +1443,10 @@
         "themes/shsh/docs/verification/full-screen-expansion.md",
         "themes/shsh/docs/verification/t010/",
         "themes/shsh/docs/verification/t010-check.log",
-        "themes/shsh/docs/verification/t010-port-recheck.log"
+        "themes/shsh/docs/verification/t010-port-recheck.log",
+        "themes/shsh/docs/verification/site-input-migration.md"
       ],
-      "verification_ids": ["V022", "V030", "V031"],
+      "verification_ids": ["V022", "V030", "V031", "V032", "V033"],
       "finding_ids": ["F014", "F015"],
       "decision": null,
       "supersedes": null
@@ -2217,6 +2283,60 @@
       ],
       "recorded_at": "2026-09-18T01:51:20.126658+00:00",
       "supersedes": "V029"
+    },
+    {
+      "id": "V032",
+      "task_ids": ["T012"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q2",
+        "docs/04-theme-implementation-requirements.md: Q7",
+        "docs/04-theme-implementation-requirements.md: Q11",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q27",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: Q34"
+      ],
+      "kind": "全サイト入力移行・隔離生成とブラウザ回帰",
+      "result": "passed",
+      "subject_ref": "5694d2f + T012のサイト設定・入力・検査・文書差分",
+      "environment": "macOS27 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6; 実接続はChromium153 390×844",
+      "procedure": "元80ファイルのうち74バイト一致、6入力の置換のみ許可。紹介文一致。62 Markdown・46埋め込みの対応、unsafe=false、production/previewを検査。代表比較とsite検査は3エンジン21件成功（24.3秒）。動画はffprobeとbrowser intrinsic寸法1440×1076が一致し読込前後の高さ差0.06px未満。About空th F014の既知不合格は未解消。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/site-input-migration.md",
+        "themes/shsh/docs/verification/t012/",
+        "themes/shsh/docs/verification/t012-browser.log"
+      ],
+      "recorded_at": "2026-09-18T02:08:53.285832+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V033",
+      "task_ids": ["T012"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q2",
+        "docs/04-theme-implementation-requirements.md: Q7",
+        "docs/04-theme-implementation-requirements.md: Q11",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q27",
+        "docs/04-theme-implementation-requirements.md: Q31",
+        "docs/04-theme-implementation-requirements.md: Q32",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: Q34"
+      ],
+      "kind": "組込shortcodeのHugo生成と代表実サービス接続",
+      "result": "passed",
+      "subject_ref": "5694d2f + T012のサイト設定・入力・検査・文書差分",
+      "environment": "macOS27 arm64; Hugo0.166.0; Node24.21.0; pnpm12.4.1; Playwright1.63.0 Chromium153/Firefox155/WebKit26.6; 実接続はChromium153 390×844",
+      "procedure": "実rootソースのproduction/previewをHugoだけで生成、警告・入力エラー0件。X/Instagram/YouTube/Speaker Deck各1記事×2環境を表示、iframe/body/HTTP応答と画像を保存。初回Xセレクター誤りと画面外iframeの画像不足を訂正して再取得。previewは共有・スター0件。動画再生・投稿・スター追加は未実施。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t012-live/",
+        "themes/shsh/docs/verification/t012-live-build.log",
+        "themes/shsh/docs/verification/t012-live-browser.log"
+      ],
+      "recorded_at": "2026-09-18T02:08:53.285832+00:00",
+      "supersedes": null
     }
   ]
 }

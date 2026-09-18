@@ -2,24 +2,29 @@ baseURL: https://shimoju.jp/
 locale: ja
 defaultContentLanguage: ja
 hasCJKLanguage: true
+timeZone: Asia/Tokyo
 summaryLength: 140
 title: shimoju.diary
-theme: PaperMod
+theme: shsh
+mainSections:
+  - posts
+pagination:
+  pagerSize: 10
 permalinks:
   posts: /:year/:month/:day/:slugorcontentbasename/
 enableRobotsTXT: true
 markup:
   goldmark:
     renderer:
-      # InstagramやSpeaker Deckの埋め込みコードのために生のHTMLを許可する
-      # 将来的にShortcodeに移行してこのオプションはfalseにしたい
-      unsafe: true
+      unsafe: false
+    parser:
+      wrapStandAloneImageWithinParagraph: false
   highlight:
-    style: catppuccin-mocha
+    noClasses: false
 minify:
   minifyOutput: true
 
-menu:
+menus:
   main:
     - identifier: about
       name: About
@@ -39,39 +44,23 @@ menu:
       weight: 40
 
 params:
-  author: Hiroshi Shimoju
+  author:
+    name: Hiroshi Shimoju
   description: テクノロジーと社会
   dateFormat: 2006/01/02
-  showCodeCopyButtons: true
-  showPostNavLinks: true
-  showRssButtonInSectionTermList: true
-  showShareButtons: true
-  shareButtons:
+  showRSS: true
+  shareServices:
     - x
     - facebook
-    - hatena-bookmark
-    - hatena-star
-  homeInfoParams:
-    title: Hiroshi Shimoju
-    content: 株式会社SmartHR 技術統括本部 プロダクトエンジニア。Ruby on Railsを用いたWebアプリケーション開発を専門領域としており、現在は主に課金基盤の開発を担当しています。その他、Kaigi on RailsのオーガナイザーやRails Girlsのコーチといった活動も行っています。
-  socialIcons:
-    - name: Email
-      url: mailto:hiroshi.shimoju@gmail.com
-    - name: GitHub
-      url: https://github.com/shimoju
-    - name: Bluesky
-      url: https://bsky.app/profile/shimoju.jp
-    - name: X
+    - bluesky
+    - hatena
+  hatenaStar:
+    enabled: true
+    author: Shimoju
+  socialLinks:
+    - name: x
       url: https://x.com/shimoju_
-    - name: Mastodon
-      url: https://ruby.social/@shimoju
-    - name: Threads
-      url: https://www.threads.net/@shimoju_
-    - name: Instagram
-      url: https://www.instagram.com/shimoju_/
-    - name: Facebook
-      url: https://www.facebook.com/hiroshi.shimoju
-    - name: Cosense
-      url: https://scrapbox.io/shimoju/
-    - name: RSS
-      url: https://shimoju.jp/index.xml
+    - name: bluesky
+      url: https://bsky.app/profile/shimoju.jp
+    - name: github
+      url: https://github.com/shimoju

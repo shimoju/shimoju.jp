@@ -17,26 +17,15 @@ for (const path of articles) {
   mkdirSync(dirname(target), { recursive: true });
   cpSync(`../../content/posts/${path}`, target, { recursive: true });
 }
-const videoArticle = `${source}/content/posts/${articles[0]}/index.md`;
-writeFileSync(
-  videoArticle,
-  readFileSync(videoArticle, "utf8").replace(
-    '{{< video src="zsh-prompt-demo.mp4" >}}',
-    '{{< video src="zsh-prompt-demo.mp4" width="1600" height="900" title="Zsh prompt demo" >}}',
-  ),
-);
 // Current site data is input to the isolated review site, never a theme dependency.
 const current = JSON.parse(
   execFileSync("hugo", ["config", "--format", "json"], { encoding: "utf8", cwd: "../.." }),
 ) as {
   title: string;
   baseurl: string;
-  params: { author: string; homeinfoparams: { content: string } };
+  params: { author: { name: string } };
 };
-writeFileSync(
-  `${source}/content/_index.md`,
-  `---\ntitle: Home\n---\n${current.params.homeinfoparams.content}\n`,
-);
+cpSync("../../content/_index.md", `${source}/content/_index.md`);
 cpSync("../../content/about.md", `${source}/content/about.md`);
 cpSync("../../content/archives.md", `${source}/content/archives.md`);
 writeFileSync(`${source}/content/undated.md`, "---\ntitle: Undated\n---\nNo date.\n");
@@ -92,7 +81,7 @@ const config = {
     },
   },
   params: {
-    author: { name: current.params.author },
+    author: { name: current.params.author.name },
     socialLinks: [
       { name: "x", url: "https://x.com/shimoju_" },
       { name: "bluesky", url: "https://bsky.app/profile/shimoju.jp" },

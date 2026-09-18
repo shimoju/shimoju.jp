@@ -1,0 +1,1123 @@
+{
+  "environment": "macOS27; Chromium153; 390×844; fresh contexts; no service actions",
+  "results": [
+    {
+      "environment": "production",
+      "service": "x",
+      "path": "/2016/07/30/tochijisen/",
+      "selector": "iframe.twitter-tweet-rendered",
+      "visible": false,
+      "error": "TimeoutError: locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('iframe.twitter-tweet-rendered') to be visible\u001b[22m\n",
+      "responses": [
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/star.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.04f6ca61943cbece506d.css",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.69b8c7f0d2e2a866ae5a.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.x.com/widgets.js",
+          "status": 302
+        },
+        {
+          "url": "https://platform.twitter.com/widgets.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/widgets/widget_iframe.1227a5674072e080ffb1ba14ac0c1079.html",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/entries.json",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.twitter.com/settings",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/js/tweet.7a6003258de838c35e66fd0f50ebdb0f.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/Tweet.html",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.runtime.3b19346e5d08b0b587c7.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.Tweet.70198ef24afe05adbecf.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.9449.78398904051446294e3d.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.horizon-web.i18n.ja-js.64cc5e4ed22967fb4840.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.i18n.ja-js.bbb87a39beaaf9d63501.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.749.467388cca0b3fe9c3291.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.Tweet.81f6f5a50fbfe5bd028c.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.9203.1b3edf1dee6d205547e0.js",
+          "status": 200
+        },
+        {
+          "url": "https://cdn.syndication.twimg.com/tweet-result",
+          "status": 200
+        },
+        {
+          "url": "https://pbs.twimg.com/profile_images/1924394251661578240/sbkl0MCR_normal.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        }
+      ],
+      "failures": [],
+      "frames": [
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "text": ""
+        },
+        {
+          "url": "https://platform.twitter.com/widgets/widget_iframe.1227a5674072e080ffb1ba14ac0c1079.html",
+          "text": ""
+        },
+        {
+          "url": "https://platform.twitter.com/embed/Tweet.html",
+          "text": "東京都選挙管理委員会\n@tocho_senkyo\n·\nフォローする\nいよいよ明日は東京都知事選挙の投票日！\n１８歳（誕生日が８月１日以前の方）から投票ができます。\nみなさまの１票をお待ちしております。\n\n#東京都知事選挙　#都知事選　#７月３１日 https://cards.twitter.com/cards/gxgszq/1y2a1…\n午前0:00 · 2016年7月30日\n158\n返信\nリンクをコピー\n4件の返信を読む"
+        },
+        {
+          "url": "nullblank",
+          "text": ""
+        }
+      ],
+      "starContainers": 1,
+      "shareLinks": 4,
+      "capturedAt": "2026-09-18T02:02:20.830Z"
+    },
+    {
+      "environment": "production",
+      "service": "instagram",
+      "path": "/2016/08/01/tiritiri-curry/",
+      "selector": "iframe.instagram-media-rendered",
+      "visible": true,
+      "responses": [
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/star.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.04f6ca61943cbece506d.css",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.69b8c7f0d2e2a866ae5a.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/entries.json",
+          "status": 200
+        },
+        {
+          "url": "https://www.instagram.com/embed.js",
+          "status": 200
+        },
+        {
+          "url": "https://www.instagram.com/p/BEaM_1qskRu/embed/captioned/",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v5/yF/l/0,cross/4PXTgENAT_2.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v5/ym/l/0,cross/cLxzCMiTVk3.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v5/yf/l/0,cross/GuSzJB46PKx.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v5/yo/l/0,cross/zmoGI8-93qU.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yR/r/972OiSqjWfw.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/y2/r/bOinTMN0J3k.png",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yp/r/jlP5l3iw3ob.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yk/r/JI_mvy0tlwE.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yN/r/hfwsBECqr3k.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v5/yw/l/0,cross/NdI56imvkTb.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v5/yz/l/0,cross/FeWV-wu_C5P.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yj/r/Um7eP_gD_ex.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/y2/r/FdhICOU1JYz.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v5/yz/l/0,cross/b8bT8K6wJb8.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yC/r/afkns0SzGqG.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yi/r/mS2PVeiAYxQ.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yV/r/VhIY09o1lOD.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/y8/r/nr1ChyXqFOI.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/y6/r/JOX2RECICzY.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/y1/r/l-aE7ew6bnh.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v5/yA/l/0,cross/or9Qbv-YrxF.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yW/r/8RNbetHQnv_.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yE/r/h1Yf6KdfWrL.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/y_/r/cQAu-Nm7-qT.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/ya/r/Ohu6THqmk3X.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yN/r/bjKO63PS5X6.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/y_/r/NtwkDP2hhFW.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yx/r/v_kkAv_-wGQ.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/y_/r/U89oLRuxspX.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yA/r/QqqjHDzc5lV.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yP/r/ZhOws2RXZ2I.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yK/r/Qs9xAEeoxbO.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4i7M54/yf/l/en_US-j/V0R8cjFkWYJ.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4i0uK4/yx/l/en_US-j/9yMSzbfQYOr.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4ibQ14/yL/l/en_US-j/EegwKP2LL1T.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4iOqW4/yn/l/en_US-j/lhml1TnXipq.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4iCB-4/y0/l/en_US-j/pExCrahim3x.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4iB9B4/y8/l/en_US-j/vVXadz4C2TO.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4i27l4/y8/l/en_US-j/i--y1k2HIgQ.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4i3_r4/yL/l/en_US-j/5CkTPAGO-p-.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4iYTg4/yK/l/en_US-j/2WewGSHCeXj.js",
+          "status": 200
+        },
+        {
+          "url": "https://scontent-nrt1-1.cdninstagram.com/v/t51.2885-19/13108751_1031509893593671_231989517_a.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://scontent-nrt1-1.cdninstagram.com/v/t51.82787-15/625252374_18409975039121518_1935198590490053482_n.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://scontent-nrt1-2.cdninstagram.com/v/t51.82787-15/633868675_18561306493001923_7996347935636555066_n.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://scontent-nrt6-1.cdninstagram.com/v/t51.82787-15/622869393_18510030943074993_599958612125354888_n.jpg",
+          "status": 200
+        }
+      ],
+      "failures": [],
+      "frames": [
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "text": ""
+        },
+        {
+          "url": "https://www.instagram.com/p/BEaM_1qskRu/embed/captioned/",
+          "text": "shimoju_\nカレーハウス チリチリ\nView profile\nshimoju_\n186 posts · 110 followers\nView more on Instagram\nLike\nコメント\nシェア\n保存\n10 likes\nshimoju_\n\nついに初チリチリ うまかった〜\n常松マサラことチキンマサラトマトトッピング\nAdd a comment...\nInstagram"
+        }
+      ],
+      "starContainers": 1,
+      "shareLinks": 4,
+      "capturedAt": "2026-09-18T02:02:23.308Z"
+    },
+    {
+      "environment": "production",
+      "service": "youtube",
+      "path": "/2016/08/31/hiphop-music-video/",
+      "selector": "iframe[src*='youtube.com']",
+      "visible": true,
+      "responses": [
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/star.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.04f6ca61943cbece506d.css",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.69b8c7f0d2e2a866ae5a.js",
+          "status": 200
+        },
+        {
+          "url": "https://www.youtube.com/embed/BdQVd1uybCg",
+          "status": 200
+        },
+        {
+          "url": "https://www.youtube.com/s/player/4fd832e7/www-player.css",
+          "status": 200
+        },
+        {
+          "url": "https://www.youtube.com/s/_/ytembeds/_/ss/k=ytembeds.base.oIbQcjv7a6s.L.W.O/am=AAAAQA/d=1/br=1/rs=AGKMywESQaiu-j6bZgZcevjx1dLz1RKc9w/m=root,base",
+          "status": 200
+        },
+        {
+          "url": "https://www.youtube.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.b9DTetUNtBg.es5.O/am=AAAAQA/d=1/excm=base,root/br=1/rs=AGKMywGyx4mDNfw7ANYq0-lo02tdiRKx5w/m=root,base",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/entries.json",
+          "status": 200
+        },
+        {
+          "url": "https://www.youtube.com/s/player/4fd832e7/player_embed.vflset/ja_JP/base.js",
+          "status": 200
+        },
+        {
+          "url": "https://www.youtube.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.b9DTetUNtBg.es5.O/ck=ytembeds.base.oIbQcjv7a6s.L.W.O/am=AAAAQA/d=1/exm=base,root/excm=base,root/ed=1/br=1/rs=AGKMywGu2YIZZGn35AH3nrN1B0xBKeXeCQ/m=r78Drb",
+          "status": 200
+        },
+        {
+          "url": "https://static.doubleclick.net/instream/ad_status.js",
+          "status": 200
+        },
+        {
+          "url": "https://www.google.com/js/th/9kbh97dqs7QZvQm1sGSfYDRDfRSTiumhhMhu1B8Eock.js",
+          "status": 200
+        },
+        {
+          "url": "https://www.youtube.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.b9DTetUNtBg.es5.O/ck=ytembeds.base.oIbQcjv7a6s.L.W.O/am=AAAAQA/d=1/exm=base,r78Drb,root/excm=base,root/ed=1/br=1/rs=AGKMywGu2YIZZGn35AH3nrN1B0xBKeXeCQ/m=cwx9N",
+          "status": 200
+        },
+        {
+          "url": "https://googleads.g.doubleclick.net/pagead/id",
+          "status": 302
+        },
+        {
+          "url": "https://www.youtube.com/generate_204",
+          "status": 204
+        },
+        {
+          "url": "https://googleads.g.doubleclick.net/pagead/id",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBHMdazQ.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://i.ytimg.com/vi_webp/BdQVd1uybCg/sddefault.webp",
+          "status": 200
+        },
+        {
+          "url": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+          "status": 200
+        },
+        {
+          "url": "https://www.gstatic.com/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+          "status": 200
+        }
+      ],
+      "failures": [],
+      "frames": [
+        {
+          "url": "https://www.youtube.com/embed/BdQVd1uybCg",
+          "text": "GMOペパボ『採用目的』 / PEPABO HEADZ with 上鈴木兄弟(P.O.P)\nGMOペパボ\nGMOペパボ\nチャンネル登録者数 1950人\n見る"
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "text": ""
+        }
+      ],
+      "starContainers": 1,
+      "shareLinks": 4,
+      "capturedAt": "2026-09-18T02:02:24.446Z"
+    },
+    {
+      "environment": "production",
+      "service": "speakerdeck",
+      "path": "/2017/11/11/twelve-factor-app-on-heroku/",
+      "selector": "iframe.speakerdeck-iframe",
+      "visible": true,
+      "responses": [
+        {
+          "url": "https://speakerdeck.com/assets/embed.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/star.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.04f6ca61943cbece506d.css",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star.69b8c7f0d2e2a866ae5a.js",
+          "status": 200
+        },
+        {
+          "url": "https://s.hatena.ne.jp/entries.json",
+          "status": 200
+        },
+        {
+          "url": "https://speakerdeck.com/player/457f092496ab4856b7c3cef5bcd2babb",
+          "status": 200
+        },
+        {
+          "url": "https://d1eu30co0ohy4w.cloudfront.net/assets/player-5db98712cdbaa96734a845832849a8ce3f10c2ad66bb16f3a4ff4364ebe1dffe.css",
+          "status": 200
+        },
+        {
+          "url": "https://d1eu30co0ohy4w.cloudfront.net/assets/js/stats-066544ee5ddf3e5e4a9c.js",
+          "status": 200
+        },
+        {
+          "url": "https://d1eu30co0ohy4w.cloudfront.net/assets/mark-white-8d908558fe78e8efc8118c6fe9b9b1a9846b182c503bdc6902f97df4ddc9f3af.svg",
+          "status": 200
+        },
+        {
+          "url": "https://d1eu30co0ohy4w.cloudfront.net/assets/js/player-458b819004f658d0d8fa.js",
+          "status": 200
+        },
+        {
+          "url": "https://secure.gravatar.com/avatar/4c8807d9a90fe91b717983647f0664f4",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.googleapis.com/css",
+          "status": 200
+        },
+        {
+          "url": "https://speakerdeck.com/icons/icons.svg",
+          "status": 200
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js",
+          "status": 200
+        },
+        {
+          "url": "https://speakerdeck.com/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+          "status": 302
+        },
+        {
+          "url": "https://speakerdeck.com/cdn-cgi/challenge-platform/h/g/scripts/jsd/330e41bb475c/main.js",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/lato/v25/S6uyw4BMUTPHjx4wXiWtFCc.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js",
+          "status": 200
+        },
+        {
+          "url": "https://www.google-analytics.com/analytics.js",
+          "status": 200
+        },
+        {
+          "url": "https://speakerdeck.com/cdn-cgi/challenge-platform/h/g/jsd/oneshot/330e41bb475c/0.4223943924600718:1789693525:b1tvipJrGKzX7AKKnmecLfnv0J4oTa-afXxCci-fUOA/a3ccc4af4a0525d7",
+          "status": 200
+        },
+        {
+          "url": "https://files.speakerdeck.com/presentations/457f092496ab4856b7c3cef5bcd2babb/slide_2.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://files.speakerdeck.com/presentations/457f092496ab4856b7c3cef5bcd2babb/slide_4.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://files.speakerdeck.com/presentations/457f092496ab4856b7c3cef5bcd2babb/slide_0.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://speakerdeck.com/beacon.gif",
+          "status": 200
+        },
+        {
+          "url": "https://files.speakerdeck.com/presentations/457f092496ab4856b7c3cef5bcd2babb/slide_1.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://files.speakerdeck.com/presentations/457f092496ab4856b7c3cef5bcd2babb/slide_3.jpg",
+          "status": 200
+        }
+      ],
+      "failures": [],
+      "frames": [
+        {
+          "url": "https://speakerdeck.com/player/457f092496ab4856b7c3cef5bcd2babb",
+          "text": "Herokuで本番運用する技術 / Heroku production\nby Hiroshi Shimoju\nSlide 1\nSlide 1 text\nԼॏ\u0001തࢿ\u0001\u0010\u0001(.0\u00011FQBCP \u0001*OD\u000f\u0001 \u0013\u0011\u0012\u0018\u000f\u0012\u0011\u000f\u0013\u0015\u0001ୈ\u0015ճ\u0001&$ࣄۀ෦\u00015FDI\u0001.5( )FSPLVͰຊ൪ӡ༻͢Δٕज़ \f\nSlide 2\nSlide 2 text\nΤϯδχΞ\u0001 \u0013\u0011\u0012\u0017೥౓ೖࣾɾ৽ଔ\u0017ظ Լॏ\u0001തࢿ\u0001\u0001!TIJNPKV@ &$ࣄۀ෦\u000146;63*νʔϜ TIJNPKV\u000fPSH \f\nSlide 3\nSlide 3 text\nNo content\nSlide 4\nSlide 4 text\n46;63*ͷํ͔Β͖·ͨ͠ \f\nSlide 5\nSlide 5 text\nຊ೔\u0013ճ໨ͷൃදͰ͢ \f\nSlide 6\nSlide 6 text\nNo content\nSlide 7\nSlide 7 text\nNo content\nSlide 8\nSlide 8 text\nNo content\nSlide 9\nSlide 9 text\n46;63*\u0001❤\u0001)FSPLV \f\nSlide 10\nSlide 10 text\n)FSPLV w46;63*͸)FSPLVͰӡ༻͍ͯ͠·͢\u0001 wݸਓͰ΋)FSPLVͰӡ༻͍ͯ͠ΔΞϓϦ͕͋Γ·͢\u0001 wͦͷதͰܦݧͨ͜͠ͱΛɺͬ͟ͱˍΏΔΊʹൃද͠· ͢ʂ \f\nSlide 11\nSlide 11 text\n͓͠ͳ͕͖ wΦʔτεέʔϧ\u0001 wಠࣗυϝΠϯઃఆ\u0001 w44-ઃఆ\u0001 wϝʔϧ\u0001 wσʔλϕʔε\u0001 wϑΝΠϧΞοϓϩʔυ wλΠϜΞ΢τ\u0001 wϩά\u0001 wΞϓϦέʔγϣϯઃܭ\u0001 wো֐৘ใ\u0001 w͓·͚ \f\nSlide 12\nSlide 12 text\nΦʔτεέʔϧ \f\nSlide 13\nSlide 13 text\nNo content\nSlide 14\nSlide 14 text\nΦʔτεέʔϧ w4UBOEBSEҎ্ͰखಈͰͷεέʔϧ͕Մೳ\u0001 w1FSGPSNBODF\u000e.Ҏ্Ͱ)FSPLVͰͷΦʔτεέʔϧ͕࢖͑Δ\u0001 w͔͠͠\u0005\u0013\u0016\u0011ʙ͸ߴ͍ʜʜ\u0001 w46;63*Ͱ͸֎෦ͷΦʔτεέʔϧαʔϏε)JSF'JSFΛ࢖͍ͬͯΔ\u0001 wIUUQT\u001b\u0010\u0010XXX\u000fIJSFpSF\u000fJP\u0010 \f\nSlide 15\nSlide 15 text\nΦʔτεέʔϧઃఆ wᮢ஋ͷઃఆ͸೰ΈͲ͜Ζ\u0001 w)JSF'JSFͰ͸εϧʔϓοτ 31. ΍ϨεϙϯελΠϜͳͲ͔Βબ΂Δ\u0001 wεϧʔϓοτʹͨ͠ͱ͜ΖɺΞΫηεूதͰλΠϜΞ΢τ͕සൃͨ͠ ͱ͖ɺݟ͔͚ͷεϧʔϓοτ͕མͪͨͷ͔εέʔϧΠϯ͢Δࣄ͕݅ʜ\u0001 wखͰεέʔϧΞ΢τͨ͠ͷʹؤͳʹ%ZOPΛݮΒͯ͘͠Δ\u0001 wεέʔϧΞ΢τ͚ͩߟ͑ͣεέʔϧΞοϓ΋ߟྀ͢Δ \f\nSlide 16\nSlide 16 text\nಠࣗυϝΠϯઃఆ \f\nSlide 17\nSlide 17 text\nಠࣗυϝΠϯઃఆ w)FSPLVͷಠࣗυϝΠϯઃఆ͸$/\".&Ͱߦ͏\u0001 wXXX\u000fFYBNQMF\u000fDPN\u0001ˠ\u0001XXX\u000fFYBNQMF\u000fDPN\u000fIFSPLVEOT\u000fDPN\u0001΁\u0001 w$/\".&ͷ;POF\u0001\"QFY໰୊͕͋Δ \f\nSlide 18\nSlide 18 text\n;POF\u0001\"QFY໰୊ wκʔϯͷ௖఺\u001eαϒυϝΠϯͳ͠ͷυϝΠϯ\u0001ྫ\u001b\u0001FYBNQMF\u000fDPN\u0001 w$/\".&ͱଞͷϨίʔυ͸ಉډͰ͖ͳ͍\u0001 w;POF\u0001\"QFYʹ͸গͳ͘ͱ΋/4ϨίʔυΛઃఆ͢Δඞཁ͕͋Δ\u0001 w;POF\u0001\"QFYʹ$/\".&Λઃఆͨ͠৔߹ɺ্هʹҧ൓͢"
+        },
+        {
+          "url": "https://s.hatena.ne.jp/js/widget/add_star_iframe.html",
+          "text": ""
+        },
+        {
+          "url": "nullblank",
+          "text": ""
+        }
+      ],
+      "starContainers": 1,
+      "shareLinks": 4,
+      "capturedAt": "2026-09-18T02:02:26.494Z"
+    },
+    {
+      "environment": "preview",
+      "service": "x",
+      "path": "/2016/07/30/tochijisen/",
+      "selector": "iframe.twitter-tweet-rendered",
+      "visible": false,
+      "error": "TimeoutError: locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('iframe.twitter-tweet-rendered') to be visible\u001b[22m\n",
+      "responses": [
+        {
+          "url": "https://platform.x.com/widgets.js",
+          "status": 302
+        },
+        {
+          "url": "https://platform.twitter.com/widgets.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/widgets/widget_iframe.1227a5674072e080ffb1ba14ac0c1079.html",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.twitter.com/settings",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/js/tweet.7a6003258de838c35e66fd0f50ebdb0f.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/Tweet.html",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.runtime.3b19346e5d08b0b587c7.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.Tweet.70198ef24afe05adbecf.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.9449.78398904051446294e3d.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.i18n.ja-js.bbb87a39beaaf9d63501.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.749.467388cca0b3fe9c3291.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.horizon-web.i18n.ja-js.64cc5e4ed22967fb4840.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.ondemand.Tweet.81f6f5a50fbfe5bd028c.js",
+          "status": 200
+        },
+        {
+          "url": "https://platform.twitter.com/embed/embed.9203.1b3edf1dee6d205547e0.js",
+          "status": 200
+        },
+        {
+          "url": "https://cdn.syndication.twimg.com/tweet-result",
+          "status": 200
+        },
+        {
+          "url": "https://pbs.twimg.com/profile_images/1924394251661578240/sbkl0MCR_normal.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        },
+        {
+          "url": "https://syndication.x.com/i/jot/embeds",
+          "status": 200
+        }
+      ],
+      "failures": [],
+      "frames": [
+        {
+          "url": "https://platform.twitter.com/widgets/widget_iframe.1227a5674072e080ffb1ba14ac0c1079.html",
+          "text": ""
+        },
+        {
+          "url": "https://platform.twitter.com/embed/Tweet.html",
+          "text": "東京都選挙管理委員会\n@tocho_senkyo\n·\nフォローする\nいよいよ明日は東京都知事選挙の投票日！\n１８歳（誕生日が８月１日以前の方）から投票ができます。\nみなさまの１票をお待ちしております。\n\n#東京都知事選挙　#都知事選　#７月３１日 https://cards.twitter.com/cards/gxgszq/1y2a1…\n午前0:00 · 2016年7月30日\n158\n返信\nリンクをコピー\n4件の返信を読む"
+        },
+        {
+          "url": "nullblank",
+          "text": ""
+        }
+      ],
+      "starContainers": 0,
+      "shareLinks": 0,
+      "capturedAt": "2026-09-18T02:02:41.699Z"
+    },
+    {
+      "environment": "preview",
+      "service": "instagram",
+      "path": "/2016/08/01/tiritiri-curry/",
+      "selector": "iframe.instagram-media-rendered",
+      "visible": true,
+      "responses": [
+        {
+          "url": "https://www.instagram.com/embed.js",
+          "status": 200
+        },
+        {
+          "url": "https://www.instagram.com/p/BEaM_1qskRu/embed/captioned/",
+          "status": 200
+        },
+        {
+          "url": "https://scontent-nrt1-1.cdninstagram.com/v/t51.2885-19/13108751_1031509893593671_231989517_a.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://scontent-nrt6-1.cdninstagram.com/v/t51.82787-15/622869393_18510030943074993_599958612125354888_n.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v5/ym/l/0,cross/cLxzCMiTVk3.css",
+          "status": 200
+        },
+        {
+          "url": "https://scontent-nrt1-1.cdninstagram.com/v/t51.82787-15/625252374_18409975039121518_1935198590490053482_n.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v5/yF/l/0,cross/4PXTgENAT_2.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v5/yf/l/0,cross/GuSzJB46PKx.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v5/yo/l/0,cross/zmoGI8-93qU.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yR/r/972OiSqjWfw.js",
+          "status": 200
+        },
+        {
+          "url": "https://scontent-nrt1-2.cdninstagram.com/v/t51.82787-15/633868675_18561306493001923_7996347935636555066_n.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/y2/r/bOinTMN0J3k.png",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yp/r/jlP5l3iw3ob.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yj/r/Um7eP_gD_ex.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/ya/r/Ohu6THqmk3X.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v5/yz/l/0,cross/b8bT8K6wJb8.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v5/yw/l/0,cross/NdI56imvkTb.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yk/r/JI_mvy0tlwE.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v5/yz/l/0,cross/FeWV-wu_C5P.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/y2/r/FdhICOU1JYz.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yN/r/hfwsBECqr3k.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v5/yA/l/0,cross/or9Qbv-YrxF.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yV/r/VhIY09o1lOD.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/y_/r/U89oLRuxspX.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/y8/r/nr1ChyXqFOI.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yC/r/afkns0SzGqG.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yE/r/h1Yf6KdfWrL.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yi/r/mS2PVeiAYxQ.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yA/r/QqqjHDzc5lV.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/y6/r/JOX2RECICzY.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yx/r/v_kkAv_-wGQ.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/y1/r/l-aE7ew6bnh.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yW/r/8RNbetHQnv_.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/y_/r/cQAu-Nm7-qT.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yN/r/bjKO63PS5X6.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4i0uK4/yx/l/en_US-j/9yMSzbfQYOr.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/y_/r/NtwkDP2hhFW.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yK/r/Qs9xAEeoxbO.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4i7M54/yf/l/en_US-j/V0R8cjFkWYJ.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4ibQ14/yL/l/en_US-j/EegwKP2LL1T.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4/yP/r/ZhOws2RXZ2I.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4iB9B4/y8/l/en_US-j/vVXadz4C2TO.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4i27l4/y8/l/en_US-j/i--y1k2HIgQ.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4i3_r4/yL/l/en_US-j/5CkTPAGO-p-.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4iCB-4/y0/l/en_US-j/pExCrahim3x.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4iOqW4/yn/l/en_US-j/lhml1TnXipq.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cdninstagram.com/rsrc.php/v4iYTg4/yK/l/en_US-j/2WewGSHCeXj.js",
+          "status": 200
+        }
+      ],
+      "failures": [],
+      "frames": [
+        {
+          "url": "https://www.instagram.com/p/BEaM_1qskRu/embed/captioned/",
+          "text": "shimoju_\nカレーハウス チリチリ\nView profile\nshimoju_\n186 posts · 110 followers\nView more on Instagram\nLike\nコメント\nシェア\n保存\n10 likes\nshimoju_\n\nついに初チリチリ うまかった〜\n常松マサラことチキンマサラトマトトッピング\nAdd a comment...\nInstagram"
+        }
+      ],
+      "starContainers": 0,
+      "shareLinks": 0,
+      "capturedAt": "2026-09-18T02:02:43.247Z"
+    },
+    {
+      "environment": "preview",
+      "service": "youtube",
+      "path": "/2016/08/31/hiphop-music-video/",
+      "selector": "iframe[src*='youtube.com']",
+      "visible": true,
+      "responses": [
+        {
+          "url": "https://www.youtube.com/embed/BdQVd1uybCg",
+          "status": 200
+        },
+        {
+          "url": "https://www.youtube.com/s/player/4fd832e7/www-player.css",
+          "status": 200
+        },
+        {
+          "url": "https://www.youtube.com/s/_/ytembeds/_/ss/k=ytembeds.base.oIbQcjv7a6s.L.W.O/am=AAAAQA/d=1/br=1/rs=AGKMywESQaiu-j6bZgZcevjx1dLz1RKc9w/m=root,base",
+          "status": 200
+        },
+        {
+          "url": "https://www.youtube.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.b9DTetUNtBg.es5.O/am=AAAAQA/d=1/excm=base,root/br=1/rs=AGKMywGyx4mDNfw7ANYq0-lo02tdiRKx5w/m=root,base",
+          "status": 200
+        },
+        {
+          "url": "https://www.youtube.com/s/player/4fd832e7/player_embed.vflset/ja_JP/base.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.doubleclick.net/instream/ad_status.js",
+          "status": 200
+        },
+        {
+          "url": "https://www.youtube.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.b9DTetUNtBg.es5.O/ck=ytembeds.base.oIbQcjv7a6s.L.W.O/am=AAAAQA/d=1/exm=base,root/excm=base,root/ed=1/br=1/rs=AGKMywGu2YIZZGn35AH3nrN1B0xBKeXeCQ/m=r78Drb",
+          "status": 200
+        },
+        {
+          "url": "https://www.google.com/js/th/9kbh97dqs7QZvQm1sGSfYDRDfRSTiumhhMhu1B8Eock.js",
+          "status": 200
+        },
+        {
+          "url": "https://googleads.g.doubleclick.net/pagead/id",
+          "status": 302
+        },
+        {
+          "url": "https://www.youtube.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.b9DTetUNtBg.es5.O/ck=ytembeds.base.oIbQcjv7a6s.L.W.O/am=AAAAQA/d=1/exm=base,r78Drb,root/excm=base,root/ed=1/br=1/rs=AGKMywGu2YIZZGn35AH3nrN1B0xBKeXeCQ/m=cwx9N",
+          "status": 200
+        },
+        {
+          "url": "https://i.ytimg.com/vi_webp/BdQVd1uybCg/sddefault.webp",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBHMdazQ.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://www.youtube.com/generate_204",
+          "status": 204
+        },
+        {
+          "url": "https://googleads.g.doubleclick.net/pagead/id",
+          "status": 200
+        },
+        {
+          "url": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+          "status": 200
+        }
+      ],
+      "failures": [],
+      "frames": [
+        {
+          "url": "https://www.youtube.com/embed/BdQVd1uybCg",
+          "text": "GMOペパボ『採用目的』 / PEPABO HEADZ with 上鈴木兄弟(P.O.P)\nGMOペパボ\nGMOペパボ\nチャンネル登録者数 1950人\n見る"
+        }
+      ],
+      "starContainers": 0,
+      "shareLinks": 0,
+      "capturedAt": "2026-09-18T02:02:44.359Z"
+    },
+    {
+      "environment": "preview",
+      "service": "speakerdeck",
+      "path": "/2017/11/11/twelve-factor-app-on-heroku/",
+      "selector": "iframe.speakerdeck-iframe",
+      "visible": true,
+      "responses": [
+        {
+          "url": "https://speakerdeck.com/assets/embed.js",
+          "status": 200
+        },
+        {
+          "url": "https://speakerdeck.com/player/457f092496ab4856b7c3cef5bcd2babb",
+          "status": 200
+        },
+        {
+          "url": "https://d1eu30co0ohy4w.cloudfront.net/assets/player-5db98712cdbaa96734a845832849a8ce3f10c2ad66bb16f3a4ff4364ebe1dffe.css",
+          "status": 200
+        },
+        {
+          "url": "https://d1eu30co0ohy4w.cloudfront.net/assets/js/stats-066544ee5ddf3e5e4a9c.js",
+          "status": 200
+        },
+        {
+          "url": "https://d1eu30co0ohy4w.cloudfront.net/assets/mark-white-8d908558fe78e8efc8118c6fe9b9b1a9846b182c503bdc6902f97df4ddc9f3af.svg",
+          "status": 200
+        },
+        {
+          "url": "https://d1eu30co0ohy4w.cloudfront.net/assets/js/player-458b819004f658d0d8fa.js",
+          "status": 200
+        },
+        {
+          "url": "https://secure.gravatar.com/avatar/4c8807d9a90fe91b717983647f0664f4",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.googleapis.com/css",
+          "status": 200
+        },
+        {
+          "url": "https://speakerdeck.com/icons/icons.svg",
+          "status": 200
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js",
+          "status": 200
+        },
+        {
+          "url": "https://speakerdeck.com/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+          "status": 302
+        },
+        {
+          "url": "https://files.speakerdeck.com/presentations/457f092496ab4856b7c3cef5bcd2babb/slide_3.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://files.speakerdeck.com/presentations/457f092496ab4856b7c3cef5bcd2babb/slide_0.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/lato/v25/S6uyw4BMUTPHjx4wXiWtFCc.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://files.speakerdeck.com/presentations/457f092496ab4856b7c3cef5bcd2babb/slide_2.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://files.speakerdeck.com/presentations/457f092496ab4856b7c3cef5bcd2babb/slide_4.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://files.speakerdeck.com/presentations/457f092496ab4856b7c3cef5bcd2babb/slide_1.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://speakerdeck.com/cdn-cgi/challenge-platform/h/g/scripts/jsd/330e41bb475c/main.js",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js",
+          "status": 200
+        },
+        {
+          "url": "https://www.google-analytics.com/analytics.js",
+          "status": 200
+        },
+        {
+          "url": "https://speakerdeck.com/cdn-cgi/challenge-platform/h/g/jsd/oneshot/330e41bb475c/0.4223943924600718:1789693525:b1tvipJrGKzX7AKKnmecLfnv0J4oTa-afXxCci-fUOA/a3ccc52bccb3d78d",
+          "status": 200
+        },
+        {
+          "url": "https://speakerdeck.com/beacon.gif",
+          "status": 200
+        }
+      ],
+      "failures": [],
+      "frames": [
+        {
+          "url": "https://speakerdeck.com/player/457f092496ab4856b7c3cef5bcd2babb",
+          "text": "Herokuで本番運用する技術 / Heroku production\nby Hiroshi Shimoju\nSlide 1\nSlide 1 text\nԼॏ\u0001തࢿ\u0001\u0010\u0001(.0\u00011FQBCP \u0001*OD\u000f\u0001 \u0013\u0011\u0012\u0018\u000f\u0012\u0011\u000f\u0013\u0015\u0001ୈ\u0015ճ\u0001&$ࣄۀ෦\u00015FDI\u0001.5( )FSPLVͰຊ൪ӡ༻͢Δٕज़ \f\nSlide 2\nSlide 2 text\nΤϯδχΞ\u0001 \u0013\u0011\u0012\u0017೥౓ೖࣾɾ৽ଔ\u0017ظ Լॏ\u0001തࢿ\u0001\u0001!TIJNPKV@ &$ࣄۀ෦\u000146;63*νʔϜ TIJNPKV\u000fPSH \f\nSlide 3\nSlide 3 text\nNo content\nSlide 4\nSlide 4 text\n46;63*ͷํ͔Β͖·ͨ͠ \f\nSlide 5\nSlide 5 text\nຊ೔\u0013ճ໨ͷൃදͰ͢ \f\nSlide 6\nSlide 6 text\nNo content\nSlide 7\nSlide 7 text\nNo content\nSlide 8\nSlide 8 text\nNo content\nSlide 9\nSlide 9 text\n46;63*\u0001❤\u0001)FSPLV \f\nSlide 10\nSlide 10 text\n)FSPLV w46;63*͸)FSPLVͰӡ༻͍ͯ͠·͢\u0001 wݸਓͰ΋)FSPLVͰӡ༻͍ͯ͠ΔΞϓϦ͕͋Γ·͢\u0001 wͦͷதͰܦݧͨ͜͠ͱΛɺͬ͟ͱˍΏΔΊʹൃද͠· ͢ʂ \f\nSlide 11\nSlide 11 text\n͓͠ͳ͕͖ wΦʔτεέʔϧ\u0001 wಠࣗυϝΠϯઃఆ\u0001 w44-ઃఆ\u0001 wϝʔϧ\u0001 wσʔλϕʔε\u0001 wϑΝΠϧΞοϓϩʔυ wλΠϜΞ΢τ\u0001 wϩά\u0001 wΞϓϦέʔγϣϯઃܭ\u0001 wো֐৘ใ\u0001 w͓·͚ \f\nSlide 12\nSlide 12 text\nΦʔτεέʔϧ \f\nSlide 13\nSlide 13 text\nNo content\nSlide 14\nSlide 14 text\nΦʔτεέʔϧ w4UBOEBSEҎ্ͰखಈͰͷεέʔϧ͕Մೳ\u0001 w1FSGPSNBODF\u000e.Ҏ্Ͱ)FSPLVͰͷΦʔτεέʔϧ͕࢖͑Δ\u0001 w͔͠͠\u0005\u0013\u0016\u0011ʙ͸ߴ͍ʜʜ\u0001 w46;63*Ͱ͸֎෦ͷΦʔτεέʔϧαʔϏε)JSF'JSFΛ࢖͍ͬͯΔ\u0001 wIUUQT\u001b\u0010\u0010XXX\u000fIJSFpSF\u000fJP\u0010 \f\nSlide 15\nSlide 15 text\nΦʔτεέʔϧઃఆ wᮢ஋ͷઃఆ͸೰ΈͲ͜Ζ\u0001 w)JSF'JSFͰ͸εϧʔϓοτ 31. ΍ϨεϙϯελΠϜͳͲ͔Βબ΂Δ\u0001 wεϧʔϓοτʹͨ͠ͱ͜ΖɺΞΫηεूதͰλΠϜΞ΢τ͕සൃͨ͠ ͱ͖ɺݟ͔͚ͷεϧʔϓοτ͕མͪͨͷ͔εέʔϧΠϯ͢Δࣄ͕݅ʜ\u0001 wखͰεέʔϧΞ΢τͨ͠ͷʹؤͳʹ%ZOPΛݮΒͯ͘͠Δ\u0001 wεέʔϧΞ΢τ͚ͩߟ͑ͣεέʔϧΞοϓ΋ߟྀ͢Δ \f\nSlide 16\nSlide 16 text\nಠࣗυϝΠϯઃఆ \f\nSlide 17\nSlide 17 text\nಠࣗυϝΠϯઃఆ w)FSPLVͷಠࣗυϝΠϯઃఆ͸$/\".&Ͱߦ͏\u0001 wXXX\u000fFYBNQMF\u000fDPN\u0001ˠ\u0001XXX\u000fFYBNQMF\u000fDPN\u000fIFSPLVEOT\u000fDPN\u0001΁\u0001 w$/\".&ͷ;POF\u0001\"QFY໰୊͕͋Δ \f\nSlide 18\nSlide 18 text\n;POF\u0001\"QFY໰୊ wκʔϯͷ௖఺\u001eαϒυϝΠϯͳ͠ͷυϝΠϯ\u0001ྫ\u001b\u0001FYBNQMF\u000fDPN\u0001 w$/\".&ͱଞͷϨίʔυ͸ಉډͰ͖ͳ͍\u0001 w;POF\u0001\"QFYʹ͸গͳ͘ͱ΋/4ϨίʔυΛઃఆ͢Δඞཁ͕͋Δ\u0001 w;POF\u0001\"QFYʹ$/\".&Λઃఆͨ͠৔߹ɺ্هʹҧ൓͢"
+        },
+        {
+          "url": "nullblank",
+          "text": ""
+        }
+      ],
+      "starContainers": 0,
+      "shareLinks": 0,
+      "capturedAt": "2026-09-18T02:02:45.994Z"
+    }
+  ]
+}

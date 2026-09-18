@@ -38,6 +38,10 @@ const directories = process.env.SHSH_REVIEW_SERVER
       [4188, ".cache/full-review/pagination/public"],
       [4189, ".cache/full-review/empty/public"],
       [4195, ".cache/full-review/single/public"],
+      [4196, ".cache/site/production"],
+      [4197, ".cache/site/preview"],
+      [4198, ".cache/site-live/production"],
+      [4199, ".cache/site-live/preview"],
     ]);
 /** @type {ReturnType<typeof createServer>[]} */
 const servers = [];
