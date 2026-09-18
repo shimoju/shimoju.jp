@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T04:37:25.003205+00:00",
+  "updated_at": "2026-09-18T04:42:13.805614+00:00",
   "stage": "full_implementation",
   "summary": "R002/F014の全画面・About修正案は回答待ち。Safari実機で記事の両配色・About表・Archives遷移を限定確認し、実機手順と未確認項目を記録。移行照合・性能は記録済み、統合はAbout由来の3不合格を保持。残る実フォント・他OS/モバイル・Cloudflare配信は未確認。",
   "latest_review_id": "R004",
   "resume": {
-    "task_id": "T017",
-    "action": "R002/F014の回答が来たら後続タスクで反映・再検証する。回答待ちの間はCloudflareの既存設定と利用可能な接続を読み取り、具体的な配信確認手順を準備する。実配信の変更はレビュー判断と依存関係を守る。"
+    "task_id": "T014",
+    "action": "ユーザーがF014の「業務経験／技術／経験年数」を承認したため、次の後続タスクで判断記録・About入力・期待値・レビュー入口を更新して再検証する。R002全体は承認待ち。"
   },
   "tasks": [
     {
@@ -767,16 +767,21 @@
       ],
       "verification_plan": [
         "Cloudflareの設定とデプロイ記録を確認し、curl/ブラウザで実レスポンスと外部埋め込みを検証する。",
-        "アカウント操作が必要なら具体的設定と手順を用意し依頼する。未接続を合格にしない。"
+        "アカウント操作が必要なら具体的設定と手順を用意し依頼する。未接続を合格にしない。",
+        "GitHubのmaster/作業ブランチのCloudflareチェックと既存本番HTTP応答を読み取り、移行後の検証と区別して保存する。",
+        "接続可能ならCloudflare dashboardの既存ビルド設定を読み取り、production/preview環境とbaseURLを照合する。設定変更・新規配信はR002の判断後に行う。"
       ],
-      "commit_message": "[T017] Cloudflare Pagesの本番とプレビュー配信を確認",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "commit_message": "[T017] 既存配信の応答とCloudflare検証手順を記録",
+      "status": "implemented",
+      "verification_status": "blocked",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/cloudflare-pages.md",
+        "themes/shsh/docs/verification/t017/"
+      ],
+      "verification_ids": ["V042"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "実際のCloudflare Pagesのビルドコマンド・版・環境設定を確認し、確認可能な成果物を配信する。"
+      "next_action": "R002の判断とF014修正後にCloudflare dashboardの設定を確認し、同一コミットのCI・preview・本番を配信検証する。"
     },
     {
       "id": "T018",
@@ -2647,6 +2652,30 @@
         "themes/shsh/docs/verification/real-devices.md"
       ],
       "recorded_at": "2026-09-18T04:37:25.003205+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V042",
+      "task_ids": ["T017"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q19",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q27",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/04-theme-implementation-requirements.md: 実装開始時の確認と完了判定",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "既存Cloudflare配信の読み取り調査",
+      "result": "passed",
+      "subject_ref": "既存本番fb3a9bbのGitHubチェック、既存preview c3748dc/bd0b6c0f。shsh移行後配信の検証ではない。",
+      "environment": "macOS27; gh API; curl; Cloudflare既存公開レスポンス",
+      "procedure": "GitHubチェックでプロジェクト・2deploymentを特定。両環境のホーム/記事200、feed301、未存在404を確認。previewのHTTP noindexは確認したがHTML robotsはindex、canonicalは本番URL。dashboard設定・移行後配信・GitHub Actions実行は未確認。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/cloudflare-pages.md",
+        "themes/shsh/docs/verification/t017/"
+      ],
+      "recorded_at": "2026-09-18T04:42:13.805614+00:00",
       "supersedes": null
     }
   ]
