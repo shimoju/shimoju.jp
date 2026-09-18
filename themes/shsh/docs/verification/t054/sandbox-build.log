@@ -1,0 +1,122 @@
+Start building sites …
+hugo v0.166.0+extended+withdeploy darwin/arm64 BuildDate=2026-09-09T14:45:02Z VendorInfo=Homebrew
+
+
+                  │ JA
+──────────────────┼─────
+ Pages            │ 160
+ Paginator pages  │  14
+ Non-page files   │  19
+ Static files     │   6
+ Processed images │  14
+ Aliases          │  46
+ Cleaned          │   0
+
+Total in 331 ms
+WARN  deprecated: .Language.LanguageDirection was deprecated in Hugo v0.158.0 and will be removed in a future release. Use .Language.Direction instead.
+WARN  deprecated: .Language.LanguageCode was deprecated in Hugo v0.158.0 and will be removed in a future release. Use .Language.Locale instead.
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F782398466416713728": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/10/10/anime-2016autumn/index.md:12:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F1197099339375501312": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2019/12/07/games-2019/index.md:15:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F1197099615528443904": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2019/12/07/games-2019/index.md:22:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F785374703527440384": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/10/10/anime-2016autumn/index.md:14:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F769754089684996098": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/29/shin-godzilla-imax/index.md:35:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F785375242776485888": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/10/10/anime-2016autumn/index.md:104:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F1172469316375257089": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2019/12/07/games-2019/index.md:28:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fkentarow%2Fstatus%2F768705550590676992": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/25/7th/index.md:11:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F768676243470331904": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/25/7th/index.md:13:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2FMJP_anime%2Fstatus%2F781494211040256001": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/10/10/anime-2016autumn/index.md:127:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fpb_recruit%2Fstatus%2F768745317684551680": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/25/7th/index.md:20:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F1170360677996695553": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2019/12/07/games-2019/index.md:42:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F766620504144748544": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/23/re-diary/index.md:16:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F766655612620935168": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/23/re-diary/index.md:18:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F766879860836925440": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/23/re-diary/index.md:24:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F783674184169697280": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/10/10/anime-2016autumn/index.md:135:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F1170361260078034945": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2019/12/07/games-2019/index.md:51:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F767115093934911488": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/23/re-diary/index.md:26:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F767164717827751938": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/23/re-diary/index.md:32:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F765141839364157440": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/15/anime-soundtrack/index.md:12:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fdocomo_cs%2Fstatus%2F740741467329597441": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/07/29/tv-life/index.md:25:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F765142300804517889": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/15/anime-soundtrack/index.md:14:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F767520900165931008": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/23/re-diary/index.md:38:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F713704194201374720": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/15/anime-soundtrack/index.md:18:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F749599441225519104": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/07/29/tv-life/index.md:29:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F759635807082651648": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/07/31/ice-cream/index.md:13:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Ftocho_senkyo%2Fstatus%2F759040813254844423": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/07/30/tochijisen/index.md:14:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fwixoss_anime%2Fstatus%2F762153069207363585": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/07/lostorage-incited-wixoss/index.md:16:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F766062842768347137": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/18/this-is-shakai/index.md:11:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F766233852771610624": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/18/this-is-shakai/index.md:13:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F765011237885194240": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/16/table-tennis/index.md:16:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F742144683384655872": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/13/pasmo-autocharge/index.md:16:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Ftak_tea3%2Fstatus%2F762171577521741826": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2016/08/07/lostorage-incited-wixoss/index.md:31:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fshimoju_%2Fstatus%2F1681662811389190147": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2023/08/10/ruby-3-2-yjit-with-rails-6-1/index.md:15:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']
+WARN  The "x" shortcode was unable to retrieve the remote data: template: _shortcodes/x.html:20:23: executing "render-x" at <resources.GetRemote>: error calling GetRemote: Get "https://publish.x.com/oembed?dnt=false&url=https%3A%2F%2Fx.com%2Fgihyo_hansoku%2Fstatus%2F1820654494742708370": dial tcp: lookup publish.x.com: no such host. See "/var/folders/q1/2387j1x51sxdsk1cg39drnnw0000gn/T/shsh-restore-4qg3ua0s/source/content/posts/2024/08/26/ruby-code-recipe/index.md:13:1"
+You can suppress this warning by adding the following to your project configuration:
+ignoreLogs = ['shortcode-x-getremote']

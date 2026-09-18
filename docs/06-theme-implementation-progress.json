@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T13:09:51.164370+00:00",
+  "updated_at": "2026-09-18T13:15:26.829523+00:00",
   "stage": "final_verification",
-  "summary": "Windows追加報告を反映し、Safariの文字のみ約207%拡大・キーボード操作を確認。動画は再生停止の状態取得済み、映像視認の回答待ち。詳細実機項目、本番移行、旧テーマ整理は未完了。",
+  "summary": "WindowsとMacの実機確認を継続。旧master/PaperModの隔離復元生成・URL/RSS一致を確認し切り戻し手順を準備した。Safari映像正常のユーザー回答を受領、次タスクで反映。詳細実機項目、本番移行、旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "Firefoxの描画不一致とSafari動画の回答待ちを残し、依存しない移行監査・配信準備を進める。"
+    "action": "受領したSafari映像正常の回答を記録し、残る実機確認と本番移行準備を進める。"
   },
   "tasks": [
     {
@@ -826,7 +826,7 @@
         "照合完了後にPaperMod submodule・更新スクリプトを整理しライセンス表示を保持する。専用上書きはF012のユーザー承認によりT022で先行撤去。",
         "仕様の正をテーマ/fixture/文書へ移し、モックを参考資料とし、切戻し手順と最終証拠をまとめる。"
       ],
-      "depends_on": ["T013", "T014", "T015", "T016", "T017"],
+      "depends_on": ["T013", "T014", "T015", "T016", "T017", "T054"],
       "acceptance_criteria": [
         "全要件・補足・規律の成果物/検証/レビュー判断を監査し未解決・未確認なし。",
         "設定/コンテンツを含む変更前コミットまたは配信成果物から切戻せる。",
@@ -839,11 +839,11 @@
       "commit_message": "[T018] 旧テーマを整理し移行完了を監査",
       "status": "not_started",
       "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "artifact_refs": ["themes/shsh/docs/verification/rollback.md"],
+      "verification_ids": ["V098"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "照合完了後にPaperMod submodule・更新スクリプトを整理しライセンス表示を保持する。専用上書きはF012のユーザー承認によりT022で先行撤去。"
+      "next_action": "T054で旧ソースの隔離復元生成と切り戻し手順を準備済み。実機・本番確認後にPaperModと更新スクリプトを整理し、全要件を最終監査する。"
     },
     {
       "id": "T019",
@@ -2026,6 +2026,42 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "FirefoxのAXと画像の不一致が解消してから、未実施の文字設定・和文コード・JS無効確認を再開する。ユーザーの既存タブを伴うブラウザ再起動はしていない。"
+    },
+    {
+      "id": "T054",
+      "title": "移行前コミットからの切り戻しを隔離環境で確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "本番masterのSHAとPaperModを含む復元単位を特定し、隔離ディレクトリで移行前のHugo生成を確認する。",
+        "採用済みPages Git連携に沿う切り戻し手順・再配信時の注意・検証対象を文書化する。本番操作・旧テーマ撤去は行わない。"
+      ],
+      "depends_on": ["T002", "T034"],
+      "acceptance_criteria": [
+        "現在のmasterと旧テーマコミットを特定し、設定・コンテンツ・素材・上書きを含む復元を再現できる。",
+        "隔離生成の実結果と制約を記録し、配信成果物の復元とGitソースの復元を区別する。"
+      ],
+      "verification_plan": [
+        "GitHubのmaster/既存PRを読み取り、Gitオブジェクトとsubmoduleを照合する。",
+        "git archiveで移行前ソースとPaperModをtmpへ展開し、Hugo0.166.0でproduction生成する。",
+        "生成URL・RSS・404・feed転送設定を検査し、現作業ツリーと本番未変更を確認する。",
+        "文書整形・進捗検査・差分確認を行う。"
+      ],
+      "commit_message": "[T054] 移行前ソースの復元検証と切り戻し手順を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/rollback.md",
+        "themes/shsh/docs/verification/t054/"
+      ],
+      "verification_ids": ["V098"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "切り戻し資料と旧ソース隔離生成確認は完了。本番移行直前のproduction deployment照合と移行後HTTP確認はT017/T018で実施する。"
     }
   ],
   "findings": [
@@ -4913,6 +4949,27 @@
       "procedure": "専用タブでabout:preferences#generalへ移動。AXのタブ・URLは更新されたがページ内容は取得できず、画像は前のページのまま。前面化・再読込・ウィンドウ選択・一時拡大でも解消せず。設定変更せず、ウィンドウサイズを戻し専用タブ消失を確認。文字拡大・和文コード・JS無効のサイト試験は未実施。",
       "evidence_refs": ["themes/shsh/docs/verification/t053/observation.json"],
       "recorded_at": "2026-09-18T13:09:51.164370+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V098",
+      "task_ids": ["T018", "T054"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "移行前masterとPaperModの隔離復元生成",
+      "result": "passed",
+      "subject_ref": "fb3a9bb0b0a943afb5e666520f82be7414c2fd75 / PaperMod d3768854d00ad003b0a8dbdba254ce9224377a01",
+      "environment": "macOS / Hugo0.166.0 / git archive・Python標準ライブラリ / 一時ディレクトリ",
+      "procedure": "GitHubのmasterとPages成功チェックを再取得。旧masterの全ソースとPaperMod指定コミットを隔離展開しproduction生成。59記事/61入力、170HTML/48RSSのURL集合と全RSS GUID集合が旧基準と一致。404・配信設定・ホームcanonical確認。初回sandbox DNS警告後、ネットワーク許可で再生成し外部取得警告0、旧テーマ非推奨警告2。全9検査成功。本番切戻しと公開後HTTPは未実施。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/rollback.md",
+        "themes/shsh/docs/verification/t054/result.json",
+        "themes/shsh/docs/verification/t054/build.log",
+        "themes/shsh/docs/verification/t054/github-state.json"
+      ],
+      "recorded_at": "2026-09-18T13:15:26.829523+00:00",
       "supersedes": null
     }
   ]
