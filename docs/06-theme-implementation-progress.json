@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T01:04:55.523262+00:00",
-  "stage": "revision",
-  "summary": "T022で旧PaperMod上書きと不要なコメントを削除。shsh生成129ファイル一致、CSS/Hugoの互換性を実測。スクロールバー領域の検査誤判定を是正し39件成功。R004へ追加指摘対応を提出し、代表画面・共通設計全体の明示承認待ち。",
-  "latest_review_id": "R003",
+  "updated_at": "2026-09-18T01:27:19.354771+00:00",
+  "stage": "representative",
+  "summary": "R001で提示した代表4画面のPC/モバイル・両配色と共通設計を、ユーザーが残りの画面へ展開する土台として明示承認。修正履歴を保持して最新R004へ記録し、対象10作業を完了へ更新。移行完了は未承認。ユーザー指示により承認記録だけで終了し、T010以降は別セッションで再開する。",
+  "latest_review_id": "R004",
   "resume": {
-    "task_id": "T022",
-    "action": "追加指摘への回答と差分をR004へ提出済み。代表画面・共通設計の明示承認後にT010へ展開する。"
+    "task_id": "T010",
+    "action": "別セッションで資料3〜6と実際のリポジトリを照合し、承認済み共通設計を残りの画面へ展開する。今回のセッションでは実装を開始しない。開発コマンドはthemes/shshで実行する。"
   },
   "tasks": [
     {
@@ -167,7 +167,7 @@
         "Hugo単独生成、別ドメイン・著者fixture、未知アイコン・メニュー切れ・型違いの失敗を確認する。"
       ],
       "commit_message": "[T004] 代表画面の共通枠と配色切替を実装",
-      "status": "implemented",
+      "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/",
@@ -182,7 +182,7 @@
       "verification_ids": ["V008", "V009", "V013"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "T005〜T008で代表画面を揃え、T009/R001で共通設計をレビューする。承認前はimplementedを維持する。"
+      "next_action": "代表画面・共通設計の承認をR004へ記録済み。続きの実装は別セッションのT010から再開する。"
     },
     {
       "id": "T005",
@@ -211,7 +211,7 @@
         "同日同時刻・タイムゾーン境界・draft/予約/期限切れを生成物で検査する。"
       ],
       "commit_message": "[T005] 代表のホームと一覧を共通の記事集合で生成",
-      "status": "implemented",
+      "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/layouts/home.html",
@@ -234,7 +234,7 @@
       "verification_ids": ["V010", "V011", "V013"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "T006の本文組版へ進む。カバー組み込みはT007、完成形の視覚比較とR001承認はT009に残る。"
+      "next_action": "代表画面・共通設計の承認をR004へ記録済み。続きの実装は別セッションのT010から再開する。"
     },
     {
       "id": "T006",
@@ -265,7 +265,7 @@
         "specimenと実記事を両配色・PC/モバイルで比較し、見出しIDを旧出力と照合する。"
       ],
       "commit_message": "[T006] 記事の本文組版とコード操作を実装",
-      "status": "implemented",
+      "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/layouts/single.html",
@@ -285,7 +285,7 @@
       "verification_ids": ["V012", "V013"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "T007でカバー・本文メディアを実装し、T008の共有と合わせてT009/R001へ提出する。本文部分の実記事比較は済んだが、全ページ完成形の承認は未実施。"
+      "next_action": "代表画面・共通設計の承認をR004へ記録済み。続きの実装は別セッションのT010から再開する。"
     },
     {
       "id": "T007",
@@ -313,7 +313,7 @@
         "T005で検証済みのテキストカード・ページ送りを回帰確認し、カバー有無の両方をモックと比較する。"
       ],
       "commit_message": "[T007] カバーと本文メディアの共通配信処理を実装",
-      "status": "implemented",
+      "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/layouts/_partials/media/",
@@ -328,7 +328,7 @@
       "verification_ids": ["V014", "V015", "V019"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "T008で共有・外部反応を実装し、T009/R001で代表画面全体と共通設計の承認を受ける。"
+      "next_action": "代表画面・共通設計の承認をR004へ記録済み。続きの実装は別セッションのT010から再開する。"
     },
     {
       "id": "T008",
@@ -356,7 +356,7 @@
         "キーボード/JS無効/通信失敗時の可読性を確認する。"
       ],
       "commit_message": "[T008] 共有と外部反応を設定から生成",
-      "status": "implemented",
+      "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/layouts/_partials/engagement.html",
@@ -373,7 +373,7 @@
       "verification_ids": ["V016", "V017"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "T009で代表画面全体の比較と構造説明を用意し、R001の明示承認を受ける。公式スター実接続はT017。"
+      "next_action": "代表画面・共通設計の承認をR004へ記録済み。続きの実装は別セッションのT010から再開する。"
     },
     {
       "id": "T009",
@@ -406,7 +406,7 @@
         "ユーザーの回答をdecisionへ引用し無回答を承認にしない。"
       ],
       "commit_message": "[T009] 代表画面の比較と共通設計レビューを提出",
-      "status": "implemented",
+      "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/docs/verification/r001-review.md",
@@ -419,7 +419,7 @@
       "verification_ids": ["V018", "V019", "V020"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "R001の明示判断を受け、承認または指摘・修正・再検証を記録する。承認待ちは完了にしない。"
+      "next_action": "代表画面・共通設計の承認をR004へ記録済み。続きの実装は別セッションのT010から再開する。"
     },
     {
       "id": "T010",
@@ -450,7 +450,7 @@
       "verification_ids": [],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "About/通常固定ページ・Archives・分類一覧/個別分類・404・記事タグ/前後記事へ展開する。"
+      "next_action": "別セッションで再開する。R004で承認された共通設計をAbout/通常固定ページ・Archives・分類一覧/個別分類・404・記事タグ/前後記事へ展開する。今回は未着手のまま終了する。"
     },
     {
       "id": "T011",
@@ -770,7 +770,7 @@
         "media fixtureへinline画像/リンク画像の境界を追加し、HTMLと既存ブラウザ検査を再実行する。"
       ],
       "commit_message": "[T019] 単独画像の配置をモックに揃え共通CSSの重複を解消",
-      "status": "implemented",
+      "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/layouts/_markup/render-image.html",
@@ -786,7 +786,7 @@
       "verification_ids": ["V019"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "T009で代表画面の比較画像・構造説明をまとめ、R001の明示承認を受ける。"
+      "next_action": "代表画面・共通設計の承認をR004へ記録済み。続きの実装は別セッションのT010から再開する。"
     },
     {
       "id": "T020",
@@ -805,7 +805,7 @@
         "修正前の生成HTMLで再現を確認し、修正後のstrong/codeの意味・文字・太さと既存代表画面比較12件を確認する。"
       ],
       "commit_message": "[T020] 本文部品のMarkdown強調入力を修正",
-      "status": "implemented",
+      "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/scripts/build-review-fixture.ts",
@@ -814,8 +814,8 @@
       ],
       "verification_ids": ["V023"],
       "review_ids": ["R004"],
-      "blocked_by": ["F010"],
-      "next_action": "T021で開発環境を集約し、修正済み画像と構造をR004へ提出する。"
+      "blocked_by": [],
+      "next_action": "代表画面・共通設計の承認をR004へ記録済み。続きの実装は別セッションのT010から再開する。"
     },
     {
       "id": "T021",
@@ -841,7 +841,7 @@
         "frozen-lockfile導入、型エラー検出probe、統合検査、基準JSONとモックのハッシュ維持、レビューURL/画像を検証する。"
       ],
       "commit_message": "[T021] テーマ開発環境をthemes/shshへ集約",
-      "status": "implemented",
+      "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/README.md",
@@ -855,8 +855,8 @@
       ],
       "verification_ids": ["V024", "V025"],
       "review_ids": ["R004"],
-      "blocked_by": ["F011"],
-      "next_action": "R004の明示承認または修正指示を受ける。承認後に対象作業の完了条件を照合しT010へ展開する。開発コマンドはthemes/shshで実行する。"
+      "blocked_by": [],
+      "next_action": "代表画面・共通設計の承認をR004へ記録済み。続きの実装は別セッションのT010から再開する。"
     },
     {
       "id": "T022",
@@ -887,7 +887,7 @@
         "整形/lint/進捗検査、テーマ/一覧/代表画面の既存検査を実行する。"
       ],
       "commit_message": "[T022] PaperMod上書きを撤去し実装レビューの互換性を確認",
-      "status": "implemented",
+      "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/docs/verification/r004-review.md",
@@ -902,7 +902,41 @@
       "verification_ids": ["V026", "V027"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "追加指摘への回答と差分をR004へ提出済み。代表画面・共通設計の明示承認後にT010へ展開する。"
+      "next_action": "代表画面・共通設計の承認をR004へ記録済み。続きの実装は別セッションのT010から再開する。"
+    },
+    {
+      "id": "T023",
+      "title": "代表画面・共通設計の承認を記録",
+      "requirement_refs": [
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q7",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "scope": [
+        "R001の代表画面と共通設計への明示承認を、修正履歴を保持した最新レビューR004へ記録する。",
+        "既存の検証結果・成果物・解決済み指摘と承認を照合し、対象作業の状態と別セッションの再開地点を更新する。続きの実装は行わない。"
+      ],
+      "depends_on": ["T022"],
+      "acceptance_criteria": [
+        "承認対象はホーム・一覧・実記事・本文部品のPC/モバイル・両配色と共通設計で、移行完了承認ではないことを明記する。",
+        "R001/R003の過去の修正指示を保持し、最新レビューと対象作業の状態が整合する。",
+        "T010以降の未着手作業を開始せず、次回の再開地点をT010にする。"
+      ],
+      "verification_plan": [
+        "承認対象の既存成果物・passed検証・解決済み阻害事項を照合する。",
+        "進捗JSONの整形・参照/依存関係検査と差分検査を行い、変更が承認記録に限られることを確認する。"
+      ],
+      "commit_message": "[T023] 代表画面と共通設計の承認を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "docs/06-theme-implementation-progress.json",
+        "themes/shsh/docs/verification/r004-review.md"
+      ],
+      "verification_ids": ["V028"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "承認記録を完了。ユーザー指示に従い、このセッションでは続きの実装を行わない。"
     }
   ],
   "findings": [
@@ -1303,7 +1337,7 @@
       "id": "R004",
       "title": "旧上書き撤去・CSS互換性・Hugoテンプレートの追加指摘対応",
       "task_ids": ["T004", "T005", "T006", "T007", "T008", "T009", "T019", "T020", "T021", "T022"],
-      "status": "requested",
+      "status": "approved",
       "artifact_refs": [
         "themes/shsh/docs/verification/r004-review.md",
         "themes/shsh/docs/verification/r003/index.html",
@@ -1311,7 +1345,13 @@
       ],
       "verification_ids": ["V027"],
       "finding_ids": ["F012", "F013"],
-      "decision": null,
+      "decision": {
+        "outcome": "approved",
+        "reason": "R001で提示したホーム・一覧・実記事・本文部品のPC/モバイル・両配色と共通設計を、残りの画面へ展開する土台として明示承認。R001→R003→R004の指摘修正を経た現状へ記録する。移行完了の承認は含まない。続きの実装は別セッションとし、今回は承認記録だけを行う。",
+        "decided_by": "user",
+        "recorded_at": "2026-09-18T01:27:19.354771+00:00",
+        "source": "「R001の代表画面と共通設計を、残りの画面へ展開する土台として承認しますか？ 対象はホーム・一覧・実記事・本文部品のPC／モバイル・両配色です。移行完了の承認ではありません。」への回答：「承認します。続きの実装は別セッションで行うため、承認の記録だけして続きの作業はしないでください」"
+      },
       "supersedes": "R003"
     }
   ],
@@ -2010,6 +2050,26 @@
         "themes/shsh/docs/verification/t022-check.log"
       ],
       "supersedes": "V026"
+    },
+    {
+      "id": "V028",
+      "task_ids": ["T023"],
+      "requirement_refs": [
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q7",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "承認記録と再開地点の整合性確認",
+      "result": "passed",
+      "subject_ref": "0bfa182 + T023の承認記録差分",
+      "environment": "ローカルリポジトリ、Python3、Node.jsによる進捗JSON検査",
+      "procedure": "R004対象10作業の既存成果物の存在、passed検証状態、阻害事項の解決を照合。ユーザーの明示承認をR004に記録し、過去のR001/R003の修正指示を保持。T010以降は開始せず、全画面レビューR002・実機/移行完了承認は未取得のまま保持。JSONの整形・参照/依存関係・差分を検査。実装・生成・ブラウザ検証の追加作業は行わない。",
+      "evidence_refs": [
+        "docs/06-theme-implementation-progress.json",
+        "themes/shsh/docs/verification/r004-review.md"
+      ],
+      "recorded_at": "2026-09-18T01:27:19.354771+00:00",
+      "supersedes": null
     }
   ]
 }
