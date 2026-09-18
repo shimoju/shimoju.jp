@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T12:50:14.082691+00:00",
+  "updated_at": "2026-09-18T13:04:01.753014+00:00",
   "stage": "final_verification",
-  "summary": "Safari回転修正は実iPhoneと全CI246検査で再合格。Windows Chromeの本文/コード実フォント・JS無効、Windows3ブラウザの文字拡大条件を追加記録。Macの追加確認も記録済み。詳細実機項目、本番移行、旧テーマ整理は未完了。",
+  "summary": "Windows追加報告を反映し、Safariの文字のみ約207%拡大・キーボード操作を確認。動画は再生停止の状態取得済み、映像視認の回答待ち。詳細実機項目、本番移行、旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "Windowsの今回の追加報告は反映済み。実機記録表とT050の残件からSafari実フォント・文字拡大・動画視認/停止等の未確認項目を継続する。"
+    "action": "Safari映像視認の回答を反映し、残る実フォント・外部埋め込み等の必要証拠を揃える。"
   },
   "tasks": [
     {
@@ -722,11 +722,14 @@
         "V090",
         "V091",
         "V092",
-        "V093"
+        "V093",
+        "V094",
+        "V095",
+        "V096"
       ],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Windows Chromeの本文・コード実フォントとJS無効時の本文/ナビ/RSSを確認済み。Windows3ブラウザの文字サイズ設定も補足済み。Safari実フェイス・文字拡大・動画視認/停止、外部埋め込み等の未確認項目を実機記録表で継続し、本番の共有/スターはT017で確認する。"
+      "next_action": "Windows追加報告とSafari文字拡大・キーボードを確認済み。Safari映像視認はユーザー回答待ち。実フォント・外部埋め込み等の残件を実機記録表で継続し、本番共有/スターはT017で確認する。"
     },
     {
       "id": "T016",
@@ -1920,10 +1923,10 @@
       "status": "implemented",
       "verification_status": "blocked",
       "artifact_refs": ["themes/shsh/docs/verification/t050/"],
-      "verification_ids": ["V088", "V089", "V090", "V091"],
+      "verification_ids": ["V088", "V089", "V090", "V091", "V094", "V095", "V096"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Safariの実フェイス・文字拡大・動画の視認と停止、各ブラウザのキーボード一式・外部埋め込み、Firefox追加項目は未確認。T015の記録表とともに継続する。"
+      "next_action": "Safari文字拡大・キーボードはT052で確認済み。動画は再生/停止状態取得済みで映像視認のユーザー回答待ち。Safari実フェイス・外部埋め込み・Chrome/Firefox追加項目は継続する。"
     },
     {
       "id": "T051",
@@ -1958,6 +1961,38 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "Windows追加報告の記録と照合は完了。今回依頼したWindows1ブラウザの実フォント・JS無効と過去の拡大方法の報告は受領済み。その他の実機残件はT015/T050で継続する。"
+    },
+    {
+      "id": "T052",
+      "title": "Safariの文字拡大と動画・キーボード操作を確認",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "T050で残るSafariの文字拡大・動画・キーボードをネイティブUIで確認し、操作と証拠を記録する。"
+      ],
+      "depends_on": ["T050"],
+      "acceptance_criteria": [
+        "実施条件と結果を証拠へ残し、未取得項目を区別する。",
+        "変更した表示設定を復元し、専用タブを閉じる。"
+      ],
+      "verification_plan": [
+        "固定previewの専用タブでSafariの文字拡大を操作し、ナビ・本文・表・コードを確認する。",
+        "記事の動画を再生/停止し、画像と状態を照合する。",
+        "Tab/Shift+Tab・Enter/Spaceのフォーカスとナビ・配色・コピーを確認する。",
+        "整形・進捗検査・差分確認を行う。"
+      ],
+      "commit_message": "[T052] Safariの追加拡大と操作確認を記録",
+      "status": "implemented",
+      "verification_status": "blocked",
+      "artifact_refs": ["themes/shsh/docs/verification/t052/"],
+      "verification_ids": ["V094", "V095", "V096"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "文字拡大とSafariキーボード操作は確認済み。動画の映像が見えるかユーザー回答待ち。"
     }
   ],
   "findings": [
@@ -4772,6 +4807,63 @@
         "themes/shsh/docs/verification/real-devices.md"
       ],
       "recorded_at": "2026-09-18T12:50:14.082691+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V094",
+      "task_ids": ["T015", "T050", "T052"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "Safariの文字のみ約207%拡大と復元",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/",
+      "environment": "macOS27.0(26A428) / Safari27.0(22625.1.29.11.27) / CUAネイティブ操作",
+      "procedure": "表示メニュー「文字を拡大」4回で本文17→35.251202px（約207.36%）、root10→20.736px。Aboutのダーク本文/ナビ、ライトの表・実記事コードに重なりや欠けなし。測定時1432×592/DPR2、横溢れなし。「実際のサイズ」で本文17/root10へ復元。全ページ/全配色へ一般化しない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t052/README.md",
+        "themes/shsh/docs/verification/t052/safari-size-enlarged.json"
+      ],
+      "recorded_at": "2026-09-18T13:04:01.753014+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V095",
+      "task_ids": ["T015", "T050", "T052"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "Safariのキーボードによる配色・ナビ・コピー操作",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/",
+      "environment": "macOS27.0(26A428) / Safari27.0(22625.1.29.11.27) / CUAネイティブ操作",
+      "procedure": "SafariのTab全項目強調設定はオフ、Option+Tab使用との設定説明を確認。Option+Tab/Option+Shift+Tabでフォーカス輪郭と逆移動、Spaceで配色切替、EnterでAbout遷移とCopy codeの通知を確認。設定は変更なし。コピー内容一致は別のT049/V087を参照。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t052/README.md",
+        "themes/shsh/docs/verification/t052/safari-keyboard-copy-result.txt"
+      ],
+      "recorded_at": "2026-09-18T13:04:01.753014+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V096",
+      "task_ids": ["T015", "T050", "T052"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "Safari動画の再生停止操作と映像取得の制約",
+      "result": "blocked",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/",
+      "environment": "macOS27.0(26A428) / Safari27.0(22625.1.29.11.27) / CUAネイティブ操作",
+      "procedure": "連続操作で再生→AX一時停止→一時停止操作→AX再生を確認。取得画像の動画領域は空白で映像を視認できず、ユーザーへ実画面での確認を依頼中。テーマ描画問題か画面取得制約かは未判定。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t052/README.md",
+        "themes/shsh/docs/verification/t052/safari-video-actions.json"
+      ],
+      "recorded_at": "2026-09-18T13:04:01.753014+00:00",
       "supersedes": null
     }
   ]
