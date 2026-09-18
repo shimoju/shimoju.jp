@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T06:51:07.013561+00:00",
+  "updated_at": "2026-09-18T07:09:49.489298+00:00",
   "stage": "final_verification",
-  "summary": "①の採用方針を反映。T034でmaster必須CI（PR/最新ベース/管理者適用）を設定済み、Pages自動配信を維持しGit連携用Hugoビルドへ変更。ローカル両環境出力検査成功。次に実CIとpreview配信を確認する。本番移行・実機・旧テーマ整理は未完了。",
+  "summary": "本番必須CIとPages即時previewを設定済み。18a9ab1のpreviewは49秒で公開、HTTP・基本操作確認成功。初回CIは239/240成功、Linuxのスクロールバー幅判定1件をT035で修正し再実行する（F020）。本番master未更新。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T034",
-    "action": "設定とローカル検証は成功。コミットを作業ブランチへpushして実GitHub CIと独立preview配信をT035で検証する。"
+    "task_id": "T035",
+    "action": "修正をpushし必須CIを再実行する。preview実配信は確認済み、CI全体は再検証が必要。"
   },
   "tasks": [
     {
@@ -1384,6 +1384,40 @@
       "review_ids": ["R002"],
       "blocked_by": [],
       "next_action": "設定とローカル検証は成功。コミットを作業ブランチへpushして実GitHub CIと独立preview配信をT035で検証する。"
+    },
+    {
+      "id": "T035",
+      "title": "必須CIと独立プレビューの実行結果を検証",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "T034の作業ブランチをpushし、GitHub Actionsの必須チェックとPagesの独立preview配信の実結果を確認する。",
+        "実previewのHTTP/HTML/RSSと対象SHAを検証する。必要なCI環境差の修正を含む。masterへのマージはしない。",
+        "Linux Chromiumの通常スクロールバー幅を考慮して横はみ出し検査を修正する。移行前ブランチの従来hugoビルドを保持する条件分岐をPages設定へ追加する。"
+      ],
+      "depends_on": ["T034"],
+      "acceptance_criteria": [
+        "GitHub Actions由来のshsh-checkが成功し、master保護の必須チェック名と一致する。",
+        "Pages previewがCIを前提にせず配信され、対象コミット・URL・noindex・共有/スター・404/feed転送を確認できる。",
+        "本番未移行・実機未確認を明示し、実結果を進捗と証拠へ記録する。"
+      ],
+      "verification_plan": [
+        "作業ブランチをpushしghでrun/check/deploymentを取得する。",
+        "curlとHTML/XML解析でpreview応答を調べ、必要に応じてブラウザで確認する。",
+        "CI失敗時はログに基づき修正し、該当コミットで再実行する。"
+      ],
+      "commit_message": "[T035] Linuxのスクロールバーを考慮しCI検査を修正",
+      "status": "implemented",
+      "verification_status": "failed",
+      "artifact_refs": ["themes/shsh/docs/verification/t035/"],
+      "verification_ids": ["V054", "V055", "V056"],
+      "review_ids": ["R002"],
+      "blocked_by": [],
+      "next_action": "修正をpushし必須CIを再実行する。preview実配信は確認済み、CI全体は再検証が必要。"
     }
   ],
   "findings": [
@@ -1883,6 +1917,26 @@
       },
       "resolution_refs": [],
       "verification_ids": ["V052"]
+    },
+    {
+      "id": "F020",
+      "title": "Linuxの縦スクロールバー幅を横はみ出しと誤判定",
+      "task_ids": ["T035"],
+      "status": "open",
+      "requires_user_decision": false,
+      "observation": "初回GitHub CIは239成功・1失敗。prose.spec.tsがdocumentElement.scrollWidth=1265をviewport設定1280と比較した。Linux Chromiumでは通常スクロールバー15pxを除いたclientWidthが表示領域となる。",
+      "evidence_refs": ["themes/shsh/docs/verification/t035/initial-ci-failure.log"],
+      "impact": "テーマの横はみ出しがなくても必須CIが失敗する。",
+      "recommendation": "scrollWidthとclientWidthを比較して横はみ出しを検査する。閾値緩和や検査除外は行わない。",
+      "decision": {
+        "outcome": "表示領域の定義を修正して再検証する",
+        "reason": "表示・操作を変更せず、他の横はみ出し検査と同じclientWidth基準へ合わせる内部検査修正。",
+        "decided_by": "Codex",
+        "recorded_at": "2026-09-18T07:09:49.489298+00:00",
+        "source": "docs/05-theme-implementation-discipline.md Q1; CI failure 35316825816"
+      },
+      "resolution_refs": ["themes/shsh/tests/prose.spec.ts"],
+      "verification_ids": ["V054"]
     }
   ],
   "reviews": [
@@ -3308,6 +3362,66 @@
       "procedure": "GitHub APIでshsh-check/App15368/strict/PR必須/管理者適用/force・deletion禁止を設定しGETで検証。旧contextsとchecks併記は422で保存されず、checks形式に統一して成功。Pagesの本番・preview自動配信を維持しbuild commandを保存・表示確認。Actions deployとWrangler削除。actionlint、sh -n、formatter、typed lint、進捗検証成功。本番/preview各170 HTML・46 aliases・48 RSSのURL/robots/共有/スター/fingerprint/headers/redirects検査成功。入力不正3件拒否。実CI・配信は次工程。",
       "evidence_refs": ["themes/shsh/docs/verification/t034/"],
       "recorded_at": "2026-09-18T06:51:07.013561+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V054",
+      "task_ids": ["T035"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q23"
+      ],
+      "kind": "初回GitHub CI",
+      "result": "failed",
+      "subject_ref": "18a9ab1c1928e12409ac0381f8063e0b4b6d13fd / run 35316825816",
+      "environment": "GitHub Actions ubuntu-24.04; Node24; pnpm12.4.1; Hugo0.166.0; Playwright3エンジン",
+      "procedure": "初回CIで静的検査・生成・移行検査を通過。ブラウザ240件中239成功、Linux ChromiumのscrollWidth=1265対width=1280の1件が失敗（F020）。ブラウザ検査10.2分、ジョブ12分28秒。失敗ログとartifact保存成功。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t035/initial-ci-failure.log",
+        "https://github.com/shimoju/shimoju.jp/actions/runs/35316825816"
+      ],
+      "recorded_at": "2026-09-18T07:09:49.489298+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V055",
+      "task_ids": ["T034", "T035", "T017"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33"
+      ],
+      "kind": "Pages独立プレビューの実配信",
+      "result": "passed",
+      "subject_ref": "18a9ab1 / deployment 2f9d9a6b-5b9d-4caa-833a-f5f92c856916",
+      "environment": "Cloudflare Pages Git integration/Hugo0.166.0; HTTPS; native Chrome CUA; Python HTTP解析",
+      "procedure": "CI実行中に49秒でpreview配信が成功。7 HTML/4 RSSのURL・noindex・記事About共有無効・スター不出力、404/feed301/robots、3 CSS/JSのSHA256 fingerprintを確認。Chromeで配色切替とAbout遷移・表見出し確認。移行前masterにはスクリプトがないため、存在時のみ新スクリプトを使い未移行ブランチは従来hugoとする設定を追加・保存確認。masterのSHAは不変。本番移行の合格ではない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t035/preview-http.json",
+        "themes/shsh/docs/verification/t035/checks-after-preview.json",
+        "themes/shsh/docs/verification/t035/cloudflare-deployment.json",
+        "themes/shsh/docs/verification/t035/cloudflare-compatibility.json",
+        "themes/shsh/docs/verification/t035/browser-observation.json"
+      ],
+      "recorded_at": "2026-09-18T07:09:49.489298+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V056",
+      "task_ids": ["T035"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "横はみ出し検査修正の限定再検証",
+      "result": "passed",
+      "subject_ref": "18a9ab1 + T035 prose.spec.ts差分",
+      "environment": "macOS/Playwright Chromium・Firefox・WebKit",
+      "procedure": "scrollWidthとclientWidthの比較へ変更後、typed lintと該当テストを3エンジンで実行し3 passed (6.4s)。画面幅・配色・axe・脚注等の既存条件は維持。Linuxの全CIは後続で再実行する。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t035/prose-recheck.log",
+        "themes/shsh/tests/prose.spec.ts"
+      ],
+      "recorded_at": "2026-09-18T07:10:06.087648+00:00",
       "supersedes": null
     }
   ]

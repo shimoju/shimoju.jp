@@ -6,7 +6,7 @@
 
 - GitHub masterはPR必須、GitHub Actions由来の`shsh-check`必須、最新ベース必須、管理者にも適用。承認レビュー人数は0で、人の追加承認は要求しない。force push・削除は不可。
 - `.github/workflows/shsh.yml`は検査専用。PRとpushで実行し、deployジョブ・トークン参照・Wrangler依存は削除した。
-- Cloudflare Pagesのmaster本番自動配信と全非本番ブランチpreviewを維持する。build commandは`sh themes/shsh/scripts/build-pages.sh`、出力`public`、root空、Hugo0.166.0。
+- Cloudflare Pagesのmaster本番自動配信と全非本番ブランチpreviewを維持する。build commandは`if [ -f themes/shsh/scripts/build-pages.sh ]; then sh themes/shsh/scripts/build-pages.sh; else hugo; fi`、出力`public`、root空、Hugo0.166.0。移行前masterなどスクリプトが存在しないブランチは従来のhugoを維持する（T035）。
 - Pages内でHugoだけを実行する。masterはproduction・本番URL、他のブランチはpreview・`CF_PAGES_URL`を使用し、noindexと共有/スター無効を適用する。
 - CI成功は本番へのマージ前の条件とする。previewの公開やマージ後のpush CIを待たせる構成ではない。
 - Secret `CLOUDFLARE_API_TOKEN`はこの方式では使わない。既存登録の値を取得せず、削除や失効もしていない。配信用変数は未登録のまま。

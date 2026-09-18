@@ -48,7 +48,13 @@ pnpm review
 
 本番はGitHub Actionsの`shsh-check`を必須チェックとして、最新のmasterに対する検査成功後にPRをマージする。masterの変更をCloudflare PagesのGit連携が自動ビルド・配信する。管理者にも保護を適用し、force pushとブランチ削除を許可しない。previewはCIを待たず各ブランチのpushから自動配信する（F018/F019）。
 
-Pagesのビルドコマンドは`sh themes/shsh/scripts/build-pages.sh`、出力は`public`、Hugoは0.166.0。生成はHugoだけで完結し、Actionsからのアップロードや配信用トークンは使わない。Pagesが提供する`CF_PAGES_BRANCH`と`CF_PAGES_URL`から環境・URLを指定する。詳細は[配信手順](docs/verification/cloudflare-pages.md)を参照する。
+Pagesのビルドコマンドは次のとおり。新テーマのスクリプトがない移行前のブランチは従来の`hugo`で生成する。出力は`public`、Hugoは0.166.0。
+
+```sh
+if [ -f themes/shsh/scripts/build-pages.sh ]; then sh themes/shsh/scripts/build-pages.sh; else hugo; fi
+```
+
+生成はHugoだけで完結し、Actionsからのアップロードや配信用トークンは使わない。Pagesが提供する`CF_PAGES_BRANCH`と`CF_PAGES_URL`から環境・URLを指定する。詳細は[配信手順](docs/verification/cloudflare-pages.md)を参照する。
 
 ローカルでpreview生成を確認する場合は、リポジトリルートから次を実行する。生成だけでは配信しない。
 

@@ -161,7 +161,12 @@ test("prose matches mock type and spacing; footnotes, headings, dates and JS-fre
       await mock.goto(`http://127.0.0.1:4177/specimen.html?theme=${colorScheme}`);
       for (const selector of selectors)
         expect(await styles(page, selector), selector).toEqual(await styles(mock, selector));
-      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(width);
+      const viewport = await page.evaluate(() => ({
+        scrollWidth: document.documentElement.scrollWidth,
+        clientWidth: document.documentElement.clientWidth,
+      }));
+      // Classic scrollbars consume viewport width on Linux and Windows.
+      expect(viewport.scrollWidth).toBe(viewport.clientWidth);
       if (width === 400)
         expect(
           await page
