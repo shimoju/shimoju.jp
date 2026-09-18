@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T07:28:32.113310+00:00",
+  "updated_at": "2026-09-18T07:30:40.938578+00:00",
   "stage": "final_verification",
   "summary": "本番必須CIとPages即時previewを設定済み。6f100d5のpreviewは42秒で成功。CIは横幅の等値条件で239/240となり、T036で超過だけを失敗とする条件へ修正。局所3エンジン再検証成功、全CIはT038で再実行。本番未更新・実機未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T038",
-    "action": "T036をpushし全CIを追跡する。待機中にT037の実機確認手順を準備する。"
+    "action": "65d32a6のGitHub run35319638046とPagesチェックを完了まで追跡。ユーザーへ実機確認の基本手順を依頼済み、回答はT015へ反映する。"
   },
   "tasks": [
     {
@@ -703,7 +703,7 @@
       "verification_ids": ["V040", "V045", "V046", "V049"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "本文400と和文h2 500の実フェイス・配色は限定確認済み。R002判断後のHTTPS previewで、残るフォント・文字拡大・コピー・他OS/モバイル実機を確認する。"
+      "next_action": "ユーザーが利用可能なWindows 11 Chrome/Edge/Firefox、iPhone 17 Safari、iPad Pro第6世代Safari、Pocophone F1 Android 10 Chromeで、固定preview6f100d5の確認結果を受領して記録する。Macの実フェイス・文字拡大・コピー内容等の残項目も継続する。"
     },
     {
       "id": "T016",
@@ -1478,13 +1478,13 @@
         "文書整形・進捗JSON検査を実行する。"
       ],
       "commit_message": "[T037] 利用可能な実機と確認手順を記録",
-      "status": "not_started",
-      "verification_status": "not_run",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": ["themes/shsh/docs/verification/real-devices.md"],
-      "verification_ids": [],
+      "verification_ids": ["V060"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "T036完了後、ユーザー回答を実機一覧と確認手順へ反映する。"
+      "next_action": "手順の準備は完了。各実機の検証結果はT015で記録し、未実施項目は未確認のまま残す。"
     },
     {
       "id": "T038",
@@ -1504,13 +1504,13 @@
         "Pagesチェックの対象SHAと配信成功を照合する。"
       ],
       "commit_message": "[T038] 必須CIの全検査成功を記録",
-      "status": "not_started",
+      "status": "in_progress",
       "verification_status": "not_run",
       "artifact_refs": ["themes/shsh/docs/verification/t038/"],
       "verification_ids": [],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "T036をpushして全CIを追跡する。"
+      "next_action": "65d32a6の全GitHub CIとPages配信を追跡する。"
     }
   ],
   "findings": [
@@ -3578,6 +3578,27 @@
         "themes/shsh/docs/verification/t036/overflow-probe.json"
       ],
       "recorded_at": "2026-09-18T07:28:32.113310+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V060",
+      "task_ids": ["T037"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "kind": "実機環境と確認手順の準備・照合",
+      "result": "passed",
+      "subject_ref": "65d32a6 + T037 real-devices.md差分; ユーザーの利用可能端末回答",
+      "environment": "リポジトリ文書・既存HTTPS検証・記事ソース",
+      "procedure": "ユーザー回答と4端末6環境を照合。固定preview6f100d5を使用し、既存HTTP結果とT012実接続対象・動画shortcode位置を確認して手順にリンク。フォーマットと進捗JSON検査成功。これは依頼準備の合格であり、実機検証自体は未実施。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/real-devices.md",
+        "themes/shsh/docs/verification/t036/preview-http.json",
+        "themes/shsh/docs/verification/t012-live/results.json"
+      ],
+      "recorded_at": "2026-09-18T07:30:40.938578+00:00",
       "supersedes": null
     }
   ]
