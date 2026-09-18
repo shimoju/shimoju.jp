@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T06:29:29.562152+00:00",
+  "updated_at": "2026-09-18T06:51:07.013561+00:00",
   "stage": "final_verification",
-  "summary": "R002承認・Secret登録済み。T033のローカル静的検査と3エンジン240テストは成功。自動承認レビューの設定保存拒否後、ユーザーの依頼によりPages/WorkersのCI待機方式を調査。標準の外部CI待機設定は確認できず、Pages継続で実現する選択肢を提示。設定変更はキャンセル、push・実配信は未実施。実機・実配信・旧テーマ整理は残件。",
+  "summary": "①の採用方針を反映。T034でmaster必須CI（PR/最新ベース/管理者適用）を設定済み、Pages自動配信を維持しGit連携用Hugoビルドへ変更。ローカル両環境出力検査成功。次に実CIとpreview配信を確認する。本番移行・実機・旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T033",
-    "action": "配信方式の比較結果についてユーザーの判断を待つ。Actionsから既存Pagesへ配信する案は、本番・previewの自動配信停止への明示承認後に設定する。Workers移行は未決定。"
+    "task_id": "T034",
+    "action": "設定とローカル検証は成功。コミットを作業ブランチへpushして実GitHub CIと独立preview配信をT035で検証する。"
   },
   "tasks": [
     {
@@ -781,7 +781,7 @@
       "verification_ids": ["V042", "V045", "V047", "V048"],
       "review_ids": [],
       "blocked_by": ["F018"],
-      "next_action": "Cloudflare両環境の独立自動配信を停止し、SHSH_PAGES_DEPLOYを有効化する。承認記録を含む作業ブランチの同一SHAでCI→preview配信を検証する。"
+      "next_action": "T034でmaster必須CIとPages自動previewを接続し実配信を確認する。本番反映・実機残項目は引き続き未完了。"
     },
     {
       "id": "T018",
@@ -1249,7 +1249,7 @@
       "verification_ids": ["V048"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "準備タスクは完了。実際の有効化・CI・配信結果はT017で確認し、F018を未解決のまま追跡する。"
+      "next_action": "準備案はF018/F019のユーザー判断で不採用。T034でActions配信処理とWrangler依存を整理し、Pages Git連携用ビルドへ変更する。"
     },
     {
       "id": "T031",
@@ -1340,13 +1340,50 @@
         "実URLのHTTPとブラウザ・生成物の対応を検査し、本番配信と区別する。"
       ],
       "commit_message": "[T033] 配信方式の比較と切替保留を記録",
-      "status": "in_progress",
+      "status": "implemented",
       "verification_status": "blocked",
       "artifact_refs": ["themes/shsh/docs/verification/t033/"],
       "verification_ids": ["V051", "V052"],
       "review_ids": ["R002"],
       "blocked_by": ["F019"],
-      "next_action": "配信方式の比較結果についてユーザーの判断を待つ。Actionsから既存Pagesへ配信する案は、本番・previewの自動配信停止への明示承認後に設定する。Workers移行は未決定。"
+      "next_action": "比較・取消・ローカル検査の証拠は維持。元のActions配信案はユーザーが不採用としたため実施しない。採用方式の実装・実preview検証はT034へ引き継ぐ。"
+    },
+    {
+      "id": "T034",
+      "title": "本番への必須CIとPages自動プレビューを接続",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q4",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "scope": [
+        "F018/F019のユーザー判断を要件へ反映する。",
+        "GitHub masterにPR・必須チェック・最新ベース・管理者適用を設定し、失敗したCIの本番混入を防ぐ。",
+        "Actions deployジョブと不要なWrangler依存を撤去する。Pagesの自動配信を維持し、Hugo単独のビルドコマンドでproduction/previewの環境・URLを指定する。",
+        "作業ブランチのCIと独立したpreview配信を実行し設定・SHA・HTTP応答を確認する。本番へのマージは含めない。"
+      ],
+      "depends_on": ["T030", "T032", "T033"],
+      "acceptance_criteria": [
+        "masterでGitHub Actions由来のshsh-check成功・最新ベース・PRを要求し管理者にも適用する。",
+        "本番/previewのPages自動配信を維持し、Actionsは検査専用で配信トークンを参照しない。",
+        "production/previewのHugo生成が合意したURL・noindex・共有/スター条件を満たす。",
+        "実GitHub CIとpreview配信を確認し、本番未反映と区別して証拠を記録する。"
+      ],
+      "verification_plan": [
+        "変更前後のGitHub APIとCloudflare dashboard設定を保存し、required checksの提供元App・bypass・force/deletionを確認する。",
+        "workflow静的検査、ローカルproduction/preview生成・出力検査、整形・型付きlint・進捗検査を実行する。",
+        "作業ブランチpush後のActions/checksとPages deploymentを追跡し、previewのnoindex・canonical・RSS・共有/スター・404/feed転送・アセットを検証する。"
+      ],
+      "commit_message": "[T034] 本番への必須CIとPages自動プレビューを接続",
+      "status": "implemented",
+      "verification_status": "blocked",
+      "artifact_refs": ["themes/shsh/docs/verification/t034/"],
+      "verification_ids": ["V053"],
+      "review_ids": ["R002"],
+      "blocked_by": [],
+      "next_action": "設定とローカル検証は成功。コミットを作業ブランチへpushして実GitHub CIと独立preview配信をT035で検証する。"
     }
   ],
   "findings": [
@@ -1799,8 +1836,8 @@
     {
       "id": "F018",
       "title": "CI合格を配信の前提にする接続が未設定",
-      "task_ids": ["T017", "T030"],
-      "status": "open",
+      "task_ids": ["T017", "T030", "T034"],
+      "status": "approved",
       "requires_user_decision": false,
       "observation": "Cloudflareはmaster自動配信・全非本番ブランチpreview。GitHub masterのbranch protectionなし（404）、実効rulesetなし。shsh workflowに配信依存なし。 T030でcheck依存の配信をローカル準備済み。GitHub Secret/variable一覧は空で、実設定の切替と配信は未実施。 その後2026-09-18T05:39:30ZにCLOUDFLARE_API_TOKENが登録されたことをSecret名/更新時刻のAPI応答とユーザーの「登録しました」で確認。有効化と実配信は未実施。",
       "evidence_refs": [
@@ -1809,8 +1846,14 @@
         ".github/workflows/shsh.yml"
       ],
       "impact": "GitHub検査失敗や実行中でもCloudflare側で先に公開される可能性があり、公開前CIの保証がない。",
-      "recommendation": "同一コミットのCI成功後にだけCloudflareへ配信する経路を構成する。GitHub Actions経由なら独立した自動配信を停止し、必要な認証とproduction/preview環境を具体化してから適用する。",
-      "decision": null,
+      "recommendation": "masterへのPR必須・最新masterとの検査成功必須・管理者にも適用を設定し、Pages本番/preview自動配信を維持する。",
+      "decision": {
+        "outcome": "本番はGitHub必須チェック後のマージとPages自動配信、previewはCI待機なしのPages自動配信を採用",
+        "reason": "本番への失敗変更の混入を防ぎ、記事執筆中のpreview待ち時間を減らす。",
+        "decided_by": "user",
+        "recorded_at": "2026-09-18T06:45:04.265075+00:00",
+        "source": "「① GitHubの必須チェック → マージ → Pages自動配信」を採用します。避けたいのはCIに失敗したまま本番公開されることなのでそれだけは防ぎつつ、通常の記事執筆ではpreview環境へCIを待たず公開されたほうが待ち時間をなくせるため便利だからです。"
+      },
       "resolution_refs": [
         ".github/workflows/shsh.yml",
         "themes/shsh/scripts/build-pages.sh",
@@ -1822,16 +1865,22 @@
       "id": "F019",
       "title": "Cloudflare自動配信停止への明示許可が必要",
       "task_ids": ["T033"],
-      "status": "awaiting_decision",
+      "status": "rejected",
       "requires_user_decision": true,
       "observation": "本番・preview自動配信停止の設定を選択後、保存操作を自動承認レビューが拒否した。R002承認とSecret登録だけでは本番影響のある設定変更への明示許可にならないという理由。保存・有効化・pushは未実施。 ユーザーは切替を承認せず、Pagesで外部CI待機設定が可能か、Workersなら可能かの調査を依頼した。未保存ダイアログをキャンセルし、dashboardで本番自動デプロイ有効を確認した。",
       "evidence_refs": [
         "themes/shsh/docs/verification/t033/deployment-switch.json",
         "themes/shsh/docs/verification/t033/ci-gate-options.md"
       ],
-      "impact": "CI成功後配信への切替を保存できず、独立したCloudflare配信が有効なため新コミットのpushを進めていない。",
-      "recommendation": "比較結果を提示し配信方式の判断を待つ。既存PagesへのActions配信なら自動配信停止の明示承認後に設定する。本番のマージ前検査だけを目的とする場合はGitHubの必須チェックという選択肢もある。",
-      "decision": null,
+      "impact": "設定停止案は不採用となったため、停止許可待ちは終了。CI保護の未設定はF018で追跡する。",
+      "recommendation": "停止案は実行しない。採用された必須チェック方式をT034で実装する。",
+      "decision": {
+        "outcome": "自動配信停止とActions配信への切替案を不採用",
+        "reason": "本番への失敗変更の混入を防ぎ、記事執筆中のpreview待ち時間を減らす。",
+        "decided_by": "user",
+        "recorded_at": "2026-09-18T06:45:04.265075+00:00",
+        "source": "「① GitHubの必須チェック → マージ → Pages自動配信」を採用します。避けたいのはCIに失敗したまま本番公開されることなのでそれだけは防ぎつつ、通常の記事執筆ではpreview環境へCIを待たず公開されたほうが待ち時間をなくせるため便利だからです。"
+      },
       "resolution_refs": [],
       "verification_ids": ["V052"]
     }
@@ -3240,6 +3289,25 @@
         "themes/shsh/docs/verification/t033/deployment-switch.json"
       ],
       "recorded_at": "2026-09-18T06:29:29.562152+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V053",
+      "task_ids": ["T034"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q4",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "必須CI設定とPages Git連携ビルドのローカル確認",
+      "result": "passed",
+      "subject_ref": "39fd65a + T034変更、GitHub master保護、Pages shimoju実設定",
+      "environment": "macOS/Node24/pnpm12.4.1/Hugo0.166.0; GitHub REST API; Chrome CUA",
+      "procedure": "GitHub APIでshsh-check/App15368/strict/PR必須/管理者適用/force・deletion禁止を設定しGETで検証。旧contextsとchecks併記は422で保存されず、checks形式に統一して成功。Pagesの本番・preview自動配信を維持しbuild commandを保存・表示確認。Actions deployとWrangler削除。actionlint、sh -n、formatter、typed lint、進捗検証成功。本番/preview各170 HTML・46 aliases・48 RSSのURL/robots/共有/スター/fingerprint/headers/redirects検査成功。入力不正3件拒否。実CI・配信は次工程。",
+      "evidence_refs": ["themes/shsh/docs/verification/t034/"],
+      "recorded_at": "2026-09-18T06:51:07.013561+00:00",
       "supersedes": null
     }
   ]

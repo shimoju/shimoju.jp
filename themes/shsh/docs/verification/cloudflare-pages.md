@@ -1,6 +1,19 @@
 # Cloudflare Pages配信確認（T017）
 
-状態：R002承認・Secret登録済み。移行後の配信・GitHub CI実行は未確認。ユーザーの依頼により[配信方式を比較](t033/ci-gate-options.md)し、方式の判断まで設定変更・pushを保留している。下記T030の手順は未採用の準備案であり、有効化済みではない。
+状態：F018/F019により「GitHub必須チェック → マージ → Pages自動配信」を採用。previewはCIを待たず自動配信する。T034で設定・実CI・preview配信を検証する。本番への移行は未実施。
+
+## 現在の配信方式（T034）
+
+- GitHub masterはPR必須、GitHub Actions由来の`shsh-check`必須、最新ベース必須、管理者にも適用。承認レビュー人数は0で、人の追加承認は要求しない。force push・削除は不可。
+- `.github/workflows/shsh.yml`は検査専用。PRとpushで実行し、deployジョブ・トークン参照・Wrangler依存は削除した。
+- Cloudflare Pagesのmaster本番自動配信と全非本番ブランチpreviewを維持する。build commandは`sh themes/shsh/scripts/build-pages.sh`、出力`public`、root空、Hugo0.166.0。
+- Pages内でHugoだけを実行する。masterはproduction・本番URL、他のブランチはpreview・`CF_PAGES_URL`を使用し、noindexと共有/スター無効を適用する。
+- CI成功は本番へのマージ前の条件とする。previewの公開やマージ後のpush CIを待たせる構成ではない。
+- Secret `CLOUDFLARE_API_TOKEN`はこの方式では使わない。既存登録の値を取得せず、削除や失効もしていない。配信用変数は未登録のまま。
+
+設定と検証証拠は[t034](t034/)を参照する。記事執筆時は作業ブランチをpushしてpreviewを確認し、PRの`shsh-check`が成功してからmasterへマージする。masterが進んだ場合は更新して再検査する。
+
+以下のT017〜T033の記述は当時の調査・準備履歴。T030のActions配信案と有効化手順はF018/F019により不採用となり、実行しない。
 
 ## 既存配信の証拠
 

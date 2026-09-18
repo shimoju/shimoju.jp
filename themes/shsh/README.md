@@ -46,10 +46,13 @@ pnpm review
 
 ## Cloudflare Pagesへの配信
 
-GitHub Actionsの`check`成功後に同じコミットをHugoで生成し、固定版Wranglerで既存のPagesプロジェクトへアップロードする。初期状態では配信を無効にしている。自動配信停止・Secret・有効化変数・確認項目は[配信手順](docs/verification/cloudflare-pages.md#有効化の手順)を参照する。
+本番はGitHub Actionsの`shsh-check`を必須チェックとして、最新のmasterに対する検査成功後にPRをマージする。masterの変更をCloudflare PagesのGit連携が自動ビルド・配信する。管理者にも保護を適用し、force pushとブランチ削除を許可しない。previewはCIを待たず各ブランチのpushから自動配信する（F018/F019）。
 
-ローカルで配信用生成物を確認する場合は、リポジトリルートから次を実行する。`refs/heads/master`は本番、それ以外はpreviewの環境・URLを使う。生成だけでは配信しない。
+Pagesのビルドコマンドは`sh themes/shsh/scripts/build-pages.sh`、出力は`public`、Hugoは0.166.0。生成はHugoだけで完結し、Actionsからのアップロードや配信用トークンは使わない。Pagesが提供する`CF_PAGES_BRANCH`と`CF_PAGES_URL`から環境・URLを指定する。詳細は[配信手順](docs/verification/cloudflare-pages.md)を参照する。
+
+ローカルでpreview生成を確認する場合は、リポジトリルートから次を実行する。生成だけでは配信しない。
 
 ```sh
-sh themes/shsh/scripts/build-pages.sh refs/heads/hugo-theme "$(git rev-parse HEAD)"
+CF_PAGES_BRANCH=hugo-theme CF_PAGES_URL=https://example.shimoju.pages.dev \
+  sh themes/shsh/scripts/build-pages.sh
 ```
