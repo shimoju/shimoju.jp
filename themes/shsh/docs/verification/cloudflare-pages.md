@@ -15,9 +15,15 @@
 
 応答ヘッダーと本文SHA-256・抽出結果は[t017](t017/existing-deployments.json)へ保存した。本文の全コピーは保存していない。プラグイン検索でCloudflare連携は見つからず、ブラウザ接続も利用できなかった。Safariの既存ハンドルでは再取得が必要というエラーになったため、dashboard確認は未実施。
 
+## 接続の再確認（T027）
+
+2026-09-18、Chromeのブラウザ接続が利用可能になったため、既存previewのCloudflare dashboard URLを専用タブで開いた。Safariでも確認したが、両方ともログイン画面へ移動し、ビルド設定は読めなかった。認証情報の入力や設定変更は行っていない。
+
+Chromeに開いたCloudflare管理画面へのログインをユーザーへ依頼済みで、回答待ち。ログイン後はプロジェクト`shimoju`のproduction/preview設定を読み取る。本人が確認する場合も、以下の手順2〜4の設定・版・コミット対応が必要。パスワード等を会話や検証資料へ記録しない。
+
 ## 移行後の確認手順
 
-1. R002とF014の判断・修正後、GitHub Actionsへ送るコミットを確定する。テーマルートで`pnpm check`を通し、同じコミットのGitHub上の結果URLを記録する。
+1. F014はT026で承認・反映済み。R002の判断後、GitHub Actionsへ送るコミットを確定する。テーマルートで`pnpm check`を通し、同じコミットのGitHub上の結果URLを記録する。
 2. Cloudflareの既存プロジェクトでproduction/preview各環境のビルドコマンド、ルート、出力ディレクトリ、Hugo版、環境変数を読む。認証情報は記録しない。
 3. サイト生成はHugoのみ。ルートはリポジトリルート、出力は`public`、両環境の`HUGO_VERSION`は`0.166.0`を期待する。本番は`bin/build --environment production --minify`で設定済み`https://shimoju.jp/`を使用。previewは`bin/build --environment preview --minify --baseURL "$CF_PAGES_URL/"`相当の引数を渡す。実際の設定を確認してから必要な差分を適用する。ビルドコマンドを共用する場合は環境ごとの分岐が必要で、単に`bin/build`とするだけではpreview指定にならない。
 4. ビルドログでHugo版・環境・警告/エラー・コミット・deployment ID・URLを記録する。外部shortcode取得の警告と入力エラーを区別する。GitHub検査が公開を止める設定になっているかも確認する。

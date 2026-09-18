@@ -1,0 +1,344 @@
+The following is a diff from the previous accessibility tree for Window: "Archives — shimoju.diary" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 25-36, 53, 57, 67, 69, 302
++						302 イメージ
++							303 イメージ
++							304 イメージ
++						305 テキスト html
++						306 ポップアップボタン (collapsed) Secondary Actions: Expand
++						307 イメージ
++						308 テキスト body
++						309 ポップアップボタン (collapsed) Secondary Actions: Expand
++						310 イメージ
++						311 テキスト main.shell
++						312 ポップアップボタン (collapsed) Secondary Actions: Expand
++						313 イメージ
++						314 テキスト header.page-heading
++						315 ポップアップボタン (collapsed) Secondary Actions: Expand
++						316 イメージ
++						317 テキスト h1
++						318 ポップアップボタン (collapsed) Secondary Actions: Expand
++							319 row (selectable) Description: </header>, Value: </header>
+</header>
+/header
+>
++							320 row (selectable) Description: </header>, Value: </header>
+</header>
+/header
+>
++							321 row (selectable) Description: </main>, Value: </main>
+</main>
+/main
+>
++							322 row (selectable) Description: </body>, Value: </body>
+</body>
+/body
+>
+~									75 タブ (selectable) 計算済み
+~									77 タブ (selected) フォント, Value: on
++								323 container フォント
++								324 container スタイル
++									325 container
++										326 イメージ
++										327 テキスト スタイル属性 {
++									328 テキスト }
++									329 container
++										330 リンク shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:13342, Help: http://127.0.0.1:4212/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:13342
++											331 テキスト shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:13342
++										332 イメージ
++											333 イメージ
++											334 イメージ
++										335 text .page-heading h1  {
++									336 container
++										337 テキスト margin-bottom
++										338 テキスト :
++										339 テキスト 0
++										340 テキスト ;
++									341 テキスト }
++									342 container
++										343 リンク shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:10337, Help: http://127.0.0.1:4212/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:10337
++											344 テキスト shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:10337
++										345 イメージ
++										346 text h1  {
++									347 container
++										348 テキスト font-size
++										349 テキスト :
++										350 イメージ
++										351 テキスト var(--text-h1)
++										352 テキスト ;
++									353 container
++										354 テキスト margin
++										355 テキスト :
++										356 テキスト 0 0
++										357 イメージ
++										358 テキスト var(--ui-space-4)
++										359 テキスト ;
++									360 テキスト }
++									361 container
++										362 リンク shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:10245, Help: http://127.0.0.1:4212/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:10245
++											363 テキスト shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:10245
++										364 イメージ
++										365 text h1, h2, h3, h4, h5, h6  {
++									366 container
++										367 テキスト line-height
++										368 テキスト :
++										369 イメージ
++										370 テキスト var(--leading-heading)
++										371 テキスト ;
++									372 container
++										373 テキスト font-weight
++										374 テキスト :
++										375 テキスト 500
++										376 テキスト ;
++									377 container
++										378 テキスト overflow-wrap
++										379 テキスト :
++										380 テキスト anywhere
++										381 テキスト ;
++									382 テキスト }
++									383 container
++										384 リンク shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:9364, Help: http://127.0.0.1:4212/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:9364
++											385 テキスト shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:9364
++										386 イメージ
++										387 text *  {
++									388 container
++										389 テキスト box-sizing
++										390 テキスト :
++										391 テキスト border-box
++										392 テキスト ;
++									393 テキスト }
++									394 container
++										395 テキスト ユーザエージェントスタイルシート
++										396 イメージ
++										397 イメージ
++										398 テキスト :heading(1) {
++									399 テキスト font-size: 2em;
++									400 テキスト margin-block-start: 0.67em;
++									401 テキスト margin-block-end: 0.67em;
++									402 テキスト margin-inline-start: 0px;
++									403 テキスト }
++									404 container
++										405 テキスト ユーザエージェントスタイルシート
++										406 イメージ
++										407 イメージ
++										408 テキスト :heading {
++									409 テキスト display: block;
++									410 テキスト font-weight: bold;
++									411 テキスト }
++									412 見出し 疑似要素 ::selection, Value: 2
++										413 テキスト 疑似要素 ::selection
++									414 container
++										415 リンク shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:10190, Help: http://127.0.0.1:4212/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:10190
++											416 テキスト shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:10190
++										417 イメージ
++										418 text ::selection  {
++									419 container
++										420 テキスト background
++										421 テキスト :
++										422 イメージ
++										423 テキスト var(--border)
++										424 テキスト ;
++									425 container
++										426 テキスト color
++										427 テキスト :
++										428 イメージ
++										429 テキスト var(--text)
++										430 テキスト ;
++									431 テキスト }
++									432 見出し 継承元 body, Value: 2
++										433 テキスト 継承元
++										434 リンク body
++											435 テキスト body
++									436 container
++										437 リンク shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:9493, Help: http://127.0.0.1:4212/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:9493
++											438 テキスト shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:9493
++										439 イメージ
++										440 text body  {
++									441 container
++										442 テキスト color
++										443 テキスト :
++										444 イメージ
++										445 テキスト var(--text)
++										446 テキスト ;
++									447 container
++										448 テキスト font
++										449 テキスト :
++										450 テキスト 400
++										451 イメージ
++										452 テキスト var(--body-size)/
++										453 イメージ
++										454 テキスト var(--leading-body)
++										455 イメージ
++										456 テキスト var(--font-body)
++										457 テキスト ;
++									458 container
++										459 テキスト font-feature-settings
++										460 テキスト :
++										461 テキスト "palt"
++										462 テキスト ;
++									463 container
++										464 テキスト overflow-wrap
++										465 テキスト :
++										466 テキスト anywhere
++										467 テキスト ;
++									468 テキスト }
++									469 見出し 継承元 html, Value: 2
++										470 テキスト 継承元
++										471 リンク html
++											472 テキスト html
++									473 container
++										474 リンク shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:9280, Help: http://127.0.0.1:4212/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:9280
++											475 テキスト shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:9280
++										476 イメージ
++										477 text :root[data-theme=light]  {
++									478 container
++										479 テキスト color-scheme
++										480 テキスト :
++										481 テキスト light
++										482 テキスト ;
++									483 テキスト }
++									484 container
++										485 text @media  (hover:hover)
++									486 container
++										487 リンク shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:12234, Help: http://127.0.0.1:4212/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:12234
++											488 テキスト shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:12234
++										489 イメージ
++										490 text :root  {
++									491 ボタン 1個の未使用のCSS変数を表示, Help: すべてのルールの未使用のCSS変数を表示するにはOptionキーを押したままクリックします
++									492 テキスト }
++									493 container
++										494 text @media  (width>=640px)
++									495 container
++										496 リンク shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:12192, Help: http://127.0.0.1:4212/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:12192
++											497 テキスト shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:12192
++										498 イメージ
++										499 text :root  {
++									500 ボタン 1個の未使用のCSS変数を表示, Help: すべてのルールの未使用のCSS変数を表示するにはOptionキーを押したままクリックします
++									501 テキスト }
++									502 container
++										503 リンク shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:6967, Help: http://127.0.0.1:4212/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:6967
++											504 テキスト shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:6967
++										505 イメージ
++										506 text :root  {
++									507 container
++										508 テキスト color-scheme
++										509 テキスト :
++										510 テキスト light dark
++										511 テキスト ;
++									512 container
++										513 テキスト --text
++										514 テキスト :
++										515 テキスト light-dark(
++										516 テキスト #4c4f69,
++										517 テキスト #cdd6f4)
++										518 テキスト ;
++									519 container
++										520 テキスト --font-body
++										521 テキスト :
++										522 テキスト -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif
++										523 テキスト ;
++									524 container
++										525 テキスト --body-size
++										526 テキスト :
++										527 テキスト 1.7rem
++										528 テキスト ;
++									529 container
++										530 テキスト --text-h1
++										531 テキスト :
++										532 テキスト calc(
++										533 イメージ
++										534 テキスト var(--body-size) * 1.6)
++										535 テキスト ;
++									536 container
++										537 テキスト --ui-space-4
++										538 テキスト :
++										539 テキスト 1.6rem
++										540 テキスト ;
++									541 container
++										542 テキスト --leading-body
++										543 テキスト :
++										544 テキスト 1.9
++										545 テキスト ;
++									546 container
++										547 テキスト --leading-heading
++										548 テキスト :
++										549 テキスト 1.5
++										550 テキスト ;
++									551 ボタン 60個の未使用のCSS変数を表示, Help: すべてのルールの未使用のCSS変数を表示するにはOptionキーを押したままクリックします
++									552 テキスト }
++									553 container
++										554 リンク shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:9388, Help: http://127.0.0.1:4212/css/shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:9388
++											555 テキスト shsh.c075d2124bac695ae7c205f9f0154fa93bbaba4570dfd71f4c956ef57055e863.css:1:9388
++										556 イメージ
++										557 text html  {
++									558 container
++										559 テキスト font-size
++										560 テキスト :
++										561 テキスト 62.5%
++										562 テキスト ;
++									563 テキスト }
++									564 container
++										565 テキスト ユーザエージェントスタイルシート
++										566 イメージ
++										567 イメージ
++										568 テキスト :root:lang(ja), [lang|="ja"], :root:lang(mn), [lang|="mn"], :root:lang(ko), [lang|="ko"] {
++									569 テキスト text-underline-position: right;
++									570 テキスト }
++									571 container
++										572 テキスト ユーザエージェントスタイルシート
++										573 イメージ
++										574 イメージ
++										575 テキスト [lang|="ja"], [lang|="ko"] {
++									576 テキスト text-emphasis-position: over right;
++									577 テキスト }
++									578 container
++										579 テキスト ユーザエージェントスタイルシート
++										580 イメージ
++										581 イメージ
++										582 テキスト html {
++									583 テキスト color: canvastext;
++									584 テキスト }
++									585 container
++										586 チェックボックス :active, Value: 0
++										587 テキスト :active
++									588 container
++										589 チェックボックス :focus, Value: 0
++										590 テキスト :focus
++									591 container
++										592 チェックボックス :focus-visible, Value: 0
++										593 テキスト :focus-visible
++									594 container
++										595 チェックボックス :focus-within, Value: 0
++										596 テキスト :focus-within
++									597 container
++										598 チェックボックス :hover, Value: 0
++										599 テキスト :hover
++									600 container
++										601 チェックボックス :target, Value: 0
++										602 テキスト :target
++									603 container
++										604 チェックボックス :visited, Value: 0
++										605 テキスト :visited
++									606 イメージ 新しいルールを追加
++									607 検索テキストフィールド (settable) フィルタ
++										608 テキスト フィルタ
++									609 ボタン クラス, Help: クラスを切り替える
++									610 ボタン 疑似, Help: 疑似クラスを切り替える
++						611 イメージ
++						612 テキスト 選択した要素
++						613 イメージ
++						614 アウトライン (selectable)
++							615 row (selectable) Description: <h1>​Archives​</h1>, Value: <h1>​Archives​</h1>
+<h1>​Archives​</h1>
+h1
+>
+Archives
+<
+/h1
+>
++						616 テキスト  = $2
++						617 イメージ
++						618 テキスト JSON.stringify({url:location.href,ua:navigator.userAgent,viewport:[innerWidth,innerHeight],dpr:devicePixelRatio,scale:visualViewport.scale,rootSize:getComputedStyle(document.documentElement).fontSize,bodySize:getComputedStyle(document.body).fontSize})
++						619 イメージ
++						620 テキスト "{\"url\":\"
++						621 link http://127.0.0.1:4212/archives/\, Value: 127.0.0.1:4212/archives//
++						622 テキスト ",\"ua\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0 Safari/605.1.15\",\"viewport\":[1432,592],\"dpr\":2,\"scale\":1,\"rootSize\":\"10px\",\"bodySize\":\"17px\"}" = $3

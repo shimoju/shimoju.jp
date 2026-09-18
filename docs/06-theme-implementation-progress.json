@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T04:50:24.123749+00:00",
+  "updated_at": "2026-09-18T05:02:21.963779+00:00",
   "stage": "full_implementation",
   "summary": "F014のAbout列見出しをユーザー承認どおり反映し、全統合240件合格。本文・素材・凍結モック不変、修正後24条件のaxe違反0。R002全体は回答待ち。実フォント・他端末、GitHub CI、移行後Cloudflare配信は未確認。",
   "latest_review_id": "R004",
   "resume": {
-    "task_id": "T014",
-    "action": "更新したR002入口で全画面レビューの判断を待つ。F014は修正・再検証済み。独立してT015/T017の利用可能な実機・接続確認を進め、配信変更はレビュー判断後に行う。"
+    "task_id": "T017",
+    "action": "Cloudflareログインの回答後、production/previewの実設定を読み取る。R002全画面レビューは承認待ち。Safari実フェイス・他OS/モバイル・CI・配信確認と旧テーマ撤去は残件。"
   },
   "tasks": [
     {
@@ -700,10 +700,10 @@
         "themes/shsh/docs/verification/real-devices.md",
         "themes/shsh/docs/verification/t015/"
       ],
-      "verification_ids": ["V040"],
+      "verification_ids": ["V040", "V045"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "R002/F014の判断後、HTTPS previewと対象コミットを確定して他OS/モバイルの実機確認を依頼する。Safariも実フェイス・文字設定・コピー等の残項目を確認し、結果を後続タスクへ記録する。"
+      "next_action": "R002判断後にHTTPS previewと対象コミットを確定して他OS/モバイルの実機確認を依頼する。F014は反映済み。Safariの実フェイス・文字設定・コピー等は未確認として継続する。"
     },
     {
       "id": "T016",
@@ -778,10 +778,10 @@
         "themes/shsh/docs/verification/cloudflare-pages.md",
         "themes/shsh/docs/verification/t017/"
       ],
-      "verification_ids": ["V042"],
+      "verification_ids": ["V042", "V045"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "R002の判断とF014修正後にCloudflare dashboardの設定を確認し、同一コミットのCI・preview・本番を配信検証する。"
+      "next_action": "Cloudflareのユーザーログイン回答後にdashboard設定を読む。R002判断後、同一コミットのCI・preview・本番を配信検証する。F014は反映済み。"
     },
     {
       "id": "T018",
@@ -1109,6 +1109,41 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "F014を解消済みとしてR002全体の判断を待つ。実機・配信検証はT015/T017で継続する。"
+    },
+    {
+      "id": "T027",
+      "title": "Safariの追加確認と残る接続条件を記録",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "Safariの実フォント取得と承認後Aboutの実機表示を確認し、取得できない情報を未確認として残す。",
+        "Cloudflare dashboardの接続状態を再確認し、認証が必要な場合はユーザーへログインを依頼する。"
+      ],
+      "depends_on": ["T015", "T017", "T026"],
+      "acceptance_criteria": [
+        "実施した操作と観察・対象コミットを証拠へ記録し、実フォントや配信設定を推測で合格にしない。",
+        "人の操作が必要な残件に具体的な画面・次の手順を示す。"
+      ],
+      "verification_plan": [
+        "SafariのWeb Inspectorでサイト名・見出しを選択してFonts/Computedの情報を確認し、Aboutの承認後3列を表示する。",
+        "SafariとChromeの専用タブから既存Cloudflare deployment URLへ入り、ログイン済みかを確認する。認証値は保存しない。"
+      ],
+      "commit_message": "[T027] Safariの追加確認と残る接続条件を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/real-devices.md",
+        "themes/shsh/docs/verification/cloudflare-pages.md",
+        "themes/shsh/docs/verification/t027/"
+      ],
+      "verification_ids": ["V045"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "追加観察と接続条件の記録を完了。実機全体はT015、Cloudflareの認証後確認はT017へ継続する。"
     }
   ],
   "findings": [
@@ -2797,6 +2832,28 @@
       ],
       "recorded_at": "2026-09-18T04:50:24.123749+00:00",
       "supersedes": "V039"
+    },
+    {
+      "id": "V045",
+      "task_ids": ["T015", "T017", "T027"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "kind": "Safari追加観察とCloudflare認証条件の記録",
+      "result": "passed",
+      "subject_ref": "a78b722のサイト入力から生成したpreviewと既存Cloudflare dashboardへの接続",
+      "environment": "macOS27.0; native Safari27.0; Chrome接続; CUA",
+      "procedure": "About承認後3見出しのライト表示を目視。Inspectorでサイト名/h1のFontsを試したが実フェイスは取得できず未確認。コンソールでInspector表示中のviewport1432×592/DPR2/scale1/root10px/body17pxを記録。Chrome/SafariのCloudflareはログイン画面で設定未取得、ユーザーへログイン依頼済み。記録作業のみ合格でありT015/T017全体は未合格。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t027/",
+        "themes/shsh/docs/verification/real-devices.md",
+        "themes/shsh/docs/verification/cloudflare-pages.md"
+      ],
+      "recorded_at": "2026-09-18T05:02:21.963779+00:00",
+      "supersedes": null
     }
   ]
 }
