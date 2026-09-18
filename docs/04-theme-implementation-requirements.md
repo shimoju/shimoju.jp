@@ -67,7 +67,9 @@
 
 - **Aboutの表見出し（F014、2026-09-18）**：業務経験表の空の列見出し2つを「技術」「経験年数」にし、3列を「業務経験／技術／経験年数」とする。本文の経歴・技術・年数は変更しない。Q23の空の表見出しの不合格を解消するための、ユーザー承認済みの内容・表示変更。凍結モックは維持し、この差分だけを比較・移行照合の期待値へ反映する。
 
-- **実機の代表環境（F026、2026-09-18）**：Q5/Q23/Q34の実機完了判定はMac Chrome・Mac Safari・Windows Chrome・iPhone Safari・Android Chromeの5代表環境で行う。Chromium/Firefox/WebKitの自動検査は維持する。OS固有フォントはMac Chrome・Windows Chrome・iOS Safari・Android Chromeの実フェイスで確認し、Safari固有の表示・操作はMac/iPhoneで確認する。Windows Edge/Firefox・Mac Firefox・iPadの既存結果は補助証拠として保持し、これらの未確認項目とMac Safari実フォント未取得は合格にせず制約として残す。代表環境の未確認項目は引き続き確認し、取得不能な項目の免除をこの判断に含めない。対象と残件は[承認内容・追加手順](../themes/shsh/docs/verification/t064/README.md)を参照。将来の公開時点の版と本番配信の照合も維持する。
+- **実機の代表環境（F026、2026-09-18）**：Q5/Q23/Q34の実機完了判定はMac Chrome・Mac Safari・Windows Chrome・iPhone Safari・Android Chromeの5代表環境で行う。Chromium/Firefox/WebKitの自動検査は維持する。OS固有フォントはMac Chrome・Windows Chrome・iOS Safari・Android Chromeの実フェイスで確認し、Safari固有の表示・操作はMac/iPhoneで確認する。Windows Edge/Firefox・Mac Firefox・iPadの既存結果は補助証拠として保持し、これらの未確認項目とMac Safari実フォント未取得は合格にせず制約として残す。代表環境の未確認項目は引き続き確認し、取得不能な項目の免除をこの判断に含めない。Androidへの後続の個別判断はF027を参照。対象と残件は[承認内容・追加手順](../themes/shsh/docs/verification/t064/README.md)を参照。将来の公開時点の版と本番配信の照合も維持する。
+
+- **Androidの実機制約（F027、2026-09-18）**：Android Chromeの本文/コードの和文・欧文実フォント名は未取得を制約として残し、今回の移行必須条件から外す。文字のみの拡大は端末に設定がないため未実施の制約として保持し、拡大確認にはページズーム150%で崩れなしの実機結果を採用する。未取得・未実施を合格にはしない。他環境・他項目の条件は維持する。[承認と証拠対応](../themes/shsh/docs/verification/t068/README.md)。
 
 ## 開発・検査ツール（Q22・Q29・Q30）
 

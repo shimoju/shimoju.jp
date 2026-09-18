@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T14:43:19.042652+00:00",
+  "updated_at": "2026-09-18T14:48:14.225848+00:00",
   "stage": "final_verification",
-  "summary": "F026の5代表環境のうちMac Chrome/Safariは確認済み。Androidの版・コピー一致・150%ページズーム・外部埋め込み表示/操作・JS無効はT067で確認。Android実フォント未取得と文字のみ拡大設定なしはF027判断待ち。Windows/iPhone残件、本番移行・旧テーマ整理は未完了。",
+  "summary": "F026/F027に基づくMac Chrome/SafariとAndroidの代表範囲は確認完了。Android実フォント未取得・文字のみ拡大未実施を制約として保持し150%ページズームを採用。Windows/iPhoneの残件、本番移行・旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "F027の実フォント未取得と拡大方法の扱いへの判断、Windows/iPhoneの追加報告を反映する。最新headのCIを本番前に照合する。"
+    "action": "受領したiPhone追加報告を記録し、未取得フォントの扱いと詳細版/JS無効ナビの補足を反映する。Windowsの追加報告も確認する。本番前に最新headのCIを照合する。"
   },
   "tasks": [
     {
@@ -680,11 +680,11 @@
       ],
       "scope": [
         "F026で承認したMac Chrome/Mac Safari/Windows Chrome/iPhone Safari/Android Chromeの代表5環境で実機結果を集める。",
-        "OS固有フォントはMac Chrome/Windows Chrome/iOS Safari/Android Chromeで確認。代表外の結果と未確認、Mac Safari実フェイス未取得は補助証拠・制約として保持する。"
+        "OS固有フォントはMac Chrome/Windows Chrome/iOS Safariで確認。Android実フェイス未取得と文字のみ拡大未実施はF027に従い制約として保持し、拡大確認に150%ページズームを採用。代表外とMac Safari実フェイス未取得も制約として保持する。"
       ],
       "depends_on": ["T014"],
       "acceptance_criteria": [
-        "F026の代表5環境でOS/ブラウザ/端末/表示条件/文字設定と確認者を記録し、OS代表の本文・コード実フォントを確認する。",
+        "F026/F027の代表5環境でOS/ブラウザ/端末/表示条件/文字設定と確認者を記録し、承認済み範囲のOS代表実フォントを確認する。Androidの未確認を合格にしない。",
         "代表環境の本文・コード・画像・タッチ・コピー・キーボード・外部埋め込み・JS無効の残件を確認する。本番共有/スターはT017で確認する。",
         "代表外の未確認を合格にせず制約として残す。代表環境の取得不能な必須項目は別途判断する。"
       ],
@@ -738,11 +738,12 @@
         "V108",
         "V111",
         "V112",
-        "V114"
+        "V114",
+        "V115"
       ],
       "review_ids": [],
-      "blocked_by": ["F027"],
-      "next_action": "Windows/iPhoneの追加報告と、Android実フォント未取得・文字のみ拡大設定なしの扱いF027の判断を反映する。"
+      "blocked_by": [],
+      "next_action": "Mac Chrome/SafariとAndroidの承認済み代表範囲は確認完了。Windows/iPhoneの追加報告を反映する。"
     },
     {
       "id": "T016",
@@ -2520,7 +2521,41 @@
       "verification_ids": ["V114"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "報告と補足回答の記録は完了。Android全体はF027判断待ち。"
+      "next_action": "F027はT068で承認反映済み。未確認の制約を保持し、Android代表範囲は確認完了。"
+    },
+    {
+      "id": "T068",
+      "title": "Android実機条件の承認と確認完了を反映",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "scope": [
+        "F027のユーザー承認を要件・実機手順・進捗・PR説明へ反映する。",
+        "T046/T067のAndroid結果を承認後の条件へ対応付け、未確認の制約を維持したまま代表範囲の確認完了を記録する。"
+      ],
+      "depends_on": ["T067"],
+      "acceptance_criteria": [
+        "承認原文と適用範囲が追跡でき、実フォント未取得と文字のみ拡大未実施を合格に変更しない。",
+        "Androidの承認済み範囲の証拠を対応付け、Windows/iPhoneと本番の残件を維持する。"
+      ],
+      "verification_plan": [
+        "F027の質問と回答を照合し、資料4・T015の条件・実機記録・残件表へ反映する。",
+        "T046/T067の版・表示/操作・拡大・埋め込み・JS無効を照合する。",
+        "PR本文を同期して取得値と比較し、文書整形・進捗参照/DAG・差分検査後にコミットする。"
+      ],
+      "commit_message": "[T068] Android実機条件の承認と確認完了を反映",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": ["themes/shsh/docs/verification/t068/"],
+      "verification_ids": ["V115"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "F027の承認とAndroid代表範囲の確認完了を反映済み。Windows/iPhoneと本番の残件はT015/T017で継続。"
     }
   ],
   "findings": [
@@ -3203,8 +3238,8 @@
     {
       "id": "F027",
       "title": "Android実フォント未取得と文字拡大方法の扱い",
-      "task_ids": ["T015", "T067"],
-      "status": "awaiting_decision",
+      "task_ids": ["T015", "T067", "T068"],
+      "status": "resolved",
       "requires_user_decision": true,
       "observation": "Android Chromeの本文/コード和欧文実フォントはユーザーが「確認できなかった」と報告。F026は代表環境の取得不能項目を免除していない。 追加報告で文字サイズの拡大設定はなかったとの回答。ページズーム150%は確認済み。",
       "evidence_refs": [
@@ -3213,9 +3248,18 @@
       ],
       "impact": "表示の確認はあるが、実際に選択された書体とフォールバックを同定できず、現在の実機完了条件は未達。 文字のみの拡大への追従はこの端末では検証できない。",
       "recommendation": "Androidの実フォント未取得を制約として移行必須条件から外し、拡大確認には提供されるページズーム150%の実測を用いる。文字のみの拡大は未実施の制約として保持し、合格としない。他環境/他項目は維持する。代案は取得と文字のみ拡大を必須のまま継続する。",
-      "decision": null,
-      "resolution_refs": [],
-      "verification_ids": []
+      "decision": {
+        "outcome": "Androidの未確認を制約として残し、150%ページズームを採用",
+        "reason": "ユーザーが具体案を引用して明示承認。未取得の合格化や他環境への免除を含まない。",
+        "decided_by": "ユーザー",
+        "recorded_at": "2026-09-18T14:48:14.225848+00:00",
+        "source": "制約として残し、150%ページズームの結果を採用する（推奨）"
+      },
+      "resolution_refs": [
+        "docs/04-theme-implementation-requirements.md",
+        "themes/shsh/docs/verification/t068/README.md"
+      ],
+      "verification_ids": ["V115"]
     }
   ],
   "reviews": [
@@ -5800,6 +5844,31 @@
         "themes/shsh/docs/verification/t067/README.md"
       ],
       "recorded_at": "2026-09-18T14:43:19.042652+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V115",
+      "task_ids": ["T015", "T068"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q5",
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q34",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q8"
+      ],
+      "kind": "F027承認反映とAndroid代表範囲の証拠照合",
+      "result": "passed",
+      "subject_ref": "8cc23a4からのT068差分 / F027 / T046・T067",
+      "environment": "ユーザーの明示判断 / Androidの既存実機報告",
+      "procedure": "承認原文をF027提案と照合し資料4・T015・実機手順へ反映。T046/T067を版・両配色/基本表示・コピー・回転/動画・拡大・外部埋め込み・JS無効へ対応付けた。承認後の代表範囲は確認済み。実フォント未取得と文字のみ拡大未実施は未確認のまま制約保持。 PR本文も同期し、取得本文の完全一致・draft・base masterを検査。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t068/README.md",
+        "themes/shsh/docs/verification/t046/mobile-report.json",
+        "themes/shsh/docs/verification/t067/android-report.json",
+        "themes/shsh/docs/verification/t068/pr-updated.json"
+      ],
+      "recorded_at": "2026-09-18T14:48:14.225848+00:00",
       "supersedes": null
     }
   ]
