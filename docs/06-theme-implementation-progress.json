@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T05:48:06.563825+00:00",
-  "stage": "full_implementation",
-  "summary": "About承認反映後の全240テスト合格。CI成功後配信をT030で準備済み。CLOUDFLARE_API_TOKENはユーザー登録済み・Secret名で確認。R002全体は回答待ち。Chromeの和文h2 500の実フォントを追加確認。他の実機項目、自動配信停止・有効化・実配信（F018）、旧テーマ撤去は未完了。",
-  "latest_review_id": "R004",
+  "updated_at": "2026-09-18T06:17:29.257894+00:00",
+  "stage": "final_verification",
+  "summary": "R002全画面レビューをユーザーが承認。About承認差分を含む全240テスト合格。Secret登録済み。CI成功後の実preview配信、自動配信停止・有効化、実機残項目、旧テーマ撤去と最終監査へ進む。",
+  "latest_review_id": "R002",
   "resume": {
     "task_id": "T017",
-    "action": "Secret登録済み（2026-09-18ユーザー回答、GitHub名一覧でも確認）。R002全画面レビューの明示判断を待つ。承認後にCloudflare自動配信停止・有効化と対象コミットのCI→preview配信を検証し、HTTPS上の実機確認へ進む。"
+    "action": "Cloudflare両環境の独立自動配信を停止し、SHSH_PAGES_DEPLOYを有効化する。承認記録を含む作業ブランチの同一SHAでCI→preview配信を検証する。"
   },
   "tasks": [
     {
@@ -449,7 +449,7 @@
         "既存のpnpm checkを実行し、共通構造の回帰を確認する。"
       ],
       "commit_message": "[T010] 承認済み共通設計を全画面へ展開",
-      "status": "implemented",
+      "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/docs/verification/full-screen-expansion.md",
@@ -473,7 +473,7 @@
       "verification_ids": ["V029", "V030", "V031", "V043"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "F014をT026で反映・全統合240件合格。R002の全画面レビュー判断を待つ。"
+      "next_action": "R002承認済み。実機・実配信と移行完了の確認はT015/T017/T018で継続する。"
     },
     {
       "id": "T011",
@@ -504,7 +504,7 @@
         "robots.txtはHugo標準enableRobotsTXTを有効にして本番/previewを検査し、移行設定へ明記する。"
       ],
       "commit_message": "[T011] RSSとメタ情報の公開文書URLを統一",
-      "status": "implemented",
+      "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/layouts/rss.xml",
@@ -522,7 +522,7 @@
       "verification_ids": ["V021", "V022"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "R002で全画面のメタ情報をレビューする。T012でenableRobotsTXTを設定し、T013で公開URL/RSS GUID/リダイレクトを移行基準と全件照合する。"
+      "next_action": "R002承認済み。実機・実配信と移行完了の確認はT015/T017/T018で継続する。"
     },
     {
       "id": "T012",
@@ -557,7 +557,7 @@
         "サイト設定移行に影響する既存レビューfixtureを新設定形式に更新し、代表比較と公開/preview生成の回帰を確認する。F014のAbout本文は変更しない。"
       ],
       "commit_message": "[T012] サイト設定と全記事の埋め込み入力を移行",
-      "status": "implemented",
+      "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
         "hugo.yml",
@@ -574,7 +574,7 @@
       "verification_ids": ["V032", "V033", "V043"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "F014をT026で反映・全統合240件合格。R002の全画面レビュー判断を待つ。"
+      "next_action": "R002承認済み。実機・実配信と移行完了の確認はT015/T017/T018で継続する。"
     },
     {
       "id": "T013",
@@ -611,7 +611,7 @@
         "統合検査を実行し所要時間/ログを保存する。F014のAbout空thは回答まで不合格を保持する。"
       ],
       "commit_message": "[T013] 全公開出力の移行照合とCI検査を完成",
-      "status": "implemented",
+      "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
         ".github/workflows/shsh.yml",
@@ -625,7 +625,7 @@
       "verification_ids": ["V035", "V036", "V037", "V043"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "F014をT026で反映・全統合240件合格。R002の全画面レビュー判断を待つ。"
+      "next_action": "R002承認済み。実機・実配信と移行完了の確認はT015/T017/T018で継続する。"
     },
     {
       "id": "T014",
@@ -653,7 +653,7 @@
         "全画面比較・移行照合・性能・残件をまとめたレビュー入口と実サービスありのpreviewをローカルで提供し、リンクと提案のaxeを確認する。"
       ],
       "commit_message": "[T014] 全画面の一貫性と残件をレビューへ提出",
-      "status": "implemented",
+      "status": "complete",
       "verification_status": "passed",
       "artifact_refs": [
         "themes/shsh/docs/verification/r002/index.html",
@@ -666,7 +666,7 @@
       "verification_ids": ["V039", "V044"],
       "review_ids": ["R002"],
       "blocked_by": [],
-      "next_action": "F014の採用・反映は完了。R002全体の表示・操作・構造への明示判断を待つ。"
+      "next_action": "R002承認済み。実機・実配信と移行完了の確認はT015/T017/T018で継続する。"
     },
     {
       "id": "T015",
@@ -781,7 +781,7 @@
       "verification_ids": ["V042", "V045", "V047", "V048"],
       "review_ids": [],
       "blocked_by": ["F018"],
-      "next_action": "Secret登録済み（2026-09-18ユーザー回答、GitHub名一覧でも確認）。R002全画面レビューの明示判断を待つ。承認後にCloudflare自動配信停止・有効化と対象コミットのCI→preview配信を検証し、HTTPS上の実機確認へ進む。"
+      "next_action": "Cloudflare両環境の独立自動配信を停止し、SHSH_PAGES_DEPLOYを有効化する。承認記録を含む作業ブランチの同一SHAでCI→preview配信を検証する。"
     },
     {
       "id": "T018",
@@ -1282,6 +1282,35 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "和文h2 500は確認済み。CUAの選択/計算値不一致が解消した環境、またはユーザーの実機確認でサイト名300・欧文見出し500・strong/th700・コードの実フェイスを取得する。"
+    },
+    {
+      "id": "T032",
+      "title": "R002全画面レビューの承認を記録",
+      "requirement_refs": [
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q7"
+      ],
+      "scope": ["R002の明示承認を記録し、全画面関連タスクとレビュー入口の状態を更新する。"],
+      "depends_on": ["T014", "T026"],
+      "acceptance_criteria": [
+        "ユーザーの発言・対象・承認範囲を記録する。",
+        "実機・CI実行・配信・旧テーマ撤去を承認だけで完了にしない。"
+      ],
+      "verification_plan": [
+        "R002提出物・有効な検査結果・未解決指摘を照合し進捗JSONを検証する。",
+        "入口を再生成し承認表示と残件を確認する。"
+      ],
+      "commit_message": "[T032] R002全画面レビューの承認を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/r002-review.md",
+        "themes/shsh/docs/verification/r002/index.html"
+      ],
+      "verification_ids": ["V050"],
+      "review_ids": ["R002"],
+      "blocked_by": [],
+      "next_action": "承認記録は完了。実CI・配信検証へ進む。"
     }
   ],
   "findings": [
@@ -1790,7 +1819,7 @@
       "id": "R002",
       "title": "全画面の一貫性と検証結果・残件のレビュー",
       "task_ids": ["T010", "T011", "T012", "T013", "T014"],
-      "status": "requested",
+      "status": "approved",
       "artifact_refs": [
         "themes/shsh/docs/verification/metadata-and-feeds.md",
         "themes/shsh/docs/verification/full-screen-expansion.md",
@@ -1823,7 +1852,13 @@
         "V044"
       ],
       "finding_ids": ["F014", "F015", "F016", "F017"],
-      "decision": null,
+      "decision": {
+        "outcome": "approved",
+        "reason": "全画面の表示・操作・構造と提示済みの検証結果・残件をユーザーが承認。実機・実配信の未確認項目は引き続き確認する。",
+        "decided_by": "user",
+        "recorded_at": "2026-09-18T06:16:56.146495+00:00",
+        "source": "「R002を承認します」"
+      },
       "supersedes": null
     },
     {
@@ -3094,6 +3129,25 @@
         "themes/shsh/docs/verification/real-devices.md"
       ],
       "recorded_at": "2026-09-18T05:48:06.563825+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V050",
+      "task_ids": ["T032"],
+      "requirement_refs": [
+        "docs/05-theme-implementation-discipline.md: Q6",
+        "docs/05-theme-implementation-discipline.md: Q7"
+      ],
+      "kind": "R002承認の記録と提出物の状態照合",
+      "result": "passed",
+      "subject_ref": "33cda04 + T032の承認記録とレビュー入口文言差分",
+      "environment": "2026-09-18ユーザー回答; Node24/pnpm12.4.1/Hugo0.166.0",
+      "procedure": "ユーザーの「R002を承認します」を判断元として記録。T010〜T014の有効な検証・指摘解消と照合しcompleteへ更新。入口再生成・型付きlint・進捗検証成功。テーマ本体と凍結モックの変更なし。実機/実配信/旧テーマ整理は未完了のまま。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/r002-review.md",
+        "themes/shsh/docs/verification/r002/index.html"
+      ],
+      "recorded_at": "2026-09-18T06:17:29.257894+00:00",
       "supersedes": null
     }
   ]
