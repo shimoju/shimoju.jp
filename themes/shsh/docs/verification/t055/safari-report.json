@@ -1,0 +1,15 @@
+{
+  "recorded_at": "2026-09-18T13:17:10.942832+00:00",
+  "verified_by": "ユーザー",
+  "source": "会話で確認依頼を引用した回答",
+  "requested_url": "https://6f52990f.shimoju.pages.dev/2026/09/01/development-environment-2026/",
+  "requested_commit": "268bbb0ef102f1379efbcfb62f53d2e643a7c79e",
+  "environment": "Mac / Safari（依頼の対象。ユーザーの詳細版・機種の再指定なし）",
+  "source_quote": "映像が見え、再生・一時停止できる",
+  "result": "passed",
+  "scope": ["記事後半の動画の映像が見える", "再生できる", "一時停止できる"],
+  "limits": [
+    "CUAの取得画像では映像が空白だった履歴は保持する。原因は断定しない。",
+    "Safariの実フォント・外部埋め込み等への一般化はしない。"
+  ]
+}

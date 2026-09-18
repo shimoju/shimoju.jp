@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T13:15:26.829523+00:00",
+  "updated_at": "2026-09-18T13:17:10.942832+00:00",
   "stage": "final_verification",
-  "summary": "WindowsとMacの実機確認を継続。旧master/PaperModの隔離復元生成・URL/RSS一致を確認し切り戻し手順を準備した。Safari映像正常のユーザー回答を受領、次タスクで反映。詳細実機項目、本番移行、旧テーマ整理は未完了。",
+  "summary": "Windows追加報告とSafariの文字拡大・キーボード・動画実機確認を反映。旧master/PaperModの復元生成と切り戻し手順も準備済み。Firefox追加検査は描画不一致で未実施。残る実機項目、本番移行、旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T015",
-    "action": "受領したSafari映像正常の回答を記録し、残る実機確認と本番移行準備を進める。"
+    "action": "Safari動画は確認済み。残る実フォント・外部埋め込み等の実機証拠と本番移行の条件を揃える。"
   },
   "tasks": [
     {
@@ -726,11 +726,12 @@
         "V094",
         "V095",
         "V096",
-        "V097"
+        "V097",
+        "V099"
       ],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Windows追加報告とSafari文字拡大・キーボードを確認済み。Safari映像視認はユーザー回答待ち。実フォント・外部埋め込み等の残件を実機記録表で継続し、本番共有/スターはT017で確認する。"
+      "next_action": "Windows追加報告、Safari文字拡大・キーボード・動画の実機確認を記録済み。Safari実フェイス・外部埋め込み等の残件を継続し、Firefoxの描画不一致を解消後に追加検査する。本番共有/スターはT017で確認する。"
     },
     {
       "id": "T016",
@@ -1924,10 +1925,10 @@
       "status": "implemented",
       "verification_status": "blocked",
       "artifact_refs": ["themes/shsh/docs/verification/t050/"],
-      "verification_ids": ["V088", "V089", "V090", "V091", "V094", "V095", "V096", "V097"],
+      "verification_ids": ["V088", "V089", "V090", "V091", "V094", "V095", "V096", "V097", "V099"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Safari文字拡大・キーボードはT052で確認済み。動画は再生/停止状態取得済みで映像視認のユーザー回答待ち。Safari実フェイス・外部埋め込み・Chrome/Firefox追加項目は継続する。"
+      "next_action": "Safari文字拡大・キーボードと動画の映像/再生/一時停止を確認済み。Safari実フェイス・外部埋め込み・Chrome/Firefox追加項目は継続する。FirefoxはT053の描画不一致が残る。"
     },
     {
       "id": "T051",
@@ -1987,13 +1988,13 @@
         "整形・進捗検査・差分確認を行う。"
       ],
       "commit_message": "[T052] Safariの追加拡大と操作確認を記録",
-      "status": "implemented",
-      "verification_status": "blocked",
+      "status": "complete",
+      "verification_status": "passed",
       "artifact_refs": ["themes/shsh/docs/verification/t052/"],
-      "verification_ids": ["V094", "V095", "V096"],
+      "verification_ids": ["V094", "V095", "V096", "V099"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "文字拡大とSafariキーボード操作は確認済み。動画の映像が見えるかユーザー回答待ち。"
+      "next_action": "Safariの文字拡大・キーボードはT052、動画の映像・再生/一時停止はT055のユーザー報告で確認済み。その他の実機残件はT015/T050で継続する。"
     },
     {
       "id": "T053",
@@ -2062,6 +2063,35 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "切り戻し資料と旧ソース隔離生成確認は完了。本番移行直前のproduction deployment照合と移行後HTTP確認はT017/T018で実施する。"
+    },
+    {
+      "id": "T055",
+      "title": "Safari動画表示のユーザー実機確認を記録",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5",
+        "docs/05-theme-implementation-discipline.md: Q6"
+      ],
+      "scope": [
+        "固定previewのMac Safari動画の映像・再生・一時停止についてユーザーの追加報告を記録する。"
+      ],
+      "depends_on": ["T052"],
+      "acceptance_criteria": [
+        "依頼対象と回答原文を残し、T052の映像視認待ちを実機報告で更新する。",
+        "その他の未確認項目と取得画像の制約を維持する。"
+      ],
+      "verification_plan": [
+        "引用された依頼のURL・端末・ブラウザと回答を照合する。",
+        "進捗JSON・実機記録表・T052の現在状態を更新し、整形・進捗検査・差分確認を実施する。"
+      ],
+      "commit_message": "[T055] Safari動画の実機表示確認を記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": ["themes/shsh/docs/verification/t055/safari-report.json"],
+      "verification_ids": ["V099"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "Safari動画の確認待ちは解消。実機全体はT015の残件を継続する。"
     }
   ],
   "findings": [
@@ -4971,6 +5001,22 @@
       ],
       "recorded_at": "2026-09-18T13:15:26.829523+00:00",
       "supersedes": null
+    },
+    {
+      "id": "V099",
+      "task_ids": ["T015", "T050", "T052", "T055"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "ユーザーによるMac Safari動画の映像・再生・一時停止確認",
+      "result": "passed",
+      "subject_ref": "268bbb0 / https://6f52990f.shimoju.pages.dev/2026/09/01/development-environment-2026/",
+      "environment": "Mac / Safari（引用された依頼対象。詳細版・機種の再指定なし）",
+      "procedure": "映像の視認と再生/一時停止を確認する依頼を引用し、ユーザーが「映像が見え、再生・一時停止できる」と回答。T052の映像視認待ちを解消。CUAの画像が空白だった原因は断定せず履歴を維持し、実フォントや外部埋め込み等へ一般化しない。",
+      "evidence_refs": ["themes/shsh/docs/verification/t055/safari-report.json"],
+      "recorded_at": "2026-09-18T13:17:10.942832+00:00",
+      "supersedes": "V096"
     }
   ]
 }
