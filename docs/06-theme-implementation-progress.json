@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T10:33:28.079869+00:00",
+  "updated_at": "2026-09-18T10:39:38.201450+00:00",
   "stage": "final_verification",
-  "summary": "Windows3ブラウザの実機結果を記録。Firefoxの見出し書体差異F022は受容。承認済みF023のコード行高1.4へ変更し関連144検査は成功。T044でpreview配信・CIを確認する。Androidと詳細実機確認、本番移行は未完了。",
+  "summary": "Windows実機報告を記録しFirefox書体差異F022は受容。承認済みコード行高1.4へ変更し関連144検査成功。92cacd8/preview b7eecc69の配信確認済み、同一SHAのGitHub CIは実行中。Android・詳細実機確認・本番移行は未完了。",
   "latest_review_id": "R002",
   "resume": {
     "task_id": "T044",
-    "action": "T043の行高1.4をpreview配信し、同一SHAの必須CIと配信CSSを確認する。"
+    "action": "T045をpushし全CIとPagesを確認する。テーマ本体は92cacd8と同一。"
   },
   "tasks": [
     {
@@ -416,10 +416,10 @@
         "themes/shsh/scripts/build-review-report.ts",
         "themes/shsh/tests/review.spec.ts"
       ],
-      "verification_ids": ["V018", "V019", "V020"],
+      "verification_ids": ["V018", "V019", "V020", "V074", "V075"],
       "review_ids": ["R004"],
       "blocked_by": [],
-      "next_action": "代表画面・共通設計の承認をR004へ記録済み。続きの実装は別セッションのT010から再開する。"
+      "next_action": "代表画面比較はF023込みで再合格。T044で修正後のCIを確認する。"
     },
     {
       "id": "T010",
@@ -1704,13 +1704,40 @@
         "HTTP応答・noindex・CSSの行高トークンとfingerprintを確認する。"
       ],
       "commit_message": "[T044] コード行高変更の配信とCI結果を記録",
-      "status": "not_started",
-      "verification_status": "not_run",
-      "artifact_refs": [],
-      "verification_ids": [],
+      "status": "implemented",
+      "verification_status": "blocked",
+      "artifact_refs": ["themes/shsh/docs/verification/t044/"],
+      "verification_ids": ["V073"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "T043コミットをpushしPages previewとCIを確認する。"
+      "next_action": "比較期待値の未反映が判明した初回CI35335359283は取消要求済み。T045コミットで全CIを再実行し、同一SHAのPagesを照合する。"
+    },
+    {
+      "id": "T045",
+      "title": "代表画面比較にも承認済みコード行高を反映",
+      "requirement_refs": ["docs/05-theme-implementation-discipline.md: Q8"],
+      "scope": [
+        "review.spec.tsの代表画面比較にもF023を適用する。",
+        "比較画像の命名とレポート生成を承認差分に対応させ、履歴を維持する。"
+      ],
+      "depends_on": ["T043"],
+      "acceptance_criteria": ["代表画面の期待値が承認済み行高1.4になり、3エンジンで再合格する。"],
+      "verification_plan": [
+        "未更新の実記事比較を実行して期待値差異を確認する。",
+        "既存のF023 helperを適用し代表画面12検査と静的検査を再実行する。"
+      ],
+      "commit_message": "[T045] 代表画面比較へ承認済みコード行高を反映",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/tests/review.spec.ts",
+        "themes/shsh/scripts/build-review-report.ts",
+        "themes/shsh/docs/verification/t045/"
+      ],
+      "verification_ids": ["V074", "V075"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "代表画面比較はF023込みで再合格。T044で修正後のCIを確認する。"
     }
   ],
   "findings": [
@@ -2307,6 +2334,29 @@
         "themes/shsh/docs/verification/t043/README.md"
       ],
       "verification_ids": ["V072"]
+    },
+    {
+      "id": "F024",
+      "title": "代表画面比較でF023の行高期待値が未反映",
+      "task_ids": ["T009", "T044", "T045"],
+      "status": "resolved",
+      "requires_user_decision": false,
+      "observation": "T043はprose/full-reviewの承認差分を更新したが、独立したreview.spec.tsには旧1.3との比較が残っていた。追加照合と局所実行で12.65625pxの高さ差を確認。",
+      "evidence_refs": ["themes/shsh/docs/verification/t045/before.log"],
+      "impact": "承認どおりの表示でも代表画面比較が失敗する。",
+      "recommendation": "既存F023 helperを代表画面比較にも適用する。",
+      "decision": {
+        "outcome": "承認済み差分の反映漏れを是正",
+        "reason": "テーマの仕様変更ではなく比較期待値の更新。",
+        "decided_by": "Codex",
+        "recorded_at": "2026-09-18T10:39:38.201450+00:00",
+        "source": "F023承認、資料5 Q8"
+      },
+      "resolution_refs": [
+        "themes/shsh/tests/review.spec.ts",
+        "themes/shsh/scripts/build-review-report.ts"
+      ],
+      "verification_ids": ["V074", "V075"]
     }
   ],
   "reviews": [
@@ -4094,6 +4144,51 @@
       ],
       "recorded_at": "2026-09-18T10:33:28.079869+00:00",
       "supersedes": null
+    },
+    {
+      "id": "V073",
+      "task_ids": ["T044"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33"
+      ],
+      "kind": "コード行高1.4のPages preview配信",
+      "result": "passed",
+      "subject_ref": "92cacd89ca807a9f122c7169ef1de0b440e3055a / Pages b7eecc69-11c6-4b43-b208-d1e4855b8589",
+      "environment": "Cloudflare Pages Git連携 / HTTPS応答・CSS確認",
+      "procedure": "同一SHAのPages成功を確認。実記事HTTP200、HTTP/HTML noindex、配信CSSの--leading-code:1.4と内容SHA256/fingerprint一致を確認。CIは配信時点では実行中。ユーザーへ新URLでWindowsの行間確認を依頼した。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t044/checks-preview.json",
+        "themes/shsh/docs/verification/t044/preview.json"
+      ],
+      "recorded_at": "2026-09-18T10:36:57.734470+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V074",
+      "task_ids": ["T009", "T045"],
+      "requirement_refs": ["docs/05-theme-implementation-discipline.md: Q8"],
+      "kind": "代表画面の承認差分期待値の確認",
+      "result": "failed",
+      "subject_ref": "92cacd8",
+      "environment": "macOS / Playwright Chromium",
+      "procedure": "F023未反映の代表実記事比較でコードブロックの高さに12.65625px差を検出。T043のprose/full-reviewとは別のreview.spec.tsに旧1.3基準が残っていた。",
+      "evidence_refs": ["themes/shsh/docs/verification/t045/before.log"],
+      "recorded_at": "2026-09-18T10:39:38.201450+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V075",
+      "task_ids": ["T009", "T045"],
+      "requirement_refs": ["docs/05-theme-implementation-discipline.md: Q8"],
+      "kind": "代表画面の承認差分期待値の確認",
+      "result": "passed",
+      "subject_ref": "92cacd8 + T045比較検査差分",
+      "environment": "macOS / Playwright Chromium・Firefox・WebKit",
+      "procedure": "同じF023 helperを代表画面にも適用後、Chromium/Firefox/WebKitの12検査成功（18.0s）。両配色・PC/モバイル・125/200%拡大・axe。型付きlint・整形・代表比較レポート生成成功。テーマ本体の変更なし。",
+      "evidence_refs": ["themes/shsh/docs/verification/t045/after.log"],
+      "recorded_at": "2026-09-18T10:39:38.201450+00:00",
+      "supersedes": "V074"
     }
   ]
 }

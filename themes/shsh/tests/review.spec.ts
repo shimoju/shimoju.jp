@@ -1,5 +1,6 @@
 import { test, expect, type Page } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
+import { applyApprovedCodeLeading } from "./approved-mock.js";
 import { mkdirSync, writeFileSync } from "node:fs";
 
 const review = "http://127.0.0.1:4182";
@@ -144,6 +145,7 @@ for (const [name, path, mock] of [
           expect(Math.abs(fontSize - 32.827 * scale)).toBeLessThan(0.06);
         }
         await page.goto(`${mockBase}/${mock}?theme=${colorScheme}`);
+        await applyApprovedCodeLeading(page);
         await ready(page);
         const expected = await blocks(page, selector);
         // Specimen deliberately omits mock-only padding/font diagnostics and converts raw HTML inputs.
@@ -156,7 +158,7 @@ for (const [name, path, mock] of [
         if (name !== "specimen") sameGeometry(actual, expected);
         if (browserName === "chromium")
           await page.screenshot({
-            path: `.cache/review-images/${name}-${width}-${colorScheme}-mock.png`,
+            path: `.cache/review-images/${name}-${width}-${colorScheme}-mock-approved-f023.png`,
             fullPage: true,
           });
         evidence.push({

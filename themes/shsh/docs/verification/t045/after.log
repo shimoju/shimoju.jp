@@ -1,0 +1,38 @@
+$ playwright test tests/review.spec.ts --workers=4
+[WebServer] (node:57132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 4 workers
+
+(node:57156) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:57153) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:57154) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:57155) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   4 [chromium] › tests/review.spec.ts:70:3 › Representative posts comparison, both widths/colors and text enlargement (2.4s)
+  ✓   1 [chromium] › tests/review.spec.ts:70:3 › Representative home comparison, both widths/colors and text enlargement (2.5s)
+(node:57200) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:57201) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 [chromium] › tests/review.spec.ts:70:3 › Representative specimen comparison, both widths/colors and text enlargement (6.1s)
+(node:57243) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   5 [firefox] › tests/review.spec.ts:70:3 › Representative home comparison, both widths/colors and text enlargement (4.2s)
+  ✓   6 [firefox] › tests/review.spec.ts:70:3 › Representative posts comparison, both widths/colors and text enlargement (4.1s)
+(node:57259) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [chromium] › tests/review.spec.ts:70:3 › Representative article comparison, both widths/colors and text enlargement (8.6s)
+(node:57272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [webkit] › tests/review.spec.ts:70:3 › Representative home comparison, both widths/colors and text enlargement (2.9s)
+  ✓  10 [webkit] › tests/review.spec.ts:70:3 › Representative posts comparison, both widths/colors and text enlargement (2.9s)
+  ✓   8 [firefox] › tests/review.spec.ts:70:3 › Representative specimen comparison, both widths/colors and text enlargement (7.9s)
+  ✓  12 [webkit] › tests/review.spec.ts:70:3 › Representative specimen comparison, both widths/colors and text enlargement (4.7s)
+  ✓   7 [firefox] › tests/review.spec.ts:70:3 › Representative article comparison, both widths/colors and text enlargement (10.6s)
+  ✓  11 [webkit] › tests/review.spec.ts:70:3 › Representative article comparison, both widths/colors and text enlargement (6.1s)
+
+  12 passed (18.0s)

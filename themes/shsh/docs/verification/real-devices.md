@@ -1,6 +1,6 @@
 # 実機確認（T015）
 
-状態：一部確認済み。R002承認済み。iPhoneのコピー初回タップ不具合F021はT040で修正し、[修正版preview](https://211f19d6.shimoju.pages.dev/)（05d2064、T041）でユーザーが初回コピーと貼り付け内容一致を再確認済み。実機確認全体は未合格。過去の対象URL/SHAは各記録に残す。
+状態：一部確認済み。R002承認済み。iPhoneのコピー初回タップ不具合F021はT040で修正し、[修正版preview](https://211f19d6.shimoju.pages.dev/)（05d2064、T041）でユーザーが初回コピーと貼り付け内容一致を再確認済み。現在の確認用は[コード行高1.4のpreview](https://b7eecc69.shimoju.pages.dev/)（92cacd8、T044）。実機確認全体は未合格。過去の対象URL/SHAは各記録に残す。
 
 ## iPhone 17 / iOS27の実機報告（T040）
 
@@ -39,22 +39,22 @@ T040の自動検査で同症状を再現・修正。続いてユーザーが修�
 | iPad Pro 12.9インチ（第6世代） | 申告：iOS 27（詳細版未取得） | Safari（版未取得）  | 報告範囲は確認済み（T042）                    |
 | Xiaomi Pocophone F1            | Android 10                   | Chrome（版未取得）  | ユーザーによる実機確認待ち                    |
 
-実機確認用URLは[固定preview](https://211f19d6.shimoju.pages.dev/)（05d2064）を使う。T041でコピー初回タップ修正版のURLへ更新した。端末で利用できる最新版かを実際の更新画面で確認し、更新できない場合も版と制約を記録する。
+実機確認用URLは[固定preview](https://b7eecc69.shimoju.pages.dev/)（92cacd8）を使う。T044でコード行高1.4のURLへ更新した。端末で利用できる最新版かを実際の更新画面で確認し、更新できない場合も版と制約を記録する。
 
 最初に以下の基本確認を各環境で行う。確認済みの環境から報告してよい。
 
-1. [ホーム](https://211f19d6.shimoju.pages.dev/)・[About](https://211f19d6.shimoju.pages.dev/about/)・[Archives](https://211f19d6.shimoju.pages.dev/archives/)を両配色で開く。配色がページ移動後も保持され、文字の欠け・重なり・ページ全体の横はみ出しがないことを確認する。Aboutの3列見出しは「業務経験／技術／経験年数」。表・コード内部の横スクロールは許容する。
-2. [開発環境記事](https://211f19d6.shimoju.pages.dev/2026/09/01/development-environment-2026/)でコードをコピーし、ローカルのメモ等へ貼り付け、本文と一致しラベルや行番号が混入しないことを確認する。画像内の文字が読め、動画を再生・停止できることも確認する。
+1. [ホーム](https://b7eecc69.shimoju.pages.dev/)・[About](https://b7eecc69.shimoju.pages.dev/about/)・[Archives](https://b7eecc69.shimoju.pages.dev/archives/)を両配色で開く。配色がページ移動後も保持され、文字の欠け・重なり・ページ全体の横はみ出しがないことを確認する。Aboutの3列見出しは「業務経験／技術／経験年数」。表・コード内部の横スクロールは許容する。
+2. [開発環境記事](https://b7eecc69.shimoju.pages.dev/2026/09/01/development-environment-2026/)でコードをコピーし、ローカルのメモ等へ貼り付け、本文と一致しラベルや行番号が混入しないことを確認する。画像内の文字が読め、動画を再生・停止できることも確認する。
 3. 文字を拡大し、ナビ・本文・表・コードが読めることを確認する。実際の拡大値と、文字設定かページズームかを記録する。モバイルは縦横回転とタッチ操作、PCはTab/Shift+Tabでの移動とフォーカス表示も確認する。
 
-続けて下記の詳細手順3・7・8に従い、実フォント・外部埋め込み・JavaScript無効時を確認する。外部埋め込みの対象は[X](https://211f19d6.shimoju.pages.dev/2016/07/30/tochijisen/)、[Instagram](https://211f19d6.shimoju.pages.dev/2016/08/01/tiritiri-curry/)、[YouTube](https://211f19d6.shimoju.pages.dev/2016/08/31/hiphop-music-video/)、[Speaker Deck](https://211f19d6.shimoju.pages.dev/2017/11/11/twelve-factor-app-on-heroku/)。外部側の制限・通信失敗は、ページ自体の表示崩れと分けて記録する。previewの共有ボタン無効・スター非表示は仕様どおり。
+続けて下記の詳細手順3・7・8に従い、実フォント・外部埋め込み・JavaScript無効時を確認する。外部埋め込みの対象は[X](https://b7eecc69.shimoju.pages.dev/2016/07/30/tochijisen/)、[Instagram](https://b7eecc69.shimoju.pages.dev/2016/08/01/tiritiri-curry/)、[YouTube](https://b7eecc69.shimoju.pages.dev/2016/08/31/hiphop-music-video/)、[Speaker Deck](https://b7eecc69.shimoju.pages.dev/2017/11/11/twelve-factor-app-on-heroku/)。外部側の制限・通信失敗は、ページ自体の表示崩れと分けて記録する。previewの共有ボタン無効・スター非表示は仕様どおり。
 
 結果は次の形式で報告する。基本確認だけで全項目合格にはしない。版・実フェイス等を取得できない項目は未確認として残す。
 
 ```text
 確認者・日時:
 端末 / OSの版 / ブラウザの版:
-URL: https://211f19d6.shimoju.pages.dev/（05d2064）
+URL: https://b7eecc69.shimoju.pages.dev/（92cacd8）
 表示条件: 縦・横 / 倍率・文字設定 / 配色（分かればviewport・DPR）
 確認した項目:
 結果: 問題なし、またはページ・操作・実際の症状
@@ -111,7 +111,7 @@ OSクリップボードの内容一致は引き続き未確認。これはテー
 
 ## 再開用のURLと手順
 
-このMacではテーマルートで`pnpm review:full`を実行し、[全画面レビュー](http://127.0.0.1:4210/r002/)と[実サービスありpreview](http://127.0.0.1:4212/)を開く。サーバーは127.0.0.1限定。他端末からこのURLにはアクセスできない。Windows・iOS・Androidの実機確認には`https://211f19d6.shimoju.pages.dev/`（05d2064）を使い、以下のパスを同じURLへ付ける。ブランチaliasは後のpushで更新されるため、確認結果にはこのdeployment固有URLとSHAを記録する。
+このMacではテーマルートで`pnpm review:full`を実行し、[全画面レビュー](http://127.0.0.1:4210/r002/)と[実サービスありpreview](http://127.0.0.1:4212/)を開く。サーバーは127.0.0.1限定。他端末からこのURLにはアクセスできない。Windows・iOS・Androidの実機確認には`https://b7eecc69.shimoju.pages.dev/`（92cacd8）を使い、以下のパスを同じURLへ付ける。ブランチaliasは後のpushで更新されるため、確認結果にはこのdeployment固有URLとSHAを記録する。
 
 | パス                                        | 確認する内容                                              |
 | ------------------------------------------- | --------------------------------------------------------- |
