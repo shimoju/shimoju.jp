@@ -1,0 +1,46 @@
+{
+  "checks": [
+    {
+      "conclusion": "success",
+      "details_url": "https://dash.cloudflare.com/?to=/c0c39e237ef194406cb2ba4680f5d5da/pages/view/shimoju/919f4ced-b04f-465b-98eb-539050ef697b",
+      "head_sha": "9f173698093ef0c0e773c840859b6246c2bb656a",
+      "name": "Cloudflare Pages",
+      "output": {
+        "annotations_count": 0,
+        "annotations_url": "https://api.github.com/repos/shimoju/shimoju.jp/check-runs/105620979131/annotations",
+        "summary": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003e\u003cstrong\u003eLatest commit:\u003c/strong\u003e \u003c/td\u003e\u003ctd\u003e\n\u003ccode\u003e9f17369\u003c/code\u003e\n\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e\u003cstrong\u003eStatus:\u003c/strong\u003e\u003c/td\u003e\u003ctd\u003e\u0026nbsp;✅\u0026nbsp; Deploy successful!\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e\u003cstrong\u003ePreview URL:\u003c/strong\u003e\u003c/td\u003e\u003ctd\u003e\n\u003ca href='https://919f4ced.shimoju.pages.dev'\u003ehttps://919f4ced.shimoju.pages.dev\u003c/a\u003e\n\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e\u003cstrong\u003eBranch Preview URL:\u003c/strong\u003e\u003c/td\u003e\u003ctd\u003e\n\u003ca href='https://hugo-theme.shimoju.pages.dev'\u003ehttps://hugo-theme.shimoju.pages.dev\u003c/a\u003e\n\u003c/td\u003e\u003c/tr\u003e\n\u003c/table\u003e\n\n[View logs](https://dash.cloudflare.com/?to=/c0c39e237ef194406cb2ba4680f5d5da/pages/view/shimoju/919f4ced-b04f-465b-98eb-539050ef697b)\n",
+        "text": null,
+        "title": "Deployed successfully"
+      },
+      "status": "completed"
+    },
+    {
+      "conclusion": null,
+      "details_url": "https://github.com/shimoju/shimoju.jp/actions/runs/35351594030/job/105620784969",
+      "head_sha": "9f173698093ef0c0e773c840859b6246c2bb656a",
+      "name": "shsh-check",
+      "output": {
+        "annotations_count": 0,
+        "annotations_url": "https://api.github.com/repos/shimoju/shimoju.jp/check-runs/105620784969/annotations",
+        "summary": null,
+        "text": null,
+        "title": null
+      },
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "details_url": "https://github.com/shimoju/shimoju.jp/actions/runs/35351587605/job/105620763334",
+      "head_sha": "9f173698093ef0c0e773c840859b6246c2bb656a",
+      "name": "shsh-check",
+      "output": {
+        "annotations_count": 0,
+        "annotations_url": "https://api.github.com/repos/shimoju/shimoju.jp/check-runs/105620763334/annotations",
+        "summary": null,
+        "text": null,
+        "title": null
+      },
+      "status": "in_progress"
+    }
+  ]
+}

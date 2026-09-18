@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "updated_at": "2026-09-18T13:44:17.076745+00:00",
+  "updated_at": "2026-09-18T13:54:55.883257+00:00",
   "stage": "final_verification",
-  "summary": "Draft PR #5の9f17369はCI実行中、Pages preview成功。Firefox追加検査は描画不一致が再現しユーザー実機確認を依頼。Safari YouTube等の回答待ちと他実機残件、本番移行・旧テーマ整理は未完了。",
+  "summary": "Draft PR #5の9f17369はCI成功（246テスト）と最新preview配信確認済み。実機用previewとCSS/JS一致。Safari YouTube・Firefox追加確認の回答待ち、他実機残件、本番移行・旧テーマ整理は未完了。",
   "latest_review_id": "R002",
   "resume": {
-    "task_id": "T017",
-    "action": "PR #5 / 9f17369のCI run35351594030を追跡し、最新previewを照合する。Safari/Firefox実機回答も反映する。"
+    "task_id": "T015",
+    "action": "実機環境の安定版照合と未確認項目を進め、受領した実機報告を反映する。"
   },
   "tasks": [
     {
@@ -810,10 +810,10 @@
         "themes/shsh/docs/verification/cloudflare-pages.md",
         "themes/shsh/docs/verification/t017/"
       ],
-      "verification_ids": ["V042", "V045", "V047", "V048", "V058", "V103"],
+      "verification_ids": ["V042", "V045", "V047", "V048", "V058", "V103", "V105", "V106"],
       "review_ids": [],
       "blocked_by": [],
-      "next_action": "Draft PR #5（hugo-theme→master）を作成済み。最新headの必須CIとpreviewを追跡し、実機残件解消後に統合する。本番未移行のため全体は未合格。"
+      "next_action": "PR #5の9f17369はCI/preview確認済み。T015の実機残件を解消後、最終headの必須CI・切り戻し点を照合し本番移行する。"
     },
     {
       "id": "T018",
@@ -2237,6 +2237,42 @@
       "review_ids": [],
       "blocked_by": [],
       "next_action": "Firefoxの3項目（文字32/和文コード実フォント/JS無効）をユーザーへ依頼済み。ツールの描画不一致が解消するまで同じ操作を繰り返さず、回答を反映する。"
+    },
+    {
+      "id": "T060",
+      "title": "移行PRのCIと最新previewを照合",
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "scope": [
+        "PR #5の9f17369についてGitHub統合検査とPages919f4cedを追跡する。",
+        "最新previewの配信応答・URLメタ・RSS・アセットを確認し、実機検証用6f52990fとテーマ資産が一致するか照合する。"
+      ],
+      "depends_on": ["T058"],
+      "acceptance_criteria": [
+        "CIの対象SHAと結果、PagesチェックとURL、実HTTPの検査結果を証拠へ結び付ける。",
+        "ローカルの後続証拠コミットや未確認の本番をCI成功へ一般化しない。"
+      ],
+      "verification_plan": [
+        "run35351594030を同じIDで終端まで追跡し、完了ログとPR/commitチェックを取得する。",
+        "最新previewのホーム/記事/About/page2でnoindex・canonical/OGP、共有無効/スターなし、RSS・feed転送・404を確認する。",
+        "CSS/JS内容ハッシュとfingerprint・source mapなしを確認し、固定実機previewの同名資産と比較する。",
+        "証拠の整形・進捗検査・差分確認後にコミットする。"
+      ],
+      "commit_message": "[T060] 移行PRのCIと最新previewを記録",
+      "status": "complete",
+      "verification_status": "passed",
+      "artifact_refs": [
+        "themes/shsh/docs/verification/t060/README.md",
+        "themes/shsh/docs/verification/t060/"
+      ],
+      "verification_ids": ["V105", "V106"],
+      "review_ids": [],
+      "blocked_by": [],
+      "next_action": "9f17369のCI・preview照合は完了。実機残件をT015で継続し、PRの最終headをマージ前に再照合する。"
     }
   ],
   "findings": [
@@ -5260,6 +5296,52 @@
       ],
       "recorded_at": "2026-09-18T13:44:17.076745+00:00",
       "supersedes": "V097"
+    },
+    {
+      "id": "V105",
+      "task_ids": ["T017", "T060"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "移行PR headのGitHub統合検査",
+      "result": "passed",
+      "subject_ref": "9f173698093ef0c0e773c840859b6246c2bb656a / PR #5 / https://919f4ced.shimoju.pages.dev/",
+      "environment": "GitHub Actions / ubuntu-24.04 / Hugo0.166.0 / Node24 / pnpm12.4.1",
+      "procedure": "PR run35351594030とpush run35351587605がsuccess。PR側ログでpnpm check完走・Playwright3エンジン246件成功を確認。PR #5はOPEN/draft、head9f17369。後続ローカルコミットと実機残件へ一般化しない。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t060/ci-final.json",
+        "themes/shsh/docs/verification/t060/push-ci-final.json",
+        "themes/shsh/docs/verification/t060/pr-final.json",
+        "themes/shsh/docs/verification/t060/ci-check.log"
+      ],
+      "recorded_at": "2026-09-18T13:54:55.883257+00:00",
+      "supersedes": null
+    },
+    {
+      "id": "V106",
+      "task_ids": ["T017", "T060"],
+      "requirement_refs": [
+        "docs/04-theme-implementation-requirements.md: Q23",
+        "docs/04-theme-implementation-requirements.md: Q24",
+        "docs/04-theme-implementation-requirements.md: Q33",
+        "docs/05-theme-implementation-discipline.md: Q5"
+      ],
+      "kind": "最新preview配信と実機preview資産の照合",
+      "result": "passed",
+      "subject_ref": "9f173698093ef0c0e773c840859b6246c2bb656a / PR #5 / https://919f4ced.shimoju.pages.dev/",
+      "environment": "Cloudflare Pages / curl / Python標準ライブラリ",
+      "procedure": "4ページのHTTP200/noindex/canonical/OGP、記事/Aboutの共有無効、スターなし、RSS59件とpreview URL、feed301、404確認。CSS/JS3資産のfingerprint・mapなし・実機preview6f52990fとの同一性確認。初回urllib403/1010後にcurlで全検査成功。",
+      "evidence_refs": [
+        "themes/shsh/docs/verification/t060/preview.json",
+        "themes/shsh/docs/verification/t060/verify-preview.py",
+        "themes/shsh/docs/verification/t060/checks-initial.json",
+        "themes/shsh/docs/verification/t060/README.md"
+      ],
+      "recorded_at": "2026-09-18T13:54:55.883257+00:00",
+      "supersedes": null
     }
   ]
 }
