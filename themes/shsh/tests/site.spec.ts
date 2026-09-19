@@ -65,7 +65,7 @@ for (const environment of ["production", "preview"])
           expect(observed.ratio).toBe("1.77777777777778");
         }
         if (embed.service === "video") {
-          expect(observed.src).toContain("zsh-prompt-demo.mp4");
+          expect(observed.src).toMatch(/\/zsh-prompt-demo\.[a-f0-9]{64}\.mp4$/);
           expect(observed.width).toBe(1440);
           expect(observed.height).toBe(1076);
         }
