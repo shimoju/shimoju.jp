@@ -45,15 +45,25 @@
     {{- if eq $type "png" }}{{ $spec = "webp lossless" }}{{ end -}}
     {{- if eq $type "jpeg" }}{{ $spec = "webp lossy q80" }}{{ end -}}
     {{- $originalSize := len $resource.Content -}}
+    {{- $widths := slice -}}
     {{- range slice 360 720 1080 1440 -}}
-      {{- if lt . $width -}}
-        {{- $candidate := $resource.Process (printf "resize %dx %s" . $spec) -}}
-        {{- if lt (len $candidate.Content) $originalSize -}}
-          {{- $srcset = $srcset | append (printf "%s %dw" $candidate.RelPermalink .) -}}
-        {{- end -}}
+      {{- if lt . $width }}{{ $widths = $widths | append . }}{{ end -}}
+    {{- end -}}
+    {{- if le $width 1440 }}{{ $widths = $widths | append $width }}{{ end -}}
+    {{- $useOriginal := false -}}
+    {{- range $widths -}}
+      {{- /* The original replaces a same-width conversion when a smaller candidate was rejected. */ -}}
+      {{- if and $useOriginal (eq . $width) }}{{ continue }}{{ end -}}
+      {{- $candidate := $resource.Process (printf "resize %dx %s" . $spec) -}}
+      {{- if lt (len $candidate.Content) $originalSize -}}
+        {{- $srcset = $srcset | append (printf "%s %dw" $candidate.RelPermalink .) -}}
+      {{- else -}}
+        {{- $useOriginal = true -}}
       {{- end -}}
     {{- end -}}
-    {{- $srcset = $srcset | append (printf "%s %dw" $media.src $width) -}}
+    {{- if $useOriginal -}}
+      {{- $srcset = $srcset | append (printf "%s %dw" $media.src $width) -}}
+    {{- end -}}
   {{- end -}}
 {{- else if $media.static -}}
   {{- if eq (lower (path.Ext $media.static)) ".svg" }}

@@ -111,7 +111,7 @@ RSSは著者のプロフィールを見るリンクとは異なり、継続し�
 
 記事には明示的な`date`を指定する。並び順・Archives・RSSは公開日を使い、同日時なら公開パスで固定する。`publishDate`は予約公開日時、`lastmod`は明示的な更新日。固定ページは`showDates: false`で日付表示を隠せる。要約は`summary`、`<!--more-->`、自動要約の順、SEO説明は`description`を優先する。
 
-画像はpage bundleまたはassetsに置く。`cover.image`・`cover.alt`でカバーを指定し、本文はMarkdown画像または`figure` shortcodeを使う。ローカルの処理可能な画像は寸法・`srcset`を生成し、切り抜きや原寸以上の拡大をしない。PNGは可逆WebP、JPEGは品質80の非可逆WebPへ元画像から直接縮小し、元画像より軽い候補だけを原寸のPNG・JPEGと同じ`srcset`に並べる。その他の処理可能な形式も、元画像より軽い縮小候補と原寸画像を使う。外部画像・static参照・SVG・アニメーション・グレースケールPNGは原形式を使う。グレースケールPNGはHugoのWebP変換で明るさが変わるため加工しない。外部画像はビルド時に取得しない。
+画像はpage bundleまたはassetsに置く。`cover.image`・`cover.alt`でカバーを指定し、本文はMarkdown画像または`figure` shortcodeを使う。ローカルの処理可能な画像は寸法・`srcset`を生成し、切り抜きや原寸以上の拡大をしない。PNGは可逆WebP、JPEGは品質80の非可逆WebPへ元画像から直接縮小し、候補の幅は原寸以下・最大1440pxとする。元画像の容量以上になった候補を除外し、除外がある場合だけ原寸のPNG・JPEGを`srcset`に追加する。その他の処理可能な形式にも、同じ幅制限と容量比較を適用する。外部画像・static参照・SVG・アニメーション・グレースケールPNGは原形式を使う。グレースケールPNGはHugoのWebP変換で明るさが変わるため加工しない。外部画像はビルド時に取得しない。
 
 コードブロックは言語・`filename`・行番号・行強調に対応し、コピーにはラベルと行番号を含めない。生HTMLを有効にせず、埋め込みにはshortcodeを使う。
 

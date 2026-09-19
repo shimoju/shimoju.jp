@@ -30,12 +30,20 @@ for (const environment of ["production", "preview"]) {
     const original = readFileSync(directory + src);
     const width = Number(markup.match(/\bwidth="(\d+)"/)?.[1]);
     const candidates = srcset.split(", ");
-    assert.equal(candidates.at(-1), `${src} ${width}w`);
-    for (const candidate of candidates.slice(0, -1)) {
+    const widths = new Set<number>();
+    for (const candidate of candidates) {
       const [url, descriptor] = candidate.split(" ");
       assert.ok(url && descriptor);
-      assert.ok(Number(descriptor.slice(0, -1)) < width, candidate);
-      const buffer = readFileSync(directory + url);
+      const candidateWidth = Number(descriptor.slice(0, -1));
+      assert.ok(!widths.has(candidateWidth), candidate);
+      widths.add(candidateWidth);
+      if (url === src) {
+        assert.equal(candidate, `${src} ${width}w`);
+        assert.equal(candidate, candidates.at(-1));
+        continue;
+      }
+      assert.ok(candidateWidth <= Math.min(width, 1440), candidate);
+      const buffer: Buffer = readFileSync(directory + url);
       assert.ok(buffer.length < original.length, candidate);
       if (!/\.(png|jpg|jpeg)$/.test(src)) continue;
       assert.ok(url.endsWith(".webp"), candidate);

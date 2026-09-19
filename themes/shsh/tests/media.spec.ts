@@ -18,7 +18,12 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   expect(candidates(await terminal.getAttribute("srcset"))).toEqual([360, 720, 1200]);
   expect(
     candidates(await page.getByRole("img", { name: "実写真", exact: true }).getAttribute("srcset")),
-  ).toEqual([360, 720, 1080, 1440, 1500]);
+  ).toEqual([360, 720, 1080, 1440]);
+  const photo = page.getByRole("img", { name: "実写真", exact: true });
+  expect(await photo.getAttribute("srcset")).not.toContain(await photo.getAttribute("src"));
+  expect(await terminal.getAttribute("srcset")).toContain(
+    `${await terminal.getAttribute("src")} 1200w`,
+  );
   expect(
     candidates(await page.getByRole("img", { name: "小さい透明画像" }).getAttribute("srcset")),
   ).toEqual([200]);
@@ -187,6 +192,7 @@ test("DPR chooses fitting candidates and JavaScript-free media remain usable", a
     [400, 1],
     [400, 2],
     [1280, 2],
+    [1280, 3],
   ] as const) {
     const context = await browser.newContext({
       viewport: { width, height: 800 },
@@ -210,6 +216,22 @@ test("DPR chooses fitting candidates and JavaScript-free media remain usable", a
     const chosenWidth = Number(chosen.split(" ")[1]!.replace("w", ""));
     expect(chosenWidth).toBeGreaterThanOrEqual(width === 1280 ? 1200 : 352 * deviceScaleFactor);
     expect(chosenWidth).toBeLessThanOrEqual(deviceScaleFactor === 1 ? 720 : 1200);
+    // A large photo keeps only WebP candidates, even when DPR calls for more than 1440px.
+    const photo = page.getByRole("img", { name: "実写真", exact: true });
+    await photo.scrollIntoViewIfNeeded();
+    await expect
+      .poll(() => photo.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0))
+      .toBe(true);
+    const photoSource = await photo.evaluate((img: HTMLImageElement) => ({
+      current: img.currentSrc,
+      candidates: img.srcset,
+    }));
+    expect(photoSource.current).toContain(".webp");
+    if (width === 1280) {
+      const largest = photoSource.candidates.split(", ").at(-1)!;
+      expect(largest).toMatch(/ 1440w$/);
+      expect(photoSource.current).toContain(largest.split(" ")[0]!);
+    }
     await expect(page.locator("video")).toHaveAttribute("controls", "");
     await context.close();
   }
