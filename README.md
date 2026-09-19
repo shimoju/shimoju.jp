@@ -11,7 +11,7 @@ bin/dev
 
 ## Build
 
-The shsh theme uses Hugo **0.166.0**. Site generation requires Hugo only; Node.js and pnpm are development and verification tools.
+Site generation requires Hugo only; Node.js and pnpm are development and verification tools.
 
 ```sh
 bin/build
@@ -25,7 +25,7 @@ Preview output has noindex metadata and disabled sharing / Hatena Star. External
 
 ## Deploy to Cloudflare Pages
 
-After the GitHub Actions `shsh-test` check succeeds, merge the PR into `master` to build and deploy through Cloudflare Pages Git integration. Branch pushes produce preview deployments. Configure Pages with Hugo **0.166.0**, output directory `public`, and this build command:
+After the GitHub Actions `shsh-test` check succeeds, merge the PR into `master` to build and deploy through Cloudflare Pages Git integration. Branch pushes produce preview deployments. Configure Pages with output directory `public` and this build command:
 
 ```sh
 bin/build
