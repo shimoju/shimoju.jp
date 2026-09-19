@@ -11,7 +11,8 @@ mainSections:
 pagination:
   pagerSize: 10
 permalinks:
-  posts: /:year/:month/:day/:slugorcontentbasename/
+  page:
+    posts: /:year/:month/:day/:slugorcontentbasename/
 enableRobotsTXT: true
 imaging:
   webp:
@@ -20,8 +21,6 @@ markup:
   goldmark:
     parser:
       wrapStandAloneImageWithinParagraph: false
-  highlight:
-    noClasses: false
 minify:
   minifyOutput: true
 
