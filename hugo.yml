@@ -13,6 +13,9 @@ pagination:
 permalinks:
   posts: /:year/:month/:day/:slugorcontentbasename/
 enableRobotsTXT: true
+imaging:
+  webp:
+    useSharpYuv: true
 markup:
   goldmark:
     renderer:
