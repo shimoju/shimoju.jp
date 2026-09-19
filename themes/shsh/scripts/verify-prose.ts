@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { HtmlValidate } from "html-validate";
+import { HtmlValidate, Parser, type HtmlElement } from "html-validate";
 
 const root = resolve(".cache/prose");
 rmSync(root, { recursive: true, force: true });
@@ -67,14 +67,36 @@ for (const name of ["real", "specimen"]) {
 }
 // Palette switching needs classes, regardless of the site's highlighting default.
 // The specimen covers known/unknown/absent languages, inline/table line numbers and emphasis.
-const codeBlocks = (source: string) =>
-  [...source.matchAll(/<pre\b[^>]*>[\s\S]*?<\/pre>/g)].map((m) => m[0]);
+const parserConfig = await validator.getConfigFor("inline.html");
+function codeBlocks(source: string) {
+  const parser = new Parser(parserConfig);
+  const starts = new WeakMap<HtmlElement, number>();
+  const blocks: string[] = [];
+  parser.on("tag:start", (_event, { target, location }) => {
+    starts.set(target, location.offset);
+  });
+  parser.on("tag:end", (_event, { previous, target, location }) => {
+    if (!previous.matches(".code-block")) return;
+    const start = starts.get(previous);
+    assert.notEqual(start, undefined);
+    assert.equal(target?.tagName, "div");
+    // Keep the original markup, including nested wrappers and explicit tbody tags.
+    blocks.push(source.slice(start, location.offset + location.size));
+  });
+  parser.parseHtml(source);
+  return blocks;
+}
 const defaultCode = codeBlocks(html("specimen"));
-assert.equal(defaultCode.length, 6); // Five blocks; table line numbers use a separate pre.
+assert.equal(defaultCode.length, 5);
 for (const block of defaultCode) {
-  assert.match(block, /<pre\b[^>]*class="chroma"/);
+  assert.match(block, /<div class="highlight">/);
+  const pres = [...block.matchAll(/<pre\b[^>]*>/g)];
+  assert.ok(pres.length > 0);
+  for (const [pre] of pres) assert.match(pre, /class="chroma"/);
   assert.doesNotMatch(block, /\sstyle=/);
 }
+assert.match(defaultCode[2]!, /<table class="lntable">\s*<tbody>/);
+assert.equal([...defaultCode[2]!.matchAll(/<td class="lntd">/g)].length, 2);
 assert.match(defaultCode[0]!, /<span class="s2">/); // Ruby tokens must actually be highlighted.
 for (const noClasses of [true, false]) {
   writeFileSync(
