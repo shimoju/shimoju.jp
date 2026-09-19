@@ -150,21 +150,4 @@ PC・モバイルの両配色、文字拡大、キーボード、JavaScript無�
 
 Playwrightのエンジン検査だけではOS固有フォント・Safariやモバイル実機の挙動は保証できない。表示や操作を変更するときは実機も確認する。外部埋め込みは通常CIで接続しないため、本番相当ビルドとpreview上でも表示・動画再生・スライド送りを確認する。
 
-## Cloudflare Pagesへの配信
-
-このサイトはGitHub Actionsの`shsh-check`成功後にPRをmasterへマージし、Cloudflare PagesのGit連携でビルド・配信する。previewはブランチのpushから自動配信する。Pagesの出力は`public`、Hugoは0.166.0、ビルドコマンドは次のとおり。
-
-```sh
-if [ -f themes/shsh/scripts/build-pages.sh ]; then sh themes/shsh/scripts/build-pages.sh; else hugo; fi
-```
-
-`build-pages.sh`は`CF_PAGES_BRANCH`がmasterなら本番、その他ならpreview環境と`CF_PAGES_URL`を指定する。スクリプトがないブランチはHugoで生成する。previewは自身のURLをcanonical・OGP・RSSへ使い、noindex、共有操作無効、スター無効とする。外部埋め込みは表示する。
-
-ローカルでpreview生成を確認する場合は、リポジトリルートから実行する。
-
-```sh
-CF_PAGES_BRANCH=feature CF_PAGES_URL=https://example.shimoju.pages.dev \
-  sh themes/shsh/scripts/build-pages.sh
-```
-
-公開後は存在しないURLの404、`/feed.xml`から`/index.xml`への転送、previewのnoindexをHTTP応答でも確認する。切り戻す場合は、設定とコンテンツを含むコミットまたは配信成果物を単位に復元する。
+執筆・ビルド・配信のコマンドはリポジトリルートの`bin/`に置く。Cloudflare Pagesの設定と配信手順は[サイトのREADME](../../README.md#deploy-to-cloudflare-pages)を参照する。

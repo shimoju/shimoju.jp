@@ -3,4 +3,26 @@
 set -eu
 cd "$(dirname "${0}")/.."
 
+# Cloudflare Pages supplies the branch and deployment URL. Outside Pages,
+# keep Hugo's defaults and allow callers to select an environment explicitly.
+if [ "${CF_PAGES:-}" = 1 ] || [ -n "${CF_PAGES_BRANCH:-}" ]; then
+  : "${CF_PAGES_BRANCH:?CF_PAGES_BRANCH is required}"
+  if [ "$CF_PAGES_BRANCH" = master ]; then
+    environment=production
+    base_url=https://shimoju.jp/
+  else
+    environment=preview
+    : "${CF_PAGES_URL:?CF_PAGES_URL is required for preview}"
+    case "$CF_PAGES_URL" in
+      https://*.shimoju.pages.dev|https://*.shimoju.pages.dev/) ;;
+      *) echo 'Expected this project’s HTTPS Pages preview URL.' >&2; exit 1 ;;
+    esac
+    base_url="${CF_PAGES_URL%/}/"
+  fi
+
+  printf 'Pages build: environment=%s branch=%s baseURL=%s\n' \
+    "$environment" "$CF_PAGES_BRANCH" "$base_url"
+  set -- --environment "$environment" --minify --baseURL "$base_url" "$@"
+fi
+
 exec hugo --cleanDestinationDir "$@"
