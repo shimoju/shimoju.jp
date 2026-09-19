@@ -11,13 +11,5 @@
     "allowImportingTsExtensions": true,
     "types": ["node"]
   },
-  "include": [
-    "scripts/**/*.mjs",
-    "scripts/**/*.ts",
-    "tests/**/*.ts",
-    "tests/**/*.mjs",
-    "assets/ts/**/*.ts",
-    "playwright.config.ts"
-  ],
-  "exclude": ["node_modules", ".cache", "content", "public", "resources"]
+  "include": ["scripts", "tests", "assets/ts", "playwright.config.ts"]
 }

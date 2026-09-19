@@ -1,6 +1,5 @@
 {
   "extends": ["stylelint-config-standard"],
-  "ignoreFiles": ["public/**", "resources/**", "node_modules/**", ".cache/**"],
   "rules": {
     "value-keyword-case": [
       "lower",

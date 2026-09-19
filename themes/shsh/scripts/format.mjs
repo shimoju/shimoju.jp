@@ -5,23 +5,7 @@ import { join } from "node:path";
 import { formatTemplate } from "./format-template.mjs";
 
 const write = process.argv.includes("--write");
-const general = [
-  "scripts",
-  "tests",
-  "assets",
-  "theme.toml",
-  "README.md",
-  "package.json",
-  "pnpm-workspace.yaml",
-  "tsconfig.json",
-  "playwright.config.ts",
-  ".oxfmtrc.json",
-  ".oxlintrc.json",
-  ".prettierrc.json",
-  ".stylelintrc.json",
-  ".htmlvalidate.json",
-].filter((path) => existsSync(path));
-execFileSync("pnpm", ["exec", "oxfmt", write ? "--write" : "--check", ...general], {
+execFileSync("pnpm", ["exec", "oxfmt", write ? "--write" : "--check", "."], {
   stdio: "inherit",
 });
 // Format the CI workflow without touching site content.

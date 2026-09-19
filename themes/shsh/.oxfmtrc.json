@@ -1,14 +1,3 @@
 {
-  "ignorePatterns": [
-    "content/**",
-    "public/**",
-    "resources/**",
-    "node_modules/**",
-    ".cache/**",
-    "test-results/**",
-    "playwright-report/**",
-    "**/layouts/**",
-    "**/*.xml",
-    "pnpm-lock.yaml"
-  ]
+  "ignorePatterns": ["**/layouts/**"]
 }

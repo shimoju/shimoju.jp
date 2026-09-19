@@ -7,6 +7,5 @@
     "typescript/no-floating-promises": "error",
     "typescript/no-misused-promises": "error",
     "typescript/await-thenable": "error"
-  },
-  "ignorePatterns": ["content/**", "public/**", "resources/**", "node_modules/**", ".cache/**"]
+  }
 }
