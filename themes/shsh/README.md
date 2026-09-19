@@ -168,7 +168,3 @@ CF_PAGES_BRANCH=feature CF_PAGES_URL=https://example.shimoju.pages.dev \
 ```
 
 公開後は存在しないURLの404、`/feed.xml`から`/index.xml`への転送、previewのnoindexをHTTP応答でも確認する。切り戻す場合は、設定とコンテンツを含むコミットまたは配信成果物を単位に復元する。
-
-## ライセンス
-
-PaperModから借用したコードのライセンス表示は[MIT全文](licenses/PaperMod-MIT.txt)に保持する。
