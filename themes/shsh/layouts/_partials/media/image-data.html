@@ -52,6 +52,10 @@
     {{- if le $width 1440 }}{{ $widths = $widths | append $width }}{{ end -}}
     {{- $useOriginal := false -}}
     {{- range $widths -}}
+      {{- if and (eq . $width) (not $spec) -}}
+        {{- $useOriginal = true -}}
+        {{- continue -}}
+      {{- end -}}
       {{- $candidate := $resource.Process (printf "resize %dx %s" . $spec) -}}
       {{- if lt (len $candidate.Content) $originalSize -}}
         {{- $srcset = $srcset | append (printf "%s %dw" $candidate.RelPermalink .) -}}

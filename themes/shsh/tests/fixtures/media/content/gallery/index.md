@@ -32,6 +32,8 @@ cover:
 
 ![静止GIF](still.gif)
 
+![静止WebP](still.webp)
+
 ![アニメーションGIF](animated.gif)
 
 ![アニメーションPNG](animated.png)

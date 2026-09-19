@@ -34,13 +34,18 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   ).toEqual([120]);
   expect(
     candidates(
+      await page.getByRole("img", { name: "静止WebP", exact: true }).getAttribute("srcset"),
+    ),
+  ).toEqual([360, 400]);
+  expect(
+    candidates(
       await page.getByRole("img", { name: "パレットのスクリーンショット" }).getAttribute("srcset"),
     ),
   ).toEqual([360, 720, 1080, 2304]);
   expect(
     candidates(await page.getByRole("img", { name: "圧縮済みJPEG" }).getAttribute("srcset")),
   ).toEqual([720]);
-  for (const name of ["パレットのスクリーンショット", "圧縮済みJPEG"]) {
+  for (const name of ["パレットのスクリーンショット", "圧縮済みJPEG", "静止GIF", "静止WebP"]) {
     const img = page.getByRole("img", { name, exact: true });
     expect(await img.getAttribute("srcset")).toContain(
       `${await img.getAttribute("src")} ${await img.getAttribute("width")}w`,

@@ -61,7 +61,15 @@ for (const environment of ["production", "preview"]) {
   }
   assert.ok(webpCandidates > 10);
   assert.match(html, /src="https:\/\/speakerdeck.com\/assets\/embed.js"/);
-  for (const file of ["animated.gif", "animated.png", "animated.webp", "diagram.svg", "demo.mp4"]) {
+  for (const file of [
+    "animated.gif",
+    "animated.png",
+    "animated.webp",
+    "still.gif",
+    "still.webp",
+    "diagram.svg",
+    "demo.mp4",
+  ]) {
     assert.deepEqual(
       readFileSync(`${directory}/gallery/${file}`),
       readFileSync(`${root}/source/content/gallery/${file}`),

@@ -29,6 +29,7 @@ cpSync(`${gallery}/screenshot.png`, `${root}/source/static/images/static.png`);
 // Test assets are generated once in the fixture authoring step; site generation remains Hugo-only.
 cpSync("tests/fixtures/media/assets/small.png", `${gallery}/small.png`);
 cpSync("tests/fixtures/media/assets/still.gif", `${gallery}/still.gif`);
+cpSync("tests/fixtures/media/assets/still.webp", `${gallery}/still.webp`);
 cpSync("tests/fixtures/media/assets/palette.png", `${gallery}/palette.png`);
 cpSync("tests/fixtures/media/assets/optimized.jpg", `${gallery}/optimized.jpg`);
 for (const extension of ["gif", "png", "webp"]) {
