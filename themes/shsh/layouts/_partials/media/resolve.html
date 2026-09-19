@@ -19,7 +19,7 @@
     {{- if not $resource }}{{ $resource = resources.Get $url.Path }}{{ end -}}
   {{- end -}}
   {{- if $resource -}}
-    {{- $src = $resource.RelPermalink -}}
+    {{- $src = ($resource | fingerprint).RelPermalink -}}
   {{- else -}}
     {{- $static = path.Join "static" (strings.TrimPrefix "/" $url.Path) -}}
     {{- if or (not (strings.HasPrefix $static "static/")) (not (fileExists $static)) -}}

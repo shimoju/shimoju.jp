@@ -27,6 +27,11 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   expect(
     candidates(await page.getByRole("img", { name: "小さい透明画像" }).getAttribute("srcset")),
   ).toEqual([200]);
+  const smallSrc = await page.getByRole("img", { name: "小さい透明画像" }).getAttribute("src");
+  await expect(page.getByRole("img", { name: "クエリ付き画像" })).toHaveAttribute(
+    "src",
+    `${smallSrc}?v=1&x=2#sample`,
+  );
   expect(
     candidates(
       await page.getByRole("img", { name: "静止GIF", exact: true }).getAttribute("srcset"),
@@ -82,6 +87,7 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   await expect(page.locator("figcaption")).toHaveText("画面の説明。captionはaltと別。");
   await expect(page.locator("figcaption strong")).toHaveText("captionはaltと別");
   const video = page.locator("video");
+  await expect(video).toHaveAttribute("src", /^\/gallery\/demo\.[a-f0-9]{64}\.mp4$/);
   for (const flag of ["controls", "playsinline"]) await expect(video).toHaveAttribute(flag, "");
   for (const flag of ["muted", "autoplay", "loop"]) await expect(video).not.toHaveAttribute(flag);
   await expect(video).toHaveAttribute("preload", "metadata");

@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { createHash } from "node:crypto";
 import { readFileSync, readdirSync } from "node:fs";
 
 const root = ".cache/metadata";
@@ -170,9 +171,12 @@ test("description, dates and JSON-LD preserve page roles and safe text", async (
 test("SNS images use cover, global assets/static/external defaults or none, never body images", async ({
   page,
 }) => {
+  const digest = createHash("sha256")
+    .update(readFileSync("tests/fixtures/media/assets/small.png"))
+    .digest("hex");
   for (const [variant, expected] of [
     ["production", undefined],
-    ["assets", `${base}default.png`],
+    ["assets", `${base}default.${digest}.png`],
     ["static", `${base}default.png?v=1&x=2`],
     ["external", "https://images.invalid/image.png?a=1&b=2"],
     ["protocol", "https://images.invalid/image.png"],
@@ -182,7 +186,7 @@ test("SNS images use cover, global assets/static/external defaults or none, neve
     expect(home.meta["twitter:image"]).toBe(expected);
     expect(home.meta["twitter:card"]).toBe(expected ? "summary_large_image" : "summary");
     const article = await head(page, variant, "posts/a/index.html");
-    expect(article.meta["og:image"]).toBe(`${base}posts/a/cover.png`);
+    expect(article.meta["og:image"]).toBe(`${base}posts/a/cover.${digest}.png`);
     expect(article.schema[0]?.image).toBe(article.meta["og:image"]);
   }
   expect(

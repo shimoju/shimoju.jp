@@ -16,6 +16,8 @@ cover:
 
 ![小さい透明画像](small.png)
 
+![クエリ付き画像](small.png?v=1&x=2#sample)
+
 ![パレット画像](palette.png)
 
 ![パレットのスクリーンショット](palette-screenshot.png)
