@@ -40,8 +40,10 @@
   {{- $pres := findRE `<pre\b[^>]*>` $wrapped -}}
   {{- range $index, $pre := $pres -}}
     {{- /* Chroma's last pre contains the code; preceding pres contain table line numbers. */ -}}
-    {{- $replacement := $pre | replaceRE `<pre\b` `<pre role="group" aria-label="Code, horizontally scrollable"` -}}
-    {{- if lt $index (sub (len $pres) 1) -}}
+    {{- $replacement := $pre -}}
+    {{- if eq $index (sub (len $pres) 1) -}}
+      {{- $replacement = $pre | replaceRE `<pre\b` `<pre role="group" aria-label="Code, horizontally scrollable"` -}}
+    {{- else -}}
       {{- $replacement = $pre | replaceRE ` tabindex="[^"]*"` "" | replaceRE `<pre\b` `<pre tabindex="-1"` -}}
     {{- end -}}
     {{- $wrapped = replace $wrapped $pre $replacement 1 -}}
