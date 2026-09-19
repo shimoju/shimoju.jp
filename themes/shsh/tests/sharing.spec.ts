@@ -69,34 +69,52 @@ test("failed star download preserves reading and share links and announces failu
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 });
 
-test("preview cannot share or load stars; JS-free production retains ordinary links", async ({
-  browser,
-}) => {
-  for (const javaScriptEnabled of [true, false]) {
-    const context = await browser.newContext({ javaScriptEnabled });
-    const page = await context.newPage();
-    const external: string[] = [];
-    await page.route("https://**/*", (route) => {
-      external.push(route.request().url());
-      return route.abort();
-    });
-    await page.goto(preview + "/document/");
-    await expect(page.locator(".share-icons button:disabled")).toHaveCount(4);
-    await expect(page.locator(".share-icons a, [data-hatena-star-container]")).toHaveCount(0);
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
-      "content",
-      "noindex,nofollow",
-    );
-    expect(external).toEqual([]);
-    if (!javaScriptEnabled) {
-      await page.goto(production + "/document/");
-      await expect(page.locator(".share-icons a")).toHaveCount(4);
-      await expect(page.locator("noscript")).toBeVisible();
-      expect(await page.locator("noscript").textContent()).toBe("Hatena Star requires JavaScript.");
-      await expect(page.locator(".prose")).toHaveText("本文を読む。");
+for (const javaScriptEnabled of [true, false]) {
+  test.describe(`preview with JavaScript ${javaScriptEnabled ? "enabled" : "disabled"}`, () => {
+    test.use({ javaScriptEnabled });
+
+    test("cannot share or load stars", async ({ page }) => {
+      const external: string[] = [];
+      await page.route("https://**/*", (route) => {
+        external.push(route.request().url());
+        return route.abort();
+      });
+      await page.goto(preview + "/document/");
+      await expect(page.locator(".share-icons button:disabled")).toHaveCount(4);
+      await expect(page.locator(".share-icons a, [data-hatena-star-container]")).toHaveCount(0);
+      await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+        "content",
+        "noindex,nofollow",
+      );
       expect(external).toEqual([]);
-    }
-    await context.close();
+    });
+  });
+}
+
+test.describe("production without JavaScript", () => {
+  test.use({ javaScriptEnabled: false });
+
+  for (const path of ["/document/", "/posts/article/"]) {
+    test(`${path} retains reading and share links without stars or notices`, async ({ page }) => {
+      const external: string[] = [];
+      await page.route("https://**/*", (route) => {
+        external.push(route.request().url());
+        return route.abort();
+      });
+      await page.goto(production + path);
+
+      await expect(page.locator(".prose")).toBeVisible();
+      await expect(page.locator(".prose")).toHaveText("本文を読む。");
+      const links = page.getByRole("group", { name: "Share this article" }).getByRole("link");
+      await expect(links).toHaveCount(4);
+      for (const link of await links.all()) {
+        await expect(link).toBeVisible();
+        await expect(link).toHaveAttribute("href", /^https:\/\//);
+      }
+      await expect(page.locator(".star-widget")).toBeHidden();
+      await expect(page.locator(".widget-status")).toBeHidden();
+      expect(external).toEqual([]);
+    });
   }
 });
 
