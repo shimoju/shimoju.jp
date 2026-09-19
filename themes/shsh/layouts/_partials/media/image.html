@@ -6,5 +6,19 @@
 {{- end -}}
 {{- $data := partial "media/image-data.html" . -}}
 {{- $sizes := "(min-width: 768px) 720px, (min-width: 640px) calc(100vw - 48px), (hover: hover) calc(100vw - 48px), calc(100vw - 32px)" -}}
-{{- partial "media/img.html" (merge . (dict "data" $data "sizes" $sizes)) -}}
+<img
+  src="{{ $data.src }}"
+  alt="{{ .alt | default "" }}"
+  loading="{{ .loading | default "lazy" }}"
+  decoding="async"
+  {{ with .title }}title="{{ . }}"{{ end }}
+  {{ with $data.width }}
+    width="{{ . }}" style="--image-width:
+    {{ . }}px;{{ with $data.height }}
+      --image-ratio: {{ $data.width }} / {{ . }};
+    {{ end }}"
+  {{ end }}
+  {{ with $data.height }}height="{{ . }}"{{ end }}
+  {{ with $data.srcset }}srcset="{{ . }}" sizes="{{ $sizes }}"{{ end }}
+/>
 {{- /* Preserve adjacent inline text and links. */ -}}

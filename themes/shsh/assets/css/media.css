@@ -14,10 +14,6 @@ video {
   margin: 0;
 }
 
-.entry-cover img {
-  display: block;
-}
-
 .entry-cover img,
 .article-cover img,
 .prose img,
@@ -25,20 +21,18 @@ video {
   border-radius: var(--radius-large);
 }
 
+.entry-cover img,
+.article-cover img,
+.prose figure img {
+  display: block;
+}
+
 .article-cover {
   margin: var(--space-cover) 0 0;
 }
 
-.article-cover img {
-  display: block;
-}
-
 .prose figure {
   margin: var(--space-block) 0;
-}
-
-.prose figure img {
-  display: block;
 }
 
 .prose video {
