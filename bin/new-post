@@ -6,4 +6,4 @@ cd "$(dirname "${0}")/.."
 date="$(date '+%Y/%m/%d')"
 slug="${1}"
 
-hugo new "posts/${date}/${slug}/index.md"
+exec hugo new "posts/${date}/${slug}/index.md"
