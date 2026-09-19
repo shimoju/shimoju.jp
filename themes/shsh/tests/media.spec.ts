@@ -15,10 +15,10 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   const terminal = page.getByRole("img", { name: "ターミナルの文字", exact: true });
   const candidates = (value: string | null) =>
     value?.split(", ").map((s) => Number(s.split(" ")[1]?.replace("w", "")));
-  expect(candidates(await terminal.getAttribute("srcset"))).toEqual([360, 720, 1080, 1200]);
+  expect(candidates(await terminal.getAttribute("srcset"))).toEqual([360, 720, 1200]);
   expect(
     candidates(await page.getByRole("img", { name: "実写真", exact: true }).getAttribute("srcset")),
-  ).toEqual([360, 720, 1080, 1440]);
+  ).toEqual([360, 720, 1080, 1440, 1500]);
   expect(
     candidates(await page.getByRole("img", { name: "小さい透明画像" }).getAttribute("srcset")),
   ).toEqual([200]);
@@ -27,6 +27,15 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
       await page.getByRole("img", { name: "静止GIF", exact: true }).getAttribute("srcset"),
     ),
   ).toEqual([120]);
+  expect(
+    candidates(
+      await page.getByRole("img", { name: "パレットのスクリーンショット" }).getAttribute("srcset"),
+    ),
+  ).toEqual([360, 720, 1080, 2304]);
+  expect(
+    candidates(await page.getByRole("img", { name: "圧縮済みJPEG" }).getAttribute("srcset")),
+  ).toEqual([720]);
+  await expect(page.locator("picture")).toHaveCount(0);
   await expect(terminal).toHaveAttribute("width", "1200");
   await expect(terminal).toHaveAttribute("height", "630");
   await expect(terminal).toHaveAttribute("loading", "lazy");
@@ -40,6 +49,7 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   );
   await expect(page.locator(".article-cover img")).toHaveAttribute("loading", "eager");
   for (const name of [
+    "グレースケール画像",
     "アニメーションGIF",
     "アニメーションPNG",
     "アニメーションWebP",
@@ -85,67 +95,43 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   }
 });
 
-test("WebP preserves PNG pixels and transparency at each generated width", async ({ page }) => {
+test("direct lossless resizing preserves palette midtones and transparency", async ({ page }) => {
   await page.goto(`${base}/gallery/`);
-  const result = await page.evaluate(async () => {
-    const pictures = [...document.querySelectorAll<HTMLPictureElement>(".prose picture")];
-    const results = [];
-    for (const picture of pictures) {
-      const img = picture.querySelector("img")!;
-      if (!img.src.endsWith(".png")) continue;
-      const pngs = img.srcset.split(", ").map((value) => value.split(" ")[0]!);
-      const webps = picture
-        .querySelector("source")!
-        .srcset.split(", ")
-        .map((value) => value.split(" ")[0]!);
-      for (const [index, png] of pngs.entries()) {
-        const pixels = async (src: string) => {
-          const bitmap = new Image();
-          bitmap.src = src;
-          await bitmap.decode();
-          const canvas = document.createElement("canvas");
-          canvas.width = bitmap.naturalWidth;
-          canvas.height = bitmap.naturalHeight;
-          const context = canvas.getContext("2d")!;
-          context.drawImage(bitmap, 0, 0);
-          return {
-            width: canvas.width,
-            height: canvas.height,
-            data: context.getImageData(0, 0, canvas.width, canvas.height).data,
-          };
-        };
-        const a = await pixels(png);
-        const b = await pixels(webps[index]!);
-        results.push({
-          png,
-          width: a.width,
-          // Image decoders may round premultiplied RGB differently for partial alpha.
-          // Require exact opaque RGB and alpha; at most one 8-bit step after compositing.
-          opaqueEqual: a.data.every((v, i) => a.data[i - (i % 4) + 3] !== 255 || v === b.data[i]),
-          alphaEqual: a.data.every((v, i) => i % 4 !== 3 || v === b.data[i]),
-          maxCompositeDelta: a.data.reduce(
-            (m, v, i) =>
-              Math.max(
-                m,
-                Math.abs(
-                  Math.round((v * a.data[i - (i % 4) + 3]!) / 255) -
-                    Math.round((b.data[i]! * b.data[i - (i % 4) + 3]!) / 255),
-                ),
-              ),
-            0,
+  const img = page.getByRole("img", { name: "パレット画像", exact: true });
+  const result = await img.evaluate(async (element: HTMLImageElement) => {
+    // The 720px indexed PNG alternates red/blue columns. A 2:1 box resize must
+    // produce purple, absent from the source palette, on both opaque and half-alpha halves.
+    const bitmap = new Image();
+    bitmap.src = element.srcset.split(", ")[0]!.split(" ")[0]!;
+    await bitmap.decode();
+    const canvas = document.createElement("canvas");
+    canvas.width = bitmap.naturalWidth;
+    canvas.height = bitmap.naturalHeight;
+    const context = canvas.getContext("2d")!;
+    context.drawImage(bitmap, 0, 0);
+    const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
+    let alphaEqual = true;
+    let maxCompositeDelta = 0;
+    for (let i = 0; i < pixels.length; i += 4) {
+      const alpha = (i / 4) % canvas.width < canvas.width / 2 ? 255 : 128;
+      alphaEqual &&= pixels[i + 3] === alpha;
+      for (const [channel, expected] of [128, 0, 128].entries()) {
+        maxCompositeDelta = Math.max(
+          maxCompositeDelta,
+          Math.abs(
+            Math.round((pixels[i + channel]! * pixels[i + 3]!) / 255) -
+              Math.round((expected * alpha) / 255),
           ),
-          sameDimensions: a.width === b.width && a.height === b.height,
-        });
+        );
       }
     }
-    return results;
+    return { width: canvas.width, height: canvas.height, alphaEqual, maxCompositeDelta };
   });
-  expect(result.length).toBeGreaterThan(10);
-  expect(
-    result.filter(
-      (r) => !r.opaqueEqual || !r.alphaEqual || !r.sameDimensions || r.maxCompositeDelta > 1,
-    ),
-  ).toEqual([]);
+  expect(result.width).toBe(360);
+  expect(result.height).toBe(180);
+  expect(result.alphaEqual).toBe(true);
+  // Allow one 8-bit step for decoder rounding of premultiplied RGB.
+  expect(result.maxCompositeDelta).toBeLessThanOrEqual(1);
 });
 
 test("media preserves aspect ratios, small images stay small, both colors remain accessible", async ({
@@ -197,9 +183,13 @@ test("media preserves aspect ratios, small images stay small, both colors remain
 test("DPR chooses fitting candidates and JavaScript-free media remain usable", async ({
   browser,
 }) => {
-  for (const deviceScaleFactor of [1, 2]) {
+  for (const [width, deviceScaleFactor] of [
+    [400, 1],
+    [400, 2],
+    [1280, 2],
+  ] as const) {
     const context = await browser.newContext({
-      viewport: { width: 400, height: 800 },
+      viewport: { width, height: 800 },
       deviceScaleFactor,
       javaScriptEnabled: false,
     });
@@ -210,15 +200,16 @@ test("DPR chooses fitting candidates and JavaScript-free media remain usable", a
     await expect(cover).toBeVisible();
     const source = await cover.evaluate((img: HTMLImageElement) => ({
       current: img.currentSrc,
-      candidates: img.parentElement!.querySelector("source")!.srcset,
+      candidates: img.srcset,
     }));
-    expect(source.current).toContain(".webp");
+    if (width === 1280) expect(source.current).toContain("/screenshot.png");
+    else if (deviceScaleFactor === 1) expect(source.current).toContain(".webp");
     const chosen = source.candidates
       .split(", ")
       .find((candidate) => source.current.endsWith(candidate.split(" ")[0]!))!;
     const chosenWidth = Number(chosen.split(" ")[1]!.replace("w", ""));
-    expect(chosenWidth).toBeGreaterThanOrEqual(352 * deviceScaleFactor);
-    expect(chosenWidth).toBeLessThanOrEqual(deviceScaleFactor === 1 ? 720 : 1080);
+    expect(chosenWidth).toBeGreaterThanOrEqual(width === 1280 ? 1200 : 352 * deviceScaleFactor);
+    expect(chosenWidth).toBeLessThanOrEqual(deviceScaleFactor === 1 ? 720 : 1200);
     await expect(page.locator("video")).toHaveAttribute("controls", "");
     await context.close();
   }

@@ -19,14 +19,27 @@ for (const environment of ["production", "preview"]) {
   // Neither the build nor media templates fetch the deliberately unreachable external image.
   const html = readFileSync(`${directory}/gallery/index.html`, "utf8");
   assert.match(html, /https:\/\/external.invalid\/image.png/);
-  // Verify actual WebP chunk types, independently of the requested Hugo encoder options.
-  for (const picture of html.matchAll(/<picture>([\s\S]*?)<\/picture>/g)) {
-    const markup = picture[1]!;
-    const png = /src="[^"]+\.png"/.test(markup);
-    const source = markup.match(/<source[^>]+srcset="([^"]+)"/)?.[1];
-    assert.ok(source);
-    for (const candidate of source.split(", ")) {
-      const buffer = readFileSync(directory + candidate.split(" ")[0]!);
+  // Check candidate sizes and actual WebP chunk types, not just encoder options.
+  assert.doesNotMatch(html, /<picture\b/);
+  let webpCandidates = 0;
+  for (const [markup] of html.matchAll(/<img\b[^>]*>/g)) {
+    const src = markup.match(/\bsrc="([^"]+)"/)?.[1];
+    const srcset = markup.match(/\bsrcset="([^"]+)"/)?.[1];
+    if (!srcset) continue;
+    assert.ok(src);
+    const original = readFileSync(directory + src);
+    const width = Number(markup.match(/\bwidth="(\d+)"/)?.[1]);
+    const candidates = srcset.split(", ");
+    assert.equal(candidates.at(-1), `${src} ${width}w`);
+    for (const candidate of candidates.slice(0, -1)) {
+      const [url, descriptor] = candidate.split(" ");
+      assert.ok(url && descriptor);
+      assert.ok(Number(descriptor.slice(0, -1)) < width, candidate);
+      const buffer = readFileSync(directory + url);
+      assert.ok(buffer.length < original.length, candidate);
+      if (!/\.(png|jpg|jpeg)$/.test(src)) continue;
+      assert.ok(url.endsWith(".webp"), candidate);
+      webpCandidates++;
       assert.equal(buffer.toString("ascii", 0, 4), "RIFF");
       let offset = 12;
       const chunks = [];
@@ -35,9 +48,10 @@ for (const environment of ["production", "preview"]) {
         const size = buffer.readUInt32LE(offset + 4);
         offset += 8 + size + (size % 2);
       }
-      assert.ok(chunks.includes(png ? "VP8L" : "VP8 "), candidate);
+      assert.ok(chunks.includes(src.endsWith(".png") ? "VP8L" : "VP8 "), candidate);
     }
   }
+  assert.ok(webpCandidates > 10);
   assert.match(html, /src="https:\/\/speakerdeck.com\/assets\/embed.js"/);
   for (const file of ["animated.gif", "animated.png", "animated.webp", "diagram.svg", "demo.mp4"]) {
     assert.deepEqual(

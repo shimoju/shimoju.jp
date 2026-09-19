@@ -15,12 +15,22 @@ cpSync(
   `${gallery}/photo.jpg`,
 );
 cpSync(`${original}/neovim-cheatsheet.png`, `${gallery}/tall.png`);
+cpSync(
+  "../../content/posts/2025/06/05/building-my-first-gaming-pc/frontier-pc-sale.png",
+  `${gallery}/palette-screenshot.png`,
+);
+cpSync(
+  "../../content/posts/2024/01/07/add-bluesky-icon-to-hugo-papermod/hugo-papermod-social-icons.png",
+  `${gallery}/grayscale.png`,
+);
 cpSync(`${original}/zsh-prompt-demo.mp4`, `${gallery}/demo.mp4`);
 cpSync(`${gallery}/screenshot.png`, `${root}/source/assets/images/shared.png`);
 cpSync(`${gallery}/screenshot.png`, `${root}/source/static/images/static.png`);
 // Test assets are generated once in the fixture authoring step; site generation remains Hugo-only.
 cpSync("tests/fixtures/media/assets/small.png", `${gallery}/small.png`);
 cpSync("tests/fixtures/media/assets/still.gif", `${gallery}/still.gif`);
+cpSync("tests/fixtures/media/assets/palette.png", `${gallery}/palette.png`);
+cpSync("tests/fixtures/media/assets/optimized.jpg", `${gallery}/optimized.jpg`);
 for (const extension of ["gif", "png", "webp"]) {
   cpSync(`tests/fixtures/media/assets/animated.${extension}`, `${gallery}/animated.${extension}`);
   cpSync(

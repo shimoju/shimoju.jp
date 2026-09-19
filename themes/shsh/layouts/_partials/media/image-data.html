@@ -1,6 +1,6 @@
 {{- $media := partial "media/resolve.html" . -}}
 {{- $width := 0 -}}{{- $height := 0 -}}
-{{- $srcset := slice -}}{{- $webp := slice -}}
+{{- $srcset := slice -}}
 {{- $resource := $media.resource -}}
 {{- $processable := false -}}
 {{- $svg := "" -}}
@@ -13,11 +13,16 @@
     {{ $svg = $resource.Content }}
   {{ end -}}
   {{- $animated := false -}}
+  {{- $grayscale := false -}}
   {{- if and (eq $type "gif") (ge (len $resource.Content) 13) }}
     {{ $animated = partial "media/gif-animated.html" (dict "bytes" $resource.Content) }}
   {{ end -}}
   {{- if eq $type "png" }}
     {{ $animated = partial "media/png-animated.html" (dict "bytes" $resource.Content "offset" 8) }}
+    {{- /* Hugo's WebP encoder changes grayscale levels, even with lossless compression. */ -}}
+    {{- if ge (len $resource.Content) 26 }}
+      {{ $grayscale = in (slice 0 4) (int (index $resource.Content 25)) }}
+    {{ end -}}
   {{ end -}}
   {{- if and (eq $type "webp") (ge (len $resource.Content) 30) -}}
     {{- if eq (printf "%c%c%c%c" (index $resource.Content 12) (index $resource.Content 13) (index $resource.Content 14) (index $resource.Content 15)) "VP8X" -}}
@@ -34,36 +39,21 @@
   {{- if and (not $width) (reflect.IsImageResourceWithMeta $resource) -}}
     {{- $width = $resource.Width -}}{{- $height = $resource.Height -}}
   {{- end -}}
-  {{- $processable = and (not $animated) (reflect.IsImageResourceProcessable $resource) -}}
+  {{- $processable = and (not $animated) (not $grayscale) (reflect.IsImageResourceProcessable $resource) -}}
   {{- if $processable -}}
-    {{- $widths := slice -}}
+    {{- $spec := "" -}}
+    {{- if eq $type "png" }}{{ $spec = "webp lossless" }}{{ end -}}
+    {{- if eq $type "jpeg" }}{{ $spec = "webp lossy q80" }}{{ end -}}
+    {{- $originalSize := len $resource.Content -}}
     {{- range slice 360 720 1080 1440 -}}
-      {{- if le . $width }}{{ $widths = $widths | append . }}{{ end -}}
-    {{- end -}}
-    {{- if and (lt $width 1440) (not (in $widths $width)) }}
-      {{ $widths = $widths | append $width }}
-    {{ end -}}
-    {{- range $widths -}}
-      {{- $fallback := $resource -}}
-      {{- if ne . $width }}
-        {{ $fallback = $resource.Resize (printf "%dx" .) }}
-      {{ end -}}
-      {{- $srcset = $srcset | append (printf "%s %dw" $fallback.RelPermalink .) -}}
-      {{- if in (slice "png" "jpeg") $type -}}
-        {{- $spec := "webp lossy q80" -}}
-        {{- if eq $type "png" }}{{ $spec = "webp lossless" }}{{ end -}}
-        {{- if ne . $width }}
-          {{ $spec = printf "resize %dx %s" . $spec }}
-        {{ end -}}
-        {{- $converted := false -}}
-        {{- if eq $type "png" }}
-          {{ $converted = $fallback.Process "webp lossless" }}
-        {{- else -}}
-          {{ $converted = $resource.Process $spec }}
-        {{ end -}}
-        {{- $webp = $webp | append (printf "%s %dw" $converted.RelPermalink .) -}}
+      {{- if lt . $width -}}
+        {{- $candidate := $resource.Process (printf "resize %dx %s" . $spec) -}}
+        {{- if lt (len $candidate.Content) $originalSize -}}
+          {{- $srcset = $srcset | append (printf "%s %dw" $candidate.RelPermalink .) -}}
+        {{- end -}}
       {{- end -}}
     {{- end -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $media.src $width) -}}
   {{- end -}}
 {{- else if $media.static -}}
   {{- if eq (lower (path.Ext $media.static)) ".svg" }}
@@ -88,4 +78,4 @@
 {{- end -}}
 {{- if not $width }}{{ $width = int (.width | default 0) }}{{ end -}}
 {{- if not $height }}{{ $height = int (.height | default 0) }}{{ end -}}
-{{- return (merge $media (dict "width" $width "height" $height "srcset" (delimit $srcset ", ") "webp" (delimit $webp ", "))) -}}
+{{- return (merge $media (dict "width" $width "height" $height "srcset" (delimit $srcset ", "))) -}}

@@ -56,12 +56,6 @@ video {
   margin-top: var(--description-gap);
 }
 
-.entry-cover picture,
-.article-cover picture,
-.prose figure picture {
-  display: block;
-}
-
 .speaker-deck {
   width: 100%;
   aspect-ratio: var(--embed-ratio);

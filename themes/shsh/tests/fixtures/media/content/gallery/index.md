@@ -16,6 +16,14 @@ cover:
 
 ![小さい透明画像](small.png)
 
+![パレット画像](palette.png)
+
+![パレットのスクリーンショット](palette-screenshot.png)
+
+![グレースケール画像](grayscale.png)
+
+![圧縮済みJPEG](optimized.jpg)
+
 ![Assets画像](images/shared.png)
 
 ![Static画像](/images/static.png)
