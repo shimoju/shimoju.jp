@@ -21,9 +21,9 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   ).toEqual([360, 720, 1080, 1440]);
   const photo = page.getByRole("img", { name: "実写真", exact: true });
   expect(await photo.getAttribute("srcset")).not.toContain(await photo.getAttribute("src"));
-  expect(await terminal.getAttribute("srcset")).toContain(
-    `${await terminal.getAttribute("src")} 1200w`,
-  );
+  // Rejecting the 1080px resize must not discard the cheaper same-width WebP.
+  expect(await terminal.getAttribute("srcset")).not.toContain(await terminal.getAttribute("src"));
+  expect(await terminal.getAttribute("srcset")).toMatch(/\.webp 1200w$/);
   expect(
     candidates(await page.getByRole("img", { name: "小さい透明画像" }).getAttribute("srcset")),
   ).toEqual([200]);
@@ -40,6 +40,12 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   expect(
     candidates(await page.getByRole("img", { name: "圧縮済みJPEG" }).getAttribute("srcset")),
   ).toEqual([720]);
+  for (const name of ["パレットのスクリーンショット", "圧縮済みJPEG"]) {
+    const img = page.getByRole("img", { name, exact: true });
+    expect(await img.getAttribute("srcset")).toContain(
+      `${await img.getAttribute("src")} ${await img.getAttribute("width")}w`,
+    );
+  }
   await expect(page.locator("picture")).toHaveCount(0);
   await expect(terminal).toHaveAttribute("width", "1200");
   await expect(terminal).toHaveAttribute("height", "630");
@@ -208,8 +214,7 @@ test("DPR chooses fitting candidates and JavaScript-free media remain usable", a
       current: img.currentSrc,
       candidates: img.srcset,
     }));
-    if (width === 1280) expect(source.current).toContain("/screenshot.png");
-    else if (deviceScaleFactor === 1) expect(source.current).toContain(".webp");
+    expect(source.current).toContain(".webp");
     const chosen = source.candidates
       .split(", ")
       .find((candidate) => source.current.endsWith(candidate.split(" ")[0]!))!;
