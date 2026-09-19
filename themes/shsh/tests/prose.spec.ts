@@ -15,6 +15,24 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
+test("code tokens follow both palettes without site highlighting configuration", async ({
+  page,
+}) => {
+  await page.emulateMedia({ colorScheme: "light" });
+  await page.goto("/specimen/");
+  const blocks = page.locator(".code-block");
+  await expect(blocks).toHaveCount(5);
+  await expect(blocks.locator("pre:not(.chroma), [style]")).toHaveCount(0);
+  const code = blocks.first();
+  const string = code.locator(".s2");
+  await expect(string).toHaveText('"Hello & <world>"');
+  await expect(code.locator("pre")).toHaveCSS("background-color", "rgb(239, 241, 245)");
+  await expect(string).toHaveCSS("color", "rgb(64, 160, 43)");
+  await page.getByRole("button", { name: "Switch to dark mode" }).click();
+  await expect(code.locator("pre")).toHaveCSS("background-color", "rgb(30, 30, 46)");
+  await expect(string).toHaveCSS("color", "rgb(166, 227, 161)");
+});
+
 test("copy preserves code with Japanese, inline/table numbers, unknown language and no label", async ({
   page,
 }) => {

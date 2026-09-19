@@ -51,7 +51,6 @@ const config = {
   pagination: { pagerSize: 2 },
   permalinks: { posts: "/:year/:month/:day/:slugorcontentbasename/" },
   markup: {
-    highlight: { noClasses: false },
     goldmark: {
       renderer: { unsafe: false },
       parser: { wrapStandAloneImageWithinParagraph: false },

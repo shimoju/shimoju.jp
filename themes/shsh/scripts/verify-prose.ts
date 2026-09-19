@@ -65,6 +65,32 @@ for (const name of ["real", "specimen"]) {
   const report = await validator.validateString(html(name));
   assert.ok(report.valid, JSON.stringify(report.results.map((entry) => entry.messages)));
 }
+// Palette switching needs classes, regardless of the site's highlighting default.
+// The specimen covers known/unknown/absent languages, inline/table line numbers and emphasis.
+const codeBlocks = (source: string) =>
+  [...source.matchAll(/<pre\b[^>]*>[\s\S]*?<\/pre>/g)].map((m) => m[0]);
+const defaultCode = codeBlocks(html("specimen"));
+assert.equal(defaultCode.length, 6); // Five blocks; table line numbers use a separate pre.
+for (const block of defaultCode) {
+  assert.match(block, /<pre\b[^>]*class="chroma"/);
+  assert.doesNotMatch(block, /\sstyle=/);
+}
+assert.match(defaultCode[0]!, /<span class="s2">/); // Ruby tokens must actually be highlighted.
+for (const noClasses of [true, false]) {
+  writeFileSync(
+    `${root}/hugo.json`,
+    JSON.stringify({ ...config, markup: { highlight: { noClasses } } }),
+  );
+  const destination = `highlight-${noClasses}`;
+  result = build(destination);
+  assert.equal(result.status, 0, result.stdout + result.stderr);
+  assert.deepEqual(
+    codeBlocks(readFileSync(`${root}/${destination}/specimen/index.html`, "utf8")),
+    defaultCode,
+    `Site noClasses=${noClasses} must not change the theme's code rendering`,
+  );
+}
+writeFileSync(`${root}/hugo.json`, JSON.stringify(config));
 // Confirm legal Hugo footnote IDs while retaining errors for empty/whitespace IDs.
 for (const id of ["", "a b"]) {
   const report = await validator.validateString(`<div id="${id}"></div>`);
@@ -102,5 +128,5 @@ for (const name of ["real", "specimen"])
     headings(readFileSync(`${root}/native/${name}/index.html`, "utf8")),
   );
 console.log(
-  "Prose: date fallback/day boundaries/visibility/types, legal footnote IDs, full real article HTML and native heading IDs passed.",
+  "Prose: date fallback/day boundaries/visibility/types, class-based code with default/true/false noClasses, legal footnote IDs, full real article HTML and native heading IDs passed.",
 );

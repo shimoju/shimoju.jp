@@ -11,8 +11,6 @@ summaryLength = 140
 pagerSize = 2
 [params.author]
 name = 'Example author'
-[markup.highlight]
-noClasses = false
 [markup.goldmark.parser.attribute]
 block = true
 

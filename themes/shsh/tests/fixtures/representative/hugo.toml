@@ -9,8 +9,6 @@ hasCJKLanguage = true
 summaryLength = 140
 [pagination]
 pagerSize = 2
-[markup.highlight]
-noClasses = false
 [params.author]
 name = 'Example author'
 [[params.socialLinks]]

@@ -91,6 +91,12 @@ for (const environment of ["production", "preview"])
                 code: [...(prose?.querySelectorAll("pre > code") ?? [])].map(
                   (e) => e.textContent ?? "",
                 ),
+                codeStylesValid: [...(prose?.querySelectorAll("pre") ?? [])].every(
+                  (e) =>
+                    e.classList.contains("chroma") &&
+                    !e.matches("[style]") &&
+                    !e.querySelector("[style]"),
+                ),
                 summaries: [...doc.querySelectorAll(".post-entry")].map((e) => ({
                   url: absolute(e.querySelector(".entry-link")!.getAttribute("href")!),
                   text: e.querySelector(".entry-summary")?.textContent ?? "",
@@ -184,6 +190,7 @@ for (const environment of ["production", "preview"])
       fragmentsChecked = 0,
       imagesChecked = 0;
     for (const [path, record] of Object.entries(records)) {
+      check(record.codeStylesValid, `${path}: code uses classes for theme palettes`);
       for (const ref of record.references) {
         const url = new URL(ref);
         if (![base, "https://shimoju.jp"].includes(url.origin)) continue;

@@ -46,7 +46,6 @@ const config = JSON.parse(
       renderer?: { unsafe?: boolean };
       parser: { wrapstandaloneimagewithinparagraph: boolean };
     };
-    highlight: { noclasses: boolean };
   };
   params: {
     author: { name: string };
@@ -63,7 +62,6 @@ assert.deepEqual(config.mainsections, ["posts"]);
 assert.equal(config.timezone, "Asia/Tokyo");
 assert.equal(config.markup.goldmark.renderer?.unsafe ?? false, false);
 assert.equal(config.markup.goldmark.parser.wrapstandaloneimagewithinparagraph ?? false, false);
-assert.equal(config.markup.highlight.noclasses ?? false, false);
 assert.equal(config.enablerobotstxt, true);
 assert.equal(config.pagination.pagersize, 10);
 assert.equal(config.params.author.name, "Hiroshi Shimoju");
