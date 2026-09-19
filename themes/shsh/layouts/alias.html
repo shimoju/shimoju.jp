@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale }}">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirect — {{ site.Title }}</title>
+    <link rel="canonical" href="{{ .Permalink }}" />
+    <meta http-equiv="refresh" content="0; url={{ .Permalink }}" />
+    {{ if ne hugo.Environment "production" }}
+      <meta name="robots" content="noindex,nofollow" />
+    {{ end }}
+  </head>
+  <body></body>
+</html>

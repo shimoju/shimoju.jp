@@ -1,0 +1,14 @@
+{{- /* Params.date includes Hugo's fallback. Inspect authored front matter separately. */ -}}
+{{- $front := dict -}}
+{{- with .File -}}
+  {{- $source := readFile .Filename -}}
+  {{- $header := strings.TrimSpace (strings.TrimSuffix $.RawContent $source) -}}
+  {{- if strings.HasPrefix $header "---" -}}
+    {{- $front = strings.TrimSpace (strings.TrimSuffix "---" (strings.TrimPrefix "---" $header)) | transform.Unmarshal (dict "format" "yaml") -}}
+  {{- else if strings.HasPrefix $header "+++" -}}
+    {{- $front = strings.TrimSpace (strings.TrimSuffix "+++" (strings.TrimPrefix "+++" $header)) | transform.Unmarshal (dict "format" "toml") -}}
+  {{- else if strings.HasPrefix $header "{" -}}
+    {{- $front = $header | transform.Unmarshal (dict "format" "json") -}}
+  {{- end -}}
+{{- end -}}
+{{- return $front -}}

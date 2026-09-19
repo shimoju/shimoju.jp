@@ -1,0 +1,95 @@
+{{- $media := partial "media/resolve.html" . -}}
+{{- $width := 0 -}}{{- $height := 0 -}}
+{{- $srcset := slice -}}
+{{- $resource := $media.resource -}}
+{{- $processable := false -}}
+{{- $svg := "" -}}
+{{- if $resource -}}
+  {{- if not (reflect.IsImageResource $resource) }}
+    {{ errorf "shsh: expected image resource %q" .src }}
+  {{ end -}}
+  {{- $type := $resource.MediaType.SubType -}}
+  {{- if eq (lower (path.Ext $resource.Name)) ".svg" }}
+    {{ $svg = $resource.Content }}
+  {{ end -}}
+  {{- $animated := false -}}
+  {{- $grayscale := false -}}
+  {{- if and (eq $type "gif") (ge (len $resource.Content) 13) }}
+    {{ $animated = partial "media/gif-animated.html" (dict "bytes" $resource.Content) }}
+  {{ end -}}
+  {{- if eq $type "png" }}
+    {{ $animated = partial "media/png-animated.html" (dict "bytes" $resource.Content "offset" 8) }}
+    {{- /* Hugo's WebP encoder changes grayscale levels, even with lossless compression. */ -}}
+    {{- if ge (len $resource.Content) 26 }}
+      {{ $grayscale = in (slice 0 4) (int (index $resource.Content 25)) }}
+    {{ end -}}
+  {{ end -}}
+  {{- if and (eq $type "webp") (ge (len $resource.Content) 30) -}}
+    {{- if eq (printf "%c%c%c%c" (index $resource.Content 12) (index $resource.Content 13) (index $resource.Content 14) (index $resource.Content 15)) "VP8X" -}}
+      {{- $animated = ge (mod (int (index $resource.Content 20)) 4) 2 -}}
+      {{- if $animated -}}
+        {{- $width = add 1 (int (index $resource.Content 24)) (mul (int (index $resource.Content 25)) 256) (mul (int (index $resource.Content 26)) 65536) -}}
+        {{- $height = add 1 (int (index $resource.Content 27)) (mul (int (index $resource.Content 28)) 256) (mul (int (index $resource.Content 29)) 65536) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if and (eq $type "avif") (findRE `avis` $resource.Content) }}
+    {{ $animated = true }}
+  {{ end -}}
+  {{- if and (not $width) (reflect.IsImageResourceWithMeta $resource) -}}
+    {{- $width = $resource.Width -}}{{- $height = $resource.Height -}}
+  {{- end -}}
+  {{- $processable = and (not $animated) (not $grayscale) (reflect.IsImageResourceProcessable $resource) -}}
+  {{- if $processable -}}
+    {{- $spec := "" -}}
+    {{- if eq $type "png" }}{{ $spec = "webp lossless" }}{{ end -}}
+    {{- if eq $type "jpeg" }}{{ $spec = "webp lossy q80" }}{{ end -}}
+    {{- $originalSize := len $resource.Content -}}
+    {{- $widths := slice -}}
+    {{- range slice 360 720 1080 1440 -}}
+      {{- if lt . $width }}{{ $widths = $widths | append . }}{{ end -}}
+    {{- end -}}
+    {{- if le $width 1440 }}{{ $widths = $widths | append $width }}{{ end -}}
+    {{- $useOriginal := false -}}
+    {{- range $widths -}}
+      {{- if and (eq . $width) (not $spec) -}}
+        {{- $useOriginal = true -}}
+        {{- continue -}}
+      {{- end -}}
+      {{- $candidate := $resource.Process (printf "resize %dx %s" . $spec) -}}
+      {{- if lt (len $candidate.Content) $originalSize -}}
+        {{- $srcset = $srcset | append (printf "%s %dw" $candidate.RelPermalink .) -}}
+        {{- /* Widths ascend, so an accepted same-width conversion is last and replaces the original. */ -}}
+        {{- if eq . $width }}{{ $useOriginal = false }}{{ end -}}
+      {{- else -}}
+        {{- $useOriginal = true -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if $useOriginal -}}
+      {{- $srcset = $srcset | append (printf "%s %dw" $media.src $width) -}}
+    {{- end -}}
+  {{- end -}}
+{{- else if $media.static -}}
+  {{- if eq (lower (path.Ext $media.static)) ".svg" }}
+    {{ $svg = readFile $media.static }}
+  {{ end -}}
+  {{- if in (slice ".png" ".jpg" ".jpeg" ".gif" ".bmp" ".tif" ".tiff" ".webp" ".avif" ".heic" ".heif") (lower (path.Ext $media.static)) -}}
+    {{- $config := images.Config $media.static -}}
+    {{- $width = $config.Width -}}{{- $height = $config.Height -}}
+  {{- end -}}
+{{- end -}}
+{{- with $svg -}}
+  {{- $dimensions := partial "media/svg-dimensions.html" . -}}
+  {{- $width = $dimensions.width | default 0 -}}{{- $height = $dimensions.height | default 0 -}}
+{{- end -}}
+{{- range $key := slice "width" "height" -}}
+  {{- $value := index $ $key -}}
+  {{- if and (ne $value nil) (ne $value "") -}}
+    {{- if not (findRE `^[1-9][0-9]*$` (printf "%v" $value)) }}
+      {{ errorf "shsh: image %s must be a positive integer" $key }}
+    {{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $width }}{{ $width = int (.width | default 0) }}{{ end -}}
+{{- if not $height }}{{ $height = int (.height | default 0) }}{{ end -}}
+{{- return (merge $media (dict "width" $width "height" $height "srcset" (delimit $srcset ", "))) -}}

@@ -1,0 +1,6 @@
+{{- $path := printf "icons/%s.svg" . -}}
+{{- with resources.Get $path -}}
+  {{- .Content | safeHTML -}}
+{{- else -}}
+  {{- errorf "shsh: unknown icon %q" . -}}
+{{- end -}}

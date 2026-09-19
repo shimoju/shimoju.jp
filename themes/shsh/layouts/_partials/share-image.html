@@ -1,0 +1,24 @@
+{{- $image := "" -}}
+{{- $src := "" -}}
+{{- $global := true -}}
+{{- if isset site.Params "defaultshareimage" -}}
+  {{- $src = site.Params.defaultShareImage -}}
+{{- end -}}
+{{- with .Params.cover -}}
+  {{- if reflect.IsMap . -}}
+    {{- if isset . "image" -}}
+      {{- $src = .image -}}
+      {{- $global = false -}}
+    {{- end -}}
+  {{- else -}}
+    {{- errorf "shsh: cover must be a map" -}}
+  {{- end -}}
+{{- end -}}
+{{- if $src -}}
+  {{- $resolved := partial "media/resolve.html" (dict "src" $src "page" . "global" $global) -}}
+  {{- $image = $resolved.src | absURL -}}
+  {{- if strings.HasPrefix $image "//" -}}
+    {{- $image = printf "%s:%s" (urls.Parse site.BaseURL).Scheme $image -}}
+  {{- end -}}
+{{- end -}}
+{{- return $image -}}

@@ -1,0 +1,58 @@
+{{- $options := dict "noClasses" false -}}
+{{- if not (transform.CanHighlight .Type) -}}
+  {{- $options = dict "type" "text" "noClasses" false -}}
+{{- end -}}
+{{- $result := transform.HighlightCodeBlock . $options -}}
+{{- $filename := .Attributes.filename | default "" -}}
+<div class="code-block">
+  {{- $labels := slice -}}
+  {{- with .Type }}{{ $labels = $labels | append (upper .) }}{{ end -}}
+  {{- with $filename }}{{ $labels = $labels | append . }}{{ end -}}
+  {{- with $labels -}}
+    <span class="code-label" lang="en">{{ delimit . " · " }}</span>
+  {{- end -}}
+  <button
+    class="copy icon-control"
+    type="button"
+    aria-label="Copy code"
+    title="Copy code"
+    lang="en"
+    data-copy-state="idle"
+    hidden
+  >
+    <svg
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      preserveAspectRatio="xMidYMid meet"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <g class="copy-symbol-idle">
+        <rect x="8" y="8" width="14" height="14" rx="2" />
+        <path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4" />
+      </g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6" />
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19" /></g>
+    </svg>
+  </button>
+  {{- $wrapped := $result.Wrapped | replaceRE `<table class="lntable">` `<table class="lntable"><tbody>` | replaceRE `</table>` `</tbody></table>` | replaceRE ` filename="[^"]*"` "" -}}
+  {{- $pres := findRE `<pre\b[^>]*>` $wrapped -}}
+  {{- range $index, $pre := $pres -}}
+    {{- /* Chroma's last pre contains the code; preceding pres contain table line numbers. */ -}}
+    {{- $replacement := $pre -}}
+    {{- if eq $index (sub (len $pres) 1) -}}
+      {{- $replacement = $pre | replaceRE `<pre\b` `<pre role="group" aria-label="Code, horizontally scrollable"` -}}
+    {{- else -}}
+      {{- $replacement = $pre | replaceRE ` tabindex="[^"]*"` "" | replaceRE `<pre\b` `<pre tabindex="-1"` -}}
+    {{- end -}}
+    {{- $wrapped = replace $wrapped $pre $replacement 1 -}}
+  {{- end -}}
+  {{- $wrapped | safeHTML -}}
+  <span
+    class="sr-only copy-feedback"
+    role="status"
+    aria-live="polite"
+    lang="en"
+  ></span>
+</div>

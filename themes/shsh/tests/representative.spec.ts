@@ -1,0 +1,131 @@
+import { test, expect, type Page } from "@playwright/test";
+import { AxeBuilder } from "@axe-core/playwright";
+import { mkdirSync, writeFileSync } from "node:fs";
+
+const base = "http://127.0.0.1:4182";
+const article = "/2026/09/01/development-environment-2026/";
+async function ready(page: Page) {
+  await page.evaluate(async () => {
+    await Promise.all(
+      [...document.images].map(async (img) => {
+        img.loading = "eager";
+        await img.decode();
+      }),
+    );
+  });
+  const video = page.locator("video");
+  if (await video.count())
+    await expect
+      .poll(() => video.evaluate((v: HTMLVideoElement) => v.readyState))
+      .toBeGreaterThanOrEqual(1);
+}
+async function accessibility(page: Page) {
+  const result = await new AxeBuilder({ page }).analyze();
+  for (const violation of result.violations) {
+    expect(violation.id).toBe("color-contrast");
+    for (const node of violation.nodes)
+      for (const target of node.target)
+        expect(
+          await page
+            .locator(String(target))
+            .evaluate((element) => Boolean(element.closest(".chroma"))),
+        ).toBe(true);
+  }
+  return result.violations;
+}
+for (const [name, path] of [
+  ["home", "/"],
+  ["posts", "/posts/"],
+  ["article", article],
+  ["specimen", "/specimen/"],
+] as const)
+  test(`Representative ${name} layout, both widths/colors and text enlargement`, async ({
+    browser,
+    browserName,
+  }) => {
+    test.setTimeout(90000);
+    const evidence: unknown[] = [];
+    for (const [width, height] of [
+      [1440, 1000],
+      [390, 844],
+    ] as const) {
+      const context = await browser.newContext({
+        viewport: { width, height },
+        hasTouch: width === 390,
+      });
+      const page = await context.newPage();
+      // Normal CI never connects to live widgets.
+      await page.route("https://**/*", (route) =>
+        route.fulfill({ contentType: "text/javascript", body: "" }),
+      );
+      const hover = await page.evaluate(() => matchMedia("(hover: hover)").matches);
+      if (browserName === "chromium") expect(hover).toBe(width !== 390);
+      for (const colorScheme of ["light", "dark"] as const) {
+        await page.setViewportSize({ width, height });
+        await page.emulateMedia({ colorScheme });
+        await page.goto(base + path);
+        await ready(page);
+        if (name === "specimen") {
+          const sample = page
+            .locator(".prose > p")
+            .filter({ hasText: "通常の日本語とEnglish 0123に対して" });
+          await expect(sample).not.toContainText("**");
+          await expect(sample.locator("strong")).toHaveText([
+            "重要な日本語とEnglish 0123（strong）",
+            "注目する日本語とEnglish 0123（b）",
+            "強調の中の入れ子の太字",
+            "inline_code",
+          ]);
+          await expect(sample.locator("strong > code")).toHaveText("inline_code");
+          for (const emphasis of await sample.locator("strong, strong > code").all())
+            await expect(emphasis).toHaveCSS("font-weight", "700");
+        }
+        if (name === "specimen" && browserName === "chromium") {
+          mkdirSync(".cache/screens-images", { recursive: true });
+          await page
+            .locator(".prose > p")
+            .filter({ hasText: "通常の日本語とEnglish 0123に対して" })
+            .screenshot({
+              path: `.cache/screens-images/specimen-emphasis-${width}-${colorScheme}.png`,
+            });
+        }
+        const violations = await accessibility(page);
+        expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+          true,
+        );
+        if (browserName === "chromium") {
+          mkdirSync(".cache/screens-images", { recursive: true });
+          await page.screenshot({
+            path: `.cache/screens-images/${name}-${width}-${colorScheme}-shsh.png`,
+            fullPage: true,
+          });
+        }
+        for (const scale of [1.25, 2]) {
+          await page.addStyleTag({ content: `:root { font-size: ${62.5 * scale}%; }` });
+          expect(
+            await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+            `${name} ${width}px ${scale}x`,
+          ).toBe(true);
+          const fontSize = await page
+            .locator(".site-name")
+            .evaluate((e) => parseFloat(getComputedStyle(e).fontSize));
+          expect(Math.abs(fontSize - 32.827 * scale)).toBeLessThan(0.06);
+        }
+        evidence.push({
+          name,
+          width,
+          height,
+          colorScheme,
+          hasTouch: width === 390,
+          hover,
+          violations,
+        });
+      }
+      await context.close();
+    }
+    if (browserName === "chromium")
+      writeFileSync(
+        `.cache/screens-images/${name}-evidence.json`,
+        JSON.stringify(evidence, null, 2),
+      );
+  });

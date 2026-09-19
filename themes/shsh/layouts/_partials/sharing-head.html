@@ -1,0 +1,13 @@
+{{- $config := partialCached "sharing-config.html" . -}}
+{{- with $config.starAuthor }}
+  <link rel="author" href="https://www.hatena.ne.jp/{{ . | urlquery }}/" />
+{{ end -}}
+{{- if and .IsPage $config.starEnabled (eq hugo.Environment "production") -}}
+  {{- $script := resources.Get "ts/sharing.ts" | js.Build (dict "targetPath" "js/sharing.js" "target" "es2022" "minify" true "sourceMap" "none") | fingerprint -}}
+  <script
+    defer
+    src="{{ $script.RelPermalink }}"
+    integrity="{{ $script.Data.Integrity }}"
+    crossorigin="anonymous"
+  ></script>
+{{- end -}}

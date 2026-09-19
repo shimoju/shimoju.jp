@@ -1,0 +1,242 @@
+[
+  {
+    "name": "home",
+    "title": "Home",
+    "variant": "standard",
+    "path": "/"
+  },
+  {
+    "name": "home-2",
+    "title": "Home",
+    "variant": "standard",
+    "path": "/page/2/"
+  },
+  {
+    "name": "home-3",
+    "title": "Home",
+    "variant": "standard",
+    "path": "/page/3/"
+  },
+  {
+    "name": "posts",
+    "title": "Posts",
+    "variant": "standard",
+    "path": "/posts/"
+  },
+  {
+    "name": "posts-2",
+    "title": "Posts",
+    "variant": "standard",
+    "path": "/posts/page/2/"
+  },
+  {
+    "name": "posts-3",
+    "title": "Posts",
+    "variant": "standard",
+    "path": "/posts/page/3/"
+  },
+  {
+    "name": "tags",
+    "title": "Tags",
+    "variant": "standard",
+    "path": "/tags/"
+  },
+  {
+    "name": "tags-empty",
+    "title": "Tags",
+    "variant": "empty",
+    "path": "/tags/"
+  },
+  {
+    "name": "tag-1",
+    "title": "chezmoi",
+    "variant": "standard",
+    "path": "/tags/chezmoi/"
+  },
+  {
+    "name": "tag-2",
+    "title": "Cloudflare",
+    "variant": "standard",
+    "path": "/tags/cloudflare/"
+  },
+  {
+    "name": "tag-3",
+    "title": "dotfiles",
+    "variant": "standard",
+    "path": "/tags/dotfiles/"
+  },
+  {
+    "name": "tag-4",
+    "title": "Ghostty",
+    "variant": "standard",
+    "path": "/tags/ghostty/"
+  },
+  {
+    "name": "tag-5",
+    "title": "herdr",
+    "variant": "standard",
+    "path": "/tags/herdr/"
+  },
+  {
+    "name": "tag-6",
+    "title": "Hugo",
+    "variant": "standard",
+    "path": "/tags/hugo/"
+  },
+  {
+    "name": "tag-7",
+    "title": "mise",
+    "variant": "standard",
+    "path": "/tags/mise/"
+  },
+  {
+    "name": "tag-8",
+    "title": "Neovim",
+    "variant": "standard",
+    "path": "/tags/neovim/"
+  },
+  {
+    "name": "tag-9",
+    "title": "PaperMod",
+    "variant": "standard",
+    "path": "/tags/papermod/"
+  },
+  {
+    "name": "tag-10",
+    "title": "Zsh",
+    "variant": "standard",
+    "path": "/tags/zsh/"
+  },
+  {
+    "name": "tag-11",
+    "title": "開発環境",
+    "variant": "standard",
+    "path": "/tags/開発環境/"
+  },
+  {
+    "name": "categories",
+    "title": "Categories",
+    "variant": "standard",
+    "path": "/categories/"
+  },
+  {
+    "name": "categories-empty",
+    "title": "Categories",
+    "variant": "empty",
+    "path": "/categories/"
+  },
+  {
+    "name": "category-1",
+    "title": "技術",
+    "variant": "standard",
+    "path": "/categories/技術/"
+  },
+  {
+    "name": "category-2",
+    "title": "日記",
+    "variant": "standard",
+    "path": "/categories/日記/"
+  },
+  {
+    "name": "category-2-2",
+    "title": "日記",
+    "variant": "standard",
+    "path": "/categories/日記/page/2/"
+  },
+  {
+    "name": "tag-pagination",
+    "title": "Sample tag",
+    "variant": "pagination",
+    "path": "/tags/sample-tag/"
+  },
+  {
+    "name": "tag-pagination-2",
+    "title": "Sample tag",
+    "variant": "pagination",
+    "path": "/tags/sample-tag/page/2/"
+  },
+  {
+    "name": "tag-pagination-3",
+    "title": "Sample tag",
+    "variant": "pagination",
+    "path": "/tags/sample-tag/page/3/"
+  },
+  {
+    "name": "category-pagination",
+    "title": "Sample category",
+    "variant": "pagination",
+    "path": "/categories/sample-category/"
+  },
+  {
+    "name": "category-pagination-2",
+    "title": "Sample category",
+    "variant": "pagination",
+    "path": "/categories/sample-category/page/2/"
+  },
+  {
+    "name": "category-pagination-3",
+    "title": "Sample category",
+    "variant": "pagination",
+    "path": "/categories/sample-category/page/3/"
+  },
+  {
+    "name": "article",
+    "title": "2026年、開発環境を一新した。Ghostty、herdr、Neovim、mise、そして自作Zshプロンプト",
+    "variant": "standard",
+    "path": "/2026/09/01/development-environment-2026/"
+  },
+  {
+    "name": "article-hugo",
+    "title": "HugoとCloudflare Pagesでブログを作り直した",
+    "variant": "standard",
+    "path": "/2023/06/22/hugo-and-cloudflare-pages/"
+  },
+  {
+    "name": "article-diary",
+    "title": "社会復帰するぞ",
+    "variant": "standard",
+    "path": "/2016/08/17/shakai-fukki/"
+  },
+  {
+    "name": "article-bgm",
+    "title": "BGMには困らない",
+    "variant": "standard",
+    "path": "/2016/08/14/hikikomori/"
+  },
+  {
+    "name": "article-pasmo",
+    "title": "PASMOをオートチャージにした",
+    "variant": "standard",
+    "path": "/2016/08/13/pasmo-autocharge/"
+  },
+  {
+    "name": "about",
+    "title": "About",
+    "variant": "standard",
+    "path": "/about/"
+  },
+  {
+    "name": "archives",
+    "title": "Archives",
+    "variant": "standard",
+    "path": "/archives/"
+  },
+  {
+    "name": "404",
+    "title": "404 — Page not found",
+    "variant": "standard",
+    "path": "/404.html"
+  },
+  {
+    "name": "empty",
+    "title": "Posts",
+    "variant": "empty",
+    "path": "/posts/"
+  },
+  {
+    "name": "single-item",
+    "title": "Posts",
+    "variant": "single",
+    "path": "/posts/"
+  }
+]

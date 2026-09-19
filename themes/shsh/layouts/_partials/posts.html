@@ -1,0 +1,16 @@
+{{- /* Hugo has already applied draft, publishDate and expiryDate filtering. */ -}}
+{{- $posts := where site.RegularPages "Section" "in" site.MainSections -}}
+{{- $groups := dict -}}
+{{- range $posts -}}
+  {{- partialCached "validate-post.html" . .RelPermalink -}}
+  {{- $instant := .Date.UTC.Format "2006-01-02T15:04:05.000000000" -}}
+  {{- $group := index $groups $instant | default (dict "instant" $instant "pages" slice) -}}
+  {{- $groups = merge $groups (dict $instant (dict "instant" $instant "pages" ($group.pages | append .))) -}}
+{{- end -}}
+{{- $ordered := slice -}}
+{{- range sort $groups "instant" "desc" -}}
+  {{- range sort .pages "RelPermalink" "asc" -}}
+    {{- $ordered = $ordered | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- return $ordered -}}

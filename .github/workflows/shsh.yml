@@ -1,0 +1,60 @@
+name: shsh
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: shsh-test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: themes/shsh
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: themes/shsh/.node-version
+          package-manager-cache: false
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+        with:
+          package_json_file: themes/shsh/package.json
+          run_install: false
+      - uses: peaceiris/actions-hugo@6b1ee2dcc06c9b6629a5317fa0146473914d05e1 # v3
+        with:
+          hugo-version: "0.166.0"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium firefox webkit
+      - name: Verify theme, site output and browser behavior
+        run: |
+          mkdir -p .cache/ci
+          start=$(date +%s)
+          set +e
+          pnpm check 2>&1 | tee .cache/ci/check.log
+          result=${PIPESTATUS[0]}
+          printf '%s\n' "$(( $(date +%s) - start ))" > .cache/ci/seconds.txt
+          exit "$result"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        if: always()
+        with:
+          name: shsh-test
+          include-hidden-files: true
+          path: |
+            themes/shsh/.cache/ci/
+            themes/shsh/.cache/site-results/
+            themes/shsh/playwright-report/
+            themes/shsh/test-results/
+          retention-days: 14

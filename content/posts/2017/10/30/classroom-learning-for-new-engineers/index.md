@@ -19,7 +19,7 @@ tags:
 
 資料はこちらです。「[ImageMagick実践入門 画像加工サーバを作ってみよう](https://speakerdeck.com/shimoju/imagemagick-and-image-server)」と題して、実際にコマンドやコードを書きながら、ImageMagickを使った画像加工と、簡単な画像加工サーバーをGo言語で実装していきます。
 
-<script async class="speakerdeck-embed" data-id="22ab654b18c94eb9bb92314459d122f7" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+{{< speakerdeck id="22ab654b18c94eb9bb92314459d122f7" ratio="1.77777777777778" >}}
 
 1時間話すのはとても疲れました。この座学はハンズオンもあるので資料は50枚程度ですが、全部口述だと70〜80枚にもなるので、資料作成もかなり時間がかかります。
 作っていくうちに「本当にこんな内容でいいのだろうか……」とつらくなってきますが、いま学習中のGo言語を使ってみたり、調べる中で自分の理解も深まって、いい経験になりました。

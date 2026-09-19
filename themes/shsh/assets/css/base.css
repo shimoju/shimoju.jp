@@ -1,0 +1,112 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  background: var(--page);
+  scroll-padding-top: var(--ui-space-6);
+  scrollbar-gutter: stable;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  color: var(--text);
+  background: var(--page);
+  font: 400 var(--body-size)/var(--leading-body) var(--font-body);
+  font-feature-settings: "palt";
+  overflow-wrap: anywhere;
+  /* stylelint-disable-next-line property-no-vendor-prefix -- iOS WebKit still requires this prefix. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+button {
+  cursor: pointer;
+  font: inherit;
+  font-feature-settings: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.26em;
+}
+
+/* Thickness is not inherited. Set it on each decoration origin; toggle only the line. */
+a,
+.link-title {
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--muted);
+}
+
+/* Persistent lines are quiet; interaction strengthens only the decoration. */
+a:is(:hover, :focus-visible),
+a:is(:hover, :focus-visible) .link-title {
+  text-decoration-color: var(--text);
+}
+
+button:disabled {
+  cursor: default;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-small);
+}
+
+::selection {
+  background: var(--border);
+  color: var(--text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: var(--leading-heading);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+/* Type scale: --body-size * 1.6^(n / 5), with ratios rounded to 3 decimals.
+   H6..H1: n=0..5; site name: n=7. */
+h1 {
+  font-size: var(--text-h1);
+  margin: 0 0 var(--ui-space-4);
+}
+
+h2 {
+  font-size: var(--text-h2);
+}
+
+h3 {
+  font-size: var(--text-h3);
+}
+
+h4 {
+  font-size: var(--text-h4);
+}
+
+h5 {
+  font-size: var(--text-h5);
+}
+
+h6 {
+  font-size: var(--body-size);
+}
+
+p {
+  margin: var(--space-paragraph) 0;
+}
+
+[hidden] {
+  display: none !important;
+}

@@ -1,0 +1,49 @@
+.engagement {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ui-space-4);
+  font-size: var(--text-meta);
+}
+
+.share-mount {
+  min-width: 0;
+  max-width: 100%;
+  margin-inline-start: calc(-1 * var(--share-optical-inset));
+}
+
+.share-icons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--icon-gap);
+}
+
+.share-icons a:focus-visible {
+  outline-offset: -2px;
+}
+
+.share-icons button {
+  border: 0;
+  padding: 0;
+  background: none;
+}
+
+/* Preserve the official iframe's transparent background in both site palettes. */
+.star-widget {
+  color-scheme: light;
+  min-width: 0;
+  max-width: 100%;
+  line-height: var(--leading-body);
+}
+
+.widget-status {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-label);
+}
+
+.widget-status:empty {
+  display: none;
+}

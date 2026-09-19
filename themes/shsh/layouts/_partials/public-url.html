@@ -1,0 +1,6 @@
+{{- $url := .Permalink -}}
+{{- if in (slice "home" "section" "term") .Kind -}}
+  {{- $pager := .Paginate (partial "list-pages.html" .) -}}
+  {{- $url = $pager.URL | absURL -}}
+{{- end -}}
+{{- return $url -}}
