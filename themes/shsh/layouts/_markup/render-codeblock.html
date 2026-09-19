@@ -36,7 +36,17 @@
       <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19" /></g>
     </svg>
   </button>
-  {{- $result.Wrapped | replaceRE `<table class="lntable">` `<table class="lntable"><tbody>` | replaceRE `</table>` `</tbody></table>` | replaceRE ` filename="[^"]*"` "" | replaceRE `<pre\b` `<pre role="group" aria-label="Code, horizontally scrollable"` | safeHTML -}}
+  {{- $wrapped := $result.Wrapped | replaceRE `<table class="lntable">` `<table class="lntable"><tbody>` | replaceRE `</table>` `</tbody></table>` | replaceRE ` filename="[^"]*"` "" -}}
+  {{- $pres := findRE `<pre\b[^>]*>` $wrapped -}}
+  {{- range $index, $pre := $pres -}}
+    {{- /* Chroma's last pre contains the code; preceding pres contain table line numbers. */ -}}
+    {{- $replacement := $pre | replaceRE `<pre\b` `<pre role="group" aria-label="Code, horizontally scrollable"` -}}
+    {{- if lt $index (sub (len $pres) 1) -}}
+      {{- $replacement = $pre | replaceRE ` tabindex="[^"]*"` "" | replaceRE `<pre\b` `<pre aria-hidden="true" tabindex="-1"` -}}
+    {{- end -}}
+    {{- $wrapped = replace $wrapped $pre $replacement 1 -}}
+  {{- end -}}
+  {{- $wrapped | safeHTML -}}
   <span
     class="sr-only copy-feedback"
     role="status"
