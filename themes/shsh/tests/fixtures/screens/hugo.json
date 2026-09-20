@@ -7,7 +7,7 @@
   "timeZone": "Asia/Tokyo",
   "hasCJKLanguage": true,
   "mainSections": ["posts"],
-  "summaryLength": 140,
+  "summaryLength": 160,
   "pagination": {
     "pagerSize": 2
   },

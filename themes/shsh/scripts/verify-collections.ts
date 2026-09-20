@@ -9,7 +9,7 @@ const base = {
   title: "Collection test",
   theme: "shsh",
   hasCJKLanguage: true,
-  summaryLength: 140,
+  summaryLength: 160,
   timeZone: "Asia/Tokyo",
   mainSections: ["posts", "notes"],
   params: { author: { name: "Author" } },
@@ -94,7 +94,7 @@ html = pass({
   "posts/cjk": post({ isCJKLanguage: true }, ("あ".repeat(10) + "。\n\n").repeat(30)),
 });
 const automatic = html.match(/class="entry-summary">([^<]+)</)?.[1] ?? "";
-assert.ok(automatic.length >= 140 && automatic.length < 170, automatic);
+assert.ok(automatic.length >= 160 && automatic.length < 200, automatic);
 
 for (const [name, content] of Object.entries({
   yaml: "---\ntitle: YAML\ndate: 2020-01-01\n---\nText\n",

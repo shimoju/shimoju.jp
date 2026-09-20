@@ -16,7 +16,7 @@ const config = {
   locale: "ja",
   timeZone: "Asia/Tokyo",
   mainSections: ["posts", "notes"],
-  summaryLength: 140,
+  summaryLength: 160,
   hasCJKLanguage: true,
   enableRobotsTXT: true,
   pagination: { pagerSize: 2 },

@@ -6,7 +6,7 @@ locale = 'ja'
 timeZone = 'Asia/Tokyo'
 mainSections = ['posts']
 hasCJKLanguage = true
-summaryLength = 140
+summaryLength = 160
 [pagination]
 pagerSize = 2
 [params.author]
