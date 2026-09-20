@@ -219,6 +219,17 @@ test("prose remains readable; footnotes, headings, dates and JS-free reading wor
     }
   }
   await expect(page.locator(".article-header .meta")).toHaveText("2026/09/02 Updated 2026/09/03");
+  // The anchor glyph lives in CSS so plain-text summaries never see a "#".
+  const heading = page.locator(".prose h2").first();
+  const anchor = heading.locator(".heading-anchor");
+  expect(await heading.textContent()).not.toContain("#");
+  await expect(anchor).toHaveText("");
+  await expect(anchor).toHaveAttribute("aria-label", /^Link to /);
+  expect(await anchor.evaluate((element) => getComputedStyle(element, "::before").content)).toBe(
+    '"#"',
+  );
+  await heading.hover();
+  await expect(anchor).toHaveCSS("opacity", "1");
   await page.locator('a[href="#fn:1"]').click();
   await expect(page).toHaveURL(/#fn:1$/);
   await page.locator(".footnote-backref").click();

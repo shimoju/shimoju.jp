@@ -55,7 +55,7 @@ test("RSS uses all ordered articles, plain common summaries and stable document 
 }) => {
   const rss = await feed(page, "production");
   expect(rss.error).toBeUndefined();
-  expect(rss.items).toHaveLength(13);
+  expect(rss.items).toHaveLength(14);
   expect(rss.items.slice(0, 3).map((i) => i.link)).toEqual([
     `${base}posts/a/`,
     `${base}posts/b/`,
@@ -69,9 +69,10 @@ test("RSS uses all ordered articles, plain common summaries and stable document 
   });
   expect(rss.items[1]?.description).toBe("手動要約 & <記号>");
   expect(rss.items[2]?.description).toBe("");
+  expect(rss.items[3]?.description).toBe("導入。\n組み立て 組み立てには #tag を使う。");
   expect(rss.self).toBe(`${base}index.xml`);
   for (const item of rss.items) expect(item.guid).toBe(item.link);
-  expect((await feed(page, "production", "posts/index.xml")).items).toHaveLength(12);
+  expect((await feed(page, "production", "posts/index.xml")).items).toHaveLength(13);
   expect((await feed(page, "production", "notes/index.xml")).items).toHaveLength(1);
   const preview = await feed(page, "preview");
   expect(preview.items[0]?.guid).toBe("https://preview.invalid/posts/a/");
@@ -85,7 +86,7 @@ test("taxonomy feeds contain term pages, term feeds filter posts, empty feeds ha
   expect(terms.items.map((i) => i.title)).toEqual(["A & B", "Empty & none", "空"]);
   expect(terms.items[0]?.description).toBe("分類要約 & 説明");
   expect(terms.items.find((i) => i.title === "Empty & none")?.pubDate).toBeUndefined();
-  expect((await feed(page, "production", "tags/a--b/index.xml")).items).toHaveLength(13);
+  expect((await feed(page, "production", "tags/a--b/index.xml")).items).toHaveLength(14);
   expect((await feed(page, "production", "categories/index.xml")).items[0]?.title).toBe(
     "技術 & 日記",
   );
@@ -94,7 +95,7 @@ test("taxonomy feeds contain term pages, term feeds filter posts, empty feeds ha
   )!.name;
   expect(
     (await feed(page, "production", `categories/${categoryPath}/index.xml`)).items,
-  ).toHaveLength(13);
+  ).toHaveLength(14);
   for (const [variant, path] of [
     ["empty", "index.xml"],
     ["empty", "tags/index.xml"],
@@ -158,6 +159,11 @@ test("description, dates and JSON-LD preserve page roles and safe text", async (
   expect((await head(page, "production", "posts/b/index.html")).meta.description).toBe(
     "手動要約 & <記号>",
   );
+  // Heading anchors never leak "#" into automatic summaries; hashtags in the body stay.
+  const headed = await head(page, "production", "posts/headed/index.html");
+  expect(headed.meta.description).toBe("導入。\n組み立て 組み立てには #tag を使う。");
+  expect(headed.meta["og:description"]).toBe(headed.meta.description);
+  expect(headed.schema[0]?.description).toBe(headed.meta.description);
   const home = await head(page, "production");
   expect(home.meta.description).toBe("サイト & 説明");
   expect(home.schema[0]?.["@graph"]).toEqual(

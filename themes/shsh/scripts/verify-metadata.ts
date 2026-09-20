@@ -49,6 +49,12 @@ page(
 );
 page("posts/b", { ...common }, "**手動要約** & &lt;記号&gt;\n\n<!--more-->\n\nAfter divider.");
 page("notes/c", { ...common, date: "2026-08-31T15:00:00Z", summary: "" });
+// An automatic summary that crosses headings must keep them as plain words.
+page(
+  "posts/headed",
+  { ...common, date: "2026-08-30" },
+  "導入。\n\n## 組み立て\n\n組み立てには #tag を使う。",
+);
 for (let i = 0; i < 10; i++)
   page(`posts/old-${i}`, { ...common, date: `2020-01-${String(i + 1).padStart(2, "0")}` });
 page("about", {

@@ -40,7 +40,8 @@
   opacity: 0;
 }
 
-.heading-anchor span {
+.heading-anchor::before {
+  content: "#";
   flex: 0 0 var(--ui-space-4);
   text-align: center;
   font-size: var(--text-label);
