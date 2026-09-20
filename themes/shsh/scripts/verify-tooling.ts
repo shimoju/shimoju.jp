@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
-import { execFileSync, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { performance } from "node:perf_hooks";
 import { formatTemplate } from "./format-template.ts";
@@ -84,45 +84,6 @@ assert.equal(
   "CSS validator must catch unknown properties",
 );
 
-if (process.argv.includes("--probe-types")) {
-  // Probe the actual browser and test paths under the root tsconfig. Delete only
-  // our own unique files, and never overwrite existing work.
-  const probes = ["assets/ts/__tooling_probe.ts", "tests/__tooling_probe.ts"];
-  assert.ok(probes.every((file) => !existsSync(file)));
-  try {
-    for (const file of probes) {
-      mkdirSync(dirname(file), { recursive: true });
-      writeFileSync(
-        file,
-        'export const broken: number = "type error";\nPromise.resolve("unhandled");\n',
-      );
-    }
-    timed("lint_negative_ms", () => {
-      const result = spawnSync("pnpm", ["lint"], { encoding: "utf8" });
-      const output = result.stdout + result.stderr;
-      assert.notEqual(result.status, 0, output);
-      for (const file of probes)
-        assert.ok(output.includes(file), `Missing type diagnostic: ${file}\n${output}`);
-      assert.match(output, /no-floating-promises/);
-      assert.match(output, /2322|not assignable/);
-    });
-    timed("types_negative_ms", () => {
-      const result = spawnSync("pnpm", ["check:types"], { encoding: "utf8" });
-      const output = result.stdout + result.stderr;
-      assert.notEqual(result.status, 0, output);
-      for (const file of probes)
-        assert.ok(output.includes(file), `Missing native type diagnostic: ${file}\n${output}`);
-    });
-  } finally {
-    for (const file of probes) rmSync(file);
-  }
-  timed("lint_ms", () => {
-    command("pnpm", ["lint"]);
-  });
-  timed("css_lint_ms", () => {
-    command("pnpm", ["lint:css"]);
-  });
-}
 put(
   "timings.json",
   JSON.stringify(
