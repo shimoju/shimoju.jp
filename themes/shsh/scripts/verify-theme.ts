@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
-import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync, readdirSync, mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { HtmlValidate } from "html-validate";
+import { buildHugo } from "./build-hugo.ts";
 
 const validator = new HtmlValidate(JSON.parse(readFileSync(".htmlvalidate.json", "utf8")));
 for (const environment of ["production", "preview", "development"]) {
@@ -44,21 +44,12 @@ const config = resolve(".cache/representative/case.json");
 const destination = resolve(".cache/representative/case");
 function build(overrides: object) {
   writeFileSync(config, JSON.stringify(overrides));
-  return spawnSync(
-    "hugo",
-    [
-      "--source",
-      source,
-      "--themesDir",
-      resolve(".."),
-      "--config",
-      `hugo.toml,${config}`,
-      "--destination",
-      destination,
-      "--cleanDestinationDir",
-    ],
-    { encoding: "utf8" },
-  );
+  return buildHugo({
+    source,
+    config: `hugo.toml,${config}`,
+    destination,
+    check: false,
+  });
 }
 for (const [params, diagnostic] of [
   [{ author: "Wrong shape" }, "params.author must be a map"],
@@ -86,7 +77,7 @@ writeFileSync(
   `baseURL='https://alternate.invalid/'\ntitle='Other title'\ntheme='shsh'\n[params.author]\nname='Other author'\n`,
 );
 writeFileSync(`${minimal}/content/_index.md`, "A different site.");
-execFileSync("hugo", ["--source", minimal, "--themesDir", resolve(".."), "--quiet"]);
+buildHugo({ source: minimal, quiet: true });
 const html = readFileSync(`${minimal}/public/index.html`, "utf8");
 assert.match(html, /Other author/);
 assert.doesNotMatch(html, /Example author|github.com/);

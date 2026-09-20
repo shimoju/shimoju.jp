@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
-import { spawnSync } from "node:child_process";
 import { cpSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { HtmlValidate } from "html-validate";
+import { buildHugo } from "./build-hugo.ts";
 
 const root = resolve(".cache/metadata");
 rmSync(root, { recursive: true, force: true });
@@ -93,26 +93,13 @@ function build(
     `${source}/hugo.json`,
     JSON.stringify({ ...config, ...overrides, params: { ...config.params, ...params } }),
   );
-  return spawnSync(
-    "hugo",
-    [
-      "--source",
-      source,
-      "--themesDir",
-      resolve(".."),
-      "--destination",
-      `${root}/${name}`,
-      "--cacheDir",
-      resolve(".cache/hugo"),
-      "--environment",
-      environment,
-      "--clock",
-      "2026-09-17T12:00:00+09:00",
-      "--cleanDestinationDir",
-      "--panicOnWarning",
-    ],
-    { encoding: "utf8" },
-  );
+  return buildHugo({
+    source,
+    destination: `${root}/${name}`,
+    environment,
+    clock: "2026-09-17T12:00:00+09:00",
+    check: false,
+  });
 }
 const validator = new HtmlValidate(JSON.parse(readFileSync(".htmlvalidate.json", "utf8")));
 for (const [name, params, environment, overrides] of [

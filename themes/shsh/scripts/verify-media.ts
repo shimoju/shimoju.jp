@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync, rmSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { HtmlValidate } from "html-validate";
 import "./build-media-fixture.ts";
+import { buildHugo } from "./build-hugo.ts";
 
 const root = resolve(".cache/media");
 const validator = new HtmlValidate(JSON.parse(readFileSync(".htmlvalidate.json", "utf8")));
@@ -123,20 +123,11 @@ const cases = [
 try {
   for (const [body, expected] of cases) {
     writeFileSync(invalid, body.startsWith("---") ? body : `---\ntitle: Invalid\n---\n${body}\n`);
-    const result = spawnSync(
-      "hugo",
-      [
-        "--source",
-        `${root}/source`,
-        "--themesDir",
-        resolve(".."),
-        "--destination",
-        `${root}/invalid`,
-        "--cacheDir",
-        resolve(".cache/hugo"),
-      ],
-      { encoding: "utf8" },
-    );
+    const result = buildHugo({
+      source: `${root}/source`,
+      destination: `${root}/invalid`,
+      check: false,
+    });
     assert.notEqual(result.status, 0, body);
     assert.match(result.stdout + result.stderr, expected, body);
   }

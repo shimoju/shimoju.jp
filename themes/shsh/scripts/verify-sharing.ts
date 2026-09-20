@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
-import { spawnSync } from "node:child_process";
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { HtmlValidate } from "html-validate";
+import { buildHugo } from "./build-hugo.ts";
 
 const root = resolve(".cache/sharing");
 rmSync(root, { recursive: true, force: true });
@@ -36,22 +36,12 @@ function build(
     `${root}/hugo.json`,
     JSON.stringify({ ...config, baseURL, params: { ...config.params, ...params } }),
   );
-  return spawnSync(
-    "hugo",
-    [
-      "--source",
-      root,
-      "--themesDir",
-      resolve(".."),
-      "--destination",
-      `${root}/${destination}`,
-      "--environment",
-      environment,
-      "--cleanDestinationDir",
-      "--panicOnWarning",
-    ],
-    { encoding: "utf8" },
-  );
+  return buildHugo({
+    source: root,
+    destination: `${root}/${destination}`,
+    environment,
+    check: false,
+  });
 }
 function success(
   params: object,

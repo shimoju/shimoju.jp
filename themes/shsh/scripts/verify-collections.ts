@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
-import { spawnSync } from "node:child_process";
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
+import { buildHugo } from "./build-hugo.ts";
 
 const source = resolve(".cache/collections");
 const base = {
@@ -23,19 +23,11 @@ function build(files: Record<string, string>, config: object = {}) {
     mkdirSync(dirname(path), { recursive: true });
     writeFileSync(path, content);
   }
-  return spawnSync(
-    "hugo",
-    [
-      "--source",
-      source,
-      "--themesDir",
-      resolve(".."),
-      "--clock",
-      "2026-09-17T12:00:00+09:00",
-      "--panicOnWarning",
-    ],
-    { encoding: "utf8" },
-  );
+  return buildHugo({
+    source,
+    clock: "2026-09-17T12:00:00+09:00",
+    check: false,
+  });
 }
 function pass(files: Record<string, string>, config: object = {}) {
   const result = build(files, config);

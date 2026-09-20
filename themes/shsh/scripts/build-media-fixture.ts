@@ -1,6 +1,6 @@
 import { cpSync, mkdirSync, rmSync, writeFileSync, readFileSync } from "node:fs";
-import { execFileSync } from "node:child_process";
 import { resolve } from "node:path";
+import { buildHugo } from "./build-hugo.ts";
 
 const root = resolve(".cache/media");
 rmSync(`${root}/source`, { recursive: true, force: true });
@@ -55,22 +55,9 @@ writeFileSync(
   readFileSync(coverPage, "utf8").replace("image: screenshot.png", "image: images/shared.png"),
 );
 for (const environment of ["production", "preview"]) {
-  execFileSync(
-    "hugo",
-    [
-      "--cacheDir",
-      resolve(".cache/hugo"),
-      "--source",
-      `${root}/source`,
-      "--themesDir",
-      resolve(".."),
-      "--destination",
-      `${root}/${environment}`,
-      "--environment",
-      environment,
-      "--cleanDestinationDir",
-      "--panicOnWarning",
-    ],
-    { stdio: "inherit" },
-  );
+  buildHugo({
+    source: `${root}/source`,
+    destination: `${root}/${environment}`,
+    environment,
+  });
 }

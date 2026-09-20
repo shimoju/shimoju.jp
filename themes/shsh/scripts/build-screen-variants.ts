@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import { HtmlValidate } from "html-validate";
-import { execFileSync } from "node:child_process";
 import { cpSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { buildHugo } from "./build-hugo.ts";
 
 const base = resolve(".cache/screens/source");
 const config = JSON.parse(readFileSync(`${base}/hugo.json`, "utf8")) as Record<string, unknown>;
@@ -39,26 +39,12 @@ for (const variant of ["pagination", "empty", "single"]) {
     }
   }
   writeFileSync(`${source}/hugo.json`, JSON.stringify(config));
-  execFileSync(
-    "hugo",
-    [
-      "--source",
-      source,
-      "--themesDir",
-      resolve(".."),
-      "--destination",
-      resolve(`.cache/screen-variants/${variant}/public`),
-      "--cacheDir",
-      resolve(".cache/hugo"),
-      "--environment",
-      "production",
-      "--clock",
-      "2026-09-17T12:00:00+09:00",
-      "--panicOnWarning",
-      "--cleanDestinationDir",
-    ],
-    { stdio: "inherit" },
-  );
+  buildHugo({
+    source,
+    destination: resolve(`.cache/screen-variants/${variant}/public`),
+    environment: "production",
+    clock: "2026-09-17T12:00:00+09:00",
+  });
 }
 const screens = JSON.parse(readFileSync("tests/fixtures/screens/pages.json", "utf8")) as {
   name: string;

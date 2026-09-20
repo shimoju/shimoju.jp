@@ -6,6 +6,7 @@ import { performance } from "node:perf_hooks";
 import { formatTemplate } from "./format-template.ts";
 import { HtmlValidate } from "html-validate";
 import stylelint from "stylelint";
+import { buildHugo } from "./build-hugo.ts";
 
 const root = resolve(".");
 const scratch = join(root, ".cache/tooling");
@@ -52,7 +53,7 @@ put("assets/main.css", '@import "base.css";\np { font-size: 17px; }\n');
 put("assets/main.ts", readFileSync("tests/fixtures/tooling/browser.ts", "utf8"));
 for (const [path, source] of Object.entries(templates)) put(`layouts/${path}`, source);
 const build = (output: string) =>
-  command("hugo", ["--source", scratch, "--destination", join(scratch, output), "--quiet"]);
+  buildHugo({ source: scratch, destination: join(scratch, output), quiet: true });
 timed("hugo_before_ms", () => {
   build("before");
 });

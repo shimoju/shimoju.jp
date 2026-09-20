@@ -1,6 +1,6 @@
-import { execFileSync } from "node:child_process";
 import { cpSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { buildHugo } from "./build-hugo.ts";
 
 const source = resolve(".cache/screens/source");
 rmSync(source, { recursive: true, force: true });
@@ -20,23 +20,9 @@ for (const image of ["zsh-prompt-cover.png", "neovim-cheatsheet.png"])
     `${source}/assets/images/${image}`,
   );
 for (const environment of ["production", "preview"])
-  execFileSync(
-    "hugo",
-    [
-      "--source",
-      source,
-      "--themesDir",
-      resolve(".."),
-      "--destination",
-      resolve(`.cache/screens/${environment}`),
-      "--cacheDir",
-      resolve(".cache/hugo"),
-      "--environment",
-      environment,
-      "--clock",
-      "2026-09-17T12:00:00+09:00",
-      "--panicOnWarning",
-      "--cleanDestinationDir",
-    ],
-    { stdio: "inherit" },
-  );
+  buildHugo({
+    source,
+    destination: resolve(`.cache/screens/${environment}`),
+    environment,
+    clock: "2026-09-17T12:00:00+09:00",
+  });

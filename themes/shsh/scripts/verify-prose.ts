@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
-import { spawnSync } from "node:child_process";
 import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { HtmlValidate, Parser, type HtmlElement } from "html-validate";
+import { buildHugo } from "./build-hugo.ts";
 
 const root = resolve(".cache/prose");
 rmSync(root, { recursive: true, force: true });
@@ -36,19 +36,11 @@ cpSync(
 );
 cpSync("tests/fixtures/representative/content/specimen.md", `${root}/content/specimen.md`);
 function build(destination = "public") {
-  return spawnSync(
-    "hugo",
-    [
-      "--source",
-      root,
-      "--themesDir",
-      resolve(".."),
-      "--destination",
-      `${root}/${destination}`,
-      "--panicOnWarning",
-    ],
-    { encoding: "utf8" },
-  );
+  return buildHugo({
+    source: root,
+    destination: `${root}/${destination}`,
+    check: false,
+  });
 }
 let result = build();
 assert.equal(result.status, 0, result.stdout + result.stderr);
