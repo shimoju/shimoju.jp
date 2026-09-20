@@ -11,7 +11,6 @@ for (const environment of ["production", "preview", "development"]) {
     source,
     destination: resolve(`.cache/representative/${environment}`),
     environment,
-    clock: "2026-09-17T12:00:00+09:00",
   });
 }
 
@@ -22,7 +21,6 @@ for (const variant of ["plain", "minified"]) {
     destination: resolve(`.cache/output/${variant}/blog`),
     baseURL: "https://example.invalid/blog/",
     environment: "production",
-    clock: "2026-09-17T12:00:00+09:00",
     minify: variant === "minified",
   });
 }

@@ -97,7 +97,6 @@ function build(
     source,
     destination: `${root}/${name}`,
     environment,
-    clock: "2026-09-17T12:00:00+09:00",
     check: false,
   });
 }

@@ -7,12 +7,14 @@ interface BuildOptions {
   environment?: string;
   config?: string;
   baseURL?: string;
-  clock?: string;
   minify?: boolean;
   quiet?: boolean;
   // Set false to capture output and return nonzero exits for test assertions.
   check?: boolean;
 }
+
+// Fixed clock so every fixture and check builds the same output regardless of run time.
+const clock = "2026-09-17T12:00:00+09:00";
 
 export function buildHugo({ check = true, ...options }: BuildOptions) {
   const args = [
@@ -20,6 +22,8 @@ export function buildHugo({ check = true, ...options }: BuildOptions) {
     resolve(".."),
     "--cacheDir",
     resolve(".cache/hugo"),
+    "--clock",
+    clock,
     "--cleanDestinationDir",
     "--panicOnWarning",
   ];

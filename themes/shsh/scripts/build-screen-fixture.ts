@@ -24,5 +24,4 @@ for (const environment of ["production", "preview"])
     source,
     destination: resolve(`.cache/screens/${environment}`),
     environment,
-    clock: "2026-09-17T12:00:00+09:00",
   });

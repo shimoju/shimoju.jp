@@ -43,7 +43,6 @@ for (const variant of ["pagination", "empty", "single"]) {
     source,
     destination: resolve(`.cache/screen-variants/${variant}/public`),
     environment: "production",
-    clock: "2026-09-17T12:00:00+09:00",
   });
 }
 const screens = JSON.parse(readFileSync("tests/fixtures/screens/pages.json", "utf8")) as {
