@@ -2,4 +2,5 @@
 /.cache
 /test-results
 /playwright-report
-/.pnpm-store
+.hugo_build.lock
+.DS_Store
