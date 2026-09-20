@@ -1,0 +1,74 @@
+{
+  "baseURL": "https://screens.invalid/",
+  "title": "Screen fixture",
+  "theme": "shsh",
+  "defaultContentLanguage": "ja",
+  "locale": "ja",
+  "timeZone": "Asia/Tokyo",
+  "hasCJKLanguage": true,
+  "mainSections": ["posts"],
+  "summaryLength": 140,
+  "pagination": {
+    "pagerSize": 2
+  },
+  "permalinks": {
+    "page": {
+      "posts": "/:year/:month/:day/:slugorcontentbasename/"
+    }
+  },
+  "markup": {
+    "goldmark": {
+      "parser": {
+        "wrapStandAloneImageWithinParagraph": false
+      }
+    }
+  },
+  "params": {
+    "author": {
+      "name": "Example author"
+    },
+    "socialLinks": [
+      {
+        "name": "x",
+        "url": "https://x.com/example"
+      },
+      {
+        "name": "bluesky",
+        "url": "https://bsky.app/profile/example.invalid"
+      },
+      {
+        "name": "github",
+        "url": "https://github.com/example"
+      }
+    ],
+    "shareServices": ["x", "facebook", "bluesky", "hatena"],
+    "hatenaStar": {
+      "enabled": true,
+      "author": "example-author"
+    }
+  },
+  "menus": {
+    "main": [
+      {
+        "name": "About",
+        "pageRef": "/about",
+        "weight": 1
+      },
+      {
+        "name": "Archives",
+        "pageRef": "/archives",
+        "weight": 2
+      },
+      {
+        "name": "Categories",
+        "pageRef": "/categories",
+        "weight": 3
+      },
+      {
+        "name": "Tags",
+        "pageRef": "/tags",
+        "weight": 4
+      }
+    ]
+  }
+}

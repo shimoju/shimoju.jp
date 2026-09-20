@@ -31,7 +31,7 @@ for (const [name, params] of Object.entries({
     `${JSON.stringify({ title: name, ...params })}\nText\n`,
   );
 cpSync(
-  "../../content/posts/2023/06/22/hugo-and-cloudflare-pages/index.md",
+  "tests/fixtures/articles/2023/06/22/hugo-and-cloudflare-pages/index.md",
   `${root}/content/real.md`,
 );
 cpSync("tests/fixtures/representative/content/specimen.md", `${root}/content/specimen.md`);

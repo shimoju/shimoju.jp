@@ -15,3 +15,13 @@ larger than the original JPEG, so only the original should appear in `srcset`.
 WebP quality 95 with metadata stripped. It tests that smaller candidates can
 be generated while the same-width candidate preserves the original file
 instead of re-encoding it at Hugo's default quality.
+
+The following files were copied from shimoju.jp on 2026-09-20 and are fixed
+test inputs; no source blog files are read during tests:
+
+- `photo.jpg`: `content/posts/2025/06/05/building-my-first-gaming-pc/gaming-pc.jpg`
+- `palette-screenshot.png`: `content/posts/2025/06/05/building-my-first-gaming-pc/frontier-pc-sale.png`
+- `grayscale.png`: `content/posts/2024/01/07/add-bluesky-icon-to-hugo-papermod/hugo-papermod-social-icons.png`
+
+The terminal screenshots and video come from the fixed article bundle in
+`../../articles/2026/09/01/development-environment-2026/`.

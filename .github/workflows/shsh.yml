@@ -25,6 +25,10 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          sparse-checkout: |
+            /themes/shsh/
+            /.github/workflows/shsh.yml
+          sparse-checkout-cone-mode: false
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: themes/shsh/.node-version
@@ -38,7 +42,7 @@ jobs:
           hugo-version: "0.166.0"
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium firefox webkit
-      - name: Verify theme, site output and browser behavior
+      - name: Verify theme and browser behavior
         run: |
           mkdir -p .cache/ci
           start=$(date +%s)
@@ -54,7 +58,6 @@ jobs:
           include-hidden-files: true
           path: |
             themes/shsh/.cache/ci/
-            themes/shsh/.cache/site-results/
             themes/shsh/playwright-report/
             themes/shsh/test-results/
           retention-days: 14

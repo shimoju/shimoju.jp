@@ -21,19 +21,13 @@ const directories = /** @type {[number, string][]} */ ([
   [4174, ".cache/representative/production"],
   [4175, ".cache/representative/preview"],
   [4176, ".cache/representative/development"],
-  [4178, ".cache/prose/public"],
   [4179, ".cache/media/production"],
   [4180, ".cache/sharing/production"],
   [4181, ".cache/sharing/preview"],
   [4182, ".cache/screens/production"],
-  [4183, ".cache/screens/preview"],
   [4188, ".cache/screen-variants/pagination/public"],
   [4189, ".cache/screen-variants/empty/public"],
   [4195, ".cache/screen-variants/single/public"],
-  [4196, ".cache/site/production"],
-  [4197, ".cache/site/preview"],
-  [4198, ".cache/site-live/production"],
-  [4199, ".cache/site-live/preview"],
 ]);
 /** @type {ReturnType<typeof createServer>[]} */
 const servers = [];

@@ -98,7 +98,7 @@ html = pass({ "posts/empty": post({ summary: "" }, "Manual.\n\n<!--more-->\n\nRe
 assert.doesNotMatch(html, /entry-summary/);
 html = pass({ "posts/auto": post({}, "Automatic summary.") });
 assert.match(html, /class="entry-summary">Automatic summary\.<\/p>/);
-// Preserve the site's summaryLength=140 with Hugo automatic paragraph boundaries.
+// Respect the configured summaryLength with Hugo automatic paragraph boundaries.
 html = pass({
   "posts/cjk": post({ isCJKLanguage: true }, ("あ".repeat(10) + "。\n\n").repeat(30)),
 });

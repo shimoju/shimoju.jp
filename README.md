@@ -72,4 +72,4 @@ bin/optimize-video content/posts/path/to/*.mov
 
 ## Theme development
 
-Blog authoring and deployment commands live in `bin/`; `themes/shsh/scripts/` contains theme development and test tools, including regression checks using real blog posts. See [themes/shsh/README.md](themes/shsh/README.md) for theme development and verification commands.
+Blog authoring and deployment commands live in `bin/`; `themes/shsh/scripts/` contains theme development and test tools. Theme tests use self-contained fixtures and do not depend on this blog's configuration or content. See [themes/shsh/README.md](themes/shsh/README.md) for theme development and verification commands.

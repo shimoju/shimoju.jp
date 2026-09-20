@@ -13,7 +13,7 @@ for (const environment of ["production", "preview", "development"]) {
     const html = readFileSync(`${root}/${path}`, "utf8");
     const report = await validator.validateString(html);
     assert.ok(report.valid, `${path}: ${JSON.stringify(report.results)}`);
-    assert.doesNotMatch(html, /shimoju|Hiroshi|theme=light/);
+    assert.doesNotMatch(html, /theme=light/);
     assert.match(html, /lang="ja"/);
     if (environment === "production") assert.doesNotMatch(html, /noindex/);
     else assert.match(html, /noindex,nofollow/);
@@ -89,7 +89,7 @@ writeFileSync(`${minimal}/content/_index.md`, "A different site.");
 execFileSync("hugo", ["--source", minimal, "--themesDir", resolve(".."), "--quiet"]);
 const html = readFileSync(`${minimal}/public/index.html`, "utf8");
 assert.match(html, /Other author/);
-assert.doesNotMatch(html, /Example author|shimoju|github.com/);
+assert.doesNotMatch(html, /Example author|github.com/);
 console.log(
   "Theme foundation: HTML, production/preview/development assets, invalid configuration and minimal alternative site passed.",
 );

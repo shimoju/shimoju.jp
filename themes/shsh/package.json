@@ -10,7 +10,7 @@
     "check:types": "tsc",
     "check:tooling": "node --experimental-strip-types scripts/verify-tooling.ts",
     "test": "playwright test",
-    "check": "pnpm format:check && pnpm lint && pnpm lint:css && pnpm check:tooling && pnpm build:fixtures && pnpm check:theme && pnpm check:collections && pnpm check:prose && pnpm check:media && pnpm check:sharing && pnpm check:metadata && pnpm build:screens && pnpm build:screen-variants && pnpm build:site-fixture && pnpm check:site-inputs && pnpm check:site-output && pnpm test",
+    "check": "pnpm format:check && pnpm lint && pnpm lint:css && pnpm check:tooling && pnpm build:fixtures && pnpm check:theme && pnpm check:collections && pnpm check:prose && pnpm check:media && pnpm check:sharing && pnpm check:metadata && pnpm build:screens && pnpm build:screen-variants && pnpm test",
     "check:tooling:types": "node scripts/verify-tooling.ts --probe-types",
     "build:fixtures": "node scripts/build-fixtures.ts",
     "check:theme": "node scripts/verify-theme.ts",
@@ -20,10 +20,7 @@
     "check:sharing": "node scripts/verify-sharing.ts",
     "build:screens": "node scripts/build-screen-fixture.ts",
     "check:metadata": "node scripts/verify-metadata.ts",
-    "build:screen-variants": "node scripts/build-screen-variants.ts",
-    "build:site-fixture": "node scripts/build-site-fixture.ts",
-    "check:site-inputs": "node scripts/verify-site-inputs.ts",
-    "check:site-output": "node scripts/verify-site-output.ts"
+    "build:screen-variants": "node scripts/build-screen-variants.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

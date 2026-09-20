@@ -238,5 +238,11 @@
     "title": "Posts",
     "variant": "single",
     "path": "/posts/"
+  },
+  {
+    "name": "specimen",
+    "title": "本文部品",
+    "variant": "standard",
+    "path": "/specimen/"
   }
 ]

@@ -73,7 +73,7 @@ const cases = screens.map(({ name, title, variant, path }) => ({
   url: `http://127.0.0.1:${ports[variant]}${path}`,
 }));
 writeFileSync(".cache/screen-variants/cases.json", JSON.stringify(cases, null, 2));
-console.log(`Screen fixtures: ${cases.length} pages; specimen stays in representative suite.`);
+console.log(`Screen fixtures: ${cases.length} pages including the prose specimen.`);
 
 const validator = new HtmlValidate(JSON.parse(readFileSync(".htmlvalidate.json", "utf8")));
 for (const directory of [

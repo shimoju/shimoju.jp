@@ -5,7 +5,7 @@ import { readFileSync } from "node:fs";
 type Screen = { name: string; title: string; url: string };
 const cases = JSON.parse(readFileSync(".cache/screen-variants/cases.json", "utf8")) as Screen[];
 for (const screen of cases)
-  test(`Screen ${screen.name}: layout and accessibility`, async ({ browser }) => {
+  test(`Screen ${screen.name}: layout and accessibility`, async ({ browser, browserName }) => {
     test.setTimeout(90000);
     for (const width of [1440, 390]) {
       const context = await browser.newContext({
@@ -13,6 +13,8 @@ for (const screen of cases)
         hasTouch: width === 390,
       });
       const page = await context.newPage();
+      if (browserName === "chromium")
+        expect(await page.evaluate(() => matchMedia("(hover: hover)").matches)).toBe(width !== 390);
       await page.route("https://**/*", (route) =>
         route.fulfill({ contentType: "text/javascript", body: "" }),
       );
@@ -65,11 +67,35 @@ for (const screen of cases)
             ),
             `${screen.name} ${width}px text ${scale}x`,
           ).toBe(true);
+          const fontSize = await page
+            .locator(".site-name")
+            .evaluate((element) => parseFloat(getComputedStyle(element).fontSize));
+          expect(Math.abs(fontSize - 32.827 * scale)).toBeLessThan(0.06);
         }
       }
       await context.close();
     }
   });
+
+test("prose specimen preserves Japanese and English emphasis, nesting and inline code", async ({
+  page,
+}) => {
+  await page.route("https://**/*", (route) => route.fulfill({ body: "" }));
+  await page.goto("http://127.0.0.1:4182/specimen/");
+  const sample = page
+    .locator(".prose > p")
+    .filter({ hasText: "通常の日本語とEnglish 0123に対して" });
+  await expect(sample).not.toContainText("**");
+  await expect(sample.locator("strong")).toHaveText([
+    "重要な日本語とEnglish 0123（strong）",
+    "注目する日本語とEnglish 0123（b）",
+    "強調の中の入れ子の太字",
+    "inline_code",
+  ]);
+  await expect(sample.locator("strong > code")).toHaveText("inline_code");
+  for (const emphasis of await sample.locator("strong, strong > code").all())
+    await expect(emphasis).toHaveCSS("font-weight", "700");
+});
 
 test("discovery semantics, keyboard, fixed pages and JavaScript-disabled navigation", async ({
   browser,

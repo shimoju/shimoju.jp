@@ -58,25 +58,24 @@
 
 サイト生成はHugoだけで完結し、Node.jsとpnpmは開発・検査に使う。Node.jsは[.node-version](.node-version)、pnpmは[package.json](package.json)の指定に合わせる。
 
-ローカルプレビューはリポジトリのルートから起動する。
+`themes/shsh`で実行する。
 
 ```sh
-bin/dev
-```
-
-開発環境の準備と一括検査は`themes/shsh`に移動して実行する。
-
-```sh
-cd themes/shsh
 pnpm install --frozen-lockfile
 pnpm exec playwright install chromium firefox webkit
 pnpm check
 ```
 
-以降は`themes/shsh`内で、整形に`pnpm format`、一括検査に`pnpm check`を使う。検査にはlint、Hugo生成、HTML/XML、Chromium・Firefox・WebKitの表示・操作を含む。
+整形は`pnpm format`を使う。`pnpm check`はlint、Hugo生成、HTML/XML、Chromium・Firefox・WebKitの表示・操作を検査する。
 
-検査入力は`tests/fixtures/`とサイトの実記事を使い、出力は`.cache/`へ隔離する。通常CIでは外部埋め込みを固定のshortcodeへ置換し、ブラウザの外部通信も遮断するため、外部サービスの動作は検証しない。
+検査入力は実記事のコピーを含め`tests/fixtures/`に置き、ブログ本体の設定やファイルは参照しない。出力は`.cache/`に置く。外部埋め込みは固定のshortcodeへ置換し、ブラウザの外部通信も遮断する。
 
-表示・操作の変更時は、Playwrightで保証できないOS固有フォントやSafari・モバイル実機も確認する。外部埋め込みは本番相当ビルドとpreviewで、表示・動画再生・スライド送りを確認する。
+`pnpm check`の実行後、画面fixtureをローカルでプレビューできる。
 
-実装は`assets/`・`layouts/`、設定は[hugo.yml](../../hugo.yml)を参照する。執筆・ビルド・配信は[サイトのREADME](../../README.md)にまとめる。
+```sh
+hugo server --source .cache/screens/source --themesDir "$(pwd)/.."
+```
+
+表示・操作の変更時は、OS固有フォントやSafari・モバイル実機、外部埋め込みの動作も別途確認する。
+
+設定例は[画面fixtureのhugo.json](tests/fixtures/screens/hugo.json)を参照する。

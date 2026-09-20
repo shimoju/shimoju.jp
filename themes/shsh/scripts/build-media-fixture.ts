@@ -8,21 +8,11 @@ cpSync("tests/fixtures/media", `${root}/source`, { recursive: true });
 mkdirSync(`${root}/source/assets/images`, { recursive: true });
 mkdirSync(`${root}/source/static/images`, { recursive: true });
 const gallery = `${root}/source/content/gallery`;
-const original = "../../content/posts/2026/09/01/development-environment-2026";
+const original = "tests/fixtures/articles/2026/09/01/development-environment-2026";
 cpSync(`${original}/zsh-prompt-cover.png`, `${gallery}/screenshot.png`);
-cpSync(
-  "../../content/posts/2025/06/05/building-my-first-gaming-pc/gaming-pc.jpg",
-  `${gallery}/photo.jpg`,
-);
 cpSync(`${original}/neovim-cheatsheet.png`, `${gallery}/tall.png`);
-cpSync(
-  "../../content/posts/2025/06/05/building-my-first-gaming-pc/frontier-pc-sale.png",
-  `${gallery}/palette-screenshot.png`,
-);
-cpSync(
-  "../../content/posts/2024/01/07/add-bluesky-icon-to-hugo-papermod/hugo-papermod-social-icons.png",
-  `${gallery}/grayscale.png`,
-);
+for (const image of ["photo.jpg", "palette-screenshot.png", "grayscale.png"])
+  cpSync(`tests/fixtures/media/assets/${image}`, `${gallery}/${image}`);
 cpSync(`${original}/zsh-prompt-demo.mp4`, `${gallery}/demo.mp4`);
 cpSync(`${gallery}/screenshot.png`, `${root}/source/assets/images/shared.png`);
 cpSync(`${gallery}/screenshot.png`, `${root}/source/static/images/static.png`);
