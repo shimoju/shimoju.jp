@@ -3,7 +3,7 @@ locale: ja
 defaultContentLanguage: ja
 hasCJKLanguage: true
 timeZone: Asia/Tokyo
-summaryLength: 140
+summaryLength: 160
 title: shimoju.diary
 theme: shsh
 mainSections:
