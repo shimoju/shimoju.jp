@@ -72,7 +72,8 @@ page("tags/a & b/_index", {
   description: "分類説明 & <記号>",
   summary: "分類要約 & **説明**",
 });
-page("tags/empty/_index", { title: "Empty & none" });
+page("tags/empty/_index", { title: "Empty & none" }, "");
+page("tags/quiet/_index", { title: "Quiet", summary: "" });
 for (const [name, front] of Object.entries({
   draft: { draft: true },
   future: { date: "2027-01-01" },

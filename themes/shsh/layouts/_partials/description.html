@@ -11,5 +11,9 @@
   {{- $description = site.Params.description -}}
 {{- else -}}
   {{- $description = partial "summary.html" . -}}
+  {{- /* An explicit summary (even empty) is final; only pages with nothing to say fall back to the site description. */ -}}
+  {{- if and (not $description) (not (isset .Params "summary")) (isset site.Params "description") -}}
+    {{- $description = site.Params.description -}}
+  {{- end -}}
 {{- end -}}
 {{- return (strings.TrimSpace ($description | plainify | htmlUnescape)) -}}

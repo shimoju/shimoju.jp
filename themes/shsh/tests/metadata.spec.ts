@@ -37,6 +37,7 @@ async function feed(page: Page, variant: string, path = "index.xml") {
         error: doc.querySelector("parsererror")?.textContent,
         title: doc.querySelector("channel > title")?.textContent,
         link: doc.querySelector("channel > link")?.textContent,
+        description: doc.querySelector("channel > description")?.textContent,
         items: [...doc.querySelectorAll("item")].map((item) =>
           Object.fromEntries([...item.children].map((node) => [node.tagName, node.textContent])),
         ),
@@ -83,7 +84,7 @@ test("taxonomy feeds contain term pages, term feeds filter posts, empty feeds ha
 }) => {
   const terms = await feed(page, "production", "tags/index.xml");
   expect(terms.error).toBeUndefined();
-  expect(terms.items.map((i) => i.title)).toEqual(["A & B", "Empty & none", "空"]);
+  expect(terms.items.map((i) => i.title)).toEqual(["A & B", "Empty & none", "Quiet", "空"]);
   expect(terms.items[0]?.description).toBe("分類要約 & 説明");
   expect(terms.items.find((i) => i.title === "Empty & none")?.pubDate).toBeUndefined();
   expect((await feed(page, "production", "tags/a--b/index.xml")).items).toHaveLength(14);
@@ -166,12 +167,45 @@ test("description, dates and JSON-LD preserve page roles and safe text", async (
   expect(headed.schema[0]?.description).toBe(headed.meta.description);
   const home = await head(page, "production");
   expect(home.meta.description).toBe("サイト & 説明");
+  expect((await feed(page, "production")).description).toBe("サイト & 説明");
   expect(home.schema[0]?.["@graph"]).toEqual(
     expect.arrayContaining([
       expect.objectContaining({ "@type": "WebSite", url: base }),
       expect.objectContaining({ "@type": "Person", name: '別著者 & "引用"' }),
     ]),
   );
+});
+
+test("lists without their own text fall back to the site description; explicit text is final", async ({
+  page,
+}) => {
+  for (const path of [
+    "posts/index.html",
+    "posts/page/2/index.html",
+    "tags/index.html",
+    "tags/empty/index.html",
+  ]) {
+    const list = await head(page, "production", path);
+    expect(list.meta.description, path).toBe("サイト & 説明");
+    expect(list.meta["og:description"], path).toBe("サイト & 説明");
+    expect(list.meta["twitter:description"], path).toBe("サイト & 説明");
+  }
+  for (const path of ["posts/index.xml", "tags/index.xml", "tags/empty/index.xml"]) {
+    expect((await feed(page, "production", path)).description, path).toBe("サイト & 説明");
+  }
+  const explicit = await head(page, "production", "tags/a--b/index.html");
+  expect(explicit.meta.description).toBe("分類説明 & <記号>");
+  expect((await feed(page, "production", "tags/a--b/index.xml")).description).toBe(
+    "分類説明 & <記号>",
+  );
+  // An explicit empty summary means "nothing to say" on lists and articles alike.
+  for (const path of ["tags/quiet/index.html", "notes/c/index.html"]) {
+    const quiet = await head(page, "production", path);
+    expect(quiet.meta.description, path).toBeUndefined();
+    expect(quiet.meta["og:description"], path).toBeUndefined();
+    expect(quiet.meta["twitter:description"], path).toBeUndefined();
+  }
+  expect((await feed(page, "production", "tags/quiet/index.xml")).description).toBe("");
 });
 
 test("SNS images use cover, global assets/static/external defaults or none, never body images", async ({
