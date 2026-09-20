@@ -2,9 +2,13 @@
   Keep those images phrasing content inside the link instead of nesting figure in p. */
 -}}
 {{- $text := replaceRE `(?s)^<figure>(.*)</figure>$` "$1" .Text -}}
-<a
-  href="{{ .Destination }}"
-  {{ with .Title }}title="{{ . }}"{{ end }}
-  >{{ $text | safeHTML }}</a
->
+{{- /* The formatter puts a space before every action inside a tag, which the minifier keeps
+  and Hugo's summary word count then treats the following text as words, so the optional
+  attribute carries its own leading space and the action trims the formatter's. */
+-}}
+{{- $title := "" | safeHTMLAttr -}}
+{{- with .Title }}
+  {{- $title = printf ` title="%s"` (. | htmlEscape) | safeHTMLAttr -}}
+{{ end -}}
+<a href="{{ .Destination }}" {{- $title }}>{{ $text | safeHTML }}</a>
 {{- /* Preserve the author's surrounding inline whitespace. */ -}}

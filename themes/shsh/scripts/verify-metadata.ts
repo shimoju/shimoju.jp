@@ -134,6 +134,11 @@ for (const [name, params, environment, overrides] of [
     );
   }
 }
+// Whitespace inside a link tag would count as summary words and reach feeds.
+assert.match(
+  readFileSync(`${root}/production/posts/coded/index.html`, "utf8"),
+  /<a href="\/posts\/b\/">内部<\/a>/,
+);
 for (const [params, expected] of [
   [{ defaultShareImage: "missing.png" }, /unresolved local media/],
   [{ defaultShareImage: "bundle-only.png" }, /unresolved local media/],
