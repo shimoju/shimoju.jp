@@ -1,0 +1,14 @@
+{{- /* PNG chunks precede IDAT; acTL must occur before the first image data chunk. */ -}}
+{{- $bytes := .bytes -}}
+{{- $offset := .offset -}}
+{{- $animated := false -}}
+{{- if le (add $offset 12) (len $bytes) -}}
+  {{- $kind := printf "%c%c%c%c" (index $bytes (add $offset 4)) (index $bytes (add $offset 5)) (index $bytes (add $offset 6)) (index $bytes (add $offset 7)) -}}
+  {{- if eq $kind "acTL" -}}
+    {{- $animated = true -}}
+  {{- else if not (in (slice "IDAT" "IEND") $kind) -}}
+    {{- $length := add (mul (int (index $bytes $offset)) 16777216) (mul (int (index $bytes (add $offset 1))) 65536) (mul (int (index $bytes (add $offset 2))) 256) (int (index $bytes (add $offset 3))) -}}
+    {{- $animated = partial "media/png-animated.html" (dict "bytes" $bytes "offset" (add $offset $length 12)) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $animated -}}

@@ -1,0 +1,28 @@
+{{- $config := partialCached "config.html" . -}}
+{{- $feed := site.Home.OutputFormats.Get "RSS" -}}
+<footer class="site-footer shell" lang="en">
+  {{ if or $config.socialLinks (and $config.showRSS $feed) }}
+    <nav class="footer-links" aria-label="Follow and subscribe">
+      {{ range $config.socialLinks }}
+        {{- $label := index (dict "x" "X" "bluesky" "Bluesky" "github" "GitHub" "facebook" "Facebook" "hatena" "Hatena Bookmark" "rss" "RSS") .name -}}
+        <a
+          class="icon-link"
+          href="{{ .url }}"
+          aria-label="{{ $label }}"
+          title="{{ $label }}"
+          >{{ partial "icon.html" .name }}</a
+        >
+      {{ end }}
+      {{ if and $config.showRSS $feed }}
+        <a
+          class="icon-link"
+          href="{{ $feed.RelPermalink }}"
+          aria-label="RSS"
+          title="RSS"
+          >{{ partial "icon.html" "rss" }}</a
+        >
+      {{ end }}
+    </nav>
+  {{ end }}
+  <span>© {{ now.Year }} {{ $config.author.name }}</span>
+</footer>

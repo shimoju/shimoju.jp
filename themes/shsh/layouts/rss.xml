@@ -1,0 +1,22 @@
+{{- $config := partialCached "config.html" . -}}
+{{- $pages := partial "list-pages.html" . -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ if not .IsHome }}{{ partial "page-title.html" . }} on {{ end }}{{ site.Title }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>{{ partial "description.html" . }}</description>
+    <language>{{ site.Language.Locale }}</language>
+    {{ with $pages }}{{ with index .ByLastmod.Reverse 0 }}{{ if not .Lastmod.IsZero }}<lastBuildDate>{{ .Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</lastBuildDate>{{ end }}{{ end }}{{ end }}
+    {{ with .OutputFormats.Get "RSS" }}<atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml" />{{ end }}
+    {{ range $pages }}
+    <item>
+      <title>{{ partial "page-title.html" . }}</title>
+      <link>{{ .Permalink }}</link>
+      <guid isPermaLink="true">{{ .Permalink }}</guid>
+      {{ if not .Date.IsZero }}<pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>{{ end }}
+      <description>{{ partial "summary-html.html" . | transform.XMLEscape | safeHTML }}</description>
+    </item>
+    {{ end }}
+  </channel>
+</rss>

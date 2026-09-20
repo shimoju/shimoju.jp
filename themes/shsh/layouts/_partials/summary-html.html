@@ -1,0 +1,32 @@
+{{- $front := partialCached "front-matter.html" . .RelPermalink -}}
+{{- range $key, $value := $front -}}
+  {{- if and (eq (lower $key) "summary") (ne (printf "%T" $value) "string") -}}
+    {{- errorf "shsh: summary must be a string on %s" $.Path -}}
+  {{- end -}}
+{{- end -}}
+{{- /* Prefer an explicit front matter summary over the manual summary divider. */ -}}
+{{- $summary := "" -}}
+{{- if isset .Params "summary" -}}
+  {{- if ne (printf "%T" .Params.summary) "string" -}}
+    {{- errorf "shsh: summary must be a string on %s" .Path -}}
+  {{- else -}}
+    {{- $summary = .RenderString .Params.summary -}}
+  {{- end -}}
+{{- else -}}
+  {{- $summary = .Summary -}}
+{{- end -}}
+{{- $summary = printf "%s" $summary -}}
+{{- /* Drop UI that only works on the theme's own page; code labels are content and stay. */ -}}
+{{- $summary = $summary | replaceRE `(?s)<button\s+class="copy\b.*?</button>` "" -}}
+{{- $summary = $summary | replaceRE `(?s)<span\s+class="sr-only copy-feedback".*?</span>` "" -}}
+{{- $summary = $summary | replaceRE `(?s)<a\s+class="heading-anchor".*?</a>` "" -}}
+{{- /* Feeds are read away from this site: resolve root-relative URLs like a browser would
+  and keep only the image attributes that mean something without the theme's CSS. */
+-}}
+{{- $url := urls.Parse site.BaseURL -}}
+{{- $origin := printf "%s://%s" $url.Scheme $url.Host -}}
+{{- $summary = $summary | replaceRE `(href|src)="(/[^/"][^"]*|/)"` (printf `$1="%s$2"` $origin) -}}
+{{- range $img := findRE `<img\b[^>]*>` $summary -}}
+  {{- $summary = replace $summary $img ($img | replaceRE `\s+(loading|decoding|style|srcset|sizes)="[^"]*"` "") 1 -}}
+{{- end -}}
+{{- return (strings.TrimSpace $summary | safeHTML) -}}

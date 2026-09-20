@@ -1,0 +1,8 @@
+{{- $front := partialCached "front-matter.html" . .RelPermalink -}}
+{{- $hasDate := false -}}
+{{- range $key, $value := $front -}}
+  {{- if and (eq (lower $key) "date") $value }}{{ $hasDate = true }}{{ end -}}
+{{- end -}}
+{{- if or (not $hasDate) .Date.IsZero -}}
+  {{- errorf "shsh: article %s requires explicit date front matter" .Path -}}
+{{- end -}}

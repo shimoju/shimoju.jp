@@ -1,0 +1,5 @@
+---
+title: categories
+---
+
+Fixture page.

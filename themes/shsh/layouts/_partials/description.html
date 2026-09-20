@@ -1,0 +1,24 @@
+{{- $front := partialCached "front-matter.html" . .RelPermalink -}}
+{{- range $key, $value := $front -}}
+  {{- if and (eq (lower $key) "description") (ne (printf "%T" $value) "string") -}}
+    {{- errorf "shsh: description must be a string on %s" $.Path -}}
+  {{- end -}}
+{{- end -}}
+{{- /* Authored text may hold markup; the summary is already plain. */ -}}
+{{- $site := "" -}}
+{{- with site.Params.description -}}
+  {{- $site = . | plainify | htmlUnescape -}}
+{{- end -}}
+{{- $description := "" -}}
+{{- if isset .Params "description" -}}
+  {{- $description = .Description | plainify | htmlUnescape -}}
+{{- else if .IsHome -}}
+  {{- $description = $site -}}
+{{- else -}}
+  {{- $description = partial "summary.html" . -}}
+  {{- /* An explicit summary (even empty) is final; only pages with nothing to say fall back to the site description. */ -}}
+  {{- if and (not $description) (not (isset .Params "summary")) -}}
+    {{- $description = $site -}}
+  {{- end -}}
+{{- end -}}
+{{- return (strings.TrimSpace $description) -}}

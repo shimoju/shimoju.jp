@@ -1,0 +1,30 @@
+{{- $media := partial "media/resolve.html" (dict "page" .Page "src" (.Get "src")) -}}
+{{- $width := .Get "width" -}}{{- $height := .Get "height" -}}
+{{- if or (not (findRE `^[1-9][0-9]*$` (printf "%v" $width))) (not (findRE `^[1-9][0-9]*$` (printf "%v" $height))) -}}
+  {{- errorf "shsh: video requires positive width and height at %s" .Position -}}
+{{- end -}}
+{{- $flags := dict -}}
+{{- range $name := slice "muted" "autoplay" "loop" -}}
+  {{- $value := $.Get $name -}}
+  {{- if and (ne $value nil) (not (in (slice "true" "false" "") (printf "%v" $value))) }}
+    {{ errorf "shsh: video %s must be boolean" $name }}
+  {{ end -}}
+  {{- $flags = merge $flags (dict $name (eq (printf "%v" $value) "true")) -}}
+{{- end -}}
+{{- $poster := "" -}}
+{{- with .Get "poster" }}
+  {{ $poster = (partial "media/resolve.html" (dict "page" $.Page "src" .)).src }}
+{{ end -}}
+<video
+  src="{{ $media.src }}"
+  width="{{ $width }}"
+  height="{{ $height }}"
+  controls
+  playsinline
+  preload="metadata"
+  aria-label="{{ .Get "title" | default "Video" }}"
+  {{ with $poster }}poster="{{ . }}"{{ end }}
+  {{ if $flags.muted }}muted{{ end }}{{ if $flags.autoplay }}
+    autoplay
+  {{ end }}{{ if $flags.loop }}loop{{ end }}
+></video>

@@ -1,0 +1,134 @@
+.page-heading {
+  margin-bottom: var(--space-section);
+}
+
+.page-heading h1 {
+  margin-bottom: 0;
+}
+
+.page-heading p {
+  margin: var(--description-gap) 0 0;
+  color: var(--muted);
+}
+
+.intro {
+  margin: 0 0 var(--space-group);
+}
+
+.intro p {
+  margin-top: 0;
+}
+
+.post-list {
+  display: grid;
+  gap: var(--space-section);
+}
+
+.post-entry + .post-entry {
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-section);
+}
+
+.entry-link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--media-info-gap);
+  text-decoration-line: none;
+  border-radius: var(--radius-large);
+  min-height: var(--control-size);
+}
+
+.entry-link:is(:hover, :focus-visible) {
+  text-decoration-line: none;
+}
+
+.entry-text {
+  min-width: 0;
+}
+
+.entry-title {
+  font-size: var(--text-h4);
+  line-height: var(--leading-heading);
+  margin: 0 0 var(--title-meta-gap);
+}
+
+.meta {
+  color: var(--muted);
+  font-size: var(--text-meta);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-space-1) var(--ui-space-4);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--leading-label);
+}
+
+.entry-summary {
+  color: var(--muted);
+  font-size: var(--text-small);
+  line-height: var(--leading-body);
+  margin: var(--description-gap) 0 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.pager {
+  margin-top: var(--space-page);
+  padding-top: var(--ui-space-6);
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--ui-space-4);
+  font-size: var(--text-small);
+  line-height: var(--leading-label);
+}
+
+.pager a {
+  padding-block: var(--ui-space-2);
+  text-decoration-line: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--control-size);
+  min-height: var(--control-size);
+}
+
+.pager a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+}
+
+.nav-label {
+  display: inline-block;
+  white-space: nowrap;
+  line-height: var(--leading-label);
+}
+
+.previous-page {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+}
+
+.next-page {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+}
+
+.page-number {
+  color: var(--muted);
+  font-size: var(--text-meta);
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.empty {
+  margin-block: var(--ui-space-12);
+  color: var(--muted);
+}
+
+.entry-link:is(:hover, :focus-visible) .entry-title {
+  text-decoration-line: underline;
+}

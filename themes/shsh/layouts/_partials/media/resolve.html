@@ -1,0 +1,33 @@
+{{- $src := .src -}}
+{{- if ne (printf "%T" $src) "string" }}
+  {{ errorf "shsh: media src must be a string" }}{{ $src = "" }}
+{{ end -}}
+{{- if not $src }}{{ errorf "shsh: media src is required" }}{{ end -}}
+{{- $url := urls.Parse $src -}}
+{{- $resource := false -}}
+{{- $static := "" -}}
+{{- $external := or $url.IsAbs $url.Host -}}
+{{- if $external -}}
+  {{- if and $url.Scheme (not (in (slice "http" "https") $url.Scheme)) }}
+    {{ errorf "shsh: unsupported media URL %q" $src }}
+  {{ end -}}
+{{- else -}}
+  {{- if not (strings.HasPrefix $url.Path "/") -}}
+    {{- if and .page (not .global) }}
+      {{ $resource = .page.Resources.Get $url.Path }}
+    {{ end -}}
+    {{- if not $resource }}{{ $resource = resources.Get $url.Path }}{{ end -}}
+  {{- end -}}
+  {{- if $resource -}}
+    {{- $src = ($resource | fingerprint).RelPermalink -}}
+  {{- else -}}
+    {{- $static = path.Join "static" (strings.TrimPrefix "/" $url.Path) -}}
+    {{- if or (not (strings.HasPrefix $static "static/")) (not (fileExists $static)) -}}
+      {{ errorf "shsh: unresolved local media %q" .src }}
+    {{- end -}}
+    {{- $src = (strings.TrimPrefix "/" $url.Path) | relURL -}}
+  {{- end -}}
+  {{- with $url.RawQuery }}{{ $src = printf "%s?%s" $src . }}{{ end -}}
+  {{- with $url.Fragment }}{{ $src = printf "%s#%s" $src . }}{{ end -}}
+{{- end -}}
+{{- return (dict "src" $src "resource" $resource "static" $static "external" $external) -}}

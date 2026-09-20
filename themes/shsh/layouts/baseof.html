@@ -1,0 +1,37 @@
+{{- $config := partialCached "config.html" . -}}
+<!doctype html>
+<html lang="{{ site.Language.Locale }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    {{ partial "metadata.html" . }}
+    {{ if ne hugo.Environment "production" }}
+      <meta name="robots" content="noindex,nofollow" />
+    {{ end }}
+    {{ with .OutputFormats.Get "RSS" }}
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title="{{ site.Title }} RSS"
+        href="{{ .Permalink }}"
+      />
+    {{ end }}
+    {{ if fileExists "static/favicon.ico" }}
+      <link rel="icon" href="{{ "favicon.ico" | relURL }}" />
+    {{ end }}
+    {{ if fileExists "static/apple-touch-icon.png" }}
+      <link
+        rel="apple-touch-icon"
+        href="{{ "apple-touch-icon.png" | relURL }}"
+      />
+    {{ end }}
+    {{ partialCached "assets.html" . }}
+    {{ partial "sharing-head.html" . }}
+  </head>
+  <body {{ if .IsHome }}class="home"{{ end }}>
+    {{ partial "header.html" . }}
+    <main class="shell">{{ block "main" . }}{{ end }}</main>
+    {{ partial "footer.html" . }}
+  </body>
+</html>

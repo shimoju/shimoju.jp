@@ -1,0 +1,11 @@
+{{- /* The anchor glyph is CSS-generated and the heading is wrapped in newlines so
+  plain-text summaries never contain "#" nor glue the heading to the next paragraph. */
+-}}
+{{- printf "\n<h%d id=\"%s\">" .Level (.Anchor | htmlEscape) | safeHTML -}}
+{{ .Text }}<a
+  class="heading-anchor"
+  href="#{{ .Anchor }}"
+  aria-label="Link to {{ .PlainText }}"
+  lang="en"
+></a>
+{{- printf "</h%d>\n" .Level | safeHTML -}}

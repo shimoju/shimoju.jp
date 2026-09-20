@@ -1,0 +1,64 @@
+/* Small icon controls share geometry; visibility and placement belong to each role. */
+.icon-control {
+  display: inline-grid;
+  place-items: center;
+  width: var(--control-size-small);
+  height: var(--control-size-small);
+  min-width: var(--control-size-small);
+  min-height: var(--control-size-small);
+  padding: var(--ui-space-2);
+  border: 0;
+  border-radius: var(--radius-small);
+  background: none;
+}
+
+/* Same visible stroke: 1.5 units at 24px, 2.25 units at 16px. Scale with text enlargement. */
+.icon-link svg,
+.icon-control svg {
+  fill: none;
+  stroke: currentcolor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon-control svg {
+  width: var(--icon-size-small);
+  height: var(--icon-size-small);
+  stroke-width: 2.25;
+}
+
+.sun,
+[data-theme="dark"] .moon {
+  display: none;
+}
+
+[data-theme="dark"] .sun {
+  display: block;
+}
+
+.icon-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--control-size);
+  height: var(--control-size);
+  flex-shrink: 0;
+  border-radius: var(--radius-small);
+  color: var(--text);
+  text-decoration-line: none;
+  min-height: var(--control-size);
+  min-width: var(--control-size);
+}
+
+.icon-link svg {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  stroke-width: 1.5;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--icon-gap);
+  font-size: var(--text-small);
+}

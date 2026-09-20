@@ -1,0 +1,41 @@
+{{- $url := "" -}}
+{{- $name := "" -}}
+{{- $action := "Share on" -}}
+{{- if eq .service "x" -}}
+  {{- $name = "X" -}}
+  {{- $url = printf "https://x.com/intent/tweet?%s" (querify "text" .page.Title "url" .page.Permalink) -}}
+{{- else if eq .service "facebook" -}}
+  {{- $name = "Facebook" -}}
+  {{- $url = printf "https://www.facebook.com/sharer/sharer.php?%s" (querify "u" .page.Permalink) -}}
+{{- else if eq .service "bluesky" -}}
+  {{- $name = "Bluesky" -}}
+  {{- $url = printf "https://bsky.app/intent/compose?%s" (querify "text" (printf "%s\n%s" .page.Title .page.Permalink)) -}}
+{{- else if eq .service "hatena" -}}
+  {{- $name = "Hatena Bookmark" -}}
+  {{- $action = "View on" -}}
+  {{- $path := strings.TrimPrefix "http://" .page.Permalink -}}
+  {{- if strings.HasPrefix .page.Permalink "https://" }}
+    {{ $path = printf "s/%s" (strings.TrimPrefix "https://" .page.Permalink) }}
+  {{ end -}}
+  {{- $url = printf "https://b.hatena.ne.jp/entry/%s" $path -}}
+{{- end -}}
+{{- if eq hugo.Environment "production" -}}
+  <a
+    class="icon-link share-icon"
+    href="{{ $url }}"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="{{ $action }} {{ $name }} (opens in a new tab)"
+    title="{{ $action }} {{ $name }}"
+    >{{ partial "icon.html" .service }}</a
+  >
+{{- else -}}
+  <button
+    class="icon-link share-icon"
+    type="button"
+    disabled
+    aria-label="{{ $action }} {{ $name }} (unavailable in preview)"
+    title="{{ $action }} {{ $name }}"
+    >{{ partial "icon.html" .service }}</button
+  >
+{{- end -}}

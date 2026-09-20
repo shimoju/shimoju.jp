@@ -1,0 +1,159 @@
+.article-header {
+  margin-bottom: var(--ui-space-8);
+}
+
+.article-header h1 {
+  margin-bottom: var(--title-meta-gap);
+}
+
+.prose {
+  line-height: var(--leading-body);
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+/* Heading margins use scale steps +8 and -4, relative to each heading. */
+.prose :is(h2, h3, h4, h5, h6) {
+  margin: 2.121em 0 0.687em;
+  position: relative;
+}
+
+.prose
+  :is(h2 + h3, h2 + h4, h2 + h5, h2 + h6, h3 + h4, h3 + h5, h3 + h6, h4 + h5, h4 + h6, h5 + h6) {
+  margin-top: 0.91em;
+}
+
+.heading-anchor {
+  display: none;
+  position: absolute;
+  right: 100%;
+  top: 0;
+  width: var(--heading-anchor-size);
+  min-height: var(--heading-anchor-size);
+  height: calc(var(--leading-heading) * 1em);
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--muted);
+  text-decoration-line: none;
+  opacity: 0;
+}
+
+.heading-anchor::before {
+  content: "#";
+  flex: 0 0 var(--ui-space-4);
+  text-align: center;
+  font-size: var(--text-label);
+}
+
+.heading-anchor:hover {
+  color: var(--muted);
+}
+
+.heading-anchor:focus-visible {
+  outline-offset: -2px;
+}
+
+.prose :is(h2, h3, h4, h5, h6):is(:hover, :focus-within) > .heading-anchor {
+  opacity: 1;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: var(--list-indent);
+  margin-block: var(--space-paragraph);
+}
+
+.prose li {
+  margin-block: var(--space-list-item);
+}
+
+.prose li > ul,
+.prose li > ol {
+  margin-block: var(--space-list-nested);
+}
+
+.prose li > p {
+  margin-block: var(--space-list-paragraph);
+}
+
+.prose :is(h2, h3, h4, h5, h6) + p {
+  margin-top: 0;
+}
+
+.prose blockquote {
+  margin: 1.6em 0;
+  padding: 0 0 0 var(--quote-inset);
+  border-left: 2px solid var(--quote-border);
+  color: var(--muted);
+}
+
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: var(--space-section) 0;
+}
+
+.prose sup {
+  line-height: 0;
+}
+
+strong,
+b {
+  font-weight: 700;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  margin: var(--space-block) 0;
+}
+
+.table-scroll table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+  font-size: var(--text-small);
+  line-height: var(--leading-table);
+}
+
+.table-scroll th,
+.table-scroll td {
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  padding: var(--ui-space-3) var(--ui-space-4) var(--ui-space-3) 0;
+  vertical-align: top;
+  min-width: 6em;
+}
+
+.table-scroll th {
+  font-weight: 700;
+}
+
+.prose .wide-table {
+  min-width: 740px;
+}
+
+@media (hover: hover) {
+  .heading-anchor {
+    display: flex;
+  }
+}
+
+.footnotes {
+  font-size: var(--text-small);
+  color: var(--muted);
+  margin-top: var(--space-group);
+}
+
+.table-scroll .align-left {
+  text-align: left;
+}
+
+.table-scroll .align-center {
+  text-align: center;
+}
+
+.table-scroll .align-right {
+  text-align: right;
+}

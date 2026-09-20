@@ -1,0 +1,5 @@
+{{ define "main" }}
+  <header class="page-heading"><h1>{{ .Title }}</h1>{{ .Content }}</header>
+  {{ $pages := partial "list-pages.html" . }}
+  {{ partial "post-list.html" (.Paginate $pages) }}
+{{ end }}

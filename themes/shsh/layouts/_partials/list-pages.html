@@ -1,0 +1,10 @@
+{{- /* Keep pagination, feeds and classification filtering on the same ordered posts. */ -}}
+{{- $pages := partialCached "posts.html" . -}}
+{{- if .IsSection -}}
+  {{- $pages = where $pages "Section" .Section -}}
+{{- else if eq .Kind "term" -}}
+  {{- $pages = intersect $pages .RegularPages -}}
+{{- else if eq .Kind "taxonomy" -}}
+  {{- $pages = .Pages.ByTitle -}}
+{{- end -}}
+{{- return $pages -}}

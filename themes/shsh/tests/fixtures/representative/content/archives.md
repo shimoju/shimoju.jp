@@ -1,0 +1,5 @@
+---
+title: archives
+---
+
+Fixture page.

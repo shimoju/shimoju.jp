@@ -1,0 +1,6 @@
+<figure>
+  {{ partial "media/image.html" (dict "page" .Page "src" (.Get "src") "alt" (.Get "alt") "title" (.Get "title") "width" (.Get "width") "height" (.Get "height")) }}
+  {{ with .Get "caption" }}
+    <figcaption>{{ . | $.Page.RenderString }}</figcaption>
+  {{ end }}
+</figure>

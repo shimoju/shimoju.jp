@@ -1,0 +1,9 @@
+{{ define "main" }}
+  {{ $pager := .Paginate (partial "list-pages.html" .) }}
+  {{ if eq $pager.PageNumber 1 }}
+    {{ with .Content }}
+      <section class="intro" aria-label="Introduction">{{ . }}</section>
+    {{ end }}
+  {{ end }}
+  {{ partial "post-list.html" $pager }}
+{{ end }}
