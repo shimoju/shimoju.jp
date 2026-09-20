@@ -26,7 +26,7 @@
     target="_blank"
     rel="noopener noreferrer"
     aria-label="{{ $action }} {{ $name }} (opens in a new tab)"
-    title="{{ $name }}"
+    title="{{ $action }} {{ $name }}"
     >{{ partial "icon.html" .service }}</a
   >
 {{- else -}}
@@ -35,7 +35,7 @@
     type="button"
     disabled
     aria-label="{{ $action }} {{ $name }} (unavailable in preview)"
-    title="{{ $name }}"
+    title="{{ $action }} {{ $name }}"
     >{{ partial "icon.html" .service }}</button
   >
 {{- end -}}
