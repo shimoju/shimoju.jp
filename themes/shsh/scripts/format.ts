@@ -2,7 +2,7 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { join } from "node:path";
 
-import { formatTemplate } from "./format-template.mjs";
+import { formatTemplate } from "./format-template.ts";
 
 const write = process.argv.includes("--write");
 execFileSync("pnpm", ["exec", "oxfmt", write ? "--write" : "--check", "."], {
@@ -23,8 +23,7 @@ for (const path of ["../../.github/workflows/shsh.yml"].filter(existsSync)) {
     }
   }
 }
-/** @param {string} directory @returns {string[]} */
-function templates(directory) {
+function templates(directory: string): string[] {
   if (!existsSync(directory)) return [];
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
     const path = join(directory, entry.name);

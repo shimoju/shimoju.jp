@@ -20,7 +20,7 @@ export default defineConfig({
   retries: 0,
   reporter: [["list"], ["html", { open: "never" }]],
   webServer: {
-    command: "node scripts/serve-fixtures.mjs",
+    command: "node scripts/serve-fixtures.ts",
     url: "http://127.0.0.1:4174/",
     reuseExistingServer: false,
   },

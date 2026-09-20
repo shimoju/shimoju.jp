@@ -2,8 +2,7 @@ import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import { extname, resolve, sep } from "node:path";
 
-/** @type {Record<string, string>} */
-const types = {
+const types: Record<string, string> = {
   ".html": "text/html; charset=utf-8",
   ".md": "text/plain; charset=utf-8",
   ".css": "text/css",
@@ -17,7 +16,7 @@ const types = {
   ".json": "application/json",
   ".xml": "application/xml",
 };
-const directories = /** @type {[number, string][]} */ ([
+const directories: [number, string][] = [
   [4174, ".cache/representative/production"],
   [4175, ".cache/representative/preview"],
   [4176, ".cache/representative/development"],
@@ -30,9 +29,8 @@ const directories = /** @type {[number, string][]} */ ([
   [4188, ".cache/screen-variants/pagination/public"],
   [4189, ".cache/screen-variants/empty/public"],
   [4195, ".cache/screen-variants/single/public"],
-]);
-/** @type {ReturnType<typeof createServer>[]} */
-const servers = [];
+];
+const servers: ReturnType<typeof createServer>[] = [];
 for (const [port, directory] of directories) {
   const root = resolve(directory);
   const server = createServer((request, response) => {

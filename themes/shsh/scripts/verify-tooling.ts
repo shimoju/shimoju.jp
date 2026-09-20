@@ -3,7 +3,7 @@ import { execFileSync, spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { performance } from "node:perf_hooks";
-import { formatTemplate } from "./format-template.mjs";
+import { formatTemplate } from "./format-template.ts";
 import { HtmlValidate } from "html-validate";
 import stylelint from "stylelint";
 

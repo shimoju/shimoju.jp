@@ -3,10 +3,8 @@ import { format, resolveConfig } from "prettier";
 /**
  * The Go plugin can reflow an attribute conditional again on its second pass.
  * Return a fixed point so one invocation is idempotent; fail on oscillation.
- * @param {string} source
- * @returns {Promise<string>}
  */
-export async function formatTemplate(source) {
+export async function formatTemplate(source: string): Promise<string> {
   const options = await resolveConfig("layouts/__format_probe.html");
   if (!options) throw new Error("Missing Go template formatter configuration");
   let current = source;
