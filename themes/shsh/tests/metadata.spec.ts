@@ -38,9 +38,23 @@ async function feed(page: Page, variant: string, path = "index.xml") {
         title: doc.querySelector("channel > title")?.textContent,
         link: doc.querySelector("channel > link")?.textContent,
         description: doc.querySelector("channel > description")?.textContent,
-        items: [...doc.querySelectorAll("item")].map((item) =>
-          Object.fromEntries([...item.children].map((node) => [node.tagName, node.textContent])),
-        ),
+        built: doc.querySelector("channel > lastBuildDate")?.textContent,
+        items: [...doc.querySelectorAll("item")].map((item) => {
+          const field = (name: string) => item.querySelector(`:scope > ${name}`)?.textContent;
+          // Readers render the description as HTML; expose what they would show.
+          const body = new DOMParser().parseFromString(
+            field("description") ?? "",
+            "text/html",
+          ).body;
+          return {
+            title: field("title"),
+            link: field("link"),
+            guid: field("guid"),
+            pubDate: field("pubDate"),
+            html: body.innerHTML,
+            text: body.textContent,
+          };
+        }),
         dates: [...doc.querySelectorAll("pubDate")].map((node) => node.textContent),
         self: doc
           .getElementsByTagNameNS("http://www.w3.org/2005/Atom", "link")[0]
@@ -51,12 +65,13 @@ async function feed(page: Page, variant: string, path = "index.xml") {
   );
 }
 
-test("RSS uses all ordered articles, plain common summaries and stable document GUIDs", async ({
+test("RSS uses all ordered articles, HTML summaries, stable document GUIDs and the newest lastmod", async ({
   page,
 }) => {
   const rss = await feed(page, "production");
   expect(rss.error).toBeUndefined();
-  expect(rss.items).toHaveLength(14);
+  expect(rss.built).toBe("Wed, 02 Sep 2026 12:00:00 +0900");
+  expect(rss.items).toHaveLength(15);
   expect(rss.items.slice(0, 3).map((i) => i.link)).toEqual([
     `${base}posts/a/`,
     `${base}posts/b/`,
@@ -64,16 +79,35 @@ test("RSS uses all ordered articles, plain common summaries and stable document 
   ]);
   expect(rss.items[0]).toMatchObject({
     title: '日 & <x> "引" </script>',
-    description: "要約 & link <記号>",
+    html: '<strong>要約</strong> &amp; <a href="https://example.org/">link</a> &lt;記号&gt;',
+    text: "要約 & link <記号>",
     guid: `${base}posts/a/`,
     pubDate: "Tue, 01 Sep 2026 10:00:00 +0900",
   });
-  expect(rss.items[1]?.description).toBe("手動要約 & <記号>");
-  expect(rss.items[2]?.description).toBe("");
-  expect(rss.items[3]?.description).toBe("導入。\n組み立て 組み立てには #tag を使う。");
+  expect(rss.items[1]).toMatchObject({
+    html: "<p><strong>手動要約</strong> &amp; &lt;記号&gt;</p>",
+    text: "手動要約 & <記号>",
+  });
+  expect(rss.items[2]?.html).toBe("");
+  expect(rss.items[3]?.html).toBe(
+    '<p>導入。</p>\n\n<h2 id="組み立て">組み立て</h2>\n<p>組み立てには #tag を使う。</p>',
+  );
+  const coded = rss.items[4]!;
+  expect(coded.title).toBe("コード");
+  expect(coded.html).toContain("<code>&lt;ul&gt;</code>");
+  expect(coded.text).toMatch(
+    /^<ul> を入れ子にする。内部\s+設定\s+YAML · config\.yml\s+box: ruby\s*$/,
+  );
+  expect(coded.html).toContain('<span class="code-label" lang="en">YAML · config.yml</span>');
+  expect(coded.html).toContain('<a href="https://metadata.invalid/posts/b/">内部</a>');
+  expect(coded.html).toMatch(
+    /<figure><img src="https:\/\/metadata\.invalid\/blog\/default\.png" alt="本文画像" width="200" height="100"><\/figure>$/,
+  );
+  for (const gone of ["<button", "copy-feedback", "heading-anchor", "srcset", "loading", "style="])
+    expect(coded.html).not.toContain(gone);
   expect(rss.self).toBe(`${base}index.xml`);
   for (const item of rss.items) expect(item.guid).toBe(item.link);
-  expect((await feed(page, "production", "posts/index.xml")).items).toHaveLength(13);
+  expect((await feed(page, "production", "posts/index.xml")).items).toHaveLength(14);
   expect((await feed(page, "production", "notes/index.xml")).items).toHaveLength(1);
   const preview = await feed(page, "preview");
   expect(preview.items[0]?.guid).toBe("https://preview.invalid/posts/a/");
@@ -85,7 +119,10 @@ test("taxonomy feeds contain term pages, term feeds filter posts, empty feeds ha
   const terms = await feed(page, "production", "tags/index.xml");
   expect(terms.error).toBeUndefined();
   expect(terms.items.map((i) => i.title)).toEqual(["A & B", "Empty & none", "Quiet", "空"]);
-  expect(terms.items[0]?.description).toBe("分類要約 & 説明");
+  expect(terms.items[0]).toMatchObject({
+    html: "分類要約 &amp; <strong>説明</strong>",
+    text: "分類要約 & 説明",
+  });
   expect(terms.items.find((i) => i.title === "Empty & none")?.pubDate).toBeUndefined();
   expect((await feed(page, "production", "tags/a--b/index.xml")).items).toHaveLength(14);
   expect((await feed(page, "production", "categories/index.xml")).items[0]?.title).toBe(
@@ -106,6 +143,7 @@ test("taxonomy feeds contain term pages, term feeds filter posts, empty feeds ha
     expect(rss.error).toBeUndefined();
     expect(rss.items).toEqual([]);
     expect(rss.dates).toEqual([]);
+    expect(rss.built).toBeUndefined();
   }
 });
 
@@ -165,6 +203,11 @@ test("description, dates and JSON-LD preserve page roles and safe text", async (
   expect(headed.meta.description).toBe("導入。\n組み立て 組み立てには #tag を使う。");
   expect(headed.meta["og:description"]).toBe(headed.meta.description);
   expect(headed.schema[0]?.description).toBe(headed.meta.description);
+  const coded = await head(page, "production", "posts/coded/index.html");
+  expect(coded.meta.description).toBe(
+    "<ul> を入れ子にする。内部\n設定 YAML · config.yml box: ruby",
+  );
+  expect(coded.schema[0]?.description).toBe(coded.meta.description);
   const home = await head(page, "production");
   expect(home.meta.description).toBe("サイト & 説明");
   expect((await feed(page, "production")).description).toBe("サイト & 説明");

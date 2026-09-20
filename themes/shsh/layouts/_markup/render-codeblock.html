@@ -8,9 +8,10 @@
   {{- $labels := slice -}}
   {{- with .Type }}{{ $labels = $labels | append (upper .) }}{{ end -}}
   {{- with $filename }}{{ $labels = $labels | append . }}{{ end -}}
-  {{- with $labels -}}
+  {{- /* Newlines keep the label a line of its own in plain-text summaries. */ -}}
+  {{- with $labels }}
     <span class="code-label" lang="en">{{ delimit . " · " }}</span>
-  {{- end -}}
+  {{ end -}}
   <button
     class="copy icon-control"
     type="button"

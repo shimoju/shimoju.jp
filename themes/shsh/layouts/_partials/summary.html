@@ -1,18 +1,1 @@
-{{- $front := partialCached "front-matter.html" . .RelPermalink -}}
-{{- range $key, $value := $front -}}
-  {{- if and (eq (lower $key) "summary") (ne (printf "%T" $value) "string") -}}
-    {{- errorf "shsh: summary must be a string on %s" $.Path -}}
-  {{- end -}}
-{{- end -}}
-{{- /* Prefer an explicit front matter summary over the manual summary divider. */ -}}
-{{- $summary := "" -}}
-{{- if isset .Params "summary" -}}
-  {{- if ne (printf "%T" .Params.summary) "string" -}}
-    {{- errorf "shsh: summary must be a string on %s" .Path -}}
-  {{- else -}}
-    {{- $summary = .RenderString .Params.summary -}}
-  {{- end -}}
-{{- else -}}
-  {{- $summary = .Summary -}}
-{{- end -}}
-{{- return (strings.TrimSpace ($summary | plainify | htmlUnescape)) -}}
+{{- return (strings.TrimSpace (partial "summary-html.html" . | plainify | htmlUnescape)) -}}

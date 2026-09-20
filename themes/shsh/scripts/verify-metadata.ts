@@ -55,6 +55,12 @@ page(
   { ...common, date: "2026-08-30" },
   "導入。\n\n## 組み立て\n\n組み立てには #tag を使う。",
 );
+// Feed summaries keep code literal and labels as content, drop page-only UI, resolve URLs.
+page(
+  "posts/coded",
+  { title: "コード", date: "2026-08-29" },
+  '`<ul>` を入れ子にする。[内部](/posts/b/)\n\n## 設定\n\n```yaml {filename="config.yml"}\nbox: ruby\n```\n\n![本文画像](/default.png)',
+);
 for (let i = 0; i < 10; i++)
   page(`posts/old-${i}`, { ...common, date: `2020-01-${String(i + 1).padStart(2, "0")}` });
 page("about", {
