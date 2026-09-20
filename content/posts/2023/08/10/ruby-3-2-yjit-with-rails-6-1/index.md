@@ -96,8 +96,7 @@ YAMLを扱うgemは対応バージョンにアップデートします。
 チームで検討した結果、SettingslogicをやめてRails標準の[config_forを用いたカスタム設定](https://railsguides.jp/configuring.html#%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E8%A8%AD%E5%AE%9A)へ移行する方針とし、移行完了するまではPsych 4未満に固定することにしました。
 Gemfileでバージョン指定すればRuby 3.1以降でもPsych 3系を利用できます。
 
-```ruby
-# Gemfile
+```ruby {filename="Gemfile"}
 gem 'psych', '< 4.0.0'
 ```
 
@@ -118,8 +117,7 @@ gem 'psych', '< 4.0.0'
 アプリケーション内で該当のライブラリを使っていれば、こちらも明示的にGemfileに追加します。
 今回のアプリではnet-ftpを使っていたので対応しました。
 
-```ruby
-# Gemfile
+```ruby {filename="Gemfile"}
 gem 'net-ftp'
 ```
 
@@ -129,8 +127,7 @@ gem 'net-ftp'
 
 ただし、[GitHubの6-1-stableブランチ](https://github.com/rails/rails/tree/6-1-stable)には[バックポートが取り込まれており](https://github.com/rails/rails/pull/46895)、[このブランチを使うことで対応できます](https://linkers.hatenablog.com/entry/2023/06/28/161932)。
 
-```ruby
-# Gemfile
+```ruby {filename="Gemfile"}
 gem 'rails', git: 'https://github.com/rails/rails.git', branch: '6-1-stable'
 ```
 

@@ -11,8 +11,7 @@ tags:
 
 [オラクルに買収](https://jp.techcrunch.com/2017/04/18/20170417developer-tools-startup-wrecker-has-been-acquired-by-oracle/)されてから存在感が薄くなった(?)ような気がする[Wercker](http://www.wercker.com/)ですが、使う機会があったのでRailsでの設定をメモしておきます。
 
-```yaml
-# wercker.yml
+```yaml {filename="wercker.yml" linenos=inline}
 box:
   id: ruby:2.5.1
 

@@ -19,8 +19,7 @@ tags:
 
 `lib/tasks`以下に適当な名前でRakeタスクを作り、以下のように書きます。
 
-```ruby
-# lib/tasks/heroku_deploy.rake
+```ruby {filename="lib/tasks/heroku_deploy.rake"}
 Rake::Task['assets:precompile'].enhance do
   Rails.logger.info 'Update zip code data'
   ZipCodeJp.export_json

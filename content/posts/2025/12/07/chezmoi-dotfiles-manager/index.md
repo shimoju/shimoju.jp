@@ -78,13 +78,13 @@ $ chezmoi apply
 
 ## gitリポジトリ管理
 
-[Prezto](https://github.com/sorin-ionescu/prezto)や[anyenv](https://github.com/anyenv/anyenv)といった、git cloneして利用するツールの管理には[chezmoiexternal.toml](https://www.chezmoi.io/user-guide/include-files-from-elsewhere/)を利用します。
+[Prezto](https://github.com/sorin-ionescu/prezto)や[anyenv](https://github.com/anyenv/anyenv)といった、git cloneして利用するツールの管理には[.chezmoiexternal.toml](https://www.chezmoi.io/user-guide/include-files-from-elsewhere/)を利用します。
 
 以下のように書くことで、`chezmoi apply`実行時に外部のソースを取り込んでくれます。
 gitリポジトリ以外に、[URLからのダウンロードにも対応しています](https://www.chezmoi.io/reference/special-files/chezmoiexternal-format/)。
 
 
-```toml
+```toml {filename=".chezmoiexternal.toml"}
 # ~/.config/zsh/.zpreztoにcloneする
 [".config/zsh/.zprezto"]
 type = "git-repo"
@@ -123,7 +123,7 @@ applyすると毎回ダウンロードされるわけではなく、`refreshPeri
 この機能を用いて、`brew bundle`でパッケージのインストールを実行するようにしました。
 `run_once_install_homebrew.sh.tmpl`のように、スクリプトでも拡張子を`.tmpl`とすることでテンプレートが利用できます。
 
-```bash
+```bash {filename="run_once_install_homebrew.sh.tmpl"}
 #!/bin/bash
 
 set -e

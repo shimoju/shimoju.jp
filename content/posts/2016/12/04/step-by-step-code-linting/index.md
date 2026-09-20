@@ -82,7 +82,7 @@ git diff --name-only --diff-filter=ACM origin/master...HEAD
 
 そこで以下のような[一括チェック用のシェルスクリプト](https://github.com/shimoju/step-by-step-linting/pull/1/files#diff-a53fc6fd70572e51bd83043b394df77c)を用意しました。
 
-```sh
+```sh {filename="bin/check-coding-rule" linenos=inline}
 #!/bin/bash
 
 function diff-filter-ext() {
@@ -126,7 +126,7 @@ if [ $status != 0 ]; then exit 1; fi
 
 実際の業務では[Drone](https://github.com/drone/drone)を使っていますが、Travis CIでは以下のように設定できます。
 
-```yaml
+```yaml {filename=".travis.yml"}
 language: php
 php:
   - '7.0'

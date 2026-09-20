@@ -15,7 +15,7 @@ Redisの同時接続数制限が原因です。
 
 上記Wikiにもあるように、変更するには`sidekiq.yml`に以下のように書きます。`RAILS_ENV`ごとに切り替えることもできます。
 
-```yaml
+```yaml {filename="config/sidekiq.yml"}
 :concurrency: 5
 staging:
   :concurrency: 10

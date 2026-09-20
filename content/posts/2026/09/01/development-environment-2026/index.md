@@ -38,7 +38,7 @@ cmuxが話題になって使ってみたものの、ズームがうまく動か�
 テキスト選択時のクリップボードコピー、タイトルバーをタブにする、ウィンドウ状態の保存など、iTerm2で利用していた設定を踏襲した。
 テーマは[Catppuccin Mocha](https://catppuccin.com/)で、herdrやエディタのカラースキームもすべてこれで統一している。
 
-```
+``` {filename="~/.config/ghostty/config"}
 copy-on-select = clipboard
 font-family = Moralerspace Argon HW
 font-size = 14
@@ -69,8 +69,7 @@ Ghostty側のキーバインドでは一工夫した。
 
 こうすることで、Ghosttyで複数のタブを開いているときはGhosttyのタブ移動として動作させつつ、タブがひとつのみのときはherdrのタブ移動として動く。
 
-```
-# Ghostty
+``` {filename="~/.config/ghostty/config"}
 keybind = performable:super+1=goto_tab:1
 keybind = performable:super+2=goto_tab:2
 ...
@@ -78,8 +77,7 @@ keybind = performable:super+shift+[=previous_tab
 keybind = performable:super+shift+]=next_tab
 ```
 
-```toml
-# herdr
+```toml {filename="~/.config/herdr/config.toml"}
 previous_tab = ["prefix+p", "cmd+shift+["]
 next_tab = ["prefix+n", "cmd+shift+]"]
 switch_tab = ["prefix+1..9", "cmd+1..9"]
@@ -91,7 +89,7 @@ switch_tab = ["prefix+1..9", "cmd+1..9"]
 ほかにはAIエージェントを素早く開けるように、`prefix+a`でペイン、`prefix+shift+a`でタブで開くカスタムコマンドを用意した。
 [herdrのカスタムコマンド](https://herdr.dev/docs/configuration/#custom-command-keybindings)ではタブで開くオプションがないようで、[簡単なラッパースクリプト](https://github.com/shimoju/dotfiles/blob/4abc2f3eda3b88fec9787d4a33fb824cdac61eef/dot_local/bin/executable_herdr-open)を書いて実現した。
 
-```toml
+```toml {filename="~/.config/herdr/config.toml"}
 [[keys.command]]
 key = "prefix+a"
 type = "shell"
@@ -107,7 +105,7 @@ description = "open coding agent in tab"
 
 あと公式で紹介されている、`type = "popup"`を用いてポップアップウィンドウでターミナルを開くコマンドが地味に便利。
 
-```toml
+```toml {filename="~/.config/herdr/config.toml"}
 [[keys.command]]
 key = "prefix+t"
 type = "popup"
@@ -143,7 +141,7 @@ AI時代になって設定を書くのが格段に楽になった。フレーム
 
 よく使う操作をシェルのショートカットに割り当てるやつ、やりたいと思いつつできていなかったのだが、AIに頼めば一瞬でやってくれてさすがである。`ctrl-s`でherdr起動、`ctrl-o`でfzfを用いたディレクトリ移動を設定した。
 
-```zsh
+```zsh {filename="~/.zshrc"}
 # ctrl-s: herdrを起動
 _herdr_widget() {
   zle .push-line

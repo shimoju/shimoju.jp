@@ -40,7 +40,7 @@ PaperModは[assets/css/extendedにCSSを置くとそれもバンドルしてく�
 - [日本語の文章とline-heightに対する考察 - Qiita](https://qiita.com/NagayamaToshiaki/items/25d4969636d05bf48c41)
 - [ウェブデザインにおけるline-heightについて  |  Rriver](https://parashuto.com/rriver/development/line-height-in-web-design)
 
-```css
+```css {filename="assets/css/extended/override.css"}
 .post-content {
   line-height: 2;
 }
@@ -71,7 +71,7 @@ h6 {
 
 URLはできるだけ変えないように、パーマリンクは[以前のブログと同様に設定した](https://github.com/shimoju/shimoju.jp/blob/master/hugo.yml)。
 
-```yaml
+```yaml {filename="hugo.yml"}
 permalinks:
   posts: /:year/:month/:day/:slugorfilename/
 ```
@@ -81,7 +81,7 @@ permalinks:
 
 RSSフィードはURLが変わったので[リダイレクトを設定してある](https://github.com/shimoju/shimoju.jp/blob/master/static/_redirects)。
 
-```
+``` {filename="static/_redirects"}
 /feed.xml /index.xml 301
 ```
 

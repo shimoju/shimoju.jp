@@ -13,7 +13,7 @@ Herokuには[Release Phase](https://devcenter.heroku.com/articles/release-phase)
 
 設定方法は`Procfile`に`release: command`の形式で書くだけです。例えば、Railsでmigrateと[seed-fu](https://github.com/mbleigh/seed-fu)を実行するのであれば以下のようになります。
 
-```
+``` {filename="Procfile"}
 release: bin/rails db:migrate db:seed_fu
 web: bundle exec puma -C config/puma.rb
 ```

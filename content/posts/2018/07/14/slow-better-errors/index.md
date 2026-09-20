@@ -12,8 +12,7 @@ tags:
 
 この対策として、最新バージョンの2.4.0(2017年10月リリース)で[サイズの大きいインスタンス変数をフィルタする機能](https://github.com/charliesome/better_errors#set-maximum-variable-size-for-inspector)が追加されていました。フィルタ設定はデフォルトで有効なので、最新版にアップデートすればいい感じになります。
 
-```ruby
-# e.g. in config/initializers/better_errors.rb
+```ruby {filename="config/initializers/better_errors.rb"}
 # This will stop BetterErrors from trying to render larger objects, which can cause
 # slow loading times and browser performance problems. Stated size is in characters and refers
 # to the length of #inspect's payload for the given object. Please be aware that HTML escaping
