@@ -3,10 +3,10 @@ import { execFileSync } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { performance } from "node:perf_hooks";
-import { formatTemplate } from "./format-template.ts";
 import { HtmlValidate } from "html-validate";
 import stylelint from "stylelint";
 import { buildHugo } from "./build-hugo.ts";
+import { formatTemplate } from "./format-template.ts";
 
 const root = resolve(".");
 const scratch = join(root, ".cache/tooling");
