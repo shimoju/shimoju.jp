@@ -21,6 +21,8 @@ const directories = /** @type {[number, string][]} */ ([
   [4174, ".cache/representative/production"],
   [4175, ".cache/representative/preview"],
   [4176, ".cache/representative/development"],
+  [4177, ".cache/output/plain"],
+  [4178, ".cache/output/minified"],
   [4179, ".cache/media/production"],
   [4180, ".cache/sharing/production"],
   [4181, ".cache/sharing/preview"],

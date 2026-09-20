@@ -26,3 +26,28 @@ for (const environment of ["production", "preview", "development"]) {
     { stdio: "inherit" },
   );
 }
+
+// The same theme output, with and without HTML minification, under a URL subpath.
+for (const variant of ["plain", "minified"]) {
+  execFileSync(
+    "hugo",
+    [
+      "--source",
+      source,
+      "--themesDir",
+      resolve(".."),
+      "--destination",
+      resolve(`.cache/output/${variant}/blog`),
+      "--baseURL",
+      "https://example.invalid/blog/",
+      "--environment",
+      "production",
+      "--clock",
+      "2026-09-17T12:00:00+09:00",
+      "--cleanDestinationDir",
+      "--panicOnWarning",
+      ...(variant === "minified" ? ["--minify"] : []),
+    ],
+    { stdio: "inherit" },
+  );
+}
