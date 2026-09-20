@@ -4,6 +4,10 @@ date: 2026-09-20T22:55:48+09:00
 categories:
   - 日記
 tags:
+cover:
+  image: chiikawa.jpg
+  alt: 映画ちいかわ 人魚の島のひみつのボンボンドロップシール
+  relative: true
 ---
 
 ## 映画ちいかわ 人魚の島のひみつ
