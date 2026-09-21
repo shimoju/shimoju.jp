@@ -15,13 +15,13 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   const terminal = page.getByRole("img", { name: "ターミナルの文字", exact: true });
   const candidates = (value: string | null) =>
     value?.split(", ").map((s) => Number(s.split(" ")[1]?.replace("w", "")));
-  expect(candidates(await terminal.getAttribute("srcset"))).toEqual([360, 720, 1200]);
+  expect(candidates(await terminal.getAttribute("srcset"))).toEqual([360, 1200]);
   expect(
     candidates(await page.getByRole("img", { name: "実写真", exact: true }).getAttribute("srcset")),
   ).toEqual([360, 720, 1080, 1440]);
   const photo = page.getByRole("img", { name: "実写真", exact: true });
   expect(await photo.getAttribute("srcset")).not.toContain(await photo.getAttribute("src"));
-  // Rejecting the 1080px resize must not discard the cheaper same-width WebP.
+  // Rejecting larger intermediate resizes must not discard the cheaper same-width WebP.
   expect(await terminal.getAttribute("srcset")).not.toContain(await terminal.getAttribute("src"));
   expect(await terminal.getAttribute("srcset")).toMatch(/\.webp 1200w$/);
   expect(
@@ -46,7 +46,7 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
     candidates(
       await page.getByRole("img", { name: "パレットのスクリーンショット" }).getAttribute("srcset"),
     ),
-  ).toEqual([360, 720, 1080, 2304]);
+  ).toEqual([360, 720, 2304]);
   expect(
     candidates(await page.getByRole("img", { name: "圧縮済みJPEG" }).getAttribute("srcset")),
   ).toEqual([720]);
@@ -121,8 +121,8 @@ test("direct lossless resizing preserves palette midtones and transparency", asy
   await page.goto(`${base}/gallery/`);
   const img = page.getByRole("img", { name: "パレット画像", exact: true });
   const result = await img.evaluate(async (element: HTMLImageElement) => {
-    // The 720px indexed PNG alternates red/blue columns. A 2:1 box resize must
-    // produce purple, absent from the source palette, on both opaque and half-alpha halves.
+    // The 720px indexed PNG alternates red/blue columns. A 2:1 Catmull-Rom resize must
+    // produce purple, absent from the source palette, away from image and alpha edges.
     const bitmap = new Image();
     bitmap.src = element.srcset.split(", ")[0]!.split(" ")[0]!;
     await bitmap.decode();
@@ -132,28 +132,23 @@ test("direct lossless resizing preserves palette midtones and transparency", asy
     const context = canvas.getContext("2d")!;
     context.drawImage(bitmap, 0, 0);
     const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
-    let alphaEqual = true;
-    let maxCompositeDelta = 0;
-    for (let i = 0; i < pixels.length; i += 4) {
-      const alpha = (i / 4) % canvas.width < canvas.width / 2 ? 255 : 128;
-      alphaEqual &&= pixels[i + 3] === alpha;
-      for (const [channel, expected] of [128, 0, 128].entries()) {
-        maxCompositeDelta = Math.max(
-          maxCompositeDelta,
-          Math.abs(
-            Math.round((pixels[i + channel]! * pixels[i + 3]!) / 255) -
-              Math.round((expected * alpha) / 255),
-          ),
-        );
-      }
-    }
-    return { width: canvas.width, height: canvas.height, alphaEqual, maxCompositeDelta };
+    const pixel = (x: number, y: number) =>
+      Array.from(pixels.slice((y * canvas.width + x) * 4, (y * canvas.width + x) * 4 + 4));
+    return {
+      width: canvas.width,
+      height: canvas.height,
+      opaque: pixel(canvas.width / 4, canvas.height / 2),
+      translucent: pixel((canvas.width * 3) / 4, canvas.height / 2),
+    };
   });
   expect(result.width).toBe(360);
   expect(result.height).toBe(180);
-  expect(result.alphaEqual).toBe(true);
+  expect(result.opaque).toEqual([128, 0, 128, 255]);
+  expect(result.translucent[1]).toBe(0);
+  expect(result.translucent[3]).toBe(128);
   // Allow one 8-bit step for decoder rounding of premultiplied RGB.
-  expect(result.maxCompositeDelta).toBeLessThanOrEqual(1);
+  for (const channel of [result.translucent[0], result.translucent[2]])
+    expect(Math.abs(channel! - 128)).toBeLessThanOrEqual(1);
 });
 
 test("media preserves aspect ratios, small images stay small, both colors remain accessible", async ({
