@@ -3,7 +3,7 @@
 My website: https://shimoju.jp/
 
 ```sh
-brew install hugo imagemagick pngquant oxipng ffmpeg
+brew install hugo imagemagick pngquant oxipng mozjpeg ffmpeg
 git clone https://github.com/shimoju/shimoju.jp.git
 cd shimoju.jp
 bin/dev
@@ -76,11 +76,15 @@ bin/new-post slug-foo-bar
 
 ## Optimize media
 
-Resize PNG images to a maximum width of 1600px, convert them to sRGB, and
-optimize them in place.
+Resize PNG, JPEG, and HEIC images to a maximum width of 1600px and optimize
+them. PNG and JPEG files are updated in place. HEIC files are preserved and
+produce a JPEG with the same basename. JPEG output is converted to sRGB and
+has its metadata removed.
 
 ```sh
-bin/optimize-image content/posts/path/to/*.png
+bin/optimize-image content/posts/path/to/image.png \
+  content/posts/path/to/photo.jpg \
+  content/posts/path/to/photo.heic
 ```
 
 Use `--width` to specify a different maximum width.

@@ -4,22 +4,47 @@ set -eu
 
 usage() {
   cat <<'EOF'
-Usage: bin/optimize-image [--width PIXELS] PNG...
+Usage: bin/optimize-image [--width PIXELS] IMAGE...
 
-Resize and optimize PNGs in place. The default maximum width is 1600px.
+Resize and optimize PNG and JPEG images in place. HEIC inputs are converted to
+JPEG next to the source file. The default maximum width is 1600px.
+
+JPEG output is converted to sRGB, stripped of metadata, and encoded at quality
+85 with mozjpeg.
 EOF
 }
 
 max_width=1600
 
-case "${1:-}" in
-  -w | --width)
-    max_width=$2
-    shift 2
-    ;;
-  -h | --help)
-    usage
-    exit
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    -w | --width)
+      [ "$#" -ge 2 ] || { usage >&2; exit 2; }
+      max_width=$2
+      shift 2
+      ;;
+    -h | --help)
+      usage
+      exit
+      ;;
+    --)
+      shift
+      break
+      ;;
+    -*)
+      usage >&2
+      exit 2
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+
+case "$max_width" in
+  '' | *[!0-9]* | 0)
+    echo "optimize-image: width must be a positive integer: $max_width" >&2
+    exit 2
     ;;
 esac
 
@@ -32,9 +57,69 @@ cleanup() {
 trap cleanup 0
 trap 'exit 1' 1 2 15
 
+find_mozjpeg() {
+  for candidate in \
+    "${MOZJPEG_CJPEG:-}" \
+    /opt/homebrew/opt/mozjpeg/bin/cjpeg \
+    /usr/local/opt/mozjpeg/bin/cjpeg \
+    cjpeg
+  do
+    [ -n "$candidate" ] || continue
+    resolved=$(command -v "$candidate" 2>/dev/null || true)
+    if [ -n "$resolved" ] && "$resolved" -version 2>&1 | grep -qi mozjpeg; then
+      printf '%s\n' "$resolved"
+      return
+    fi
+  done
+
+  if command -v brew >/dev/null 2>&1; then
+    mozjpeg_prefix=$(brew --prefix mozjpeg 2>/dev/null || true)
+    candidate=${mozjpeg_prefix:+$mozjpeg_prefix/bin/cjpeg}
+    if [ -n "$candidate" ] && [ -x "$candidate" ]; then
+      printf '%s\n' "$candidate"
+      return
+    fi
+  fi
+
+  echo 'optimize-image: mozjpeg cjpeg not found; install it with: brew install mozjpeg' >&2
+  exit 1
+}
+
+find_srgb_profile() {
+  for candidate in \
+    "${SRGB_ICC_PROFILE:-}" \
+    '/System/Library/ColorSync/Profiles/sRGB Profile.icc' \
+    '/Library/ColorSync/Profiles/sRGB Profile.icc' \
+    /usr/share/color/icc/colord/sRGB.icc \
+    /usr/share/color/icc/sRGB.icc
+  do
+    if [ -n "$candidate" ] && [ -f "$candidate" ]; then
+      printf '%s\n' "$candidate"
+      return
+    fi
+  done
+
+  echo 'optimize-image: sRGB ICC profile not found; set SRGB_ICC_PROFILE' >&2
+  exit 1
+}
+
+mozjpeg=
+srgb_profile=
+
 for input in "$@"; do
   case "$input" in
-    *.png | *.PNG) ;;
+    *.png | *.PNG)
+      format=png
+      output=$input
+      ;;
+    *.jpg | *.JPG | *.jpeg | *.JPEG)
+      format=jpeg
+      output=$input
+      ;;
+    *.heic | *.HEIC)
+      format=jpeg
+      output=${input%.*}.jpg
+      ;;
     *)
       echo "optimize-image: unsupported file type: $input" >&2
       exit 1
@@ -46,30 +131,56 @@ for input in "$@"; do
   input_height=${dimensions#* }
   input_size=$(wc -c <"$input" | tr -d ' ')
 
-  resized="$temp_dir/resized.png"
-  optimized="$temp_dir/optimized.png"
+  case "$format" in
+    png)
+      resized="$temp_dir/resized.png"
+      optimized="$temp_dir/optimized.png"
 
-  source=$input
-  if [ "$input_width" -gt "$max_width" ]; then
-    # Keep the source ICC profile so pngquant can convert its colors to sRGB.
-    magick "$input" -filter Lanczos -resize "${max_width}x>" "png:$resized"
-    source=$resized
-  fi
+      source=$input
+      if [ "$input_width" -gt "$max_width" ]; then
+        # Keep the source ICC profile so pngquant can convert its colors to sRGB.
+        magick "$input" -filter Lanczos -resize "${max_width}x>" "png:$resized"
+        source=$resized
+      fi
 
-  pngquant \
-    --force \
-    --quiet \
-    --speed 1 \
-    --quality 85-100 \
-    --output "$optimized" \
-    -- "$source"
-  oxipng --quiet -o 4 --strip safe --alpha "$optimized"
+      pngquant \
+        --force \
+        --quiet \
+        --speed 1 \
+        --quality 85-100 \
+        --output "$optimized" \
+        -- "$source"
+      oxipng --quiet -o 4 --strip safe --alpha "$optimized"
+      ;;
+    jpeg)
+      [ -n "$mozjpeg" ] || mozjpeg=$(find_mozjpeg)
+      optimized="$temp_dir/optimized.jpg"
+      icc_profile=$(magick identify -format '%[profile:icc]' "$input" 2>/dev/null || true)
+
+      if [ -n "$icc_profile" ]; then
+        [ -n "$srgb_profile" ] || srgb_profile=$(find_srgb_profile)
+        magick "$input" -auto-orient \
+          -profile "$srgb_profile" \
+          -filter Lanczos -resize "${max_width}x>" \
+          -strip -depth 8 ppm:- |
+          "$mozjpeg" -quality 85 -progressive -optimize -sample 2x2 \
+            -outfile "$optimized"
+      else
+        magick "$input" -auto-orient \
+          -colorspace sRGB \
+          -filter Lanczos -resize "${max_width}x>" \
+          -strip -depth 8 ppm:- |
+          "$mozjpeg" -quality 85 -progressive -optimize -sample 2x2 \
+            -outfile "$optimized"
+      fi
+      ;;
+  esac
 
   output_dimensions=$(magick identify -ping -format '%wx%h' "$optimized")
   output_size=$(wc -c <"$optimized" | tr -d ' ')
-  mv "$optimized" "$input"
+  mv "$optimized" "$output"
 
-  printf '%s: %sx%s -> %s, %s -> %s bytes\n' \
-    "$input" "$input_width" "$input_height" "$output_dimensions" \
+  printf '%s -> %s: %sx%s -> %s, %s -> %s bytes\n' \
+    "$input" "$output" "$input_width" "$input_height" "$output_dimensions" \
     "$input_size" "$output_size"
 done
