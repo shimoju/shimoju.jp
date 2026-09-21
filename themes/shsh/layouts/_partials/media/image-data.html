@@ -43,7 +43,7 @@
   {{- if $processable -}}
     {{- $spec := "" -}}
     {{- if eq $type "png" }}{{ $spec = "webp lossless" }}{{ end -}}
-    {{- if eq $type "jpeg" }}{{ $spec = "webp lossy q80" }}{{ end -}}
+    {{- if eq $type "jpeg" }}{{ $spec = "webp lossy" }}{{ end -}}
     {{- $originalSize := len $resource.Content -}}
     {{- $widths := slice -}}
     {{- range slice 360 720 1080 1440 -}}

@@ -9,6 +9,8 @@ hasCJKLanguage = true
 summaryLength = 160
 [pagination]
 pagerSize = 2
+[imaging.webp]
+quality = 80
 [params.author]
 name = 'Example author'
 [markup.goldmark.parser.attribute]
