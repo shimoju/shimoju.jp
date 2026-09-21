@@ -43,7 +43,7 @@
 
 .site-name {
   font-size: var(--text-site);
-  font-weight: 300;
+  font-weight: 200;
   line-height: var(--leading-heading);
   text-decoration-line: none;
   letter-spacing: -0.025em;

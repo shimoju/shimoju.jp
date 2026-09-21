@@ -154,7 +154,7 @@ test("shared shell keeps readable dimensions at desktop and mobile widths in bot
       await page.emulateMedia({ colorScheme });
       await page.goto("/");
       await expect(page.locator("body")).toHaveCSS("font-size", "17px");
-      await expect(page.locator(".site-name")).toHaveCSS("font-weight", "300");
+      await expect(page.locator(".site-name")).toHaveCSS("font-weight", "200");
       await expect(page.locator(".theme-toggle")).toHaveCSS("width", "32px");
       await expect(page.locator(".theme-toggle")).toHaveCSS("height", "32px");
       const shell = await page.locator("main").boundingBox();
