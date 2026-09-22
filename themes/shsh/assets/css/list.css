@@ -95,7 +95,7 @@
   min-height: var(--control-size);
 }
 
-.pager a:is(:hover, :focus-visible) {
+.pager a:focus-visible {
   text-decoration-line: underline;
 }
 
@@ -129,6 +129,16 @@
   color: var(--muted);
 }
 
-.entry-link:is(:hover, :focus-visible) .entry-title {
+.entry-link:focus-visible .entry-title {
   text-decoration-line: underline;
+}
+
+@media (hover: hover) {
+  .pager a:hover {
+    text-decoration-line: underline;
+  }
+
+  .entry-link:hover .entry-title {
+    text-decoration-line: underline;
+  }
 }

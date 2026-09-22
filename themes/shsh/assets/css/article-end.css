@@ -66,14 +66,18 @@
   line-height: var(--leading-label);
 }
 
-.article-tags a:is(:hover, :focus-visible) {
-  text-decoration-line: underline;
-}
-
-.post-nav a:is(:hover, :focus-visible) .post-nav-title {
-  text-decoration-line: underline;
-}
-
 .article-tags a:focus-visible {
+  text-decoration-line: underline;
   outline-offset: -2px;
+}
+
+.post-nav a:focus-visible .post-nav-title {
+  text-decoration-line: underline;
+}
+
+@media (hover: hover) {
+  .article-tags a:hover,
+  .post-nav a:hover .post-nav-title {
+    text-decoration-line: underline;
+  }
 }
