@@ -176,6 +176,51 @@ test("without JavaScript both OS palettes, navigation and subscription remain us
   await context.close();
 });
 
+test("fallback CSS keeps OS and explicit palettes without light-dark support", async ({ page }) => {
+  await page.route("http://127.0.0.1:4174/", async (route) => {
+    const response = await route.fetch();
+    // The modified test stylesheet intentionally differs from its production SRI hash.
+    await route.fulfill({
+      response,
+      body: (await response.text()).replace(/ integrity="[^"]+"/g, ""),
+    });
+  });
+  await page.route("**/*.css", async (route) => {
+    const response = await route.fetch();
+    const css = await response.text();
+    // Exercise the generated fallback branch in current engines, not just source CSS.
+    const fallback = /@supports not\s*\(color:\s*light-dark\(white,\s*black\)\)/g;
+    expect(css).toMatch(fallback);
+    await route.fulfill({ response, body: css.replace(fallback, "@supports (color: white)") });
+  });
+  await page.emulateMedia({ colorScheme: "light" });
+  await page.goto("/");
+  async function expectPalette(mode: "light" | "dark") {
+    await expect(page.locator("body")).toHaveCSS(
+      "background-color",
+      mode === "light" ? "rgb(248, 249, 252)" : "rgb(24, 24, 37)",
+    );
+    await expect(page.locator("body")).toHaveCSS(
+      "color",
+      mode === "light" ? "rgb(76, 79, 105)" : "rgb(205, 214, 244)",
+    );
+    await expect(page.locator(".chroma").first()).toHaveCSS(
+      "background-color",
+      mode === "light" ? "rgb(239, 241, 245)" : "rgb(30, 30, 46)",
+    );
+  }
+  await expectPalette("light");
+  await page.emulateMedia({ colorScheme: "dark" });
+  await expectPalette("dark");
+  await page.locator(".theme-toggle").click();
+  await expectPalette("light");
+  await page.emulateMedia({ colorScheme: "light" });
+  await page.locator(".theme-toggle").click();
+  await expectPalette("dark");
+  await page.reload();
+  await expectPalette("dark");
+});
+
 test("shared shell keeps readable dimensions at desktop and mobile widths in both palettes", async ({
   page,
 }) => {
