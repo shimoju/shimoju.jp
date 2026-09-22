@@ -20,6 +20,14 @@ for (const environment of ["production", "preview", "development"]) {
   }
   const files = readdirSync(root, { recursive: true, encoding: "utf8" });
   const html = readFileSync(`${root}/index.html`, "utf8");
+  // Stored preferences must reach the browser before CSS, without a script fetch.
+  const earlyTheme = html.match(
+    /<meta name="color-scheme" content="light dark"\s*\/?>\s*<script>([\s\S]*?)<\/script>/,
+  );
+  assert.ok(earlyTheme, `${environment}: inline theme script must follow color-scheme metadata`);
+  assert.match(earlyTheme[1]!, /pref-theme/);
+  assert.doesNotMatch(earlyTheme[1]!, /sourceMappingURL/);
+  assert.ok(html.indexOf(earlyTheme[0]) < html.indexOf('rel="stylesheet"'));
   // Check generated CSS too, so bundling/minification cannot drop the iOS fallback.
   const cssPath = html.match(/href="([^"]+\.css)"/)?.[1];
   assert.ok(cssPath, `${environment}: stylesheet link is required`);
@@ -35,7 +43,7 @@ for (const environment of ["production", "preview", "development"]) {
   } else {
     assert.ok(!files.some((file) => file.endsWith(".map")));
     assert.match(html, /\/css\/shsh\.[a-f0-9]{64}\.css/);
-    assert.match(html, /\/js\/theme\.[a-f0-9]{64}\.js/);
+    assert.doesNotMatch(html, /\/js\/theme[.]/);
     assert.match(html, /integrity="sha256-/);
   }
 }
