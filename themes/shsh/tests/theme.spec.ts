@@ -98,6 +98,35 @@ test("OS follows until a keyboard choice, persists and ignores unsupported query
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
 });
 
+test("theme icon and label always offer the opposite visible color, including OS changes", async ({
+  page,
+}) => {
+  await page.emulateMedia({ colorScheme: "light" });
+  await page.goto("/");
+  const button = page.locator(".theme-toggle");
+  async function expectControl(mode: "light" | "dark") {
+    const next = mode === "dark" ? "light" : "dark";
+    await expect(button).toHaveAccessibleName(`Switch to ${next} mode`);
+    await expect(button).toHaveAttribute("title", `Switch to ${next} mode`);
+    await expect(button.locator(".sun")).toBeVisible({ visible: mode === "dark" });
+    await expect(button.locator(".moon")).toBeVisible({ visible: mode === "light" });
+  }
+  await expectControl("light");
+  await page.emulateMedia({ colorScheme: "dark" });
+  await expectControl("dark");
+  await button.click();
+  await expectControl("light");
+  await page.emulateMedia({ colorScheme: "light" });
+  await expectControl("light");
+  // Even when the OS catches up with the pinned choice, one click changes color.
+  await button.click();
+  await expectControl("dark");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await button.click();
+  await expectControl("light");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+});
+
 test("invalid and unavailable storage retain OS fallback and allow a page-local choice", async ({
   page,
 }) => {

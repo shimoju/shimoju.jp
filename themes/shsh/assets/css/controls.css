@@ -36,6 +36,17 @@
   display: block;
 }
 
+/* An unset preference follows the OS without a data-theme override. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .moon {
+    display: none;
+  }
+
+  :root:not([data-theme]) .sun {
+    display: block;
+  }
+}
+
 .icon-link {
   display: inline-flex;
   justify-content: center;
