@@ -64,6 +64,7 @@ test("saved pref-theme is applied before styles load", async ({ page }) => {
     release();
     await navigation;
   }
+  await expect(page.locator('meta[name="color-scheme"]')).toHaveAttribute("content", "dark");
   await expect(page.locator("body")).toHaveCSS("background-color", "rgb(24, 24, 37)");
   await expect(page.getByRole("button", { name: "Switch to light mode" })).toBeVisible();
 });
@@ -74,9 +75,10 @@ test("OS follows until a keyboard choice, persists and ignores unsupported query
 }) => {
   await page.emulateMedia({ colorScheme: "light" });
   await page.goto("/?theme=dark");
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  await expect(page.locator("html")).not.toHaveAttribute("data-theme");
   await page.emulateMedia({ colorScheme: "dark" });
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await expect(page.locator("html")).not.toHaveAttribute("data-theme");
+  await expect(page.locator("body")).toHaveCSS("background-color", "rgb(24, 24, 37)");
   // Safari uses Option-Tab to include links and buttons when full keyboard access is off.
   await page.keyboard.press(browserName === "webkit" ? "Alt+Tab" : "Tab");
   await expect(page.locator(".theme-toggle")).toBeFocused();
@@ -113,7 +115,7 @@ test("invalid and unavailable storage retain OS fallback and allow a page-local 
   });
   await page.emulateMedia({ colorScheme: "dark" });
   await page.goto("/?theme=light");
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await expect(page.locator("html")).not.toHaveAttribute("data-theme");
   await page.locator(".theme-toggle").click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   await page.emulateMedia({ colorScheme: "light" });
@@ -125,7 +127,7 @@ test("invalid saved value uses OS preference", async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem("pref-theme", "unexpected"));
   await page.emulateMedia({ colorScheme: "dark" });
   await page.goto("/");
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await expect(page.locator("html")).not.toHaveAttribute("data-theme");
 });
 
 test("without JavaScript both OS palettes, navigation and subscription remain usable", async ({
