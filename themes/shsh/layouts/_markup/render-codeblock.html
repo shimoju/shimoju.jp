@@ -5,12 +5,9 @@
 {{- $result := transform.HighlightCodeBlock . $options -}}
 {{- $filename := .Attributes.filename | default "" -}}
 <div class="code-block">
-  {{- $labels := slice -}}
-  {{- with .Type }}{{ $labels = $labels | append (upper .) }}{{ end -}}
-  {{- with $filename }}{{ $labels = $labels | append . }}{{ end -}}
   {{- /* Newlines keep the label a line of its own in plain-text summaries. */ -}}
-  {{- with $labels }}
-    <span class="code-label" lang="en">{{ delimit . " · " }}</span>
+  {{- with $filename }}
+    <span class="code-label" lang="en">{{ . }}</span>
   {{ end -}}
   <button
     class="copy icon-control"

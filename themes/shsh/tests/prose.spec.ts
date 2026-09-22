@@ -44,12 +44,9 @@ test("copy preserves code with Japanese, inline/table numbers, unknown language 
     "言語なし\nABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz",
     "未知の言語 & <sample>",
   ];
-  await expect(page.locator(".code-label")).toHaveText([
-    "RUBY",
-    "TOML · config.toml",
-    "TEXT · table.txt",
-    "EXAMPLE-UNKNOWN · example.txt",
-  ]);
+  await expect(page.locator(".code-label")).toHaveText(["config.toml", "table.txt", "example.txt"]);
+  for (const index of [0, 3])
+    await expect(page.locator(".code-block").nth(index).locator(".code-label")).toHaveCount(0);
   await expect(page.locator(".code-block").nth(1).locator(".hl")).toHaveCount(1);
   for (const [i, code] of expected.entries()) {
     const block = page.locator(".code-block").nth(i);

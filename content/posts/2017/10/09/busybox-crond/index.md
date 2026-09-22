@@ -75,7 +75,7 @@ Usage: crond -fbS -l N -L LOGFILE -c DIR
 
 というわけで、Dockerで使う場合は以下のコマンドにすればよいでしょう。新しく追加された`-d`オプションが標準エラーに出力しているので、Debianの場合でもこれに統一しています。
 
-```dockerfile
+```dockerfile {filename="Dockerfile"}
 # Alpine
 # crond -f -d 8
 CMD ["crond" "-f", "-d", "8"]
@@ -115,7 +115,7 @@ PWD=/root
 
 cronと直接関係はありませんが、タイムゾーンを日本時間にしておかないと意図した時刻に動かなくてハマるので注意しましょう……(1時間無駄にしました😇)。
 
-```dockerfile
+```dockerfile {filename="Dockerfile"}
 ENV TZ=Asia/Tokyo
 ```
 
