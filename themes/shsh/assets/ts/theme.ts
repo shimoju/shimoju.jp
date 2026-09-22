@@ -30,7 +30,8 @@ function apply() {
 }
 apply();
 os.addEventListener("change", () => {
-  if (!chosen) apply();
+  // CSS follows the OS; only the next-action label needs a refresh.
+  if (!chosen) syncButton();
 });
 document.addEventListener("DOMContentLoaded", () => {
   const button = document.querySelector<HTMLButtonElement>(".theme-toggle");
