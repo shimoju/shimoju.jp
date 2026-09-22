@@ -129,16 +129,8 @@
   color: var(--muted);
 }
 
-.entry-link:focus-visible .entry-title {
-  text-decoration-line: underline;
-}
-
 @media (hover: hover) {
   .pager a:hover {
-    text-decoration-line: underline;
-  }
-
-  .entry-link:hover .entry-title {
     text-decoration-line: underline;
   }
 }

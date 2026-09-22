@@ -71,13 +71,8 @@
   outline-offset: -2px;
 }
 
-.post-nav a:focus-visible .post-nav-title {
-  text-decoration-line: underline;
-}
-
 @media (hover: hover) {
-  .article-tags a:hover,
-  .post-nav a:hover .post-nav-title {
+  .article-tags a:hover {
     text-decoration-line: underline;
   }
 }

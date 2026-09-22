@@ -112,14 +112,6 @@
   text-decoration-line: none;
 }
 
-.terms a:focus-visible .term-name {
-  text-decoration-line: underline;
-}
-
-.archive-month a:focus-visible .archive-title {
-  text-decoration-line: underline;
-}
-
 .terms a:focus-visible {
   outline-offset: -2px;
 }
@@ -130,8 +122,6 @@
 }
 
 @media (hover: hover) {
-  .terms a:hover .term-name,
-  .archive-month a:hover .archive-title,
   .recovery-nav a:hover {
     text-decoration-line: underline;
   }
