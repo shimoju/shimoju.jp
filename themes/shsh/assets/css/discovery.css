@@ -112,22 +112,17 @@
   text-decoration-line: none;
 }
 
-.terms a:is(:hover, :focus-visible) .term-name {
-  text-decoration-line: underline;
-}
-
-.archive-month a:is(:hover, :focus-visible) .archive-title {
-  text-decoration-line: underline;
-}
-
 .terms a:focus-visible {
   outline-offset: -2px;
 }
 
-.recovery-nav a:is(:hover, :focus-visible) {
+.recovery-nav a:focus-visible {
   text-decoration-line: underline;
+  outline-offset: -2px;
 }
 
-.recovery-nav a:focus-visible {
-  outline-offset: -2px;
+@media (hover: hover) {
+  .recovery-nav a:hover {
+    text-decoration-line: underline;
+  }
 }

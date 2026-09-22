@@ -80,7 +80,7 @@
   padding: var(--ui-space-2) var(--text-link-inset);
 }
 
-.site-nav a:is(:hover, :focus-visible) {
+.site-nav a:focus-visible {
   text-decoration-line: underline;
 }
 
@@ -97,5 +97,9 @@
 @media (hover: hover) {
   :root {
     --gutter: max(24px, var(--heading-anchor-size));
+  }
+
+  .site-nav a:hover {
+    text-decoration-line: underline;
   }
 }

@@ -97,6 +97,67 @@ test("prose specimen preserves Japanese and English emphasis, nesting and inline
     await expect(emphasis).toHaveCSS("font-weight", "700");
 });
 
+test("link hover underlines require hover support while keyboard focus stays visible", async ({
+  browser,
+  browserName,
+}) => {
+  const cases = [
+    { url: "http://127.0.0.1:4182/", link: ".site-nav a", decoration: ".site-nav a" },
+    { url: "http://127.0.0.1:4182/", link: ".entry-link", decoration: ".entry-title" },
+    {
+      url: "http://127.0.0.1:4188/tags/sample-tag/",
+      link: ".pager a",
+      decoration: ".pager a",
+    },
+    { url: "http://127.0.0.1:4182/tags/", link: ".terms a", decoration: ".term-name" },
+    {
+      url: "http://127.0.0.1:4182/archives/",
+      link: ".archive-month a",
+      decoration: ".archive-title",
+    },
+    {
+      url: "http://127.0.0.1:4182/404.html",
+      link: ".recovery-nav a",
+      decoration: ".recovery-nav a",
+    },
+    {
+      url: "http://127.0.0.1:4182/2026/09/01/development-environment-2026/",
+      link: ".article-tags a",
+      decoration: ".article-tags a",
+    },
+    {
+      url: "http://127.0.0.1:4182/2026/09/01/development-environment-2026/",
+      link: ".post-nav a",
+      decoration: ".post-nav-title",
+    },
+  ];
+  for (const hasTouch of [false, true]) {
+    const context = await browser.newContext({ hasTouch });
+    const page = await context.newPage();
+    await page.route("https://**/*", (route) => route.fulfill({ body: "" }));
+    for (const target of cases) {
+      await page.goto(target.url);
+      const link = page.locator(target.link).first();
+      const decoration = page.locator(target.decoration).first();
+      await expect(decoration).toHaveCSS("text-decoration-line", "none");
+      await link.hover();
+      const supportsHover = await page.evaluate(() => matchMedia("(hover: hover)").matches);
+      if (browserName === "chromium") expect(supportsHover).toBe(!hasTouch);
+      await expect(decoration).toHaveCSS(
+        "text-decoration-line",
+        supportsHover ? "underline" : "none",
+      );
+      if (hasTouch) {
+        await page.keyboard.press("Tab");
+        await link.focus();
+        expect(await link.evaluate((element) => element.matches(":focus-visible"))).toBe(true);
+        await expect(decoration).toHaveCSS("text-decoration-line", "underline");
+      }
+    }
+    await context.close();
+  }
+});
+
 test("discovery semantics, keyboard, fixed pages and JavaScript-disabled navigation", async ({
   browser,
 }) => {

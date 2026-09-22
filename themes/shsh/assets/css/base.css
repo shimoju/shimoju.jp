@@ -48,6 +48,16 @@ a:is(:hover, :focus-visible) .link-title {
   text-decoration-color: var(--text);
 }
 
+a:focus-visible .link-title {
+  text-decoration-line: underline;
+}
+
+@media (hover: hover) {
+  a:hover .link-title {
+    text-decoration-line: underline;
+  }
+}
+
 button:disabled {
   cursor: default;
 }
