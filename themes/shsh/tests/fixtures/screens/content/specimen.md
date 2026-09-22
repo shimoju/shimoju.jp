@@ -155,11 +155,36 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789
 長い行：abcdefghijklmnopqrstuvwxyz/abcdefghijklmnopqrstuvwxyz/abcdefghijklmnopqrstuvwxyz/abcdefghijklmnopqrstuvwxyz/abcdefghijklmnopqrstuvwxyz
 ```
 
-言語名とファイル名は、コード本文から推測せず、コードフェンスに指定した値をHugoで取得します。次は未対応の言語指定でも内容をプレーンテキストとして表示する例です。
+言語指定はシンタックスハイライトに使い、ラベルにはコードフェンスに指定したファイル名だけを表示します。次は未対応の言語指定でも内容をプレーンテキストとして表示する例です。
 
 ```example-unknown {filename="example.txt"}
 This language has no highlighter.
 日本語の内容とファイル名は、そのまま表示します。
+```
+
+### コマンドの実行例とファイル名
+
+ファイル名のないコマンドの実行例にはラベルを表示しません。
+
+```sh
+$ printf 'Hello\n'
+Hello
+```
+
+```sh
+$ pwd
+/app
+```
+
+拡張子のないファイル名や、言語指定のないブロックのファイル名も表示します。
+
+```dockerfile {filename="Dockerfile"}
+FROM alpine:3.6
+ENV TZ=Asia/Tokyo
+```
+
+```{filename="config/environments/production/services/background-jobs/worker/settings.conf"}
+workers = 4
 ```
 
 ## 画像とキャプション {#images}

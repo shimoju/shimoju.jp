@@ -95,10 +95,8 @@ test("RSS uses all ordered articles, HTML summaries, stable document GUIDs and t
   const coded = rss.items[4]!;
   expect(coded.title).toBe("コード");
   expect(coded.html).toContain("<code>&lt;ul&gt;</code>");
-  expect(coded.text).toMatch(
-    /^<ul> を入れ子にする。内部\s+設定\s+YAML · config\.yml\s+box: ruby\s*$/,
-  );
-  expect(coded.html).toContain('<span class="code-label" lang="en">YAML · config.yml</span>');
+  expect(coded.text).toMatch(/^<ul> を入れ子にする。内部\s+設定\s+config\.yml\s+box: ruby\s*$/);
+  expect(coded.html).toContain('<span class="code-label" lang="en">config.yml</span>');
   expect(coded.html).toContain('<a href="https://metadata.invalid/posts/b/">内部</a>');
   expect(coded.html).toMatch(
     /<figure><img src="https:\/\/metadata\.invalid\/blog\/default\.png" alt="本文画像" width="200" height="100"><\/figure>$/,
@@ -204,9 +202,7 @@ test("description, dates and JSON-LD preserve page roles and safe text", async (
   expect(headed.meta["og:description"]).toBe(headed.meta.description);
   expect(headed.schema[0]?.description).toBe(headed.meta.description);
   const coded = await head(page, "production", "posts/coded/index.html");
-  expect(coded.meta.description).toBe(
-    "<ul> を入れ子にする。内部\n設定 YAML · config.yml box: ruby",
-  );
+  expect(coded.meta.description).toBe("<ul> を入れ子にする。内部\n設定 config.yml box: ruby");
   expect(coded.schema[0]?.description).toBe(coded.meta.description);
   const home = await head(page, "production");
   expect(home.meta.description).toBe("サイト & 説明");
