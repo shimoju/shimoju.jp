@@ -28,11 +28,11 @@
 }
 
 .sun,
-[data-theme="dark"] .moon {
+:root[data-theme="dark"] .moon {
   display: none;
 }
 
-[data-theme="dark"] .sun {
+:root[data-theme="dark"] .sun {
   display: block;
 }
 

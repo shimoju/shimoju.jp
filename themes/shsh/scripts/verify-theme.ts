@@ -4,6 +4,25 @@ import { resolve } from "node:path";
 import { HtmlValidate } from "html-validate";
 import { buildHugo } from "./build-hugo.ts";
 
+// Each fallback state must cover every light-dark() token, including future additions.
+const [modernTokens, fallbackTokens] = readFileSync("assets/css/tokens.css", "utf8").split(
+  "@supports not (color: light-dark(white, black))",
+);
+assert.ok(modernTokens && fallbackTokens, "color token fallback block is required");
+const tokenNames = [...modernTokens.matchAll(/(--[\w-]+):\s*light-dark\(/g)]
+  .map((match) => match[1]!)
+  .sort();
+// Match the flat declaration blocks inside @supports and its nested @media.
+const fallbackRules = new Map(
+  [...fallbackTokens.matchAll(/(:root[^{}]*)\{([^{}]*)\}/g)].map((match) => [
+    match[1]!.trim(),
+    [...match[2]!.matchAll(/(--[\w-]+):/g)].map((declaration) => declaration[1]!).sort(),
+  ]),
+);
+for (const selector of [":root", ':root[data-theme="dark"]', ":root:not([data-theme])"]) {
+  assert.deepEqual(fallbackRules.get(selector), tokenNames, `${selector}: color fallback coverage`);
+}
+
 const validator = new HtmlValidate(JSON.parse(readFileSync(".htmlvalidate.json", "utf8")));
 for (const environment of ["production", "preview", "development"]) {
   const root = `.cache/representative/${environment}`;
@@ -27,7 +46,10 @@ for (const environment of ["production", "preview", "development"]) {
   assert.ok(earlyTheme, `${environment}: inline theme script must follow color-scheme metadata`);
   assert.match(earlyTheme[1]!, /pref-theme/);
   assert.doesNotMatch(earlyTheme[1]!, /sourceMappingURL/);
-  assert.ok(html.indexOf(earlyTheme[0]) < html.indexOf('rel="stylesheet"'));
+  assert.ok(
+    html.indexOf(earlyTheme[0]) < html.indexOf('rel="stylesheet"'),
+    `${environment}: inline theme script must precede the stylesheet link`,
+  );
   // Check generated CSS too, so bundling/minification cannot drop the iOS fallback.
   const cssPath = html.match(/href="([^"]+\.css)"/)?.[1];
   assert.ok(cssPath, `${environment}: stylesheet link is required`);
