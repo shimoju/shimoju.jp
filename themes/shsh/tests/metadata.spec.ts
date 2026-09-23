@@ -65,6 +65,26 @@ async function feed(page: Page, variant: string, path = "index.xml") {
   );
 }
 
+test("page and social titles include the site name with a narrow separator", async ({ page }) => {
+  for (const variant of ["production", "preview"]) {
+    for (const [path, title] of [
+      ["index.html", "別サイト"],
+      ["posts/a/index.html", '日 & <x> "引" </script> | 別サイト'],
+      ["about/index.html", "固定ページ | 別サイト"],
+      ["tags/a--b/index.html", "A & B | 別サイト"],
+    ]) {
+      const data = await head(page, variant, path);
+      expect(data.title, `${variant}/${path}`).toBe(title);
+      expect(data.meta["og:title"], `${variant}/${path}`).toBe(title);
+      expect(data.meta["twitter:title"], `${variant}/${path}`).toBe(title);
+      expect(data.meta["og:site_name"], `${variant}/${path}`).toBe("別サイト");
+    }
+  }
+  expect((await head(page, "production", "old-a/index.html")).title).toBe("Redirect | 別サイト");
+  expect((await feed(page, "production")).title).toBe("別サイト");
+  expect((await feed(page, "production", "tags/a--b/index.xml")).title).toBe("A & B | 別サイト");
+});
+
 test("RSS uses all ordered articles, HTML summaries, stable document GUIDs and the newest lastmod", async ({
   page,
 }) => {

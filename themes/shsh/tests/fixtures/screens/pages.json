@@ -223,7 +223,7 @@
   },
   {
     "name": "404",
-    "title": "404 — Page not found",
+    "title": "404: Page not found",
     "variant": "standard",
     "path": "/404.html"
   },

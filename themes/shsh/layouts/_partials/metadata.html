@@ -3,7 +3,7 @@
 {{- $pageTitle := partial "page-title.html" . -}}
 {{- $title := site.Title -}}
 {{- if not .IsHome }}
-  {{ $title = printf "%s — %s" $pageTitle site.Title }}
+  {{ $title = printf "%s | %s" $pageTitle site.Title }}
 {{ end -}}
 {{- $description := partial "description.html" . -}}
 {{- $image := partial "share-image.html" . -}}
@@ -11,12 +11,10 @@
 {{- if .IsPage }}{{ $ogType = "article" }}{{ end -}}
 {{- $card := "summary" -}}
 {{- if $image }}{{ $card = "summary_large_image" }}{{ end -}}
-{{- $socialTitle := $pageTitle -}}
-{{- if .IsHome }}{{ $socialTitle = site.Title }}{{ end -}}
 <title>{{ $title }}</title>
 <link rel="canonical" href="{{ $url }}" />
 {{ with $description }}<meta name="description" content="{{ . }}" />{{ end }}
-<meta property="og:title" content="{{ $socialTitle }}" />
+<meta property="og:title" content="{{ $title }}" />
 <meta property="og:site_name" content="{{ site.Title }}" />
 <meta property="og:url" content="{{ $url }}" />
 <meta property="og:type" content="{{ $ogType }}" />
@@ -25,7 +23,7 @@
   <meta property="og:description" content="{{ . }}" />
 {{ end }}
 <meta name="twitter:card" content="{{ $card }}" />
-<meta name="twitter:title" content="{{ $socialTitle }}" />
+<meta name="twitter:title" content="{{ $title }}" />
 {{ with $description }}
   <meta name="twitter:description" content="{{ . }}" />
 {{ end }}

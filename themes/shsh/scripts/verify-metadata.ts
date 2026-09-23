@@ -39,6 +39,7 @@ page(
   {
     ...common,
     title: '日 & <x> "引" </script>',
+    aliases: ["/old-a/"],
     lastmod: "2026-09-02T12:00:00+09:00",
     publishDate: "2020-01-01",
     summary: "**要約** & [link](https://example.org/) &lt;記号&gt;",
