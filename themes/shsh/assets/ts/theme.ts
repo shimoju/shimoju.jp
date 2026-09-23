@@ -11,41 +11,40 @@ try {
 } catch {
   // Storage may be unavailable; an explicit choice still lasts for this page.
 }
-function currentMode(): ColorMode {
-  return chosen ?? (os.matches ? "dark" : "light");
-}
-function syncButton() {
-  const button = document.querySelector<HTMLButtonElement>(".theme-toggle");
-  if (!button) return;
-  const label = currentMode() === "dark" ? "Switch to light mode" : "Switch to dark mode";
-  button.setAttribute("aria-label", label);
-  button.title = label;
-}
 function apply() {
   if (chosen) root.dataset.theme = chosen;
   else delete root.dataset.theme;
   // Keep early browser UI and CSS in sync, including macOS Firefox scrollbars.
   if (meta) meta.content = chosen ?? "light dark";
-  syncButton();
 }
 apply();
-os.addEventListener("change", () => {
-  // CSS follows the OS; only the next-action label needs a refresh.
-  if (!chosen) syncButton();
-});
 document.addEventListener("DOMContentLoaded", () => {
   const button = document.querySelector<HTMLButtonElement>(".theme-toggle");
   if (!button) return;
+  function nextMode(): ColorMode {
+    const current = chosen ?? (os.matches ? "dark" : "light");
+    return current === "dark" ? "light" : "dark";
+  }
+  const syncButton = () => {
+    const label = `Switch to ${nextMode()} mode`;
+    button.setAttribute("aria-label", label);
+    button.title = label;
+  };
   button.hidden = false;
   syncButton();
+  os.addEventListener("change", () => {
+    // CSS follows the OS; only the next-action label needs a refresh.
+    if (!chosen) syncButton();
+  });
   button.addEventListener("click", () => {
-    chosen = currentMode() === "dark" ? "light" : "dark";
+    chosen = nextMode();
     try {
       localStorage.setItem("pref-theme", chosen);
     } catch {
       /* Keep the chosen mode in memory. */
     }
     apply();
+    syncButton();
   });
 });
 export {};
