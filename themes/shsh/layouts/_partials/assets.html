@@ -1,13 +1,5 @@
 {{- $dev := hugo.IsDevelopment -}}
 {{- $map := cond $dev "linked" "none" -}}
-{{- $theme := resources.Get "ts/theme.ts" | js.Build (dict "targetPath" "js/theme.js" "target" "es2022" "minify" (not $dev) "sourceMap" $map) -}}
-{{- if not $dev }}{{ $theme = $theme | fingerprint }}{{ end -}}
-<script
-  src="{{ $theme.RelPermalink }}"
-  {{ if not $dev }}
-    integrity="{{ $theme.Data.Integrity }}" crossorigin="anonymous"
-  {{ end }}
-></script>
 {{- $light := css.ChromaStyles (dict "style" "catppuccin-latte" "targetPath" "css/latte.css") -}}
 {{- $dark := css.ChromaStyles (dict "style" "catppuccin-mocha" "targetPath" "css/mocha.css") -}}
 {{- /* Scope the unmodified official declarations; the CSS-only OS fallback excludes explicit choices. */ -}}

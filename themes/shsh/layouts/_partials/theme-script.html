@@ -1,0 +1,3 @@
+{{- /* Apply saved preferences before CSS without waiting for a script request. */ -}}
+{{- $theme := resources.Get "ts/theme.ts" | js.Build (dict "target" "es2022" "format" "iife" "minify" (not hugo.IsDevelopment) "sourceMap" "none") -}}
+<script>{{ $theme.Content | safeJS }}</script>
