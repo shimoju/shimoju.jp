@@ -69,6 +69,8 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
     "https://example.org/",
   );
   await expect(page.locator(".article-cover img")).toHaveAttribute("loading", "eager");
+  await expect(page.locator(".article-cover img")).toHaveAttribute("fetchpriority", "high");
+  await expect(page.locator(".prose img[fetchpriority]")).toHaveCount(0);
   for (const name of [
     "グレースケール画像",
     "アニメーションGIF",
@@ -109,12 +111,34 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
     "data-id",
     "457f092496ab4856b7c3cef5bcd2babb",
   );
-  for (const path of ["/", "/page/2/", "/posts/", "/posts/page/2/"]) {
+  for (const path of ["/", "/page/2/", "/posts/", "/posts/page/2/", "/categories/covered/"]) {
     await page.goto(base + path);
     const covers = page.locator(".entry-cover img");
     await expect(covers.first()).toHaveAttribute("loading", "eager");
-    if ((await covers.count()) > 1) await expect(covers.nth(1)).toHaveAttribute("loading", "lazy");
+    await expect(covers.first()).toHaveAttribute("fetchpriority", "high");
+    await expect(page.locator(".entry-cover img[fetchpriority]")).toHaveCount(1);
+    if ((await covers.count()) > 1) {
+      await expect(covers.nth(1)).toHaveAttribute("loading", "lazy");
+      await expect(covers.nth(1)).not.toHaveAttribute("fetchpriority");
+    }
   }
+});
+
+test("a missing first cover does not promote body images or a later entry cover", async ({
+  page,
+}) => {
+  await page.goto(`${base}/posts/no-cover/`);
+  await expect(page.locator(".article-cover")).toHaveCount(0);
+  await expect(page.getByRole("img", { name: "本文の画像" })).toHaveAttribute("loading", "lazy");
+  await expect(page.locator("img[fetchpriority]")).toHaveCount(0);
+
+  await page.goto(`${base}/categories/mixed/`);
+  const entries = page.locator(".post-entry");
+  await expect(entries).toHaveCount(2);
+  await expect(entries.first().locator(".entry-title")).toHaveText("カバーなしの記事");
+  await expect(entries.first().locator("img")).toHaveCount(0);
+  await expect(entries.nth(1).locator(".entry-cover img")).toHaveAttribute("loading", "lazy");
+  await expect(page.locator("img[fetchpriority]")).toHaveCount(0);
 });
 
 test("direct lossless resizing preserves palette midtones and transparency", async ({ page }) => {
