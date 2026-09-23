@@ -157,8 +157,8 @@ assert.doesNotMatch(output("about/index.html"), /class="article-tags"|class="pos
 assert.match(output("tags/index.html"), /lowerCase<\/span\s*>\s*<small>3<\/small>/);
 assert.doesNotMatch(output("tags/index.html"), /Fixed only/);
 assert.match(output("tags/lowercase/index.html"), /<h1>lowerCase<\/h1\s*>/);
-assert.match(output("tags/lowercase/index.html"), /<title>lowerCase — Collection test<\/title>/);
-assert.match(output("tags/lowercase/index.xml"), /<title>lowerCase on Collection test<\/title>/);
+assert.match(output("tags/lowercase/index.html"), /<title>lowerCase \| Collection test<\/title>/);
+assert.match(output("tags/lowercase/index.xml"), /<title>lowerCase \| Collection test<\/title>/);
 assert.doesNotMatch(output("tags/lowercase/index.html").split("<body")[1]!, /Fixed|Excluded/);
 console.log(
   "Discovery: local year/month, all-section order, tie navigation, fixed-page exclusion, original term case and HTML/feed title consistency passed.",

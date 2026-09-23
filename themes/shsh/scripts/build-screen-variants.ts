@@ -74,7 +74,7 @@ for (const directory of [
     // Preserve the real article title. This SEO length heuristic is not HTML invalidity.
     // Only this exact title is exempt; all other generated markup rules still apply.
     const longTitle =
-      cases.find((screen) => screen.name === "article")!.title + " — " + String(config.title);
+      cases.find((screen) => screen.name === "article")!.title + " | " + String(config.title);
     const html = readFileSync(`${directory}/${file}`, "utf8");
     assert.ok(
       messages.every(
