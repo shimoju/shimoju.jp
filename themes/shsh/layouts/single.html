@@ -3,7 +3,7 @@
     <header class="article-header">
       <h1>{{ .Title }}</h1>
       {{ partial "dates.html" . }}
-      {{ partial "media/cover.html" (dict "page" . "class" "article-cover" "loading" "eager") }}
+      {{ partial "media/cover.html" (dict "page" . "class" "article-cover" "loading" "eager" "fetchpriority" "high") }}
     </header>
     <div class="prose">{{ .Content }}</div>
     {{ partial "article-end.html" . }}
