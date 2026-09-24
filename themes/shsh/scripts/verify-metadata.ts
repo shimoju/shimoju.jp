@@ -150,6 +150,10 @@ for (const [params, expected] of [
   assert.notEqual(result.status, 0);
   assert.match(result.stdout + result.stderr, expected);
 }
+page("undated", { title: "日付なし", description: false });
+const invalid = build("invalid");
+assert.notEqual(invalid.status, 0);
+assert.match(invalid.stdout + invalid.stderr, /description must be a string/);
 // A separately empty site must not fabricate feed dates or require article front matter.
 rmSync(`${source}/content`, { recursive: true });
 const empty = build("empty");
