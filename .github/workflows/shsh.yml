@@ -15,12 +15,12 @@ permissions:
 jobs:
   test:
     name: shsh-test (${{ matrix.browser }})
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     timeout-minutes: 20
     # Browsers and their system packages are preinstalled; apt downloads on the runner vary widely.
     # Keep the tag in sync with @playwright/test in themes/shsh/package.json.
     container:
-      image: mcr.microsoft.com/playwright:v1.63.0-noble
+      image: mcr.microsoft.com/playwright:v1.63.0-resolute
       options: --ipc=host
     # One browser per runner: the 4-vCPU runner is CPU-bound, so extra workers on one runner do not help.
     strategy:
