@@ -1,14 +1,7 @@
-{{- $front := partialCached "front-matter.html" . .RelPermalink -}}
-{{- range $key, $value := $front -}}
-  {{- if and (eq (lower $key) "description") (ne (printf "%T" $value) "string") -}}
-    {{- errorf "shsh: description must be a string on %s" $.Path -}}
-  {{- end -}}
-{{- end -}}
 {{- /* Authored text may hold markup; the summary is already plain. */ -}}
 {{- $site := "" -}}
-{{- /* config.html reports invalid types with errorf, which does not stop rendering. */ -}}
-{{- if eq (printf "%T" site.Params.description) "string" -}}
-  {{- $site = site.Params.description | plainify | htmlUnescape -}}
+{{- with site.Params.description -}}
+  {{- $site = . | plainify | htmlUnescape -}}
 {{- end -}}
 {{- $description := "" -}}
 {{- if isset .Params "description" -}}
