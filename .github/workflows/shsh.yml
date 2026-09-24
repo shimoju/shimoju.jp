@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 jobs:
-  browser-tests:
+  test:
     name: shsh-test (${{ matrix.shard }}/3)
     strategy:
       fail-fast: false
@@ -67,16 +67,3 @@ jobs:
             themes/shsh/playwright-report/
             themes/shsh/test-results/
           retention-days: 14
-
-  # Preserve the required check name and fail when any shard fails or is cancelled.
-  test:
-    name: shsh-test
-    needs: browser-tests
-    if: always()
-    runs-on: ubuntu-24.04
-    timeout-minutes: 2
-    steps:
-      - name: Require all shards to pass
-        env:
-          BROWSER_RESULT: ${{ needs.browser-tests.result }}
-        run: test "$BROWSER_RESULT" = success
