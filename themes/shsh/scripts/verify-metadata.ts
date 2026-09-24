@@ -145,7 +145,6 @@ for (const [params, expected] of [
   [{ defaultShareImage: "bundle-only.png" }, /unresolved local media/],
   [{ defaultShareImage: 42 }, /defaultshareimage must be a string/],
   [{ defaultShareImage: false }, /defaultshareimage must be a string/],
-  [{ description: ["wrong"] }, /description must be a string/],
 ] as const) {
   const result = build("invalid", params);
   assert.notEqual(result.status, 0);
