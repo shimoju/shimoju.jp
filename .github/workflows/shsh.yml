@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  group: worker-comparison-${{ github.run_id }}
   cancel-in-progress: true
 
 permissions:
@@ -14,18 +14,9 @@ permissions:
 
 jobs:
   test:
-    name: benchmark-${{ matrix.candidate }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - { candidate: baseline, workers: 2, shard: "1/1" }
-          - { candidate: workers-4, workers: 4, shard: "1/1" }
-          - { candidate: shard-1, workers: 2, shard: "1/3" }
-          - { candidate: shard-2, workers: 2, shard: "2/3" }
-          - { candidate: shard-3, workers: 2, shard: "3/3" }
+    name: benchmark-paired-workers
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 30
     defaults:
       run:
         working-directory: themes/shsh
@@ -56,15 +47,16 @@ jobs:
           mkdir -p .cache/ci
           nproc | tee .cache/ci/cpus.txt
           /usr/bin/time -f '%e' -o .cache/ci/static-seconds.txt pnpm check:static
-      - name: Browser tests
+      - name: Compare workers on the same runner
         run: |
-          set +e
-          /usr/bin/time -f '%e' -o .cache/ci/browser-seconds.txt pnpm test --workers=${{ matrix.workers }} --shard=${{ matrix.shard }} 2>&1 | tee .cache/ci/check.log
-          exit "${PIPESTATUS[0]}"
+          for workers in 2 4; do
+            mkdir -p ".cache/ci/workers-$workers"
+            PLAYWRIGHT_HTML_OUTPUT_DIR=".cache/ci/workers-$workers/report" /usr/bin/time -f '%e' -o ".cache/ci/workers-$workers/browser-seconds.txt" pnpm test --workers="$workers" 2>&1 | tee ".cache/ci/workers-$workers/check.log"
+          done
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: always()
         with:
-          name: benchmark-${{ matrix.candidate }}
+          name: shsh-test
           include-hidden-files: true
           path: |
             themes/shsh/.cache/ci/
