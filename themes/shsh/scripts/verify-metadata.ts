@@ -112,6 +112,7 @@ function build(
     destination: `${root}/${name}`,
     environment,
     check: false,
+    timeout: 30_000,
   });
 }
 const validator = new HtmlValidate(JSON.parse(readFileSync(".htmlvalidate.json", "utf8")));
@@ -145,11 +146,19 @@ for (const [params, expected] of [
   [{ defaultShareImage: "bundle-only.png" }, /unresolved local media/],
   [{ defaultShareImage: 42 }, /defaultshareimage must be a string/],
   [{ defaultShareImage: false }, /defaultshareimage must be a string/],
-  [{ description: ["wrong"] }, /description must be a string/],
 ] as const) {
   const result = build("invalid", params);
   assert.notEqual(result.status, 0);
   assert.match(result.stdout + result.stderr, expected);
+}
+// Invalid site descriptions must fail validation without cascading into a
+// template execution error on every page (Hugo can deadlock after ten errors).
+for (const description of [["wrong"], { wrong: true }, 42, false]) {
+  const result = build("invalid-description", { description });
+  const output = result.stdout + result.stderr;
+  assert.equal(result.status, 1, output);
+  assert.match(output, /shsh: params.description must be a string/);
+  assert.doesNotMatch(output, /execute of template failed/);
 }
 page("undated", { title: "日付なし", description: false });
 const invalid = build("invalid");

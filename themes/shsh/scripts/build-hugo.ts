@@ -11,12 +11,14 @@ interface BuildOptions {
   quiet?: boolean;
   // Set false to capture output and return nonzero exits for test assertions.
   check?: boolean;
+  // Bound checks that deliberately exercise build failures (milliseconds).
+  timeout?: number;
 }
 
 // Fixed clock so every fixture and check builds the same output regardless of run time.
 const clock = "2026-09-17T12:00:00+09:00";
 
-export function buildHugo({ check = true, ...options }: BuildOptions) {
+export function buildHugo({ check = true, timeout, ...options }: BuildOptions) {
   const args = [
     "--themesDir",
     resolve(".."),
@@ -35,6 +37,7 @@ export function buildHugo({ check = true, ...options }: BuildOptions) {
   const result = spawnSync("hugo", args, {
     encoding: "utf8",
     stdio: check ? "inherit" : "pipe",
+    timeout,
   });
   if (result.error) throw result.error;
   if (check && result.status !== 0) {

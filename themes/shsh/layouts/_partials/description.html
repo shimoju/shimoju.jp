@@ -6,8 +6,9 @@
 {{- end -}}
 {{- /* Authored text may hold markup; the summary is already plain. */ -}}
 {{- $site := "" -}}
-{{- with site.Params.description -}}
-  {{- $site = . | plainify | htmlUnescape -}}
+{{- /* config.html reports invalid types with errorf, which does not stop rendering. */ -}}
+{{- if eq (printf "%T" site.Params.description) "string" -}}
+  {{- $site = site.Params.description | plainify | htmlUnescape -}}
 {{- end -}}
 {{- $description := "" -}}
 {{- if isset .Params "description" -}}
