@@ -158,6 +158,31 @@ test("link hover underlines require hover support while keyboard focus stays vis
   }
 });
 
+test("article end rules off article actions from site links", async ({ page }) => {
+  await page.route("https://**/*", (route) => route.fulfill({ body: "" }));
+  const gap = (above: string, below: string) =>
+    page.evaluate(
+      ([above, below]) =>
+        document.querySelector(below)!.getBoundingClientRect().top -
+        document.querySelector(above)!.getBoundingClientRect().bottom,
+      [above, below],
+    );
+  await page.goto("http://127.0.0.1:4182/2026/09/01/development-environment-2026/");
+  for (const child of await page.locator(".article-end > *").all())
+    await expect(child).toHaveCSS("border-bottom-style", "none");
+  await expect(page.locator(".post-nav")).toHaveCSS("border-top-style", "solid");
+  expect(await gap(".article-tags", ".engagement")).toBe(32);
+  expect(await gap(".engagement", ".post-nav")).toBe(32);
+  for (const url of ["http://127.0.0.1:4182/about/", "http://127.0.0.1:4195/posts/"]) {
+    await page.goto(url);
+    if (url.endsWith("/posts/")) await page.locator(".entry-link").click();
+    await expect(page.locator(".post-nav")).toHaveCount(0);
+    const last = page.locator(".article-end > :last-child");
+    await expect(last).toHaveCSS("border-bottom-style", "solid");
+    await expect(last).toHaveCSS("padding-bottom", "32px");
+  }
+});
+
 test("discovery semantics, keyboard, fixed pages and JavaScript-disabled navigation", async ({
   browser,
 }) => {
