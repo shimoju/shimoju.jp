@@ -17,6 +17,11 @@ jobs:
     name: shsh-test (${{ matrix.browser }})
     runs-on: ubuntu-24.04
     timeout-minutes: 20
+    # Browsers and their system packages are preinstalled; apt downloads on the runner vary widely.
+    # Keep the tag in sync with @playwright/test in themes/shsh/package.json.
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
+      options: --ipc=host
     # One browser per runner: the 4-vCPU runner is CPU-bound, so extra workers on one runner do not help.
     strategy:
       fail-fast: false
@@ -46,8 +51,10 @@ jobs:
         with:
           hugo-version: "0.166.0"
       - run: pnpm install --frozen-lockfile
-      - run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
       - name: Verify theme and browser behavior
+        # Firefox refuses a HOME owned by another user when the container runs as root.
+        env:
+          HOME: /root
         run: |
           mkdir -p .cache/ci
           start=$(date +%s)
