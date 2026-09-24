@@ -68,6 +68,10 @@ pnpm check
 
 整形は`pnpm format`を使う。`pnpm check`はlint、Hugo生成、HTML/XML、Chromium・Firefox・WebKitの表示・操作を検査する。
 
+CIでは全テストを2 workers × 3 shardsに分割する。各shardで`pnpm check:static`（lint・Hugo生成・HTML検査）を実行してから、`pnpm test --workers=2 --shard=1/3`（末尾を`2/3`・`3/3`に変更）を実行する。ローカルの`pnpm check`は従来どおり全検査を実行する。
+
+必須チェック名`shsh-test`は全shardの成功を確認する集約ジョブとして維持する。各shardのHTMLレポート、失敗時のtrace、検査ログと所要秒数はActionsの`shsh-test-1`〜`shsh-test-3` artifactから取得できる。レポート結合用ジョブやfixture転送は設けず、各shard単独で再現できる構成にしている。
+
 検査入力は実記事のコピーを含め`tests/fixtures/`に置き、ブログ本体の設定やファイルは参照しない。出力は`.cache/`に置く。外部埋め込みは固定のshortcodeへ置換し、ブラウザの外部通信も遮断する。
 
 `pnpm check`の実行後、画面fixtureをローカルでプレビューできる。

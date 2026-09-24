@@ -6,17 +6,21 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: worker-comparison-${{ github.run_id }}
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-  test:
-    name: benchmark-paired-workers
+  browser-tests:
+    name: shsh-test (${{ matrix.shard }}/3)
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: themes/shsh
@@ -45,21 +49,34 @@ jobs:
       - name: Verify theme and build fixtures
         run: |
           mkdir -p .cache/ci
-          nproc | tee .cache/ci/cpus.txt
-          /usr/bin/time -f '%e' -o .cache/ci/static-seconds.txt pnpm check:static
-      - name: Compare workers on the same runner
+          set +e
+          /usr/bin/time -f '%e' -o .cache/ci/static-seconds.txt pnpm check:static 2>&1 | tee .cache/ci/static.log
+          exit "${PIPESTATUS[0]}"
+      - name: Verify browser behavior
         run: |
-          for workers in 2 4; do
-            mkdir -p ".cache/ci/workers-$workers"
-            PLAYWRIGHT_HTML_OUTPUT_DIR=".cache/ci/workers-$workers/report" /usr/bin/time -f '%e' -o ".cache/ci/workers-$workers/browser-seconds.txt" pnpm test --workers="$workers" 2>&1 | tee ".cache/ci/workers-$workers/check.log"
-          done
+          set +e
+          /usr/bin/time -f '%e' -o .cache/ci/browser-seconds.txt pnpm test --workers=2 --shard=${{ matrix.shard }}/3 2>&1 | tee .cache/ci/check.log
+          exit "${PIPESTATUS[0]}"
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: always()
         with:
-          name: shsh-test
+          name: shsh-test-${{ matrix.shard }}
           include-hidden-files: true
           path: |
             themes/shsh/.cache/ci/
             themes/shsh/playwright-report/
             themes/shsh/test-results/
           retention-days: 14
+
+  # Preserve the required check name and fail when any shard fails or is cancelled.
+  test:
+    name: shsh-test
+    needs: browser-tests
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Require all shards to pass
+        env:
+          BROWSER_RESULT: ${{ needs.browser-tests.result }}
+        run: test "$BROWSER_RESULT" = success
