@@ -218,3 +218,30 @@ test("discovery semantics, keyboard, fixed pages and JavaScript-disabled navigat
     await context.close();
   }
 });
+
+test("article divider appears only with sharing or adjacent-post links", async ({ page }) => {
+  await page.route("https://**/*", (route) => route.fulfill({ body: "" }));
+  for (const [url, divided] of [
+    ["http://127.0.0.1:4182/2023/06/22/hugo-and-cloudflare-pages/", true],
+    ["http://127.0.0.1:4182/about/", true],
+    ["http://127.0.0.1:4195/2016/08/17/only/", true],
+    ["http://127.0.0.1:4174/posts/post-4/", true],
+    ["http://127.0.0.1:4174/about/", false],
+  ] as const) {
+    await page.goto(url);
+    await expect(page.locator("article"), url).toHaveCSS(
+      "border-bottom-width",
+      divided ? "1px" : "0px",
+    );
+    const nav = page.locator(".post-nav");
+    if (await nav.count()) {
+      await expect(nav).toHaveCSS("border-top-width", "0px");
+      const [article, links] = await Promise.all(
+        [page.locator("article"), nav].map((locator) =>
+          locator.evaluate((element) => element.getBoundingClientRect()),
+        ),
+      );
+      expect(links!.top).toBeCloseTo(article!.bottom, 1);
+    }
+  }
+});

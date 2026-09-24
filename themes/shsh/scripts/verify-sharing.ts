@@ -54,13 +54,18 @@ function success(
   return readFileSync(`${root}/${destination}/document/index.html`, "utf8");
 }
 let html = success({});
-assert.doesNotMatch(html, /class="article-end"|sharing\.[a-f0-9]+\.js|data-hatena-star-container/);
+assert.doesNotMatch(
+  html,
+  /class="article-(?:end|divided)"|sharing\.[a-f0-9]+\.js|data-hatena-star-container/,
+);
 html = success({ shareServices: ["hatena", "x"], hatenaStar: { enabled: false } });
 assert.match(html, /View on Hatena Bookmark/);
+assert.match(html, /<article class="article-divided">/);
 assert.ok(html.indexOf('title="View on Hatena Bookmark"') < html.indexOf('title="Share on X"'));
 assert.doesNotMatch(html, /data-hatena-star-container|sharing\.[a-f0-9]+\.js/);
 html = success({ hatenaStar: { enabled: true } });
 assert.match(html, /data-hatena-star-container/);
+assert.match(html, /<article class="article-divided">/);
 assert.doesNotMatch(html, /class="share-icons"/);
 html = success({ shareServices: ["hatena"] }, "production", "probe", "http://sharing.invalid/");
 assert.match(html, /href="https:\/\/b.hatena.ne.jp\/entry\/sharing.invalid\/document\/"/);

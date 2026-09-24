@@ -1,11 +1,29 @@
 {{ define "main" }}
-  <article>
+  {{ $tags := slice }}
+  {{ if in site.MainSections .Section }}{{ $tags = .GetTerms "tags" }}{{ end }}
+  {{ $engagement := partial "engagement.html" . }}
+  {{ $navigation := partial "post-navigation.html" . }}
+  <article {{ if or $engagement $navigation }}class="article-divided"{{ end }}>
     <header class="article-header">
       <h1>{{ .Title }}</h1>
       {{ partial "dates.html" . }}
       {{ partial "media/cover.html" (dict "page" . "class" "article-cover" "loading" "eager" "fetchpriority" "high") }}
     </header>
     <div class="prose">{{ .Content }}</div>
-    {{ partial "article-end.html" . }}
+    {{ if or $tags $engagement }}
+      <footer class="article-end">
+        {{- with $tags }}
+          <div class="article-tags" role="group" aria-label="Tags"
+            >{{ range . }}
+              <a href="{{ .RelPermalink }}"
+                >#{{ partial "page-title.html" . }}</a
+              >
+            {{ end }}</div
+          >
+        {{ end -}}
+        {{ $engagement }}
+      </footer>
+    {{ end }}
   </article>
+  {{ $navigation }}
 {{ end }}
