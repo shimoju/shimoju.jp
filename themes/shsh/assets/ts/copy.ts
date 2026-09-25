@@ -1,13 +1,47 @@
+// Controls exist only in the browser, so content, summaries and feeds carry no UI markup.
+const template = document.createElement("template");
+template.innerHTML = `
+  <button
+    class="copy icon-control"
+    type="button"
+    aria-label="Copy code"
+    title="Copy code"
+    lang="en"
+    data-copy-state="idle"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      preserveAspectRatio="xMidYMid meet"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <g class="copy-symbol-idle">
+        <rect x="8" y="8" width="14" height="14" rx="2" />
+        <path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4" />
+      </g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6" />
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19" /></g>
+    </svg>
+  </button>
+  <span class="sr-only copy-feedback" role="status" aria-live="polite" lang="en"></span>
+`;
+const [buttonTemplate, statusTemplate] = template.content.children;
+
 const controls: { block: HTMLElement; dismiss: () => void }[] = [];
-for (const button of document.querySelectorAll<HTMLButtonElement>(".copy")) {
-  const block = button.closest<HTMLElement>(".code-block");
-  if (!block) continue;
+for (const block of document.querySelectorAll<HTMLElement>(".code-block")) {
+  const highlight = block.querySelector(".highlight");
   // Table line numbers occupy their own pre; use the code column when present.
   const pre =
     block.querySelector<HTMLElement>(".lntd:last-child pre") ??
     block.querySelector<HTMLElement>("pre");
-  const status = block.querySelector<HTMLElement>(".copy-feedback");
-  if (!pre || !status) continue;
+  if (!highlight || !pre || !buttonTemplate || !statusTemplate) continue;
+  const button = buttonTemplate.cloneNode(true) as HTMLButtonElement;
+  const status = statusTemplate.cloneNode(true) as HTMLElement;
+  // Label, button, code: focus order and the label's sibling selector depend on it.
+  highlight.before(button);
+  block.append(status);
   let resetTimer: ReturnType<typeof setTimeout> | undefined;
   const reveal = () => {
     delete block.dataset.copyDismissed;
@@ -24,7 +58,6 @@ for (const button of document.querySelectorAll<HTMLButtonElement>(".copy")) {
     button.title = title;
   };
   controls.push({ block, dismiss });
-  button.hidden = false;
   block.addEventListener("click", (event) => {
     if (event.target instanceof Element && !event.target.closest(".copy")) reveal();
   });

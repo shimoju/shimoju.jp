@@ -17,8 +17,6 @@
 {{- end -}}
 {{- $summary = printf "%s" $summary -}}
 {{- /* Drop UI that only works on the theme's own page; code labels are content and stay. */ -}}
-{{- $summary = $summary | replaceRE `(?s)<button\s+class="copy\b.*?</button>` "" -}}
-{{- $summary = $summary | replaceRE `(?s)<span\s+class="sr-only copy-feedback".*?</span>` "" -}}
 {{- $summary = $summary | replaceRE `(?s)<a\s+class="heading-anchor".*?</a>` "" -}}
 {{- /* Feeds are read away from this site: resolve root-relative URLs like a browser would
   and keep only the image attributes that mean something without the theme's CSS. */

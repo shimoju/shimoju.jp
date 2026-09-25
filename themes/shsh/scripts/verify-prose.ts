@@ -86,6 +86,8 @@ for (const block of defaultCode) {
   assert.ok(pres.length > 0);
   for (const [pre] of pres) assert.match(pre, /class="chroma"/);
   assert.doesNotMatch(block, /\sstyle=/);
+  // The copy script inserts its controls; rendered content keeps only code and its label.
+  assert.doesNotMatch(block, /<(button|svg)\b|copy-feedback/);
 }
 assert.match(defaultCode[2]!, /<table class="lntable">\s*<tbody>/);
 assert.equal([...defaultCode[2]!.matchAll(/<td class="lntd">/g)].length, 2);
