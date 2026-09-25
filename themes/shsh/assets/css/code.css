@@ -46,10 +46,6 @@ pre {
   pointer-events: none;
 }
 
-.copy[hidden] {
-  display: none;
-}
-
 /* 32px target, 24px face, 16px SVG. The visible face remains 12px from the code edge. */
 .copy::before {
   content: "";

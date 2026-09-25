@@ -234,7 +234,7 @@ test("prose remains readable; footnotes, headings, dates and JS-free reading wor
   const noJS = await browser.newContext({ javaScriptEnabled: false });
   const plain = await noJS.newPage();
   await plain.goto("http://127.0.0.1:4174/specimen/");
-  await expect(plain.locator(".copy:visible")).toHaveCount(0);
+  await expect(plain.locator(".copy, .copy-feedback")).toHaveCount(0);
   await expect(plain.locator("pre").first()).toContainText("日本語コメント");
   await noJS.close();
 });
