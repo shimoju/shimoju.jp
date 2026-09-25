@@ -1,13 +1,28 @@
 const controls: { block: HTMLElement; dismiss: () => void }[] = [];
-for (const button of document.querySelectorAll<HTMLButtonElement>(".copy")) {
-  const block = button.closest<HTMLElement>(".code-block");
-  if (!block) continue;
+for (const block of document.querySelectorAll<HTMLElement>(".code-block")) {
   // Table line numbers occupy their own pre; use the code column when present.
   const pre =
     block.querySelector<HTMLElement>(".lntd:last-child pre") ??
     block.querySelector<HTMLElement>("pre");
-  const status = block.querySelector<HTMLElement>(".copy-feedback");
-  if (!pre || !status) continue;
+  if (!pre) continue;
+  const button = document.createElement("button");
+  button.className = "copy icon-control";
+  button.type = "button";
+  button.lang = "en";
+  button.innerHTML = `
+    <svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+      <g class="copy-symbol-idle">
+        <rect x="8" y="8" width="14" height="14" rx="2" />
+        <path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4" />
+      </g>
+      <path class="copy-symbol-success" d="m3 12 6 6L21 6" />
+      <g class="copy-symbol-error"><path d="m5 5 14 14M19 5 5 19" /></g>
+    </svg>`;
+  const status = document.createElement("span");
+  status.className = "sr-only copy-feedback";
+  status.setAttribute("role", "status");
+  status.setAttribute("aria-live", "polite");
+  status.lang = "en";
   let resetTimer: ReturnType<typeof setTimeout> | undefined;
   const reveal = () => {
     delete block.dataset.copyDismissed;
@@ -24,7 +39,7 @@ for (const button of document.querySelectorAll<HTMLButtonElement>(".copy")) {
     button.title = title;
   };
   controls.push({ block, dismiss });
-  button.hidden = false;
+  setState("idle", "Copy code");
   block.addEventListener("click", (event) => {
     if (event.target instanceof Element && !event.target.closest(".copy")) reveal();
   });
@@ -78,6 +93,9 @@ for (const button of document.querySelectorAll<HTMLButtonElement>(".copy")) {
   button.addEventListener("click", () => {
     void copy();
   });
+  // Keep the button before the code in the keyboard navigation order.
+  block.insertBefore(button, block.querySelector(".highlight"));
+  block.append(status);
 }
 document.addEventListener("pointerdown", (event) => {
   if (!(event.target instanceof Node)) return;

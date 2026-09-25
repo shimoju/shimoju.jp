@@ -50,6 +50,8 @@ test("copy preserves code with Japanese, inline/table numbers, unknown language 
   await expect(page.locator(".code-block").nth(1).locator(".hl")).toHaveCount(1);
   for (const [i, code] of expected.entries()) {
     const block = page.locator(".code-block").nth(i);
+    await expect(block.getByRole("button", { name: "Copy code", exact: true })).toHaveCount(1);
+    await expect(block.getByRole("status")).toHaveCount(1);
     await block.hover();
     await block.getByRole("button").click();
     await expect(page.locator("html")).toHaveAttribute("data-copied", code);
@@ -234,7 +236,7 @@ test("prose remains readable; footnotes, headings, dates and JS-free reading wor
   const noJS = await browser.newContext({ javaScriptEnabled: false });
   const plain = await noJS.newPage();
   await plain.goto("http://127.0.0.1:4174/specimen/");
-  await expect(plain.locator(".copy:visible")).toHaveCount(0);
+  await expect(plain.locator(".copy, .copy-feedback")).toHaveCount(0);
   await expect(plain.locator("pre").first()).toContainText("日本語コメント");
   await noJS.close();
 });
