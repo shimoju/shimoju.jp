@@ -52,14 +52,13 @@ for (const environment of ["production", "preview"]) {
   }
   // Check candidate widths, sizes and actual WebP chunk types, not just encoder options.
   const published = new Set<string>();
-  let webpCandidates = 0;
   const pictures = [
     ...html.matchAll(
       /<picture\s*><source\s+type="image\/webp"\s+srcset="([^"]+)"\s+sizes="[^"]+"\s*\/><img\b([^>]*)><\/picture\s*>/g,
     ),
   ];
   // Every picture must have exactly this shape: one typed WebP source and the original img.
-  assert.equal(pictures.length, html.split("<picture").length - 1);
+  assert.equal(pictures.length, html.match(/<picture\b/g)?.length);
   for (const [, srcset, img] of pictures) {
     const src = img!.match(/\bsrc="([^"]+)"/)?.[1];
     const width = Number(img!.match(/\bwidth="(\d+)"/)?.[1]);
@@ -104,10 +103,9 @@ for (const environment of ["production", "preview"]) {
       assert.equal(imageChunk(candidate.bytes), expected, candidate.file);
       if (alpha) assert.ok(chunks(candidate.bytes).includes("ALPH"), candidate.file);
       published.add(candidate.file);
-      webpCandidates++;
     }
   }
-  assert.ok(webpCandidates > 10);
+  assert.ok(published.size > 10);
   // Candidates dropped for a lighter wider one are generated but never published.
   for (const file of readdirSync(`${directory}/gallery`).filter((f) => f.includes("_hu_")))
     assert.ok(published.has(`/gallery/${file}`), file);

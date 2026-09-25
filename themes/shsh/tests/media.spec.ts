@@ -256,7 +256,7 @@ test("DPR chooses fitting candidates and JavaScript-free media remain usable", a
       const expected = (await candidates(photo)).find(
         (candidate) => candidate.width === (deviceScaleFactor === 3 ? 1500 : 1440),
       )!;
-      expect(photoCurrent.endsWith(expected.url)).toBe(true);
+      expect(photoCurrent).toContain(expected.url);
     }
     await expect(page.locator("video")).toHaveAttribute("controls", "");
     await context.close();

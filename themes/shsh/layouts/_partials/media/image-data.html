@@ -9,31 +9,33 @@
     {{ errorf "shsh: expected image resource %q" .src }}
   {{ end -}}
   {{- $type := $resource.MediaType.SubType -}}
+  {{- /* Hugo rereads Content on every access, so sniff bytes from one copy. */ -}}
+  {{- $bytes := $resource.Content -}}
   {{- if eq (lower (path.Ext $resource.Name)) ".svg" }}
-    {{ $svg = $resource.Content }}
+    {{ $svg = $bytes }}
   {{ end -}}
   {{- $animated := false -}}
   {{- $grayscale := false -}}
-  {{- if and (eq $type "gif") (ge (len $resource.Content) 13) }}
-    {{ $animated = partial "media/gif-animated.html" (dict "bytes" $resource.Content) }}
+  {{- if and (eq $type "gif") (ge (len $bytes) 13) }}
+    {{ $animated = partial "media/gif-animated.html" (dict "bytes" $bytes) }}
   {{ end -}}
   {{- if eq $type "png" }}
-    {{ $animated = partial "media/png-animated.html" (dict "bytes" $resource.Content "offset" 8) }}
+    {{ $animated = partial "media/png-animated.html" (dict "bytes" $bytes "offset" 8) }}
     {{- /* Hugo's WebP encoder changes grayscale levels, even with lossless compression. */ -}}
-    {{- if ge (len $resource.Content) 26 }}
-      {{ $grayscale = in (slice 0 4) (int (index $resource.Content 25)) }}
+    {{- if ge (len $bytes) 26 }}
+      {{ $grayscale = in (slice 0 4) (int (index $bytes 25)) }}
     {{ end -}}
   {{ end -}}
-  {{- if and (eq $type "webp") (ge (len $resource.Content) 30) -}}
-    {{- if eq (printf "%c%c%c%c" (index $resource.Content 12) (index $resource.Content 13) (index $resource.Content 14) (index $resource.Content 15)) "VP8X" -}}
-      {{- $animated = ge (mod (int (index $resource.Content 20)) 4) 2 -}}
+  {{- if and (eq $type "webp") (ge (len $bytes) 30) -}}
+    {{- if eq (printf "%c%c%c%c" (index $bytes 12) (index $bytes 13) (index $bytes 14) (index $bytes 15)) "VP8X" -}}
+      {{- $animated = ge (mod (int (index $bytes 20)) 4) 2 -}}
       {{- if $animated -}}
-        {{- $width = add 1 (int (index $resource.Content 24)) (mul (int (index $resource.Content 25)) 256) (mul (int (index $resource.Content 26)) 65536) -}}
-        {{- $height = add 1 (int (index $resource.Content 27)) (mul (int (index $resource.Content 28)) 256) (mul (int (index $resource.Content 29)) 65536) -}}
+        {{- $width = add 1 (int (index $bytes 24)) (mul (int (index $bytes 25)) 256) (mul (int (index $bytes 26)) 65536) -}}
+        {{- $height = add 1 (int (index $bytes 27)) (mul (int (index $bytes 28)) 256) (mul (int (index $bytes 29)) 65536) -}}
       {{- end -}}
     {{- end -}}
   {{- end -}}
-  {{- if and (eq $type "avif") (findRE `avis` $resource.Content) }}
+  {{- if and (eq $type "avif") (findRE `avis` $bytes) }}
     {{ $animated = true }}
   {{ end -}}
   {{- if and (not $width) (reflect.IsImageResourceWithMeta $resource) -}}
@@ -44,7 +46,7 @@
     {{- /* Formats that usually hold screenshots and line art stay lossless; others are photos. */ -}}
     {{- $lossless := in (slice "png" "gif") $type -}}
     {{- if eq $type "webp" -}}
-      {{- $lossless = partial "media/webp-lossless.html" (dict "bytes" $resource.Content "offset" 12) -}}
+      {{- $lossless = partial "media/webp-lossless.html" (dict "bytes" $bytes "offset" 12) -}}
     {{- end -}}
     {{- $spec := cond $lossless "webp lossless catmullrom" "webp lossy" -}}
     {{- $candidates := slice -}}
@@ -63,12 +65,15 @@
     {{- /* Browsers never fall back from a typed source to the original, so compare within WebP. */ -}}
     {{- /* Drop a width when a wider one is no larger: resized palette images can outgrow it. */ -}}
     {{- /* Read RelPermalink only for kept candidates so dropped ones are not published. */ -}}
+    {{- $sizes := slice -}}
+    {{- range $candidates }}
+      {{ $sizes = $sizes | append (len .Content) }}
+    {{ end -}}
     {{- range $index, $candidate := $candidates -}}
+      {{- $size := index $sizes $index -}}
       {{- $dominated := false -}}
-      {{- range after (add $index 1) $candidates -}}
-        {{- if le (len .Content) (len $candidate.Content) }}
-          {{ $dominated = true }}
-        {{ end -}}
+      {{- range after (add $index 1) $sizes -}}
+        {{- if le . $size }}{{ $dominated = true }}{{ end -}}
       {{- end -}}
       {{- if not $dominated -}}
         {{- $srcset = $srcset | append (printf "%s %dw" $candidate.RelPermalink $candidate.Width) -}}
