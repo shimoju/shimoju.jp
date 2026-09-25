@@ -47,21 +47,18 @@
       {{- $lossless = partial "media/webp-lossless.html" (dict "bytes" $resource.Content "offset" 12) -}}
     {{- end -}}
     {{- $spec := cond $lossless "webp lossless catmullrom" "webp lossy" -}}
-    {{- /* Always include the native width so the WebP source covers every display density. */ -}}
-    {{- $widths := slice -}}
-    {{- range slice 360 720 1080 1440 -}}
-      {{- if lt . $width }}{{ $widths = $widths | append . }}{{ end -}}
-    {{- end -}}
-    {{- $widths = $widths | append $width -}}
     {{- $candidates := slice -}}
-    {{- range $widths -}}
-      {{- if and (eq . $width) (eq $type "webp") -}}
-        {{- /* A WebP original already belongs in the WebP source at its own width. */ -}}
-        {{- $candidates = $candidates | append (dict "width" . "url" $media.src "bytes" (len $resource.Content)) -}}
-      {{- else -}}
-        {{- $candidate := $resource.Process (printf "resize %dx %s" . $spec) -}}
-        {{- $candidates = $candidates | append (dict "width" . "resource" $candidate "bytes" (len $candidate.Content)) -}}
-      {{- end -}}
+    {{- range slice 360 720 1080 1440 -}}
+      {{- if lt . $width }}
+        {{ $candidates = $candidates | append ($resource.Process (printf "resize %dx %s" . $spec)) }}
+      {{ end -}}
+    {{- end -}}
+    {{- /* Always include the native width so the WebP source covers every display density. */ -}}
+    {{- /* A WebP original already belongs in the WebP source at its own width. */ -}}
+    {{- if eq $type "webp" -}}
+      {{- $candidates = $candidates | append ($resource | fingerprint) -}}
+    {{- else -}}
+      {{- $candidates = $candidates | append ($resource.Process (printf "resize %dx %s" $width $spec)) -}}
     {{- end -}}
     {{- /* Browsers never fall back from a typed source to the original, so compare within WebP. */ -}}
     {{- /* Drop a width when a wider one is no larger: resized palette images can outgrow it. */ -}}
@@ -69,12 +66,12 @@
     {{- range $index, $candidate := $candidates -}}
       {{- $dominated := false -}}
       {{- range after (add $index 1) $candidates -}}
-        {{- if le .bytes $candidate.bytes }}{{ $dominated = true }}{{ end -}}
+        {{- if le (len .Content) (len $candidate.Content) }}
+          {{ $dominated = true }}
+        {{ end -}}
       {{- end -}}
       {{- if not $dominated -}}
-        {{- $url := $candidate.url -}}
-        {{- with $candidate.resource }}{{ $url = .RelPermalink }}{{ end -}}
-        {{- $srcset = $srcset | append (printf "%s %dw" $url $candidate.width) -}}
+        {{- $srcset = $srcset | append (printf "%s %dw" $candidate.RelPermalink $candidate.Width) -}}
       {{- end -}}
     {{- end -}}
   {{- end -}}

@@ -1,0 +1,17 @@
+{{- $data := .data -}}
+<img
+  src="{{ $data.src }}"
+  alt="{{ .alt | default "" }}"
+  loading="{{ .loading | default "lazy" }}"
+  {{ with .fetchpriority }}fetchpriority="{{ . }}"{{ end }}
+  decoding="async"
+  {{ with .title }}title="{{ . }}"{{ end }}
+  {{ with $data.width }}
+    width="{{ . }}" style="--image-width:
+    {{ . }}px;{{ with $data.height }}
+      --image-ratio: {{ $data.width }} / {{ . }};
+    {{ end }}"
+  {{ end }}
+  {{ with $data.height }}height="{{ . }}"{{ end }}
+/>
+{{- /* No trailing whitespace: the img sits inside picture and next to inline text. */ -}}

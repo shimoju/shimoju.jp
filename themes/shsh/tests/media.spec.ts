@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, type Locator } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
 import { mkdirSync } from "node:fs";
 
@@ -6,6 +6,12 @@ const base = "http://127.0.0.1:4179";
 test.beforeEach(async ({ page }) => {
   await page.route("https://**/*", (route) => route.abort());
 });
+// Candidates live in the picture's WebP source; the img keeps only the original src.
+const candidates = async (img: Locator) =>
+  (await img.locator("xpath=../source").getAttribute("srcset"))!.split(", ").map((candidate) => {
+    const [url, descriptor] = candidate.split(" ");
+    return { url: url!, width: Number(descriptor!.slice(0, -1)) };
+  });
 
 test("responsive candidates, originals, dimensions, loading and figure semantics", async ({
   page,
@@ -13,56 +19,41 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   await page.route("**/*.mp4", (route) => route.abort());
   await page.goto(`${base}/gallery/`);
   const terminal = page.getByRole("img", { name: "ターミナルの文字", exact: true });
-  // Candidates live in the WebP source; the img keeps only the original src.
-  const srcset = (name: string) =>
-    page
-      .locator("picture")
-      .filter({ has: page.getByRole("img", { name, exact: true }) })
-      .locator('source[type="image/webp"]')
-      .getAttribute("srcset");
-  const candidates = async (name: string) =>
-    (await srcset(name))?.split(", ").map((s) => Number(s.split(" ")[1]?.replace("w", "")));
-  expect(await candidates("ターミナルの文字")).toEqual([360, 1200]);
-  // The native width is a candidate even above 1440px.
-  expect(await candidates("実写真")).toEqual([360, 720, 1080, 1440, 1500]);
-  // Heavier intermediate resizes give way to the lighter native-width WebP.
-  expect(await srcset("ターミナルの文字")).toMatch(/\.webp 1200w$/);
-  expect(await candidates("パレット画像")).toEqual([360, 1440]);
-  expect(await candidates("小さい透明画像")).toEqual([200]);
   const smallSrc = await page.getByRole("img", { name: "小さい透明画像" }).getAttribute("src");
   await expect(page.getByRole("img", { name: "クエリ付き画像" })).toHaveAttribute(
     "src",
     `${smallSrc}?v=1&x=2#sample`,
   );
-  expect(await candidates("静止GIF")).toEqual([120]);
-  expect(await candidates("静止WebP")).toEqual([360, 400]);
-  expect(await candidates("可逆WebP")).toEqual([360, 480]);
-  expect(await candidates("半透明の非可逆WebP")).toEqual([360, 480]);
-  expect(await candidates("TIFF画像")).toEqual([360, 480]);
-  expect(await candidates("パレットのスクリーンショット")).toEqual([360, 720, 2304]);
-  // Without comparing to the original, even WebP larger than an optimized JPEG is offered.
-  expect(await candidates("圧縮済みJPEG")).toEqual([360, 720]);
-  for (const name of [
-    "ターミナルの文字",
-    "実写真",
-    "パレット画像",
-    "小さい透明画像",
-    "静止GIF",
-    "静止WebP",
-    "可逆WebP",
-    "半透明の非可逆WebP",
-    "TIFF画像",
-    "パレットのスクリーンショット",
-    "圧縮済みJPEG",
-  ]) {
+  // The native width is always last, even above 1440px. Heavier intermediate resizes give way to
+  // a lighter wider one; without comparing to the original, WebP heavier than a JPEG is offered.
+  const widths: Record<string, number[]> = {
+    ターミナルの文字: [360, 1200],
+    実写真: [360, 720, 1080, 1440, 1500],
+    パレット画像: [360, 1440],
+    小さい透明画像: [200],
+    静止GIF: [120],
+    静止WebP: [360, 400],
+    可逆WebP: [360, 480],
+    半透明の非可逆WebP: [360, 480],
+    TIFF画像: [360, 480],
+    パレットのスクリーンショット: [360, 720, 2304],
+    圧縮済みJPEG: [360, 720],
+  };
+  for (const [name, expected] of Object.entries(widths)) {
     const img = page.getByRole("img", { name, exact: true });
-    const original = `${await img.getAttribute("src")} ${await img.getAttribute("width")}w`;
-    // Only a WebP original can stand in the WebP source, at its own width.
-    if (name.includes("WebP")) expect((await srcset(name))?.endsWith(original)).toBe(true);
-    else expect(await srcset(name)).not.toContain(await img.getAttribute("src"));
     await expect(img.locator("..")).toHaveJSProperty("tagName", "PICTURE");
+    const sources = await candidates(img);
+    expect(
+      sources.map((candidate) => candidate.width),
+      name,
+    ).toEqual(expected);
+    // Only a WebP original can stand in the WebP source, at its own width.
+    const src = (await img.getAttribute("src"))!;
+    expect(
+      sources.map((candidate) => candidate.url === src),
+      name,
+    ).toEqual(sources.map((_, index) => src.endsWith(".webp") && index === sources.length - 1));
   }
-  await expect(page.locator("img[srcset], img[sizes]")).toHaveCount(0);
   await expect(terminal).toHaveAttribute("width", "1200");
   await expect(terminal).toHaveAttribute("height", "630");
   await expect(terminal).toHaveAttribute("loading", "lazy");
@@ -150,14 +141,12 @@ test("a missing first cover does not promote body images or a later entry cover"
 test("direct lossless resizing preserves palette midtones and transparency", async ({ page }) => {
   await page.goto(`${base}/gallery/`);
   const img = page.getByRole("img", { name: "パレット画像", exact: true });
-  const result = await img.evaluate(async (element: HTMLImageElement) => {
+  const [smallest] = await candidates(img);
+  const result = await img.evaluate(async (_, url: string) => {
     // Below a screenshot band, the 1440px indexed PNG alternates red/blue columns. A 4:1
     // Catmull-Rom resize must produce purple, absent from the source palette, away from edges.
     const bitmap = new Image();
-    bitmap.src = element
-      .parentElement!.querySelector("source")!
-      .srcset.split(", ")[0]!
-      .split(" ")[0]!;
+    bitmap.src = url;
     await bitmap.decode();
     const canvas = document.createElement("canvas");
     canvas.width = bitmap.naturalWidth;
@@ -173,7 +162,7 @@ test("direct lossless resizing preserves palette midtones and transparency", asy
       opaque: pixel(canvas.width / 4, canvas.height / 2),
       translucent: pixel((canvas.width * 3) / 4, canvas.height / 2),
     };
-  });
+  }, smallest!.url);
   expect(result.width).toBe(360);
   expect(result.height).toBe(150);
   expect(result.opaque).toEqual([128, 0, 128, 255]);
@@ -250,33 +239,24 @@ test("DPR chooses fitting candidates and JavaScript-free media remain usable", a
     await page.goto(`${base}/gallery/`);
     const cover = page.locator(".article-cover img");
     await expect(cover).toBeVisible();
-    const source = await cover.evaluate((img: HTMLImageElement) => ({
-      current: img.currentSrc,
-      candidates: img.parentElement!.querySelector("source")!.srcset,
-    }));
-    expect(source.current).toContain(".webp");
-    const chosen = source.candidates
-      .split(", ")
-      .find((candidate) => source.current.endsWith(candidate.split(" ")[0]!))!;
-    const chosenWidth = Number(chosen.split(" ")[1]!.replace("w", ""));
-    expect(chosenWidth).toBeGreaterThanOrEqual(width === 1280 ? 1200 : 352 * deviceScaleFactor);
-    expect(chosenWidth).toBeLessThanOrEqual(deviceScaleFactor === 1 ? 720 : 1200);
+    const current = await cover.evaluate((img: HTMLImageElement) => img.currentSrc);
+    expect(current).toContain(".webp");
+    const chosen = (await candidates(cover)).find((candidate) => current.endsWith(candidate.url))!;
+    expect(chosen.width).toBeGreaterThanOrEqual(width === 1280 ? 1200 : 352 * deviceScaleFactor);
+    expect(chosen.width).toBeLessThanOrEqual(deviceScaleFactor === 1 ? 720 : 1200);
     // A large photo offers its native width when DPR calls for more than 1440px.
     const photo = page.getByRole("img", { name: "実写真", exact: true });
     await photo.scrollIntoViewIfNeeded();
     await expect
       .poll(() => photo.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0))
       .toBe(true);
-    const photoSource = await photo.evaluate((img: HTMLImageElement) => ({
-      current: img.currentSrc,
-      candidates: img.parentElement!.querySelector("source")!.srcset,
-    }));
-    expect(photoSource.current).toContain(".webp");
+    const photoCurrent = await photo.evaluate((img: HTMLImageElement) => img.currentSrc);
+    expect(photoCurrent).toContain(".webp");
     if (width === 1280) {
-      const expected = photoSource.candidates
-        .split(", ")
-        .find((candidate) => candidate.endsWith(deviceScaleFactor === 3 ? " 1500w" : " 1440w"))!;
-      expect(photoSource.current).toContain(expected.split(" ")[0]!);
+      const expected = (await candidates(photo)).find(
+        (candidate) => candidate.width === (deviceScaleFactor === 3 ? 1500 : 1440),
+      )!;
+      expect(photoCurrent.endsWith(expected.url)).toBe(true);
     }
     await expect(page.locator("video")).toHaveAttribute("controls", "");
     await context.close();
