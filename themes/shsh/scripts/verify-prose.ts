@@ -81,6 +81,7 @@ function codeBlocks(source: string) {
 const defaultCode = codeBlocks(html("specimen"));
 assert.equal(defaultCode.length, 5);
 for (const block of defaultCode) {
+  assert.doesNotMatch(block, /<button\b|<svg\b|copy-feedback/);
   assert.match(block, /<div class="highlight">/);
   const pres = [...block.matchAll(/<pre\b[^>]*>/g)];
   assert.ok(pres.length > 0);
