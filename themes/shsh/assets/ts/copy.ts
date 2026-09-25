@@ -36,12 +36,11 @@ for (const block of document.querySelectorAll<HTMLElement>(".code-block")) {
   const pre =
     block.querySelector<HTMLElement>(".lntd:last-child pre") ??
     block.querySelector<HTMLElement>("pre");
-  if (!highlight || !pre || !buttonTemplate || !statusTemplate) continue;
+  if (!highlight || !pre) continue;
   const button = buttonTemplate.cloneNode(true) as HTMLButtonElement;
-  const status = statusTemplate.cloneNode(true) as HTMLElement;
+  const status = statusTemplate.cloneNode(true);
   // Label, button, code: focus order and the label's sibling selector depend on it.
-  highlight.before(button);
-  block.append(status);
+  highlight.before(button, status);
   let resetTimer: ReturnType<typeof setTimeout> | undefined;
   const reveal = () => {
     delete block.dataset.copyDismissed;

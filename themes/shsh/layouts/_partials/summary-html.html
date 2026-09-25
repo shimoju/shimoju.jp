@@ -16,7 +16,7 @@
   {{- $summary = .Summary -}}
 {{- end -}}
 {{- $summary = printf "%s" $summary -}}
-{{- /* Drop UI that only works on the theme's own page; code labels are content and stay. */ -}}
+{{- /* Heading anchors only work on the theme's own page. */ -}}
 {{- $summary = $summary | replaceRE `(?s)<a\s+class="heading-anchor".*?</a>` "" -}}
 {{- /* Feeds are read away from this site: resolve root-relative URLs like a browser would
   and keep only the image attributes that mean something without the theme's CSS. */
