@@ -6,6 +6,12 @@
 {{- end -}}
 {{- $data := partial "media/image-data.html" . -}}
 {{- $sizes := "(min-width: 768px) 720px, (min-width: 640px) calc(100vw - 48px), (hover: hover) calc(100vw - 48px), calc(100vw - 32px)" -}}
+{{- /* Browsers without WebP skip the typed source and load the original src. The wrapper is
+  printed as strings because the template formatter cannot parse an element split across blocks. */
+-}}
+{{- with $data.srcset -}}
+  {{- printf `<picture><source type="image/webp" srcset="%s" sizes="%s">` (htmlEscape .) $sizes | safeHTML -}}
+{{- end -}}
 <img
   src="{{ $data.src }}"
   alt="{{ .alt | default "" }}"
@@ -20,6 +26,6 @@
     {{ end }}"
   {{ end }}
   {{ with $data.height }}height="{{ . }}"{{ end }}
-  {{ with $data.srcset }}srcset="{{ . }}" sizes="{{ $sizes }}"{{ end }}
 />
+{{- if $data.srcset }}{{ "</picture>" | safeHTML }}{{ end -}}
 {{- /* Preserve adjacent inline text and links. */ -}}

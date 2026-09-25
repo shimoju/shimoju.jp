@@ -20,6 +20,9 @@ cpSync(`${gallery}/screenshot.png`, `${root}/source/static/images/static.png`);
 cpSync("tests/fixtures/media/assets/small.png", `${gallery}/small.png`);
 cpSync("tests/fixtures/media/assets/still.gif", `${gallery}/still.gif`);
 cpSync("tests/fixtures/media/assets/still.webp", `${gallery}/still.webp`);
+cpSync("tests/fixtures/media/assets/lossless.webp", `${gallery}/lossless.webp`);
+cpSync("tests/fixtures/media/assets/translucent.webp", `${gallery}/translucent.webp`);
+cpSync("tests/fixtures/media/assets/still.tiff", `${gallery}/still.tiff`);
 cpSync("tests/fixtures/media/assets/palette.png", `${gallery}/palette.png`);
 cpSync("tests/fixtures/media/assets/optimized.jpg", `${gallery}/optimized.jpg`);
 for (const extension of ["gif", "png", "webp"]) {

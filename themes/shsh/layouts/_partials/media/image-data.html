@@ -41,32 +41,41 @@
   {{- end -}}
   {{- $processable = and (not $animated) (not $grayscale) (reflect.IsImageResourceProcessable $resource) -}}
   {{- if $processable -}}
-    {{- $spec := "" -}}
-    {{- if eq $type "png" }}{{ $spec = "webp lossless catmullrom" }}{{ end -}}
-    {{- if eq $type "jpeg" }}{{ $spec = "webp lossy" }}{{ end -}}
-    {{- $originalSize := len $resource.Content -}}
+    {{- /* Formats that usually hold screenshots and line art stay lossless; others are photos. */ -}}
+    {{- $lossless := in (slice "png" "gif") $type -}}
+    {{- if eq $type "webp" -}}
+      {{- $lossless = partial "media/webp-lossless.html" (dict "bytes" $resource.Content "offset" 12) -}}
+    {{- end -}}
+    {{- $spec := cond $lossless "webp lossless catmullrom" "webp lossy" -}}
+    {{- /* Always include the native width so the WebP source covers every display density. */ -}}
     {{- $widths := slice -}}
     {{- range slice 360 720 1080 1440 -}}
       {{- if lt . $width }}{{ $widths = $widths | append . }}{{ end -}}
     {{- end -}}
-    {{- if le $width 1440 }}{{ $widths = $widths | append $width }}{{ end -}}
-    {{- $useOriginal := false -}}
+    {{- $widths = $widths | append $width -}}
+    {{- $candidates := slice -}}
     {{- range $widths -}}
-      {{- if and (eq . $width) (not $spec) -}}
-        {{- $useOriginal = true -}}
-        {{- continue -}}
-      {{- end -}}
-      {{- $candidate := $resource.Process (printf "resize %dx %s" . $spec) -}}
-      {{- if lt (len $candidate.Content) $originalSize -}}
-        {{- $srcset = $srcset | append (printf "%s %dw" $candidate.RelPermalink .) -}}
-        {{- /* Widths ascend, so an accepted same-width conversion is last and replaces the original. */ -}}
-        {{- if eq . $width }}{{ $useOriginal = false }}{{ end -}}
+      {{- if and (eq . $width) (eq $type "webp") -}}
+        {{- /* A WebP original already belongs in the WebP source at its own width. */ -}}
+        {{- $candidates = $candidates | append (dict "width" . "url" $media.src "bytes" (len $resource.Content)) -}}
       {{- else -}}
-        {{- $useOriginal = true -}}
+        {{- $candidate := $resource.Process (printf "resize %dx %s" . $spec) -}}
+        {{- $candidates = $candidates | append (dict "width" . "resource" $candidate "bytes" (len $candidate.Content)) -}}
       {{- end -}}
     {{- end -}}
-    {{- if $useOriginal -}}
-      {{- $srcset = $srcset | append (printf "%s %dw" $media.src $width) -}}
+    {{- /* Browsers never fall back from a typed source to the original, so compare within WebP. */ -}}
+    {{- /* Drop a width when a wider one is no larger: resized palette images can outgrow it. */ -}}
+    {{- /* Read RelPermalink only for kept candidates so dropped ones are not published. */ -}}
+    {{- range $index, $candidate := $candidates -}}
+      {{- $dominated := false -}}
+      {{- range after (add $index 1) $candidates -}}
+        {{- if le .bytes $candidate.bytes }}{{ $dominated = true }}{{ end -}}
+      {{- end -}}
+      {{- if not $dominated -}}
+        {{- $url := $candidate.url -}}
+        {{- with $candidate.resource }}{{ $url = .RelPermalink }}{{ end -}}
+        {{- $srcset = $srcset | append (printf "%s %dw" $url $candidate.width) -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
 {{- else if $media.static -}}
