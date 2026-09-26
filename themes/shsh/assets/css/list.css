@@ -74,7 +74,7 @@
 }
 
 .pager {
-  margin-top: var(--space-page);
+  margin-top: var(--space-end);
   padding-top: var(--ui-space-6);
   border-top: 1px solid var(--border);
   display: grid;
