@@ -1,0 +1,28 @@
+{{- /* RIFF chunks are padded to even lengths. The extended format starts with VP8X, which holds
+  the animation flag and canvas size; a still image stores its bitmap in VP8 (lossy) or VP8L. */
+-}}
+{{- $bytes := .bytes -}}
+{{- $offset := .offset -}}
+{{- $info := dict "animated" false "lossless" true "width" 0 "height" 0 -}}
+{{- if le (add $offset 8) (len $bytes) -}}
+  {{- $kind := printf "%c%c%c%c" (index $bytes $offset) (index $bytes (add $offset 1)) (index $bytes (add $offset 2)) (index $bytes (add $offset 3)) -}}
+  {{- $size := add (int (index $bytes (add $offset 4))) (mul (int (index $bytes (add $offset 5))) 256) (mul (int (index $bytes (add $offset 6))) 65536) (mul (int (index $bytes (add $offset 7))) 16777216) -}}
+  {{- $next := dict "bytes" $bytes "offset" (add $offset 8 $size (mod $size 2)) -}}
+  {{- if eq $kind "VP8 " -}}
+    {{- $info = merge $info (dict "lossless" false) -}}
+  {{- else if eq $kind "VP8X" -}}
+    {{- if le (add $offset 18) (len $bytes) -}}
+      {{- if ge (mod (int (index $bytes (add $offset 8))) 4) 2 -}}
+        {{- /* Frames sit in ANMF chunks, so stop here; the canvas is the displayed size. */ -}}
+        {{- $width := add 1 (int (index $bytes (add $offset 12))) (mul (int (index $bytes (add $offset 13))) 256) (mul (int (index $bytes (add $offset 14))) 65536) -}}
+        {{- $height := add 1 (int (index $bytes (add $offset 15))) (mul (int (index $bytes (add $offset 16))) 256) (mul (int (index $bytes (add $offset 17))) 65536) -}}
+        {{- $info = merge $info (dict "animated" true "width" $width "height" $height) -}}
+      {{- else -}}
+        {{- $info = partial "media/webp-info.html" $next -}}
+      {{- end -}}
+    {{- end -}}
+  {{- else if ne $kind "VP8L" -}}
+    {{- $info = partial "media/webp-info.html" $next -}}
+  {{- end -}}
+{{- end -}}
+{{- return $info -}}
