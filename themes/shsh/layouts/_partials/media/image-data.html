@@ -15,16 +15,11 @@
     {{ $svg = $bytes }}
   {{ end -}}
   {{- $animated := false -}}
-  {{- $grayscale := false -}}
   {{- if and (eq $type "gif") (ge (len $bytes) 13) }}
     {{ $animated = partial "media/gif-animated.html" (dict "bytes" $bytes) }}
   {{ end -}}
   {{- if eq $type "png" }}
     {{ $animated = partial "media/png-animated.html" (dict "bytes" $bytes "offset" 8) }}
-    {{- /* Hugo's WebP encoder changes grayscale levels, even with lossless compression. */ -}}
-    {{- if ge (len $bytes) 26 }}
-      {{ $grayscale = in (slice 0 4) (int (index $bytes 25)) }}
-    {{ end -}}
   {{ end -}}
   {{- if and (eq $type "webp") (ge (len $bytes) 30) -}}
     {{- if eq (printf "%c%c%c%c" (index $bytes 12) (index $bytes 13) (index $bytes 14) (index $bytes 15)) "VP8X" -}}
@@ -41,7 +36,7 @@
   {{- if and (not $width) (reflect.IsImageResourceWithMeta $resource) -}}
     {{- $width = $resource.Width -}}{{- $height = $resource.Height -}}
   {{- end -}}
-  {{- $processable = and (not $animated) (not $grayscale) (reflect.IsImageResourceProcessable $resource) -}}
+  {{- $processable = and (not $animated) (reflect.IsImageResourceProcessable $resource) -}}
   {{- if $processable -}}
     {{- /* Formats that usually hold screenshots and line art stay lossless; others are photos. */ -}}
     {{- $lossless := in (slice "png" "gif") $type -}}

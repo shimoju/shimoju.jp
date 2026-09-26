@@ -37,6 +37,8 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
     半透明の非可逆WebP: [360, 480],
     TIFF画像: [360, 480],
     パレットのスクリーンショット: [360, 720, 2304],
+    // Grayscale PNGs shift slightly in brightness through Hugo's WebP encoder; this is accepted.
+    グレースケール画像: [360, 860],
     圧縮済みJPEG: [360, 720],
   };
   for (const [name, expected] of Object.entries(widths)) {
@@ -69,7 +71,6 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   await expect(page.locator(".article-cover img")).toHaveAttribute("fetchpriority", "high");
   await expect(page.locator(".prose img[fetchpriority]")).toHaveCount(0);
   for (const name of [
-    "グレースケール画像",
     "アニメーションGIF",
     "アニメーションPNG",
     "アニメーションWebP",
