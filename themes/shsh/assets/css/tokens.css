@@ -78,7 +78,6 @@
   --text-small: calc(var(--body-size) * 0.91);
   --text-meta: calc(var(--body-size) * 0.829);
   --text-label: calc(var(--body-size) * 0.754);
-  --space-block: 1.931em;
 
   /* Prose rhythm: fractions of the local 1em paragraph spacing. */
   --space-paragraph: 1em;
@@ -87,13 +86,14 @@
   --space-list-paragraph: 0.375em; /* 3/8 */
   --list-indent: 1.75em; /* 14/8 */
   --quote-inset: 1.25em; /* 10/8 */
-  --space-cover: calc(var(--body-size) * 1.931);
 
-  /* Body-scale steps +10, +12, +13, +15; preserve these ratios rather than round to UI pixels. */
+  /* Structural spacing: body-scale steps +5, +10, +15, +20 (a 1.6 ratio).
+     Related blocks < sections within content < content groups < site boundary.
+     Use the body size even inside smaller labels, independently of the UI grid. */
+  --space-block: calc(var(--body-size) * 1.6);
   --space-section: calc(var(--body-size) * 2.56);
-  --space-group: calc(var(--body-size) * 3.089);
-  --space-end: calc(var(--body-size) * 3.394);
-  --space-page: calc(var(--body-size) * 4.096);
+  --space-group: calc(var(--body-size) * 4.096);
+  --space-page: calc(var(--body-size) * 6.554);
 }
 
 :root[data-theme="light"] {
