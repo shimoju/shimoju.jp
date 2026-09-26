@@ -17,11 +17,17 @@ cpSync(`${original}/zsh-prompt-demo.mp4`, `${gallery}/demo.mp4`);
 cpSync(`${gallery}/screenshot.png`, `${root}/source/assets/images/shared.png`);
 cpSync(`${gallery}/screenshot.png`, `${root}/source/static/images/static.png`);
 // Test assets are generated once in the fixture authoring step; site generation remains Hugo-only.
-cpSync("tests/fixtures/media/assets/small.png", `${gallery}/small.png`);
-cpSync("tests/fixtures/media/assets/still.gif", `${gallery}/still.gif`);
-cpSync("tests/fixtures/media/assets/still.webp", `${gallery}/still.webp`);
-cpSync("tests/fixtures/media/assets/palette.png", `${gallery}/palette.png`);
-cpSync("tests/fixtures/media/assets/optimized.jpg", `${gallery}/optimized.jpg`);
+for (const image of [
+  "small.png",
+  "still.gif",
+  "still.webp",
+  "lossless.webp",
+  "translucent.webp",
+  "still.tiff",
+  "palette.png",
+  "optimized.jpg",
+])
+  cpSync(`tests/fixtures/media/assets/${image}`, `${gallery}/${image}`);
 for (const extension of ["gif", "png", "webp"]) {
   cpSync(`tests/fixtures/media/assets/animated.${extension}`, `${gallery}/animated.${extension}`);
   cpSync(

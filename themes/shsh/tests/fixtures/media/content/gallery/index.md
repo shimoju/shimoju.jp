@@ -36,6 +36,12 @@ cover:
 
 ![静止WebP](still.webp)
 
+![可逆WebP](lossless.webp)
+
+![半透明の非可逆WebP](translucent.webp)
+
+![TIFF画像](still.tiff)
+
 ![アニメーションGIF](animated.gif)
 
 ![アニメーションPNG](animated.png)

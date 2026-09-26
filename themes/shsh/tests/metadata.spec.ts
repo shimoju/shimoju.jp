@@ -121,7 +121,16 @@ test("RSS uses all ordered articles, HTML summaries, stable document GUIDs and t
   expect(coded.html).toMatch(
     /<figure><img src="https:\/\/metadata\.invalid\/blog\/default\.png" alt="本文画像" width="200" height="100"><\/figure>$/,
   );
-  for (const gone of ["<button", "copy-feedback", "heading-anchor", "srcset", "loading", "style="])
+  for (const gone of [
+    "<button",
+    "copy-feedback",
+    "heading-anchor",
+    "<picture",
+    "<source",
+    "srcset",
+    "loading",
+    "style=",
+  ])
     expect(coded.html).not.toContain(gone);
   expect(rss.self).toBe(`${base}index.xml`);
   for (const item of rss.items) expect(item.guid).toBe(item.link);

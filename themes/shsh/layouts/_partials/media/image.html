@@ -5,21 +5,18 @@
   {{ end -}}
 {{- end -}}
 {{- $data := partial "media/image-data.html" . -}}
+{{- $img := partial "media/img.html" (merge . (dict "data" $data)) -}}
 {{- $sizes := "(min-width: 768px) 720px, (min-width: 640px) calc(100vw - 48px), (hover: hover) calc(100vw - 48px), calc(100vw - 32px)" -}}
-<img
-  src="{{ $data.src }}"
-  alt="{{ .alt | default "" }}"
-  loading="{{ .loading | default "lazy" }}"
-  {{ with .fetchpriority }}fetchpriority="{{ . }}"{{ end }}
-  decoding="async"
-  {{ with .title }}title="{{ . }}"{{ end }}
-  {{ with $data.width }}
-    width="{{ . }}" style="--image-width:
-    {{ . }}px;{{ with $data.height }}
-      --image-ratio: {{ $data.width }} / {{ . }};
-    {{ end }}"
-  {{ end }}
-  {{ with $data.height }}height="{{ . }}"{{ end }}
-  {{ with $data.srcset }}srcset="{{ . }}" sizes="{{ $sizes }}"{{ end }}
-/>
+{{- /* Browsers without WebP skip the typed source and load the original src. */ -}}
+{{- with $data.srcset -}}
+  <picture
+    ><source
+      type="image/webp"
+      srcset="{{ . }}"
+      sizes="{{ $sizes }}"
+    />{{ $img }}</picture
+  >
+{{- else -}}
+  {{- $img -}}
+{{- end -}}
 {{- /* Preserve adjacent inline text and links. */ -}}

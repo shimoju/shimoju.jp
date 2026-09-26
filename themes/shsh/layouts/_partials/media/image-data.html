@@ -9,64 +9,69 @@
     {{ errorf "shsh: expected image resource %q" .src }}
   {{ end -}}
   {{- $type := $resource.MediaType.SubType -}}
-  {{- if eq (lower (path.Ext $resource.Name)) ".svg" }}
-    {{ $svg = $resource.Content }}
+  {{- $isSVG := eq (lower (path.Ext $resource.Name)) ".svg" -}}
+  {{- /* Hugo rereads Content on every access, so read it once and only for formats sniffed here. */ -}}
+  {{- $bytes := "" -}}
+  {{- if or $isSVG (in (slice "gif" "png" "webp" "avif") $type) }}
+    {{ $bytes = $resource.Content }}
   {{ end -}}
+  {{- if $isSVG }}{{ $svg = $bytes }}{{ end -}}
   {{- $animated := false -}}
-  {{- $grayscale := false -}}
-  {{- if and (eq $type "gif") (ge (len $resource.Content) 13) }}
-    {{ $animated = partial "media/gif-animated.html" (dict "bytes" $resource.Content) }}
+  {{- if and (eq $type "gif") (ge (len $bytes) 13) }}
+    {{ $animated = partial "media/gif-animated.html" (dict "bytes" $bytes) }}
   {{ end -}}
   {{- if eq $type "png" }}
-    {{ $animated = partial "media/png-animated.html" (dict "bytes" $resource.Content "offset" 8) }}
-    {{- /* Hugo's WebP encoder changes grayscale levels, even with lossless compression. */ -}}
-    {{- if ge (len $resource.Content) 26 }}
-      {{ $grayscale = in (slice 0 4) (int (index $resource.Content 25)) }}
-    {{ end -}}
+    {{ $animated = partial "media/png-animated.html" (dict "bytes" $bytes "offset" 8) }}
   {{ end -}}
-  {{- if and (eq $type "webp") (ge (len $resource.Content) 30) -}}
-    {{- if eq (printf "%c%c%c%c" (index $resource.Content 12) (index $resource.Content 13) (index $resource.Content 14) (index $resource.Content 15)) "VP8X" -}}
-      {{- $animated = ge (mod (int (index $resource.Content 20)) 4) 2 -}}
-      {{- if $animated -}}
-        {{- $width = add 1 (int (index $resource.Content 24)) (mul (int (index $resource.Content 25)) 256) (mul (int (index $resource.Content 26)) 65536) -}}
-        {{- $height = add 1 (int (index $resource.Content 27)) (mul (int (index $resource.Content 28)) 256) (mul (int (index $resource.Content 29)) 65536) -}}
-      {{- end -}}
-    {{- end -}}
+  {{- $webp := dict -}}
+  {{- if eq $type "webp" -}}
+    {{- $webp = partial "media/webp-info.html" (dict "bytes" $bytes "offset" 12) -}}
+    {{- $animated = $webp.animated -}}
+    {{- if $animated }}
+      {{ $width = $webp.width }}{{ $height = $webp.height }}
+    {{ end -}}
   {{- end -}}
-  {{- if and (eq $type "avif") (findRE `avis` $resource.Content) }}
+  {{- if and (eq $type "avif") (findRE `avis` $bytes) }}
     {{ $animated = true }}
   {{ end -}}
   {{- if and (not $width) (reflect.IsImageResourceWithMeta $resource) -}}
     {{- $width = $resource.Width -}}{{- $height = $resource.Height -}}
   {{- end -}}
-  {{- $processable = and (not $animated) (not $grayscale) (reflect.IsImageResourceProcessable $resource) -}}
+  {{- $processable = and (not $animated) (reflect.IsImageResourceProcessable $resource) -}}
   {{- if $processable -}}
-    {{- $spec := "" -}}
-    {{- if eq $type "png" }}{{ $spec = "webp lossless catmullrom" }}{{ end -}}
-    {{- if eq $type "jpeg" }}{{ $spec = "webp lossy" }}{{ end -}}
-    {{- $originalSize := len $resource.Content -}}
-    {{- $widths := slice -}}
+    {{- /* Formats that usually hold screenshots and line art stay lossless; others are photos. */ -}}
+    {{- $lossless := in (slice "png" "gif") $type -}}
+    {{- if eq $type "webp" }}{{ $lossless = $webp.lossless }}{{ end -}}
+    {{- $spec := cond $lossless "webp lossless catmullrom" "webp lossy" -}}
+    {{- $candidates := slice -}}
     {{- range slice 360 720 1080 1440 -}}
-      {{- if lt . $width }}{{ $widths = $widths | append . }}{{ end -}}
+      {{- if lt . $width }}
+        {{ $candidates = $candidates | append ($resource.Process (printf "resize %dx %s" . $spec)) }}
+      {{ end -}}
     {{- end -}}
-    {{- if le $width 1440 }}{{ $widths = $widths | append $width }}{{ end -}}
-    {{- $useOriginal := false -}}
-    {{- range $widths -}}
-      {{- if and (eq . $width) (not $spec) -}}
-        {{- $useOriginal = true -}}
-        {{- continue -}}
-      {{- end -}}
-      {{- $candidate := $resource.Process (printf "resize %dx %s" . $spec) -}}
-      {{- if lt (len $candidate.Content) $originalSize -}}
-        {{- $srcset = $srcset | append (printf "%s %dw" $candidate.RelPermalink .) -}}
-        {{- /* Widths ascend, so an accepted same-width conversion is last and replaces the original. */ -}}
-        {{- if eq . $width }}{{ $useOriginal = false }}{{ end -}}
-      {{- else -}}
-        {{- $useOriginal = true -}}
-      {{- end -}}
+    {{- /* Always include the native width so the WebP source covers every display density. */ -}}
+    {{- /* A WebP original already belongs in the WebP source at its own width. */ -}}
+    {{- if eq $type "webp" -}}
+      {{- $candidates = $candidates | append ($resource | fingerprint) -}}
+    {{- else -}}
+      {{- $candidates = $candidates | append ($resource.Process (printf "resize %dx %s" $width $spec)) -}}
     {{- end -}}
-    {{- if $useOriginal -}}
-      {{- $srcset = $srcset | append (printf "%s %dw" $media.src $width) -}}
+    {{- /* Browsers never fall back from a typed source to the original, so compare within WebP. */ -}}
+    {{- /* Drop a width when a wider one is no larger: resized palette images can outgrow it. */ -}}
+    {{- /* Read RelPermalink only for kept candidates so dropped ones are not published. */ -}}
+    {{- $sizes := slice -}}
+    {{- range $candidates }}
+      {{ $sizes = $sizes | append (len .Content) }}
+    {{ end -}}
+    {{- range $index, $candidate := $candidates -}}
+      {{- $size := index $sizes $index -}}
+      {{- $dominated := false -}}
+      {{- range after (add $index 1) $sizes -}}
+        {{- if le . $size }}{{ $dominated = true }}{{ end -}}
+      {{- end -}}
+      {{- if not $dominated -}}
+        {{- $srcset = $srcset | append (printf "%s %dw" $candidate.RelPermalink $candidate.Width) -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
 {{- else if $media.static -}}

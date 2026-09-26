@@ -26,7 +26,10 @@
 {{- $url := urls.Parse site.BaseURL -}}
 {{- $origin := printf "%s://%s" $url.Scheme $url.Host -}}
 {{- $summary = $summary | replaceRE `(href|src)="(/[^/"][^"]*|/)"` (printf `$1="%s$2"` $origin) -}}
+{{- /* Image sources are WebP alternatives; the img keeps the original. */ -}}
+{{- /* The formatter may break lines inside these tags, and feeds escape HTML before minification. */ -}}
+{{- $summary = $summary | replaceRE `<source\s+type="image/[^"]*"[^>]*>|</?picture\s*>` "" -}}
 {{- range $img := findRE `<img\b[^>]*>` $summary -}}
-  {{- $summary = replace $summary $img ($img | replaceRE `\s+(loading|decoding|style|srcset|sizes)="[^"]*"` "") 1 -}}
+  {{- $summary = replace $summary $img ($img | replaceRE `\s+(loading|decoding|style)="[^"]*"` "") 1 -}}
 {{- end -}}
 {{- return (strings.TrimSpace $summary | safeHTML) -}}

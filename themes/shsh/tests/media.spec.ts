@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, type Locator } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
 import { mkdirSync } from "node:fs";
 
@@ -6,6 +6,12 @@ const base = "http://127.0.0.1:4179";
 test.beforeEach(async ({ page }) => {
   await page.route("https://**/*", (route) => route.abort());
 });
+// Candidates live in the picture's WebP source; the img keeps only the original src.
+const candidates = async (img: Locator) =>
+  (await img.locator("xpath=../source").getAttribute("srcset"))!.split(", ").map((candidate) => {
+    const [url, descriptor] = candidate.split(" ");
+    return { url: url!, width: Number(descriptor!.slice(0, -1)) };
+  });
 
 test("responsive candidates, originals, dimensions, loading and figure semantics", async ({
   page,
@@ -13,50 +19,37 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   await page.route("**/*.mp4", (route) => route.abort());
   await page.goto(`${base}/gallery/`);
   const terminal = page.getByRole("img", { name: "ターミナルの文字", exact: true });
-  const candidates = (value: string | null) =>
-    value?.split(", ").map((s) => Number(s.split(" ")[1]?.replace("w", "")));
-  expect(candidates(await terminal.getAttribute("srcset"))).toEqual([360, 1200]);
-  expect(
-    candidates(await page.getByRole("img", { name: "実写真", exact: true }).getAttribute("srcset")),
-  ).toEqual([360, 720, 1080, 1440]);
-  const photo = page.getByRole("img", { name: "実写真", exact: true });
-  expect(await photo.getAttribute("srcset")).not.toContain(await photo.getAttribute("src"));
-  // Rejecting larger intermediate resizes must not discard the cheaper same-width WebP.
-  expect(await terminal.getAttribute("srcset")).not.toContain(await terminal.getAttribute("src"));
-  expect(await terminal.getAttribute("srcset")).toMatch(/\.webp 1200w$/);
-  expect(
-    candidates(await page.getByRole("img", { name: "小さい透明画像" }).getAttribute("srcset")),
-  ).toEqual([200]);
   const smallSrc = await page.getByRole("img", { name: "小さい透明画像" }).getAttribute("src");
   await expect(page.getByRole("img", { name: "クエリ付き画像" })).toHaveAttribute(
     "src",
     `${smallSrc}?v=1&x=2#sample`,
   );
-  expect(
-    candidates(
-      await page.getByRole("img", { name: "静止GIF", exact: true }).getAttribute("srcset"),
-    ),
-  ).toEqual([120]);
-  expect(
-    candidates(
-      await page.getByRole("img", { name: "静止WebP", exact: true }).getAttribute("srcset"),
-    ),
-  ).toEqual([360, 400]);
-  expect(
-    candidates(
-      await page.getByRole("img", { name: "パレットのスクリーンショット" }).getAttribute("srcset"),
-    ),
-  ).toEqual([360, 720, 2304]);
-  expect(
-    candidates(await page.getByRole("img", { name: "圧縮済みJPEG" }).getAttribute("srcset")),
-  ).toEqual([720]);
-  for (const name of ["パレットのスクリーンショット", "圧縮済みJPEG", "静止GIF", "静止WebP"]) {
+  // The native width is always last, even above 1440px. Heavier intermediate resizes give way to
+  // a lighter wider one; without comparing to the original, WebP heavier than a JPEG is offered.
+  const widths: Record<string, number[]> = {
+    ターミナルの文字: [360, 1200],
+    実写真: [360, 720, 1080, 1440, 1500],
+    パレット画像: [360, 1440],
+    小さい透明画像: [200],
+    静止GIF: [120],
+    静止WebP: [360, 400],
+    可逆WebP: [360, 480],
+    半透明の非可逆WebP: [360, 480],
+    TIFF画像: [360, 480],
+    パレットのスクリーンショット: [360, 720, 2304],
+    // Grayscale PNGs shift slightly in brightness through Hugo's WebP encoder; this is accepted.
+    グレースケール画像: [360, 860],
+    圧縮済みJPEG: [360, 720],
+  };
+  for (const [name, expected] of Object.entries(widths)) {
     const img = page.getByRole("img", { name, exact: true });
-    expect(await img.getAttribute("srcset")).toContain(
-      `${await img.getAttribute("src")} ${await img.getAttribute("width")}w`,
-    );
+    await expect(img.locator("..")).toHaveJSProperty("tagName", "PICTURE");
+    // verify-media.ts checks the picture shape and which original is reused for every image.
+    expect(
+      (await candidates(img)).map((candidate) => candidate.width),
+      name,
+    ).toEqual(expected);
   }
-  await expect(page.locator("picture")).toHaveCount(0);
   await expect(terminal).toHaveAttribute("width", "1200");
   await expect(terminal).toHaveAttribute("height", "630");
   await expect(terminal).toHaveAttribute("loading", "lazy");
@@ -72,7 +65,6 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   await expect(page.locator(".article-cover img")).toHaveAttribute("fetchpriority", "high");
   await expect(page.locator(".prose img[fetchpriority]")).toHaveCount(0);
   for (const name of [
-    "グレースケール画像",
     "アニメーションGIF",
     "アニメーションPNG",
     "アニメーションWebP",
@@ -81,7 +73,6 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
     "外部画像",
   ]) {
     const img = page.getByRole("img", { name, exact: true });
-    await expect(img).not.toHaveAttribute("srcset");
     await expect(img).toHaveAttribute("width", /[1-9][0-9]*/);
     await expect(img.locator("..")).not.toHaveJSProperty("tagName", "PICTURE");
   }
@@ -144,11 +135,12 @@ test("a missing first cover does not promote body images or a later entry cover"
 test("direct lossless resizing preserves palette midtones and transparency", async ({ page }) => {
   await page.goto(`${base}/gallery/`);
   const img = page.getByRole("img", { name: "パレット画像", exact: true });
-  const result = await img.evaluate(async (element: HTMLImageElement) => {
-    // The 720px indexed PNG alternates red/blue columns. A 2:1 Catmull-Rom resize must
-    // produce purple, absent from the source palette, away from image and alpha edges.
+  const [smallest] = await candidates(img);
+  const result = await img.evaluate(async (_, url: string) => {
+    // Below a screenshot band, the 1440px indexed PNG alternates red/blue columns. A 4:1
+    // Catmull-Rom resize must produce purple, absent from the source palette, away from edges.
     const bitmap = new Image();
-    bitmap.src = element.srcset.split(", ")[0]!.split(" ")[0]!;
+    bitmap.src = url;
     await bitmap.decode();
     const canvas = document.createElement("canvas");
     canvas.width = bitmap.naturalWidth;
@@ -164,15 +156,16 @@ test("direct lossless resizing preserves palette midtones and transparency", asy
       opaque: pixel(canvas.width / 4, canvas.height / 2),
       translucent: pixel((canvas.width * 3) / 4, canvas.height / 2),
     };
-  });
+  }, smallest!.url);
   expect(result.width).toBe(360);
-  expect(result.height).toBe(180);
+  expect(result.height).toBe(150);
   expect(result.opaque).toEqual([128, 0, 128, 255]);
   expect(result.translucent[1]).toBe(0);
   expect(result.translucent[3]).toBe(128);
-  // Allow one 8-bit step for decoder rounding of premultiplied RGB.
+  // The 4:1 resize stores 127 at alpha 128, and decoders may round premultiplied RGB once more.
+  // Palette reapplication would move these channels far further.
   for (const channel of [result.translucent[0], result.translucent[2]])
-    expect(Math.abs(channel! - 128)).toBeLessThanOrEqual(1);
+    expect(Math.abs(channel! - 128)).toBeLessThanOrEqual(2);
 });
 
 test("media preserves aspect ratios, small images stay small, both colors remain accessible", async ({
@@ -240,34 +233,68 @@ test("DPR chooses fitting candidates and JavaScript-free media remain usable", a
     await page.goto(`${base}/gallery/`);
     const cover = page.locator(".article-cover img");
     await expect(cover).toBeVisible();
-    const source = await cover.evaluate((img: HTMLImageElement) => ({
-      current: img.currentSrc,
-      candidates: img.srcset,
-    }));
-    expect(source.current).toContain(".webp");
-    const chosen = source.candidates
-      .split(", ")
-      .find((candidate) => source.current.endsWith(candidate.split(" ")[0]!))!;
-    const chosenWidth = Number(chosen.split(" ")[1]!.replace("w", ""));
-    expect(chosenWidth).toBeGreaterThanOrEqual(width === 1280 ? 1200 : 352 * deviceScaleFactor);
-    expect(chosenWidth).toBeLessThanOrEqual(deviceScaleFactor === 1 ? 720 : 1200);
-    // A large photo keeps only WebP candidates, even when DPR calls for more than 1440px.
+    const current = await cover.evaluate((img: HTMLImageElement) => img.currentSrc);
+    expect(current).toContain(".webp");
+    const chosen = (await candidates(cover)).find((candidate) => current.endsWith(candidate.url))!;
+    expect(chosen.width).toBeGreaterThanOrEqual(width === 1280 ? 1200 : 352 * deviceScaleFactor);
+    expect(chosen.width).toBeLessThanOrEqual(deviceScaleFactor === 1 ? 720 : 1200);
+    // A large photo offers its native width when DPR calls for more than 1440px.
     const photo = page.getByRole("img", { name: "実写真", exact: true });
     await photo.scrollIntoViewIfNeeded();
     await expect
       .poll(() => photo.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0))
       .toBe(true);
-    const photoSource = await photo.evaluate((img: HTMLImageElement) => ({
-      current: img.currentSrc,
-      candidates: img.srcset,
-    }));
-    expect(photoSource.current).toContain(".webp");
+    const photoCurrent = await photo.evaluate((img: HTMLImageElement) => img.currentSrc);
+    expect(photoCurrent).toContain(".webp");
     if (width === 1280) {
-      const largest = photoSource.candidates.split(", ").at(-1)!;
-      expect(largest).toMatch(/ 1440w$/);
-      expect(photoSource.current).toContain(largest.split(" ")[0]!);
+      const expected = (await candidates(photo)).find(
+        (candidate) => candidate.width === (deviceScaleFactor === 3 ? 1500 : 1440),
+      )!;
+      expect(photoCurrent).toContain(expected.url);
     }
     await expect(page.locator("video")).toHaveAttribute("controls", "");
     await context.close();
   }
+});
+
+test("browsers without WebP load the original, and the cover keeps high priority", async ({
+  page,
+  browserName,
+}) => {
+  test.skip(browserName !== "chromium", "Image type emulation and priorities use Chromium CDP");
+  const cdp = await page.context().newCDPSession(page);
+  const priorities = new Map<string, string>();
+  cdp.on("Network.requestWillBeSent", ({ request }) =>
+    priorities.set(request.url, request.initialPriority),
+  );
+  await cdp.send("Network.enable");
+  await page.goto(`${base}/gallery/`);
+  const cover = page.locator(".article-cover img");
+  await expect
+    .poll(() => cover.evaluate((img: HTMLImageElement) => img.currentSrc))
+    .toContain(".webp");
+  expect(priorities.get(await cover.evaluate((img: HTMLImageElement) => img.currentSrc))).toBe(
+    "High",
+  );
+
+  await cdp.send("Emulation.setDisabledImageTypes", { imageTypes: ["webp"] });
+  priorities.clear();
+  await page.reload();
+  // A WebP original cannot be shown there either, so check other formats.
+  for (const name of ["カバーのターミナル画面", "実写真", "静止GIF"]) {
+    const img = page.getByRole("img", { name, exact: true });
+    await img.scrollIntoViewIfNeeded();
+    await expect
+      .poll(() =>
+        img.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth > 0),
+      )
+      .toBe(true);
+    const { current, src } = await img.evaluate((element: HTMLImageElement) => ({
+      current: element.currentSrc,
+      src: element.src,
+    }));
+    expect(current).toBe(src);
+  }
+  // The typed source is skipped outright, so no WebP candidate is requested.
+  expect([...priorities.keys()].filter((url) => url.includes("_hu_"))).toEqual([]);
 });

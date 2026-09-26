@@ -6,6 +6,19 @@ import { HtmlValidate } from "html-validate";
 import "./build-media-fixture.ts";
 import { buildHugo } from "./build-hugo.ts";
 
+function chunks(buffer: Buffer) {
+  const kinds = [];
+  let offset = 12;
+  while (offset + 8 <= buffer.length) {
+    kinds.push(buffer.toString("ascii", offset, offset + 4));
+    const size = buffer.readUInt32LE(offset + 4);
+    offset += 8 + size + (size % 2);
+  }
+  return kinds;
+}
+const imageChunk = (buffer: Buffer) => chunks(buffer).find((kind) => /^VP8[ L]$/.test(kind));
+const pathOf = (url: string) => new URL(url, "https://media.invalid").pathname;
+
 const root = resolve(".cache/media");
 const validator = new HtmlValidate(JSON.parse(readFileSync(".htmlvalidate.json", "utf8")));
 for (const environment of ["production", "preview"]) {
@@ -20,14 +33,12 @@ for (const environment of ["production", "preview"]) {
   // Neither the build nor media templates fetch the deliberately unreachable external image.
   const html = readFileSync(`${directory}/gallery/index.html`, "utf8");
   assert.match(html, /https:\/\/external.invalid\/image.png/);
-  // Check candidate sizes and actual WebP chunk types, not just encoder options.
-  assert.doesNotMatch(html, /<picture\b/);
-  let webpCandidates = 0;
   for (const [markup] of html.matchAll(/<(?:img|video)\b[^>]*>/g)) {
     const src = markup.match(/\bsrc="([^"]+)"/)?.[1];
-    const srcset = markup.match(/\bsrcset="([^"]+)"/)?.[1];
+    // Candidates live only in the typed source, so browsers without WebP load the original src.
+    assert.doesNotMatch(markup, /\b(?:srcset|sizes)=/);
     assert.ok(src);
-    const pathname = new URL(src, "https://media.invalid").pathname;
+    const pathname = pathOf(src);
     if (pathname.startsWith("/gallery/") || pathname.startsWith("/images/shared.")) {
       const digest = pathname.match(/\.([a-f0-9]{64})\.[^.]+$/)?.[1];
       assert.ok(digest, src);
@@ -38,42 +49,66 @@ for (const environment of ["production", "preview"]) {
       assert.equal(digest, createHash("sha256").update(input).digest("hex"));
       assert.deepEqual(readFileSync(directory + pathname), input);
     }
-    if (!srcset) continue;
+  }
+  // Check candidate widths, sizes and actual WebP chunk types, not just encoder options.
+  const published = new Set<string>();
+  const pictures = [
+    ...html.matchAll(
+      /<picture\s*><source\s+type="image\/webp"\s+srcset="([^"]+)"\s+sizes="[^"]+"\s*\/><img\b([^>]*)><\/picture\s*>/g,
+    ),
+  ];
+  // Every picture must have exactly this shape: one typed WebP source and the original img.
+  assert.equal(pictures.length, html.match(/<picture\b/g)?.length);
+  for (const [, srcset, img] of pictures) {
+    const src = img!.match(/\bsrc="([^"]+)"/)?.[1];
+    const width = Number(img!.match(/\bwidth="(\d+)"/)?.[1]);
+    assert.ok(src && width);
+    const pathname = pathOf(src);
     const original = readFileSync(directory + pathname);
-    const width = Number(markup.match(/\bwidth="(\d+)"/)?.[1]);
-    const candidates = srcset.split(", ");
-    const widths = new Set<number>();
-    for (const candidate of candidates) {
+    const extension = pathname.split(".").at(-1)!;
+    const expected =
+      extension === "webp"
+        ? imageChunk(original)
+        : ["png", "gif"].includes(extension)
+          ? "VP8L"
+          : "VP8 ";
+    const alpha = chunks(original).includes("ALPH");
+    const candidates = srcset!.split(", ").map((candidate) => {
       const [url, descriptor] = candidate.split(" ");
-      assert.ok(url && descriptor);
-      const candidateWidth = Number(descriptor.slice(0, -1));
-      assert.ok(!widths.has(candidateWidth), candidate);
-      widths.add(candidateWidth);
-      if (url === src) {
-        assert.equal(candidate, `${src} ${width}w`);
-        assert.equal(candidate, candidates.at(-1));
-        continue;
+      assert.ok(url && descriptor?.endsWith("w"), candidate);
+      const file = pathOf(url);
+      return {
+        file,
+        width: Number(descriptor.slice(0, -1)),
+        bytes: readFileSync(directory + file),
+      };
+    });
+    // The native width is always the last candidate, so every display density is covered.
+    assert.equal(candidates.at(-1)!.width, width, src);
+    for (const [index, candidate] of candidates.entries()) {
+      const previous = candidates[index - 1];
+      if (previous) {
+        assert.ok([360, 720, 1080, 1440].includes(previous.width), previous.file);
+        // A narrower candidate must be lighter than every wider one it could be replaced by.
+        assert.ok(previous.width < candidate.width, candidate.file);
+        assert.ok(previous.bytes.length < candidate.bytes.length, candidate.file);
       }
-      assert.ok(candidateWidth <= Math.min(width, 1440), candidate);
-      const buffer: Buffer = readFileSync(
-        directory + new URL(url, "https://media.invalid").pathname,
-      );
-      assert.ok(buffer.length < original.length, candidate);
-      if (!/\.(png|jpg|jpeg)$/.test(src)) continue;
-      assert.ok(url.endsWith(".webp"), candidate);
-      webpCandidates++;
-      assert.equal(buffer.toString("ascii", 0, 4), "RIFF");
-      let offset = 12;
-      const chunks = [];
-      while (offset + 8 <= buffer.length) {
-        chunks.push(buffer.toString("ascii", offset, offset + 4));
-        const size = buffer.readUInt32LE(offset + 4);
-        offset += 8 + size + (size % 2);
-      }
-      assert.ok(chunks.includes(src.endsWith(".png") ? "VP8L" : "VP8 "), candidate);
+      // Only a WebP original is reused, at its own width, instead of being re-encoded.
+      const reused = candidate.file === pathname;
+      assert.equal(reused, extension === "webp" && index === candidates.length - 1, candidate.file);
+      if (reused) continue;
+      assert.ok(candidate.file.endsWith(".webp"), candidate.file);
+      assert.equal(candidate.bytes.toString("ascii", 0, 4), "RIFF");
+      assert.equal(candidate.bytes.toString("ascii", 8, 12), "WEBP");
+      assert.equal(imageChunk(candidate.bytes), expected, candidate.file);
+      if (alpha) assert.ok(chunks(candidate.bytes).includes("ALPH"), candidate.file);
+      published.add(candidate.file);
     }
   }
-  assert.ok(webpCandidates > 10);
+  assert.ok(published.size > 10);
+  // Candidates dropped for a lighter wider one are generated but never published.
+  for (const file of readdirSync(`${directory}/gallery`).filter((f) => f.includes("_hu_")))
+    assert.ok(published.has(`/gallery/${file}`), file);
   assert.match(html, /src="https:\/\/speakerdeck.com\/assets\/embed.js"/);
   for (const file of [
     "animated.gif",
