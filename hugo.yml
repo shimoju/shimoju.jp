@@ -19,7 +19,7 @@ imaging:
   webp:
     hint: photo
     method: 6
-    quality: 78
+    quality: 75
     useSharpYuv: true
 markup:
   goldmark:
