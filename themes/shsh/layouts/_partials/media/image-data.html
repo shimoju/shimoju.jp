@@ -9,11 +9,13 @@
     {{ errorf "shsh: expected image resource %q" .src }}
   {{ end -}}
   {{- $type := $resource.MediaType.SubType -}}
-  {{- /* Hugo rereads Content on every access, so sniff bytes from one copy. */ -}}
-  {{- $bytes := $resource.Content -}}
-  {{- if eq (lower (path.Ext $resource.Name)) ".svg" }}
-    {{ $svg = $bytes }}
+  {{- $isSVG := eq (lower (path.Ext $resource.Name)) ".svg" -}}
+  {{- /* Hugo rereads Content on every access, so read it once and only for formats sniffed here. */ -}}
+  {{- $bytes := "" -}}
+  {{- if or $isSVG (in (slice "gif" "png" "webp" "avif") $type) }}
+    {{ $bytes = $resource.Content }}
   {{ end -}}
+  {{- if $isSVG }}{{ $svg = $bytes }}{{ end -}}
   {{- $animated := false -}}
   {{- if and (eq $type "gif") (ge (len $bytes) 13) }}
     {{ $animated = partial "media/gif-animated.html" (dict "bytes" $bytes) }}

@@ -3,7 +3,7 @@
 -}}
 {{- $bytes := .bytes -}}
 {{- $offset := .offset -}}
-{{- $info := dict "animated" false "lossless" true "width" 0 "height" 0 -}}
+{{- $info := dict "animated" false "lossless" true -}}
 {{- if le (add $offset 8) (len $bytes) -}}
   {{- $kind := printf "%c%c%c%c" (index $bytes $offset) (index $bytes (add $offset 1)) (index $bytes (add $offset 2)) (index $bytes (add $offset 3)) -}}
   {{- $size := add (int (index $bytes (add $offset 4))) (mul (int (index $bytes (add $offset 5))) 256) (mul (int (index $bytes (add $offset 6))) 65536) (mul (int (index $bytes (add $offset 7))) 16777216) -}}

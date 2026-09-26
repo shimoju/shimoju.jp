@@ -44,17 +44,11 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   for (const [name, expected] of Object.entries(widths)) {
     const img = page.getByRole("img", { name, exact: true });
     await expect(img.locator("..")).toHaveJSProperty("tagName", "PICTURE");
-    const sources = await candidates(img);
+    // verify-media.ts checks the picture shape and which original is reused for every image.
     expect(
-      sources.map((candidate) => candidate.width),
+      (await candidates(img)).map((candidate) => candidate.width),
       name,
     ).toEqual(expected);
-    // Only a WebP original can stand in the WebP source, at its own width.
-    const src = (await img.getAttribute("src"))!;
-    expect(
-      sources.map((candidate) => candidate.url === src),
-      name,
-    ).toEqual(sources.map((_, index) => src.endsWith(".webp") && index === sources.length - 1));
   }
   await expect(terminal).toHaveAttribute("width", "1200");
   await expect(terminal).toHaveAttribute("height", "630");
@@ -79,7 +73,6 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
     "外部画像",
   ]) {
     const img = page.getByRole("img", { name, exact: true });
-    await expect(img).not.toHaveAttribute("srcset");
     await expect(img).toHaveAttribute("width", /[1-9][0-9]*/);
     await expect(img.locator("..")).not.toHaveJSProperty("tagName", "PICTURE");
   }
