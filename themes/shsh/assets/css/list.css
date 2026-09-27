@@ -75,7 +75,7 @@
 
 .pager {
   margin-top: var(--space-group);
-  padding-top: var(--space-block);
+  padding-top: var(--ui-space-6);
   border-top: 1px solid var(--border);
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -125,7 +125,7 @@
 }
 
 .empty {
-  margin-block: var(--space-section);
+  margin-block: var(--ui-space-12);
   color: var(--muted);
 }
 

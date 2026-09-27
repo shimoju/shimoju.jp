@@ -35,7 +35,7 @@
 }
 
 .archive-year h2 {
-  margin: 0 0 var(--space-block);
+  margin: 0 0 var(--ui-space-6);
 }
 
 .archive-month {
@@ -43,7 +43,7 @@
   grid-template-columns: var(--ui-space-8) minmax(0, 1fr);
   align-items: first baseline;
   column-gap: var(--ui-space-4);
-  margin-bottom: var(--space-block);
+  margin-bottom: var(--ui-space-8);
 }
 
 .archive-month:last-child {

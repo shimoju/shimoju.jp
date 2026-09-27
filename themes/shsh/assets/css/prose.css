@@ -1,5 +1,5 @@
 .article-header {
-  margin-bottom: var(--space-block);
+  margin-bottom: var(--ui-space-8);
 }
 
 .article-header h1 {
@@ -12,11 +12,6 @@
 
 .prose > :first-child {
   margin-top: 0;
-}
-
-/* The following section or site footer owns the space after the content. */
-.prose > :last-child {
-  margin-bottom: 0;
 }
 
 /* Heading margins use scale steps +8 and -4, relative to each heading. */
@@ -88,7 +83,7 @@
 }
 
 .prose blockquote {
-  margin: var(--space-block) 0;
+  margin: 1.6em 0;
   padding: 0 0 0 var(--quote-inset);
   border-left: 2px solid var(--quote-border);
   color: var(--muted);

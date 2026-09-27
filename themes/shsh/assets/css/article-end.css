@@ -2,17 +2,13 @@
   margin-top: var(--space-section);
 }
 
-/* Only separate groups that are present; an omitted group leaves no trailing space. */
-.article-end > * + * {
-  margin-top: var(--space-block);
-}
-
 .article-tags {
   display: flex;
   flex-wrap: wrap;
   gap: var(--ui-space-1) var(--text-link-gap);
   font-size: var(--text-meta);
   margin-inline-start: calc(-1 * var(--term-optical-inset));
+  margin-bottom: var(--ui-space-8);
   line-height: var(--leading-label);
 }
 
@@ -34,7 +30,8 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--ui-space-4);
-  padding-top: var(--space-block);
+  margin-top: var(--ui-space-8);
+  padding-top: var(--ui-space-6);
   border-top: 1px solid var(--border);
   font-size: var(--text-small);
 }
