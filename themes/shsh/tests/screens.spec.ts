@@ -218,3 +218,19 @@ test("discovery semantics, keyboard, fixed pages and JavaScript-disabled navigat
     await context.close();
   }
 });
+
+test("share links without adjacent posts stay closer to the content than to footer links", async ({
+  page,
+}) => {
+  await page.route("https://**/*", (route) => route.fulfill({ body: "" }));
+  await page.goto("http://127.0.0.1:4182/about/");
+  const gaps = await page.evaluate(() => {
+    const box = (selector: string) => document.querySelector(selector)!.getBoundingClientRect();
+    const engagement = box(".engagement");
+    return {
+      content: engagement.top - box(".prose").bottom,
+      footer: box(".footer-links").top - engagement.bottom,
+    };
+  });
+  expect(gaps.footer).toBeGreaterThan(gaps.content);
+});

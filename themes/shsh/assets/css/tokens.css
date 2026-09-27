@@ -89,11 +89,13 @@
   --quote-inset: 1.25em; /* 10/8 */
   --space-cover: calc(var(--body-size) * 1.931);
 
-  /* Body-scale steps +10, +12, +13, +15; preserve these ratios rather than round to UI pixels. */
+  /* Structural gaps widen outward, so each boundary exceeds the gaps it encloses.
+     section: items, including trailing tags, sharing and pager. group: groups of sections.
+     page: main to the site footer, so trailing share links stay apart from footer links.
+     Body-scale steps +10, +12, +17; preserve these ratios rather than round to UI pixels. */
   --space-section: calc(var(--body-size) * 2.56);
   --space-group: calc(var(--body-size) * 3.089);
-  --space-end: calc(var(--body-size) * 3.394);
-  --space-page: calc(var(--body-size) * 4.096);
+  --space-page: calc(var(--body-size) * 4.943);
 }
 
 :root[data-theme="light"] {
