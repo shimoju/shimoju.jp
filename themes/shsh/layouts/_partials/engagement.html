@@ -3,6 +3,7 @@
 {{- if or $config.services $star -}}
   <div class="engagement" id="engagement">
     {{- with $config.services -}}
+      {{- $title := partial "document-title.html" $ -}}
       <div
         class="share-mount"
         role="group"
@@ -11,7 +12,7 @@
       >
         <div class="share-icons">
           {{- range . }}
-            {{ partial "share-link.html" (dict "service" . "page" $) }}
+            {{ partial "share-link.html" (dict "service" . "page" $ "title" $title) }}
           {{ end -}}
         </div>
       </div>
