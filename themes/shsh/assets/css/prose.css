@@ -42,9 +42,9 @@
 
 .heading-anchor::before {
   content: "#";
-  flex: 0 0 var(--ui-space-4);
+  flex: 0 0 var(--ui-space-5);
   text-align: center;
-  font-size: var(--text-label);
+  font-size: var(--text-small);
 }
 
 .heading-anchor:hover {
