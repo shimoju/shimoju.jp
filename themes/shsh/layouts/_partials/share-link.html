@@ -3,13 +3,13 @@
 {{- $action := "Share on" -}}
 {{- if eq .service "x" -}}
   {{- $name = "X" -}}
-  {{- $url = printf "https://x.com/intent/tweet?%s" (querify "text" .page.Title "url" .page.Permalink) -}}
+  {{- $url = printf "https://x.com/intent/tweet?%s" (querify "text" .title "url" .page.Permalink) -}}
 {{- else if eq .service "facebook" -}}
   {{- $name = "Facebook" -}}
   {{- $url = printf "https://www.facebook.com/sharer/sharer.php?%s" (querify "u" .page.Permalink) -}}
 {{- else if eq .service "bluesky" -}}
   {{- $name = "Bluesky" -}}
-  {{- $url = printf "https://bsky.app/intent/compose?%s" (querify "text" (printf "%s\n%s" .page.Title .page.Permalink)) -}}
+  {{- $url = printf "https://bsky.app/intent/compose?%s" (querify "text" (printf "%s\n%s" .title .page.Permalink)) -}}
 {{- else if eq .service "hatena" -}}
   {{- $name = "Hatena Bookmark" -}}
   {{- $action = "View on" -}}
