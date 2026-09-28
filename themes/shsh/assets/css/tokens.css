@@ -78,7 +78,6 @@
   --text-small: calc(var(--body-size) * 0.91);
   --text-meta: calc(var(--body-size) * 0.829);
   --text-label: calc(var(--body-size) * 0.754);
-  --space-block: 1.931em;
 
   /* Prose rhythm: fractions of the local 1em paragraph spacing. */
   --space-paragraph: 1em;
@@ -90,9 +89,11 @@
   --space-cover: calc(var(--body-size) * 1.931);
 
   /* Structural gaps widen outward, so each boundary exceeds the gaps it encloses.
+     block: media, tables and code blocks within prose.
      section: items, including trailing tags, sharing and pager. group: groups of sections.
      page: main to the site footer, so trailing share links stay apart from footer links.
-     Body-scale steps +10, +12, +17; preserve these ratios rather than round to UI pixels. */
+     Body-scale steps +5, +10, +12, +17; preserve these ratios rather than round to UI pixels. */
+  --space-block: calc(var(--body-size) * 1.6);
   --space-section: calc(var(--body-size) * 2.56);
   --space-group: calc(var(--body-size) * 3.089);
   --space-page: calc(var(--body-size) * 4.943);
