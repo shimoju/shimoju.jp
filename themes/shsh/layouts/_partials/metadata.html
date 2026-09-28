@@ -1,10 +1,7 @@
 {{- $config := partialCached "config.html" . -}}
 {{- $url := partial "public-url.html" . -}}
 {{- $pageTitle := partial "page-title.html" . -}}
-{{- $title := site.Title -}}
-{{- if not .IsHome }}
-  {{ $title = printf "%s | %s" $pageTitle site.Title }}
-{{ end -}}
+{{- $title := partial "document-title.html" . -}}
 {{- $description := partial "description.html" . -}}
 {{- $image := partial "share-image.html" . -}}
 {{- $ogType := "website" -}}

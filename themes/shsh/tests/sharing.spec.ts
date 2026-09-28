@@ -22,6 +22,8 @@ test("shared document URLs, encoded titles, service order and keyboard navigatio
   });
   for (const path of ["/document/", "/posts/article/"]) {
     await page.goto(production + path);
+    const documentTitle = await page.title();
+    expect(documentTitle).toBe(`${title} | Sharing fixture`);
     await expect(page.locator(".star-widget iframe")).toHaveCount(1);
     const publicURL = "https://sharing.invalid" + path;
     await expect(page.locator("[data-hatena-star-container]")).toHaveAttribute(
@@ -38,10 +40,10 @@ test("shared document URLs, encoded titles, service order and keyboard navigatio
       nodes.map((node) => (node as HTMLAnchorElement).href),
     );
     const [x, facebook, bluesky, hatena] = hrefs.map((url) => new URL(url));
-    expect(x!.searchParams.get("text")).toBe(title);
+    expect(x!.searchParams.get("text")).toBe(documentTitle);
     expect(x!.searchParams.get("url")).toBe(publicURL);
     expect(facebook!.searchParams.get("u")).toBe(publicURL);
-    expect(bluesky!.searchParams.get("text")).toBe(`${title}\n${publicURL}`);
+    expect(bluesky!.searchParams.get("text")).toBe(`${documentTitle}\n${publicURL}`);
     expect(hatena!.href).toBe("https://b.hatena.ne.jp/entry/s/sharing.invalid" + path);
     for (const link of await links.all()) {
       await expect(link).toHaveAttribute("target", "_blank");

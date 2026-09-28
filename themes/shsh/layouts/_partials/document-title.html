@@ -1,0 +1,5 @@
+{{- $title := site.Title -}}
+{{- if not .IsHome -}}
+  {{- $title = printf "%s | %s" (partial "page-title.html" .) site.Title -}}
+{{- end -}}
+{{- return $title -}}
