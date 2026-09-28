@@ -8,7 +8,7 @@
   gap: var(--ui-space-1) var(--text-link-gap);
   font-size: var(--text-meta);
   margin-inline-start: calc(-1 * var(--term-optical-inset));
-  margin-bottom: var(--ui-space-8);
+  margin-bottom: var(--ui-space-2);
   line-height: var(--leading-label);
 }
 
