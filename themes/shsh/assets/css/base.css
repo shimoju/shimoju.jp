@@ -32,7 +32,7 @@ button {
 
 a {
   color: inherit;
-  text-underline-offset: 0.26em;
+  text-underline-offset: 26%;
 }
 
 /* Thickness is not inherited. Set it on each decoration origin; toggle only the line. */
