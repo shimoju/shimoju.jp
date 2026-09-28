@@ -89,7 +89,7 @@
   --space-cover: calc(var(--body-size) * 1.931);
 
   /* Structural gaps widen outward, so each boundary exceeds the gaps it encloses.
-     block: media, tables and code blocks within prose.
+     block: media, tables, code blocks and blockquotes within prose.
      section: items, including trailing tags, sharing and pager. group: groups of sections.
      page: main to the site footer, so trailing share links stay apart from footer links.
      Body-scale steps +5, +10, +12, +17; preserve these ratios rather than round to UI pixels. */
