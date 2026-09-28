@@ -1,0 +1,6 @@
+[copy]
+	includeDirs = .cache/hugo
+
+[hooks]
+	postCreate = cd themes/shsh && pnpm install --frozen-lockfile
+	postCreate = cd themes/shsh && pnpm exec playwright install chromium firefox webkit
