@@ -139,7 +139,7 @@ for input in "$@"; do
       source=$input
       if [ "$input_width" -gt "$max_width" ]; then
         # Keep the source ICC profile so pngquant can convert its colors to sRGB.
-        magick "$input" -filter Lanczos -resize "${max_width}x>" "png:$resized"
+        magick "$input" -filter Catrom -resize "${max_width}x>" "png:$resized"
         source=$resized
       fi
 
