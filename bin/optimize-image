@@ -7,14 +7,14 @@ usage() {
 Usage: bin/optimize-image [--width PIXELS] IMAGE...
 
 Resize and optimize PNG and JPEG images in place. HEIC inputs are converted to
-JPEG next to the source file. The default maximum width is 1600px.
+JPEG next to the source file. The default maximum width is 1800px.
 
 JPEG output is converted to sRGB, stripped of metadata, and encoded at quality
 85 with mozjpeg.
 EOF
 }
 
-max_width=1600
+max_width=1800
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
