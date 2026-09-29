@@ -60,3 +60,8 @@ video {
   display: block;
   max-width: 100%;
 }
+
+/* Preserve the X embed's transparent corners in both site palettes. */
+.twitter-tweet iframe {
+  color-scheme: light;
+}
