@@ -76,7 +76,7 @@ bin/new-post slug-foo-bar
 
 ## Optimize media
 
-Resize PNG, JPEG, and HEIC images to a maximum width of 1600px and optimize
+Resize PNG, JPEG, and HEIC images to a maximum width of 1800px and optimize
 them. PNG and JPEG files are updated in place. HEIC files are preserved and
 produce a JPEG with the same basename. JPEG output is converted to sRGB and
 has its metadata removed.
