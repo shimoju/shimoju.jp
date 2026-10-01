@@ -76,10 +76,7 @@ bin/new-post slug-foo-bar
 
 ## Optimize media
 
-Resize PNG, JPEG, and HEIC images to a maximum width of 1800px and optimize
-them. PNG and JPEG files are updated in place. HEIC files are preserved and
-produce a JPEG with the same basename. JPEG output is converted to sRGB and
-has its metadata removed.
+Resize PNG, JPEG, and HEIC images to a maximum width of 1800px and optimize them.
 
 ```sh
 bin/optimize-image content/posts/path/to/image.png \
@@ -87,11 +84,8 @@ bin/optimize-image content/posts/path/to/image.png \
   content/posts/path/to/photo.heic
 ```
 
-Use `--width` to specify a different maximum width.
-
-```sh
-bin/optimize-image --width 2400 content/posts/path/to/foo.png
-```
+Use `--width` to change the maximum width and `--format png|jpeg` to select the
+output format. See `bin/optimize-image --help` for details.
 
 Convert videos to H.264 MP4 files with a maximum width of 1440px at 30fps.
 The input files are preserved; for example, `video.mov` produces `video.mp4`.

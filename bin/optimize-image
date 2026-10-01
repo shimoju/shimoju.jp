@@ -4,23 +4,38 @@ set -eu
 
 usage() {
   cat <<'EOF'
-Usage: bin/optimize-image [--width PIXELS] IMAGE...
+Usage: bin/optimize-image [--width PIXELS] [--format auto|png|jpeg] IMAGE...
 
-Resize and optimize PNG and JPEG images in place. HEIC inputs are converted to
-JPEG next to the source file. The default maximum width is 1800px.
+Resize and optimize PNG, JPEG, and HEIC images. The default maximum width is
+1800px. By default (--format auto), PNG inputs produce PNG and JPEG/HEIC inputs
+produce JPEG. Use --format png or --format jpeg to select the output format.
+
+PNG and JPEG inputs are updated in place when keeping their format. Otherwise,
+the source is preserved and output is written next to it as BASENAME.png or
+BASENAME.jpg.
+
+Resizing uses Lanczos for JPEG output and Catrom for PNG output, regardless of
+the input format. Images are never enlarged.
 
 JPEG output is converted to sRGB, stripped of metadata, and encoded at quality
-85 with mozjpeg.
+85 with mozjpeg. Transparent pixels are composited over white. PNG output uses
+lossy palette quantization with pngquant, followed by oxipng optimization.
 EOF
 }
 
 max_width=1800
+output_format=auto
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
     -w | --width)
       [ "$#" -ge 2 ] || { usage >&2; exit 2; }
       max_width=$2
+      shift 2
+      ;;
+    -f | --format)
+      [ "$#" -ge 2 ] || { usage >&2; exit 2; }
+      output_format=$2
       shift 2
       ;;
     -h | --help)
@@ -44,6 +59,14 @@ done
 case "$max_width" in
   '' | *[!0-9]* | 0)
     echo "optimize-image: width must be a positive integer: $max_width" >&2
+    exit 2
+    ;;
+esac
+
+case "$output_format" in
+  auto | png | jpeg) ;;
+  *)
+    echo "optimize-image: format must be auto, png, or jpeg: $output_format" >&2
     exit 2
     ;;
 esac
@@ -109,22 +132,36 @@ srgb_profile=
 for input in "$@"; do
   case "$input" in
     *.png | *.PNG)
-      format=png
-      output=$input
+      input_format=png
       ;;
     *.jpg | *.JPG | *.jpeg | *.JPEG)
-      format=jpeg
-      output=$input
+      input_format=jpeg
       ;;
     *.heic | *.HEIC)
-      format=jpeg
-      output=${input%.*}.jpg
+      input_format=heic
       ;;
     *)
       echo "optimize-image: unsupported file type: $input" >&2
       exit 1
       ;;
   esac
+
+  format=$output_format
+  if [ "$format" = auto ]; then
+    case "$input_format" in
+      png) format=png ;;
+      *) format=jpeg ;;
+    esac
+  fi
+
+  if [ "$format" = "$input_format" ]; then
+    output=$input
+  else
+    case "$format" in
+      png) output=${input%.*}.png ;;
+      jpeg) output=${input%.*}.jpg ;;
+    esac
+  fi
 
   dimensions=$(magick identify -ping -format '%w %h' "$input")
   input_width=${dimensions%% *}
@@ -137,9 +174,10 @@ for input in "$@"; do
       optimized="$temp_dir/optimized.png"
 
       source=$input
-      if [ "$input_width" -gt "$max_width" ]; then
+      if [ "$input_format" != png ] || [ "$input_width" -gt "$max_width" ]; then
         # Keep the source ICC profile so pngquant can convert its colors to sRGB.
-        magick "$input" -filter Catrom -resize "${max_width}x>" "png:$resized"
+        magick "$input" -auto-orient \
+          -filter Catrom -resize "${max_width}x>" "png:$resized"
         source=$resized
       fi
 
@@ -162,6 +200,7 @@ for input in "$@"; do
         magick "$input" -auto-orient \
           -profile "$srgb_profile" \
           -filter Lanczos -resize "${max_width}x>" \
+          -background white -alpha remove -alpha off \
           -strip -depth 8 ppm:- |
           "$mozjpeg" -quality 85 -progressive -optimize -sample 2x2 \
             -outfile "$optimized"
@@ -169,6 +208,7 @@ for input in "$@"; do
         magick "$input" -auto-orient \
           -colorspace sRGB \
           -filter Lanczos -resize "${max_width}x>" \
+          -background white -alpha remove -alpha off \
           -strip -depth 8 ppm:- |
           "$mozjpeg" -quality 85 -progressive -optimize -sample 2x2 \
             -outfile "$optimized"
