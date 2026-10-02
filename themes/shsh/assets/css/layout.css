@@ -25,10 +25,12 @@
   margin-inline: auto;
 }
 
+/* Nav links reserve control height below their text, so trim the bottom
+   until the visible gaps above the site name and below the nav match. */
 .site-header {
   position: relative;
   text-align: center;
-  padding-block: var(--space-section);
+  padding-block: var(--space-section) var(--ui-space-9);
 }
 
 .site-header > .theme-toggle {

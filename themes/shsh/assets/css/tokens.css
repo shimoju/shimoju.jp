@@ -45,6 +45,7 @@
   --ui-space-5: 2rem;
   --ui-space-6: 2.4rem;
   --ui-space-8: 3.2rem;
+  --ui-space-9: 3.6rem;
   --ui-space-10: 4rem;
   --ui-space-12: 4.8rem;
   --ui-space-20: 8rem;
@@ -90,7 +91,8 @@
   /* Structural gaps widen outward, so each boundary exceeds the gaps it encloses.
      block: media, tables, code blocks and blockquotes within prose.
      lead: the article title and dates to the body, and both sides of a cover between them.
-     section: the site header and items, including trailing tags, sharing and pager.
+     section: above the site header and between items, including trailing tags, sharing
+     and pager.
      group: groups of sections.
      page: main to the site footer, so trailing share links stay apart from footer links.
      A 4/3 scale on the 4px grid: 7, 9, 12, 16, 21 steps.
