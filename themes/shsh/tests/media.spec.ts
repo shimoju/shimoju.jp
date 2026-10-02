@@ -122,6 +122,28 @@ test("a missing first cover does not promote body images or a later entry cover"
   await expect(page.locator(".article-cover")).toHaveCount(0);
   await expect(page.getByRole("img", { name: "本文の画像" })).toHaveAttribute("loading", "lazy");
   await expect(page.locator("img[fetchpriority]")).toHaveCount(0);
+});
+
+test("a cover takes the same lead gap on both sides as an article without one", async ({
+  page,
+}) => {
+  const gaps = async (path: string) => {
+    await page.goto(`${base}${path}`);
+    return page.evaluate(() => {
+      const box = (selector: string) => document.querySelector(selector)?.getBoundingClientRect();
+      const meta = box(".article-header .meta")!;
+      const cover = box(".article-cover");
+      const prose = box(".prose")!;
+      return cover
+        ? [cover.top - meta.bottom, prose.top - cover.bottom]
+        : [prose.top - meta.bottom];
+    });
+  };
+  const [plain] = await gaps("/posts/no-cover/");
+  const [beforeCover, afterCover] = await gaps("/gallery/");
+  expect(plain).toBeCloseTo(36, 1);
+  expect(beforeCover).toBeCloseTo(plain!, 1);
+  expect(afterCover).toBeCloseTo(plain!, 1);
 
   await page.goto(`${base}/categories/mixed/`);
   const entries = page.locator(".post-entry");

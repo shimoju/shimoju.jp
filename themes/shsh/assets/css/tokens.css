@@ -45,6 +45,7 @@
   --ui-space-5: 2rem;
   --ui-space-6: 2.4rem;
   --ui-space-8: 3.2rem;
+  --ui-space-9: 3.6rem;
   --ui-space-10: 4rem;
   --ui-space-12: 4.8rem;
   --ui-space-20: 8rem;
@@ -86,17 +87,21 @@
   --space-list-paragraph: 0.375em; /* 3/8 */
   --list-indent: 1.75em; /* 14/8 */
   --quote-inset: 1.25em; /* 10/8 */
-  --space-cover: calc(var(--body-size) * 1.931);
 
   /* Structural gaps widen outward, so each boundary exceeds the gaps it encloses.
      block: media, tables, code blocks and blockquotes within prose.
-     section: items, including trailing tags, sharing and pager. group: groups of sections.
+     lead: the article title and dates to the body, and both sides of a cover between them.
+     section: above the site header and between items, including trailing tags, sharing
+     and pager.
+     group: groups of sections.
      page: main to the site footer, so trailing share links stay apart from footer links.
-     Body-scale steps +5, +10, +12, +17; preserve these ratios rather than round to UI pixels. */
-  --space-block: calc(var(--body-size) * 1.6);
-  --space-section: calc(var(--body-size) * 2.56);
-  --space-group: calc(var(--body-size) * 3.089);
-  --space-page: calc(var(--body-size) * 4.943);
+     A 4/3 scale on the 4px grid: 7, 9, 12, 16, 21 steps.
+     9:12:16 is exact; the ends round 6.75 and 21.33. */
+  --space-block: 2.8rem;
+  --space-lead: 3.6rem;
+  --space-section: 4.8rem;
+  --space-group: 6.4rem;
+  --space-page: 8.4rem;
 }
 
 :root[data-theme="light"] {
