@@ -141,7 +141,7 @@ test("a cover takes the same lead gap on both sides as an article without one", 
   };
   const [plain] = await gaps("/posts/no-cover/");
   const [beforeCover, afterCover] = await gaps("/gallery/");
-  expect(plain).toBeCloseTo(17 * 1.931, 1);
+  expect(plain).toBeCloseTo(36, 1);
   expect(beforeCover).toBeCloseTo(plain!, 1);
   expect(afterCover).toBeCloseTo(plain!, 1);
 

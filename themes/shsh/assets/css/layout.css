@@ -28,7 +28,7 @@
 .site-header {
   position: relative;
   text-align: center;
-  padding-block: var(--space-group) var(--space-section);
+  padding-block: var(--space-section);
 }
 
 .site-header > .theme-toggle {
