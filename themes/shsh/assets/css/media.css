@@ -28,7 +28,7 @@ video {
 }
 
 .article-cover {
-  margin: var(--space-cover) 0 0;
+  margin: var(--space-lead) 0 0;
 }
 
 .prose figure {
