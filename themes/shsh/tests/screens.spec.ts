@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
 import { readFileSync } from "node:fs";
+import { t } from "../scripts/i18n.ts";
 
 type Screen = { name: string; title: string; url: string };
 const cases = JSON.parse(readFileSync(".cache/screen-variants/cases.json", "utf8")) as Screen[];
@@ -167,7 +168,7 @@ test("discovery semantics, keyboard, fixed pages and JavaScript-disabled navigat
     await page.route("https://**/*", (route) => route.fulfill({ body: "" }));
     await page.goto("http://127.0.0.1:4182/archives/");
     await expect(page.locator(".archive-year h2")).toHaveText(["2026", "2023", "2016"]);
-    await expect(page.locator(".archive-month h3")).toHaveText(["Sep", "Jun", "Aug"]);
+    await expect(page.locator(".archive-month h3")).toHaveText(["9月", "6月", "8月"]);
     await expect(page.locator(".archive-month a")).toHaveCount(5);
     const paths = await page
       .locator(".archive-month a")
@@ -204,7 +205,7 @@ test("discovery semantics, keyboard, fixed pages and JavaScript-disabled navigat
       await page.goto(
         `http://127.0.0.1:4188/${kind}/sample-${kind === "tags" ? "tag" : "category"}/`,
       );
-      await expect(page.locator(".page-heading p")).toHaveText("5 posts");
+      await expect(page.locator(".page-heading p")).toHaveText(t("posts_count", { Count: 5 }));
       await page.locator(".next-page").focus();
       await page.keyboard.press("Enter");
       await expect(page.locator(".page-number")).toHaveText("2 / 3");
@@ -213,9 +214,46 @@ test("discovery semantics, keyboard, fixed pages and JavaScript-disabled navigat
       await expect(page.locator(".next-page")).toHaveCount(0);
     }
     await page.goto("http://127.0.0.1:4182/404.html");
-    await page.getByRole("link", { name: "Browse Archives" }).click();
+    await page.getByRole("link", { name: t("browse_archives") }).click();
     await expect(page).toHaveURL("http://127.0.0.1:4182/archives/");
     await context.close();
+  }
+});
+
+test("Archives titles in every year start one gap after the widest month label", async ({
+  page,
+}) => {
+  await page.goto("http://127.0.0.1:4182/archives/");
+  await expect(page.locator(".archive-year")).toHaveCount(3);
+  // The fixture's months are equally wide; widen one year's label to tell the years apart.
+  await page
+    .locator(".archive-month h3")
+    .last()
+    .evaluate((h3) => {
+      h3.textContent = "12月";
+    });
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 844 });
+    const months = await page.locator(".archive-month").evaluateAll((elements) =>
+      elements.map((month) => {
+        const range = document.createRange();
+        range.selectNodeContents(month.querySelector("h3")!);
+        return {
+          label: range.getBoundingClientRect().right,
+          list: month.querySelector("ul")!.getBoundingClientRect().left,
+        };
+      }),
+    );
+    const lists = months.map(({ list }) => list);
+    expect(new Set(lists).size, `${width}px`).toBe(1);
+    const gap = await page
+      .locator(".archives")
+      .evaluate((archives) => parseFloat(getComputedStyle(archives).columnGap));
+    // The month column is exactly as wide as the widest label.
+    expect(lists[0]! - Math.max(...months.map(({ label }) => label)), `${width}px`).toBeCloseTo(
+      gap,
+      1,
+    );
   }
 });
 

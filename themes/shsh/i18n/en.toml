@@ -1,0 +1,52 @@
+# Lists and article navigation run from newer to older posts.
+newer = "Prev"
+older = "Next"
+pagination = "Pagination"
+page_of = "Page {{ .Current }} of {{ .Total }}"
+adjacent_posts = "Adjacent posts"
+no_posts = "No posts yet."
+
+# Taxonomies. no_terms_<plural> takes precedence over no_terms.
+posts_count = { one = "{{ .Count }} post", other = "{{ .Count }} posts" }
+no_terms = "No {{ .Plural }} yet."
+no_terms_tags = "No tags yet."
+no_terms_categories = "No categories yet."
+
+# Dates. archives_month_format is a Go time layout for time.Format.
+updated = "Updated {{ .Date }}"
+archives_month_format = "Jan"
+
+# Site header, home and footer
+main_navigation = "Main navigation"
+color_mode_to_light = "Switch to light mode"
+color_mode_to_dark = "Switch to dark mode"
+site_introduction = "Introduction"
+follow_and_subscribe = "Follow and subscribe"
+
+# Article end
+article_tags = "Tags"
+share_article = "Share this article"
+share_on = "Share on {{ .Service }}"
+opens_in_new_tab = "{{ .Label }} (opens in a new tab)"
+unavailable_in_preview = "{{ .Label }} (unavailable in preview)"
+hatena_bookmark = "Hatena Bookmark"
+hatena_star = "Hatena Star"
+hatena_star_failed = "Unable to load Hatena Star."
+
+# Article body
+heading_link = "Link to {{ .Heading }}"
+table_scroll = "Table {{ .Number }}, horizontally scrollable"
+code_scroll = "Code, horizontally scrollable"
+copy_code = "Copy code"
+copy_done = "Copied"
+copy_done_notice = "Code copied."
+copy_failed = "Copy failed. Retry copying code"
+copy_failed_message = "Copy failed. Select the code and copy it manually, or retry."
+video = "Video"
+
+# Missing pages and redirects
+not_found = "404: Page not found"
+not_found_navigation = "Page recovery"
+back_to_home = "Back to Home"
+browse_archives = "Browse Archives"
+redirect = "Redirect"

@@ -1,5 +1,6 @@
 import { spawnSync } from "node:child_process";
 import { resolve } from "node:path";
+import { assertOneLanguage } from "./i18n.ts";
 
 interface BuildOptions {
   source: string;
@@ -25,6 +26,8 @@ export function buildHugo({ check = true, ...options }: BuildOptions) {
     "--clock",
     clock,
     "--cleanDestinationDir",
+    // Missing UI translations render as empty text; make them fail the build instead.
+    "--printI18nWarnings",
     "--panicOnWarning",
   ];
   for (const [name, value] of Object.entries(options)) {
@@ -40,5 +43,8 @@ export function buildHugo({ check = true, ...options }: BuildOptions) {
   if (check && result.status !== 0) {
     throw new Error(`Hugo build failed: ${result.signal ?? result.status}`);
   }
+  // Checking every successful build covers each fixture, including ones added later.
+  if (result.status === 0)
+    assertOneLanguage(options.destination ?? resolve(options.source, "public"));
   return result;
 }

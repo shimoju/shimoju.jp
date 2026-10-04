@@ -22,6 +22,8 @@
       {{ end }}
     </ul>
   {{ else }}
-    <p class="empty" lang="en">No {{ .Data.Plural }} yet.</p>
+    <p class="empty"
+      >{{ or (T (printf "no_terms_%s" .Data.Plural)) (T "no_terms" (dict "Plural" .Data.Plural)) }}</p
+    >
   {{ end }}
 {{ end }}

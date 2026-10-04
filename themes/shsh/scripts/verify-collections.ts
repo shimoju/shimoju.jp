@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { buildHugo } from "./build-hugo.ts";
+import { t } from "./i18n.ts";
 
 const source = resolve(".cache/collections");
 const base = {
@@ -40,7 +41,7 @@ function paths(html: string) {
   return [...html.matchAll(/class="entry-link"\s+href="([^"]+)"/g)].map((match) => match[1]);
 }
 let html = pass({});
-assert.match(html, /No posts yet/);
+assert.ok(html.includes(t("no_posts", {}, "en")));
 assert.doesNotMatch(html, /class="pager"/);
 html = pass({ "posts/one": post({ summary: "" }) });
 assert.equal(paths(html).length, 1);
@@ -67,8 +68,9 @@ html = pass({
   "posts/expired": post({ expiryDate: "2020-01-01" }),
 });
 assert.deepEqual(paths(html), ["/notes/n/", "/posts/a/", "/posts/z/"]);
-assert.match(html, /2026\/09\/01/);
-assert.doesNotMatch(html, /2026\/08\/31/);
+// The site language (English here) chooses the default medium date format.
+assert.match(html, /Sep 1, 2026/);
+assert.doesNotMatch(html, /Aug 31, 2026/);
 assert.deepEqual(paths(readFileSync(`${source}/public/posts/index.html`, "utf8")), [
   "/posts/a/",
   "/posts/z/",
@@ -116,8 +118,10 @@ for (const summary of [false, 42, ["Wrong"]]) {
   assert.notEqual(result.status, 0);
   assert.match(result.stdout + result.stderr, /summary must be a string/);
 }
-html = pass({ "posts/date": post() }, { params: { ...base.params, dateFormat: "Jan 2, 2006" } });
-assert.match(html, /Sep 1, 2026/);
+html = pass({ "posts/date": post() }, { params: { ...base.params, dateFormat: "2006/01/02" } });
+assert.match(html, /2026\/09\/01/);
+html = pass({ "posts/date": post() }, { params: { ...base.params, dateFormat: ":date_long" } });
+assert.match(html, /September 1, 2026/);
 const invalidFormat = build(
   { "posts/date": post() },
   { params: { ...base.params, dateFormat: 42 } },

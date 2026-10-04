@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
+import { t } from "../scripts/i18n.ts";
 
 test("home and section pagination retain newer-left/older-right and first-page introduction", async ({
   page,
@@ -10,18 +11,20 @@ test("home and section pagination retain newer-left/older-right and first-page i
     await expect(page.locator(".entry-title")).toHaveText(["記事 1", "記事 2"]);
     await expect(page.locator(".previous-page")).toHaveCount(0);
     await expect(page.locator(".intro")).toHaveCount(root === "/" ? 1 : 0);
-    await page.getByRole("link", { name: "Next" }).click();
+    await page.getByRole("link", { name: t("older") }).click();
     await expect(page).toHaveURL(new RegExp(`${root}page/2/$`));
     await expect(page.locator(".intro")).toHaveCount(0);
     await expect(page.locator(".entry-title")).toHaveText(["記事 3", "記事 4"]);
     const previous = await page.locator(".previous-page").boundingBox();
     const next = await page.locator(".next-page").boundingBox();
     expect(previous?.x).toBeLessThan(next?.x ?? 0);
-    await expect(page.getByRole("group", { name: "Page 2 of 3" })).toHaveText("2 / 3");
-    await page.getByRole("link", { name: "Next" }).click();
+    await expect(
+      page.getByRole("group", { name: t("page_of", { Current: 2, Total: 3 }) }),
+    ).toHaveText("2 / 3");
+    await page.getByRole("link", { name: t("older") }).click();
     await expect(page.locator(".entry-title")).toHaveText(["記事 5"]);
     await expect(page.locator(".next-page")).toHaveCount(0);
-    await page.getByRole("link", { name: "Prev" }).click();
+    await page.getByRole("link", { name: t("newer") }).click();
     await expect(page.locator(".page-number")).toHaveText("2 / 3");
   }
 });
@@ -52,7 +55,7 @@ test("pagination and whole-card links work without JavaScript", async ({ browser
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:4174/");
-  await page.getByRole("link", { name: "Next" }).click();
+  await page.getByRole("link", { name: t("older") }).click();
   await expect(page.locator(".entry-title")).toHaveText(["記事 3", "記事 4"]);
   await page.getByRole("link", { name: "記事 3", exact: true }).click();
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("記事 3");

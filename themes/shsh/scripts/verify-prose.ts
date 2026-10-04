@@ -3,6 +3,7 @@ import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs"
 import { resolve } from "node:path";
 import { HtmlValidate, Parser, type HtmlElement } from "html-validate";
 import { buildHugo } from "./build-hugo.ts";
+import { t } from "./i18n.ts";
 
 const root = resolve(".cache/prose");
 rmSync(root, { recursive: true, force: true });
@@ -47,8 +48,9 @@ assert.equal(result.status, 0, result.stdout + result.stderr);
 const html = (name: string) => readFileSync(`${root}/public/${name}/index.html`, "utf8");
 assert.doesNotMatch(html("absent"), /class="meta"/);
 assert.match(html("fallback"), /2020\/01\/01/);
-assert.doesNotMatch(html("same"), /Updated/);
-assert.match(html("different"), /Updated/);
+const updated = t("updated", { Date: "" }).trim();
+assert.ok(!html("same").includes(updated));
+assert.ok(html("different").includes(updated));
 assert.match(html("different"), /2020\/01\/03/);
 assert.doesNotMatch(html("hidden"), /class="meta"/);
 assert.match(html("posts/visible"), /2020\/01\/01/);

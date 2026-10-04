@@ -3,6 +3,7 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { HtmlValidate } from "html-validate";
 import { buildHugo } from "./build-hugo.ts";
+import { t } from "./i18n.ts";
 
 const root = resolve(".cache/sharing");
 rmSync(root, { recursive: true, force: true });
@@ -56,8 +57,11 @@ function success(
 let html = success({});
 assert.doesNotMatch(html, /class="article-end"|sharing\.[a-f0-9]+\.js|data-hatena-star-container/);
 html = success({ shareServices: ["hatena", "x"], hatenaStar: { enabled: false } });
-assert.match(html, /View on Hatena Bookmark/);
-assert.ok(html.indexOf('title="View on Hatena Bookmark"') < html.indexOf('title="Share on X"'));
+const hatena = t("share_on", { Service: t("hatena_bookmark") });
+assert.ok(html.includes(`title="${hatena}"`));
+assert.ok(
+  html.indexOf(`title="${hatena}"`) < html.indexOf(`title="${t("share_on", { Service: "X" })}"`),
+);
 assert.doesNotMatch(html, /data-hatena-star-container|sharing\.[a-f0-9]+\.js/);
 html = success({ hatenaStar: { enabled: true } });
 assert.match(html, /data-hatena-star-container/);

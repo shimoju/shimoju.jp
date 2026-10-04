@@ -7,8 +7,7 @@
       <div
         class="share-mount"
         role="group"
-        aria-label="Share this article"
-        lang="en"
+        aria-label="{{ T "share_article" }}"
       >
         <div class="share-icons">
           {{- range . }}
@@ -18,7 +17,7 @@
       </div>
     {{- end -}}
     {{- if $star -}}
-      <div class="star-widget" role="group" aria-label="Hatena Star">
+      <div class="star-widget" role="group" aria-label="{{ T "hatena_star" }}">
         <div
           data-hatena-star-container
           data-hatena-star-url="{{ .Permalink }}"
@@ -27,7 +26,11 @@
           data-hatena-star-profile-url-template="https://blog.hatena.ne.jp/{username}/"
         ></div>
       </div>
-      <p class="widget-status" role="status" lang="en"></p>
+      <p
+        class="widget-status"
+        role="status"
+        data-failed="{{ T "hatena_star_failed" }}"
+      ></p>
     {{- end -}}
   </div>
 {{- end -}}

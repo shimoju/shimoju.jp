@@ -1,7 +1,7 @@
 <section
   class="table-scroll"
   tabindex="0"
-  aria-label="Table {{ add .Ordinal 1 }}, horizontally scrollable"
+  aria-label="{{ T "table_scroll" (dict "Number" (add .Ordinal 1)) }}"
 >
   <table
     class="{{ .Attributes.class | default "" }}"

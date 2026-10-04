@@ -1,6 +1,5 @@
 {{- $url := "" -}}
 {{- $name := "" -}}
-{{- $action := "Share on" -}}
 {{- if eq .service "x" -}}
   {{- $name = "X" -}}
   {{- $url = printf "https://x.com/intent/tweet?%s" (querify "text" .title "url" .page.Permalink) -}}
@@ -11,22 +10,22 @@
   {{- $name = "Bluesky" -}}
   {{- $url = printf "https://bsky.app/intent/compose?%s" (querify "text" (printf "%s\n%s" .title .page.Permalink)) -}}
 {{- else if eq .service "hatena" -}}
-  {{- $name = "Hatena Bookmark" -}}
-  {{- $action = "View on" -}}
+  {{- $name = T "hatena_bookmark" -}}
   {{- $path := strings.TrimPrefix "http://" .page.Permalink -}}
   {{- if strings.HasPrefix .page.Permalink "https://" }}
     {{ $path = printf "s/%s" (strings.TrimPrefix "https://" .page.Permalink) }}
   {{ end -}}
   {{- $url = printf "https://b.hatena.ne.jp/entry/%s" $path -}}
 {{- end -}}
+{{- $label := T "share_on" (dict "Service" $name) -}}
 {{- if eq hugo.Environment "production" -}}
   <a
     class="icon-link share-icon"
     href="{{ $url }}"
     target="_blank"
     rel="noopener noreferrer"
-    aria-label="{{ $action }} {{ $name }} (opens in a new tab)"
-    title="{{ $action }} {{ $name }}"
+    aria-label="{{ T "opens_in_new_tab" (dict "Label" $label) }}"
+    title="{{ $label }}"
     >{{ partial "icon.html" .service }}</a
   >
 {{- else -}}
@@ -34,8 +33,8 @@
     class="icon-link share-icon"
     type="button"
     disabled
-    aria-label="{{ $action }} {{ $name }} (unavailable in preview)"
-    title="{{ $action }} {{ $name }}"
+    aria-label="{{ T "unavailable_in_preview" (dict "Label" $label) }}"
+    title="{{ $label }}"
     >{{ partial "icon.html" .service }}</button
   >
 {{- end -}}

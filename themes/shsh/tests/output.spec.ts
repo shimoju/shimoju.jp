@@ -1,6 +1,7 @@
 import { test, expect, type Page } from "@playwright/test";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { HtmlValidate, type ConfigData } from "html-validate";
+import { t } from "../scripts/i18n.ts";
 
 const base = new URL("https://example.invalid/blog/");
 const variants = ["plain", "minified"] as const;
@@ -148,7 +149,7 @@ for (const variant of variants) {
     await block.hover();
     await block.getByRole("button").click();
     await expect(page.locator("html")).toHaveAttribute("data-copied", code);
-    await expect(block.getByRole("status")).toHaveText("Code copied.");
+    await expect(block.getByRole("status")).toHaveText(t("copy_done_notice"));
   });
 }
 

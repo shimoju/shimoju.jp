@@ -52,7 +52,6 @@ params:
   author:
     name: Hiroshi Shimoju
   description: ソフトウェアエンジニアshimojuの個人ブログ。Ruby on Railsを中心としたWeb開発の知見や、日々の出来事を綴ります。
-  dateFormat: 2006/01/02
   showRSS: true
   shareServices:
     - x

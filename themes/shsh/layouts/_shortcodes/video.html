@@ -22,7 +22,7 @@
   controls
   playsinline
   preload="metadata"
-  aria-label="{{ .Get "title" | default "Video" }}"
+  aria-label="{{ .Get "title" | default (T "video") }}"
   {{ with $poster }}poster="{{ . }}"{{ end }}
   {{ if $flags.muted }}muted{{ end }}{{ if $flags.autoplay }}
     autoplay

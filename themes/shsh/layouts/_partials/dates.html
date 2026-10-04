@@ -13,7 +13,9 @@
   <div class="meta">
     {{ partial "date.html" $date }}
     {{ if and (not $lastmod.IsZero) (ne ($date.Format "2006-01-02") ($lastmod.Format "2006-01-02")) }}
-      <span lang="en">Updated {{ partial "date.html" $lastmod }}</span>
+      <span
+        >{{ T "updated" (dict "Date" (partial "date.html" $lastmod)) | safeHTML }}</span
+      >
     {{ end }}
   </div>
 {{- end -}}

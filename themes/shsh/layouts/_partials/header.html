@@ -2,8 +2,8 @@
   <button
     class="theme-toggle icon-control"
     type="button"
-    lang="en"
-    aria-label="Switch color mode"
+    data-light-label="{{ T "color_mode_to_light" }}"
+    data-dark-label="{{ T "color_mode_to_dark" }}"
     hidden
   >
     {{ partial "icon.html" "moon" }}{{ partial "icon.html" "sun" }}
@@ -14,7 +14,7 @@
     {{ partial "site-name.html" . }}
   {{ end }}
   {{ with site.Menus.main }}
-    <nav class="site-nav" lang="en" aria-label="Main navigation">
+    <nav class="site-nav" aria-label="{{ T "main_navigation" }}">
       {{ range . }}
         {{ $current := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
         {{ if and (eq $.Kind "term") .Page }}

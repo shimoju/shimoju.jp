@@ -9,7 +9,7 @@
 {{- if or $tags $engagement $navigation -}}
   <footer class="article-end">
     {{- with $tags }}
-      <div class="article-tags" role="group" aria-label="Tags"
+      <div class="article-tags" role="group" aria-label="{{ T "article_tags" }}"
         >{{ range . }}
           <a href="{{ .RelPermalink }}">#{{ partial "page-title.html" . }}</a>
         {{ end }}</div

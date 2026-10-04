@@ -7,12 +7,8 @@ if (star && !document.getElementById("hatena-star-script")) {
   script.addEventListener(
     "error",
     () => {
-      const engagement = star.closest(".engagement");
-      const status = engagement?.querySelector(".widget-status");
-      if (status)
-        status.textContent = engagement?.querySelector(".share-icons a")
-          ? "Unable to load Hatena Star. Share links are still available."
-          : "Unable to load Hatena Star.";
+      const status = star.closest(".engagement")?.querySelector<HTMLElement>(".widget-status");
+      if (status) status.textContent = status.dataset.failed ?? "";
     },
     { once: true },
   );
