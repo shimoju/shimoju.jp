@@ -30,6 +30,7 @@
 .archives {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
+  row-gap: var(--space-group);
 }
 
 .archives,
@@ -42,14 +43,6 @@
   display: grid;
   grid-column: 1 / -1;
   grid-template-columns: subgrid;
-}
-
-.archive-year {
-  margin-top: var(--space-group);
-}
-
-.archive-year:first-of-type {
-  margin-top: 0;
 }
 
 .archive-year h2 {
@@ -112,14 +105,10 @@
   }
 }
 
-/* Chrome and Edge before 117 lack subgrid. A fixed month column fits "12月" on one line
-   even with wide digits such as DejaVu Sans. */
+/* Chrome and Edge before 117 lack subgrid, so years and months become one-column grids
+   across the full width. A fixed month column fits "12月" on one line even with wide
+   digits such as DejaVu Sans. */
 @supports not (grid-template-columns: subgrid) {
-  .archives,
-  .archive-year {
-    display: block;
-  }
-
   .archive-month {
     grid-template-columns: var(--ui-space-10) minmax(0, 1fr);
   }

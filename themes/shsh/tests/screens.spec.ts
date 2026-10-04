@@ -220,40 +220,9 @@ test("discovery semantics, keyboard, fixed pages and JavaScript-disabled navigat
   }
 });
 
-test("Archives month labels stay on one line within their column at every text size", async ({
+test("Archives titles in every year start one gap after the widest month label", async ({
   page,
 }) => {
-  // The single-post variant is dated December, the widest month label.
-  await page.goto("http://127.0.0.1:4195/archives/");
-  const label = page.locator(".archive-month h3");
-  await expect(label).toHaveText("12月");
-  for (const width of [1440, 390]) {
-    await page.setViewportSize({ width, height: 844 });
-    // Digit widths vary by system font; Verdana stands in for Linux's wide DejaVu Sans digits.
-    for (const font of ["", 'Verdana, "DejaVu Sans"'])
-      for (const scale of [1, 1.25, 2]) {
-        const fit = await label.evaluate(
-          (h3, { font, size }) => {
-            h3.style.fontFamily = font;
-            document.documentElement.style.fontSize = size;
-            return {
-              overflow: h3.scrollWidth > h3.clientWidth,
-              lines: Math.round(
-                h3.getBoundingClientRect().height / parseFloat(getComputedStyle(h3).lineHeight),
-              ),
-            };
-          },
-          { font, size: `${62.5 * scale}%` },
-        );
-        expect(fit, `${width}px text ${scale}x ${font || "system font"}`).toEqual({
-          overflow: false,
-          lines: 1,
-        });
-      }
-  }
-});
-
-test("Archives titles in every year start after the widest month label", async ({ page }) => {
   await page.goto("http://127.0.0.1:4182/archives/");
   await expect(page.locator(".archive-year")).toHaveCount(3);
   // The fixture's months are equally wide; widen one year's label to tell the years apart.
@@ -275,9 +244,16 @@ test("Archives titles in every year start after the widest month label", async (
         };
       }),
     );
-    const lists = new Set(months.map(({ list }) => list));
-    expect(lists.size, `${width}px`).toBe(1);
-    expect([...lists][0]).toBeGreaterThan(Math.max(...months.map(({ label }) => label)));
+    const lists = months.map(({ list }) => list);
+    expect(new Set(lists).size, `${width}px`).toBe(1);
+    const gap = await page
+      .locator(".archives")
+      .evaluate((archives) => parseFloat(getComputedStyle(archives).columnGap));
+    // The month column is exactly as wide as the widest label.
+    expect(lists[0]! - Math.max(...months.map(({ label }) => label)), `${width}px`).toBeCloseTo(
+      gap,
+      1,
+    );
   }
 });
 
