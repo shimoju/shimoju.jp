@@ -221,35 +221,35 @@ test("discovery semantics, keyboard, fixed pages and JavaScript-disabled navigat
 });
 
 test("Archives month labels stay on one line within their column at every text size", async ({
-  browser,
+  page,
 }) => {
+  // The single-post variant is dated December, the widest month label.
+  await page.goto("http://127.0.0.1:4195/archives/");
+  const label = page.locator(".archive-month h3");
+  await expect(label).toHaveText("12月");
   for (const width of [1440, 390]) {
-    const context = await browser.newContext({ viewport: { width, height: 844 } });
-    const page = await context.newPage();
-    // The single-post variant is dated December, the widest month label.
-    await page.goto("http://127.0.0.1:4195/archives/");
-    const label = page.locator(".archive-month h3");
-    await expect(label).toHaveText("12月");
+    await page.setViewportSize({ width, height: 844 });
     // Digit widths vary by system font; Verdana stands in for Linux's wide DejaVu Sans digits.
-    for (const font of ["", 'Verdana, "DejaVu Sans"']) {
-      await label.evaluate((h3, family) => {
-        h3.style.fontFamily = family;
-      }, font);
+    for (const font of ["", 'Verdana, "DejaVu Sans"'])
       for (const scale of [1, 1.25, 2]) {
-        await page.addStyleTag({ content: `:root { font-size: ${62.5 * scale}%; }` });
-        const fit = await label.evaluate((h3) => ({
-          overflow: h3.scrollWidth > h3.clientWidth,
-          lines: Math.round(
-            h3.getBoundingClientRect().height / parseFloat(getComputedStyle(h3).lineHeight),
-          ),
-        }));
+        const fit = await label.evaluate(
+          (h3, { font, size }) => {
+            h3.style.fontFamily = font;
+            document.documentElement.style.fontSize = size;
+            return {
+              overflow: h3.scrollWidth > h3.clientWidth,
+              lines: Math.round(
+                h3.getBoundingClientRect().height / parseFloat(getComputedStyle(h3).lineHeight),
+              ),
+            };
+          },
+          { font, size: `${62.5 * scale}%` },
+        );
         expect(fit, `${width}px text ${scale}x ${font || "system font"}`).toEqual({
           overflow: false,
           lines: 1,
         });
       }
-    }
-    await context.close();
   }
 });
 

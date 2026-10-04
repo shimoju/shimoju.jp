@@ -26,8 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return current === "dark" ? "light" : "dark";
   }
   const syncButton = () => {
-    const { lightLabel = "", darkLabel = "" } = button.dataset;
-    const label = nextMode() === "dark" ? darkLabel : lightLabel;
+    const label = button.dataset[`${nextMode()}Label`] ?? "";
     button.setAttribute("aria-label", label);
     button.title = label;
   };

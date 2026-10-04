@@ -134,9 +134,9 @@ test("theme icon and label always offer the opposite visible color, including OS
   await page.goto("/");
   const button = page.locator(".theme-toggle");
   async function expectControl(mode: "light" | "dark") {
-    const next = mode === "dark" ? "light" : "dark";
-    await expect(button).toHaveAccessibleName(t(`color_mode_to_${next}`));
-    await expect(button).toHaveAttribute("title", t(`color_mode_to_${next}`));
+    const label = t(`color_mode_to_${mode === "dark" ? "light" : "dark"}`);
+    await expect(button).toHaveAccessibleName(label);
+    await expect(button).toHaveAttribute("title", label);
     await expect(button.locator(".sun")).toBeVisible({ visible: mode === "dark" });
     await expect(button.locator(".moon")).toBeVisible({ visible: mode === "light" });
   }

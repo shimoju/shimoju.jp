@@ -2,15 +2,12 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { buildHugo } from "./build-hugo.ts";
-import { messages, t, type Language, type Message } from "./i18n.ts";
+import { bundled, placeholder, t, type Language, type Message } from "./i18n.ts";
 
-const bundled = { en: messages("en"), ja: messages("ja") };
 const texts = (message: Message) =>
   typeof message === "string" ? [message] : Object.values(message);
 const placeholders = (message: Message) =>
-  new Set(
-    texts(message).flatMap((text) => [...text.matchAll(/\{\{ \.(\w+) \}\}/g)].map((m) => m[1]!)),
-  );
+  new Set(texts(message).flatMap((text) => [...text.matchAll(placeholder)].map((m) => m[1]!)));
 
 // Both bundled languages define the same keys, plural forms and template data.
 assert.deepEqual(Object.keys(bundled.ja).sort(), Object.keys(bundled.en).sort());
@@ -34,19 +31,25 @@ const templates = readdirSync("layouts", { recursive: true, encoding: "utf8" })
 const used = new Set(
   templates.flatMap(({ source }) => [...source.matchAll(/\bT "(\w+)"/g)].map((m) => m[1]!)),
 );
-assert.ok(templates.some(({ source }) => source.includes('T (printf "no_terms_%s"')));
+// Keys built as T (printf "prefix%s" ...) count as used by their prefix.
+const prefixes = templates.flatMap(({ source }) =>
+  [...source.matchAll(/\bT \(printf "(\w+)%s"/g)].map((m) => m[1]!),
+);
 for (const key of used) assert.ok(key in bundled.en, `layouts use undefined UI text ${key}`);
 for (const key of Object.keys(bundled.en))
-  assert.ok(used.has(key) || key.startsWith("no_terms_"), `unused UI text ${key}`);
-const names = new Set(["RSS"]);
+  assert.ok(
+    used.has(key) || prefixes.some((prefix) => key.startsWith(prefix)),
+    `unused UI text ${key}`,
+  );
 for (const { file, source } of templates) {
   const literal = source.replace(/\{\{[\s\S]*?\}\}/g, "\0");
   const attributes = literal.matchAll(
     /\s(aria-label|title|alt|data-[\w-]*(?:label|message|notice|failed)[\w-]*)="([^"]*)"/g,
   );
+  // "RSS" names the format and reads the same in every language.
   for (const [, name, value] of attributes)
     assert.ok(
-      !/[A-Za-z]{2}/.test(value!) || names.has(value!.replaceAll("\0", "").trim()),
+      !/[A-Za-z]{2}/.test(value!) || value!.replaceAll("\0", "").trim() === "RSS",
       `${file}: ${name}="${value}"`,
     );
   for (const [, text] of literal.matchAll(/>([^<>]*)</g))
@@ -83,21 +86,14 @@ for (const [path, expected] of [
 // Generated pages: language only on <html>, no missing template data, and no label in the
 // other bundled language (placeholders match any author text).
 const escape = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-function labels(language: Language) {
-  const other = bundled[language === "ja" ? "en" : "ja"];
-  return Object.entries(other)
+const labels = (language: Language) =>
+  Object.entries(bundled[language])
     .filter(([key]) => key !== "archives_month_format")
     .flatMap(([, message]) => texts(message))
     .map(
-      (text) =>
-        new RegExp(
-          `^${text
-            .split(/\{\{ \.\w+ \}\}/)
-            .map(escape)
-            .join(".+")}$`,
-        ),
+      (text) => new RegExp(`^${escape(text.replace(placeholder, "\0")).replaceAll("\0", ".+")}$`),
     );
-}
+const foreign = { en: labels("ja"), ja: labels("en") };
 const decode = (value: string) =>
   value
     .replaceAll("&lt;", "<")
@@ -106,28 +102,27 @@ const decode = (value: string) =>
     .replaceAll("&#39;", "'")
     .replaceAll("&amp;", "&");
 const outputs: [Language, string][] = [
-  ["en", ".cache/representative-en"],
-  ...["production", "preview", "development"].map((name): [Language, string] => [
-    "ja",
-    `.cache/representative/${name}`,
-  ]),
-  ["ja", ".cache/output/plain"],
-  ["ja", ".cache/screens/production"],
-  ["ja", ".cache/screens/preview"],
-  ...["pagination", "empty", "single"].map((name): [Language, string] => [
-    "ja",
-    `.cache/screen-variants/${name}/public`,
-  ]),
-  ["ja", ".cache/sharing/production"],
-  ["ja", ".cache/sharing/preview"],
-  ["ja", ".cache/metadata/production"],
-  ["ja", ".cache/prose/public"],
-  ["ja", ".cache/media/production"],
+  ["en", english],
+  ...[
+    ".cache/representative/production",
+    ".cache/representative/preview",
+    ".cache/representative/development",
+    ".cache/output/plain",
+    ".cache/screens/production",
+    ".cache/screens/preview",
+    ".cache/screen-variants/pagination/public",
+    ".cache/screen-variants/empty/public",
+    ".cache/screen-variants/single/public",
+    ".cache/sharing/production",
+    ".cache/sharing/preview",
+    ".cache/metadata/production",
+    ".cache/prose/public",
+    ".cache/media/production",
+  ].map((root): [Language, string] => ["ja", root]),
 ];
 let pages = 0;
 for (const [language, root] of outputs) {
   assert.ok(existsSync(root), `${root} must be built first`);
-  const forbidden = labels(language);
   for (const file of readdirSync(root, { recursive: true, encoding: "utf8" }).filter((path) =>
     /\.(html|xml)$/.test(path),
   )) {
@@ -139,7 +134,7 @@ for (const [language, root] of outputs) {
     for (const [, name, value] of html.matchAll(/\s(aria-label|title|data-[\w-]+)="([^"]*)"/g)) {
       const text = decode(value!);
       assert.ok(
-        !forbidden.some((pattern) => pattern.test(text)),
+        !foreign[language].some((pattern) => pattern.test(text)),
         `${root}/${file}: ${name}="${text}" is not ${language}`,
       );
     }

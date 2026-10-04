@@ -7,13 +7,8 @@ if (star && !document.getElementById("hatena-star-script")) {
   script.addEventListener(
     "error",
     () => {
-      const engagement = star.closest(".engagement");
-      const status = engagement?.querySelector<HTMLElement>(".widget-status");
-      if (status)
-        status.textContent =
-          (engagement?.querySelector(".share-icons a")
-            ? status.dataset.failedWithShare
-            : status.dataset.failed) ?? "";
+      const status = star.closest(".engagement")?.querySelector<HTMLElement>(".widget-status");
+      if (status) status.textContent = status.dataset.failed ?? "";
     },
     { once: true },
   );

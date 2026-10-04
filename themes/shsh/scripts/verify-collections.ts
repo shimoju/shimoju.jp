@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { buildHugo } from "./build-hugo.ts";
+import { t } from "./i18n.ts";
 
 const source = resolve(".cache/collections");
 const base = {
@@ -40,7 +41,7 @@ function paths(html: string) {
   return [...html.matchAll(/class="entry-link"\s+href="([^"]+)"/g)].map((match) => match[1]);
 }
 let html = pass({});
-assert.match(html, /No posts yet/);
+assert.ok(html.includes(t("no_posts", {}, "en")));
 assert.doesNotMatch(html, /class="pager"/);
 html = pass({ "posts/one": post({ summary: "" }) });
 assert.equal(paths(html).length, 1);
