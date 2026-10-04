@@ -26,6 +26,24 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* All years share one month column sized to the widest label, so titles align. */
+.archives {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+}
+
+.archives,
+.archive-month {
+  column-gap: var(--ui-space-4);
+}
+
+.archive-year,
+.archive-month {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+}
+
 .archive-year {
   margin-top: var(--space-group);
 }
@@ -35,15 +53,12 @@
 }
 
 .archive-year h2 {
+  grid-column: 1 / -1;
   margin: 0 0 var(--ui-space-6);
 }
 
-/* The month column fits "12月" on one line even with wide digits such as DejaVu Sans. */
 .archive-month {
-  display: grid;
-  grid-template-columns: var(--ui-space-10) minmax(0, 1fr);
   align-items: first baseline;
-  column-gap: var(--ui-space-4);
   margin-bottom: var(--ui-space-8);
 }
 
@@ -91,8 +106,22 @@
 }
 
 @media (width >= 640px) {
+  .archives,
   .archive-month {
     column-gap: var(--ui-space-12);
+  }
+}
+
+/* Chrome and Edge before 117 lack subgrid. A fixed month column fits "12月" on one line
+   even with wide digits such as DejaVu Sans. */
+@supports not (grid-template-columns: subgrid) {
+  .archives,
+  .archive-year {
+    display: block;
+  }
+
+  .archive-month {
+    grid-template-columns: var(--ui-space-10) minmax(0, 1fr);
   }
 }
 

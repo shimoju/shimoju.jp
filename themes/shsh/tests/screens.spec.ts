@@ -253,6 +253,34 @@ test("Archives month labels stay on one line within their column at every text s
   }
 });
 
+test("Archives titles in every year start after the widest month label", async ({ page }) => {
+  await page.goto("http://127.0.0.1:4182/archives/");
+  await expect(page.locator(".archive-year")).toHaveCount(3);
+  // The fixture's months are equally wide; widen one year's label to tell the years apart.
+  await page
+    .locator(".archive-month h3")
+    .last()
+    .evaluate((h3) => {
+      h3.textContent = "12月";
+    });
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 844 });
+    const months = await page.locator(".archive-month").evaluateAll((elements) =>
+      elements.map((month) => {
+        const range = document.createRange();
+        range.selectNodeContents(month.querySelector("h3")!);
+        return {
+          label: range.getBoundingClientRect().right,
+          list: month.querySelector("ul")!.getBoundingClientRect().left,
+        };
+      }),
+    );
+    const lists = new Set(months.map(({ list }) => list));
+    expect(lists.size, `${width}px`).toBe(1);
+    expect([...lists][0]).toBeGreaterThan(Math.max(...months.map(({ label }) => label)));
+  }
+});
+
 test("share links without adjacent posts stay closer to the content than to footer links", async ({
   page,
 }) => {

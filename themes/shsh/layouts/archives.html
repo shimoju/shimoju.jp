@@ -11,27 +11,31 @@
     {{ $months = merge $months (dict $month (dict "number" $month "label" $group.label "pages" ($group.pages | append .))) }}
     {{ $years = merge $years (dict $year (dict "year" $year "months" $months)) }}
   {{ end }}
-  {{ range sort $years "year" "desc" }}
-    <section class="archive-year"
-      ><h2>{{ .year }}</h2>
-      {{ range sort .months "number" "desc" }}
-        <div class="archive-month"
-          ><h3>{{ .label }}</h3
-          ><ul>
-            {{ range .pages }}
-              {{ $id := printf "archive-%s" (crypto.MD5 .RelPermalink) }}
-              <li
-                ><a href="{{ .RelPermalink }}" aria-labelledby="{{ $id }}"
-                  ><span class="archive-title link-title" id="{{ $id }}"
-                    >{{ .Title }}</span
-                  >{{ partial "date.html" (partial "local-time.html" .Date) }}</a
-                ></li
-              >
-            {{ end }}
-          </ul></div
-        >
+  {{ with sort $years "year" "desc" }}
+    <div class="archives">
+      {{ range . }}
+        <section class="archive-year"
+          ><h2>{{ .year }}</h2>
+          {{ range sort .months "number" "desc" }}
+            <div class="archive-month"
+              ><h3>{{ .label }}</h3
+              ><ul>
+                {{ range .pages }}
+                  {{ $id := printf "archive-%s" (crypto.MD5 .RelPermalink) }}
+                  <li
+                    ><a href="{{ .RelPermalink }}" aria-labelledby="{{ $id }}"
+                      ><span class="archive-title link-title" id="{{ $id }}"
+                        >{{ .Title }}</span
+                      >{{ partial "date.html" (partial "local-time.html" .Date) }}</a
+                    ></li
+                  >
+                {{ end }}
+              </ul></div
+            >
+          {{ end }}
+        </section>
       {{ end }}
-    </section>
+    </div>
   {{ else }}
     <p class="empty">{{ T "no_posts" }}</p>
   {{ end }}
