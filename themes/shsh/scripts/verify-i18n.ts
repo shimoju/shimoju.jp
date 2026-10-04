@@ -88,12 +88,12 @@ const labels = (language: Language) =>
       (text) => new RegExp(`^${escape(text.replace(placeholder, "\0")).replaceAll("\0", ".+")}$`),
     );
 const foreign = { en: labels("ja"), ja: labels("en") };
+// Go escapes quotes and some symbols as numeric references, such as &#34; and &#43;.
 const decode = (value: string) =>
   value
+    .replace(/&#(\d+);/g, (_, code: string) => String.fromCodePoint(Number(code)))
     .replaceAll("&lt;", "<")
     .replaceAll("&gt;", ">")
-    .replaceAll("&quot;", '"')
-    .replaceAll("&#39;", "'")
     .replaceAll("&amp;", "&");
 const outputs: [Language, string][] = [
   ["en", english],
