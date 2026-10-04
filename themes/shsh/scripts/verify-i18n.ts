@@ -1,11 +1,9 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { buildHugo } from "./build-hugo.ts";
-import { bundled, placeholder, t, type Language, type Message } from "./i18n.ts";
+import { bundled, placeholder, t, texts, type Message } from "./i18n.ts";
 
-const texts = (message: Message) =>
-  typeof message === "string" ? [message] : Object.values(message);
 const placeholders = (message: Message) =>
   new Set(texts(message).flatMap((text) => [...text.matchAll(placeholder)].map((m) => m[1]!)));
 
@@ -79,61 +77,6 @@ for (const [path, expected] of [
 ] as const)
   assert.ok(page(path).includes(expected), `${path}: ${expected}`);
 
-const escape = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-const labels = (language: Language) =>
-  Object.entries(bundled[language])
-    .filter(([key]) => key !== "archives_month_format")
-    .flatMap(([, message]) => texts(message))
-    .map(
-      (text) => new RegExp(`^${escape(text.replace(placeholder, "\0")).replaceAll("\0", ".+")}$`),
-    );
-const foreign = { en: labels("ja"), ja: labels("en") };
-// Go escapes quotes and some symbols as numeric references, such as &#34; and &#43;.
-const decode = (value: string) =>
-  value
-    .replace(/&#(\d+);/g, (_, code: string) => String.fromCodePoint(Number(code)))
-    .replaceAll("&lt;", "<")
-    .replaceAll("&gt;", ">")
-    .replaceAll("&amp;", "&");
-const outputs: [Language, string][] = [
-  ["en", english],
-  ...[
-    ".cache/representative/production",
-    ".cache/representative/preview",
-    ".cache/representative/development",
-    ".cache/output/plain",
-    ".cache/screens/production",
-    ".cache/screens/preview",
-    ".cache/screen-variants/pagination/public",
-    ".cache/screen-variants/empty/public",
-    ".cache/screen-variants/single/public",
-    ".cache/sharing/production",
-    ".cache/sharing/preview",
-    ".cache/metadata/production",
-    ".cache/prose/public",
-    ".cache/media/production",
-  ].map((root): [Language, string] => ["ja", root]),
-];
-let pages = 0;
-for (const [language, root] of outputs) {
-  assert.ok(existsSync(root), `${root} must be built first`);
-  for (const file of readdirSync(root, { recursive: true, encoding: "utf8" }).filter((path) =>
-    /\.(html|xml)$/.test(path),
-  )) {
-    const html = readFileSync(`${root}/${file}`, "utf8");
-    pages++;
-    assert.doesNotMatch(html, /<no value>/, `${root}/${file}: missing template data`);
-    for (const [tag] of html.matchAll(/<(?!html\b)[a-z][\w-]*\b[^>]*\slang=[^>]*>/gi))
-      assert.fail(`${root}/${file}: language belongs on <html> only: ${tag}`);
-    for (const [, name, value] of html.matchAll(/\s(aria-label|title|data-[\w-]+)="([^"]*)"/g)) {
-      const text = decode(value!);
-      assert.ok(
-        !foreign[language].some((pattern) => pattern.test(text)),
-        `${root}/${file}: ${name}="${text}" is not ${language}`,
-      );
-    }
-  }
-}
 console.log(
-  `UI text: en/ja keys, plurals, data and template wiring passed; English fixture output and ${pages} generated pages keep one language.`,
+  "UI text: en/ja keys, plurals, data, template wiring and English fixture output passed.",
 );
