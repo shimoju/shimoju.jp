@@ -1,13 +1,14 @@
 {{ define "main" }}
   <header class="page-heading"><h1>{{ .Title }}</h1>{{ .Content }}</header>
   {{ $years := dict }}
+  {{ $monthFormat := T "archives_month_format" }}
   {{ range partialCached "posts.html" . }}
     {{ $date := partial "local-time.html" .Date }}
     {{ $year := $date.Format "2006" }}
     {{ $month := $date.Format "01" }}
     {{ $yearGroup := index $years $year | default (dict "year" $year "months" dict) }}
     {{ $months := $yearGroup.months }}
-    {{ $group := index $months $month | default (dict "number" $month "label" (time.Format (T "archives_month_format") $date) "pages" slice) }}
+    {{ $group := index $months $month | default (dict "number" $month "label" (time.Format $monthFormat $date) "pages" slice) }}
     {{ $months = merge $months (dict $month (dict "number" $month "label" $group.label "pages" ($group.pages | append .))) }}
     {{ $years = merge $years (dict $year (dict "year" $year "months" $months)) }}
   {{ end }}
