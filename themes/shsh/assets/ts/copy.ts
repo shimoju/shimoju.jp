@@ -8,6 +8,14 @@ for (const button of document.querySelectorAll<HTMLButtonElement>(".copy")) {
     block.querySelector<HTMLElement>("pre");
   const status = block.querySelector<HTMLElement>(".copy-feedback");
   if (!pre || !status) continue;
+  // The template supplies all text in the site language; the idle label is the initial one.
+  const idle = button.title;
+  const {
+    copiedLabel = "",
+    copiedNotice = "",
+    failedLabel = "",
+    failedMessage = "",
+  } = button.dataset;
   let resetTimer: ReturnType<typeof setTimeout> | undefined;
   const reveal = () => {
     delete block.dataset.copyDismissed;
@@ -52,16 +60,15 @@ for (const button of document.querySelectorAll<HTMLButtonElement>(".copy")) {
       if (!(clone instanceof HTMLElement)) throw new Error("Missing code");
       clone.querySelectorAll(".ln, .lnt, .lnlinks").forEach((node) => node.remove());
       await navigator.clipboard.writeText(clone.textContent);
-      setState("success", "Copied");
-      status.textContent = "Code copied.";
+      setState("success", copiedLabel);
+      status.textContent = copiedNotice;
       resetTimer = setTimeout(() => {
-        setState("idle", "Copy code");
+        setState("idle", idle);
         status.textContent = "";
       }, 3000);
     } catch {
-      const message = "Copy failed. Select the code and copy it manually, or retry.";
-      setState("error", "Copy failed. Retry copying code", message);
-      status.textContent = message;
+      setState("error", failedLabel, failedMessage);
+      status.textContent = failedMessage;
     } finally {
       button.disabled = false;
     }
