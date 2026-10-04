@@ -18,7 +18,6 @@ archives_month_format = "Jan"
 
 # Site header, home and footer
 main_navigation = "Main navigation"
-color_mode = "Switch color mode"
 color_mode_to_light = "Switch to light mode"
 color_mode_to_dark = "Switch to dark mode"
 site_introduction = "Introduction"

@@ -18,7 +18,6 @@ archives_month_format = "1月"
 
 # サイトのヘッダー・ホーム・フッター
 main_navigation = "メインナビゲーション"
-color_mode = "配色を切り替え"
 color_mode_to_light = "ライトモードに切り替え"
 color_mode_to_dark = "ダークモードに切り替え"
 site_introduction = "サイトの紹介"
