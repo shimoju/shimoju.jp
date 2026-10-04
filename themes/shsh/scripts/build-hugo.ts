@@ -43,7 +43,7 @@ export function buildHugo({ check = true, ...options }: BuildOptions) {
   if (check && result.status !== 0) {
     throw new Error(`Hugo build failed: ${result.signal ?? result.status}`);
   }
-  // Every fixture build, not a hand-kept list of outputs, keeps theme UI text in one language.
+  // Checking every successful build covers each fixture, including ones added later.
   if (result.status === 0)
     assertOneLanguage(options.destination ?? resolve(options.source, "public"));
   return result;
