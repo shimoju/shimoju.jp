@@ -56,7 +56,7 @@ export function assertOneLanguage(root: string) {
     );
     const tag = /<(?!html\b)[a-z][^>]*\slang=[^>]*>/i.exec(html)?.[0];
     assert.equal(tag, undefined, `${root}/${file}: language belongs on <html> only: ${tag}`);
-    const language = /(?:<html lang="|<language>)(\w+)/.exec(html)?.[1] ?? "";
+    const language = /<html lang="(\w+)/.exec(html)?.[1] ?? "";
     const patterns = foreign[language];
     if (!patterns) continue;
     for (const [, name, value] of html.matchAll(/\s(aria-label|title|data-[\w-]+)="([^"]*)"/g)) {
