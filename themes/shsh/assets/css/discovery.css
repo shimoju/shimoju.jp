@@ -38,9 +38,10 @@
   margin: 0 0 var(--ui-space-6);
 }
 
+/* The month column fits "12月" on one line even with wide digits such as DejaVu Sans. */
 .archive-month {
   display: grid;
-  grid-template-columns: var(--ui-space-8) minmax(0, 1fr);
+  grid-template-columns: var(--ui-space-10) minmax(0, 1fr);
   align-items: first baseline;
   column-gap: var(--ui-space-4);
   margin-bottom: var(--ui-space-8);

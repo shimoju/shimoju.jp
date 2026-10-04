@@ -230,15 +230,24 @@ test("Archives month labels stay on one line within their column at every text s
     await page.goto("http://127.0.0.1:4195/archives/");
     const label = page.locator(".archive-month h3");
     await expect(label).toHaveText("12月");
-    for (const scale of [1, 1.25, 2]) {
-      await page.addStyleTag({ content: `:root { font-size: ${62.5 * scale}%; }` });
-      const fit = await label.evaluate((h3) => ({
-        overflow: h3.scrollWidth > h3.clientWidth,
-        lines: Math.round(
-          h3.getBoundingClientRect().height / parseFloat(getComputedStyle(h3).lineHeight),
-        ),
-      }));
-      expect(fit, `${width}px text ${scale}x`).toEqual({ overflow: false, lines: 1 });
+    // Digit widths vary by system font; Verdana stands in for Linux's wide DejaVu Sans digits.
+    for (const font of ["", 'Verdana, "DejaVu Sans"']) {
+      await label.evaluate((h3, family) => {
+        h3.style.fontFamily = family;
+      }, font);
+      for (const scale of [1, 1.25, 2]) {
+        await page.addStyleTag({ content: `:root { font-size: ${62.5 * scale}%; }` });
+        const fit = await label.evaluate((h3) => ({
+          overflow: h3.scrollWidth > h3.clientWidth,
+          lines: Math.round(
+            h3.getBoundingClientRect().height / parseFloat(getComputedStyle(h3).lineHeight),
+          ),
+        }));
+        expect(fit, `${width}px text ${scale}x ${font || "system font"}`).toEqual({
+          overflow: false,
+          lines: 1,
+        });
+      }
     }
     await context.close();
   }
