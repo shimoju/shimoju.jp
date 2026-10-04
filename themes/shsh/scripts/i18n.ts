@@ -7,10 +7,8 @@ export type Message = string | { one?: string; other: string };
 const load = (language: Language) =>
   parse(readFileSync(`i18n/${language}.toml`, "utf8")) as Record<string, Message>;
 export const bundled = { en: load("en"), ja: load("ja") };
-// Template data in a message, such as {{ .Count }}; the group captures the data name.
 export const placeholder = /\{\{ \.(\w+) \}\}/g;
 
-// Resolve bundled UI text as Hugo's T would, so checks follow wording changes in i18n/.
 export function t(
   key: string,
   data: Record<string, string | number> = {},

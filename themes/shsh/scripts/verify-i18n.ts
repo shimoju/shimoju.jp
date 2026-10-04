@@ -9,7 +9,6 @@ const texts = (message: Message) =>
 const placeholders = (message: Message) =>
   new Set(texts(message).flatMap((text) => [...text.matchAll(placeholder)].map((m) => m[1]!)));
 
-// Both bundled languages define the same keys, plural forms and template data.
 assert.deepEqual(Object.keys(bundled.ja).sort(), Object.keys(bundled.en).sort());
 for (const [key, en] of Object.entries(bundled.en)) {
   const ja = bundled.ja[key]!;
@@ -20,18 +19,15 @@ for (const [key, en] of Object.entries(bundled.en)) {
   }
   // A translation may leave data out, but cannot use data the templates never pass.
   for (const name of placeholders(ja)) assert.ok(placeholders(en).has(name), `${key}: .${name}`);
-  // An identical value would be untranslated English.
   assert.notDeepEqual(ja, en, `${key}: translate the Japanese value`);
 }
 
-// Templates use every bundled key and only bundled keys, and hold no English UI literals.
 const templates = readdirSync("layouts", { recursive: true, encoding: "utf8" })
   .filter((file) => file.endsWith(".html"))
   .map((file) => ({ file, source: readFileSync(`layouts/${file}`, "utf8") }));
 const used = new Set(
   templates.flatMap(({ source }) => [...source.matchAll(/\bT "(\w+)"/g)].map((m) => m[1]!)),
 );
-// Keys built as T (printf "prefix%s" ...) count as used by their prefix.
 const prefixes = templates.flatMap(({ source }) =>
   [...source.matchAll(/\bT \(printf "(\w+)%s"/g)].map((m) => m[1]!),
 );
@@ -83,8 +79,6 @@ for (const [path, expected] of [
 ] as const)
   assert.ok(page(path).includes(expected), `${path}: ${expected}`);
 
-// Generated pages: language only on <html>, no missing template data, and no label in the
-// other bundled language (placeholders match any author text).
 const escape = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const labels = (language: Language) =>
   Object.entries(bundled[language])

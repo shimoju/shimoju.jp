@@ -8,7 +8,6 @@ for (const button of document.querySelectorAll<HTMLButtonElement>(".copy")) {
     block.querySelector<HTMLElement>("pre");
   const status = block.querySelector<HTMLElement>(".copy-feedback");
   if (!pre || !status) continue;
-  // The template supplies all text in the site language; the idle label is the initial one.
   const idle = button.title;
   const {
     copiedLabel = "",
