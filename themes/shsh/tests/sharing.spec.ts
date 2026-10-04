@@ -64,7 +64,7 @@ test("failed star download preserves reading and share links and announces failu
 }) => {
   await page.route(starURL, (route) => route.abort());
   await page.goto(production + "/document/");
-  await expect(page.getByRole("status")).toHaveText(t("hatena_star_failed_with_share"));
+  await expect(page.getByRole("status")).toHaveText(t("hatena_star_failed"));
   await expect(page.locator(".prose")).toHaveText("本文を読む。");
   await expect(page.locator(".share-icons a")).toHaveCount(4);
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);

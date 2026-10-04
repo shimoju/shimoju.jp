@@ -33,7 +33,6 @@ unavailable_in_preview = "{{ .Label }}（プレビューでは無効）"
 hatena_bookmark = "はてなブックマーク"
 hatena_star = "はてなスター"
 hatena_star_failed = "はてなスターを読み込めませんでした。"
-hatena_star_failed_with_share = "はてなスターを読み込めませんでした。共有リンクは引き続き使えます。"
 
 # 記事の本文
 heading_link = "{{ .Heading }}へのリンク"

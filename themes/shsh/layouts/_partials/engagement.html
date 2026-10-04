@@ -26,11 +26,10 @@
           data-hatena-star-profile-url-template="https://blog.hatena.ne.jp/{username}/"
         ></div>
       </div>
-      {{- /* The star loads only in production, where every share service renders a link. */ -}}
       <p
         class="widget-status"
         role="status"
-        data-failed="{{ cond (gt (len $config.services) 0) (T "hatena_star_failed_with_share") (T "hatena_star_failed") }}"
+        data-failed="{{ T "hatena_star_failed" }}"
       ></p>
     {{- end -}}
   </div>

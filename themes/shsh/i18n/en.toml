@@ -33,7 +33,6 @@ unavailable_in_preview = "{{ .Label }} (unavailable in preview)"
 hatena_bookmark = "Hatena Bookmark"
 hatena_star = "Hatena Star"
 hatena_star_failed = "Unable to load Hatena Star."
-hatena_star_failed_with_share = "Unable to load Hatena Star. Share links are still available."
 
 # Article body
 heading_link = "Link to {{ .Heading }}"
