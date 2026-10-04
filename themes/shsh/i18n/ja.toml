@@ -25,8 +25,8 @@ follow_and_subscribe = "フォローと購読"
 
 # 記事の末尾
 article_tags = "タグ"
-share_article = "この記事を共有"
-share_on = "{{ .Service }}で共有"
+share_article = "この記事をシェア"
+share_on = "{{ .Service }}でシェア"
 opens_in_new_tab = "{{ .Label }}（新しいタブで開く）"
 unavailable_in_preview = "{{ .Label }}（プレビューでは無効）"
 hatena_bookmark = "はてなブックマーク"
