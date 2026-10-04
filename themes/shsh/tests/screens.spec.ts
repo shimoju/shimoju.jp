@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
 import { readFileSync } from "node:fs";
+import { t } from "../scripts/i18n.ts";
 
 type Screen = { name: string; title: string; url: string };
 const cases = JSON.parse(readFileSync(".cache/screen-variants/cases.json", "utf8")) as Screen[];
@@ -167,7 +168,7 @@ test("discovery semantics, keyboard, fixed pages and JavaScript-disabled navigat
     await page.route("https://**/*", (route) => route.fulfill({ body: "" }));
     await page.goto("http://127.0.0.1:4182/archives/");
     await expect(page.locator(".archive-year h2")).toHaveText(["2026", "2023", "2016"]);
-    await expect(page.locator(".archive-month h3")).toHaveText(["Sep", "Jun", "Aug"]);
+    await expect(page.locator(".archive-month h3")).toHaveText(["9月", "6月", "8月"]);
     await expect(page.locator(".archive-month a")).toHaveCount(5);
     const paths = await page
       .locator(".archive-month a")
@@ -204,7 +205,7 @@ test("discovery semantics, keyboard, fixed pages and JavaScript-disabled navigat
       await page.goto(
         `http://127.0.0.1:4188/${kind}/sample-${kind === "tags" ? "tag" : "category"}/`,
       );
-      await expect(page.locator(".page-heading p")).toHaveText("5 posts");
+      await expect(page.locator(".page-heading p")).toHaveText(t("posts_count", { Count: 5 }));
       await page.locator(".next-page").focus();
       await page.keyboard.press("Enter");
       await expect(page.locator(".page-number")).toHaveText("2 / 3");
@@ -213,8 +214,32 @@ test("discovery semantics, keyboard, fixed pages and JavaScript-disabled navigat
       await expect(page.locator(".next-page")).toHaveCount(0);
     }
     await page.goto("http://127.0.0.1:4182/404.html");
-    await page.getByRole("link", { name: "Browse Archives" }).click();
+    await page.getByRole("link", { name: t("browse_archives") }).click();
     await expect(page).toHaveURL("http://127.0.0.1:4182/archives/");
+    await context.close();
+  }
+});
+
+test("Archives month labels stay on one line within their column at every text size", async ({
+  browser,
+}) => {
+  for (const width of [1440, 390]) {
+    const context = await browser.newContext({ viewport: { width, height: 844 } });
+    const page = await context.newPage();
+    // The single-post variant is dated December, the widest month label.
+    await page.goto("http://127.0.0.1:4195/archives/");
+    const label = page.locator(".archive-month h3");
+    await expect(label).toHaveText("12月");
+    for (const scale of [1, 1.25, 2]) {
+      await page.addStyleTag({ content: `:root { font-size: ${62.5 * scale}%; }` });
+      const fit = await label.evaluate((h3) => ({
+        overflow: h3.scrollWidth > h3.clientWidth,
+        lines: Math.round(
+          h3.getBoundingClientRect().height / parseFloat(getComputedStyle(h3).lineHeight),
+        ),
+      }));
+      expect(fit, `${width}px text ${scale}x`).toEqual({ overflow: false, lines: 1 });
+    }
     await context.close();
   }
 });

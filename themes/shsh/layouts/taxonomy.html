@@ -22,6 +22,9 @@
       {{ end }}
     </ul>
   {{ else }}
-    <p class="empty" lang="en">No {{ .Data.Plural }} yet.</p>
+    {{- /* no_terms_<plural> lets a language name a known taxonomy in its own words. */ -}}
+    <p class="empty"
+      >{{ or (T (printf "no_terms_%s" .Data.Plural)) (T "no_terms" (dict "Plural" .Data.Plural)) }}</p
+    >
   {{ end }}
 {{ end }}

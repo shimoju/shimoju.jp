@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
+import { t } from "../scripts/i18n.ts";
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
@@ -28,7 +29,7 @@ test("code tokens follow both palettes without site highlighting configuration",
   await expect(string).toHaveText('"Hello & <world>"');
   await expect(code.locator("pre")).toHaveCSS("background-color", "rgb(239, 241, 245)");
   await expect(string).toHaveCSS("color", "rgb(64, 160, 43)");
-  await page.getByRole("button", { name: "Switch to dark mode" }).click();
+  await page.getByRole("button", { name: t("color_mode_to_dark") }).click();
   await expect(code.locator("pre")).toHaveCSS("background-color", "rgb(30, 30, 46)");
   await expect(string).toHaveCSS("color", "rgb(166, 227, 161)");
 });
@@ -53,8 +54,8 @@ test("copy preserves code with Japanese, inline/table numbers, unknown language 
     await block.hover();
     await block.getByRole("button").click();
     await expect(page.locator("html")).toHaveAttribute("data-copied", code);
-    await expect(block.getByRole("button")).toHaveAccessibleName("Copied");
-    await expect(block.getByRole("status")).toHaveText("Code copied.");
+    await expect(block.getByRole("button")).toHaveAccessibleName(t("copy_done"));
+    await expect(block.getByRole("status")).toHaveText(t("copy_done_notice"));
   }
 });
 
@@ -71,17 +72,15 @@ test("failed copy announces manual fallback, permits retry, and resets success a
   await block.hover();
   await block.getByRole("button").click();
   await expect(block.getByRole("button")).toBeEnabled();
-  await expect(block.getByRole("status")).toHaveText(
-    "Copy failed. Select the code and copy it manually, or retry.",
-  );
+  await expect(block.getByRole("status")).toHaveText(t("copy_failed_message"));
   await page.evaluate(() => {
     delete document.documentElement.dataset.failCopy;
   });
   await block.getByRole("button").click();
   await page.clock.fastForward(2999);
-  await expect(block.getByRole("button")).toHaveAccessibleName("Copied");
+  await expect(block.getByRole("button")).toHaveAccessibleName(t("copy_done"));
   await page.clock.fastForward(1);
-  await expect(block.getByRole("button")).toHaveAccessibleName("Copy code");
+  await expect(block.getByRole("button")).toHaveAccessibleName(t("copy_code"));
   await expect(block.getByRole("status")).toBeEmpty();
 });
 
@@ -103,7 +102,7 @@ test("keyboard reveals copy and Escape returns focus to selectable code", async 
   await page.keyboard.press(browserName === "webkit" ? "Shift+Alt+Tab" : "Shift+Tab");
   await expect(button).toBeFocused();
   await page.keyboard.press("Enter");
-  await expect(button).toHaveAccessibleName("Copied");
+  await expect(button).toHaveAccessibleName(t("copy_done"));
 });
 
 test("touch reveals copy, outside tap and horizontal scroll dismiss it", async ({ browser }) => {
@@ -161,13 +160,13 @@ test("the first tap on a revealed copy button copies exactly once", async ({
     "data-copied",
     '# 日本語コメント\nputs "Hello & <world>"',
   );
-  await expect(button).toHaveAccessibleName("Copied");
+  await expect(button).toHaveAccessibleName(t("copy_done"));
   await page.locator("h1").tap();
   await expect(button).toHaveCSS("opacity", "0");
   await pre.tap();
   await button.tap();
   await expect(page.locator("html")).toHaveAttribute("data-copy-calls", "2");
-  await expect(button).toHaveAccessibleName("Copied");
+  await expect(button).toHaveAccessibleName(t("copy_done"));
   await context.close();
 });
 
@@ -215,13 +214,15 @@ test("prose remains readable; footnotes, headings, dates and JS-free reading wor
       });
     }
   }
-  await expect(page.locator(".article-header .meta")).toHaveText("2026/09/02 Updated 2026/09/03");
+  await expect(page.locator(".article-header .meta")).toHaveText(
+    `2026/09/02 ${t("updated", { Date: "2026/09/03" })}`,
+  );
   // The anchor glyph lives in CSS so plain-text summaries never see a "#".
   const heading = page.locator(".prose h2").first();
   const anchor = heading.locator(".heading-anchor");
   expect(await heading.textContent()).not.toContain("#");
   await expect(anchor).toHaveText("");
-  await expect(anchor).toHaveAttribute("aria-label", /^Link to /);
+  await expect(anchor).toHaveAttribute("aria-label", t("heading_link", { Heading: "読みやすさ" }));
   expect(await anchor.evaluate((element) => getComputedStyle(element, "::before").content)).toBe(
     '"#"',
   );

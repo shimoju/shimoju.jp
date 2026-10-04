@@ -7,18 +7,17 @@
 <div class="code-block">
   {{- /* Newlines keep the label a line of its own in plain-text summaries. */ -}}
   {{- with $filename }}
-    <span class="code-label" lang="en">{{ . }}</span>
+    <span class="code-label">{{ . }}</span>
   {{ end -}}
   <button
     class="copy icon-control"
     type="button"
-    aria-label="Copy code"
-    title="Copy code"
-    lang="en"
-    data-copied-label="Copied"
-    data-copied-notice="Code copied."
-    data-failed-label="Copy failed. Retry copying code"
-    data-failed-message="Copy failed. Select the code and copy it manually, or retry."
+    aria-label="{{ T "copy_code" }}"
+    title="{{ T "copy_code" }}"
+    data-copied-label="{{ T "copy_done" }}"
+    data-copied-notice="{{ T "copy_done_notice" }}"
+    data-failed-label="{{ T "copy_failed" }}"
+    data-failed-message="{{ T "copy_failed_message" }}"
     data-copy-state="idle"
     hidden
   >
@@ -44,17 +43,12 @@
     {{- /* Chroma's last pre contains the code; preceding pres contain table line numbers. */ -}}
     {{- $replacement := $pre -}}
     {{- if eq $index (sub (len $pres) 1) -}}
-      {{- $replacement = $pre | replaceRE `<pre\b` `<pre role="group" aria-label="Code, horizontally scrollable"` -}}
+      {{- $replacement = replace $pre "<pre" (printf `<pre role="group" aria-label="%s"` (T "code_scroll" | htmlEscape)) 1 -}}
     {{- else -}}
       {{- $replacement = $pre | replaceRE ` tabindex="[^"]*"` "" | replaceRE `<pre\b` `<pre tabindex="-1"` -}}
     {{- end -}}
     {{- $wrapped = replace $wrapped $pre $replacement 1 -}}
   {{- end -}}
   {{- $wrapped | safeHTML -}}
-  <span
-    class="sr-only copy-feedback"
-    role="status"
-    aria-live="polite"
-    lang="en"
-  ></span>
+  <span class="sr-only copy-feedback" role="status" aria-live="polite"></span>
 </div>

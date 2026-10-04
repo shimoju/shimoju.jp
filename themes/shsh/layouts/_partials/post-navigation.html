@@ -10,16 +10,20 @@
   {{- end -}}
 {{- end -}}
 {{- if or $newer $older -}}
-  <nav class="post-nav" id="post-navigation" aria-label="Adjacent posts">
+  <nav
+    class="post-nav"
+    id="post-navigation"
+    aria-label="{{ T "adjacent_posts" }}"
+  >
     {{ with $newer }}
       <a rel="prev" href="{{ .RelPermalink }}"
-        ><small lang="en">{{ partial "navigation-label.html" "prev" }}</small
+        ><small>{{ partial "navigation-label.html" "newer" }}</small
         ><span class="post-nav-title link-title">{{ .Title }}</span></a
       >
     {{ end }}
     {{ with $older }}
       <a rel="next" href="{{ .RelPermalink }}"
-        ><small lang="en">{{ partial "navigation-label.html" "next" }}</small
+        ><small>{{ partial "navigation-label.html" "older" }}</small
         ><span class="post-nav-title link-title">{{ .Title }}</span></a
       >
     {{ end }}

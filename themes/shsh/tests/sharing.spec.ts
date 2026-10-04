@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
+import { t } from "../scripts/i18n.ts";
 
 const production = "http://127.0.0.1:4180";
 const preview = "http://127.0.0.1:4181";
@@ -63,9 +64,7 @@ test("failed star download preserves reading and share links and announces failu
 }) => {
   await page.route(starURL, (route) => route.abort());
   await page.goto(production + "/document/");
-  await expect(page.getByRole("status")).toHaveText(
-    "Unable to load Hatena Star. Share links are still available.",
-  );
+  await expect(page.getByRole("status")).toHaveText(t("hatena_star_failed_with_share"));
   await expect(page.locator(".prose")).toHaveText("本文を読む。");
   await expect(page.locator(".share-icons a")).toHaveCount(4);
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
@@ -107,7 +106,7 @@ test.describe("production without JavaScript", () => {
 
       await expect(page.locator(".prose")).toBeVisible();
       await expect(page.locator(".prose")).toHaveText("本文を読む。");
-      const links = page.getByRole("group", { name: "Share this article" }).getByRole("link");
+      const links = page.getByRole("group", { name: t("share_article") }).getByRole("link");
       await expect(links).toHaveCount(4);
       for (const link of await links.all()) {
         await expect(link).toBeVisible();

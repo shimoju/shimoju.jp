@@ -34,7 +34,8 @@ for (const variant of ["pagination", "empty", "single"]) {
     if (variant === "single") {
       writeFileSync(
         `${source}/content/posts/only.md`,
-        '---\ntitle: 社会復帰するぞ\ndate: 2016-08-17T22:42:23+09:00\nsummary: ""\n---\nOnly article.\n',
+        // December gives Archives its widest month label.
+        '---\ntitle: 社会復帰するぞ\ndate: 2016-12-17T22:42:23+09:00\nsummary: ""\n---\nOnly article.\n',
       );
     }
   }

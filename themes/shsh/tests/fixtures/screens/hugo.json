@@ -50,22 +50,22 @@
   "menus": {
     "main": [
       {
-        "name": "About",
+        "name": "自己紹介",
         "pageRef": "/about",
         "weight": 1
       },
       {
-        "name": "Archives",
+        "name": "アーカイブ",
         "pageRef": "/archives",
         "weight": 2
       },
       {
-        "name": "Categories",
+        "name": "カテゴリー",
         "pageRef": "/categories",
         "weight": 3
       },
       {
-        "name": "Tags",
+        "name": "タグ",
         "pageRef": "/tags",
         "weight": 4
       }

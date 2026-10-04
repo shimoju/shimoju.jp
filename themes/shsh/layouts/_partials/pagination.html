@@ -1,19 +1,19 @@
 {{- if gt .TotalPages 1 -}}
-  <nav class="pager" lang="en" aria-label="Pagination">
+  <nav class="pager" aria-label="{{ T "pagination" }}">
     {{- with .Prev -}}
       <a class="previous-page" href="{{ .URL }}" rel="prev"
-        >{{ partial "navigation-label.html" "prev" }}</a
+        >{{ partial "navigation-label.html" "newer" }}</a
       >
     {{- end -}}
     <span
       class="page-number"
       role="group"
-      aria-label="Page {{ .PageNumber }} of {{ .TotalPages }}"
+      aria-label="{{ T "page_of" (dict "Current" .PageNumber "Total" .TotalPages) }}"
       >{{ .PageNumber }} / {{ .TotalPages }}</span
     >
     {{- with .Next -}}
       <a class="next-page" href="{{ .URL }}" rel="next"
-        >{{ partial "navigation-label.html" "next" }}</a
+        >{{ partial "navigation-label.html" "older" }}</a
       >
     {{- end -}}
   </nav>

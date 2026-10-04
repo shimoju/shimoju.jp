@@ -25,6 +25,8 @@ export function buildHugo({ check = true, ...options }: BuildOptions) {
     "--clock",
     clock,
     "--cleanDestinationDir",
+    // Missing UI translations render as empty text; make them fail the build instead.
+    "--printI18nWarnings",
     "--panicOnWarning",
   ];
   for (const [name, value] of Object.entries(options)) {

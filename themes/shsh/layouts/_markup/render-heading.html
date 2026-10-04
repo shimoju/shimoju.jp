@@ -5,7 +5,6 @@
 {{ .Text }}<a
   class="heading-anchor"
   href="#{{ .Anchor }}"
-  aria-label="Link to {{ .PlainText }}"
-  lang="en"
+  aria-label="{{ T "heading_link" (dict "Heading" .PlainText) }}"
 ></a>
 {{- printf "</h%d>\n" .Level | safeHTML -}}

@@ -1,5 +1,6 @@
 import { test, expect, type Page } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
+import { t } from "../scripts/i18n.ts";
 
 type ColorMode = "light" | "dark";
 const backgrounds = { light: "rgb(248, 249, 252)", dark: "rgb(24, 24, 37)" };
@@ -88,7 +89,7 @@ for (const chosen of ["light", "dark"] as const) {
     }
     await expectTheme(page, chosen, chosen);
     const next = chosen === "light" ? "dark" : "light";
-    await page.getByRole("button", { name: `Switch to ${next} mode` }).click();
+    await page.getByRole("button", { name: t(`color_mode_to_${next}`) }).click();
     await expectTheme(page, next, next);
     expect(await page.evaluate(() => localStorage.getItem("pref-theme"))).toBe(next);
     await page.reload();
@@ -134,8 +135,8 @@ test("theme icon and label always offer the opposite visible color, including OS
   const button = page.locator(".theme-toggle");
   async function expectControl(mode: "light" | "dark") {
     const next = mode === "dark" ? "light" : "dark";
-    await expect(button).toHaveAccessibleName(`Switch to ${next} mode`);
-    await expect(button).toHaveAttribute("title", `Switch to ${next} mode`);
+    await expect(button).toHaveAccessibleName(t(`color_mode_to_${next}`));
+    await expect(button).toHaveAttribute("title", t(`color_mode_to_${next}`));
     await expect(button.locator(".sun")).toBeVisible({ visible: mode === "dark" });
     await expect(button.locator(".moon")).toBeVisible({ visible: mode === "light" });
   }

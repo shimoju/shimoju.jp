@@ -1,0 +1,54 @@
+# 一覧と記事間の移動は、新しい記事から古い記事へ進む。
+newer = "前へ"
+older = "次へ"
+pagination = "ページ送り"
+page_of = "{{ .Total }}ページ中{{ .Current }}ページ目"
+adjacent_posts = "前後の記事"
+no_posts = "まだ記事がありません。"
+
+# 分類。no_terms_<分類の複数形>があれば、no_termsより優先する。
+posts_count = { other = "{{ .Count }}件の記事" }
+no_terms = "まだ{{ .Plural }}がありません。"
+no_terms_tags = "まだタグがありません。"
+no_terms_categories = "まだカテゴリーがありません。"
+
+# 日付。archives_month_formatはtime.Formatに渡すGoの日付書式。
+updated = "{{ .Date }} 更新"
+archives_month_format = "1月"
+
+# サイトのヘッダー・ホーム・フッター
+main_navigation = "メインナビゲーション"
+color_mode = "配色を切り替え"
+color_mode_to_light = "ライトモードに切り替え"
+color_mode_to_dark = "ダークモードに切り替え"
+site_introduction = "サイトの紹介"
+follow_and_subscribe = "フォローと購読"
+
+# 記事の末尾
+article_tags = "タグ"
+share_article = "この記事を共有"
+share_on = "{{ .Service }}で共有"
+opens_in_new_tab = "{{ .Label }}（新しいタブで開く）"
+unavailable_in_preview = "{{ .Label }}（プレビューでは無効）"
+hatena_bookmark = "はてなブックマーク"
+hatena_star = "はてなスター"
+hatena_star_failed = "はてなスターを読み込めませんでした。"
+hatena_star_failed_with_share = "はてなスターを読み込めませんでした。共有リンクは引き続き使えます。"
+
+# 記事の本文
+heading_link = "{{ .Heading }}へのリンク"
+table_scroll = "表{{ .Number }}（横スクロール可）"
+code_scroll = "コード（横スクロール可）"
+copy_code = "コードをコピー"
+copy_done = "コピー済み"
+copy_done_notice = "コードをコピーしました。"
+copy_failed = "コピーできませんでした。もう一度お試しください。"
+copy_failed_message = "コピーできませんでした。コードを選択して手動でコピーするか、もう一度お試しください。"
+video = "動画"
+
+# 見つからないページとリダイレクト
+not_found = "404: ページが見つかりません"
+not_found_navigation = "移動先"
+back_to_home = "ホームへ戻る"
+browse_archives = "アーカイブを見る"
+redirect = "リダイレクト"

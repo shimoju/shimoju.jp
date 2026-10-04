@@ -1,6 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 import { createHash } from "node:crypto";
 import { readFileSync, readdirSync } from "node:fs";
+import { t } from "../scripts/i18n.ts";
 
 const root = ".cache/metadata";
 const base = "https://metadata.invalid/blog/";
@@ -80,7 +81,9 @@ test("page and social titles include the site name with a narrow separator", asy
       expect(data.meta["og:site_name"], `${variant}/${path}`).toBe("別サイト");
     }
   }
-  expect((await head(page, "production", "old-a/index.html")).title).toBe("Redirect | 別サイト");
+  expect((await head(page, "production", "old-a/index.html")).title).toBe(
+    `${t("redirect")} | 別サイト`,
+  );
   expect((await feed(page, "production")).title).toBe("別サイト");
   expect((await feed(page, "production", "tags/a--b/index.xml")).title).toBe("A & B | 別サイト");
 });
@@ -116,7 +119,7 @@ test("RSS uses all ordered articles, HTML summaries, stable document GUIDs and t
   expect(coded.title).toBe("コード");
   expect(coded.html).toContain("<code>&lt;ul&gt;</code>");
   expect(coded.text).toMatch(/^<ul> を入れ子にする。内部\s+設定\s+config\.yml\s+box: ruby\s*$/);
-  expect(coded.html).toContain('<span class="code-label" lang="en">config.yml</span>');
+  expect(coded.html).toContain('<span class="code-label">config.yml</span>');
   expect(coded.html).toContain('<a href="https://metadata.invalid/posts/b/">内部</a>');
   expect(coded.html).toMatch(
     /<figure><img src="https:\/\/metadata\.invalid\/blog\/default\.png" alt="本文画像" width="200" height="100"><\/figure>$/,

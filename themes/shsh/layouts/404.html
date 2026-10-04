@@ -1,11 +1,9 @@
 {{ define "main" }}
-  <div lang="en">
-    <header class="page-heading"><h1>404: Page not found</h1></header>
-    <nav class="recovery-nav" aria-label="Page recovery">
-      <a href="{{ site.Home.RelPermalink }}">Back to Home</a>
-      {{ with site.GetPage "/archives" }}
-        <a href="{{ .RelPermalink }}">Browse Archives</a>
-      {{ end }}
-    </nav>
-  </div>
+  <header class="page-heading"><h1>{{ T "not_found" }}</h1></header>
+  <nav class="recovery-nav" aria-label="{{ T "not_found_navigation" }}">
+    <a href="{{ site.Home.RelPermalink }}">{{ T "back_to_home" }}</a>
+    {{ with site.GetPage "/archives" }}
+      <a href="{{ .RelPermalink }}">{{ T "browse_archives" }}</a>
+    {{ end }}
+  </nav>
 {{ end }}

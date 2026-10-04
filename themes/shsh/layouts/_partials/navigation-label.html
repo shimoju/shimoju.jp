@@ -1,7 +1,7 @@
 <span class="nav-label"
-  >{{ if eq . "prev" }}
-    <span aria-hidden="true">«</span> Prev
+  >{{ if eq . "newer" }}
+    <span aria-hidden="true">«</span> {{ T "newer" }}
   {{ else }}
-    Next <span aria-hidden="true">»</span>
+    {{ T "older" }} <span aria-hidden="true">»</span>
   {{ end }}</span
 >
