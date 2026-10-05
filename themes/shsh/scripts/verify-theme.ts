@@ -59,13 +59,30 @@ for (const environment of ["production", "preview", "development"]) {
   assert.match(bodyRule, /(?:^|;)\s*-webkit-text-size-adjust:\s*100%/);
   assert.match(bodyRule, /(?:^|;)\s*text-size-adjust:\s*100%/);
   assert.match(html, /<meta name="viewport" content="width=device-width, initial-scale=1"\s*\/?>/);
+  const assets = readdirSync(`${root}/assets`, { recursive: true, withFileTypes: true })
+    .filter((entry) => entry.isFile())
+    .map((entry) => entry.name);
+  const copyPath = html.match(/src="([^"]+\/copy[^"/]*\.js)"/)?.[1];
+  assert.ok(copyPath, `${environment}: copy script is required`);
+  assert.ok(files.includes(copyPath.slice(1)), `${environment}: copy script must exist`);
   if (environment === "development") {
-    assert.ok(files.some((file) => file.endsWith(".css.map")));
-    assert.ok(files.some((file) => file.endsWith(".js.map")));
+    assert.equal(cssPath, "/assets/main.css");
+    assert.equal(copyPath, "/assets/copy.js");
+    assert.ok(assets.includes("main.css.map"));
+    assert.ok(assets.includes("copy.js.map"));
   } else {
     assert.ok(!files.some((file) => file.endsWith(".map")));
-    assert.match(html, /\/css\/shsh\.[a-f0-9]{64}\.css/);
-    assert.doesNotMatch(html, /\/js\/theme[.]/);
+    assert.ok(assets.length > 0, `${environment}: assets must be published`);
+    for (const asset of assets) {
+      assert.match(
+        asset,
+        /\.[a-f0-9]{64}\.(css|js)$/,
+        `${environment}: ${asset} needs a fingerprint`,
+      );
+    }
+    assert.match(cssPath, /^\/assets\/main\.[a-f0-9]{64}\.css$/);
+    assert.match(copyPath, /^\/assets\/copy\.[a-f0-9]{64}\.js$/);
+    assert.doesNotMatch(html, /src="[^"]*\/theme[.]/);
     assert.match(html, /integrity="sha256-/);
   }
 }
