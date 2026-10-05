@@ -66,9 +66,9 @@ for (const environment of ["production", "preview", "development"]) {
   assert.ok(copyPath, `${environment}: copy script is required`);
   assert.ok(files.includes(copyPath.slice(1)), `${environment}: copy script must exist`);
   if (environment === "development") {
-    assert.equal(cssPath, "/assets/shsh.css");
+    assert.equal(cssPath, "/assets/main.css");
     assert.equal(copyPath, "/assets/copy.js");
-    assert.ok(assets.includes("shsh.css.map"));
+    assert.ok(assets.includes("main.css.map"));
     assert.ok(assets.includes("copy.js.map"));
   } else {
     assert.ok(!files.some((file) => file.endsWith(".map")));
@@ -80,7 +80,7 @@ for (const environment of ["production", "preview", "development"]) {
         `${environment}: ${asset} needs a fingerprint`,
       );
     }
-    assert.match(cssPath, /^\/assets\/shsh\.[a-f0-9]{64}\.css$/);
+    assert.match(cssPath, /^\/assets\/main\.[a-f0-9]{64}\.css$/);
     assert.match(copyPath, /^\/assets\/copy\.[a-f0-9]{64}\.js$/);
     assert.doesNotMatch(html, /src="[^"]*\/theme[.]/);
     assert.match(html, /integrity="sha256-/);
