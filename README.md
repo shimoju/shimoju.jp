@@ -36,12 +36,6 @@ After the GitHub Actions `shsh-test` check succeeds, merge the PR into `master`
 to build and deploy through Cloudflare Pages Git integration.
 Branch pushes produce preview deployments.
 
-`static/_headers` gives fingerprinted CSS/JS under `/assets/` a one-year
-browser cache lifetime with `immutable`. Reserve this output path for generated
-assets; keep unhashed files from `static/` outside it. Images retain their existing
-cache policy. Cloudflare's Standard cache level and one-day Browser Cache TTL
-can stay as configured; the longer asset TTL takes precedence.
-
 Configure Pages with output directory `public` and this build command:
 
 ```sh
@@ -68,8 +62,6 @@ After deployment, verify:
 - HTTP responses for missing-page 404s
 - The redirect from `/feed.xml` to `/index.xml`
 - Preview noindex metadata
-- `/assets/` responses have `Cache-Control: public, max-age=31536000, immutable`,
-  while HTML and unhashed assets do not receive this policy
 - External embeds, video playback, and slide navigation in the deployed preview
 
 Roll back using a commit or deployment artifact that includes both configuration
