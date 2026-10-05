@@ -6,7 +6,7 @@
 {{- $syntax := resources.FromString "css/syntax.css" (printf "%s\n:root[data-theme=dark] {\n%s\n}\n@media (prefers-color-scheme:dark) { :root:not([data-theme]) {\n%s\n} }" $light.Content $dark.Content $dark.Content) -}}
 {{- /* Baseline Widely Available as of 2026-01-01 (Vite 8 default); js.Build es2022 matches its Safari 16.4 floor. */ -}}
 {{- $browsers := slice "chrome111" "edge111" "firefox114" "safari16.4" "ios16.4" -}}
-{{- $css := resources.Get "css/main.css" | css.Build (dict "targetPath" "css/shsh.css" "target" $browsers "importContext" (slice $syntax) "minify" (not $dev) "sourceMap" $map) -}}
+{{- $css := resources.Get "css/main.css" | css.Build (dict "targetPath" "assets/shsh.css" "target" $browsers "importContext" (slice $syntax) "minify" (not $dev) "sourceMap" $map) -}}
 {{- if not $dev }}{{ $css = $css | fingerprint }}{{ end -}}
 <link
   rel="stylesheet"
@@ -16,7 +16,7 @@
   {{ end }}
 />
 
-{{- $copy := resources.Get "ts/copy.ts" | js.Build (dict "targetPath" "js/copy.js" "target" "es2022" "minify" (not $dev) "sourceMap" $map) -}}
+{{- $copy := resources.Get "ts/copy.ts" | js.Build (dict "targetPath" "assets/copy.js" "target" "es2022" "minify" (not $dev) "sourceMap" $map) -}}
 {{- if not $dev }}{{ $copy = $copy | fingerprint }}{{ end -}}
 <script
   defer

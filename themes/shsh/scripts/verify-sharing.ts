@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { HtmlValidate } from "html-validate";
 import { buildHugo } from "./build-hugo.ts";
@@ -84,12 +84,24 @@ const validator = new HtmlValidate(JSON.parse(readFileSync(".htmlvalidate.json",
 for (const environment of ["production", "preview"]) {
   const baseURL = environment === "production" ? config.baseURL : "https://preview.invalid/";
   success(sharing, environment, environment, baseURL);
+  for (const entry of readdirSync(`${root}/${environment}/assets`, {
+    recursive: true,
+    withFileTypes: true,
+  })) {
+    if (entry.isFile()) assert.match(entry.name, /\.[a-f0-9]{64}\.(css|js)$/);
+  }
   for (const path of ["document", "posts/article"]) {
     html = readFileSync(`${root}/${environment}/${path}/index.html`, "utf8");
     const report = await validator.validateString(html);
     assert.ok(report.valid, JSON.stringify(report.results.map((r) => r.messages)));
     assert.match(html, /rel="author" href="https:\/\/www.hatena.ne.jp\/example-author\/"/);
     if (environment === "production") {
+      const script = html.match(/src="(\/assets\/sharing\.[a-f0-9]{64}\.js)"/)?.[1];
+      assert.ok(script, `${path}: fingerprinted sharing script is required`);
+      assert.ok(
+        existsSync(`${root}/${environment}${script}`),
+        `${path}: sharing script must exist`,
+      );
       assert.match(html, new RegExp(`data-hatena-star-url="${baseURL}${path}/"`));
       assert.equal([...html.matchAll(/class="icon-link share-icon"/g)].length, 4);
     } else {
