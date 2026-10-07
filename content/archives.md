@@ -1,4 +1,4 @@
 ---
-title: Archives
+title: アーカイブ
 layout: archives
 ---
