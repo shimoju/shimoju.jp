@@ -18,6 +18,7 @@ body {
   color: var(--text);
   background: var(--page);
   font: 400 var(--body-size)/var(--leading-body) var(--font-body);
+  font-kerning: normal;
   font-feature-settings: "palt";
   overflow-wrap: anywhere;
   text-size-adjust: 100%;
