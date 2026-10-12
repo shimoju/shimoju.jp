@@ -3,6 +3,8 @@ title: 8月の日記
 date: 2026-09-20T22:55:48+09:00
 categories:
   - 日記
+  - アニメ
+  - ゲーム
 tags:
 cover:
   image: chiikawa.jpg
