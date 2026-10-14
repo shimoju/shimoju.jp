@@ -117,6 +117,7 @@ for (const variant of variants) {
     expect(files.has("categories/技術/page/2/index.html")).toBe(true);
     expect(docs["old-output/index.html"]?.refresh).toContain("/blog/output/");
     expect(docs["output/index.html"]?.ids).toContain("日本語見出し");
+    expect(docs["output/index.html"]?.references.some((ref) => ref.endsWith(".avif"))).toBe(true);
     expect(docs["output/index.html"]?.references.some((ref) => ref.endsWith(".webp"))).toBe(true);
     expect(docs["index.html"]?.references).toContain(`${base}index.xml`);
   });

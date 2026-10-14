@@ -17,6 +17,12 @@ function chunks(buffer: Buffer) {
   return kinds;
 }
 const imageChunk = (buffer: Buffer) => chunks(buffer).find((kind) => /^VP8[ L]$/.test(kind));
+// AV1 codec configuration: monochrome and chroma subsampling bits of the av1C box.
+function chroma(buffer: Buffer) {
+  const flags = buffer[buffer.indexOf("av1C") + 6]!;
+  if (flags & 0x10) return "mono";
+  return (flags & 0x0c) === 0 ? "444" : (flags & 0x0c) === 0x0c ? "420" : "422";
+}
 const pathOf = (url: string) => new URL(url, "https://media.invalid").pathname;
 
 const root = resolve(".cache/media");
@@ -35,7 +41,7 @@ for (const environment of ["production", "preview"]) {
   assert.match(html, /https:\/\/external.invalid\/image.png/);
   for (const [markup] of html.matchAll(/<(?:img|video)\b[^>]*>/g)) {
     const src = markup.match(/\bsrc="([^"]+)"/)?.[1];
-    // Candidates live only in the typed source, so browsers without WebP load the original src.
+    // Candidates live only in typed sources; browsers without AVIF or WebP load the original src.
     assert.doesNotMatch(markup, /\b(?:srcset|sizes)=/);
     assert.ok(src);
     const pathname = pathOf(src);
@@ -50,59 +56,76 @@ for (const environment of ["production", "preview"]) {
       assert.deepEqual(readFileSync(directory + pathname), input);
     }
   }
-  // Check candidate widths, sizes and actual WebP chunk types, not just encoder options.
+  // Check candidate widths, sizes and actual AVIF/WebP payloads, not just encoder options.
   const published = new Set<string>();
+  const source = (type: string) =>
+    String.raw`<source\s+type="image\/${type}"\s+srcset="([^"]+)"\s+sizes="[^"]+"\s*\/>`;
   const pictures = [
     ...html.matchAll(
-      /<picture\s*><source\s+type="image\/webp"\s+srcset="([^"]+)"\s+sizes="[^"]+"\s*\/><img\b([^>]*)><\/picture\s*>/g,
+      new RegExp(
+        String.raw`<picture\s*>${source("avif")}${source("webp")}<img\b([^>]*)><\/picture\s*>`,
+        "g",
+      ),
     ),
   ];
-  // Every picture must have exactly this shape: one typed WebP source and the original img.
+  // Every picture must have exactly this shape: AVIF first, then WebP, then the original img.
   assert.equal(pictures.length, html.match(/<picture\b/g)?.length);
-  for (const [, srcset, img] of pictures) {
+  for (const [, avif, webp, img] of pictures) {
     const src = img!.match(/\bsrc="([^"]+)"/)?.[1];
     const width = Number(img!.match(/\bwidth="(\d+)"/)?.[1]);
     assert.ok(src && width);
     const pathname = pathOf(src);
     const original = readFileSync(directory + pathname);
     const extension = pathname.split(".").at(-1)!;
-    const expected =
-      extension === "webp"
-        ? imageChunk(original)
-        : ["png", "gif"].includes(extension)
-          ? "VP8L"
-          : "VP8 ";
+    const screenshot =
+      extension === "webp" ? imageChunk(original) === "VP8L" : ["png", "gif"].includes(extension);
     const alpha = chunks(original).includes("ALPH");
-    const candidates = srcset!.split(", ").map((candidate) => {
-      const [url, descriptor] = candidate.split(" ");
-      assert.ok(url && descriptor?.endsWith("w"), candidate);
-      const file = pathOf(url);
-      return {
-        file,
-        width: Number(descriptor.slice(0, -1)),
-        bytes: readFileSync(directory + file),
-      };
-    });
-    // The native width is always the last candidate, so every display density is covered.
-    assert.equal(candidates.at(-1)!.width, width, src);
-    for (const [index, candidate] of candidates.entries()) {
-      const previous = candidates[index - 1];
-      if (previous) {
-        assert.ok([360, 720, 1080, 1440].includes(previous.width), previous.file);
-        // A narrower candidate must be lighter than every wider one it could be replaced by.
-        assert.ok(previous.width < candidate.width, candidate.file);
-        assert.ok(previous.bytes.length < candidate.bytes.length, candidate.file);
+    for (const [format, srcset] of Object.entries({ avif, webp })) {
+      const candidates = srcset!.split(", ").map((candidate) => {
+        const [url, descriptor] = candidate.split(" ");
+        assert.ok(url && descriptor?.endsWith("w"), candidate);
+        const file = pathOf(url);
+        return {
+          file,
+          width: Number(descriptor.slice(0, -1)),
+          bytes: readFileSync(directory + file),
+        };
+      });
+      // The native width is always the last candidate, so every display density is covered.
+      assert.equal(candidates.at(-1)!.width, width, src);
+      for (const [index, candidate] of candidates.entries()) {
+        const previous = candidates[index - 1];
+        if (previous) {
+          assert.ok([360, 720, 1080, 1440].includes(previous.width), previous.file);
+          // A narrower candidate must be lighter than every wider one it could be replaced by.
+          assert.ok(previous.width < candidate.width, candidate.file);
+          assert.ok(previous.bytes.length < candidate.bytes.length, candidate.file);
+        }
+        // Only an original in the source's format is reused, at its own width.
+        const reused = candidate.file === pathname;
+        assert.equal(
+          reused,
+          extension === format && index === candidates.length - 1,
+          candidate.file,
+        );
+        if (reused) continue;
+        assert.ok(candidate.file.endsWith(`.${format}`), candidate.file);
+        if (format === "webp") {
+          assert.equal(candidate.bytes.toString("ascii", 0, 4), "RIFF");
+          assert.equal(candidate.bytes.toString("ascii", 8, 12), "WEBP");
+          assert.equal(imageChunk(candidate.bytes), screenshot ? "VP8L" : "VP8 ", candidate.file);
+          if (alpha) assert.ok(chunks(candidate.bytes).includes("ALPH"), candidate.file);
+        } else {
+          assert.equal(candidate.bytes.toString("ascii", 4, 12), "ftypavif", candidate.file);
+          // Screenshots keep full chroma; photos use 4:2:0. Grayscale sources stay monochrome.
+          assert.ok(
+            [screenshot ? "444" : "420", "mono"].includes(chroma(candidate.bytes)),
+            candidate.file,
+          );
+          if (alpha) assert.ok(candidate.bytes.includes("auxiliary:alpha"), candidate.file);
+        }
+        published.add(candidate.file);
       }
-      // Only a WebP original is reused, at its own width, instead of being re-encoded.
-      const reused = candidate.file === pathname;
-      assert.equal(reused, extension === "webp" && index === candidates.length - 1, candidate.file);
-      if (reused) continue;
-      assert.ok(candidate.file.endsWith(".webp"), candidate.file);
-      assert.equal(candidate.bytes.toString("ascii", 0, 4), "RIFF");
-      assert.equal(candidate.bytes.toString("ascii", 8, 12), "WEBP");
-      assert.equal(imageChunk(candidate.bytes), expected, candidate.file);
-      if (alpha) assert.ok(chunks(candidate.bytes).includes("ALPH"), candidate.file);
-      published.add(candidate.file);
     }
   }
   assert.ok(published.size > 10);

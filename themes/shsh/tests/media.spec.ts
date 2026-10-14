@@ -6,12 +6,16 @@ const base = "http://127.0.0.1:4179";
 test.beforeEach(async ({ page }) => {
   await page.route("https://**/*", (route) => route.abort());
 });
-// Candidates live in the picture's WebP source; the img keeps only the original src.
-const candidates = async (img: Locator) =>
-  (await img.locator("xpath=../source").getAttribute("srcset"))!.split(", ").map((candidate) => {
-    const [url, descriptor] = candidate.split(" ");
-    return { url: url!, width: Number(descriptor!.slice(0, -1)) };
-  });
+// Candidates live in the picture's AVIF and WebP sources; the img keeps only the original src.
+const candidates = async (img: Locator, type: "avif" | "webp") =>
+  (await img.locator(`xpath=../source[@type="image/${type}"]`).getAttribute("srcset"))!
+    .split(", ")
+    .map((candidate) => {
+      const [url, descriptor] = candidate.split(" ");
+      return { url: url!, width: Number(descriptor!.slice(0, -1)) };
+    });
+// The source a browser picked, from the extension of the candidate it loaded.
+const formatOf = (url: string) => (url.endsWith(".avif") ? "avif" : "webp");
 
 test("responsive candidates, originals, dimensions, loading and figure semantics", async ({
   page,
@@ -26,29 +30,32 @@ test("responsive candidates, originals, dimensions, loading and figure semantics
   );
   // The native width is always last, even above 1440px. Heavier intermediate resizes give way to
   // a lighter wider one; without comparing to the original, WebP heavier than a JPEG is offered.
-  const widths: Record<string, number[]> = {
-    ターミナルの文字: [360, 1200],
-    実写真: [360, 720, 1080, 1440, 1500],
-    パレット画像: [360, 1440],
-    小さい透明画像: [200],
-    静止GIF: [120],
-    静止WebP: [360, 400],
-    可逆WebP: [360, 480],
-    半透明の非可逆WebP: [360, 480],
-    TIFF画像: [360, 480],
-    パレットのスクリーンショット: [360, 720, 2304],
+  // Near-lossless AVIF shrinks with the width, so it keeps the widths lossless WebP drops.
+  const widths: Record<string, { avif: number[]; webp: number[] }> = {
+    ターミナルの文字: { avif: [360, 720, 1080, 1200], webp: [360, 1200] },
+    実写真: { avif: [360, 720, 1080, 1440, 1500], webp: [360, 720, 1080, 1440, 1500] },
+    パレット画像: { avif: [360, 720, 1080, 1440], webp: [360, 1440] },
+    小さい透明画像: { avif: [200], webp: [200] },
+    静止GIF: { avif: [120], webp: [120] },
+    静止WebP: { avif: [360, 400], webp: [360, 400] },
+    可逆WebP: { avif: [360, 480], webp: [360, 480] },
+    半透明の非可逆WebP: { avif: [360, 480], webp: [360, 480] },
+    TIFF画像: { avif: [360, 480], webp: [360, 480] },
+    パレットのスクリーンショット: { avif: [360, 720, 1080, 1440, 2304], webp: [360, 720, 2304] },
     // Grayscale PNGs shift slightly in brightness through Hugo's WebP encoder; this is accepted.
-    グレースケール画像: [360, 860],
-    圧縮済みJPEG: [360, 720],
+    グレースケール画像: { avif: [360, 720, 860], webp: [360, 860] },
+    圧縮済みJPEG: { avif: [360, 720], webp: [360, 720] },
   };
   for (const [name, expected] of Object.entries(widths)) {
     const img = page.getByRole("img", { name, exact: true });
     await expect(img.locator("..")).toHaveJSProperty("tagName", "PICTURE");
     // verify-media.ts checks the picture shape and which original is reused for every image.
-    expect(
-      (await candidates(img)).map((candidate) => candidate.width),
-      name,
-    ).toEqual(expected);
+    for (const type of ["avif", "webp"] as const) {
+      expect(
+        (await candidates(img, type)).map((candidate) => candidate.width),
+        `${name} ${type}`,
+      ).toEqual(expected[type]);
+    }
   }
   await expect(terminal).toHaveAttribute("width", "1200");
   await expect(terminal).toHaveAttribute("height", "630");
@@ -157,7 +164,7 @@ test("a cover takes the same lead gap on both sides as an article without one", 
 test("direct lossless resizing preserves palette midtones and transparency", async ({ page }) => {
   await page.goto(`${base}/gallery/`);
   const img = page.getByRole("img", { name: "パレット画像", exact: true });
-  const [smallest] = await candidates(img);
+  const [smallest] = await candidates(img, "webp");
   const result = await img.evaluate(async (_, url: string) => {
     // Below a screenshot band, the 1440px indexed PNG alternates red/blue columns. A 4:1
     // Catmull-Rom resize must produce purple, absent from the source palette, away from edges.
@@ -256,8 +263,10 @@ test("DPR chooses fitting candidates and JavaScript-free media remain usable", a
     const cover = page.locator(".article-cover img");
     await expect(cover).toBeVisible();
     const current = await cover.evaluate((img: HTMLImageElement) => img.currentSrc);
-    expect(current).toContain(".webp");
-    const chosen = (await candidates(cover)).find((candidate) => current.endsWith(candidate.url))!;
+    expect(current).toMatch(/_hu_\w+\.(?:avif|webp)$/);
+    const chosen = (await candidates(cover, formatOf(current))).find((candidate) =>
+      current.endsWith(candidate.url),
+    )!;
     expect(chosen.width).toBeGreaterThanOrEqual(width === 1280 ? 1200 : 352 * deviceScaleFactor);
     expect(chosen.width).toBeLessThanOrEqual(deviceScaleFactor === 1 ? 720 : 1200);
     // A large photo offers its native width when DPR calls for more than 1440px.
@@ -267,9 +276,9 @@ test("DPR chooses fitting candidates and JavaScript-free media remain usable", a
       .poll(() => photo.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0))
       .toBe(true);
     const photoCurrent = await photo.evaluate((img: HTMLImageElement) => img.currentSrc);
-    expect(photoCurrent).toContain(".webp");
+    expect(photoCurrent).toMatch(/_hu_\w+\.(?:avif|webp)$/);
     if (width === 1280) {
-      const expected = (await candidates(photo)).find(
+      const expected = (await candidates(photo, formatOf(photoCurrent))).find(
         (candidate) => candidate.width === (deviceScaleFactor === 3 ? 1500 : 1440),
       )!;
       expect(photoCurrent).toContain(expected.url);
@@ -279,7 +288,7 @@ test("DPR chooses fitting candidates and JavaScript-free media remain usable", a
   }
 });
 
-test("browsers without WebP load the original, and the cover keeps high priority", async ({
+test("browsers fall back from AVIF to WebP to the original, and the cover keeps high priority", async ({
   page,
   browserName,
 }) => {
@@ -292,14 +301,18 @@ test("browsers without WebP load the original, and the cover keeps high priority
   await cdp.send("Network.enable");
   await page.goto(`${base}/gallery/`);
   const cover = page.locator(".article-cover img");
-  await expect
-    .poll(() => cover.evaluate((img: HTMLImageElement) => img.currentSrc))
-    .toContain(".webp");
-  expect(priorities.get(await cover.evaluate((img: HTMLImageElement) => img.currentSrc))).toBe(
-    "High",
-  );
+  const coverSrc = () => cover.evaluate((img: HTMLImageElement) => img.currentSrc);
+  // The AVIF source comes first, so it wins wherever AVIF decodes.
+  await expect.poll(coverSrc).toContain(".avif");
+  expect(priorities.get(await coverSrc())).toBe("High");
 
-  await cdp.send("Emulation.setDisabledImageTypes", { imageTypes: ["webp"] });
+  await cdp.send("Emulation.setDisabledImageTypes", { imageTypes: ["avif"] });
+  priorities.clear();
+  await page.reload();
+  await expect.poll(coverSrc).toContain(".webp");
+  expect(priorities.get(await coverSrc())).toBe("High");
+
+  await cdp.send("Emulation.setDisabledImageTypes", { imageTypes: ["avif", "webp"] });
   priorities.clear();
   await page.reload();
   // A WebP original cannot be shown there either, so check other formats.
@@ -317,6 +330,6 @@ test("browsers without WebP load the original, and the cover keeps high priority
     }));
     expect(current).toBe(src);
   }
-  // The typed source is skipped outright, so no WebP candidate is requested.
+  // Both typed sources are skipped outright, so no candidate is requested.
   expect([...priorities.keys()].filter((url) => url.includes("_hu_"))).toEqual([]);
 });

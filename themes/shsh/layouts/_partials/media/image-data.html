@@ -1,6 +1,6 @@
 {{- $media := partial "media/resolve.html" . -}}
 {{- $width := 0 -}}{{- $height := 0 -}}
-{{- $srcset := slice -}}
+{{- $sources := slice -}}
 {{- $resource := $media.resource -}}
 {{- $processable := false -}}
 {{- $svg := "" -}}
@@ -39,39 +39,33 @@
   {{- end -}}
   {{- $processable = and (not $animated) (reflect.IsImageResourceProcessable $resource) -}}
   {{- if $processable -}}
-    {{- /* Formats that usually hold screenshots and line art stay lossless; others are photos. */ -}}
-    {{- $lossless := in (slice "png" "gif") $type -}}
-    {{- if eq $type "webp" }}{{ $lossless = $webp.lossless }}{{ end -}}
-    {{- $spec := cond $lossless "webp lossless catmullrom" "webp lossy" -}}
-    {{- $candidates := slice -}}
-    {{- range slice 360 720 1080 1440 -}}
-      {{- if lt . $width }}
-        {{ $candidates = $candidates | append ($resource.Process (printf "resize %dx %s" . $spec)) }}
-      {{ end -}}
-    {{- end -}}
-    {{- /* Always include the native width so the WebP source covers every display density. */ -}}
-    {{- /* A WebP original already belongs in the WebP source at its own width. */ -}}
-    {{- if eq $type "webp" -}}
-      {{- $candidates = $candidates | append ($resource | fingerprint) -}}
-    {{- else -}}
-      {{- $candidates = $candidates | append ($resource.Process (printf "resize %dx %s" $width $spec)) -}}
-    {{- end -}}
-    {{- /* Browsers never fall back from a typed source to the original, so compare within WebP. */ -}}
-    {{- /* Drop a width when a wider one is no larger: resized palette images can outgrow it. */ -}}
-    {{- /* Read RelPermalink only for kept candidates so dropped ones are not published. */ -}}
-    {{- $sizes := slice -}}
-    {{- range $candidates }}
-      {{ $sizes = $sizes | append (len .Content) }}
-    {{ end -}}
-    {{- range $index, $candidate := $candidates -}}
-      {{- $size := index $sizes $index -}}
-      {{- $dominated := false -}}
-      {{- range after (add $index 1) $sizes -}}
-        {{- if le . $size }}{{ $dominated = true }}{{ end -}}
+    {{- /* Treat PNG, GIF and lossless WebP as screenshots and line art, the rest as photos. */ -}}
+    {{- $screenshot := in (slice "png" "gif") $type -}}
+    {{- if eq $type "webp" }}{{ $screenshot = $webp.lossless }}{{ end -}}
+    {{- /* Hugo's lossless AVIF passes through BT.601 YUV and outgrows lossless WebP. */ -}}
+    {{- /* Screenshots get near-lossless 4:4:4 AVIF instead; photos follow imaging.avif. */ -}}
+    {{- /* AVIF comes first: browsers take the first typed source they support. */ -}}
+    {{- $formats := slice
+      (dict "type" "avif" "spec" (cond $screenshot "avif lossy catmullrom q85 drawing" "avif lossy"))
+      (dict "type" "webp" "spec" (cond $screenshot "webp lossless catmullrom" "webp lossy"))
+    -}}
+    {{- range $format := $formats -}}
+      {{- $candidates := slice -}}
+      {{- range slice 360 720 1080 1440 -}}
+        {{- if lt . $width }}
+          {{ $candidates = $candidates | append ($resource.Process (printf "resize %dx %s" . $format.spec)) }}
+        {{ end -}}
       {{- end -}}
-      {{- if not $dominated -}}
-        {{- $srcset = $srcset | append (printf "%s %dw" $candidate.RelPermalink $candidate.Width) -}}
+      {{- /* Always include the native width so each source covers every display density. */ -}}
+      {{- /* An original in the source's own format already belongs there at its own width. */ -}}
+      {{- if eq $type $format.type -}}
+        {{- $candidates = $candidates | append ($resource | fingerprint) -}}
+      {{- else -}}
+        {{- $candidates = $candidates | append ($resource.Process (printf "resize %dx %s" $width $format.spec)) -}}
       {{- end -}}
+      {{- /* Covers repeat on list pages; the hashed src and format determine the candidates. */ -}}
+      {{- $srcset := partialCached "media/srcset.html" $candidates $media.src $format.type -}}
+      {{- $sources = $sources | append (dict "type" (printf "image/%s" $format.type) "srcset" $srcset) -}}
     {{- end -}}
   {{- end -}}
 {{- else if $media.static -}}
@@ -97,4 +91,4 @@
 {{- end -}}
 {{- if not $width }}{{ $width = int (.width | default 0) }}{{ end -}}
 {{- if not $height }}{{ $height = int (.height | default 0) }}{{ end -}}
-{{- return (merge $media (dict "width" $width "height" $height "srcset" (delimit $srcset ", "))) -}}
+{{- return (merge $media (dict "width" $width "height" $height "sources" $sources)) -}}

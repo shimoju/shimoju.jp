@@ -17,6 +17,10 @@ enableRobotsTXT: true
 resourceDir: .cache/hugo
 imaging:
   resampleFilter: lanczos
+  avif:
+    encoderSpeed: 8
+    hint: photo
+    quality: 60
   webp:
     hint: photo
     method: 6
