@@ -94,6 +94,25 @@ The input files are preserved; for example, `video.mov` produces `video.mp4`.
 bin/optimize-video content/posts/path/to/*.mov
 ```
 
+## Image encoding
+
+The theme publishes AVIF and WebP alternatives of each processed image, AVIF
+first. `imaging.avif` in `hugo.yml` sets the photo encoding. Screenshots (PNG,
+GIF and lossless WebP) get 4:4:4 AVIF at q85, fixed by the theme, because
+Hugo's lossless AVIF is larger than lossless WebP and not exactly lossless.
+
+- `encoderSpeed: 8`: Hugo 0.167 crashes on lossy AVIF at speed 6 or below.
+  Speeds 9 and 10 produce identical files that barely beat WebP, and speed 7
+  takes twice as long as 8 for a few more percent.
+- `quality: 60`: the lowest value at which no photo variant scores more than
+  2 SSIMULACRA2 points below its WebP q75 counterpart. q59 is smaller still
+  and matches WebP on average, but drops a detailed photo's small widths by
+  up to 3.4 points.
+
+Against the WebP-only site this cuts the image bytes a browser downloads by
+8–19% for photos and 25–49% for screenshots, depending on the viewport.
+Encoding AVIF roughly doubles the image processing time of an uncached build.
+
 ## Theme development
 
 - `bin/` contains blog authoring and deployment commands.
