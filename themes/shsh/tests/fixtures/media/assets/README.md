@@ -25,4 +25,4 @@ instead of re-encoding it at Hugo's default quality.
 fades from alpha 255 to 64, so it uses the extended format (`VP8X`, `ALPH`,
 `VP8 `). They test that smaller WebP candidates keep the original's
 compression. `still.tiff` is the opaque gradient saved as a Deflate TIFF; other
-processable formats are resized to lossy WebP.
+processable formats are resized to lossy AVIF and WebP.

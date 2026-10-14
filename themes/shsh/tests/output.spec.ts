@@ -117,12 +117,8 @@ for (const variant of variants) {
     expect(files.has("categories/技術/page/2/index.html")).toBe(true);
     expect(docs["old-output/index.html"]?.refresh).toContain("/blog/output/");
     expect(docs["output/index.html"]?.ids).toContain("日本語見出し");
-    const references = docs["output/index.html"]?.references ?? [];
-    for (const extension of [".avif", ".webp"])
-      expect(
-        references.some((ref) => ref.endsWith(extension)),
-        extension,
-      ).toBe(true);
+    expect(docs["output/index.html"]?.references.some((ref) => ref.endsWith(".avif"))).toBe(true);
+    expect(docs["output/index.html"]?.references.some((ref) => ref.endsWith(".webp"))).toBe(true);
     expect(docs["index.html"]?.references).toContain(`${base}index.xml`);
   });
 

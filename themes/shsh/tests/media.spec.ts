@@ -299,19 +299,18 @@ test("browsers fall back from AVIF to WebP to the original, and the cover keeps 
     priorities.set(request.url, request.initialPriority),
   );
   await cdp.send("Network.enable");
+  await page.goto(`${base}/gallery/`);
   const cover = page.locator(".article-cover img");
   const coverSrc = () => cover.evaluate((img: HTMLImageElement) => img.currentSrc);
   // The AVIF source comes first, so it wins wherever AVIF decodes.
-  for (const [disabled, expected] of [
-    [[], ".avif"],
-    [["avif"], ".webp"],
-  ] as const) {
-    await cdp.send("Emulation.setDisabledImageTypes", { imageTypes: [...disabled] });
-    priorities.clear();
-    await page.goto(`${base}/gallery/`);
-    await expect.poll(coverSrc).toContain(expected);
-    expect(priorities.get(await coverSrc())).toBe("High");
-  }
+  await expect.poll(coverSrc).toContain(".avif");
+  expect(priorities.get(await coverSrc())).toBe("High");
+
+  await cdp.send("Emulation.setDisabledImageTypes", { imageTypes: ["avif"] });
+  priorities.clear();
+  await page.reload();
+  await expect.poll(coverSrc).toContain(".webp");
+  expect(priorities.get(await coverSrc())).toBe("High");
 
   await cdp.send("Emulation.setDisabledImageTypes", { imageTypes: ["avif", "webp"] });
   priorities.clear();
