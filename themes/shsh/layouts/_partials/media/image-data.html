@@ -39,15 +39,15 @@
   {{- end -}}
   {{- $processable = and (not $animated) (reflect.IsImageResourceProcessable $resource) -}}
   {{- if $processable -}}
-    {{- /* Formats that usually hold screenshots and line art stay lossless; others are photos. */ -}}
-    {{- $lossless := in (slice "png" "gif") $type -}}
-    {{- if eq $type "webp" }}{{ $lossless = $webp.lossless }}{{ end -}}
+    {{- /* Treat PNG, GIF and lossless WebP as screenshots and line art, the rest as photos. */ -}}
+    {{- $screenshot := in (slice "png" "gif") $type -}}
+    {{- if eq $type "webp" }}{{ $screenshot = $webp.lossless }}{{ end -}}
     {{- /* Hugo's lossless AVIF passes through BT.601 YUV and outgrows lossless WebP. */ -}}
     {{- /* Screenshots get near-lossless 4:4:4 AVIF instead; photos follow imaging.avif. */ -}}
     {{- /* AVIF comes first: browsers take the first typed source they support. */ -}}
     {{- $formats := slice
-      (dict "type" "avif" "spec" (cond $lossless "avif lossy catmullrom q85 drawing" "avif lossy"))
-      (dict "type" "webp" "spec" (cond $lossless "webp lossless catmullrom" "webp lossy"))
+      (dict "type" "avif" "spec" (cond $screenshot "avif lossy catmullrom q85 drawing" "avif lossy"))
+      (dict "type" "webp" "spec" (cond $screenshot "webp lossless catmullrom" "webp lossy"))
     -}}
     {{- range $format := $formats -}}
       {{- $candidates := slice -}}
@@ -63,9 +63,9 @@
       {{- else -}}
         {{- $candidates = $candidates | append ($resource.Process (printf "resize %dx %s" $width $format.spec)) -}}
       {{- end -}}
-      {{- with partial "media/srcset.html" $candidates -}}
-        {{- $sources = $sources | append (dict "type" (printf "image/%s" $format.type) "srcset" .) -}}
-      {{- end -}}
+      {{- /* Covers repeat on list pages; the hashed src and format determine the candidates. */ -}}
+      {{- $srcset := partialCached "media/srcset.html" $candidates $media.src $format.type -}}
+      {{- $sources = $sources | append (dict "type" (printf "image/%s" $format.type) "srcset" $srcset) -}}
     {{- end -}}
   {{- end -}}
 {{- else if $media.static -}}

@@ -41,7 +41,7 @@ for (const environment of ["production", "preview"]) {
   assert.match(html, /https:\/\/external.invalid\/image.png/);
   for (const [markup] of html.matchAll(/<(?:img|video)\b[^>]*>/g)) {
     const src = markup.match(/\bsrc="([^"]+)"/)?.[1];
-    // Candidates live only in the typed sources, so browsers without AVIF or WebP load the original src.
+    // Candidates live only in typed sources; browsers without AVIF or WebP load the original src.
     assert.doesNotMatch(markup, /\b(?:srcset|sizes)=/);
     assert.ok(src);
     const pathname = pathOf(src);
@@ -70,24 +70,17 @@ for (const environment of ["production", "preview"]) {
   ];
   // Every picture must have exactly this shape: AVIF first, then WebP, then the original img.
   assert.equal(pictures.length, html.match(/<picture\b/g)?.length);
-  for (const [, avifSrcset, webpSrcset, img] of pictures) {
+  for (const [, avif, webp, img] of pictures) {
     const src = img!.match(/\bsrc="([^"]+)"/)?.[1];
     const width = Number(img!.match(/\bwidth="(\d+)"/)?.[1]);
     assert.ok(src && width);
     const pathname = pathOf(src);
     const original = readFileSync(directory + pathname);
     const extension = pathname.split(".").at(-1)!;
-    const expected =
-      extension === "webp"
-        ? imageChunk(original)
-        : ["png", "gif"].includes(extension)
-          ? "VP8L"
-          : "VP8 ";
+    const screenshot =
+      extension === "webp" ? imageChunk(original) === "VP8L" : ["png", "gif"].includes(extension);
     const alpha = chunks(original).includes("ALPH");
-    for (const [format, srcset] of [
-      ["avif", avifSrcset],
-      ["webp", webpSrcset],
-    ] as const) {
+    for (const [format, srcset] of Object.entries({ avif, webp })) {
       const candidates = srcset!.split(", ").map((candidate) => {
         const [url, descriptor] = candidate.split(" ");
         assert.ok(url && descriptor?.endsWith("w"), candidate);
@@ -120,13 +113,13 @@ for (const environment of ["production", "preview"]) {
         if (format === "webp") {
           assert.equal(candidate.bytes.toString("ascii", 0, 4), "RIFF");
           assert.equal(candidate.bytes.toString("ascii", 8, 12), "WEBP");
-          assert.equal(imageChunk(candidate.bytes), expected, candidate.file);
+          assert.equal(imageChunk(candidate.bytes), screenshot ? "VP8L" : "VP8 ", candidate.file);
           if (alpha) assert.ok(chunks(candidate.bytes).includes("ALPH"), candidate.file);
         } else {
           assert.equal(candidate.bytes.toString("ascii", 4, 12), "ftypavif", candidate.file);
           // Screenshots keep full chroma; photos use 4:2:0. Grayscale sources stay monochrome.
           assert.ok(
-            [expected === "VP8L" ? "444" : "420", "mono"].includes(chroma(candidate.bytes)),
+            [screenshot ? "444" : "420", "mono"].includes(chroma(candidate.bytes)),
             candidate.file,
           );
           if (alpha) assert.ok(candidate.bytes.includes("auxiliary:alpha"), candidate.file);

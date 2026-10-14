@@ -7,9 +7,7 @@
 {{- $data := partial "media/image-data.html" . -}}
 {{- $img := partial "media/img.html" (merge . (dict "data" $data)) -}}
 {{- $sizes := "(min-width: 768px) 720px, (min-width: 640px) calc(100vw - 48px), (hover: hover) calc(100vw - 48px), calc(100vw - 32px)" -}}
-{{- /* Browsers take the first typed source they support (AVIF, then WebP); without either they
-  skip both and load the original src. */
--}}
+{{- /* Browsers without a supported typed source skip them all and load the original src. */ -}}
 {{- with $data.sources -}}
   <picture
     >{{- range . -}}
