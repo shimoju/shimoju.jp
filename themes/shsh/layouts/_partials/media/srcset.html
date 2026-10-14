@@ -1,0 +1,20 @@
+{{- /* Browsers never fall back from a typed source to the original, so compare within one format. */ -}}
+{{- /* Drop a width when a wider one is no larger: resized palette images can outgrow it. */ -}}
+{{- /* Read RelPermalink only for kept candidates so dropped ones are not published. */ -}}
+{{- $candidates := . -}}
+{{- $sizes := slice -}}
+{{- range $candidates }}
+  {{ $sizes = $sizes | append (len .Content) }}
+{{ end -}}
+{{- $srcset := slice -}}
+{{- range $index, $candidate := $candidates -}}
+  {{- $size := index $sizes $index -}}
+  {{- $dominated := false -}}
+  {{- range after (add $index 1) $sizes -}}
+    {{- if le . $size }}{{ $dominated = true }}{{ end -}}
+  {{- end -}}
+  {{- if not $dominated -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $candidate.RelPermalink $candidate.Width) -}}
+  {{- end -}}
+{{- end -}}
+{{- return (delimit $srcset ", ") -}}

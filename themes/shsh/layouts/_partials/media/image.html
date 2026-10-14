@@ -7,14 +7,14 @@
 {{- $data := partial "media/image-data.html" . -}}
 {{- $img := partial "media/img.html" (merge . (dict "data" $data)) -}}
 {{- $sizes := "(min-width: 768px) 720px, (min-width: 640px) calc(100vw - 48px), (hover: hover) calc(100vw - 48px), calc(100vw - 32px)" -}}
-{{- /* Browsers without WebP skip the typed source and load the original src. */ -}}
-{{- with $data.srcset -}}
+{{- /* Browsers take the first typed source they support (AVIF, then WebP); without either they
+  skip both and load the original src. */
+-}}
+{{- with $data.sources -}}
   <picture
-    ><source
-      type="image/webp"
-      srcset="{{ . }}"
-      sizes="{{ $sizes }}"
-    />{{ $img }}</picture
+    >{{- range . -}}
+      <source type="{{ .type }}" srcset="{{ .srcset }}" sizes="{{ $sizes }}" />
+    {{- end -}}{{ $img }}</picture
   >
 {{- else -}}
   {{- $img -}}
